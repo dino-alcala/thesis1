@@ -169,7 +169,8 @@
                         </select>
 
                     </div>
-                    
+                            
+                    <input type="text" class="Form-control" name="position" placeholder="Position*" required="" autofocus="" />
                     <input type="text" class="Form-control" name="username" placeholder="Username*" required="" autofocus="" />
                     <input type="password" class="Form-control" name="password" placeholder="Password*" required=""/>
                     <input type="password" class="Form-control" name="password2" placeholder="Confirm Password*" required=""/>

@@ -81,6 +81,17 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
+                        
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of Staff for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input2 = document.createElement("input");
+                        input.type = "text";
+                        input.name = "staff" + i;
+                        container.appendChild(input2);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+                        
                     }
                 }
         </script>
@@ -547,6 +558,13 @@
                                         <form action="addUnit" method="post">
                                             <ul class="form-style-1">
                                                 <li>
+                                                    <label>Unit Type:* <span class="required"></span></label>
+                                                    <select>
+                                                        <option>Academic</option>
+                                                        <option>Non-Academic</option>
+                                                    </select>
+                                                </li>
+                                                <li>
                                                     <label>Unit Name:* <span class="required"></span></label>
                                                     <input type="text" name="unitname" class="field-long" />
                                                 </li>
@@ -556,13 +574,15 @@
                                                 </li>
 
                                                 <li>
-                                                    <label>Number of Departments:*</label>
-                                                    <input type="text" id="member55" name="numberdept" value=""><br />
+                                                    <label>Number of Departments:*</label> 
+                                                    <input type="text" id="member55" name="numberdept" value="0"><br />
                                                     <button type = "button" class="btn" onclick="addFields()">Fill Details</button>
                                                     <div id="container55"/>
                                                 </li>
+                                                <br><br>
 
 
+                                                <label>*For the following fields, do not include employee count from the departments above<span class="required"></span></label>
                                                 <li>
                                                     <label>Total number of Staff: <span class="required"></span></label>
                                                     <input type="number" name="staff" class="field-num" />
@@ -592,7 +612,12 @@
                                                 </li>
 
                                                 <li>
-                                                    <label>Total number of Student: <span class="required"></span></label>
+                                                    <label>Total number of Undergraduate Students: <span class="required"></span></label>
+                                                    <input type="number" name="student" class="field-num" />
+                                                </li>
+                                                
+                                                <li>
+                                                    <label>Total number of Graduate Students: <span class="required"></span></label>
                                                     <input type="number" name="student" class="field-num" />
                                                 </li>
 
