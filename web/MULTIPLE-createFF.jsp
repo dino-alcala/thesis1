@@ -1497,7 +1497,7 @@
 
                         <fieldset>
                             <legend><span class="number">5</span><b> Target Implementation Date:</b></legend>
-                            <center><input type = "date" name ="actualdate"></center>
+                            <center><input type = "date" name ="actualdate" min="<%=sqlDate%>"></center>
                             <br>
                         </fieldset>
 

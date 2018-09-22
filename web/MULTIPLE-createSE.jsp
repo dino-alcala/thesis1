@@ -28,11 +28,13 @@
         <link rel="stylesheet" href="css/sidebar2.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
             #notifsScroll {
@@ -121,8 +123,8 @@
                 text-align: center;
                 margin-bottom: 0%;
             }
-            
-                        #notifsScroll {
+
+            #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
@@ -132,7 +134,7 @@
                 padding-right: 20px;
                 padding-left: 20px;
             }
-            
+
             .navbar-btn-logout {
                 padding-right: 20px;
                 padding-left: 20px;
@@ -314,7 +316,7 @@
             th{
                 padding:15px;
             }
-            
+
             .button{
                 background-color: #4CAF50;
                 border: none;
@@ -337,7 +339,7 @@
                     filter: grayscale(0%);
                 }
             }
-            
+
         </style>
 
         <script type="text/javascript">
@@ -427,15 +429,15 @@
                     }
         </script>
         <script>
-            var dateToday = new Date(); 
+            var dateToday = new Date();
             $(function() {
-                $( "#datepicker" ).datepicker({
-                    numberOfMonths: 3,
+            $("#datepicker").datepicker({
+            numberOfMonths: 3,
                     showButtonPanel: true,
                     minDate: dateToday
-                });
             });
-            </script>
+            });
+        </script>
 
     </head>
 
@@ -1268,7 +1270,7 @@
                 <%
                     }
                 %>
-                
+
                 <%
                     if (session.getAttribute("unit").equals("Lasallian Mission Council")) {
                 %>
@@ -1475,7 +1477,7 @@
 
                         <fieldset>
                             <legend><span class="number">1</span><b> Target Implementation Date:</b></legend>
-                            <input style="width:20%" type = "date" name ="actualdate">
+                            <input style="width:20%" type = "date" name ="actualdate" min="<%=sqlDate%>">
                             <br><br><br>
                         </fieldset>
 
@@ -1540,6 +1542,9 @@
         <!-- body-row END -->
 
         <script>
+            $('#date').datepicker({
+            startDate: new Date()
+                    });
             // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
             ;
