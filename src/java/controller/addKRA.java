@@ -48,17 +48,22 @@ public class addKRA extends HttpServlet {
             KRA.setName(request.getParameter("kraname"));
             KRA.setDate(Date.valueOf(request.getParameter("date")));
             KRA.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-            Goal g = new Goal();
-            g.setName(request.getParameter("goalname"));
-            g.setGoal(1);
+
             for (int i = 1; i < 4; i++) {
-                Measure m = new Measure();
-                m.setMeasure(Integer.parseInt(request.getParameter("measure" + i)));
-                m.setDescription(request.getParameter("description" + i));
-                m.setTarget(Integer.parseInt(request.getParameter("target" + i)));
-                g.addMeasure(m);
+                Goal g = new Goal();
+                g.setName(request.getParameter("goalname" + i));
+                g.setGoal(i);
+
+                for (int j = 1; j < Integer.parseInt(request.getParameter("countmeasuregoal" + i)); j++) {
+                    Measure m = new Measure();
+                    m.setMeasure(Integer.parseInt(request.getParameter("goal" + i + "measure" + j)));
+                    m.setDescription(request.getParameter("goal" + i + "description" + j));
+                    m.setTarget(Integer.parseInt(request.getParameter("goal" + i + "target" + j)));
+                    g.addMeasure(m);
+                }
+
+                KRA.addGoal(g);
             }
-            KRA.addGoal(g);
 
             OvplmDAO.AddKRA(KRA);
 

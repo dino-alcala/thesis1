@@ -250,6 +250,7 @@
 
 
             function addRow2() {
+                var count = document.getElementById("countmeasuregoal1").value;
                 var table = document.getElementById("goaltable");
                 var rows = document.getElementById("goaltable").rows.length;
                 var row = table.insertRow(rows);
@@ -258,22 +259,27 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
 
-                cell1.innerHTML = '<textarea rows = "2" cols = "10%" name ="measure"></textarea>';
-                cell2.innerHTML = '<textarea rows = "2" cols = "10%" name ="description"></textarea>';
-                cell3.innerHTML = '<textarea rows = "2" cols = "10%" name ="target"></textarea>';
-
+                cell1.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal1measure" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal1description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal1target" + count + "'></textarea>";
+                count++;
+                document.getElementById("countmeasuregoal1").setAttribute('value', count);
             }
 
             function deleteRow2() {
+                var count = document.getElementById("countmeasuregoal1").value;
                 var rows = document.getElementById("goaltable").rows.length;
                 if (rows - 1 > 0) {
                     document.getElementById("goaltable").deleteRow(rows - 1);
+                    count--;
+                    document.getElementById("countmeasuregoal1").setAttribute('value', count);
                 } else {
 
                 }
             }
 
             function addRow3() {
+                var count = document.getElementById("countmeasuregoal2").value;
                 var table = document.getElementById("goaltable2");
                 var rows = document.getElementById("goaltable2").rows.length;
                 var row = table.insertRow(rows);
@@ -282,22 +288,28 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
 
-                cell1.innerHTML = '<textarea rows = "2" cols = "10%" name ="measure"></textarea>';
-                cell2.innerHTML = '<textarea rows = "2" cols = "10%" name ="description"></textarea>';
-                cell3.innerHTML = '<textarea rows = "2" cols = "10%" name ="target"></textarea>';
+                cell1.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal2measure" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal2description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal2target" + count + "'></textarea>";
+                count++;
+                document.getElementById("countmeasuregoal2").setAttribute('value', count);
 
             }
 
             function deleteRow3() {
+                var count = document.getElementById("countmeasuregoal2").value;
                 var rows = document.getElementById("goaltable2").rows.length;
                 if (rows - 1 > 0) {
                     document.getElementById("goaltable2").deleteRow(rows - 1);
+                    count--;
+                    document.getElementById("countmeasuregoal2").setAttribute('value', count);
                 } else {
 
                 }
             }
 
             function addRow4() {
+                var count = document.getElementById("countmeasuregoal3").value;
                 var table = document.getElementById("goaltable3");
                 var rows = document.getElementById("goaltable3").rows.length;
                 var row = table.insertRow(rows);
@@ -306,16 +318,21 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
 
-                cell1.innerHTML = '<textarea rows = "2" cols = "10%" name ="measure"></textarea>';
-                cell2.innerHTML = '<textarea rows = "2" cols = "10%" name ="description"></textarea>';
-                cell3.innerHTML = '<textarea rows = "2" cols = "10%" name ="target"></textarea>';
+                cell1.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal3measure" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal3description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea rows = '2' cols = '10%' name ='goal3target" + count + "'></textarea>";
+                count++;
+                document.getElementById("countmeasuregoal3").setAttribute('value', count);
 
             }
 
             function deleteRow4() {
+                var count = document.getElementById("countmeasuregoal3").value;
                 var rows = document.getElementById("goaltable3").rows.length;
                 if (rows - 1 > 0) {
                     document.getElementById("goaltable3").deleteRow(rows - 1);
+                    count--;
+                    document.getElementById("countmeasuregoal3").setAttribute('value', count);
                 } else {
 
                 }
@@ -351,7 +368,7 @@
             <br><br><br><br>
 
             <div class="add-goal">
-                <h2>Goal 1: </h2><textarea rows = "1" cols = "1%" name ="goalname"></textarea>
+                <h2>Goal 1: </h2><textarea rows = "1" cols = "1%" name ="goalname1"></textarea>
                 <center><table style = "width:100%" id="goaltable">
                         <tr>
                             <th>Measure</th>
@@ -359,20 +376,22 @@
                             <th>Target</th>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure1"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description1"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target1"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal1measure1"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal1description1"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal1target1"></textarea></td>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure2"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description2"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target2"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal1measure2"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal1description2"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal1target2"></textarea></td>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure3"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description3"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target3"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal1measure3"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal1description3"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal1target3"></textarea></td>
                         </tr>
+
+                        <input type="hidden" value="4" id="countmeasuregoal1" name="countmeasuregoal1">
                     </table></center>
                 <br>
                 <center>
@@ -383,7 +402,7 @@
             </div>
 
             <div class="add-goal">
-                <h2>Goal 2: </h2><textarea rows = "1" cols = "1%" name ="goalname"></textarea>
+                <h2>Goal 2: </h2><textarea rows = "1" cols = "1%" name ="goalname2"></textarea>
                 <center><table style = "width:100%" id="goaltable2">
                         <tr>
                             <th>Measure</th>
@@ -391,20 +410,22 @@
                             <th>Target</th>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure1"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description1"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target1"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal2measure1"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal2description1"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal2target1"></textarea></td>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure2"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description2"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target2"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal2measure2"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal2description2"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal2target2"></textarea></td>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure3"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description3"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target3"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal2measure3"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal2description3"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal2target3"></textarea></td>
                         </tr>
+
+                        <input type="hidden" value="4" id="countmeasuregoal2" name="countmeasuregoal2">
                     </table></center>
                 <br>
                 <center>
@@ -415,7 +436,7 @@
             </div>
 
             <div class="add-goal">
-                <h2>Goal 3: </h2><textarea rows = "1" cols = "1%" name ="goalname"></textarea>
+                <h2>Goal 3: </h2><textarea rows = "1" cols = "1%" name ="goalname3"></textarea>
                 <center><table style = "width:100%" id="goaltable3">
                         <tr>
                             <th>Measure</th>
@@ -423,20 +444,22 @@
                             <th>Target</th>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure1"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description1"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target1"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal3measure1"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal3description1"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal3target1"></textarea></td>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure2"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description2"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target2"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal3measure2"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal3description2"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal3target2"></textarea></td>
                         </tr>
                         <tr>    
-                            <td><textarea rows = "2" cols = "1%" name ="measure3"></textarea></td>
-                            <td><textarea rows = "2" cols = "10%" name ="description3"></textarea></td>
-                            <td><textarea rows = "2" cols = "1%" name ="target3"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal3measure3"></textarea></td>
+                            <td><textarea rows = "2" cols = "10%" name ="goal3description3"></textarea></td>
+                            <td><textarea rows = "2" cols = "1%" name ="goal3target3"></textarea></td>
                         </tr>
+                        
+                         <input type="hidden" value="4" id="countmeasuregoal3" name="countmeasuregoal3">
                     </table></center>
                 <br>
                 <center>
