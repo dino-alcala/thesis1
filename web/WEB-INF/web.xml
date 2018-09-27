@@ -288,6 +288,10 @@
         <servlet-name>viewProposalsAssessLMC</servlet-name>
         <servlet-class>controller.viewProposalsAssessLMC</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addAcademicUnit</servlet-name>
+        <servlet-class>controller.addAcademicUnit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -575,6 +579,10 @@
     <servlet-mapping>
         <servlet-name>viewProposalsAssessLMC</servlet-name>
         <url-pattern>/viewProposalsAssessLMC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addAcademicUnit</servlet-name>
+        <url-pattern>/addAcademicUnit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

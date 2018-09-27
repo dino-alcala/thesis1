@@ -84,15 +84,85 @@
                         container.appendChild(document.createElement("br"));
                         
                         container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of Staff for Department " + (i + 1) + ": "));
+                        container.appendChild(document.createTextNode("Number of CAP for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "text";
-                        input.name = "staff" + i;
+                        input.name = "cap" + i;
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
                         
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of APSP for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "apsp" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+                        
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of ASF for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "asf" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+                        
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of Faculty (Full-time and Part-time for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "Faculty" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+                        
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of Administrators for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "admin" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+                        
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of Direct Hired Contractual for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "direct" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+                        
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of Independent Contractor for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "independent" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+                        
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of External Service Personnel for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "external" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createElement("br"));
                     }
                 }
         </script>
@@ -550,25 +620,32 @@
 
                                 <div class="panel panel-success">
 
-                                    <div class="panel-heading"></div>
-
                                     <div class="panel-body">
 
-                                        <p><i>Fields with "*" are required</i></p>
+                                        <p><i>All fields are required</i></p>
 
                                         <form action="addUnit" method="post">
                                             <ul class="form-style-1">
                                                 <li>
-                                                    <label>Unit Type:* <span class="required"></span></label>
-                                                    <select name="unittype">
-                                                        <option value="academic">Academic</option>
-                                                        <option value="nonacademic">Non-Academic</option>
-                                                    </select>
+                                                    <label>Unit Name: <span class="required"></span></label>
+                                                    <input type="text" name="unitname" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Unit Head: <span class="required"></span></label>
+                                                    <input type="text" name="unithead" class="field-long" />
+                                                </li>
+
+                                                <li>
+                                                    <label>Number of Departments: </label> 
+                                                    <input type="text" id="member55" name="numberdept" value="0"><br />
+                                                    <button type = "button" class="btn" onclick="addFields()">Fill Details</button>
+                                                    <div id="container55"/>
                                                 </li>
                                                 
                                                 <li>
-                                                    <button type="submit" class="btn btn-info">Proceed</button>
+                                                    <button type="submit" class="btn btn-info">Add Unit</button>
                                                 </li>
+                                                <br><br>
                                             </ul>
                                         </form>
                                     </div>

@@ -21,9 +21,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author dang
  */
-public class addUnit extends HttpServlet {
+public class addAcademicUnit extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,24 +38,40 @@ public class addUnit extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
+            
             Unit unit = new Unit();
 
             OvplmDAO OvplmDAO = new OvplmDAO();
             
             HttpSession session = request.getSession();
 
-            if(request.getParameter("unittype").equals("academic")){
-                ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitAcademic.jsp");
-            dispatcher.forward(request, response);
-            } else if(request.getParameter("unittype").equals("nonacademic")){
-                ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitNonacademic.jsp");
-            dispatcher.forward(request, response);
+            unit.setName(request.getParameter("unitname"));
+            unit.setHead(request.getParameter("unithead"));
+            unit.setDepartments(Integer.parseInt(request.getParameter("numberdept")));
+            unit.setStaff(Integer.parseInt(request.getParameter("staff")));
+            unit.setFaculty(Integer.parseInt(request.getParameter("faculty")));
+            unit.setAdmin(Integer.parseInt(request.getParameter("admin")));
+            unit.setApsp(Integer.parseInt(request.getParameter("apsp")));
+            unit.setSaf(Integer.parseInt(request.getParameter("saf")));
+            unit.setCap(Integer.parseInt(request.getParameter("cap")));
+            unit.setStudent(Integer.parseInt(request.getParameter("student")));
+            unit.setDescription(request.getParameter("unitdesc"));
+            unit.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+            
+            ArrayList<Department> d = new ArrayList();
+
+            for (int i = 0; i < Integer.parseInt(request.getParameter("numberdept")); i++) {
+                Department department = new Department();
+                department.setName(request.getParameter("department" + i));
+                d.add(department);
             }
 
+            OvplmDAO.AddUnit(unit, d);
+
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
+            dispatcher.forward(request, response);
+            
         }
     }
 

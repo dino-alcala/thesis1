@@ -60,43 +60,6 @@
 
         </script>
 
-        <script>
-                function addFields() {
-                    // Number of inputs to create
-                    var number = document.getElementById("member55").value;
-                    // Container <div> where dynamic content will be placed
-                    var container = document.getElementById("container55");
-                    // Clear previous contents of the container
-                    while (container.hasChildNodes()) {
-                        container.removeChild(container.lastChild);
-                    }
-                    for (i = 0; i < number; i++) {
-                        // Append a node with a random text
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
-                        container.appendChild(document.createElement("br"));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "department" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
-                        
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of Staff for Department " + (i + 1) + ": "));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "staff" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
-                        
-                    }
-                }
-        </script>
-
         <style>
             #notifsScroll {
                 overflow-y: auto; 
@@ -554,20 +517,53 @@
 
                                     <div class="panel-body">
 
-                                        <p><i>Fields with "*" are required</i></p>
+                                        <p><i>All fields are required</i></p>
 
                                         <form action="addUnit" method="post">
                                             <ul class="form-style-1">
                                                 <li>
-                                                    <label>Unit Type:* <span class="required"></span></label>
-                                                    <select name="unittype">
-                                                        <option value="academic">Academic</option>
-                                                        <option value="nonacademic">Non-Academic</option>
-                                                    </select>
+                                                    <label>Unit Name: <span class="required"></span></label>
+                                                    <input type="text" name="unitname" class="field-long" />
                                                 </li>
-                                                
                                                 <li>
-                                                    <button type="submit" class="btn btn-info">Proceed</button>
+                                                    <label>Unit Head: <span class="required"></span></label>
+                                                    <input type="text" name="unithead" class="field-long" />
+                                                </li>
+                                                <br>
+                                                <li>
+                                                    <label>Total Number of CAP: <span class="required"></span></label>
+                                                    <input type="text" name="cap" class="field-long" />
+                                                </li>                                                
+                                                <li>
+                                                    <label>Total Number of APSP: <span class="required"></span></label>
+                                                    <input type="text" name="apsp" class="field-long" />
+                                                </li>                                                
+                                                <li>
+                                                    <label>Total Number of ASF: <span class="required"></span></label>
+                                                    <input type="text" name="asf" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of Faculty (full-time and part-time): <span class="required"></span></label>
+                                                    <input type="text" name="faculty" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of Administrators: <span class="required"></span></label>
+                                                    <input type="text" name="admin" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of Direct Hired Contractuals: <span class="required"></span></label>
+                                                    <input type="text" name="direct" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of Independent Contractors: <span class="required"></span></label>
+                                                    <input type="text" name="independent" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of External Service Personnel: <span class="required"></span></label>
+                                                    <input type="text" name="external" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <button type="submit" class="btn btn-info">Add Unit</button>
                                                 </li>
                                             </ul>
                                         </form>
