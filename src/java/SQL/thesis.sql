@@ -92,7 +92,7 @@ DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
   `departmentID` int(11) NOT NULL,
   `department` varchar(100) DEFAULT NULL,
-  `numberOfStaff` int(11) DEFAULT NULL,
+  `numberOfFaculty` int(11) DEFAULT NULL,
   `numberOfAdmin` int(11) DEFAULT NULL,
   `numberOfAPSP` int(11) DEFAULT NULL,
   `numberOfASF` int(11) DEFAULT NULL,
@@ -498,7 +498,7 @@ DROP TABLE IF EXISTS `measure`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `measure` (
   `measureID` int(11) NOT NULL AUTO_INCREMENT,
-  `measure` int(11) DEFAULT NULL,
+  `measure` varchar(500) DEFAULT NULL,
   `target` varchar(500) DEFAULT NULL,
   `kraID` int(11) DEFAULT NULL,
   `goalID` int(11) DEFAULT NULL,
@@ -998,7 +998,7 @@ CREATE TABLE `unit` (
   `unitDescription` varchar(200) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
   PRIMARY KEY (`unitID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1047,4 +1047,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-27 16:17:36
+-- Dump completed on 2018-09-27 17:13:28
