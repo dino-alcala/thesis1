@@ -199,13 +199,12 @@ public class OvplmDAO {
                 }
 
                 for (int j = 0; j < KRA.getGoals().get(i).getMeasures().size(); j++) {
-                    query = "INSERT into measure(measure, description, target, kraID, goalID) VALUES(?,?,?,?,?)";
+                    query = "INSERT into measure(measure, target, kraID, goalID) VALUES(?,?,?,?)";
                     pstmt = conn.prepareStatement(query);
                     pstmt.setInt(1, KRA.getGoals().get(i).getMeasures().get(j).getMeasure());
-                    pstmt.setString(2, KRA.getGoals().get(i).getMeasures().get(j).getDescription());
-                    pstmt.setInt(3, KRA.getGoals().get(i).getMeasures().get(j).getTarget());
-                    pstmt.setInt(4, kraid);
-                    pstmt.setInt(5, goalid);
+                    pstmt.setString(2, KRA.getGoals().get(i).getMeasures().get(j).getTarget());
+                    pstmt.setInt(3, kraid);
+                    pstmt.setInt(4, goalid);
 
                     rs = pstmt.executeUpdate();
 
@@ -277,8 +276,7 @@ public class OvplmDAO {
                         Measure m = new Measure();
                         m.setMeasureID(rs.getInt("measureID"));
                         m.setMeasure(rs.getInt("measure"));
-                        m.setDescription(rs.getString("description"));
-                        m.setTarget(rs.getInt("target"));
+                        m.setTarget(rs.getString("target"));
                         measures.add(m);
                     }
                     
@@ -357,8 +355,7 @@ public class OvplmDAO {
                     Measure m = new Measure();
                     m.setMeasureID(rs.getInt("measureID"));
                     m.setMeasure(rs.getInt("measure"));
-                    m.setDescription(rs.getString("description"));
-                    m.setTarget(rs.getInt("target"));
+                    m.setTarget(rs.getString("target"));
                     measures.add(m);
                 }
                 goals.get(i).setMeasures(measures);

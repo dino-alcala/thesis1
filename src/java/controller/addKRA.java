@@ -55,10 +55,10 @@ public class addKRA extends HttpServlet {
                 g.setGoal(i);
 
                 for (int j = 1; j < Integer.parseInt(request.getParameter("countmeasuregoal" + i)); j++) {
+                    System.out.print("Measure size: "+ request.getParameter("countmeasuregoal" + i));
                     Measure m = new Measure();
                     m.setMeasure(Integer.parseInt(request.getParameter("goal" + i + "measure" + j)));
-                    m.setDescription(request.getParameter("goal" + i + "description" + j));
-                    m.setTarget(Integer.parseInt(request.getParameter("goal" + i + "target" + j)));
+                    m.setTarget(request.getParameter("goal" + i + "target" + j));
                     g.addMeasure(m);
                 }
 

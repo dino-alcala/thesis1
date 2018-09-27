@@ -9217,8 +9217,7 @@ public class UserDAO {
                     Measure m = new Measure();
                     m.setMeasureID(rs.getInt("measureID"));
                     m.setMeasure(rs.getInt("measure"));
-                    m.setDescription(rs.getString("description"));
-                    m.setTarget(rs.getInt("target"));
+                    m.setTarget(rs.getString("target"));
                     measures.add(m);
                 }
                 goals.get(i).setMeasures(measures);
