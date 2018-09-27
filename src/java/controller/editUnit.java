@@ -41,6 +41,7 @@ public class editUnit extends HttpServlet {
 
             Unit unit = new Unit();
 
+            /*
             unit.setUnitID(Integer.parseInt(request.getParameter("unit")));
             unit.setName(request.getParameter("unitname"));
             unit.setHead(request.getParameter("unithead"));
@@ -53,7 +54,7 @@ public class editUnit extends HttpServlet {
             unit.setCap(Integer.parseInt(request.getParameter("cap")));
             unit.setStudent(Integer.parseInt(request.getParameter("student")));
             unit.setDescription(request.getParameter("unitdesc"));
-
+*/
             UserDAO.updateUnit(unit);
 
             ServletContext context = getServletContext();

@@ -6,11 +6,9 @@
 package controller;
 
 import dao.OvplmDAO;
-import entity.Department;
 import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,9 +19,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author dang
+ * @author LA
  */
-public class addAcademicUnit extends HttpServlet {
+public class addNonAcademicUnit extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,6 +36,7 @@ public class addAcademicUnit extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
 
             Unit unit = new Unit();
 
@@ -47,33 +46,24 @@ public class addAcademicUnit extends HttpServlet {
 
             unit.setName(request.getParameter("unitname"));
             unit.setHead(request.getParameter("unithead"));
-            unit.setDepartments(Integer.parseInt(request.getParameter("numberdept")));
-            unit.setType("Academic");
+            unit.setDepartments(0);
+            unit.setType("Non-Academic");
             unit.setDescription(request.getParameter("unitdescription"));
             unit.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
-            ArrayList<Department> d = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("numberdept")); i++) {
-                Department department = new Department();
-                department.setName(request.getParameter("department" + i));
-                department.setFaculty(Integer.parseInt(request.getParameter("faculty" + i)));
-                department.setAdmin(Integer.parseInt(request.getParameter("admin" + i)));
-                department.setApsp(Integer.parseInt(request.getParameter("apsp" + i)));
-                department.setAsf(Integer.parseInt(request.getParameter("asf" + i)));
-                department.setCap(Integer.parseInt(request.getParameter("cap" + i)));
-                department.setDirecthired(Integer.parseInt(request.getParameter("direct" + i)));
-                department.setIndependent(Integer.parseInt(request.getParameter("independent" + i)));
-                department.setExternal(Integer.parseInt(request.getParameter("external" + i)));
-                d.add(department);
-            }
-
-            OvplmDAO.AddAcademicUnit(unit, d);
+            unit.setFaculty(Integer.parseInt(request.getParameter("faculty")));
+            unit.setAdmin(Integer.parseInt(request.getParameter("admin")));
+            unit.setApsp(Integer.parseInt(request.getParameter("apsp")));
+            unit.setAsf(Integer.parseInt(request.getParameter("asf")));
+            unit.setCap(Integer.parseInt(request.getParameter("cap")));
+            unit.setDirecthired(Integer.parseInt(request.getParameter("direct")));
+            unit.setIndependent(Integer.parseInt(request.getParameter("independent")));
+            unit.setExternal(Integer.parseInt(request.getParameter("external")));
+            
+            OvplmDAO.AddNonAcademicUnit(unit);
 
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
             dispatcher.forward(request, response);
-
         }
     }
 
