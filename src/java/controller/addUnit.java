@@ -40,20 +40,14 @@ public class addUnit extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
-            Unit unit = new Unit();
-
-            OvplmDAO OvplmDAO = new OvplmDAO();
-            
-            HttpSession session = request.getSession();
-
-            if(request.getParameter("unittype").equals("academic")){
+            if (request.getParameter("unittype").equals("academic")) {
                 ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitAcademic.jsp");
-            dispatcher.forward(request, response);
-            } else if(request.getParameter("unittype").equals("nonacademic")){
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitAcademic.jsp");
+                dispatcher.forward(request, response);
+            } else if (request.getParameter("unittype").equals("nonacademic")) {
                 ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitNonacademic.jsp");
-            dispatcher.forward(request, response);
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitNonacademic.jsp");
+                dispatcher.forward(request, response);
             }
 
         }

@@ -292,6 +292,10 @@
         <servlet-name>addAcademicUnit</servlet-name>
         <servlet-class>controller.addAcademicUnit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addNonAcademicUnit</servlet-name>
+        <servlet-class>controller.addNonAcademicUnit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -583,6 +587,10 @@
     <servlet-mapping>
         <servlet-name>addAcademicUnit</servlet-name>
         <url-pattern>/addAcademicUnit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addNonAcademicUnit</servlet-name>
+        <url-pattern>/addNonAcademicUnit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

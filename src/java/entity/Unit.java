@@ -15,16 +15,17 @@ public class Unit {
     protected String head;
     protected String type;
     protected int departments;
-    protected int staff;
     protected int faculty;
     protected int admin;
     protected int apsp;
-    protected int saf;
+    protected int asf;
     protected int cap;
-    protected int student;
     protected String description;
     protected int userID;
     protected int unitID;
+    protected int directhired;
+    protected int independent;
+    protected int external;
 
     public String getName() {
         return name;
@@ -58,14 +59,6 @@ public class Unit {
         this.departments = departments;
     }
 
-    public int getStaff() {
-        return staff;
-    }
-
-    public void setStaff(int staff) {
-        this.staff = staff;
-    }
-
     public int getFaculty() {
         return faculty;
     }
@@ -90,28 +83,12 @@ public class Unit {
         this.apsp = apsp;
     }
 
-    public int getSaf() {
-        return saf;
-    }
-
-    public void setSaf(int saf) {
-        this.saf = saf;
-    }
-
     public int getCap() {
         return cap;
     }
 
     public void setCap(int cap) {
         this.cap = cap;
-    }
-
-    public int getStudent() {
-        return student;
-    }
-
-    public void setStudent(int student) {
-        this.student = student;
     }
 
     public String getDescription() {
@@ -138,5 +115,36 @@ public class Unit {
         this.unitID = unitID;
     }
 
-    
+    public int getAsf() {
+        return asf;
+    }
+
+    public void setAsf(int asf) {
+        this.asf = asf;
+    }
+
+    public int getDirecthired() {
+        return directhired;
+    }
+
+    public void setDirecthired(int directhired) {
+        this.directhired = directhired;
+    }
+
+    public int getIndependent() {
+        return independent;
+    }
+
+    public void setIndependent(int independent) {
+        this.independent = independent;
+    }
+
+    public int getExternal() {
+        return external;
+    }
+
+    public void setExternal(int external) {
+        this.external = external;
+    }
+
 }

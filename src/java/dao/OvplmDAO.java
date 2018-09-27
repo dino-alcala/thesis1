@@ -26,28 +26,22 @@ import java.util.logging.Logger;
  */
 public class OvplmDAO {
 
-    public void AddUnit(Unit u, ArrayList<Department> d) {
+    public void AddAcademicUnit(Unit u, ArrayList<Department> d) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO unit(unitName, unitHead, departments, numberOfStaff, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfSAF, numberOFCAP, numberOfStudent, unitDescription, userID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO unit(unitName, unitHead, departments, unitType, unitDescription, userID) VALUES(?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, u.getName());
             pstmt.setString(2, u.getHead());
             pstmt.setInt(3, u.getDepartments());
-            pstmt.setInt(4, u.getStaff());
-            pstmt.setInt(5, u.getFaculty());
-            pstmt.setInt(6, u.getAdmin());
-            pstmt.setInt(7, u.getApsp());
-            pstmt.setInt(8, u.getSaf());
-            pstmt.setInt(9, u.getCap());
-            pstmt.setInt(10, u.getStudent());
-            pstmt.setString(11, u.getDescription());
-            pstmt.setInt(12, u.getUserID());
+            pstmt.setString(4, u.getType());
+            pstmt.setString(5, u.getDescription());
+            pstmt.setInt(6, u.getUserID());
 
             int rs = pstmt.executeUpdate();
 
@@ -65,11 +59,19 @@ public class OvplmDAO {
 
             ArrayList<Integer> deptID = new ArrayList();
             for (int i = 0; i < d.size(); i++) {
-                query = "INSERT INTO department (departmentID, department) VALUES (?,?)";
+                query = "INSERT INTO department (departmentID, department, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal) VALUES (?,?,?,?,?,?,?,?,?,?)";
                 pstmt = conn.prepareStatement(query);
 
                 pstmt.setInt(1, lastdepartmentID + 1);
                 pstmt.setString(2, d.get(i).getName());
+                pstmt.setInt(3, d.get(i).getFaculty());
+                pstmt.setInt(4, d.get(i).getAdmin());
+                pstmt.setInt(5, d.get(i).getApsp());
+                pstmt.setInt(6, d.get(i).getAsf());
+                pstmt.setInt(7, d.get(i).getCap());
+                pstmt.setInt(8, d.get(i).getDirecthired());
+                pstmt.setInt(9, d.get(i).getIndependent());
+                pstmt.setInt(10, d.get(i).getExternal());
 
                 rs = pstmt.executeUpdate();
 
@@ -99,6 +101,66 @@ public class OvplmDAO {
                 rs = pstmt.executeUpdate();
 
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(OvplmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+
+    public void AddNonAcademicUnit(Unit u) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+        try {
+            String query = "INSERT INTO unit(unitName, unitHead, departments, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal, unitDescription, userID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, u.getName());
+            pstmt.setString(2, u.getHead());
+            pstmt.setInt(3, u.getDepartments());
+            pstmt.setInt(4, u.getFaculty());
+            pstmt.setInt(5, u.getAdmin());
+            pstmt.setInt(6, u.getApsp());
+            pstmt.setInt(7, u.getAsf());
+            pstmt.setInt(8, u.getCap());
+            pstmt.setInt(9, u.getDirecthired());
+            pstmt.setInt(10, u.getExternal());
+            pstmt.setInt(11, u.getIndependent());
+            pstmt.setString(12, u.getDescription());
+            pstmt.setInt(13, u.getUserID());
+
+            int rs = pstmt.executeUpdate();
+
+            query = "SELECT * FROM unit ORDER by unitID DESC LIMIT 1";
+
+            int lastunitID = 0;
+
+            pstmt = conn.prepareStatement(query);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                lastunitID = rs2.getInt("unitID");
+            }
+
+            query = "INSERT INTO unit_department (unitID, departmentID) VALUES (?,?)";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, lastunitID);
+            pstmt.setInt(2, 0);
+
+            rs = pstmt.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(OvplmDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -279,7 +341,7 @@ public class OvplmDAO {
                         m.setTarget(rs.getString("target"));
                         measures.add(m);
                     }
-                    
+
                     goals.get(j).setMeasures(measures);
                 }
                 kra.get(i).setGoals(goals);
@@ -381,7 +443,7 @@ public class OvplmDAO {
         }
         return kra;
     }
-    
+
     public String getKRAnameByID(int kraID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();

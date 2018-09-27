@@ -82,7 +82,7 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of CAP for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
@@ -92,7 +92,7 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of APSP for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
@@ -102,7 +102,7 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of ASF for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
@@ -112,17 +112,17 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of Faculty (Full-time and Part-time for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "text";
-                        input.name = "Faculty" + i;
+                        input.name = "faculty" + i;
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of Administrators for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
@@ -132,7 +132,7 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of Direct Hired Contractual for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
@@ -142,7 +142,7 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of Independent Contractor for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
@@ -152,7 +152,7 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of External Service Personnel for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
@@ -178,7 +178,7 @@
                 padding-right: 20px;
                 padding-left: 20px;
             }
-            
+
             .navbar-btn-logout {
                 padding-right: 20px;
                 padding-left: 20px;
@@ -436,27 +436,27 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <%
-                                UserDAO UserDAO = new UserDAO();
-                                ArrayList<Notification> n = new ArrayList();
-                                n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <%
+                                    UserDAO UserDAO = new UserDAO();
+                                    ArrayList<Notification> n = new ArrayList();
+                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                for (int i = 0; i < n.size(); i++) {
-                            %>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                        <div class="notificationBoxMessage">
-                                            <%=n.get(i).getBody()%>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
+                                    for (int i = 0; i < n.size(); i++) {
+                                %>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                            <div class="notificationBoxMessage">
+                                                <%=n.get(i).getBody()%>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
 
-                            <%
-                                }
-                            %>    
+                                <%
+                                    }
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -624,7 +624,7 @@
 
                                         <p><i>All fields are required</i></p>
 
-                                        <form action="addUnit" method="post">
+                                        <form action="addAcademicUnit" method="post">
                                             <ul class="form-style-1">
                                                 <li>
                                                     <label>Unit Name: <span class="required"></span></label>
@@ -641,7 +641,10 @@
                                                     <button type = "button" class="btn" onclick="addFields()">Fill Details</button>
                                                     <div id="container55"/>
                                                 </li>
-                                                
+                                                <li>
+                                                    <label>Unit Description: <span class="required"></span></label>
+                                                    <textarea name="unitdescription" rows="4" class="field-long"></textarea>
+                                                </li>
                                                 <li>
                                                     <button type="submit" class="btn btn-info">Add Unit</button>
                                                 </li>

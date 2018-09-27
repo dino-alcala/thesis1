@@ -1307,22 +1307,25 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+
                 Unit u = new Unit();
                 u.setUnitID(rs.getInt("unitID"));
                 u.setName(rs.getString("unitName"));
                 u.setHead(rs.getString("unitHead"));
                 u.setType(rs.getString("unitType"));
                 u.setDepartments(rs.getInt("departments"));
-                u.setStaff(rs.getInt("numberOfStaff"));
                 u.setFaculty(rs.getInt("numberOfFaculty"));
                 u.setAdmin(rs.getInt("numberOfAdmin"));
                 u.setApsp(rs.getInt("numberOfAPSP"));
-                u.setSaf(rs.getInt("numberOfSAF"));
-                u.setCap(rs.getInt("numberOFCAP"));
-                u.setStudent(rs.getInt("numberOfStudent"));
+                u.setAsf(rs.getInt("numberOfASF"));
+                u.setCap(rs.getInt("numberOfCAP"));
+                u.setDirecthired(rs.getInt("numberOfDirectHired"));
+                u.setIndependent(rs.getInt("numberOfIndependent"));
+                u.setExternal(rs.getInt("numberOfExternal"));
                 u.setDescription(rs.getString("unitDescription"));
                 u.setUserID(rs.getInt("userID"));
                 units.add(u);
+
             }
 
         } catch (SQLException ex) {
@@ -1359,20 +1362,23 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+
                 u.setUnitID(rs.getInt("unitID"));
                 u.setName(rs.getString("unitName"));
                 u.setHead(rs.getString("unitHead"));
                 u.setType(rs.getString("unitType"));
                 u.setDepartments(rs.getInt("departments"));
-                u.setStaff(rs.getInt("numberOfStaff"));
                 u.setFaculty(rs.getInt("numberOfFaculty"));
                 u.setAdmin(rs.getInt("numberOfAdmin"));
                 u.setApsp(rs.getInt("numberOfAPSP"));
-                u.setSaf(rs.getInt("numberOfSAF"));
-                u.setCap(rs.getInt("numberOFCAP"));
-                u.setStudent(rs.getInt("numberOfStudent"));
+                u.setAsf(rs.getInt("numberOfASF"));
+                u.setCap(rs.getInt("numberOfCAP"));
+                u.setDirecthired(rs.getInt("numberOfDirectHired"));
+                u.setIndependent(rs.getInt("numberOfIndependent"));
+                u.setExternal(rs.getInt("numberOfExternal"));
                 u.setDescription(rs.getString("unitDescription"));
                 u.setUserID(rs.getInt("userID"));
+
             }
 
         } catch (SQLException ex) {
@@ -1479,7 +1485,7 @@ public class UserDAO {
         try {
             String query = "UPDATE unit SET unitName = ?, unitHead = ?, unitType = ?, numberOfStaff = ?, numberOfFaculty = ?, numberOfAdmin = ?, numberOfAPSP = ?, numberOfSAF = ?, numberOFCAP = ?, numberOfStudent = ?, unitDescription = ? WHERE unitID = ?";
             pstmt = conn.prepareStatement(query);
-
+            /*
             pstmt.setString(1, u.getName());
             pstmt.setString(2, u.getHead());
             pstmt.setString(3, u.getType());
@@ -1492,7 +1498,7 @@ public class UserDAO {
             pstmt.setInt(10, u.getStudent());
             pstmt.setString(11, u.getDescription());
             pstmt.setInt(12, u.getUnitID());
-
+             */
             int rs = pstmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -1688,6 +1694,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                /*
                 u.setStaff(rs.getInt("numberOfStaff"));
                 u.setFaculty(rs.getInt("numberOfFaculty"));
                 u.setAdmin(rs.getInt("numberOfAdmin"));
@@ -1695,6 +1702,7 @@ public class UserDAO {
                 u.setSaf(rs.getInt("numberOfSAF"));
                 u.setCap(rs.getInt("numberOFCAP"));
                 u.setStudent(rs.getInt("numberOfStudent"));
+                 */
             }
 
         } catch (SQLException ex) {

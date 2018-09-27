@@ -71,7 +71,7 @@
                 padding-right: 20px;
                 padding-left: 20px;
             }
-            
+
             .navbar-btn-logout {
                 padding-right: 20px;
                 padding-left: 20px;
@@ -329,27 +329,27 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <%
-                                UserDAO UserDAO = new UserDAO();
-                                ArrayList<Notification> n = new ArrayList();
-                                n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <%
+                                    UserDAO UserDAO = new UserDAO();
+                                    ArrayList<Notification> n = new ArrayList();
+                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                for (int i = 0; i < n.size(); i++) {
-                            %>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                        <div class="notificationBoxMessage">
-                                            <%=n.get(i).getBody()%>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
+                                    for (int i = 0; i < n.size(); i++) {
+                                %>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                            <div class="notificationBoxMessage">
+                                                <%=n.get(i).getBody()%>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
 
-                            <%
-                                }
-                            %>    
+                                <%
+                                    }
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -519,7 +519,7 @@
 
                                         <p><i>All fields are required</i></p>
 
-                                        <form action="addUnit" method="post">
+                                        <form action="addNonAcademicUnit" method="post">
                                             <ul class="form-style-1">
                                                 <li>
                                                     <label>Unit Name: <span class="required"></span></label>
@@ -561,6 +561,10 @@
                                                 <li>
                                                     <label>Total Number of External Service Personnel: <span class="required"></span></label>
                                                     <input type="text" name="external" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Unit Description: <span class="required"></span></label>
+                                                    <textarea name="unitdescription" rows="4" class="field-long"></textarea>
                                                 </li>
                                                 <li>
                                                     <button type="submit" class="btn btn-info">Add Unit</button>
