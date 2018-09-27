@@ -450,77 +450,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <form action="viewKRA" method="post">
-                <!---KRAs-->
-                <div class="container-fluid panels">
-
-                    <h2 class="kraheading">Top 3 Key Result Areas</h2>
-
-                    <div class="card-columns">
-
-                            <%
-                                ArrayList<KRA> kra = new ArrayList();
-                                kra = UserDAO.retrieveSORTEDKRA();
-                                kra = UserDAO.insertPercentage(kra);
-                                Collections.sort(kra, KRA.compareDESCPercentage);
-                            %>
-
-                            <%
-                                for (int i = 0; i < 3; i++) {
-                            %>
-
-                            <div class="card krascards">
-                                <div class="card-body text-left">
-                                    <p class="card-text"><b><%=kra.get(i).getName()%></b></p>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" style="width:<%=kra.get(i).getPercentage()%>%"><%=kra.get(i).getPercentage()%>%</div>
-                                    </div>
-                                    <p class="progressnum"><%=kra.get(i).getTotal()%>/<%=kra.get(i).getTargetTotal()%></p>
-                                    <p class="viewButton"><button type="submit" name="top<%=i%>" class="btn btn-primary btn-sm">View</button></p>
-                                </div>
-                            </div>
-
-                            <%
-                                }
-                            %>
-
-                        </div>
-
-                    <h2 class="kraheading">Bottom 3 Key Result Areas</h2>
-
-                    <div class="card-columns">
-
-                            <%
-                                ArrayList<KRA> kra2 = new ArrayList();
-                                kra2 = UserDAO.retrieveSORTEDKRA();
-                                kra2 = UserDAO.insertPercentage(kra2);
-                                Collections.sort(kra2, KRA.sortBottomPercentage);
-                            %>
-
-                            <%
-                                for (int i = 0; i < 3; i++) {
-                            %>
-
-                            <div class="card krascards">
-                                <div class="card-body text-left">
-                                    <p class="card-text"><b><%=kra2.get(i).getName()%></b></p>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" style="width:<%=kra2.get(i).getPercentage()%>%"><%=kra2.get(i).getPercentage()%>%</div>
-                                    </div>
-                                    <p class="progressnum"><%=kra2.get(i).getTotal()%>/<%=kra2.get(i).getTargetTotal()%></p>
-                                    <p class="viewButton"><button type="submit" name="top<%=i%>" class="btn btn-primary btn-sm">View</button></p>
-                                </div>
-                            </div>
-
-                            <%
-                                }
-                            %>
-
-                        </div>
-
-                </div>
-                </form>
-                <!--- end of KRAs-->
+                
 
                 <!--- table -->
                 <%
