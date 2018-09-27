@@ -9216,7 +9216,7 @@ public class UserDAO {
                 while (rs.next()) {
                     Measure m = new Measure();
                     m.setMeasureID(rs.getInt("measureID"));
-                    m.setMeasure(rs.getInt("measure"));
+                    m.setMeasure(rs.getString("measure"));
                     m.setTarget(rs.getString("target"));
                     measures.add(m);
                 }

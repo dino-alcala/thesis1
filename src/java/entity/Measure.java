@@ -11,7 +11,7 @@ package entity;
  */
 public class Measure {
     protected int measureID;
-    protected int measure;
+    protected String measure;
     protected String target;
     protected int kraID;
     protected int goalID;
@@ -25,11 +25,11 @@ public class Measure {
         this.measureID = measureID;
     }
 
-    public int getMeasure() {
+    public String getMeasure() {
         return measure;
     }
 
-    public void setMeasure(int measure) {
+    public void setMeasure(String measure) {
         this.measure = measure;
     }
 

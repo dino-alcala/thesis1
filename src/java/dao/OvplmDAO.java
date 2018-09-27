@@ -201,7 +201,7 @@ public class OvplmDAO {
                 for (int j = 0; j < KRA.getGoals().get(i).getMeasures().size(); j++) {
                     query = "INSERT into measure(measure, target, kraID, goalID) VALUES(?,?,?,?)";
                     pstmt = conn.prepareStatement(query);
-                    pstmt.setInt(1, KRA.getGoals().get(i).getMeasures().get(j).getMeasure());
+                    pstmt.setString(1, KRA.getGoals().get(i).getMeasures().get(j).getMeasure());
                     pstmt.setString(2, KRA.getGoals().get(i).getMeasures().get(j).getTarget());
                     pstmt.setInt(3, kraid);
                     pstmt.setInt(4, goalid);
@@ -275,7 +275,7 @@ public class OvplmDAO {
                     while (rs.next()) {
                         Measure m = new Measure();
                         m.setMeasureID(rs.getInt("measureID"));
-                        m.setMeasure(rs.getInt("measure"));
+                        m.setMeasure(rs.getString("measure"));
                         m.setTarget(rs.getString("target"));
                         measures.add(m);
                     }
@@ -354,7 +354,7 @@ public class OvplmDAO {
                 while (rs.next()) {
                     Measure m = new Measure();
                     m.setMeasureID(rs.getInt("measureID"));
-                    m.setMeasure(rs.getInt("measure"));
+                    m.setMeasure(rs.getString("measure"));
                     m.setTarget(rs.getString("target"));
                     measures.add(m);
                 }
