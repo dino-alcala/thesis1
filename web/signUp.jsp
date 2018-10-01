@@ -150,7 +150,7 @@
                         <label for="sel1">Unit:</label>
                         <select class="form-control" id="type" name="unit" onchange="department(this.id, 'dept')">
                             <optgroup label="Added Units">
-                                <option></option>
+                                <option disabled selected>Select Unit</option>
                                 <%
                                     for (int k = 0; k < units.size(); k++) {
                                 %>
@@ -166,6 +166,7 @@
                     <div class="form-group">
                         <label for="sel1">Department:</label>
                         <select class="form-control" id="dept" name="dept">
+                            <option disabled selected>Select Department</option>
                         </select>
 
                     </div>
