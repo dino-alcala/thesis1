@@ -115,6 +115,7 @@
 
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of Faculty (Full-time and Part-time for Department " + (i + 1) + ": "));
+                        container.appendChild(document.createElement("br"));
                         // Create an <input> element, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "text";
@@ -135,6 +136,7 @@
 
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of Direct Hired Contractual for Department " + (i + 1) + ": "));
+                        container.appendChild(document.createElement("br"));
                         // Create an <input> element, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "text";
@@ -145,6 +147,7 @@
 
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of Independent Contractor for Department " + (i + 1) + ": "));
+                        container.appendChild(document.createElement("br"));
                         // Create an <input> element, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "text";
@@ -155,6 +158,7 @@
 
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of External Service Personnel for Department " + (i + 1) + ": "));
+                        container.appendChild(document.createElement("br"));
                         // Create an <input> element, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "text";
@@ -240,7 +244,7 @@
             }
 
             .form-style-1 {
-                margin:10px auto;
+                margin:0px;
                 max-width: 400px;
                 padding: 20px 12px 10px 20px;
                 font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;

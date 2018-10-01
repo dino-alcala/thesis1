@@ -170,7 +170,7 @@
             }
 
             .form-style-1 {
-                margin:10px auto;
+                margin: 0px;
                 max-width: 400px;
                 padding: 20px 12px 10px 20px;
                 font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
