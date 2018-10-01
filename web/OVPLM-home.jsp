@@ -345,7 +345,7 @@
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
                         <%
-                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 16 || Integer.parseInt(session.getAttribute("userID").toString()) == 17 || Integer.parseInt(session.getAttribute("userID").toString()) == 27) {
+                            if (session.getAttribute("position").toString().equals("Vice President for Lasallian Mission")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
