@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `thsis01` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `thsis01`;
--- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.23, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: thsis01
+-- Host: localhost    Database: thsis01
 -- ------------------------------------------------------
--- Server version	5.6.25-log
+-- Server version	5.7.23-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -44,7 +44,6 @@ CREATE TABLE `budget` (
 
 LOCK TABLES `budget` WRITE;
 /*!40000 ALTER TABLE `budget` DISABLE KEYS */;
-INSERT INTO `budget` VALUES (1,'2018-07-29',10000000,0,10000000,NULL,NULL);
 /*!40000 ALTER TABLE `budget` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +77,6 @@ CREATE TABLE `community` (
 
 LOCK TABLES `community` WRITE;
 /*!40000 ALTER TABLE `community` DISABLE KEYS */;
-INSERT INTO `community` VALUES (1,'Payatas Community','Karl Madrid','09155114786','42','Kamias Street','Barangay Tibay','City of Angels','Example Description',4),(2,'QC Tambays','Don Mac','09051320321','5','Katipunan Street','Barangay Tanod','Quezon City','Example Description',5),(3,'Anjo Open Community','Khalid Malo','09277777777','76','Pogi Street','Barangay Captain','Makati City','Example Description',4),(4,'Karl Home for the Special','Carlo Nasol','09565127859','50','Apple Street','Barangay Malakas','Paranaque City','Example Description',4),(5,'Red Cross Mandaluyong','Rey Gamboa','09281326520','36','Mango Street','Barangay Bango','Mandaluyong City','Example Description',5);
 /*!40000 ALTER TABLE `community` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +108,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (0,'No Department',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `department` VALUES (0,'No Department',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,'Admin ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Computer Technology (CT)',50,5,50,50,50,5,5,5),(3,'Information Technology (CT)',40,4,40,40,40,4,4,4),(4,'Software Technology (ST)',30,3,30,30,30,3,3,3);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,13 +441,14 @@ CREATE TABLE `informationsheet` (
   `lastName` varchar(100) DEFAULT NULL,
   `emailAddress` varchar(100) DEFAULT NULL,
   `unit` varchar(100) DEFAULT NULL,
+  `position` varchar(45) DEFAULT NULL,
   `departmentID` int(11) DEFAULT NULL,
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA1_idx` (`departmentID`),
   CONSTRAINT `LA1` FOREIGN KEY (`departmentID`) REFERENCES `department` (`departmentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -458,7 +457,7 @@ CREATE TABLE `informationsheet` (
 
 LOCK TABLES `informationsheet` WRITE;
 /*!40000 ALTER TABLE `informationsheet` DISABLE KEYS */;
-INSERT INTO `informationsheet` VALUES (1,'Admin','Admin','admin@gmail.com','Admin',0,'admin','c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec'),(4,'OVPLM','OVPLM','ovplm@gmail.com','Office of the Vice President for Lasallian Mission (OVPLM)',0,'ovplm','8a9e78369cfada2c5ea47255f76eb41e744ca11be31c9a3a139d0f01253ba0174061793f2894249efe290e44ef0199d17b92241a4fa95efb5dc6524f1bd3d82f'),(5,'LSPO','LSPO','lspo@gmail.com','Lasallian Pastoral Office (LSPO)',0,'lspo','0673b51cd039f7b594029fe18da49ba5388eba51bee963be9ac586824d2d9ad122fa9d8ac6619a839694160b6f53bf9f196cb37733c623cc3b5ad9cffb58c0c1'),(6,'LMD','LMD','lmd@gmail.com','Lasallian Mission Director',0,'lmd','d94ce9b63fdf231aadee8d49f0e8ba642f0c49a76f642decfebb55ca6245755fb96186ae4f32f79260c3d88e9bccc30f80e796c3037e1b4d3dd2d127c4125078'),(7,'LCLM','LCLM','lclm@gmail.com','Laguna Campus Lasallian Mission',0,'lclm','e89f10b40137062bbee50977d6ee3e71329042e862d9c3e31f158872dea398585968150b010d926000d62af6de7e3b69407b3e3aa16cf5045faf89a51ba8bd3b'),(8,'DSA','DSA','dsa@gmail.com','Dean of Student Affairs',0,'dsa','51fef8efb142cff14c3f6f2aa0dda57cd25d1e748dab38b36c8695ed9848eb38b9a2b01a2d3bf5b448a043ee75665fdd78e61630ae9077b38a050746bddd7b02'),(9,'COSCA','COSCA','cosca@gmail.com','Center for Social Concern and Action (COSCA)',0,'cosca','25d4007f378b0e56e2859157039bdfd2f62d19d8462eaab075236c393b831092a1c026a74348d106433891a8861a26657f9690780c80cfaa40ef6d3b91fd291c'),(10,'ADEALMCCS','ADEALMCCS','adealmccs@gmail.com','Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - CCS',0,'adealmccs','6ed9758ea48830681b9197b581c833b262102ec567897facf2ae6219452275fca367dbb41f94b249844400ddf7548e42c8e348c7361d0c8699ad03f2f2d01b92'),(11,'ADEALMCOB','ADEALMCOB','adealmcob@gmail.com','Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - COB',0,'adealmcob','0988ac2e8b0e08355b679edde5092787ef642a6882c5753fa4a9d69e7a364ac919aa0b673b295f143041e5b01e7f0a5d500a823ca04a89dc9781af5c281237c9'),(12,'OPMD','OPMD','opmd@gmail.com','Office of Personnel Management Director',0,'opmd','dba128d5a54bab81fd34d431fcf9442e26594bca5c805e5b00223190736fc49a8ce46ada9ce4becb7c21384cfb422e83bf81a61c5cefa659bfd898ea61c006fa'),(13,'Department','Chair','dept@gmail.com','Department / Unit Chair',0,'deptunit','654f46e5bc6e9667fa43167479f2ee2176c8d07b259bf73606fa9bf3165c15f5dd39a63d35b1d5df19edb1a26ce5137f244f5e959d6793bbc6b5fe66cc6442f4'),(14,'External','Director','eased@gmail.com','External Affairs / Social Engagement Director',0,'eased','720ef88f2528e5539482479b8e9f30b483457ff6c84d82cb1d185488976508da277f53a6b56c7406f7480d99bac8350a0f2ee8bcc707399657969d73e3e21e73'),(15,'Dean','Chair','dvpvc@gmail.com','Dean / VP / VC',0,'dvpvc','56a15346ec0dcf4445abba4235b4aa9c1a1325b38a6ae471b3c226d84c649f2115562fee2b715f774f12d6f9b1fc2bdb63a5091be40ced258c8fc7bf8217d131'),(16,'Jay','Jay','jay@dlsu.edu.ph','Office of the Vice President for Lasallian Mission (OVPLM)',0,'jay','42d5ae85008d2a3c0c0059564ed10203d5cff49a91467b19d267aa764d47d30d3d7d9154e6a4d8e61dcd8ff79a7c727b8cb4d63b1b54f35c6d42a2cc1cad98aa'),(17,'Carmel','Carmel','carmel@dlsu.edu.ph','Office of the Vice President for Lasallian Mission (OVPLM)',0,'carmel','2473c803cd06f0de882ab579abd74ad393eb0d6d64d7c300c6112646a2be484c156f6cbaf42ab33a11aaa581134b1b08f45fece48574202597c0e30a1632e358'),(18,'Niel','Niel','niel@gmail.com','Center for Social Concern and Action (COSCA)',0,'niel','97b0758ef6cb6d5a2b54c744653736c7fda13612af422ebacbfabf9469ddb29c212fa6870a84cc13f22d82f7249db2ca9613a90736145e2db4f981b93ad40e95'),(27,'Michael','Broughton','michaelbroughton@dlsu.edu.ph','Office of the Vice President for Lasallian Mission (OVPLM)',0,'michaelovplm','628b6e04c06ad9ab89b33bc23432d203c8acb5030bbb2e718ee422dafbf009e49c22c1d453655716a5236336f3c6bd94ff37b4b2698ecd3c599f4371bd99f184'),(28,'Chairperson','Director','cd@gmail.com','Chairperson / Director',0,'cd','f6ea8ad7d83486aa37e5770dac2e19671ba15e06b6761bbe3713ccb2aa6b73c1b398f4f583d9ce6c55763269288fd4d8356be65d636df76530fd99ae6722c9bc'),(29,'Vice President','Lasallian Mission','vplm@gmail.com','Vice President for Lasallian Mission',0,'vplm','6bc96463ceaa7643aa1db2faba1e43507e35f31dffa8a333cd6368013910f77d78bd269999f1f43db541d80914bb49389eb2215abb6169fa28c3f2e9721161ab'),(30,'Dean','Unit','duh@gmail.com','Dean / Unit Head',0,'duh','e44e6d93cd165ec8cdeaa632abe1c35d9a71533cc68072e100c5307ea3be17bc4f10e258785bef77d31664be0f1c3f427528c7450d52082a90c4ee86c7012184'),(31,'Assistant','Dean','adlmauh@gmail.com','Assistant Dean for Lasallian Mission / Assistant Unit Head',0,'adlmauh','63dfbbd04006595a397adcf8c8cfc47e68d7438770878aa857c1e35bc000393922c980e71eabfb11332256e4f24480a4e2d97755952514d152ad9a7d21db73bc'),(32,'James','LSPO','jameslspo@gmail.com','Lasallian Pastoral Office (LSPO)',0,'jameslspo','0d675ee36746c5756a800df9d1d3c8a3db54773f027de309d1cc324eff6317270bffa8979ff86dd1cea9ddd94cfedf5d0d9353078222d69cc90f01a6c34e6d40');
+INSERT INTO `informationsheet` VALUES (1,'Admin','Admin','admin@gmail.com','Admin','Administrator',1,'admin','c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec'),(71,'Carmel','Carosa','carmel.carosa@dlsu.edu.ph','Office of the Vice President for Lasallian Mission (OVPLM)','Executive Officer',0,'carosa','28fa1fcc5ad52572cd57b7db7feeaf14382b9d719b255dd9fff7212cbd06ced12e2a7d7e45265a1fef33c1d63fe894da8c8502162eaf616ec20a44ff532a200f'),(74,'Michael','Broughton','michael.broughton@dlsu.edu.ph','Office of the Vice President for Lasallian Mission (OVPLM)','Vice President for Lasallian Mission',0,'michael','34e1fd6820ce1e79fbbdaae3fc708b634ab1d9765c215b7cd88d4c0c750e87b8c1d478b6112d95ae7bd165f9f73d165263ef7fcee357b48c6bc1f6b591f94ab8');
 /*!40000 ALTER TABLE `informationsheet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -998,7 +997,7 @@ CREATE TABLE `unit` (
   `unitDescription` varchar(200) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
   PRIMARY KEY (`unitID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1007,6 +1006,7 @@ CREATE TABLE `unit` (
 
 LOCK TABLES `unit` WRITE;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
+INSERT INTO `unit` VALUES (10,'Office of the Vice President for Lasallian Mission (OVPLM)','OVPLM Unit Head',NULL,0,0,1,50,40,55,5,5,5,'OVPLM Unit',1),(11,'College of Computer Studies (CCS)','CCS Unit Head','Academic',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCS Unit ',1),(12,'College of Law (COL)','COL Unit Head','Academic',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COL Unit',71);
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1026,7 +1026,7 @@ CREATE TABLE `unit_department` (
   KEY `LA3_idx` (`departmentID`),
   CONSTRAINT `LA2` FOREIGN KEY (`unitID`) REFERENCES `unit` (`unitID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA3` FOREIGN KEY (`departmentID`) REFERENCES `department` (`departmentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1035,6 +1035,7 @@ CREATE TABLE `unit_department` (
 
 LOCK TABLES `unit_department` WRITE;
 /*!40000 ALTER TABLE `unit_department` DISABLE KEYS */;
+INSERT INTO `unit_department` VALUES (41,10,0),(42,11,2),(43,11,3),(44,11,4);
 /*!40000 ALTER TABLE `unit_department` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1047,4 +1048,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-27 17:13:28
+-- Dump completed on 2018-10-01 15:53:39
