@@ -16,6 +16,7 @@ public class User {
     protected String lastName;
     protected String email;
     protected String unit;
+    protected String position;
     protected int department;
     protected String username;
     protected String password;
@@ -92,5 +93,15 @@ public class User {
     public void setDepartmentType(String departmentType) {
         this.departmentType = departmentType;
     }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+    
+    
  
 }

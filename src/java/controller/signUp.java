@@ -44,6 +44,7 @@ public class signUp extends HttpServlet {
             u.setLastName(request.getParameter("lastname"));
             u.setEmail(request.getParameter("email"));
             u.setUnit(request.getParameter("unit"));
+            u.setPosition(request.getParameter("position"));
             u.setDepartment(Integer.parseInt(request.getParameter("dept")));
             u.setUsername(request.getParameter("username"));
             u.setPassword(request.getParameter("password"));

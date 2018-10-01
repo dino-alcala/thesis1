@@ -49,6 +49,9 @@ public class login extends HttpServlet {
 
             if (UserDAO.Login(u)) {
                 if (UserDAO.isAdmin(u.getUsername())) {
+                    int id = UserDAO.getIDbyUsername(u.getUsername());
+                    session.setAttribute("userID", id);
+                    session.setAttribute("unit", "Admin");
 
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");

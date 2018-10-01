@@ -55,16 +55,17 @@ public class UserDAO {
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
         try {
-            String query = "INSERT INTO informationsheet(firstName, lastName, emailAddress, unit, departmentID, username, password) VALUES(?,?,?,?,?,?,SHA2(?,512))";
+            String query = "INSERT INTO informationsheet(firstName, lastName, emailAddress, unit, position, departmentID, username, password) VALUES(?,?,?,?,?,?,?,SHA2(?,512))";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, u.getFirstName());
             pstmt.setString(2, u.getLastName());
             pstmt.setString(3, u.getEmail());
             pstmt.setString(4, u.getUnit());
-            pstmt.setInt(5, u.getDepartment());
-            pstmt.setString(6, u.getUsername());
-            pstmt.setString(7, u.getPassword());
+            pstmt.setString(5, u.getPosition());
+            pstmt.setInt(6, u.getDepartment());
+            pstmt.setString(7, u.getUsername());
+            pstmt.setString(8, u.getPassword());
 
             int rs = pstmt.executeUpdate();
         } catch (SQLException ex) {
@@ -135,7 +136,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getInt("departmentID") == 39) {
+                if (rs.getInt("departmentID") == 1) {
                     return true;
                 }
             }

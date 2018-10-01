@@ -70,9 +70,16 @@ public class addAcademicUnit extends HttpServlet {
 
             OvplmDAO.AddAcademicUnit(unit, d);
 
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
-            dispatcher.forward(request, response);
+            if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
+                dispatcher.forward(request, response);
+            }
+            if (session.getAttribute("unit").toString().equals("Admin")) {
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
+                dispatcher.forward(request, response);
+            }
 
         }
     }

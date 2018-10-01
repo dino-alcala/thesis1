@@ -435,6 +435,14 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
+                    
+                    <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span>&nbsp;+</span>
+                            <span class="menu-collapsed">&nbsp;&nbsp;&nbsp;Add unit</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
                 </ul>
                 <!-- List Group END-->
             </div>
