@@ -171,6 +171,7 @@
 
                     </div>
                             
+                    <p class="hint"><i>(e.g. OVPLM - Executive Officer)</i></p>   
                     <input type="text" class="Form-control" name="position" placeholder="Position*" required="" autofocus="" />
                     <input type="text" class="Form-control" name="username" placeholder="Username*" required="" autofocus="" />
                     <input type="password" class="Form-control" name="password" placeholder="Password*" required=""/>

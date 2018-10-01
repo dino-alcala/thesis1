@@ -345,7 +345,7 @@
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
                         <%
-                            if (session.getAttribute("position").toString().equals("Vice President for Lasallian Mission")) {
+                            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").toString().equals("OVPLM - Executive Offcer")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
