@@ -122,22 +122,23 @@ public class OvplmDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO unit(unitName, unitHead, departments, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal, unitDescription, userID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO unit(unitName, unitHead, unitType, departments, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal, unitDescription, userID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, u.getName());
             pstmt.setString(2, u.getHead());
-            pstmt.setInt(3, u.getDepartments());
-            pstmt.setInt(4, u.getFaculty());
-            pstmt.setInt(5, u.getAdmin());
-            pstmt.setInt(6, u.getApsp());
-            pstmt.setInt(7, u.getAsf());
-            pstmt.setInt(8, u.getCap());
-            pstmt.setInt(9, u.getDirecthired());
-            pstmt.setInt(10, u.getExternal());
-            pstmt.setInt(11, u.getIndependent());
-            pstmt.setString(12, u.getDescription());
-            pstmt.setInt(13, u.getUserID());
+            pstmt.setString(3, u.getType());
+            pstmt.setInt(4, u.getDepartments());
+            pstmt.setInt(5, u.getFaculty());
+            pstmt.setInt(6, u.getAdmin());
+            pstmt.setInt(7, u.getApsp());
+            pstmt.setInt(8, u.getAsf());
+            pstmt.setInt(9, u.getCap());
+            pstmt.setInt(10, u.getDirecthired());
+            pstmt.setInt(11, u.getExternal());
+            pstmt.setInt(12, u.getIndependent());
+            pstmt.setString(13, u.getDescription());
+            pstmt.setInt(14, u.getUserID());
 
             int rs = pstmt.executeUpdate();
 
