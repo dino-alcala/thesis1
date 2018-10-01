@@ -238,9 +238,16 @@
                             <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                                 <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                             </a>
+                            <%
+                            if (session.getAttribute("position").toString().equals("DSA - Dean") || session.getAttribute("position").toString().equals("LMSTC - Executive Director") || 
+                                    session.getAttribute("position").toString().equals("LSPO = Director") || session.getAttribute("position").toString().equals("COSCA - Director")) {
+                            %>
                             <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                                 <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
                             </a>
+                            <%
+                                }
+                            %>
                         </div>
                         <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                             <div class="d-flex w-100 justify-content-start align-items-center">
