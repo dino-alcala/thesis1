@@ -205,7 +205,7 @@
                 box-sizing: border-box; 
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box; 
-                background-color: #e8eeef;
+                background-color: #d2d9dd;
                 color:black;
                 -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
                 box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;

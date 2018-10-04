@@ -204,7 +204,7 @@
                 box-sizing: border-box; 
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box; 
-                background-color: #e8eeef;
+                background-color: #d2d9dd;
                 color:black;
                 -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
                 box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
@@ -1281,7 +1281,7 @@
                 <%
                     }
                 %>
-                
+
                 <%
                     if (session.getAttribute("unit").equals("Lasallian Mission Council")) {
                 %>
@@ -1420,24 +1420,6 @@
                                 <option value="Retreat">Retreat</option>
                                 <option value="Spiritual-activity development">Spiritual-activity development</option>
                                 <option value="Others">Others</option>
-                            </select>
-                            <br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><b>Target Community: </b></legend>
-                            <%
-                                ArrayList<Community> c = new ArrayList();
-                                c = UserDAO.retrieveCommunity();
-                            %>
-                            <select name="community" >
-                                <%
-                                    for (int m = 0; m < c.size(); m++) {
-                                %>
-                                <option value="<%=c.get(m).getId()%>"><%=c.get(m).getName()%></option>
-                                <%
-                                    }
-                                %>
                             </select>
                             <br><br>
                         </fieldset>

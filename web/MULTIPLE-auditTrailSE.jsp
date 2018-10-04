@@ -299,15 +299,15 @@ img {
                 <fieldset>
                     <center><table style = "width:100%" id = "SEchecklist">
                             <tr>
-                                <th>From</th>
-                                <th>To</th>
+                                <th>Previous</th>
+                                <th>Current</th>
                             </tr>
                             <tr>
-                                <td><p>Program Head: Dino Alcala</p></td>
+                                <td><p><b>Date: 08/10/2018 (kung kailan binago)</b><br> Program Head: Dino Alcala</p></td>
                                 <td><p>Program Head: Luis Grefiel</p></td>
                             </tr>
                             <tr>
-                                <td><p>Item: Hammer</p></td>
+                                <td><p><b>Date: 08/10/2018 </b><br> Item: Hammer</p></td>
                                 <td><p>Item: Sledgehammer</p></td>
                             </tr>
                             
