@@ -79,7 +79,7 @@
             }
 
             .form-style-1 {
-                margin:10px auto;
+                margin: 10px;
                 max-width: 400px;
                 padding: 20px 12px 10px 20px;
                 font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -165,7 +165,7 @@
 
             h1{
                 text-align: left;
-                font-size: 35px;
+                font-size: 30px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
                 <%--nasa loob siya ng div kaya hati border --%>

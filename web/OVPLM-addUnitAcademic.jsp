@@ -70,105 +70,112 @@
                     while (container.hasChildNodes()) {
                         container.removeChild(container.lastChild);
                     }
+
                     for (i = 0; i < number; i++) {
-                        // Append a node with a random text
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
-                        container.appendChild(document.createElement("br"));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "department" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
+                        
+                    // Append a node with a random text
+                    container.appendChild(document.createElement("hr"));
+                    container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "department" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of CAP for Department " + (i + 1) + ": "));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "cap" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of CAP for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "cap" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of APSP for Department " + (i + 1) + ": "));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "apsp" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of APSP for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "apsp" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of ASF for Department " + (i + 1) + ": "));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "asf" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of ASF for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "asf" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of Faculty (Full-time and Part-time for Department " + (i + 1) + ": "));
-                        container.appendChild(document.createElement("br"));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "faculty" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of Faculty (Full-time and Part-time) for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "faculty" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of Administrators for Department " + (i + 1) + ": "));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "admin" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of Administrators for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "admin" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of Direct Hired Contractual for Department " + (i + 1) + ": "));
-                        container.appendChild(document.createElement("br"));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "direct" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of Direct Hired Contractual for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "direct" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of Independent Contractor for Department " + (i + 1) + ": "));
-                        container.appendChild(document.createElement("br"));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "independent" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of Independent Contractor for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "independent" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of External Service Personnel for Department " + (i + 1) + ": "));
-                        container.appendChild(document.createElement("br"));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "external" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createElement("br"));
-                    }
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of External Service Personnel for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "external" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+
                 }
+            }
         </script>
 
         <style>
@@ -245,7 +252,7 @@
 
             .form-style-1 {
                 margin:0px;
-                max-width: 400px;
+                max-width: 700px;
                 padding: 20px 12px 10px 20px;
                 font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
             }
@@ -383,6 +390,10 @@
 
             .dropdown:hover .dropbtn {
                 background-color: #3e8e41;
+            }
+            
+            hr{
+                background-color: black;
             }
 
         </style>
@@ -616,7 +627,7 @@
                 <%
                     }
                 %>
-                
+
                 <%
                     if (session.getAttribute("unit").equals("Admin")) {
                 %>
@@ -630,7 +641,7 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-                    
+
                     <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span>&nbsp;+</span>
@@ -638,7 +649,7 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-                    
+
                     <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span>&nbsp;+</span>
@@ -709,73 +720,73 @@
         <!-- body-row END -->
 
         <script>
-                // sandbox disable popups
-                if (window.self !== window.top && window.name != "view1") {
-                    ;
-                    window.alert = function () {/*disable alert*/
-                    };
-                    window.confirm = function () {/*disable confirm*/
-                    };
-                    window.prompt = function () {/*disable prompt*/
-                    };
-                    window.open = function () {/*disable open*/
-                    };
-                }
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
 
-                // prevent href=# click jump
-                document.addEventListener("DOMContentLoaded", function () {
-                    var links = document.getElementsByTagName("A");
-                    for (var i = 0; i < links.length; i++) {
-                        if (links[i].href.indexOf('#') != -1) {
-                            links[i].addEventListener("click", function (e) {
-                                console.debug("prevent href=# click");
-                                if (this.hash) {
-                                    if (this.hash == "#") {
-                                        e.preventDefault();
-                                        return false;
-                                    } else {
-                                        /*
-                                         var el = document.getElementById(this.hash.replace(/#/, ""));
-                                         if (el) {
-                                         el.scrollIntoView(true);
-                                         }
-                                         */
-                                    }
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
                                 }
-                                return false;
-                            })
-                        }
+                            }
+                            return false;
+                        })
                     }
-                }, false);
+                }
+            }, false);
         </script>
         <script>
-                // Hide submenus
-                $('#body-row .collapse').collapse('hide');
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
 
                 // Collapse/Expand icon
-                $('#collapse-icon').addClass('fa-angle-double-left');
-
-                // Collapse click
-                $('[data-toggle=sidebar-colapse]').click(function () {
-                    SidebarCollapse();
-                });
-
-                function SidebarCollapse() {
-                    $('.menu-collapsed').toggleClass('d-none');
-                    $('.sidebar-submenu').toggleClass('d-none');
-                    $('.submenu-icon').toggleClass('d-none');
-                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                    // Treating d-flex/d-none on separators with title
-                    var SeparatorTitle = $('.sidebar-separator-title');
-                    if (SeparatorTitle.hasClass('d-flex')) {
-                        SeparatorTitle.removeClass('d-flex');
-                    } else {
-                        SeparatorTitle.addClass('d-flex');
-                    }
-
-                    // Collapse/Expand icon
-                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>SE Pending List</title>
+        <title>FF Pending List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar2.css">
@@ -69,7 +69,7 @@
             });
 
             <%
-                } 
+                }
                 if (request.getAttribute("cancelProgram") != null) {
 
             %>
@@ -129,7 +129,7 @@
             }
 
             h2{
-                font-size: 40px;
+                font-size: 30px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -193,6 +193,14 @@
                 margin-top:25px;
             }
 
+            #buttonCancel{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
+
             #buttonCompleted:hover{
                 color: white;
                 background-color: green;
@@ -200,6 +208,12 @@
             }
 
             #buttonPending:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+            #buttonCancel:hover{
                 color: white;
                 background-color: green;
                 border-color: green;
@@ -956,7 +970,7 @@
 
                 <%
                     if (session.getAttribute("unit").equals("College of Computer Studies (CCS)") || (session.getAttribute("unit").toString().equals("Br. Andrew Gonzales College of Education")) || (session.getAttribute("unit").toString().equals("College of Law")) || (session.getAttribute("unit").toString().equals("College of Liberal Arts"))
-                    || (session.getAttribute("unit").toString().equals("College of Science")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVRCOB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)")))  {
+                            || (session.getAttribute("unit").toString().equals("College of Science")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVRCOB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)"))) {
                 %>
 
                 <ul class="list-group sticky-top sticky-offset">
@@ -1091,6 +1105,7 @@
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-faithFormationProgramsList.jsp">Completed</a>
                             <a href="MULTIPLE-pendingSEList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
+                            <a href="MULTIPLE-cancelledFFList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
                         </div>
 
                         <br>

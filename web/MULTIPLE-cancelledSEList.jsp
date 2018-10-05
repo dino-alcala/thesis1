@@ -1,6 +1,6 @@
 <%-- 
-    Document   : MULTIPLE-pendingSEList
-    Created on : 06 18, 18, 7:50:22 PM
+    Document   : MULTIPLE-socialEngagementProgramsList
+    Created on : 06 18, 18, 7:54:10 PM
     Author     : Karl Madrid
 --%>
 
@@ -16,11 +16,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>SE Pending List</title>
+        <title>Cancelled Social Engagement List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar2.css">
-        <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
@@ -48,9 +47,45 @@
             });
         </script>
 
-        <!--datatables--> 
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("SEreport") != null) {
 
-        <style>
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("SEreport")%>");
+            });
+
+            <%
+                }
+                if (request.getAttribute("cancelProgram") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("cancelProgram")%>");
+            });
+
+            <%
+                }
+                if (request.getAttribute("updateBudget") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("updateBudget")%>");
+            });
+
+            <%
+                }
+            %>
+
+        </script>
+
+        <!--datatables-->  
+
+        <style> 
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
@@ -65,7 +100,8 @@
             .navbar-btn-logout {
                 padding-right: 20px;
                 padding-left: 20px;
-            }
+            }   
+
             body{
                 background-color: whitesmoke;
                 padding-top: 56px;
@@ -117,6 +153,7 @@
                 padding-bottom: 10px; 
                 margin-bottom: 20px;
             }
+
             .quickview{
                 margin-bottom: 50px;
                 margin-top: 20px;
@@ -139,7 +176,10 @@
             }
 
             h3{
+                font-size: 40px;
+                text-align: left;
                 border-bottom: 2px solid green;
+                font-family: 'Roboto', sans-serif;
             }
 
             #buttonCompleted{
@@ -150,15 +190,15 @@
             }
 
             #buttonPending{
-                color: white;
-                background-color: green;
+                color: green;
+                background-color: white;
                 border-color: green;
                 margin-top:25px;
             }
 
             #buttonCancel{
-                color: green;
-                background-color: white;
+                color: white;
+                background-color: green;
                 border-color: green;
                 margin-top:25px;
             }
@@ -181,44 +221,8 @@
                 border-color: green;
             }
 
+
         </style>
-
-        <script type="text/javascript">
-            <%
-                if (request.getAttribute("successSE1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("successSE1")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("reviseSE1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("reviseSE1")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("cancelProgram") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("cancelProgram")%>");
-            });
-
-            <%
-                }
-
-            %>
-
-        </script>
 
     </head>
 
@@ -258,7 +262,7 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
+                    <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
                         <i class="fa fa-user-circle"></i>
                     </button>
                 </div>
@@ -290,13 +294,13 @@
 
                                 <%
                                     }
-                                %>    
+                                %>
                             </div>
                         </ul>
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-info navbar-btn-logout">
+                    <a href="index.jsp" class="btn btn-basic navbar-btn-logout">
                         <i class="fa fa-sign-out"></i>
                     </a>
                 </div>
@@ -342,9 +346,14 @@
                         <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
+                        <%                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 18) {
+                        %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
-                        </a>                        
+                        </a>
+                        <%
+                            }
+                        %>                        
 
                     </div>
                     <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
@@ -834,15 +843,9 @@
                         <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
-                        <%
-                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
-
-                        %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
-                        </a>
-                        <%                            }
-                        %>
+                        </a>  
                     </div>
                     <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
@@ -1054,42 +1057,6 @@
                 %>
 
                 <%
-                    if (session.getAttribute("unit").equals("Department / Unit Chair") || session.getAttribute("unit").equals("External Affairs / Social Engagement Director") || session.getAttribute("unit").equals("Dean / VP / VC")) {
-                %>
-
-                <ul class="list-group sticky-top sticky-offset">
-                    <!-- Menu with submenu -->
-                    <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
-                    <a href="MULTIPLE-viewBudget.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-money fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Budget</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
-                    <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check fa-fw mr-2"></span>
-                            <span class="menu-collapsed">SE Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
-                </ul>
-
-                <%
-                    }
-                %>
-
-                <%
                     if (session.getAttribute("unit").equals("Lasallian Mission Council")) {
                 %>
                 <ul class="list-group sticky-top sticky-offset">
@@ -1190,19 +1157,18 @@
 
             <!-- MAIN -->
             <div class="col py-3">
+                <form action="viewSE4" method="post">
 
-                <form action="viewSE3" method="post">
                     <%
                         ArrayList<SE> my = new ArrayList();
-                        my = UserDAO.retrievePendingSEProposalByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                        my = UserDAO.retrieveSEProposalByCompletedOwner(Integer.parseInt(session.getAttribute("userID").toString()));
                     %>
                     <!--- table -->
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-socialEngagementProgramsList.jsp">Completed</a>
                             <a href="MULTIPLE-pendingSEList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
-                            <a href="MULTIPLE-cancelledSEList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
-
+                            <a type="button" class="btn btn-primary" id="buttonCancel" href="MULTIPLE-cancelledSEList.jsp">Cancelled</a>
                         </div>
 
                         <br>
@@ -1225,15 +1191,28 @@
                                     for (int i = 0; i < my.size(); i++) {
                                 %>
                                 <tr>
-                                    <td><%=my.get(i).getDate()%></td>
-                                    <td><%=my.get(i).getName()%></td>
-                                    <td><%=my.get(i).getUnit()%></td>
-                                    <td><%=my.get(i).getDepartment()%></td>
-                                    <td><%=my.get(i).getProgramHead()%></td>
-                                    <td>Step <%=UserDAO.getStep(my.get(i).getId())%></td>
-                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
+                                    <td>Date</td>
+                                    <td>Name</td>
+                                    <td>Unit</td>
+                                    <td>Department</td>
+                                    <td>Program Head</td>
+                                    <td>
+                                        <%
+                                            if (UserDAO.hasSEReport(my.get(i).getId())) {
 
+
+                                        %>
+                                        With Report
+                                        <%                                        } else {
+                                        %>
+
+                                        No Report
+                                        <%
+                                            }
+                                        %>
+                                    </td>
+                                    <td><button type="submit" name="viewMy<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                </tr>
                                 <%
                                     }
                                 %>
@@ -1242,7 +1221,7 @@
 
                         <%
                             ArrayList<SE> others = new ArrayList();
-                            others = UserDAO.retrievePendingSEProposalByOthers(Integer.parseInt(session.getAttribute("userID").toString()));
+                            others = UserDAO.retrieveSEProposalByCompleted(Integer.parseInt(session.getAttribute("userID").toString()));
                         %>
                         <br><br>
                         <h2>All Social Engagement Programs (<%=others.size()%>)</h2>
@@ -1264,13 +1243,27 @@
                                     for (int i = 0; i < others.size(); i++) {
                                 %>
                                 <tr>
-                                    <td><%=others.get(i).getDate()%></td>
-                                    <td><%=others.get(i).getName()%></td>
-                                    <td><%=others.get(i).getUnit()%></td>
-                                    <td><%=others.get(i).getDepartment()%></td>
-                                    <td><%=others.get(i).getProgramHead()%></td>
-                                    <td>Step <%=UserDAO.getStep(others.get(i).getId())%></td>
-                                    <td><button type="submit" name="viewOthers<%=i%>" value="<%=others.get(i).getId()%>" type="button" class="btn btn-primary btn-sm">View</button></td>
+                                    <td>Date</td>
+                                    <td>Name</td>
+                                    <td>Unit</td>
+                                    <td>Department</td>
+                                    <td>Program Head</td>
+                                    <td>
+                                        <%
+                                            if (UserDAO.hasSEReport(others.get(i).getId())) {
+
+
+                                        %>
+                                        With Report
+                                        <%                                        } else {
+                                        %>
+
+                                        No Report
+                                        <%
+                                            }
+                                        %>
+                                    </td>
+                                    <td><button type="submit" name="viewCompleted<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
                                     }

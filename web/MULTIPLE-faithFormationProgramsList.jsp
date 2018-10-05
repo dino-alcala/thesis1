@@ -127,7 +127,7 @@
             }
 
             h2{
-                font-size: 40px;
+                font-size: 30px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -195,6 +195,13 @@
                 margin-top:25px;
             }
 
+            #buttonCancel{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
             #buttonCompleted:hover{
                 color: white;
                 background-color: green;
@@ -202,6 +209,12 @@
             }
 
             #buttonPending:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+            #buttonCancel:hover{
                 color: white;
                 background-color: green;
                 border-color: green;
@@ -1099,6 +1112,7 @@
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-faithFormationProgramsList.jsp">Completed</a>
                             <a href="MULTIPLE-pendingFFList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
+                            <a href="MULTIPLE-cancelledFFList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
                         </div>
 
 

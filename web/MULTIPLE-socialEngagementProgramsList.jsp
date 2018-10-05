@@ -128,7 +128,7 @@
             }
 
             h2{
-                font-size: 40px;
+                font-size: 30px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -1209,7 +1209,7 @@
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-socialEngagementProgramsList.jsp">Completed</a>
                             <a href="MULTIPLE-pendingSEList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
-                            <a href="MULTIPLE-canceledSEList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
+                            <a href="MULTIPLE-cancelledSEList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
                         </div>
 
                         <br>

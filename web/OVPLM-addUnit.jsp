@@ -260,7 +260,7 @@
 
             h1{
                 text-align: left;
-                font-size: 35px;
+                font-size: 30px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
                 <%--nasa loob siya ng div kaya hati border --%>
