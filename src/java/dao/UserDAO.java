@@ -2099,6 +2099,48 @@ public class UserDAO {
         }
         return SE;
     }
+    
+    public ArrayList<SE> retrieveSEProposalByDepartment(String department) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE step = 1 AND department = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, department);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setDate(rs2.getDate("datecreated"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setActivityClassification(rs2.getString("activityClassification"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
 
     public ArrayList<SE> retrieveSEProposalByCompleted(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
