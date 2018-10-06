@@ -223,40 +223,7 @@ public class login extends HttpServlet {
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
                     dispatcher.forward(request, response);
-                } else if (UserDAO.isDeptUnit(u.getUsername())) {
-
-                    int id = UserDAO.getIDbyUsername(u.getUsername());
-                    String position = UserDAO.getPosition(u.getUsername());
-                    session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Department / Unit Chair");
-                    session.setAttribute("position", position);
-
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
-                    dispatcher.forward(request, response);
-                } else if (UserDAO.isExternalDirector(u.getUsername())) {
-
-                    int id = UserDAO.getIDbyUsername(u.getUsername());
-                    String position = UserDAO.getPosition(u.getUsername());
-                    session.setAttribute("userID", id);
-                    session.setAttribute("unit", "External Affairs / Social Engagement Director");
-                    session.setAttribute("position", position);
-
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
-                    dispatcher.forward(request, response);
-                } else if (UserDAO.isDeanVPVC(u.getUsername())) {
-
-                    int id = UserDAO.getIDbyUsername(u.getUsername());
-                    String position = UserDAO.getPosition(u.getUsername());
-                    session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Dean / VP / VC");
-                    session.setAttribute("position", position);
-
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
-                    dispatcher.forward(request, response);
-                } else if (UserDAO.isLMC(u.getUsername())) {
+                }  else if (UserDAO.isLMC(u.getUsername())) {
 
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());
@@ -267,50 +234,6 @@ public class login extends HttpServlet {
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/LMC-home.jsp");
                     dispatcher.forward(request, response);
-                } else if (UserDAO.isChairDirector(u.getUsername())) {
-
-                    int id = UserDAO.getIDbyUsername(u.getUsername());
-                    String position = UserDAO.getPosition(u.getUsername());
-                    session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Chairperson / Director");
-                    session.setAttribute("position", position);
-
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
-                    dispatcher.forward(request, response);
-                } else if (UserDAO.isVPLM(u.getUsername())) {
-
-                    int id = UserDAO.getIDbyUsername(u.getUsername());
-                    String position = UserDAO.getPosition(u.getUsername());
-                    session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Vice President for Lasallian Mission");
-                    session.setAttribute("position", position);
-
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
-                    dispatcher.forward(request, response);
-                } else if (UserDAO.isDeanUnit(u.getUsername())) {
-
-                    int id = UserDAO.getIDbyUsername(u.getUsername());
-                    String position = UserDAO.getPosition(u.getUsername());
-                    session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Dean / Unit Head");
-                    session.setAttribute("position", position);
-
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
-                    dispatcher.forward(request, response);
-                } else if (UserDAO.isAssistantDean(u.getUsername())) {
-
-                    int id = UserDAO.getIDbyUsername(u.getUsername());
-                    String position = UserDAO.getPosition(u.getUsername());
-                    session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Assistant Dean for Lasallian Mission / Assistant Unit Head");
-                    session.setAttribute("position", position);
-
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
-                    dispatcher.forward(request, response);
                 } else if (UserDAO.isUnit(u.getUsername(), u.getPassword())) {
                     
                     int id = UserDAO.getIDbyUsername(u.getUsername());
@@ -320,11 +243,16 @@ public class login extends HttpServlet {
                     session.setAttribute("unit", UserDAO.getUnitByUserID(id));
                     session.setAttribute("position", position);
                     
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
-                    dispatcher.forward(request, response);
+                    if(session.getAttribute("position").equals("CCSCT - Department Chair") || session.getAttribute("position").equals("CCSIT - Department Chair") || session.getAttribute("position").equals("CCSST - Department Chair")){
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
+                        dispatcher.forward(request, response);
+                    } else { 
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
+                        dispatcher.forward(request, response);
+                    }
                 }
-
             } else {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/index.jsp");
