@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Unit"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
@@ -70,31 +71,112 @@
                     while (container.hasChildNodes()) {
                         container.removeChild(container.lastChild);
                     }
+
                     for (i = 0; i < number; i++) {
-                        // Append a node with a random text
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
-                        container.appendChild(document.createElement("br"));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "department" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
                         
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of Staff for Department " + (i + 1) + ": "));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "staff" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
-                        
-                    }
+                    // Append a node with a random text
+                    container.appendChild(document.createElement("hr"));
+                    container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "department" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of CAP for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "cap" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of APSP for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "apsp" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of ASF for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "asf" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of Faculty (Full-time and Part-time) for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "faculty" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of Administrators for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "admin" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of Direct Hired Contractual for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "direct" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of Independent Contractor for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "independent" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createTextNode("Number of External Service Personnel for Department " + (i + 1) + ": "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "external" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+                    container.appendChild(document.createElement("br"));
+
                 }
+            }
         </script>
 
         <style>
@@ -108,7 +190,7 @@
                 padding-right: 20px;
                 padding-left: 20px;
             }
-            
+
             .navbar-btn-logout {
                 padding-right: 20px;
                 padding-left: 20px;
@@ -170,8 +252,8 @@
             }
 
             .form-style-1 {
-                margin: 0px;
-                max-width: 400px;
+                margin:0px;
+                max-width: 700px;
                 padding: 20px 12px 10px 20px;
                 font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
             }
@@ -260,7 +342,7 @@
 
             h1{
                 text-align: left;
-                font-size: 30px;
+                font-size: 35px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
                 <%--nasa loob siya ng div kaya hati border --%>
@@ -310,9 +392,52 @@
             .dropdown:hover .dropbtn {
                 background-color: #3e8e41;
             }
+            
+            hr{
+                background-color: black;
+            }
 
         </style>
 
+        
+        <script type="text/javascript">
+                function department(c1, c2) {
+                    
+                    <%
+                        UserDAO UserDAO = new UserDAO();
+                        ArrayList<Unit> units = new ArrayList();
+                        units = UserDAO.retrieveUnitsAcademic();
+                    %>
+                            
+                    var c1 = document.getElementById(c1);
+                    var c2 = document.getElementById(c2);
+
+                    c2.innerHTML = "";
+                    
+                    <%
+                        for(int i = 0; i < units.size(); i++){
+                            ArrayList<Integer> departmentID = new ArrayList();
+                            departmentID = UserDAO.retrieveDepartmentByUnitID(units.get(i).getUnitID());
+                        %>
+                                
+                        if(c1.value == "<%=units.get(i).getName()%>"){
+                            var optionArray = [<%for(int j = 0; j<departmentID.size(); j++){%>"<%=UserDAO.getDepartmentByID(departmentID.get(j)).getDepartmentID()%>|<%=UserDAO.getDepartmentByID(departmentID.get(j)).getName()%>",<%}%>];
+                        }
+                        
+                        <%
+                            }
+                            %>
+
+                    for (var option in optionArray) {
+                        var pair = optionArray[option].split("|");
+                        var newOption = document.createElement("option");
+                        newOption.value = pair[0];
+                        newOption.innerHTML = pair[1];
+                        c2.options.add(newOption);
+                    }
+
+                }
+            </script>
     </head>
 
     <body>
@@ -366,27 +491,27 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <%
-                                UserDAO UserDAO = new UserDAO();
-                                ArrayList<Notification> n = new ArrayList();
-                                n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <%
+                                    
+                                    ArrayList<Notification> n = new ArrayList();
+                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                for (int i = 0; i < n.size(); i++) {
-                            %>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                        <div class="notificationBoxMessage">
-                                            <%=n.get(i).getBody()%>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
+                                    for (int i = 0; i < n.size(); i++) {
+                                %>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                            <div class="notificationBoxMessage">
+                                                <%=n.get(i).getBody()%>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
 
-                            <%
-                                }
-                            %>    
+                                <%
+                                    }
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -542,7 +667,7 @@
                 <%
                     }
                 %>
-                
+
                 <%
                     if (session.getAttribute("unit").equals("Admin")) {
                 %>
@@ -556,7 +681,7 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-                    
+
                     <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span>&nbsp;+</span>
@@ -564,7 +689,7 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-                    
+
                     <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span>&nbsp;+</span>
@@ -591,26 +716,80 @@
 
                                 <div class="panel panel-success">
 
-                                    <div class="panel-heading"></div>
-
                                     <div class="panel-body">
 
-                                        <p><i>Fields with "*" are required</i></p>
+                                        <p><i>All fields are required</i></p>
 
-                                        <form action="addUnit" method="post">
+                                        <form action="addAcademicUnit" method="post">
                                             <ul class="form-style-1">
                                                 <li>
-                                                    <label>Unit Type:* <span class="required"></span></label>
-                                                    <select name="unittype">
-                                                        <option value="academic">Academic</option>
-                                                        <option value="nonacademic">Non-Academic</option>
-                                                        <option value="departmentacademic">Department (for academic unit)</option>
+                                                    <label>Select Unit: <span class="required"></span></label>
+                                                    <select name="unit">
+                                                        <optgroup label="Added Units">
+                                                            <option disabled selected>Select Unit</option>
+                                                            <%
+                                                                for (int k = 0; k < units.size(); k++) {
+                                                            %>
+                                                            <option><%=units.get(k).getName()%></option>
+                                                            <%
+                                                                }
+                                                            %>
+                                                        </optgroup>
                                                     </select>
                                                 </li>
-                                                
                                                 <li>
-                                                    <button type="submit" class="btn btn-info">Proceed</button>
+                                                    <label>Department Name: <span class="required"></span></label>
+                                                    <input type="text" name="unitname" class="field-long" />
                                                 </li>
+                                                <li>
+                                                    <label>Unit Name: <span class="required"></span></label>
+                                                    <input type="text" name="unitname" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Unit Head: <span class="required"></span></label>
+                                                    <input type="text" name="unithead" class="field-long" />
+                                                </li>
+                                                <br>
+                                                <li>
+                                                    <label>Total Number of CAP: <span class="required"></span></label>
+                                                    <input type="text" name="cap" class="field-long" />
+                                                </li>                                                
+                                                <li>
+                                                    <label>Total Number of APSP: <span class="required"></span></label>
+                                                    <input type="text" name="apsp" class="field-long" />
+                                                </li>                                                
+                                                <li>
+                                                    <label>Total Number of ASF: <span class="required"></span></label>
+                                                    <input type="text" name="asf" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of Faculty (full-time and part-time): <span class="required"></span></label>
+                                                    <input type="text" name="faculty" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of Administrators: <span class="required"></span></label>
+                                                    <input type="text" name="admin" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of Direct Hired Contractuals: <span class="required"></span></label>
+                                                    <input type="text" name="direct" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of Independent Contractors: <span class="required"></span></label>
+                                                    <input type="text" name="independent" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Total Number of External Service Personnel: <span class="required"></span></label>
+                                                    <input type="text" name="external" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Unit Description: <span class="required"></span></label>
+                                                    <textarea name="unitdescription" rows="4" class="field-long"></textarea>
+                                                </li>
+                                                <li>
+                                                    <button type="submit" class="btn btn-info">Add Department</button>
+                                                </li>
+                                                <br><br>
                                             </ul>
                                         </form>
                                     </div>
@@ -626,73 +805,73 @@
         <!-- body-row END -->
 
         <script>
-                // sandbox disable popups
-                if (window.self !== window.top && window.name != "view1") {
-                    ;
-                    window.alert = function () {/*disable alert*/
-                    };
-                    window.confirm = function () {/*disable confirm*/
-                    };
-                    window.prompt = function () {/*disable prompt*/
-                    };
-                    window.open = function () {/*disable open*/
-                    };
-                }
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
 
-                // prevent href=# click jump
-                document.addEventListener("DOMContentLoaded", function () {
-                    var links = document.getElementsByTagName("A");
-                    for (var i = 0; i < links.length; i++) {
-                        if (links[i].href.indexOf('#') != -1) {
-                            links[i].addEventListener("click", function (e) {
-                                console.debug("prevent href=# click");
-                                if (this.hash) {
-                                    if (this.hash == "#") {
-                                        e.preventDefault();
-                                        return false;
-                                    } else {
-                                        /*
-                                         var el = document.getElementById(this.hash.replace(/#/, ""));
-                                         if (el) {
-                                         el.scrollIntoView(true);
-                                         }
-                                         */
-                                    }
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
                                 }
-                                return false;
-                            })
-                        }
+                            }
+                            return false;
+                        })
                     }
-                }, false);
+                }
+            }, false);
         </script>
         <script>
-                // Hide submenus
-                $('#body-row .collapse').collapse('hide');
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
 
                 // Collapse/Expand icon
-                $('#collapse-icon').addClass('fa-angle-double-left');
-
-                // Collapse click
-                $('[data-toggle=sidebar-colapse]').click(function () {
-                    SidebarCollapse();
-                });
-
-                function SidebarCollapse() {
-                    $('.menu-collapsed').toggleClass('d-none');
-                    $('.sidebar-submenu').toggleClass('d-none');
-                    $('.submenu-icon').toggleClass('d-none');
-                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                    // Treating d-flex/d-none on separators with title
-                    var SeparatorTitle = $('.sidebar-separator-title');
-                    if (SeparatorTitle.hasClass('d-flex')) {
-                        SeparatorTitle.removeClass('d-flex');
-                    } else {
-                        SeparatorTitle.addClass('d-flex');
-                    }
-
-                    // Collapse/Expand icon
-                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

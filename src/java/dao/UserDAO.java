@@ -1347,6 +1347,61 @@ public class UserDAO {
         }
         return units;
     }
+    
+    public ArrayList<Unit> retrieveUnitsAcademic() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM unit where unitType = 'Academic'";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Unit> units = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Unit u = new Unit();
+                u.setUnitID(rs.getInt("unitID"));
+                u.setName(rs.getString("unitName"));
+                u.setHead(rs.getString("unitHead"));
+                u.setType(rs.getString("unitType"));
+                u.setDepartments(rs.getInt("departments"));
+                u.setFaculty(rs.getInt("numberOfFaculty"));
+                u.setAdmin(rs.getInt("numberOfAdmin"));
+                u.setApsp(rs.getInt("numberOfAPSP"));
+                u.setAsf(rs.getInt("numberOfASF"));
+                u.setCap(rs.getInt("numberOfCAP"));
+                u.setDirecthired(rs.getInt("numberOfDirectHired"));
+                u.setIndependent(rs.getInt("numberOfIndependent"));
+                u.setExternal(rs.getInt("numberOfExternal"));
+                u.setDescription(rs.getString("unitDescription"));
+                u.setUserID(rs.getInt("userID"));
+                units.add(u);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return units;
+    }
 
     public Unit getUnitbyID(int unitID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();

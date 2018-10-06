@@ -1123,7 +1123,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <div class="row">
+                <div class="container">
                     <div class="col-lg-12">
                         <div class="formBg">
                             <h1>Add Community</h1>
