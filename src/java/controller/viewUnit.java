@@ -45,12 +45,13 @@ public class viewUnit extends HttpServlet {
             for(int i = 0; i < u.size(); i++){
                 if(request.getParameter("unitID"+i)!=null){
                     request.setAttribute("unitID", u.get(i).getUnitID());
+                    if(u.get(i).getType().toString().equals("Non-Academic")){
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewUnitDetails.jsp");
+                        dispatcher.forward(request, response);
+                    }
                 }
             }
-            
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewUnitDetails.jsp");
-            dispatcher.forward(request, response);
         }
     }
 
