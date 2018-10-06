@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `thsis01` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `thsis01`;
--- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.23, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: thsis01
+-- Host: localhost    Database: thsis01
 -- ------------------------------------------------------
--- Server version	5.6.25-log
+-- Server version	5.7.23-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -68,7 +66,7 @@ CREATE TABLE `community` (
   PRIMARY KEY (`communityID`),
   KEY `LA4_idx` (`userID`),
   CONSTRAINT `LA4` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,6 +75,7 @@ CREATE TABLE `community` (
 
 LOCK TABLES `community` WRITE;
 /*!40000 ALTER TABLE `community` DISABLE KEYS */;
+INSERT INTO `community` VALUES (1,'Khalid\'s Retirement Home','Khalid Malo','09291107660','24','Mabango Street','Barangay Rahim','Makati City','Khalid\'s Retirement Home',71),(2,'Karl\'s Community for the Jobless','Karl Madrid','09566082949','8','New York Street','Barangay KM','Quezon City','Karl\'s Community for the Jobless',71),(4,'Angelo\'s School for the Special','Angelo De Jesus','09174029299','17','Matuwid Street','Barangay Tibay','Paranaque City','Angelo\'s School for the Special',71);
 /*!40000 ALTER TABLE `community` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1051,4 +1050,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-06 15:42:25
+-- Dump completed on 2018-10-06 15:59:24
