@@ -71,11 +71,12 @@
                 padding-top: 56px;
             }
 
-            h1{
-                font-size: 40px;
+            h2{
+                font-size: 30px;
                 text-align: left;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
+                font-family: 'Roboto', sans-serif;
                 <%--nasa loob siya ng div kaya hati border --%>
             }
 
@@ -315,7 +316,7 @@
                                     u = UserDAO.getUnitbyID(Integer.parseInt(request.getAttribute("unitID").toString()));
                                 %>
 
-                                <h1><%=u.getName()%></h1>
+                                <h2><%=u.getName()%></h2>
 
 
                                 <table class="table">
@@ -335,10 +336,6 @@
                                             <td><%=u.getDescription()%></td>
                                         </tr>
                                         <tr>
-                                            <td><b>Total Staff:</b></td>
-                                            <td><%=u.getStaff()%></td>
-                                        </tr>
-                                        <tr>
                                             <td><b>Total Faculty:</b></td>
                                             <td><%=u.getFaculty()%></td>
                                         </tr>
@@ -351,8 +348,8 @@
                                             <td><%=u.getApsp()%></td>
                                         </tr>
                                         <tr>
-                                            <td><b>Total SAF:</b></td>
-                                            <td><%=u.getSaf()%></td>
+                                            <td><b>Total ASF:</b></td>
+                                            <td><%=u.getAsf()%></td>
                                         </tr>
                                         <tr>
                                             <td><b>Total CAP:</b></td>
