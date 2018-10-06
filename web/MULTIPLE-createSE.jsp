@@ -1443,6 +1443,24 @@
                             </select>
                             <br><br><br>
                         </fieldset>
+                            
+                        <fieldset>
+                            <legend><b>Target Community:</b></legend>
+                            <%
+                                ArrayList<Community> c = new ArrayList();
+                                c = UserDAO.retrieveCommunity();
+                            %>
+                            <select name="community">
+                                <%
+                                    for (int m = 0; m < c.size(); m++) {
+                                %>
+                                <option value="<%=c.get(m).getId()%>"><%=c.get(m).getName()%></option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                            <br><br><br>
+                        </fieldset>
 
                         <fieldset>
                             <legend><b>Target KRA:</b></legend>
@@ -1472,24 +1490,6 @@
                             </select>
                             <br><br>
                             <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a>
-                            <br><br><br>
-                        </fieldset>
-                            
-                        <fieldset>
-                            <legend><b>Target Community:</b></legend>
-                            <%
-                                ArrayList<Community> c = new ArrayList();
-                                c = UserDAO.retrieveCommunity();
-                            %>
-                            <select name="community">
-                                <%
-                                    for (int m = 0; m < c.size(); m++) {
-                                %>
-                                <option value="<%=c.get(m).getId()%>"><%=c.get(m).getName()%></option>
-                                <%
-                                    }
-                                %>
-                            </select>
                             <br><br><br>
                         </fieldset> 
 
