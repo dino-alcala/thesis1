@@ -1261,6 +1261,45 @@ public class UserDAO {
         }
         return deptid;
     }
+    
+    public ArrayList<Department> getDepartmentsIDsByUnitID(int unitID){
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT departmentID FROM unit_department WHERE unitID = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Department> Departments = new ArrayList<Department>();
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, unitID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Department d = new Department();
+                d.setDepartmentID(rs.getInt("departmentID"));
+                Departments.add(d);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return Departments;
+    }
 
     public Department getDepartmentByID(int departmentID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1279,6 +1318,14 @@ public class UserDAO {
             while (rs.next()) {
                 dept.setName(rs.getString("department"));
                 dept.setDepartmentID(rs.getInt("departmentID"));
+                dept.setFaculty(rs.getInt("numberOfFaculty"));
+                dept.setAdmin(rs.getInt("numberofAdmin"));
+                dept.setApsp(rs.getInt("numberofAPSP"));
+                dept.setAsf(rs.getInt("numberofASF"));
+                dept.setCap(rs.getInt("numberofCAP"));
+                dept.setDirecthired(rs.getInt("numberofDirectHired"));
+                dept.setIndependent(rs.getInt("numberofIndependent"));
+                dept.setExternal(rs.getInt("numberofExternal"));
             }
 
         } catch (SQLException ex) {

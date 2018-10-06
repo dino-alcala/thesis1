@@ -47,7 +47,11 @@ public class viewUnit extends HttpServlet {
                     request.setAttribute("unitID", u.get(i).getUnitID());
                     if(u.get(i).getType().toString().equals("Non-Academic")){
                         ServletContext context = getServletContext();
-                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewUnitDetails.jsp");
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewUnitDetailsNonAcademic.jsp");
+                        dispatcher.forward(request, response);
+                    } else if(u.get(i).getType().toString().equals("Academic")){
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewUnitDetailsAcademic.jsp");
                         dispatcher.forward(request, response);
                     }
                 }
