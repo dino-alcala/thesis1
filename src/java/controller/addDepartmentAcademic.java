@@ -5,25 +5,18 @@
  */
 package controller;
 
-import dao.OvplmDAO;
-import entity.Department;
-import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class addUnit extends HttpServlet {
+public class addDepartmentAcademic extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +31,7 @@ public class addUnit extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
-            if (request.getParameter("unittype").equals("academic")) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitAcademic.jsp");
-                dispatcher.forward(request, response);
-            } else if (request.getParameter("unittype").equals("nonacademic")) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitNonacademic.jsp");
-                dispatcher.forward(request, response);
-            } else if (request.getParameter("unittype").equals("departmentacademic")) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-addUnitDepartmentAcademic.jsp");
-                dispatcher.forward(request, response);
-            }
-
+            
         }
     }
 

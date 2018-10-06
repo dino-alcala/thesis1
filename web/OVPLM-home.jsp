@@ -33,7 +33,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
+        
         <script type="text/javascript">
             <!---search ta ble - ->
                     $(document).ready(function () {
@@ -219,6 +219,25 @@
             .viewButton{
                 text-align: center;
                 margin-bottom: 0%;
+            }
+            
+            .accomplishmentGreen{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: green;
+            }
+            .accomplishmentYellow{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: #FFBF00;
+            }
+            .accomplishmentRed{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: red;
             }
         </style>
 
@@ -450,7 +469,114 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                
+                <!---KRAs-->
+        <div class="container-fluid panels">
+            
+              <h2>Key Result Areas</h2>
+        
+              <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
+              <table class="table table-bordered">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Goals</th>
+                      <th scope="col">Measures</th>
+                      <th scope="col">Targets</th>
+                      <th scope="col">Accomplishment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        <!--- Goal 1 Measure 1-->
+                        <tr>
+                          <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                          <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
+                          <td>Development of Lasallian Formation Program for graduate student</td>
+                          <td class="accomplishmentGreen">85%</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>Existing Lasallian Formation programs for undergraduate students have been reviewed and revised </td>
+                          <td class="accomplishmentYellow">50%</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>50% of student organizations have implemented a Lasallian formation activity</td>
+                          <td class="accomplishmentRed">15%</td>
+                        </tr>
+                        <!--- end of Goal 1 Measure 1-->
+                      
+                        <!--- Goal 1 Measure 2-->
+                        <tr>
+                          <td></td>
+                          <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
+                          <td>50% of faculty departments have undergone Lasallian formation program</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>75% of staff have undergone Lasallian formation programs  </td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>All administrators have undergone the Lasallian formation activity  </td>
+                          <td></td>
+                        </tr>
+                        <!--- end of Goal 1 Measure 2 -->
+                      
+                      <!--- Goal 1 Measure 3-->
+                        <tr>
+                          <td></td>
+                          <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
+                          <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
+                          <td></td>
+                        </tr>
+                        <!--- end of Goal 1 Measure 3 -->
+                      
+                      <!--- Goal 2 Measure 1-->
+                        <tr>
+                          <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                          <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
+                          <td>At least one interdisciplinary activity conducted each term</td>
+                          <td></td>
+                      </tr>
+                      <!--- end of Goal 2 Measure 1 -->
+                      
+                      <!--- Goal 2 Measure 2-->
+                        <tr>
+                          <td> </td>
+                          <td><b>M2</b> Integration of faith dimension using the Lasallian Reflection Framework (LRF) in GE courses</td>
+                          <td>Review and integrate the LRF in all NLCC subjects </td>
+                          <td></td>
+                      </tr>
+                      <!--- end of Goal 2 Measure 2 -->
+                      
+                      <!--- Goal 2 Measure 3-->
+                        <tr>
+                          <td> </td>
+                          <td><b>M3</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
+                          <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
+                          <td></td>
+                      </tr>
+                      <!--- end of Goal 2 Measure 3 -->
+                      
+                      <!--- Goal 3 Measure 1-->
+                        <tr>
+                          <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                          <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
+                          <td>3 communities</td>
+                          <td></td>
+                      </tr>
+                      <!--- end of Goal 3 Measure 1 -->
+                      
+                  </tbody>
+                </table>
+              
+        </div>
+    <!--- end of KRAs-->
 
                 <!--- table -->
                 <%
