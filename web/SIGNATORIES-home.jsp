@@ -337,8 +337,8 @@
                         <%
                             ArrayList<SE> proposals = new ArrayList();
 
-                            if (session.getAttribute("unit").toString().equals("Department / Unit Chair")) {
-                                proposals = UserDAO.retrieveSEProposalByStep(1);
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Department Chair")) {
+                                proposals = UserDAO.retrieveSEProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
 
                             if (session.getAttribute("unit").toString().equals("External Affairs / Social Engagement Director")) {

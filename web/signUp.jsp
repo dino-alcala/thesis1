@@ -106,7 +106,6 @@
                         for(int i = 0; i < units.size(); i++){
                             ArrayList<Integer> departmentID = new ArrayList();
                             departmentID = UserDAO.retrieveDepartmentByUnitID(units.get(i).getUnitID());
-                            System.out.println(departmentID.size());
                         %>   
                                 
                         if(c1.value == "<%=units.get(i).getName()%>"){
