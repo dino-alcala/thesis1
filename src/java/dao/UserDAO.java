@@ -370,7 +370,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("position").equals("CCS - ADEALM")) {
+                if (rs.getString("position").contains("ADEALM")){
                     return true;
                 }
             }
@@ -407,9 +407,10 @@ public class UserDAO {
             ps.setString(1, username);
 
             rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("position").equals("CCSCT - Department Chair")) {
+            boolean y = false;
+            
+            while (rs.next()) {                
+                if(rs.getString("position").contains("Department Chair")){
                     return true;
                 }
             }
