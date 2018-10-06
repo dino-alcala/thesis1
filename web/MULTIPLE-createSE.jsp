@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="css/sidebar2.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -410,7 +410,7 @@
             %>
 
                 if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                var optionArray = ["|",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l)%>",<%}%>];
+                var optionArray = ["|",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
                     }
 
             <%
@@ -1404,13 +1404,13 @@
 
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
-                            <center><input type = "text" name ="programname"></center>
+                            <center><input type = "text" name ="programname" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Program Head (First name, Last name):</b></legend>
-                            <input style="width:50%" type = "text" name ="programhead">
+                            <input style="width:50%" type = "text" name ="programhead" required>
                             <br><br><br>
                         </fieldset>
 
@@ -1429,26 +1429,8 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Target Community:</b></legend>
-                            <%
-                                ArrayList<Community> c = new ArrayList();
-                                c = UserDAO.retrieveCommunity();
-                            %>
-                            <select name="community" >
-                                <%
-                                    for (int m = 0; m < c.size(); m++) {
-                                %>
-                                <option value="<%=c.get(m).getId()%>"><%=c.get(m).getName()%></option>
-                                <%
-                                    }
-                                %>
-                            </select>
-                            <br><br><br>
-                        </fieldset>
-
-                        <fieldset>
                             <legend><b>Target KRA:</b></legend>
-                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')">
+                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')" required>
                                 <option></option>
                                 <%
                                     for (int m = 0; m < k.size(); m++) {
@@ -1463,50 +1445,69 @@
 
                         <fieldset>
                             <legend><b>Target Goal:</b></legend>
-                            <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures')">
+                            <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures')" required>
                             </select>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Target Measure:</b></legend>
-                            <select name="measure" id="measures">
+                            <select name="measure" id="measures" required>
                             </select>
                             <br><br><br>
                         </fieldset>
+                            
+                        <fieldset>
+                            <legend><b>Target Community:</b></legend>
+                            <%
+                                ArrayList<Community> c = new ArrayList();
+                                c = UserDAO.retrieveCommunity();
+                            %>
+                            <select name="community">
+                                <%
+                                    for (int m = 0; m < c.size(); m++) {
+                                %>
+                                <option value="<%=c.get(m).getId()%>"><%=c.get(m).getName()%></option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                            <br><br><br>
+                        </fieldset> 
 
                         <fieldset>
                             <legend><span class="number">1</span><b> Target Implementation Date:</b></legend>
-                            <input style="width:20%" type = "date" name ="actualdate" min="<%=sqlDate%>">
+                            <input style="width:20%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">2</span><b> Total Amount Requested:</b></legend>
-                            <center><input type = "text" name ="totalamount"></center>
+                            <center><input type = "number" name ="totalamount" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">3</span><b>Explain the Social/Community Problem being Addressed</b></legend>
-                            <center><textarea rows = "6" cols = "100%" name ="problemaddressed"></textarea></center>
+                            <center><textarea rows = "6" cols = "100%" name ="problemaddressed" required></textarea></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">4</span> <b>Social Engagement Partner(s)/Beneficiaries</b><br></legend>
-                            <legend>Name of Partner (First name, Last name): <input type='text' name='partnername'/><br><br>
-                                Address: <input type='text' name='partneraddress'/><br><br>
-                                Contact Person (First name, Last name): <input type='text' name='partnercontact'/><br><br>
-                                Mobile Number: <input type='text' name='partnernumber'/><br><br>
-                                Email: <input type='text' name='partneremail'/><br><br>
-                                Brief Description of Partner: <textarea name='partnerdescription' rows='5'></textarea></legend>
+                            <legend>Name of Partner (First name, Last name): <input type='text' name='partnername' required/><br><br>
+                                Address: <input type='text' name='partneraddress' required/><br><br>
+                                Contact Person (First name, Last name): <input type='text' name='partnercontact' required/><br><br>
+                                Mobile Number: <input type='text' name='partnernumber' required/><br><br>
+                                Email: <input type='text' name='partneremail' required/><br><br>
+                                Brief Description of Partner: <textarea name='partnerdescription' rows='5' required></textarea></legend>
                             <br>
                         </fieldset>
+  
 
                         <fieldset>
                             <legend><span class="number">5</span><b >Measurable Outcomes/Objectives of the Project:</b></legend>
-                            <center><textarea rows = "6" cols = "100%" name ="measureableoutcome"></textarea></center>
+                            <center><textarea rows = "6" cols = "100%" name ="measureableoutcome" required></textarea></center>
                             <br><br>
                         </fieldset>
 
@@ -1518,13 +1519,13 @@
                                 <input type='checkbox' name="component" value="Continuing and Developmental Partnership"/>Continuing and Developmental Partnership<br>
                                 <input type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
                             <legend>Explanation:</legend>
-                            <textarea name='sustainabilityexplanation' rows='4'></textarea>
+                            <textarea name='sustainabilityexplanation' rows='4' required></textarea>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">7</span><b >Source of Funds:</b></legend>
-                            <center><select name="funds">
+                            <center><select name="funds" required>
                                     <option value="OVPLM">OVPLM</option>
                                     <option value="Others">Others</option>
                                 </select></center>
@@ -1544,7 +1545,7 @@
         <script>
             $('#date').datepicker({
             startDate: new Date()
-                    });
+            });
             // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
             ;

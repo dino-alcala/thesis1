@@ -2038,26 +2038,25 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, targetKRA, targetGoal, targetMeasure, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FF.getUnit());
             pstmt.setString(2, FF.getDepartment());
             pstmt.setDate(3, FF.getDatecreated());
             pstmt.setString(4, FF.getProgramHead());
             pstmt.setString(5, FF.getActivityClassification());
-            pstmt.setInt(6, FF.getTargetCommunity());
-            pstmt.setInt(7, FF.getTargetKRA());
-            pstmt.setInt(8, FF.getTargetGoal());
-            pstmt.setInt(9, FF.getTargetMeasure());
-            pstmt.setString(10, FF.getProjectName());
-            pstmt.setString(11, FF.getVenue());
-            pstmt.setString(12, FF.getSpeaker());
-            pstmt.setString(13, FF.getObjectives());
-            pstmt.setDouble(14, FF.getTotalAmount());
-            pstmt.setString(15, FF.getSourceOfFunds());
-            pstmt.setInt(16, FF.getStep());
-            pstmt.setInt(17, FF.getUserID());
-            pstmt.setDate(18, FF.getActualDate());
+            pstmt.setInt(6, FF.getTargetKRA());
+            pstmt.setInt(7, FF.getTargetGoal());
+            pstmt.setInt(8, FF.getTargetMeasure());
+            pstmt.setString(9, FF.getProjectName());
+            pstmt.setString(10, FF.getVenue());
+            pstmt.setString(11, FF.getSpeaker());
+            pstmt.setString(12, FF.getObjectives());
+            pstmt.setDouble(13, FF.getTotalAmount());
+            pstmt.setString(14, FF.getSourceOfFunds());
+            pstmt.setInt(15, FF.getStep());
+            pstmt.setInt(16, FF.getUserID());
+            pstmt.setDate(17, FF.getActualDate());
 
             int rs = pstmt.executeUpdate();
 
