@@ -1602,7 +1602,6 @@
                             </table>
                             <br><br>
                         </fieldset>
-                        <center><a href="MULTIPLE-createSEChecklist.jsp" target="_blank"><button type="button" class="button">View Checklist</button></a>
                             <br><br>
                             <button type="submit" class="button">Submit</button></center>
                     </form>
