@@ -344,14 +344,15 @@
                         <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
-                        <%                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 18) {
+                        <%                            
+                            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
-                        </a>                        
+                        </a>
                         <%
                             }
-                        %>                     
+                        %>                        
 
                     </div>
                     <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
@@ -437,7 +438,7 @@
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
                         <%
-                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 16 || Integer.parseInt(session.getAttribute("userID").toString()) == 17 || Integer.parseInt(session.getAttribute("userID").toString()) == 27) {
+                            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").toString().equals("OVPLM - Executive Officer")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
@@ -541,7 +542,7 @@
                 %>
 
                 <%
-                    if (session.getAttribute("unit").equals("Dean of Student Affairs")) {
+                    if (session.getAttribute("unit").equals("Dean of Student Affairs (DSA)")) {
                 %>
                 <ul class="list-group sticky-top sticky-offset">
                     <!-- Menu with submenu -->
@@ -628,7 +629,7 @@
                 %>
 
                 <%
-                    if (session.getAttribute("unit").equals("Laguna Campus Lasallian Mission")) {
+                    if (session.getAttribute("unit").equals("Laguna Campus Lasallian Mission (LCLM)")) {
                 %>
 
                 <ul class="list-group sticky-top sticky-offset">
@@ -722,7 +723,7 @@
                 %>
 
                 <%
-                    if (session.getAttribute("unit").equals("Lasallian Mission Director")) {
+                    if (session.getAttribute("unit").equals("Lasallian Mission Director (LMD)")) {
                 %>
                 <ul class="list-group sticky-top sticky-offset">
                     <!-- Menu with submenu -->
@@ -841,15 +842,15 @@
                         <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
-                        <%
-                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
-
+                        <%                            
+                            if (session.getAttribute("position").toString().equals("LSPO - Director")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
                         </a>
-                        <%                            }
-                        %>
+                        <%
+                            }
+                        %>  
                     </div>
                     <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
@@ -900,7 +901,7 @@
                 %>
 
                 <%
-                    if (session.getAttribute("unit").equals("Office of Personnel Management Director")) {
+                    if (session.getAttribute("unit").equals("Office of Personnel Management Director (OPMD)")) {
                 %>
                 <ul class="list-group sticky-top sticky-offset">
                     <!-- Menu with submenu -->
@@ -976,8 +977,8 @@
                 %>
 
                 <%
-                    if (session.getAttribute("unit").equals("College of Computer Studies (CCS)") || (session.getAttribute("unit").toString().equals("Br. Andrew Gonzales College of Education")) || (session.getAttribute("unit").toString().equals("College of Law")) || (session.getAttribute("unit").toString().equals("College of Liberal Arts"))
-                            || (session.getAttribute("unit").toString().equals("College of Science")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVRCOB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)"))) {
+                    if (session.getAttribute("unit").equals("College of Computer Studies (CCS)") || (session.getAttribute("unit").toString().equals("Br. Andrew Gonzales College of Education (BAGCED)")) || (session.getAttribute("unit").toString().equals("College of Law (COL)")) || (session.getAttribute("unit").toString().equals("College of Liberal Arts (CLA)"))
+                            || (session.getAttribute("unit").toString().equals("College of Science (COS)")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVR-COB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)"))) {
                 %>
 
                 <ul class="list-group sticky-top sticky-offset">
@@ -1061,19 +1062,63 @@
                 %>
 
                 <%
-                    if (session.getAttribute("unit").equals("Chairperson / Director") || session.getAttribute("unit").equals("Vice President for Lasallian Mission") || session.getAttribute("unit").equals("Dean / Unit Head") || session.getAttribute("unit").equals("Assistant Dean for Lasallian Mission / Assistant Unit Head")) {
+                    if (session.getAttribute("unit").equals("Lasallian Mission Council (LMC)")) {
                 %>
-
                 <ul class="list-group sticky-top sticky-offset">
                     <!-- Menu with submenu -->
-                    <a href="SIGNATORIES-home2.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <a href="LMC-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-home fa-fw mr-2"></span>
                             <span class="menu-collapsed">Home</span>
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
+                    <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-folder-open fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Programs</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuProposals" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
+                        </a>
+                        <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
+                        </a>
+                        <% 
+                            if (session.getAttribute("position").toString().equals("DSA - Dean") || session.getAttribute("position").toString().equals("LCLM - Executive Director") ||
+                                    session.getAttribute("position").toString().equals("LSPO - Director") || session.getAttribute("position").toString().equals("COSCA - Director") ||
+                                    session.getAttribute("position").toString().equals("DLSU Vocations Director") || session.getAttribute("position").toString().equals("TRED - Chair") ||
+                                    session.getAttribute("position").toString().equals("TRED - Director LCC")) {
+                        %>
+                        <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
+                        </a>
+                        <%
+                            }
+                        %>
+                    </div>
+                    <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-group fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Units</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-building fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Communities</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuCommunity" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                        </a>
+                    </div>
                     <a href="MULTIPLE-viewBudget.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-money fa-fw mr-2"></span>
@@ -1081,15 +1126,40 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
-                    <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check fa-fw mr-2"></span>
-                            <span class="menu-collapsed">FF Programs</span>
+                            <span class="fa fa-check-square-o fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Key Result Areas</span>
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
+                    <a href="#submenuReports" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-bar-chart fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Reports</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuReports" class="collapse sidebar-submenu">
+                        <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Programs</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                        </a>
+                        <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
+                        </a>
+                    </div>
                 </ul>
 
                 <%
