@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Department"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.Unit"%>
 <%@page import="entity.FF"%>
@@ -120,7 +121,7 @@
                 text-align: center;
                 margin-bottom: 0%;
             }
-            
+
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
@@ -352,8 +353,8 @@
                 }
             }
         </style>
-        
-                <script type='text/javascript'>
+
+        <script type='text/javascript'>
 
             function addRow() {
                 var count = document.getElementById("countresponsible").value;
@@ -615,8 +616,7 @@
                         <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
-                        <%                            
-                            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")) {
+                        <%                            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
@@ -1113,7 +1113,7 @@
                         <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
-                        <%                            
+                        <%
                             if (session.getAttribute("position").toString().equals("LSPO - Director")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
@@ -1358,11 +1358,11 @@
                         <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
-                        <% 
-                            if (session.getAttribute("position").toString().equals("DSA - Dean") || session.getAttribute("position").toString().equals("LCLM - Executive Director") ||
-                                    session.getAttribute("position").toString().equals("LSPO - Director") || session.getAttribute("position").toString().equals("COSCA - Director") ||
-                                    session.getAttribute("position").toString().equals("DLSU Vocations Director") || session.getAttribute("position").toString().equals("TRED - Chair") ||
-                                    session.getAttribute("position").toString().equals("TRED - Director LCC")) {
+                        <%
+                            if (session.getAttribute("position").toString().equals("DSA - Dean") || session.getAttribute("position").toString().equals("LCLM - Executive Director")
+                                    || session.getAttribute("position").toString().equals("LSPO - Director") || session.getAttribute("position").toString().equals("COSCA - Director")
+                                    || session.getAttribute("position").toString().equals("DLSU Vocations Director") || session.getAttribute("position").toString().equals("TRED - Chair")
+                                    || session.getAttribute("position").toString().equals("TRED - Director LCC")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
@@ -1442,167 +1442,171 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-    <hr size="5" noshade>    
-    <center><h1>Social Engagement Proposal</h1></center>
-    <hr size="5" noshade>
+                <hr size="5" noshade>    
+                <center><h1>Social Engagement Proposal</h1></center>
+                <hr size="5" noshade>
 
 
-    <div class="form-style-5">
-        <form action = "addSE2" method="post">
+                <div class="form-style-5">
+                    <form action = "addSE2" method="post">
 
-            <%
-                SE SE = new SE();
-                SE = (SE) session.getAttribute("SE");
-            %>
-            <legend><b>Work Plan - Implementation Date: <%=SE.getActualDate()%></b></legend>
-            <fieldset>
-                <center><table style = "width:100%" id = "projectplantable">
-                        <tr>
-                            <th>Date</th>
-                            <th>Activity</th>
-                            <th>Time Start</th>
-                            <th>Time End</th>
-                            <th>Venue</th>
-                        </tr>
-                        <tr>
-                            <td><input type ="date" name="date0"/></td>
-                            <td><textarea rows = "2" cols = "25%" name ="activity0"></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="time0"></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="timeend0"></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="venue0"></textarea></td>
+                        <%
+                            SE SE = new SE();
+                            SE = (SE) session.getAttribute("SE");
+                        %>
+                        <legend><b>Work Plan - Implementation Date: <%=SE.getActualDate()%></b></legend>
+                        <fieldset>
+                            <center><table style = "width:100%" id = "projectplantable">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Activity</th>
+                                        <th>Time Start</th>
+                                        <th>Time End</th>
+                                        <th>Venue</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input type ="date" name="date0"/></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="activity0"></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="time0"></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="timeend0"></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="venue0"></textarea></td>
 
-                        <input type="hidden" value="1" id="countproject" name="countproject">
-                        </tr>
-                    </table></center>
-                <br>
-                <div>
-                    <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
-                        <input style="background-color:red; border: red;" type ="button" id="addRowButton" onclick ="deleteRow2()" value="Delete Row"></center>
+                                    <input type="hidden" value="1" id="countproject" name="countproject">
+                                    </tr>
+                                </table></center>
+                            <br>
+                            <div>
+                                <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
+                                    <input style="background-color:red; border: red;" type ="button" id="addRowButton" onclick ="deleteRow2()" value="Delete Row"></center>
+                            </div>
+                            <br><br>
+                        </fieldset>
+                        <%
+
+                            DecimalFormat df = new DecimalFormat("#,###,###,###.##");
+
+                            UserDAO = new UserDAO();
+                        %>
+
+
+                        <legend><b>Breakdown of Expenses - Amount Requested: PHP <%=df.format(SE.getTotalAmount())%></b></legend>
+                        <input type="hidden" value="1" id="countexpenses" name="countexpenses">
+                        <fieldset>
+                            <center><table style = "width:100%" id="breakdowntable">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Unit Cost</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                    <tr>
+                                        <td><textarea rows = "2" cols = "25%" name ="seitem0"></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="seunitcost0"></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="sequantity0"></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="sesubtotal0"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Grand Total: </td>
+                                    </tr>
+                                </table></center>
+                            <br>
+                            <center><input type ="button" id="addRowButton" onclick ="addRow3()" value="Add Row">
+                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete Row"></center>
+                            <br><br>
+                        </fieldset>
+
+                        <legend><b>Expected Participants vs. Total Population of the Unit</b></legend>
+                        <%
+                            Unit u = new Unit();
+                            u = UserDAO.getUnitByName(session.getAttribute("unit").toString());
+
+                            if (u.getType().equals("Academic")) {
+                                u = UserDAO.getDepartmentDetailsByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                            }
+                        %>
+                        <fieldset>
+                            <center><table style = "width:75%" id="breakdowntable">
+                                    <tr>
+                                        <th>Sector</th>
+                                        <th>Total<br> Population</th>
+                                        <th>Expected Number<br> of Participants</th>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;&nbsp;Academic Staff from the Unit</td>
+                                        <td><textarea rows = "1" cols = "10%" name ="seacademictotal" readonly><%=u.getAsf() + u.getFaculty()%></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="seacademicexpected"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;&nbsp;Support Staff from the Unit</td>
+                                        <td><textarea rows = "1" cols = "10%" name ="sesupporttotal" readonly><%=u.getApsp() + u.getDirecthired()%></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="sesupportexpected"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;&nbsp;Undergraduate Students</td>
+                                        <td><textarea rows = "1" cols = "10%" name ="seundergraduatetotal"></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="seundergraduateexpected"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;&nbsp;Graduate Students</td>
+                                        <td><textarea rows = "1" cols = "10%" name ="segraduatetotal"></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="segraduateexpected"></textarea></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>&nbsp;&nbsp;Others</td>
+                                        <td><textarea rows = "1" cols = "10%" name ="segraduatetotal"></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="segraduateexpected"></textarea></td>
+                                    </tr>
+
+                                </table></center>
+                            <br><br>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><b>Persons Responsible</b></legend>
+                            <input type="hidden" value="1" id="countresponsible" name="countresponsible">
+                            <center><table style = "width:100%" id="responsibletable">
+                                    <tr>
+                                        <th>Name (First name, Last name)</th>
+                                        <th>Email</th>
+                                    </tr>
+                                    <tr>    
+                                        <td><textarea rows = "1" cols = "50%" name ="responsiblename0"></textarea></td>
+                                        <td><textarea rows = "1" cols = "50%" name ="responsibleemail0"></textarea></td>
+                                    </tr>
+                                </table></center>
+                            <br>
+                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
+                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"></center>
+                            <br>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><b>Endorsement</b></legend>
+                            <table style = "width:30%" id="responsibletable">
+                                <tr>
+                                    <th>Position</th>
+                                </tr>
+                                <tr>    
+                                    <td>&nbsp;&nbsp;Department/Unit Chair</td>
+                                </tr>
+                                <tr>    
+                                    <td>&nbsp;&nbsp;External Affairs/Social Engagement Director</td>
+                                </tr>
+                                <tr>    
+                                    <td>&nbsp;&nbsp;Dean/VP/VC</td>
+                                </tr>
+                            </table>
+                            <br><br>
+                        </fieldset>
+                        <center><a href="MULTIPLE-createSEChecklist.jsp" target="_blank"><button type="button" class="button">View Checklist</button></a>
+                            <br><br>
+                            <button type="submit" class="button">Submit</button></center>
+                    </form>
                 </div>
-                <br><br>
-            </fieldset>
-            <%
-
-                DecimalFormat df = new DecimalFormat("#,###,###,###.##");
-
-                UserDAO = new UserDAO();
-            %>
-          
-            
-            <legend><b>Breakdown of Expenses - Amount Requested: PHP <%=df.format(SE.getTotalAmount())%></b></legend>
-            <input type="hidden" value="1" id="countexpenses" name="countexpenses">
-            <fieldset>
-                <center><table style = "width:100%" id="breakdowntable">
-                        <tr>
-                            <th>Item</th>
-                            <th>Unit Cost</th>
-                            <th>Quantity</th>
-                            <th>Subtotal</th>
-                        </tr>
-                        <tr>
-                            <td><textarea rows = "2" cols = "25%" name ="seitem0"></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="seunitcost0"></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="sequantity0"></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="sesubtotal0"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Grand Total: </td>
-                        </tr>
-                    </table></center>
-                <br>
-                <center><input type ="button" id="addRowButton" onclick ="addRow3()" value="Add Row">
-                    <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete Row"></center>
-                    <br><br>
-            </fieldset>
-
-            <legend><b>Expected Participants vs. Total Population of the Unit</b></legend>
-            <%
-                Unit u = new Unit();
-                u = UserDAO.getUnitByName(session.getAttribute("unit").toString());
-            %>
-            <fieldset>
-                <center><table style = "width:75%" id="breakdowntable">
-                        <tr>
-                            <th>Sector</th>
-                            <th>Total<br> Population</th>
-                            <th>Expected Number<br> of Participants</th>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;&nbsp;Academic Staff from the Unit</td>
-                            <td><textarea rows = "1" cols = "10%" name ="seacademictotal"><%=u.getSaf()%></textarea></td>
-                            <td><textarea rows = "1" cols = "10%" name ="seacademicexpected"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;&nbsp;Support Staff from the Unit</td>
-                            <td><textarea rows = "1" cols = "10%" name ="sesupporttotal"><%=u.getStaff()%></textarea></td>
-                            <td><textarea rows = "1" cols = "10%" name ="sesupportexpected"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;&nbsp;Undergraduate Students</td>
-                            <td><textarea rows = "1" cols = "10%" name ="seundergraduatetotal"><%=u.getStudent()%></textarea></td>
-                            <td><textarea rows = "1" cols = "10%" name ="seundergraduateexpected"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;&nbsp;Graduate Students</td>
-                            <td><textarea rows = "1" cols = "10%" name ="segraduatetotal"><%=u.getApsp()%></textarea></td>
-                            <td><textarea rows = "1" cols = "10%" name ="segraduateexpected"></textarea></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>&nbsp;&nbsp;Others</td>
-                            <td><textarea rows = "1" cols = "10%" name ="segraduatetotal"></textarea></td>
-                            <td><textarea rows = "1" cols = "10%" name ="segraduateexpected"></textarea></td>
-                        </tr>
-
-                    </table></center>
-                    <br><br>
-            </fieldset>
-
-            <fieldset>
-                <legend><b>Persons Responsible</b></legend>
-                <input type="hidden" value="1" id="countresponsible" name="countresponsible">
-                <center><table style = "width:100%" id="responsibletable">
-                        <tr>
-                            <th>Name (First name, Last name)</th>
-                            <th>Email</th>
-                        </tr>
-                        <tr>    
-                            <td><textarea rows = "1" cols = "50%" name ="responsiblename0"></textarea></td>
-                            <td><textarea rows = "1" cols = "50%" name ="responsibleemail0"></textarea></td>
-                        </tr>
-                    </table></center>
-                <br>
-                <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                    <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"></center>
-                    <br>
-            </fieldset>
-
-            <fieldset>
-                <legend><b>Endorsement</b></legend>
-                <table style = "width:30%" id="responsibletable">
-                        <tr>
-                            <th>Position</th>
-                        </tr>
-                        <tr>    
-                            <td>&nbsp;&nbsp;Department/Unit Chair</td>
-                        </tr>
-                        <tr>    
-                            <td>&nbsp;&nbsp;External Affairs/Social Engagement Director</td>
-                        </tr>
-                        <tr>    
-                            <td>&nbsp;&nbsp;Dean/VP/VC</td>
-                        </tr>
-                    </table>
-                <br><br>
-            </fieldset>
-            <center><a href="MULTIPLE-createSEChecklist.jsp" target="_blank"><button type="button" class="button">View Checklist</button></a>
-                <br><br>
-                <button type="submit" class="button">Submit</button></center>
-        </form>
-    </div>
             </div>
 
         </div>
