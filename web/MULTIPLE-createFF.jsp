@@ -367,10 +367,10 @@
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
             var cell4 = row.insertCell(3);
-            cell1.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffitem" + count + "'></textarea></td>";
-            cell2.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffunitcost" + count + "'></textarea></td>";
-            cell3.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffquantity" + count + "'></textarea></td>";
-            cell4.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffsubtotal" + count + "'></textarea></td>";
+            cell1.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffitem" + count + "' required></textarea></td>";
+            cell2.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffunitcost" + count + "' required></textarea></td>";
+            cell3.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffquantity" + count + "' required></textarea></td>";
+            cell4.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffsubtotal" + count + "' required></textarea></td>";
             count++;
             document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -1409,7 +1409,7 @@
 
                         <fieldset>
                             <legend><b>Program Head:</b></legend>
-                            <center><input type = "text" name ="programhead"></center>
+                            <center><input type = "text" name ="programhead" required></center>
                             <br>
                         </fieldset>
 
@@ -1426,7 +1426,7 @@
 
                         <fieldset>
                             <legend><b>Target KRA: </b></legend>
-                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')">
+                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')" required>
                                 <option></option>
                                 <%
                                     for (int m = 0; m < k.size(); m++) {
@@ -1441,51 +1441,51 @@
 
                         <fieldset>
                             <legend><b>Target Goal: </b></legend>
-                            <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures')">
+                            <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures')" required>
                             </select>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Target Measure: </b></legend>
-                            <select name="measure" id="measures">
+                            <select name="measure" id="measures" required>
                             </select>
                             <br><br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">1</span><b> Project Name:</b></legend>
-                            <center><input type = "text" name ="pname"></center>
+                            <center><input type = "text" name ="pname" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">2</span><b> Venue:</b></legend>
-                            <center><input type = "text" name ="pvenue"></center>
+                            <center><input type = "text" name ="pvenue" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">3</span><b> Speaker:</b></legend>
-                            <center><input type = "text" name ="pspeaker"></center>
+                            <center><input type = "text" name ="pspeaker" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">4</span><b> Objectives:</b></legend>
-                            <center><textarea rows="3" cols = "50%" name="objectives"></textarea></center>
+                            <center><textarea rows="3" cols = "50%" name="objectives" required></textarea></center>
                             <br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">5</span><b> Target Implementation Date:</b></legend>
-                            <center><input type = "date" name ="actualdate" min="<%=sqlDate%>"></center>
+                            <center><input type = "date" name ="actualdate" min="<%=sqlDate%>" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">6</span><b> Total Amount Requested:</b></legend>
-                            <center><input type = "text" name ="pbudget"></center>
+                            <center><input type = "number" name ="pbudget" required></center>
                             <br>
                         </fieldset>
 
@@ -1514,10 +1514,10 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffitem0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffunitcost0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffquantity0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffsubtotal0"></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="ffitem0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="ffunitcost0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="ffquantity0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="ffsubtotal0" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td></td>

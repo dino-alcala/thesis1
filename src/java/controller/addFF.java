@@ -57,7 +57,6 @@ public class addFF extends HttpServlet {
             FF.setDatecreated(sqlDate);
             FF.setProgramHead(request.getParameter("programhead"));
             FF.setActivityClassification(request.getParameter("classification"));
-            FF.setTargetCommunity(Integer.parseInt(request.getParameter("community")));
             FF.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
             FF.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
             FF.setTargetMeasure(Integer.parseInt(request.getParameter("measure")));
