@@ -1077,8 +1077,8 @@
 
                                     <tbody>
                                         <tr>
-                                            <td><b>Unit Type</b></td>
-                                            <td><%=u.getType()%></td>
+                                            <td style="width:15%"><b>Unit Type</b></td>
+                                            <td style="width:15%"><%=u.getType()%></td>
                                         </tr>
                                         <tr>
                                             <td><b>Unit Head</b></td>
@@ -1101,8 +1101,8 @@
                                 %>
                                 <table class="table">
                                     <tr>
-                                    <th style="width:5%"><b>Department Name:</b></th>
-                                    <th style="width:5%"><%=d.getName()%></th>
+                                        <th style="width:20%"><b>Department Name:</b></th>
+                                        <th style="width:20%"><%=d.getName()%></th>
                                     </tr>
                                     <tr>
                                         <td><b>Total Faculty:</b></td>

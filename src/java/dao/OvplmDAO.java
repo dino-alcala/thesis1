@@ -419,6 +419,7 @@ public class OvplmDAO {
                     Measure m = new Measure();
                     m.setMeasureID(rs.getInt("measureID"));
                     m.setMeasure(rs.getString("measure"));
+                    m.setDescription(rs.getString("description"));
                     m.setTarget(rs.getString("target"));
                     measures.add(m);
                 }

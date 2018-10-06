@@ -1147,7 +1147,7 @@
                             <tr>
                                 <th>Measure</th>
                                 <th>Description</th>
-                                <th >Total</th>
+                                <th >Target</th>
                             </tr>
                         </thead>
                         <%
