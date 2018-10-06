@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `thsis01` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `thsis01`;
--- MySQL dump 10.13  Distrib 5.7.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
--- Host: localhost    Database: thsis01
+-- Host: 127.0.0.1    Database: thsis01
 -- ------------------------------------------------------
--- Server version	5.7.23-log
+-- Server version	5.6.25-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -166,7 +166,6 @@ CREATE TABLE `ffproposal` (
   `datecreated` date DEFAULT NULL,
   `programHead` varchar(200) DEFAULT NULL,
   `activityClassification` varchar(200) DEFAULT NULL,
-  `targetCommunity` int(11) DEFAULT NULL,
   `targetKRA` int(11) DEFAULT NULL,
   `targetGoal` int(11) DEFAULT NULL,
   `targetMeasure` int(11) DEFAULT NULL,
@@ -208,7 +207,7 @@ CREATE TABLE `ffproposal` (
   `prs` longblob,
   `code` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,6 +216,7 @@ CREATE TABLE `ffproposal` (
 
 LOCK TABLES `ffproposal` WRITE;
 /*!40000 ALTER TABLE `ffproposal` DISABLE KEYS */;
+INSERT INTO `ffproposal` VALUES (1,'Office of the Vice President for Lasallian Mission (OVPLM)','No Department','2018-10-06','Luis Grefiel','Recollection',1,2,6,'Kalbuhan 2018','Paranaque City','Bea S.','Kumalbo ng mga tao','2018-10-13',5000,'OVPLM',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,74,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `ffproposal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +235,7 @@ CREATE TABLE `ffproposal_attendees` (
   PRIMARY KEY (`id`),
   KEY `LA16_idx` (`ffproposalID`),
   CONSTRAINT `LA16` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,6 +244,7 @@ CREATE TABLE `ffproposal_attendees` (
 
 LOCK TABLES `ffproposal_attendees` WRITE;
 /*!40000 ALTER TABLE `ffproposal_attendees` DISABLE KEYS */;
+INSERT INTO `ffproposal_attendees` VALUES (1,'Lance Alunan','lance@gmail.com',1),(2,'Karl Madrid','karl@gmail.com',1),(3,'Dino Alcala','dino@gmail.com',1);
 /*!40000 ALTER TABLE `ffproposal_attendees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +266,7 @@ CREATE TABLE `ffproposal_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA15_idx` (`ffproposalID`),
   CONSTRAINT `LA15` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,6 +275,7 @@ CREATE TABLE `ffproposal_expenses` (
 
 LOCK TABLES `ffproposal_expenses` WRITE;
 /*!40000 ALTER TABLE `ffproposal_expenses` DISABLE KEYS */;
+INSERT INTO `ffproposal_expenses` VALUES (1,'Razor',10,5,NULL,1,50),(2,'Seat',100,5,NULL,1,500);
 /*!40000 ALTER TABLE `ffproposal_expenses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,7 +540,7 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`id`),
   KEY `LA14_idx` (`userID`),
   CONSTRAINT `LA14` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1030,7 +1032,7 @@ CREATE TABLE `unit_department` (
   KEY `LA3_idx` (`departmentID`),
   CONSTRAINT `LA2` FOREIGN KEY (`unitID`) REFERENCES `unit` (`unitID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA3` FOREIGN KEY (`departmentID`) REFERENCES `department` (`departmentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1039,7 +1041,7 @@ CREATE TABLE `unit_department` (
 
 LOCK TABLES `unit_department` WRITE;
 /*!40000 ALTER TABLE `unit_department` DISABLE KEYS */;
-INSERT INTO `unit_department` VALUES (41,10,0),(42,11,2),(43,11,3),(44,11,4),(45,13,5),(46,13,6),(47,13,7),(48,13,8),(49,13,9),(50,14,10),(51,14,11),(52,14,12),(53,14,13),(54,14,14),(55,14,15),(56,14,16),(57,14,17),(58,14,18),(59,14,19),(60,15,20),(61,15,21),(62,15,22),(63,16,23),(64,16,24),(65,16,25),(66,16,26),(67,16,27),(68,16,28),(69,17,29),(70,17,30),(71,17,31),(72,17,32),(73,17,33),(74,17,34),(75,18,35),(76,18,36),(77,18,37),(78,18,38),(79,18,39),(80,18,40),(81,19,0),(82,20,0),(83,21,0),(84,22,0),(85,23,0);
+INSERT INTO `unit_department` VALUES (41,10,0),(42,11,2),(43,11,3),(44,11,4),(45,13,5),(46,13,6),(47,13,7),(48,13,8),(49,13,9),(50,14,10),(51,14,11),(52,14,12),(53,14,13),(54,14,14),(55,14,15),(56,14,16),(57,14,17),(58,14,18),(59,14,19),(60,15,20),(61,15,21),(62,15,22),(63,16,23),(64,16,24),(65,16,25),(66,16,26),(67,16,27),(68,16,28),(69,17,29),(70,17,30),(71,17,31),(72,17,32),(73,17,33),(74,17,34),(75,18,35),(76,18,36),(77,18,37),(78,18,38),(79,18,39),(80,18,40),(81,19,0),(82,20,0),(83,21,0),(84,22,0),(85,23,0),(86,12,0);
 /*!40000 ALTER TABLE `unit_department` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1052,4 +1054,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-06 16:31:11
+-- Dump completed on 2018-10-06 17:32:52

@@ -106,15 +106,29 @@
                         for(int i = 0; i < units.size(); i++){
                             ArrayList<Integer> departmentID = new ArrayList();
                             departmentID = UserDAO.retrieveDepartmentByUnitID(units.get(i).getUnitID());
-                        %>
+                            System.out.println(departmentID.size());
+                        %>   
                                 
                         if(c1.value == "<%=units.get(i).getName()%>"){
+                            <%
+                        if(departmentID.size()>1){
+                    %>
+                        var nodept = document.createElement("option");
+                        nodept.value = 0;
+                        nodept.innerHTML = "No Department";
+                        c2.options.add(nodept);
+                    <%
+                        }
+                    %>
+                            
                             var optionArray = [<%for(int j = 0; j<departmentID.size(); j++){%>"<%=UserDAO.getDepartmentByID(departmentID.get(j)).getDepartmentID()%>|<%=UserDAO.getDepartmentByID(departmentID.get(j)).getName()%>",<%}%>];
                         }
                         
                         <%
                             }
                             %>
+                                    
+                                 
 
                     for (var option in optionArray) {
                         var pair = optionArray[option].split("|");
