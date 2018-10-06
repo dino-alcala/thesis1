@@ -354,6 +354,84 @@ public class UserDAO {
         }
         return false;
     }
+    
+    public boolean isADEALM(String username) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT position FROM informationsheet WHERE username = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                if (rs.getString("position").equals("CCS - ADEALM")) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+    
+    public boolean isDeptChair(String username) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT position FROM informationsheet WHERE username = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                if (rs.getString("position").equals("CCSCT - Department Chair")) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
 
     public boolean isCOSCA(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -410,318 +488,6 @@ public class UserDAO {
 
             while (rs.next()) {
                 if (rs.getString("unit").equals("Office of Personnel Management Director")) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return false;
-    }
-
-    public boolean isADEALMCCS(String username) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT unit FROM informationsheet WHERE username = ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - CCS")) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return false;
-    }
-
-    public boolean isADEALMCOB(String username) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT unit FROM informationsheet WHERE username = ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - COB")) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return false;
-    }
-
-    public boolean isADEALMCLA(String username) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT unit FROM informationsheet WHERE username = ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - CLA")) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return false;
-    }
-
-    public boolean isADEALMGCOE(String username) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT unit FROM informationsheet WHERE username = ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - GCOE")) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return false;
-    }
-
-    public boolean isADEALMCOS(String username) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT unit FROM informationsheet WHERE username = ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - COS")) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return false;
-    }
-
-    public boolean isADEALMBAGCED(String username) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT unit FROM informationsheet WHERE username = ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - BAGCED")) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return false;
-    }
-
-    public boolean isADEALMSOE(String username) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT unit FROM informationsheet WHERE username = ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - SOE")) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return false;
-    }
-
-    public boolean isADEALMCOL(String username) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT unit FROM informationsheet WHERE username = ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                if (rs.getString("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - COL")) {
                     return true;
                 }
             }
