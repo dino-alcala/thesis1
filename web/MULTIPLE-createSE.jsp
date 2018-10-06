@@ -1470,6 +1470,8 @@
                             <legend><b>Target Measure:</b></legend>
                             <select name="measure" id="measures" required>
                             </select>
+                            <br><br>
+                            <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a>
                             <br><br><br>
                         </fieldset>
                             
@@ -1548,7 +1550,6 @@
                             <br>
                         </fieldset>
                         <br><br>
-                        <center><a href="MULTIPLE-createSEChecklist.jsp" target="_blank"><button type="button" class="button">View Checklist</button></a>
                             <br>
                             <button type="submit" class="button">Next</button></center>
                     </form>
