@@ -1465,7 +1465,7 @@
                                         <th>Venue</th>
                                     </tr>
                                     <tr>
-                                        <td><input type ="date" name="date0"/></td>
+                                        <td><input type ="date" name="date0" min="<%=SE.getActualDate()%>"/></td>
                                         <td><textarea rows = "2" cols = "25%" name ="activity0"></textarea></td>
                                         <td><textarea rows = "2" cols = "25%" name ="time0"></textarea></td>
                                         <td><textarea rows = "2" cols = "25%" name ="timeend0"></textarea></td>
