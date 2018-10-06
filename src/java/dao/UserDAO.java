@@ -1517,15 +1517,51 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                /*
-                u.setStaff(rs.getInt("numberOfStaff"));
                 u.setFaculty(rs.getInt("numberOfFaculty"));
-                u.setAdmin(rs.getInt("numberOfAdmin"));
                 u.setApsp(rs.getInt("numberOfAPSP"));
-                u.setSaf(rs.getInt("numberOfSAF"));
-                u.setCap(rs.getInt("numberOFCAP"));
-                u.setStudent(rs.getInt("numberOfStudent"));
-                 */
+                u.setAsf(rs.getInt("numberOfASF"));
+                u.setDirecthired(rs.getInt("numberOfDirectHired"));
+                u.setType(rs.getString("unitType"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return u;
+    }
+    
+    public Unit getDepartmentDetailsByDepartment(String department) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM department WHERE department = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Unit u = new Unit();
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, department);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                u.setApsp(rs.getInt("numberOfAPSP"));
+                u.setAsf(rs.getInt("numberOfASF"));
+                u.setFaculty(rs.getInt("numberOfFaculty"));
+                u.setDirecthired(rs.getInt("numberOfDirectHired"));
             }
 
         } catch (SQLException ex) {
