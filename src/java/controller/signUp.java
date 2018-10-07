@@ -51,8 +51,9 @@ public class signUp extends HttpServlet {
 
             UserDAO.signUp(u);
 
+            
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/index.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
             dispatcher.forward(request, response);
         }
     }
