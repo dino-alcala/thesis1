@@ -293,11 +293,11 @@
                 background-color: lightgreen;
             }
 
-            #sidebarCategoryActive {
+            #sidebarCategory {
                 background-color: lightgreen;
             }
 
-            #sidebarCategoryActive:hover {
+            #sidebarCategory:hover {
                 background-color: lightgreen;
             }
 
@@ -420,7 +420,7 @@
             <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
                 <ul class="list-group sticky-top sticky-offset">
                     <!-- Menu with submenu -->
-                    <a href="ADMIN-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                    <a href="ADMIN-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-home fa-fw mr-2"></span>
                             <span class="menu-collapsed">Home</span>

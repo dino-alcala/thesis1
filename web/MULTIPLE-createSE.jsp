@@ -529,7 +529,7 @@
             <!-- Sidebar -->
             <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
                 <script>
-                    $("#sidebar-container").load("sidebar.jsp");
+                    $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
 

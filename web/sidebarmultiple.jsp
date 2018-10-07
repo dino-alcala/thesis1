@@ -10,6 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+
+        <script>
+
+        </script>
     </head>
     <body>
         <!--Sidebar for MULTIPLE.name pages-->
@@ -21,7 +25,7 @@
 
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="COSCA-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="COSCA-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -103,7 +107,8 @@
                 </a>
             </ul>
 
-            <%                        }
+            <%
+                }
             %>
 
             <%
@@ -112,7 +117,7 @@
 
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="OVPLM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="OVPLM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -249,7 +254,7 @@
             %>
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="DSA-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="DSA-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -337,7 +342,7 @@
 
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="LCLM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="LCLM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -430,7 +435,7 @@
             %>
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="LMD-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="LMD-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -518,7 +523,7 @@
             %>
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="LSPO-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="LSPO-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -608,7 +613,7 @@
             %>
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="OPMD-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="OPMD-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -686,7 +691,7 @@
 
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="UR-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="UR-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -769,7 +774,7 @@
             %>
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
-                <a href="LMC-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="LMC-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -873,7 +878,7 @@
                 if (session.getAttribute("position").toString().contains("Department Chair")) {
             %>
             <ul class="list-group sticky-top sticky-offset">
-                <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>
@@ -901,7 +906,7 @@
                 if (session.getAttribute("position").toString().contains("ADEALM")) {
             %>
             <ul class="list-group sticky-top sticky-offset">
-                <a href="ADEALM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategoryActive">
+                <a href="ADEALM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-2"></span>
                         <span class="menu-collapsed">Home</span>

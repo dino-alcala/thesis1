@@ -86,7 +86,7 @@
 
                 font-family: Georgia, "Times New Roman", Times, serif;
                 background: rgba(255,255,255,.1);
-                border: 5;
+                border: 5px;
                 border-radius: 4px;
                 font-size: 16px;
                 margin-bottom: -5px;
@@ -233,7 +233,7 @@
             p{
                 margin-left: 10px;
             }
-            
+
             td{
                 padding: 7px;
             }
@@ -291,8 +291,9 @@
     </head>
 
     <body>
-        <hr size="5" noshade>    
-    <center><h1>Social Engagement Proposal</h1></center>
+
+    <hr size="5" noshade>    
+    <center><h1>Measure Details</h1></center>
     <hr size="5" noshade>
 
 

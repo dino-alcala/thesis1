@@ -636,11 +636,11 @@
                 background-color: lightgreen;
             }
 
-            #sidebarCategoryActive {
+            #sidebarCategory {
                 background-color: lightgreen;
             }
 
-            #sidebarCategoryActive:hover {
+            #sidebarCategory:hover {
                 background-color: lightgreen;
             }
 
