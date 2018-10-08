@@ -363,8 +363,8 @@
                 var row = table.insertRow(rows);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML = "<td><textarea rows = '1' cols = '50%' name ='responsiblename" + count + "'></textarea></td>";
-                cell2.innerHTML = "<td><textarea rows = '1' cols = '50%' name ='responsibleemail" + count + "'></textarea></td>";
+                cell1.innerHTML = "<td><textarea rows = '1' cols = '50%' name ='responsiblename" + count + "' required></textarea></td>";
+                cell2.innerHTML = "<td><textarea rows = '1' cols = '50%' name ='responsibleemail" + count + "' required></textarea></td>";
                 count++;
                 document.getElementById("countresponsible").setAttribute('value', count);
             }
@@ -393,11 +393,11 @@
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
-                cell1.innerHTML = "<td><input type ='date' name='date" + count + "'/></td>";
-                cell2.innerHTML = "<textarea rows = '2' cols = '25%' name ='activity" + count + "'></textarea>";
-                cell3.innerHTML = "<textarea rows = '2' cols = '25%' name ='time" + count + "'></textarea>";
-                cell4.innerHTML = "<textarea rows = '2' cols = '25%' name ='timeend" + count + "'></textarea>";
-                cell5.innerHTML = "<textarea rows = '2' cols = '25%' name ='venue" + count + "'></textarea>";
+                cell1.innerHTML = "<td><input type ='date' name='date" + count + "' required/></td>";
+                cell2.innerHTML = "<textarea rows = '2' cols = '25%' name ='activity" + count + "' required></textarea>";
+                cell3.innerHTML = "<textarea rows = '2' cols = '25%' name ='time" + count + "' required></textarea>";
+                cell4.innerHTML = "<textarea rows = '2' cols = '25%' name ='timeend" + count + "' required></textarea>";
+                cell5.innerHTML = "<textarea rows = '2' cols = '25%' name ='venue" + count + "' required></textarea>";
                 count++;
                 document.getElementById("countproject").setAttribute('value', count);
             }
@@ -425,10 +425,10 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
-                cell1.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='seitem" + count + "'></textarea></td>";
-                cell2.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='seunitcost" + count + "'></textarea></td>";
-                cell3.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='sequantity" + count + "'></textarea></td>";
-                cell4.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='sesubtotal" + count + "'></textarea></td>";
+                cell1.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='seitem" + count + "' required></textarea></td>";
+                cell2.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='seunitcost" + count + "' required></textarea></td>";
+                cell3.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='sequantity" + count + "' required></textarea></td>";
+                cell4.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='sesubtotal" + count + "' required></textarea></td>";
                 count++;
                 document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -452,8 +452,8 @@
                 var row = table.insertRow(rows);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML = '<td><textarea rows = "1" cols = "50%" name ="provisionsname"></textarea></td>';
-                cell2.innerHTML = '<td><textarea rows = "1" cols = "50%" name ="provisionsemail"></textarea></td>';
+                cell1.innerHTML = '<td><textarea rows = "1" cols = "50%" name ="provisionsname" required></textarea></td>';
+                cell2.innerHTML = '<td><textarea rows = "1" cols = "50%" name ="provisionsemail" required></textarea></td>';
             }
 
             function deleteRow4() {
@@ -681,11 +681,11 @@
                                         <th>Venue</th>
                                     </tr>
                                     <tr>
-                                        <td><input type ="date" name="date0" min="<%=SE.getActualDate()%>"/></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="activity0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="time0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="timeend0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="venue0"></textarea></td>
+                                        <td><input type ="date" name="date0" min="<%=SE.getActualDate()%>" required/></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="activity0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="time0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="timeend0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="venue0" required></textarea></td>
 
                                     <input type="hidden" value="1" id="countproject" name="countproject">
                                     </tr>
@@ -716,10 +716,10 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><textarea rows = "2" cols = "25%" name ="seitem0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="seunitcost0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="sequantity0"></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="sesubtotal0"></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="seitem0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="seunitcost0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="sequantity0" required></textarea></td>
+                                        <td><textarea rows = "2" cols = "25%" name ="sesubtotal0" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -753,28 +753,28 @@
                                     <tr>
                                         <td>&nbsp;&nbsp;Academic Staff from the Unit</td>
                                         <td><textarea rows = "1" cols = "10%" name ="seacademictotal" readonly><%=u.getAsf() + u.getFaculty()%></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="seacademicexpected"></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="seacademicexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Support Staff from the Unit</td>
                                         <td><textarea rows = "1" cols = "10%" name ="sesupporttotal" readonly><%=u.getApsp() + u.getDirecthired()%></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="sesupportexpected"></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="sesupportexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Undergraduate Students</td>
-                                        <td><textarea rows = "1" cols = "10%" name ="seundergraduatetotal"></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="seundergraduateexpected"></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="seundergraduatetotal" required></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="seundergraduateexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Graduate Students</td>
-                                        <td><textarea rows = "1" cols = "10%" name ="segraduatetotal"></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="segraduateexpected"></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
                                     </tr>
 
                                     <tr>
                                         <td>&nbsp;&nbsp;Others</td>
-                                        <td><textarea rows = "1" cols = "10%" name ="segraduatetotal"></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="segraduateexpected"></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
+                                        <td><textarea rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
                                     </tr>
 
                                 </table></center>
@@ -790,8 +790,8 @@
                                         <th>Email</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea rows = "1" cols = "50%" name ="responsiblename0"></textarea></td>
-                                        <td><textarea rows = "1" cols = "50%" name ="responsibleemail0"></textarea></td>
+                                        <td><textarea rows = "1" cols = "50%" name ="responsiblename0" required></textarea></td>
+                                        <td><textarea rows = "1" cols = "50%" name ="responsibleemail0" required></textarea></td>
                                     </tr>
                                 </table></center>
                             <br>
