@@ -236,6 +236,7 @@
 
             td{
                 padding: 7px;
+                font-size: 17px;
             }
 
             @keyframes colorize {

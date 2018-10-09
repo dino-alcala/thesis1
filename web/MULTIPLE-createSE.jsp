@@ -79,14 +79,7 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 40px;
-                text-align: left;
-                margin-top: 20px;
-                border-bottom: 2px solid green;
-                padding-bottom: 10px;
-                margin-bottom: 25px;
-            }
+
 
             .budget{
                 font-size: 70px; 
@@ -164,7 +157,7 @@
                 margin: 10px auto;
                 padding: 20px;
                 border-radius: 8px;
-                font-family: Georgia, "Times New Roman", Times, serif;
+                font-family: Verdana;
                 font-size: 12px;
             }
 
@@ -282,15 +275,7 @@
                 background: #109177;
             }
 
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
-            }
 
-            h2 {
-                margin-top: 1.3em;
-            }
 
             a {
                 color: #0083e8;
@@ -608,7 +593,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h1>Social Engagement Proposal</h1></center>
+                <center><h2>Social Engagement Proposal</h2></center>
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
@@ -622,30 +607,33 @@
                             java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
                         %>
 
+                        <center>
+                        
                         <fieldset>
-                            <legend><b>Unit: <%=session.getAttribute("unit")%></b></legend>
-                            <br>
+                            <legend><b>Unit:</b> <%=session.getAttribute("unit")%></legend>
+                            
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Department: <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></b></legend>
-                            <br>
+                            <legend><b>Department:</b> <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                            
                         </fieldset>
-
+                          
                         <fieldset>
-                            <legend><b>Date: <%=sqlDate%></b></legend>
-                            <br>
+                            <legend><b>Date:</b> <%=sqlDate%></legend>
                         </fieldset>
-
+                        </center>
+                          
+                        <br>
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
-                            <center><input type = "text" name ="programname" required></center>
-                            <br><br>
+                            <input type = "text" name ="programname" required>
+                            <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Program Head (First name, Last name):</b></legend>
-                            <input style="width:50%" type = "text" name ="programhead" required>
+                            <input type = "text" name ="programhead" required>
                             <br><br><br>
                         </fieldset>
 
@@ -714,28 +702,28 @@
 
                                 <fieldset>
                                     <legend><span class="number">1</span><b> Target Implementation Date:</b></legend>
-                                    <input style="width:20%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
+                                    <input style="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
                                     <br><br><br>
                                 </fieldset>
 
                                 <fieldset>
                                     <legend><span class="number">2</span><b> Total Amount Requested:</b></legend>
-                                    <center><input type = "number" name ="totalamount" required></center>
+                                    <input style="width:30%" type = "number" name ="totalamount" required>
                                     <br><br>
                                 </fieldset>
 
                                 <fieldset>
-                                    <legend><span class="number">3</span><b>Explain the Social/Community Problem being Addressed</b></legend>
+                                    <legend><span class="number">3</span><b>Explain the Social/Community Problem being Addressed:</b></legend>
                                     <center><textarea rows = "6" cols = "100%" name ="problemaddressed" required></textarea></center>
                                     <br><br>
                                 </fieldset>
 
                                 <fieldset>
-                                    <legend><span class="number">4</span> <b>Social Engagement Partner(s)/Beneficiaries</b><br></legend>
+                                    <legend><span class="number">4</span> <b>Social Engagement Partner/Beneficiary:</b><br></legend>
                                     <legend>Name of Partner (First name, Last name): <input type='text' name='partnername' required/><br><br>
                                         Address: <input type='text' name='partneraddress' required/><br><br>
                                         Contact Person (First name, Last name): <input type='text' name='partnercontact' required/><br><br>
-                                        Mobile Number: <input type='text' name='partnernumber' required/><br><br>
+                                        Mobile Number: <br><input style="width:30%" type='text' name='partnernumber' required/><br><br>
                                         Email: <input type='text' name='partneremail' required/><br><br>
                                         Brief Description of Partner: <textarea name='partnerdescription' rows='5' required></textarea></legend>
                                     <br>
@@ -749,7 +737,7 @@
                                 </fieldset>
 
                                 <fieldset>
-                                    <legend><span class="number">6</span><b> Sustainability Component (Check all that apply, if none proceed to next number)</b>
+                                    <legend><span class="number">6</span><b> Sustainability Component (Check all that apply, if none proceed to next number):</b>
                                         <br><br>
                                         <input type='checkbox' name="component" value="Training/Capacity Building for the Partner"/>Training/Capacity Building for the Partner<br>
                                         <input type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed"/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
@@ -762,10 +750,10 @@
 
                                 <fieldset>
                                     <legend><span class="number">7</span><b >Source of Funds:</b></legend>
-                                    <center><select name="funds" required>
-                                            <option value="OVPLM">OVPLM</option>
+                                    <select style="width:50%" name="funds" required>
+                                            <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
                                             <option value="Others">Others</option>
-                                        </select></center>
+                                    </select>
                                     <br>
                                 </fieldset>
                                 <br><br>

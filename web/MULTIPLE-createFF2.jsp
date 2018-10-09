@@ -74,14 +74,7 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 40px;
-                text-align: left;
-                margin-top: 20px;
-                border-bottom: 2px solid green;
-                padding-bottom: 10px;
-                margin-bottom: 25px;
-            }
+
 
             .budget{
                 font-size: 70px; 
@@ -159,7 +152,7 @@
                 margin: 10px auto;
                 padding: 20px;
                 border-radius: 8px;
-                font-family: Georgia, "Times New Roman", Times, serif;
+                font-family: Verdana;
                 font-size: 12px;
             }
 
@@ -274,16 +267,6 @@
             .form-style-5 input[type="button"]:hover
             {
                 background: #109177;
-            }
-
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
-            }
-
-            h2 {
-                margin-top: 1.3em;
             }
 
             a {
@@ -479,7 +462,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h1>Faith Formation Program Attendees</h1></center>
+                <center><h2>Faith Formation Program Attendees</h2></center>
                 <hr size="5" noshade>
 
 

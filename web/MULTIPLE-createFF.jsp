@@ -78,14 +78,6 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 40px;
-                text-align: left;
-                margin-top: 20px;
-                border-bottom: 2px solid green;
-                padding-bottom: 10px;
-                margin-bottom: 25px;
-            }
 
             .budget{
                 font-size: 70px; 
@@ -163,7 +155,7 @@
                 margin: 10px auto;
                 padding: 20px;
                 border-radius: 8px;
-                font-family: Georgia, "Times New Roman", Times, serif;
+                font-family: Verdana;
                 font-size: 12px;
             }
 
@@ -285,15 +277,8 @@
                 padding:15px;
             }
 
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
-            }
 
-            h2 {
-                margin-top: 1.3em;
-            }
+
 
             a {
                 color: #0083e8;
@@ -548,7 +533,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h1>Faith Formation Program Proposal</h1></center>
+                <center><h2>Faith Formation Program Proposal</h2></center>
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
@@ -559,18 +544,22 @@
                             java.util.Date javaDate = new java.util.Date();
                             java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
                         %>
+                        
+                        <center>
                         <fieldset>
-                            <legend><b>Unit: <%=session.getAttribute("unit")%></b></legend>
+                            <legend><b>Unit:</b> <%=session.getAttribute("unit")%></legend>
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Department: <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></b></legend>
+                            <legend><b>Department:</b> <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Date: <%=sqlDate%></b></legend>
+                            <legend><b>Date:</b> <%=sqlDate%></legend>
                         </fieldset>
-
+                        </center>
+                        
+                        <br>
                         <fieldset>
                             <legend><b>Program Head:</b></legend>
                             <center><input type = "text" name ="programhead" required></center>
@@ -643,30 +632,31 @@
 
                         <fieldset>
                             <legend><span class="number">5</span><b> Target Implementation Date:</b></legend>
-                            <center><input type = "date" name ="actualdate" min="<%=sqlDate%>" required></center>
-                            <br>
+                            <input style ="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">6</span><b> Total Amount Requested:</b></legend>
-                            <center><input type = "number" name ="pbudget" required></center>
-                            <br>
+                            <input style ="width:30%" type = "number" name ="pbudget" required>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">7</span><b>Source of Funds:</b></legend>
-                            <center><select name="funds">
-                                    <option value="OVPLM">OVPLM</option>
+                            <select style ="width:50%" name="funds">
+                                    <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
                                     <option value="Others">Others</option>
-                                </select></center>
+                            </select>
                             <br>
                         </fieldset>
 
                         <%
                             DecimalFormat df = new DecimalFormat("#,###,###,###.##");
                         %>
-
-                        <h2>Breakdown of Expenses (Budget of 2000 per head):</h2>
+                        
+                        <br><br>
+                        <legend><b>Breakdown of Expenses (Budget of 2000 per head)</b></legend>
                         <input type="hidden" value="1" id="countexpenses" name="countexpenses">
                         <fieldset>
                             <center><table style = "width:100%" id="breakdowntable">
