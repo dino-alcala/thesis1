@@ -32,16 +32,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <script>
-            <!---search ta ble - ->
+        <!---search table-->
                     $(document).ready(function () {
             $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             $("#myTable tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > - 1)
-            });
-            });
-            });
-        < !-- - search table-- >
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > - 1)
+        });
+        });
+        });<!---search table-->
         function sortTable(n) {
                     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
             table = document.getElementById("myTable");
@@ -76,8 +75,8 @@
             // If so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;
-            }
-            }
+             }
+             }
             }
             if (shouldSwitch) {
                     /* If a switch has been marked, make the switch
@@ -522,16 +521,16 @@
                             <%
                                 }
                             %>
-                            <!--- end of table -->
+                            <!---end of table-->
 
                             </div>
 
                             </div>
-                            <!-- body-row END -->
+                            <!--body-row END-->
 
                     <script>
                     // sandbox disable popups
-            if (window.self !== window.top && window.name != "view1") {
+                    if (window.self !== window.top && window.name != "view1") {
                                 ;
                         window.alert = function () {/*disable alert*/
                     };
@@ -539,11 +538,11 @@
                     };
                     window.prom                                    pt =                     function () {/*                    disable prompt*/
             };
-            window.                                 open = function ()                            {/*disable open*/
-                     };
-                     }
-                     
-                     // prevent href=# click jump
+                window.                                 open = function ()                            {/*disable open*/
+                };
+                }
+
+                // prevent href=# click jump
                     document.addEventListener("DOMContentLoaded", function () {
                                 var links = document.getElementsByTagName("A");
                         for (var i = 0; i < links.length; i++) {
@@ -562,13 +561,13 @@
                                  }
                                  */
                 }
-            }
+                }
                 return false;
                 })
-            }
-            }
-                }, false);
-                </script>
+                }
+                }
+}, false);
+            </script>
                 <script>
                 // Hide submenus
                 $('#body-row .collapse').collapse('hide')                        ;
@@ -589,11 +588,11 @@
                         SeparatorTitle.removeClass('d-flex');
                 } else {
                                 SeparatorTitle.addClass('d-flex');
-    }
-        
-    // Collapse/Expand icon
-        $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                }
+                
+                // Collapse/Expand icon
+    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
         }
-            </script>
+        </script>
     </body>
 </html>

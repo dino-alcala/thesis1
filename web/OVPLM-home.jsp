@@ -24,7 +24,6 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar2.css">
-        <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -35,97 +34,96 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         
         <script type="text/javascript">
-            <!---search ta ble - ->
-                    $(document).ready(function () {
-                $("#myInput").on("keyup", function () {
-                    var value = $(this).val().toLowerCase();
-                    $("#myTable tr").filter(function () {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
-                });
+        <!---search table -->
+        $(document).ready(function () {
+                    $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf (va lue) > - 1)
+        });
+        });
+        });<!--- search table-->
+        function sortTable(n) {
+                    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("myTable");
+            switching = true;
+            // Set the sorting direction to ascending:
+            dir = "asc";
+            /* Make a loop that will continue until
+             no switching has been done: */
+            while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            /* Loop through all table rows (except the
+             first, which contains table headers): */
+            for (i = 0; i < (rows.length - 1); i++) {
+            // Start by saying there should be no switching:
+            shouldSwitch = false;
+            /* Get the two elements you want to compare,
+             one from current row and one from the next: */
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /* Check if the two rows should switch place,
+             based on the direction, asc or desc: */
+            if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            // If so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+            }
+            } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            // If so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+             }
+             }
+             }
+            if (shouldSwitch) {
+                    /* If a switch has been marked, make the switch
+                     and mark that a switch has been done: */
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            // Each time a switch is done, increase this count by 1:
+            switchcount++;
+            } else {
+                    /* If no switching has been done AND the direction is "asc",
+                     set the direction to "desc" and run the while loop again. */
+                    if (switchcount == 0 && dir == "asc") {
+                                                            dir = "desc";
+                                                                                    switching = true;
+                                                }
+                                                }
+                                                }
+                     }
+                     </script>
+
+                     <script type="text/javascript">
+                     <%
+                         if (request.getAttribute("successSE") != null) {
+
+            %>
+            $("document").ready(function () {
+
+            alert("<%=request.getAttribute("successSE")%>");
             });
-            < !-- - search table-- >
-                    function sortTable(n) {
-                        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-                        table = document.getElementById("myTable");
-                        switching = true;
-                        // Set the sorting direction to ascending:
-                        dir = "asc";
-                        /* Make a loop that will continue until
-                         no switching has been done: */
-                        while (switching) {
-                            // Start by saying: no switching is done:
-                            switching = false;
-                            rows = table.getElementsByTagName("TR");
-                            /* Loop through all table rows (except the
-                             first, which contains table headers): */
-                            for (i = 0; i < (rows.length - 1); i++) {
-                                // Start by saying there should be no switching:
-                                shouldSwitch = false;
-                                /* Get the two elements you want to compare,
-                                 one from current row and one from the next: */
-                                x = rows[i].getElementsByTagName("TD")[n];
-                                y = rows[i + 1].getElementsByTagName("TD")[n];
-                                /* Check if the two rows should switch place,
-                                 based on the direction, asc or desc: */
-                                if (dir == "asc") {
-                                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                                        // If so, mark as a switch and break the loop:
-                                        shouldSwitch = true;
-                                        break;
-                                    }
-                                } else if (dir == "desc") {
-                                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                                        // If so, mark as a switch and break the loop:
-                                        shouldSwitch = true;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (shouldSwitch) {
-                                /* If a switch has been marked, make the switch
-                                 and mark that a switch has been done: */
-                                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                                switching = true;
-                                // Each time a switch is done, increase this count by 1:
-                                switchcount++;
-                            } else {
-                                /* If no switching has been done AND the direction is "asc",
-                                 set the direction to "desc" and run the while loop again. */
-                                if (switchcount == 0 && dir == "asc") {
-                                    dir = "desc";
-                                    switching = true;
-                                }
-                            }
+            
+                    <%
                         }
-                    }
-        </script>
 
-        <script type="text/javascript">
-            <%
-                if (request.getAttribute("successSE") != null) {
+                        if (request.getAttribute("successFF") != null) {
 
             %>
-            $("document").ready(function () {
+                    $("document").ready(function () {
 
-                alert("<%=request.getAttribute("successSE")%>");
+                    alert("<%=request.getAttribute("successFF")%>");
             });
-
-            <%
-                }
-
-                if (request.getAttribute("successFF") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("successFF")%>");
-            });
-
+            
             <%
                 }
             %>
-        </script>
+            </script>
         <style>
             #notifsScroll {
                 overflow-y: auto; 
@@ -239,6 +237,9 @@
                 color: white;
                 background-color: red;
             }
+            
+            
+            
         </style>
 
     </head>
@@ -328,13 +329,13 @@
         </nav>
         <!-- NavBar END -->
 
-        <!-- Bootstrap row -->
+        <!--Bootstrap row -->
         <div class="row" id="body-row">
 
-            <!-- Sidebar -->
+            <!--Sidebar -->
             <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <script>
-                    $("#sidebar-container").load("sidebarovplm.jsp");
+             <script>
+                    $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
             <!-- sidebar-container END -->
@@ -576,72 +577,70 @@
         </div>
         <!-- body-row END -->
 
-        <script>
-            // sandbox disable popups
+                    <script>
+                    // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
-                ;
-                window.alert = function () {/*disable alert*/
-                };
-                window.confirm = function () {/*disable confirm*/
-                };
-                window.prompt = function () {/*disable prompt*/
-                };
-                window.open = function () {/*disable open*/
-                };
-            }
+                                ;
+                        window.alert = function () {/*disable alert*/
+                    };
+        window.confirm = function () {/*disable confirm*/
+        };
+        window.prompt = function () {/*disable prompt*/
+        };
+        window.open = function () {/*disable open*/
+        };
+        }
 
-            // prevent href=# click jump
-            document.addEventListener("DOMContentLoaded", function () {
-                var links = document.getElementsByTagName("A");
-                for (var i = 0; i < links.length; i++) {
-                    if (links[i].href.indexOf('#') != -1) {
+        // prevent href=# click jump
+        document.addEventListener("DOMContentLoaded", function () {
+                                var links = document.getElementsByTagName("A");
+                        for (var i = 0; i < links.length; i++) {
+                        if (links[i].href.indexOf('#') != - 1) {
                         links[i].addEventListener("click", function (e) {
-                            console.debug("prevent href=# click");
-                            if (this.hash) {
-                                if (this.hash == "#") {
-                                    e.preventDefault();
-                                    return false;
-                                } else {
-                                    /*
-                                     var el = document.getElementById(this.hash.replace(/#/, ""));
-                                     if (el) {
-                                     el.scrollIntoView(true);
-                                     }
-                                     */
-                                }
-                            }
-                            return false;
-                        })
-                    }
-                }
-            }, false);
-        </script>
-        <script>
-            // Hide submenus
-            $('#body-row .collapse').collapse('hide');
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
+                        console.debug("prevent href=# click");
+                        if (this.hash) {
+                        if (this.hash == "#") {
+                        e.preventDefault();
+                        return false;
+        } else {
+                                /*
+                                 var el = document.getElementById(this.hash.replace(/#/, ""));
+                                 if (el) {
+                                 el.scrollIntoView(true);
+                                 }
+                                 */
+        }
+        }
+        return false;
+        })
+        }
+        }
+        }, false);
+
+                </script>
+                <script>
+
+                $('[data-toggle=sidebar-colapse]').click(function () {
+                                SidebarCollapse();
             });
             function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
+                                $('.menu-collapsed').toggleClass('d-none');
+                        $('.sidebar-submenu').toggleClass('d-none');
+                        $('.submenu-icon').toggleClass('d-none');
+                        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                        // Treating d-flex/d-none on separators with title
+                        var SeparatorTitle = $('.sidebar-separator-title');
+                        if (SeparatorTitle.hasClass('d-flex')) {
+                        SeparatorTitle.removeClass('d-flex');
                 } else {
-                    SeparatorTitle.addClass('d-flex');
+                                SeparatorTitle.addClass('d-flex');
                 }
-
+                
                 // Collapse/Expand icon
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
-        </script>
+                }
+                </script>
+        
 
     </body>
 </html>

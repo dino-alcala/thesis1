@@ -7,18 +7,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-
-        <script>
-
-        </script>
+        <link rel="stylesheet" href="css/sidebar2.css">
     </head>
     <body>
         <!--Sidebar for MULTIPLE.name pages-->
-
-        <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+        <style>
+            
+        </style>
+        <div id="sidebar-container">
             <%if (session.getAttribute("unit").toString().equals("Center For Social Concern and Action (COSCA)")) {
 
             %>

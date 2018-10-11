@@ -26,6 +26,7 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar2.css">
+        <link rel="stylesheet" href="css/formstyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -150,132 +151,6 @@
             textarea{
                 resize: none;
             } 
-
-            .form-style-5{
-
-                max-width: 95%;
-                margin: 10px auto;
-                padding: 20px;
-                border-radius: 8px;
-                font-family: Verdana;
-                font-size: 12px;
-            }
-
-            .form-style-5 fieldset{
-                border: none;
-            }
-
-            .form-style-5 legend {
-                font-size: 1.4em;
-                margin-bottom: 10px;
-            }
-
-            .form-style-5 label {
-                display: block;
-                margin-bottom: 8px;
-            }
-
-            .form-style-5 input[type="text"],
-            .form-style-5 input[type="date"],
-            .form-style-5 input[type="datetime"],
-            .form-style-5 input[type="email"],
-            .form-style-5 input[type="number"],
-            .form-style-5 input[type="search"],
-            .form-style-5 input[type="time"],
-            .form-style-5 input[type="url"],
-            .form-style-5 textarea,
-            .form-style-5 select {
-
-                font-family: Georgia, "Times New Roman", Times, serif;
-                background: rgba(255,255,255,.1);
-                border: 0;
-                border-radius: 10px;
-                font-size: 16px;
-                margin-bottom: -5px;
-                outline: 0;
-                padding: 7px;
-                width:100%;
-                box-sizing: border-box; 
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box; 
-                background-color: #d2d9dd;
-                color:black;
-                -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-
-
-            }
-            .form-style-5 input[type="text"]:focus,
-            .form-style-5 input[type="date"]:focus,
-            .form-style-5 input[type="datetime"]:focus,
-            .form-style-5 input[type="email"]:focus,
-            .form-style-5 input[type="number"]:focus,
-            .form-style-5 input[type="search"]:focus,
-            .form-style-5 input[type="time"]:focus,
-            .form-style-5 input[type="url"]:focus,
-            .form-style-5 textarea:focus,
-            .form-style-5 select:focus{
-                background: #d2d9dd;
-            }
-
-            .form-style-5 select{
-                -webkit-appearance: menulist-button;
-                height:35px;
-            }
-
-            .form-style-5 .number {
-                background: green;
-                color: #fff;
-                height: 30px;
-                width: 30px;
-                display: inline-block;
-                font-size: 0.8em;
-                margin-right: 4px;
-                line-height: 30px;
-                text-align: center;
-                text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-                border-radius: 15px 15px 15px 0px;
-            }
-
-            .form-style-5 input[type="submit"]
-            {
-                position: relative;
-                display: block;
-                padding: 19px 39px 18px 39px;
-                color: #FFF;
-                margin: 0 auto;
-                background: green;
-                font-size: 18px;
-                text-align: center;
-                font-style: normal;
-                width: 20%;
-                border-radius: 10px;
-                border: 1px solid darkgreen;
-                border-width: 1px 1px 3px;
-                margin-bottom: 10px;
-            }
-            .form-style-5 input[type="button"]
-            {
-                position: relative;
-                display: block;
-                padding: 9px 9px 9px 9px;
-                color: #FFF;
-                margin: 0 auto;
-                background: green;
-                font-size: 15px;
-                text-align: center;
-                font-style: normal;
-                border-radius: 10px;
-                border: 1px solid darkgreen;
-                margin-bottom: 10px;
-            }
-            .form-style-5 input[type="submit"]:hover,
-            .form-style-5 input[type="button"]:hover
-            {
-                background: #109177;
-            }
-
-
 
             a {
                 color: #0083e8;
@@ -413,87 +288,6 @@
 
                     }
         </script>
-        <script>
-            var dateToday = new Date();
-            $(function() {
-            $("#datepicker").datepicker({
-            numberOfMonths: 3,
-                    showButtonPanel: true,
-                    minDate: dateToday
-            });
-            });
-        </script>
-
-        <script>
-            $('#date').datepicker({
-            startDate: new Date()
-            });
-            // sandbox disable popups
-            if (window.self !== window.top && window.name != "view1") {
-            ;
-            window.alert = function () {/*disable alert*/
-            };
-            window.confirm = function () {/*disable confirm*/
-            };
-            window.prompt = function () {/*disable prompt*/
-            };
-            window.open = function () {/*disable open*/
-            };
-            }
-
-            // prevent href=# click jump
-            document.addEventListener("DOMContentLoaded", function () {
-            var links = document.getElementsByTagName("A");
-            for (var i = 0; i < links.length; i++) {
-            if (links[i].href.indexOf('#') != - 1) {
-            links[i].addEventListener("click", function (e) {
-            console.debug("prevent href=# click");
-            if (this.hash) {
-            if (this.hash == "#") {
-            e.preventDefault();
-            return false;
-            } else {
-            /*
-             var el = document.getElementById(this.hash.replace(/#/, ""));
-             if (el) {
-             el.scrollIntoView(true);
-             }
-             */
-            }
-            }
-            return false;
-            })
-            }
-            }
-            }, false);
-        </script>
-        <script>
-            // Hide submenus
-            $('#body-row .collapse').collapse('hide');
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-            SidebarCollapse();
-            });
-            function SidebarCollapse() {
-            $('.menu-collapsed').toggleClass('d-none');
-            $('.sidebar-submenu').toggleClass('d-none');
-            $('.submenu-icon').toggleClass('d-none');
-            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-            // Treating d-flex/d-none on separators with title
-            var SeparatorTitle = $('.sidebar-separator-title');
-            if (SeparatorTitle.hasClass('d-flex')) {
-            SeparatorTitle.removeClass('d-flex');
-            } else {
-            SeparatorTitle.addClass('d-flex');
-            }
-
-            // Collapse/Expand icon
-            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
-        </script>
-
     </head>
 
     <body>
@@ -608,22 +402,22 @@
                         %>
 
                         <center>
-                        
-                        <fieldset>
-                            <legend><b>Unit:</b> <%=session.getAttribute("unit")%></legend>
-                            
-                        </fieldset>
 
-                        <fieldset>
-                            <legend><b>Department:</b> <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
-                            
-                        </fieldset>
-                          
-                        <fieldset>
-                            <legend><b>Date:</b> <%=sqlDate%></legend>
-                        </fieldset>
+                            <fieldset>
+                                <legend><b>Unit:</b> <%=session.getAttribute("unit")%></legend>
+
+                            </fieldset>
+
+                            <fieldset>
+                                <legend><b>Department:</b> <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+
+                            </fieldset>
+
+                            <fieldset>
+                                <legend><b>Date:</b> <%=sqlDate%></legend>
+                            </fieldset>
                         </center>
-                          
+
                         <br>
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
@@ -751,8 +545,8 @@
                                 <fieldset>
                                     <legend><span class="number">7</span><b >Source of Funds:</b></legend>
                                     <select style="width:50%" name="funds" required>
-                                            <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
-                                            <option value="Others">Others</option>
+                                        <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
+                                        <option value="Others">Others</option>
                                     </select>
                                     <br>
                                 </fieldset>
@@ -766,5 +560,74 @@
                                 </div>
 
                                 <!-- body-row END -->
+                                <script>
+                                    $('#date').datepicker({
+                                    startDate: new Date()
+                                    });
+                                    // sandbox disable popups
+                                    if (window.self !== window.top && window.name != "view1") {
+                                    ;
+                                    window.alert = function () {/*disable alert*/
+                                    };
+                                    window.confirm = function () {/*disable confirm*/
+                                    };
+                                    window.prompt = function () {/*disable prompt*/
+                                    };
+                                    window.open = function () {/*disable open*/
+                                    };
+                                    }
+
+                                    // prevent href=# click jump
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                    var links = document.getElementsByTagName("A");
+                                    for (var i = 0; i < links.length; i++) {
+                                    if (links[i].href.indexOf('#') != - 1) {
+                                    links[i].addEventListener("click", function (e) {
+                                    console.debug("prevent href=# click");
+                                    if (this.hash) {
+                                    if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                    } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
+                                    }
+                                    }
+                                    return false;
+                                    })
+                                    }
+                                    }
+                                    }, false);
+                                </script>
+                                <script>
+                                    // Hide submenus
+                                    $('#body-row .collapse').collapse('hide');
+                                    // Collapse/Expand icon
+                                    $('#collapse-icon').addClass('fa-angle-double-left');
+                                    // Collapse click
+                                    $('[data-toggle=sidebar-colapse]').click(function () {
+                                    SidebarCollapse();
+                                    });
+                                    function SidebarCollapse() {
+                                    $('.menu-collapsed').toggleClass('d-none');
+                                    $('.sidebar-submenu').toggleClass('d-none');
+                                    $('.submenu-icon').toggleClass('d-none');
+                                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                                    // Treating d-flex/d-none on separators with title
+                                    var SeparatorTitle = $('.sidebar-separator-title');
+                                    if (SeparatorTitle.hasClass('d-flex')) {
+                                    SeparatorTitle.removeClass('d-flex');
+                                    } else {
+                                    SeparatorTitle.addClass('d-flex');
+                                    }
+
+                                    // Collapse/Expand icon
+                                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                                    }
+                                </script>
                                 </body>
                                 </html>

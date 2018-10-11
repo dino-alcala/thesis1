@@ -18,7 +18,7 @@
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="css/homepagestyle.css">
 
         <!-- jQuery library -->
         <script src="js/jquery-3.2.1.min.js"></script>
