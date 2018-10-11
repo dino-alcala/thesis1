@@ -9,7 +9,7 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="css/sidebar2.css">
+        <link rel="stylesheet" href="css/sidebar.css">
     </head>
     <body>
         <!--Sidebar for MULTIPLE.name pages-->

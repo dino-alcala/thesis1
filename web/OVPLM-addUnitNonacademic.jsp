@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="css/sidebar2.css">
+        <link rel="stylesheet" href="css/sidebar.css">
         <link rel="stylesheet" type="text/css" href="css/homepagestyle.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
