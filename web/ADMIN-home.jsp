@@ -4,9 +4,11 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.util.Collections"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.User"%>
 <%@page import="dao.UserDAO"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -386,12 +388,12 @@
                                     e.preventDefault();
                                     return false;
                                 } else {
-
-                                    var el = document.getElementById(this.hash.replace(/#/, ""));
-                                    if (el) {
-                                        el.scrollIntoView(true);
-                                    }
-
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
                                 }
                             }
                             return false;
@@ -399,13 +401,10 @@
                     }
                 }
             }, false);
+
         </script>
         <script>
-            //Hide submenus
-            $('#body-row.collapse').collapse('hide');
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-            // Collapse clic        k
+
             $('[data-toggle=sidebar-colapse]').click(function () {
                 SidebarCollapse();
             });
