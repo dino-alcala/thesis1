@@ -183,7 +183,6 @@
         </style>
 
         <script type='text/javascript'>
-
             function addRow() {
                 var count = document.getElementById("countresponsible").value;
                 var table = document.getElementById("responsibletable");
@@ -191,12 +190,11 @@
                 var row = table.insertRow(rows);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML = "<td><textarea rows = '1' cols = '50%' name ='responsiblename" + count + "' required></textarea></td>";
-                cell2.innerHTML = "<td><textarea rows = '1' cols = '50%' name ='responsibleemail" + count + "' required></textarea></td>";
+                cell1.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '1' cols = '50%' name ='responsiblename" + count + "' required></textarea></td>";
+                cell2.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '1' cols = '50%' name ='responsibleemail" + count + "' required></textarea></td>";
                 count++;
                 document.getElementById("countresponsible").setAttribute('value', count);
             }
-
             function deleteRow() {
                 var count = document.getElementById("countresponsible").value;
                 var rows = document.getElementById("responsibletable").rows.length;
@@ -205,13 +203,9 @@
                     count--;
                     document.getElementById("countresponsible").setAttribute('value', count);
                 } else {
-
                 }
-
             }
-
             function addRow2() {
-
                 var count = document.getElementById("countproject").value;
                 var table = document.getElementById("projectplantable");
                 var rows = document.getElementById("projectplantable").rows.length;
@@ -221,29 +215,24 @@
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
-                cell1.innerHTML = "<td><input type ='date' name='date" + count + "' required/></td>";
-                cell2.innerHTML = "<textarea rows = '2' cols = '25%' name ='activity" + count + "' required></textarea>";
-                cell3.innerHTML = "<textarea rows = '2' cols = '25%' name ='time" + count + "' required></textarea>";
-                cell4.innerHTML = "<textarea rows = '2' cols = '25%' name ='timeend" + count + "' required></textarea>";
-                cell5.innerHTML = "<textarea rows = '2' cols = '25%' name ='venue" + count + "' required></textarea>";
+                cell1.innerHTML = "<td><input style='border-radius: 0px;' type ='date' name='date" + count + "' required/></td>";
+                cell2.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='activity" + count + "' required></textarea>";
+                cell3.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='time" + count + "' required></textarea>";
+                cell4.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='timeend" + count + "' required></textarea>";
+                cell5.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='venue" + count + "' required></textarea>";
                 count++;
                 document.getElementById("countproject").setAttribute('value', count);
             }
-
             function deleteRow2() {
                 var count = document.getElementById("countproject").value;
-
                 var rows = document.getElementById("projectplantable").rows.length;
                 if (rows - 1 > 0) {
                     document.getElementById("projectplantable").deleteRow(rows - 1);
                     count--;
                     document.getElementById("countproject").setAttribute('value', count);
                 } else {
-
                 }
-
             }
-
             function addRow3() {
                 var count = document.getElementById("countexpenses").value;
                 var table = document.getElementById("breakdowntable");
@@ -253,14 +242,13 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
-                cell1.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='seitem" + count + "' required></textarea></td>";
-                cell2.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='seunitcost" + count + "' required></textarea></td>";
-                cell3.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='sequantity" + count + "' required></textarea></td>";
-                cell4.innerHTML = "<td><textarea rows = '2' cols = '20%' name ='sesubtotal" + count + "' required></textarea></td>";
+                cell1.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='seitem" + count + "' required></textarea></td>";
+                cell2.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='seunitcost" + count + "' required></textarea></td>";
+                cell3.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='sequantity" + count + "' required></textarea></td>";
+                cell4.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='sesubtotal" + count + "' required></textarea></td>";
                 count++;
                 document.getElementById("countexpenses").setAttribute('value', count);
             }
-
             function deleteRow3() {
                 var count = document.getElementById("countexpenses").value;
                 var rows = document.getElementById("breakdowntable").rows.length;
@@ -269,31 +257,8 @@
                     count--;
                     document.getElementById("countexpenses").setAttribute('value', count);
                 } else {
-
                 }
-
             }
-
-            function addRow4() {
-                var table = document.getElementById("provisionstable");
-                var rows = document.getElementById("provisionstable").rows.length;
-                var row = table.insertRow(rows);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                cell1.innerHTML = '<td><textarea rows = "1" cols = "50%" name ="provisionsname" required></textarea></td>';
-                cell2.innerHTML = '<td><textarea rows = "1" cols = "50%" name ="provisionsemail" required></textarea></td>';
-            }
-
-            function deleteRow4() {
-                var rows = document.getElementById("provisionstable").rows.length;
-                if (rows - 1 > 0) {
-                    document.getElementById("provisionstable").deleteRow(rows - 1);
-                } else {
-
-                }
-
-            }
-
         </script>
 
         <script type="text/javascript">
@@ -397,9 +362,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -408,10 +373,12 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <script>
-                    $("#sidebar-container").load("sidebarmultiple.jsp");
-                </script>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
+                </ul>
             </div>
 
             <!-- MAIN -->
@@ -439,11 +406,11 @@
                                         <th>Venue</th>
                                     </tr>
                                     <tr>
-                                        <td><input type ="date" name="date0" min="<%=SE.getActualDate()%>" required/></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="activity0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="time0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="timeend0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="venue0" required></textarea></td>
+                                        <td><input style="border-radius: 0px;" style="size:200%" type ="date" name="date0" min="<%=SE.getActualDate()%>" required/></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="activity0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="time0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="venue0" required></textarea></td>
 
                                     <input type="hidden" value="1" id="countproject" name="countproject">
                                     </tr>
@@ -474,10 +441,10 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><textarea rows = "2" cols = "25%" name ="seitem0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="seunitcost0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="sequantity0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="sesubtotal0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="seitem0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="seunitcost0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="sequantity0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="sesubtotal0" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -510,29 +477,29 @@
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Academic Staff from the Unit</td>
-                                        <td><textarea rows = "1" cols = "10%" name ="seacademictotal" readonly><%=u.getAsf() + u.getFaculty()%></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="seacademicexpected" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademictotal" readonly><%=u.getAsf() + u.getFaculty()%></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademicexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Support Staff from the Unit</td>
-                                        <td><textarea rows = "1" cols = "10%" name ="sesupporttotal" readonly><%=u.getApsp() + u.getDirecthired()%></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="sesupportexpected" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupporttotal" readonly><%=u.getApsp() + u.getDirecthired()%></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupportexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Undergraduate Students</td>
-                                        <td><textarea rows = "1" cols = "10%" name ="seundergraduatetotal" required></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="seundergraduateexpected" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduatetotal" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduateexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Graduate Students</td>
-                                        <td><textarea rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
                                     </tr>
 
                                     <tr>
                                         <td>&nbsp;&nbsp;Others</td>
-                                        <td><textarea rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
-                                        <td><textarea rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
                                     </tr>
 
                                 </table></center>
@@ -548,8 +515,8 @@
                                         <th>Email</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea rows = "1" cols = "50%" name ="responsiblename0" required></textarea></td>
-                                        <td><textarea rows = "1" cols = "50%" name ="responsibleemail0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsiblename0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsibleemail0" required></textarea></td>
                                     </tr>
                                 </table></center>
                             <br>

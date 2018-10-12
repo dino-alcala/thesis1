@@ -300,6 +300,10 @@
         <servlet-name>addDepartmentAcademic</servlet-name>
         <servlet-class>controller.addDepartmentAcademic</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>controller.logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -599,6 +603,10 @@
     <servlet-mapping>
         <servlet-name>addDepartmentAcademic</servlet-name>
         <url-pattern>/addDepartmentAcademic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

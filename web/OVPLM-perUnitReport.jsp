@@ -245,7 +245,7 @@
             </button>
             <a class="navbar-brand" href="#" id="navbar-unit">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c2/De_La_Salle_University_Seal.svg/1200px-De_La_Salle_University_Seal.svg.png" width="30" height="30" class="d-inline-block align-top" data-toggle="sidebar-colapse" id="collapse-icon">
-                <span class="menu-collapsed">Office of the Vice President for Lasallian Mission</span>
+                <span class="menu-collapsed"><%=session.getAttribute("unit")%></span>
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
@@ -312,9 +312,10 @@
                         </ul>
                     </div>
                 </div>
-                <a href="index.jsp" class="btn btn-basic navbar-btn-logout">
-                    <i class="fa fa-sign-out"></i>
-                </a>
+                <div class="nav-button">
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -323,10 +324,12 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <script>
-                    $("#sidebar-container").load("sidebarovplm.jsp");
-                </script>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarovplm.jsp");
+                    </script>
+                </ul>
             </div>
 
             <!-- MAIN -->

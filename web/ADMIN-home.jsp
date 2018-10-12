@@ -87,20 +87,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
-            }
-
             #modules{
                 font-size: 18px;
             }
@@ -162,127 +148,6 @@
                 background-color: lightgreen;
             }
 
-            body {
-                padding-top: 56px;
-            }
-
-            .sticky-offset {
-                top: 56px;
-            }
-
-            #body-row {
-                margin-left:0;
-                margin-right:0;
-            }
-
-            #sidebar-container {
-                min-height: 100vh;   
-                background-color: #333333;
-                padding: 0;
-            }
-
-            /* Sidebar sizes when expanded and expanded */
-            .sidebar-expanded {
-                width: 230px;
-            }
-            .sidebar-collapsed {
-                width: 60px;
-            }
-
-            /* Menu item*/
-            #sidebar-container .list-group a {
-                height: 50px;
-                color: white;
-            }
-
-            /* Submenu item*/
-            #sidebar-container .list-group .sidebar-submenu a {
-                height: 45px;
-                padding-left: 30px;
-            }
-            .sidebar-submenu {
-                font-size: 0.9rem;
-            }
-
-            .sidebar-separator {
-                background-color: #333333;
-                height: 25px;
-            }
-            .logo-separator {
-                background-color: #333333;    
-                height: 60px;
-            }
-
-            /* Closed submenu icon */
-            #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
-                content: " \f0d7";
-                font-family: FontAwesome;
-                display: inline;
-                text-align: right;
-                padding-left: 10px;
-            }
-            /* Opened submenu icon */
-            #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
-                content: " \f0da";
-                font-family: FontAwesome;
-                display: inline;
-                text-align: right;
-                padding-left: 10px;
-            }
-
-            .nav-link {
-                border-bottom: 2px solid green;
-            }
-
-            #navbar {
-                background-color: #009900;
-            }
-
-            #navbar-unit {
-                color: white;
-            }
-
-            .navbar-toggler-icon {
-                background-color: white;
-            }
-
-            #smallerscreenmenuButton {
-                color: white;
-            }
-
-            #smallerscreenmenu {
-                color: white;
-            }
-
-            #submenuCategoryBox {
-                background-color: #d9d9d9;
-            }
-
-            #submenuCategoryBox:hover {
-                background-color: lightgreen;
-            }
-
-            #submenuCategory{
-                font-size: 13px;
-                color: #4d4d4d;
-            }
-
-            #sidebarCategory {
-                background-color: #4d4d4d;
-            }
-
-            #sidebarCategory:hover {
-                background-color: lightgreen;
-            }
-
-            #sidebarCategory {
-                background-color: lightgreen;
-            }
-
-            #sidebarCategory:hover {
-                background-color: lightgreen;
-            }
-
             #employees {
                 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
                 border-collapse: collapse;
@@ -321,7 +186,7 @@
             </button>
             <a class="navbar-brand" href="#" id="navbar-unit">
                 <img src="img/dlsu.png" width="30" height="30" class="d-inline-block align-top" data-toggle="sidebar-colapse" id="collapse-icon">
-                <span class="menu-collapsed">Administrator</span>
+                <span class="menu-collapsed">Admin</span>
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
@@ -387,9 +252,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -408,19 +273,25 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
-                    <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
+                    <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span>&nbsp;+</span>
-                            <span class="menu-collapsed">&nbsp;&nbsp;&nbsp;Add user</span>
+                            <span class="fa fa-group fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Units</span>
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
-                    <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
+                    <div id="submenuUnits" class="collapse sidebar-submenu">
+                        <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Add Unit</span>
+                        </a>
+                        <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                        </a>
+                    </div>
+                    <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span>&nbsp;+</span>
-                            <span class="menu-collapsed">&nbsp;&nbsp;&nbsp;Add unit</span>
+                            <span>&nbsp;+ &nbsp;</span>
+                            <span class="menu-collapsed">Add User</span>
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>

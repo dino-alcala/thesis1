@@ -28,8 +28,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-        <!--datatables-->    
-
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
 
@@ -186,6 +184,13 @@
                 border-color: green;
                 margin-top:25px;
             }
+            
+            #buttonRejected{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
 
             #buttonCompleted:hover{
                 color: white;
@@ -200,6 +205,12 @@
             }
 
             #buttonCancel:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+            
+            #buttonRejected:hover{
                 color: white;
                 background-color: green;
                 border-color: green;
@@ -284,9 +295,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-basic navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -295,10 +306,12 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <script>
-                    $("#sidebar-container").load("sidebarmultiple.jsp");
-                </script>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
+                </ul>
             </div>
 
             <!-- MAIN -->
@@ -313,8 +326,9 @@
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-socialEngagementProgramsList.jsp">Completed</a>
-                            <a href="MULTIPLE-pendingSEList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
+                            <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-pendingSEList.jsp" >Pending</a>
                             <a type="button" class="btn btn-primary" id="buttonCancel" href="MULTIPLE-cancelledSEList.jsp">Cancelled</a>
+                            <a type="button" class="btn btn-primary" id="buttonRejected" href="MULTIPLE-rejectedSEList.jsp">Rejected</a>
                         </div>
 
                         <br>

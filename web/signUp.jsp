@@ -399,9 +399,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -420,19 +420,25 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
-                    <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
+                    <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span>&nbsp;+</span>
-                            <span class="menu-collapsed">&nbsp;&nbsp;&nbsp;Add user</span>
+                            <span class="fa fa-group fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Units</span>
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
-                    <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
+                    <div id="submenuUnits" class="collapse sidebar-submenu">
+                        <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Add Unit</span>
+                        </a>
+                        <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                        </a>
+                    </div>
+                    <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span>&nbsp;+</span>
-                            <span class="menu-collapsed">&nbsp;&nbsp;&nbsp;Add unit</span>
+                            <span>&nbsp;+ &nbsp;</span>
+                            <span class="menu-collapsed">Add User</span>
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>

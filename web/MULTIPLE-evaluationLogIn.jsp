@@ -32,20 +32,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            body{
-                background-color: whitesmoke;
-            }
-
             .loginWrapper {	
                 margin-top: 30px;
                 margin-bottom: 40px;

@@ -242,9 +242,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </button>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -254,10 +254,12 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <script>
-                    $("#sidebar-container").load("sidebarmultiple.jsp");
-                </script>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
+                </ul>
             </div>
 
 

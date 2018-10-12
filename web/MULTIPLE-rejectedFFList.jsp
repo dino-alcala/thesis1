@@ -1,12 +1,12 @@
 <%-- 
-    Document   : MULTIPLE-unitsList
-    Created on : 06 12, 18, 11:52:42 AM
+    Document   : MULTIPLE-socialEngagementProgramsList
+    Created on : 06 18, 18, 7:54:10 PM
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.SE"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="entity.Unit"%>
 <%@page import="dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Units List</title>
+        <title>Cancelled FF Programs List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -40,10 +40,49 @@
             $(document).ready(function () {
                 $('#example').DataTable();
             });
+            $(document).ready(function () {
+                $('#example2').DataTable();
+            });
+        </script>
+
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("SEreport") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("SEreport")%>");
+            });
+
+            <%
+                }
+                if (request.getAttribute("cancelProgram") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("cancelProgram")%>");
+            });
+
+            <%
+                }
+                if (request.getAttribute("updateBudget") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("updateBudget")%>");
+            });
+
+            <%
+                }
+            %>
+
         </script>
 
 
-        <style>    
+        <style> 
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
@@ -73,9 +112,9 @@
             h2{
                 font-size: 30px;
                 text-align: left;
-                margin-top: 20px;
+                margin-top: 15px;
                 border-bottom: 2px solid green;
-                padding-bottom: 10px;
+                padding-bottom: 5px;
                 margin-bottom: 25px;
                 font-family: 'Roboto', sans-serif;
             }
@@ -83,24 +122,31 @@
             .budget{
                 font-size: 70px; 
                 text-align: center; 
-                border-bottom: 2px solid lightgray;
-                padding-bottom: 20px;
+                padding-bottom: 5px;
                 font-family: 'Montserrat', sans-serif;
             }
 
             .table{
-                border-bottom: 2px solid lightgray;
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
 
             .quickhead{
-                border-bottom: 1px solid lightblue;
+                border-bottom: 1px solid lightgreen;
                 padding-bottom: 10px; 
                 margin-bottom: 20px;
             }
+
             .quickview{
                 margin-bottom: 50px;
+                margin-top: 20px;
+                background-color: white;
+                padding-bottom: 15px;
+                border-style: solid;
+                border-color: lightgray;
+                border-width: 1px;
+                border-radius: 8px;
             }
+
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -110,7 +156,68 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-        </style>  
+
+            h3{
+                font-size: 40px;
+                text-align: left;
+                border-bottom: 2px solid green;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            #buttonCompleted{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonPending{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonCancel{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+            
+            #buttonRejected{
+                color: white;
+                background-color: green;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonCompleted:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+            #buttonPending:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+            #buttonCancel:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+            
+            #buttonRejected:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+
+        </style>
 
     </head>
 
@@ -137,9 +244,6 @@
                             Units
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
-                            Communities
-                        </a>
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
                             Key Result Areas
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
@@ -153,7 +257,7 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
+                    <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
                         <i class="fa fa-user-circle"></i>
                     </button>
                 </div>
@@ -198,6 +302,7 @@
             </ul>
         </nav>
 
+
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
 
@@ -210,49 +315,130 @@
                 </ul>
             </div>
 
+
             <!-- MAIN -->
             <div class="col py-3">
-
-                <!--- table -->
-                <div class="container-fluid panels">
+                <form action="viewSE4" method="post">
 
                     <%
-                        ArrayList<Unit> u = new ArrayList();
-                        u = UserDAO.retrieveUnits();
+                        ArrayList<SE> my = new ArrayList();
+                        my = UserDAO.retrieveSEProposalByCompletedOwner(Integer.parseInt(session.getAttribute("userID").toString()));
                     %>
-                    <h2>Unit List (<%=u.size()%>)</h2>
+                    <!--- table -->
+                    <div class="container-fluid panels">
+                        <div class="btn-group btn-group-justified">
+                            <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-faithFormationProgramsList.jsp">Completed</a>
+                            <a href="MULTIPLE-pendingFFList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
+                            <a type="button" class="btn btn-primary" id="buttonCancel" href="MULTIPLE-cancelledFFList.jsp">Cancelled</a>
+                            <a type="button" class="btn btn-primary" id="buttonRejected" href="MULTIPLE-rejectedFFList.jsp">Rejected</a>
+                        </div>
 
+                        <br>
+                        <h2>My Faith Formation Programs (<%=my.size()%>)</h2>
 
-                    <form action="viewUnit" method="post">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
                                 <tr>
-                                    <th>Unit Name</th>
-                                    <th>Unit Head</th>
-                                    <th>Unit Description</th>
+                                    <th>Date</th> 
+                                    <th>Program Name</th>
+                                    <th>Unit</th>
+                                    <th>Department</th>
+                                    <th>Program Head</th>
+                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody id="myTable">
-
                                 <%
-                                    for (int i = 0; i < u.size(); i++) {
+                                    for (int i = 0; i < my.size(); i++) {
                                 %>
                                 <tr>
-                                    <td><%=u.get(i).getName()%></td>        
-                                    <td><%=u.get(i).getHead()%></td>
-                                    <td><%=u.get(i).getDescription()%></td>
-                                    <td><button type="submit" name="unitID<%=i%>" class="btn btn-info">View</button></td>
+                                    <td>Date</td>
+                                    <td>Name</td>
+                                    <td>Unit</td>
+                                    <td>Department</td>
+                                    <td>Program Head</td>
+                                    <td>
+                                        <%
+                                            if (UserDAO.hasSEReport(my.get(i).getId())) {
+
+
+                                        %>
+                                        With Report
+                                        <%                                        } else {
+                                        %>
+
+                                        No Report
+                                        <%
+                                            }
+                                        %>
+                                    </td>
+                                    <td><button type="submit" name="viewMy<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
                                     }
                                 %>
                             </tbody>
                         </table>
-                    </form>
-                </div>
+
+                        <%
+                            ArrayList<SE> others = new ArrayList();
+                            others = UserDAO.retrieveSEProposalByCompleted(Integer.parseInt(session.getAttribute("userID").toString()));
+                        %>
+                        <br><br>
+                        <h2>All Faith Formation Programs (<%=others.size()%>)</h2>
+
+                        <table id="example2" class="table table-striped table-bordered" style="width:100%">    
+                            <thead class="thead-dark" >
+                                <tr>
+                                    <th>Date</th> 
+                                    <th>Program Name</th>
+                                    <th>Unit</th>
+                                    <th>Department</th>
+                                    <th>Program Head</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                <%
+                                    for (int i = 0; i < others.size(); i++) {
+                                %>
+                                <tr>
+                                    <td>Date</td>
+                                    <td>Name</td>
+                                    <td>Unit</td>
+                                    <td>Department</td>
+                                    <td>Program Head</td>
+                                    <td>
+                                        <%
+                                            if (UserDAO.hasSEReport(others.get(i).getId())) {
+
+
+                                        %>
+                                        With Report
+                                        <%                                        } else {
+                                        %>
+
+                                        No Report
+                                        <%
+                                            }
+                                        %>
+                                    </td>
+                                    <td><button type="submit" name="viewCompleted<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
             </div>
+
         </div>
+
 
         <script>
             // sandbox disable popups

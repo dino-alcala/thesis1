@@ -216,9 +216,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </button>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>

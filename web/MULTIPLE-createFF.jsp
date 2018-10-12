@@ -196,10 +196,10 @@
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
             var cell4 = row.insertCell(3);
-            cell1.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffitem" + count + "' required></textarea></td>";
-            cell2.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffunitcost" + count + "' required></textarea></td>";
-            cell3.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffquantity" + count + "' required></textarea></td>";
-            cell4.innerHTML = "<td><textarea rows = '2' cols = '25%' name ='ffsubtotal" + count + "' required></textarea></td>";
+            cell1.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffitem" + count + "' required></textarea></td>";
+            cell2.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffunitcost" + count + "' required></textarea></td>";
+            cell3.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffquantity" + count + "' required></textarea></td>";
+            cell4.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffsubtotal" + count + "' required></textarea></td>";
             count++;
             document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -355,9 +355,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -366,10 +366,12 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <script>
-                    $("#sidebar-container").load("sidebarmultiple.jsp");
-                </script>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
+                </ul>
             </div>
 
             <!-- MAIN -->
@@ -416,72 +418,43 @@
                                 <option value="Spiritual-activity development">Spiritual-activity development</option>
                                 <option value="Others">Others</option>
                             </select>
-                            <br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><b>Target KRA: </b></legend>
-                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')" required>
-                                <option></option>
-                                <%
-                                    for (int m = 0; m < k.size(); m++) {
-                                %>
-                                <option value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
-                                <%
-                                    }
-                                %>
-                            </select>
-                            <br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><b>Target Goal: </b></legend>
-                            <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures')" required>
-                            </select>
-                            <br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><b>Target Measure: </b></legend>
-                            <select name="measure" id="measures" required>
-                            </select>
                             <br><br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">1</span><b> Project Name:</b></legend>
                             <center><input type = "text" name ="pname" required></center>
-                            <br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">2</span><b> Venue:</b></legend>
                             <center><input type = "text" name ="pvenue" required></center>
-                            <br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">3</span><b> Speaker:</b></legend>
                             <center><input type = "text" name ="pspeaker" required></center>
-                            <br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">4</span><b> Objectives:</b></legend>
                             <center><textarea rows="3" cols = "50%" name="objectives" required></textarea></center>
-                            <br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">5</span><b> Target Implementation Date:</b></legend>
                             <input style ="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
-                            <br><br>
+                            <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">6</span><b> Total Amount Requested:</b></legend>
                             <input style ="width:30%" type = "number" name ="pbudget" required>
-                            <br><br>
+                            <br><br><br>
                         </fieldset>
 
                         <fieldset>
@@ -510,10 +483,10 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffitem0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffunitcost0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffquantity0" required></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffsubtotal0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffitem0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffunitcost0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffquantity0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffsubtotal0" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td></td>

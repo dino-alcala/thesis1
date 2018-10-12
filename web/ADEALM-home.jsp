@@ -221,9 +221,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -300,6 +300,13 @@
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-check-square-o fa-fw mr-2"></span>
                             <span class="menu-collapsed">Key Result Areas</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-bar-chart fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Per Unit Report</span>
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>

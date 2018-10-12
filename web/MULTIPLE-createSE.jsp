@@ -333,9 +333,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -344,10 +344,12 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <script>
-                    $("#sidebar-container").load("sidebarmultiple.jsp");
-                </script>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
+                </ul>
             </div>
 
             <!-- MAIN -->
@@ -388,13 +390,13 @@
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
                             <input type = "text" name ="programname" required>
-                            <br><br><br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Program Head (First name, Last name):</b></legend>
                             <input type = "text" name ="programhead" required>
-                            <br><br><br>
+                            <br><br><br><br>
                         </fieldset>
 
                         <fieldset>
@@ -408,7 +410,7 @@
                                 <option value="Public Engagement">Public Engagement</option>
                                 <option value="Others">Others</option>
                             </select>
-                            <br><br><br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
@@ -426,7 +428,7 @@
                                     }
                                 %>
                             </select>
-                            <br><br><br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
@@ -441,14 +443,14 @@
                                     }
                                 %>
                             </select>
-                            <br><br><br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Target Goal:</b></legend>
                             <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures')" required>
                             </select>
-                            <br><br><br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>
@@ -469,7 +471,7 @@
                         <fieldset>
                             <legend><span class="number">2</span><b> Total Amount Requested:</b></legend>
                             <input style="width:30%" type = "number" name ="totalamount" required>
-                            <br><br>
+                            <br><br><br>
                         </fieldset>
 
                         <fieldset>
@@ -505,7 +507,7 @@
                                 <input type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
                             <legend>Explanation:</legend>
                             <textarea name='sustainabilityexplanation' rows='4' required></textarea>
-                            <br><br>
+                            <br><br><br>
                         </fieldset>
 
                         <fieldset>

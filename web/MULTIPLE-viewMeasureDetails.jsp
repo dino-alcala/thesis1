@@ -172,7 +172,7 @@
             <fieldset>
                 <center><table style = "width:100%" id = "SEchecklist">
                         <tr>
-                            <th style="width:15%">Measure</th>
+                            <th style="width:20%">Measure</th>
                             <th>Description</th>
                         </tr>
                         <tr>

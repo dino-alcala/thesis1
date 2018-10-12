@@ -143,6 +143,8 @@
             }
             th{
                 padding:15px;
+                background-color:green;
+                color:white;
             }
 
             .button{
@@ -192,8 +194,8 @@
                 var row = table.insertRow(rows);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML = "<textarea rows = '1' cols = '45%' name ='attendee" + count + "' required></textarea>";
-                cell2.innerHTML = "<textarea rows = '1' cols = '45%' name ='email" + count + "' required></textarea>";
+                cell1.innerHTML = "<textarea style='border-radius: 0px;' rows = '1' cols = '45%' name ='attendee" + count + "' required></textarea>";
+                cell2.innerHTML = "<textarea style='border-radius: 0px;' rows = '1' cols = '45%' name ='email" + count + "' required></textarea>";
                 count++;
                 document.getElementById("countattendees").setAttribute('value', count);
             }
@@ -288,9 +290,9 @@
                     </div>
                 </div>
                 <div class="nav-button">
-                    <a href="index.jsp" class="btn btn-info navbar-btn-logout">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
                 </div>
             </ul>
         </nav>
@@ -299,10 +301,12 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <script>
-                    $("#sidebar-container").load("sidebarmultiple.jsp");
-                </script>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
+                </ul>
             </div>
 
             <!-- MAIN -->
@@ -318,12 +322,12 @@
                         <fieldset>
                             <center><table style = "width:90%" id="attendeestable">
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
+                                        <th style='width:45%'>Name</th>
+                                        <th style='width:45%'>Email</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
-                                        <td><textarea rows = "1" cols = "45%" name ="email0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "45%" name ="email0" required></textarea></td>
                                     </tr>
                                 </table></center>
                             <br>
