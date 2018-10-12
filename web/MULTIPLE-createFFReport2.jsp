@@ -14,7 +14,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Project Proposal</title>
+        <title>Create FF Completion Report</title>
+
+
+        <link rel="stylesheet" href="css/formstyle5.css">
 
 
         <style>
@@ -24,15 +27,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
             html {
                 background: #e6e9e9;
                 background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
@@ -51,130 +45,6 @@
             textarea{
                 resize: none;
             } 
-
-            .form-style-5{
-
-                max-width: 100%;
-                margin: 10px auto;
-                padding: 20px;
-                border-radius: 8px;
-                font-family: Georgia, "Times New Roman", Times, serif;
-                font-size: 13px;
-            }
-
-            .form-style-5 fieldset{
-                border: none;
-            }
-
-            .form-style-5 legend {
-                font-size: 1.4em;
-                margin-bottom: 10px;
-            }
-
-            .form-style-5 label {
-                display: block;
-                margin-bottom: 8px;
-            }
-
-            .form-style-5 input[type="text"],
-            .form-style-5 input[type="date"],
-            .form-style-5 input[type="datetime"],
-            .form-style-5 input[type="email"],
-            .form-style-5 input[type="number"],
-            .form-style-5 input[type="search"],
-            .form-style-5 input[type="time"],
-            .form-style-5 input[type="url"],
-            .form-style-5 textarea,
-            .form-style-5 select {
-
-                font-family: Georgia, "Times New Roman", Times, serif;
-                background: rgba(255,255,255,.1);
-                border: 5;
-                border-radius: 4px;
-                font-size: 16px;
-                margin-bottom: -5px;
-                outline: 0;
-                padding: 7px;
-                width: 100%;
-                box-sizing: border-box; 
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box; 
-                background-color: #e8eeef;
-                color:black;
-                -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-
-
-            }
-            .form-style-5 input[type="text"]:focus,
-            .form-style-5 input[type="date"]:focus,
-            .form-style-5 input[type="datetime"]:focus,
-            .form-style-5 input[type="email"]:focus,
-            .form-style-5 input[type="number"]:focus,
-            .form-style-5 input[type="search"]:focus,
-            .form-style-5 input[type="time"]:focus,
-            .form-style-5 input[type="url"]:focus,
-            .form-style-5 textarea:focus,
-            .form-style-5 select:focus{
-                background: #d2d9dd;
-            }
-
-            .form-style-5 select{
-                -webkit-appearance: menulist-button;
-                height:35px;
-            }
-
-            .form-style-5 .number {
-                background: green;
-                color: #fff;
-                height: 30px;
-                width: 30px;
-                display: inline-block;
-                font-size: 0.8em;
-                margin-right: 4px;
-                line-height: 30px;
-                text-align: center;
-                text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-                border-radius: 15px 15px 15px 0px;
-            }
-
-            .form-style-5 input[type="submit"]
-            {
-                position: relative;
-                display: block;
-                padding: 19px 39px 18px 39px;
-                color: #FFF;
-                margin: 0 auto;
-                background: green;
-                font-size: 18px;
-                text-align: center;
-                font-style: normal;
-                width: 20%;
-                border-radius: 10px;
-                border: 1px solid darkgreen;
-                border-width: 1px 1px 3px;
-                margin-bottom: 10px;
-            }
-            .form-style-5 input[type="button"]
-            {
-                position: relative;
-                display: block;
-                padding: 9px 9px 9px 9px;
-                color: #FFF;
-                margin: 0 auto;
-                background: green;
-                font-size: 15px;
-                text-align: center;
-                font-style: normal;
-                border-radius: 10px;
-                border: 1px solid darkgreen;
-                margin-bottom: 10px;
-            }
-            .form-style-5 input[type="submit"]:hover,
-            .form-style-5 input[type="button"]:hover
-            {
-                background: #109177;
-            }
 
             body {
                 background: #fff;
@@ -368,91 +238,92 @@
             </fieldset>
 
 
+            <fieldset><legend><b> What is the significance of the project?</b></legend>  
+                <center><textarea rows="10" cols="90%" name="significance"></textarea> </center>
+                <br>
+            </fieldset>
+
             <fieldset>
-                <legend><b> What is the significance of the project?<b></legend>
-                            <center><textarea rows="10" cols="90%" name="significance"></textarea> </center>
-                            <br>
-                            </fieldset>
+                <legend> What are the highlights of the project?</legend>
+                <center><textarea rows="10" cols="90%" name="highlights"></textarea> </center>
+                <br>
+            </fieldset>
 
-                            <fieldset>
-                                <legend> What are the highlights of the project?</legend>
-                                <center><textarea rows="10" cols="90%" name="highlights"></textarea> </center>
-                                <br>
-                            </fieldset>
+            <fieldset>
+                <h2><span class="number">3</span><b> Accomplishment of Objectives</b></h2>              
+            </fieldset>
 
-                            <fieldset>
-                                <h2><span class="number">3</span><b> Accomplishment of Objectives</b></h2>              
-                            </fieldset>
+            <fieldset>
+                <input type="hidden" name="countobjectives" id="countobjectives" value="1">
+                <center><table style = "width:100%" id="objectives">
+                        <tr>
+                            <th>Expected Outcomes</th>
+                            <th>Actual Accomplishment</th>
+                            <th>Hindering Factors</th>
+                        </tr>
+                        <tr>
+                            <td><textarea rows = "2" cols = "20%" name ="expected0"></textarea></td>
+                            <td><textarea rows = "2" cols = "20%" name ="actual0"></textarea></td>
+                            <td><textarea rows = "2" cols = "20%" name ="hinder0"></textarea></td>
+                        </tr>
 
-                            <fieldset>
-                                <input type="hidden" name="countobjectives" id="countobjectives" value="1">
-                                <center><table style = "width:100%" id="objectives">
-                                        <tr>
-                                            <th>Expected Outcomes</th>
-                                            <th>Actual Accomplishment</th>
-                                            <th>Hindering Factors</th>
-                                        </tr>
-                                        <tr>
-                                            <td><textarea rows = "2" cols = "20%" name ="expected0"></textarea></td>
-                                            <td><textarea rows = "2" cols = "20%" name ="actual0"></textarea></td>
-                                            <td><textarea rows = "2" cols = "20%" name ="hinder0"></textarea></td>
-                                        </tr>
+                    </table></center>
+                <br>
+                <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
+                    <input id="deleteRowButton" type ="button" onclick ="deleteRow()" value="Delete Row"></center>
+                <br>
+            </fieldset>
 
-                                    </table></center>
-                                <br>
-                                <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                                    <input id="deleteRowButton" type ="button" onclick ="deleteRow()" value="Delete Row"></center>
-                                <br>
-                            </fieldset>
+            <fieldset>
+                <h2><span class="number">4</span><b> Financial Aspect</b></h2>              
+            </fieldset>
 
-                            <fieldset>
-                                <h2><span class="number">4</span><b> Financial Aspect</b></h2>              
-                            </fieldset>
+            <fieldset>
+                <%
+                    ArrayList<FFexpenses> expenses = new ArrayList();
+                    UserDAO UserDAO = new UserDAO();
+                    expenses = UserDAO.retrieveExpensesFF(Integer.parseInt(request.getAttribute("ffID").toString()));
+                %>
+                <input type="hidden" name="countovplm" id="countovplm" value="<%=expenses.size()%>">
+                <legend><b> Grant from OVPLM / Others fund</b></legend>
+                <center><table style = "width:100%" id="uce">
+                        <tr>
+                            <th>Line Item</th>
+                            <th>Approved Amount</th>
+                            <th>Expended Amount</th>
+                            <th>Variance (Approved minus Expended Amount)</th>
+                            <th>Reason for Variance</th>
+                        </tr>
+                        <%
+                            for (int i = 0; i < expenses.size(); i++) {
+                        %>
+                        <tr>
+                            <td><textarea rows = "2" cols = "20%" name ="item<%=i%>" readonly><%=expenses.get(i).getItem()%></textarea></td>
+                            <td><textarea rows = "2" cols = "20%" name ="approved<%=i%>" readonly><%=expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()%></textarea></td>
+                            <td><textarea rows = "2" cols = "20%" name ="expended<%=i%>" readonly><%=expenses.get(i).getAmountUsed()%></textarea></td>
+                            <td><textarea rows = "2" cols = "20%" name ="variance<%=i%>" readonly><%=(expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()) - expenses.get(i).getAmountUsed()%></textarea></td>
+                            <td><textarea rows = "2" cols = "20%" name ="reason<%=i%>"></textarea></td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </table></center>
+                <br>
+                <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
+                    <input id="deleteRowButton" type ="button" onclick ="deleteRow2()" value="Delete Row"></center>
+                <br>
+                <br>
+            </fieldset>
 
-                            <fieldset>
-                                <%
-                                    ArrayList<FFexpenses> expenses = new ArrayList();
-                                    UserDAO UserDAO = new UserDAO();
-                                    expenses = UserDAO.retrieveExpensesFF(Integer.parseInt(request.getAttribute("ffID").toString()));
-                                %>
-                                <input type="hidden" name="countovplm" id="countovplm" value="<%=expenses.size()%>">
-                                <legend><b> Grant from OVPLM / Others fund</b></legend>
-                                <center><table style = "width:100%" id="uce">
-                                        <tr>
-                                            <th>Line Item</th>
-                                            <th>Approved Amount</th>
-                                            <th>Expended Amount</th>
-                                            <th>Variance (Approved minus Expended Amount)</th>
-                                            <th>Reason for Variance</th>
-                                        </tr>
-                                        <%
-                                            for (int i = 0; i < expenses.size(); i++) {
-                                        %>
-                                        <tr>
-                                            <td><textarea rows = "2" cols = "20%" name ="item<%=i%>" readonly><%=expenses.get(i).getItem()%></textarea></td>
-                                            <td><textarea rows = "2" cols = "20%" name ="approved<%=i%>" readonly><%=expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()%></textarea></td>
-                                            <td><textarea rows = "2" cols = "20%" name ="expended<%=i%>" readonly><%=expenses.get(i).getAmountUsed()%></textarea></td>
-                                            <td><textarea rows = "2" cols = "20%" name ="variance<%=i%>" readonly><%=(expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()) - expenses.get(i).getAmountUsed()%></textarea></td>
-                                            <td><textarea rows = "2" cols = "20%" name ="reason<%=i%>"></textarea></td>
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </table></center>
-                                <br>
-                                <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
-                                    <input id="deleteRowButton" type ="button" onclick ="deleteRow2()" value="Delete Row"></center>
-                                <br>
-                                <br>
-                            </fieldset>
+            <br><br>
+            <button type="submit">Next</button>
 
-                            <br><br>
-                            <button type="submit">Next</button>
-                            </form>
-                            </div>
-                            </body>
+        </form>
+    </div>
+
+</body>
 
 
 
-                            </html>
+</html>
 

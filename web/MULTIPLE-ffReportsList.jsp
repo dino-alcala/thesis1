@@ -16,23 +16,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Program Reports List</title>
+        <title>FF Completion Reports List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
         <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-        <style type="text/css" class="init"></style>
-
         <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
@@ -43,12 +39,8 @@
                 $('#example').DataTable();
             });
         </script>
-        <style>
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
-            }
 
+        <style>
             #myInput{
                 margin-bottom: 20px;
             }
@@ -223,7 +215,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -234,7 +225,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -279,12 +269,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <!--- end of table -->
                 </form>
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

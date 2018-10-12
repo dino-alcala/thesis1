@@ -23,13 +23,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create FF</title>
+        <title>Create FF Program</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/formstyle.css">
+        <link rel="stylesheet" href="css/formstyle5.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -43,32 +43,12 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
-            }
-
             #myInput{
                 margin-bottom: 20px;
             }
 
             .card-text{
                 margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid lightgray;
             }
 
             .krascards:hover {
@@ -122,15 +102,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
             html {
                 background: #e6e9e9;
                 background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
@@ -154,9 +125,6 @@
             th{
                 padding:15px;
             }
-
-
-
 
             a {
                 color: #0083e8;
@@ -393,7 +361,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -404,7 +371,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -568,7 +534,6 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

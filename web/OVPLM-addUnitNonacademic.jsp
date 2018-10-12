@@ -15,12 +15,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM PMS Add Unit</title>
+        <title>Add Non-Academic Unit</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/formstyle1.css">
         <link rel="stylesheet" type="text/css" href="css/homepagestyle.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -28,57 +29,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-        <script type="text/javascript">
-            $('#body-row .collapse').collapse('hide');
-
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
-            });
-
-            function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
-
-                // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-
-
-
-        </script>
-
         <style>
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -132,102 +87,13 @@
                 margin-bottom: 50px;
             }
 
-            .form-style-1 {
-                margin: 0px;
-                max-width: 400px;
-                padding: 20px 12px 10px 20px;
-                font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-            }
-            .form-style-1 li {
-                padding: 0;
-                display: block;
-                list-style: none;
-                margin: 20px 0 0 0;
-            }
-            .form-style-1 label{
-                margin:0 0 3px 0;
-                padding:0px;
-                display:block;
-                font-weight: bold;
-            }
-            .form-style-1 input[type=text], 
-            .form-style-1 input[type=date],
-            .form-style-1 input[type=datetime],
-            .form-style-1 input[type=number],
-            .form-style-1 input[type=search],
-            .form-style-1 input[type=time],
-            .form-style-1 input[type=url],
-            .form-style-1 input[type=email],
-            textarea, 
-            select{
-                box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                border:1px solid #BEBEBE;
-                padding: 7px;
-                margin:0px;
-                -webkit-transition: all 0.30s ease-in-out;
-                -moz-transition: all 0.30s ease-in-out;
-                -ms-transition: all 0.30s ease-in-out;
-                -o-transition: all 0.30s ease-in-out;
-                outline: none;  
-            }
-            .form-style-1 input[type=text]:focus, 
-            .form-style-1 input[type=date]:focus,
-            .form-style-1 input[type=datetime]:focus,
-            .form-style-1 input[type=number]:focus,
-            .form-style-1 input[type=search]:focus,
-            .form-style-1 input[type=time]:focus,
-            .form-style-1 input[type=url]:focus,
-            .form-style-1 input[type=email]:focus,
-            .form-style-1 textarea:focus, 
-            .form-style-1 select:focus{
-                -moz-box-shadow: 0 0 8px #88D5E9;
-                -webkit-box-shadow: 0 0 8px #88D5E9;
-                box-shadow: 0 0 8px #88D5E9;
-                border: 1px solid #88D5E9;
-            }
-            .form-style-1 .field-divided{
-                width: 49%;
-            }
-
-            .form-style-1 .field-long{
-                width: 100%;
-            }
-
-            .form-style-1 .field-num{
-                width: 55%;
-            }
-            .form-style-1 .field-select{
-                width: 100%;
-            }
-            .form-style-1 .field-textarea{
-                height: 150px;
-                width: 100%;
-            }
-            .form-style-1 input[type=submit], .form-style-1 input[type=button]{
-                background: #4B99AD;
-                padding: 8px 15px 8px 15px;
-                border: none;
-                color: #fff;
-            }
-            .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
-                background: #4691A4;
-                box-shadow:none;
-                -moz-box-shadow:none;
-                -webkit-box-shadow:none;
-            }
-            .form-style-1 .required{
-                color:red;
-            }
-
             h1{
                 text-align: left;
                 font-size: 35px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
-                <%--nasa loob siya ng div kaya hati border --%>
             }   
+
             .formBg{
                 width: 60%;
                 padding: 10px;
@@ -361,7 +227,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -372,7 +237,6 @@
                     $("#sidebar-container").load("sidebarovplm.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -453,76 +317,75 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
-                // sandbox disable popups
-                if (window.self !== window.top && window.name != "view1") {
-                    ;
-                    window.alert = function () {/*disable alert*/
-                    };
-                    window.confirm = function () {/*disable confirm*/
-                    };
-                    window.prompt = function () {/*disable prompt*/
-                    };
-                    window.open = function () {/*disable open*/
-                    };
-                }
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
 
-                // prevent href=# click jump
-                document.addEventListener("DOMContentLoaded", function () {
-                    var links = document.getElementsByTagName("A");
-                    for (var i = 0; i < links.length; i++) {
-                        if (links[i].href.indexOf('#') != -1) {
-                            links[i].addEventListener("click", function (e) {
-                                console.debug("prevent href=# click");
-                                if (this.hash) {
-                                    if (this.hash == "#") {
-                                        e.preventDefault();
-                                        return false;
-                                    } else {
-                                        /*
-                                         var el = document.getElementById(this.hash.replace(/#/, ""));
-                                         if (el) {
-                                         el.scrollIntoView(true);
-                                         }
-                                         */
-                                    }
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
                                 }
-                                return false;
-                            })
-                        }
+                            }
+                            return false;
+                        })
                     }
-                }, false);
+                }
+            }, false);
         </script>
         <script>
-                // Hide submenus
-                $('#body-row .collapse').collapse('hide');
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
 
                 // Collapse/Expand icon
-                $('#collapse-icon').addClass('fa-angle-double-left');
-
-                // Collapse click
-                $('[data-toggle=sidebar-colapse]').click(function () {
-                    SidebarCollapse();
-                });
-
-                function SidebarCollapse() {
-                    $('.menu-collapsed').toggleClass('d-none');
-                    $('.sidebar-submenu').toggleClass('d-none');
-                    $('.submenu-icon').toggleClass('d-none');
-                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                    // Treating d-flex/d-none on separators with title
-                    var SeparatorTitle = $('.sidebar-separator-title');
-                    if (SeparatorTitle.hasClass('d-flex')) {
-                        SeparatorTitle.removeClass('d-flex');
-                    } else {
-                        SeparatorTitle.addClass('d-flex');
-                    }
-
-                    // Collapse/Expand icon
-                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

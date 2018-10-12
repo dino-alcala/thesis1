@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>View SE Program Details</title>
+        <title>SE Program Details</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -35,142 +35,6 @@
                 overflow-x: hidden;
                 height: 250px;
             }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            body {
-                padding-top: 56px;
-            }
-
-            .sticky-offset {
-                top: 56px;
-            }
-
-            #body-row {
-                margin-left:0;
-                margin-right:0;
-            }
-
-            #sidebar-container {
-                min-height: 100vh;   
-                background-color: #333333;
-                padding: 0;
-            }
-
-            /* Sidebar sizes when expanded and expanded */
-            .sidebar-expanded {
-                width: 230px;
-            }
-            .sidebar-collapsed {
-                width: 60px;
-            }
-
-            /* Menu item*/
-            #sidebar-container .list-group a {
-                height: 50px;
-                color: white;
-            }
-
-            /* Submenu item*/
-            #sidebar-container .list-group .sidebar-submenu a {
-                height: 45px;
-                padding-left: 30px;
-            }
-            .sidebar-submenu {
-                font-size: 0.9rem;
-            }
-
-            .sidebar-separator {
-                background-color: #333333;
-                height: 25px;
-            }
-            .logo-separator {
-                background-color: #333333;    
-                height: 60px;
-            }
-
-            /* Closed submenu icon */
-            #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
-                content: " \f0d7";
-                font-family: FontAwesome;
-                display: inline;
-                text-align: right;
-                padding-left: 10px;
-            }
-            /* Opened submenu icon */
-            #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
-                content: " \f0da";
-                font-family: FontAwesome;
-                display: inline;
-                text-align: right;
-                padding-left: 10px;
-            }
-
-            .nav-link {
-                border-bottom: 2px solid green;
-            }
-
-            #navbar {
-                background-color: #009900;
-            }
-
-            #navbar-unit {
-                color: white;
-            }
-
-            .navbar-toggler-icon {
-                background-color: white;
-            }
-
-            #smallerscreenmenuButton {
-                color: white;
-            }
-
-            #smallerscreenmenu {
-                color: white;
-            }
-
-            #submenuCategoryBox {
-                background-color: #d9d9d9;
-            }
-
-            #submenuCategoryBox:hover {
-                background-color: lightgreen;
-            }
-
-            #submenuCategory{
-                font-size: 13px;
-                color: #4d4d4d;
-            }
-
-            #sidebarCategory {
-                background-color: #4d4d4d;
-            }
-
-            #sidebarCategory:hover {
-                background-color: lightgreen;
-            }
-
-            #sidebarCategoryActive {
-                background-color: lightgreen;
-            }
-
-            #sidebarCategoryActive:hover {
-                background-color: lightgreen;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
-            }
-
 
             #myInput {
                 background-image: url('/css/searchicon.png'); /* Add a search icon to input */
@@ -409,7 +273,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -420,7 +283,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <%
@@ -694,12 +556,6 @@
                                     }
                                 %>
 
-                                <!--
-                            <div>
-                                <center>*lalabas lang to pag di natuloy yung implementation*</center>
-                                <center><button class="button-red">Project was not Implemented</button></center>
-                            </div><br><br>
-                                -->
                             </div>
 
                         </div>
@@ -709,7 +565,6 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

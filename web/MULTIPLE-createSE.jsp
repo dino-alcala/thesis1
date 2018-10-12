@@ -22,11 +22,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create SE</title>
+        <title>Create SE Program</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/formstyle.css">
+        <link rel="stylesheet" href="css/formstyle5.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -44,20 +44,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
-            }
-
             #myInput{
                 margin-bottom: 20px;
             }
@@ -66,21 +52,9 @@
                 margin-bottom: 5px;
             }
 
-            .progressnum{
-                font-size: 12px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid lightgray;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
-            }
-
             tr:hover {
                 background-color: lightgreen;
             }
-
-
 
             .budget{
                 font-size: 70px; 
@@ -90,6 +64,10 @@
                 font-family: 'Montserrat', sans-serif;
             }
 
+            .krascards:hover {
+                background-color: lightgreen;
+            }
+            
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
@@ -124,15 +102,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
             html {
                 background: #e6e9e9;
                 background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
@@ -171,8 +140,8 @@
 
             table {
                 border-collapse: collapse;
-
             }
+
             th{
                 padding:15px;
             }
@@ -370,7 +339,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -381,8 +349,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -432,7 +398,7 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Type of Social Engagement:</b> </legend>
+                            <legend><b>Type of Social Engagement:</b></legend>
                             <select name="classification">
                                 <option value="Socially Engaged Research">Socially Engaged Research</option>
                                 <option value="Service-Learning">Service-Learning</option>
@@ -490,144 +456,143 @@
                             <select name="measure" id="measures" required>
                             </select>
                             <br><br>
-                            <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a>
-                                <br><br><br>
-                                </fieldset> 
+                            <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a></center>
+                            <br><br><br>
+                        </fieldset> 
 
-                                <fieldset>
-                                    <legend><span class="number">1</span><b> Target Implementation Date:</b></legend>
-                                    <input style="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
-                                    <br><br><br>
-                                </fieldset>
+                        <fieldset>
+                            <legend><span class="number">1</span><b> Target Implementation Date:</b></legend>
+                            <input style="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
+                            <br><br><br>
+                        </fieldset>
 
-                                <fieldset>
-                                    <legend><span class="number">2</span><b> Total Amount Requested:</b></legend>
-                                    <input style="width:30%" type = "number" name ="totalamount" required>
-                                    <br><br>
-                                </fieldset>
+                        <fieldset>
+                            <legend><span class="number">2</span><b> Total Amount Requested:</b></legend>
+                            <input style="width:30%" type = "number" name ="totalamount" required>
+                            <br><br>
+                        </fieldset>
 
-                                <fieldset>
-                                    <legend><span class="number">3</span><b>Explain the Social/Community Problem being Addressed:</b></legend>
-                                    <center><textarea rows = "6" cols = "100%" name ="problemaddressed" required></textarea></center>
-                                    <br><br>
-                                </fieldset>
+                        <fieldset>
+                            <legend><span class="number">3</span><b>Explain the Social/Community Problem being Addressed:</b></legend>
+                            <center><textarea rows = "6" cols = "100%" name ="problemaddressed" required></textarea></center>
+                            <br><br>
+                        </fieldset>
 
-                                <fieldset>
-                                    <legend><span class="number">4</span> <b>Social Engagement Partner/Beneficiary:</b><br></legend>
-                                    <legend>Name of Partner (First name, Last name): <input type='text' name='partnername' required/><br><br>
-                                        Address: <input type='text' name='partneraddress' required/><br><br>
-                                        Contact Person (First name, Last name): <input type='text' name='partnercontact' required/><br><br>
-                                        Mobile Number: <br><input style="width:30%" type='text' name='partnernumber' required/><br><br>
-                                        Email: <input type='text' name='partneremail' required/><br><br>
-                                        Brief Description of Partner: <textarea name='partnerdescription' rows='5' required></textarea></legend>
-                                    <br>
-                                </fieldset>
+                        <fieldset>
+                            <legend><span class="number">4</span> <b>Social Engagement Partner/Beneficiary:</b><br></legend>
+                            <legend>Name of Partner (First name, Last name): <input type='text' name='partnername' required/><br><br>
+                                Address: <input type='text' name='partneraddress' required/><br><br>
+                                Contact Person (First name, Last name): <input type='text' name='partnercontact' required/><br><br>
+                                Mobile Number: <br><input style="width:30%" type='text' name='partnernumber' required/><br><br>
+                                Email: <input type='text' name='partneremail' required/><br><br>
+                                Brief Description of Partner: <textarea name='partnerdescription' rows='5' required></textarea></legend>
+                            <br>
+                        </fieldset>
 
 
-                                <fieldset>
-                                    <legend><span class="number">5</span><b >Measurable Outcomes/Objectives of the Project:</b></legend>
-                                    <center><textarea rows = "6" cols = "100%" name ="measureableoutcome" required></textarea></center>
-                                    <br><br>
-                                </fieldset>
+                        <fieldset>
+                            <legend><span class="number">5</span><b >Measurable Outcomes/Objectives of the Project:</b></legend>
+                            <center><textarea rows = "6" cols = "100%" name ="measureableoutcome" required></textarea></center>
+                            <br><br>
+                        </fieldset>
 
-                                <fieldset>
-                                    <legend><span class="number">6</span><b> Sustainability Component (Check all that apply, if none proceed to next number):</b>
-                                        <br><br>
-                                        <input type='checkbox' name="component" value="Training/Capacity Building for the Partner"/>Training/Capacity Building for the Partner<br>
-                                        <input type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed"/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
-                                        <input type='checkbox' name="component" value="Continuing and Developmental Partnership"/>Continuing and Developmental Partnership<br>
-                                        <input type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
-                                    <legend>Explanation:</legend>
-                                    <textarea name='sustainabilityexplanation' rows='4' required></textarea>
-                                    <br><br>
-                                </fieldset>
-
-                                <fieldset>
-                                    <legend><span class="number">7</span><b >Source of Funds:</b></legend>
-                                    <select style="width:50%" name="funds" required>
-                                        <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
-                                        <option value="Others">Others</option>
-                                    </select>
-                                    <br>
-                                </fieldset>
+                        <fieldset>
+                            <legend><span class="number">6</span><b> Sustainability Component (Check all that apply, if none proceed to next number):</b>
                                 <br><br>
-                                <br>
-                                <center><button type="submit" class="button">Next</button></center>
-                                </form>
-                                </div>
-                                </div>
+                                <input type='checkbox' name="component" value="Training/Capacity Building for the Partner"/>Training/Capacity Building for the Partner<br>
+                                <input type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed"/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
+                                <input type='checkbox' name="component" value="Continuing and Developmental Partnership"/>Continuing and Developmental Partnership<br>
+                                <input type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
+                            <legend>Explanation:</legend>
+                            <textarea name='sustainabilityexplanation' rows='4' required></textarea>
+                            <br><br>
+                        </fieldset>
 
-                                </div>
+                        <fieldset>
+                            <legend><span class="number">7</span><b >Source of Funds:</b></legend>
+                            <select style="width:50%" name="funds" required>
+                                <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <br>
+                        </fieldset>
+                        <br><br>
+                        <br>
+                        <center><button type="submit" class="button">Next</button></center>
+                    </form>
+                </div>
+            </div>
 
-                                <!-- body-row END -->
-                                <script>
-                                    $('#date').datepicker({
-                                    startDate: new Date()
-                                    });
-                                    // sandbox disable popups
-                                    if (window.self !== window.top && window.name != "view1") {
-                                    ;
-                                    window.alert = function () {/*disable alert*/
-                                    };
-                                    window.confirm = function () {/*disable confirm*/
-                                    };
-                                    window.prompt = function () {/*disable prompt*/
-                                    };
-                                    window.open = function () {/*disable open*/
-                                    };
-                                    }
+        </div>
 
-                                    // prevent href=# click jump
-                                    document.addEventListener("DOMContentLoaded", function () {
-                                    var links = document.getElementsByTagName("A");
-                                    for (var i = 0; i < links.length; i++) {
-                                    if (links[i].href.indexOf('#') != - 1) {
-                                    links[i].addEventListener("click", function (e) {
-                                    console.debug("prevent href=# click");
-                                    if (this.hash) {
-                                    if (this.hash == "#") {
-                                    e.preventDefault();
-                                    return false;
-                                    } else {
-                                    /*
-                                     var el = document.getElementById(this.hash.replace(/#/, ""));
-                                     if (el) {
-                                     el.scrollIntoView(true);
-                                     }
-                                     */
-                                    }
-                                    }
-                                    return false;
-                                    })
-                                    }
-                                    }
-                                    }, false);
-                                </script>
-                                <script>
-                                    // Hide submenus
-                                    $('#body-row .collapse').collapse('hide');
-                                    // Collapse/Expand icon
-                                    $('#collapse-icon').addClass('fa-angle-double-left');
-                                    // Collapse click
-                                    $('[data-toggle=sidebar-colapse]').click(function () {
-                                    SidebarCollapse();
-                                    });
-                                    function SidebarCollapse() {
-                                    $('.menu-collapsed').toggleClass('d-none');
-                                    $('.sidebar-submenu').toggleClass('d-none');
-                                    $('.submenu-icon').toggleClass('d-none');
-                                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                                    // Treating d-flex/d-none on separators with title
-                                    var SeparatorTitle = $('.sidebar-separator-title');
-                                    if (SeparatorTitle.hasClass('d-flex')) {
-                                    SeparatorTitle.removeClass('d-flex');
-                                    } else {
-                                    SeparatorTitle.addClass('d-flex');
-                                    }
+        <script>
+            $('#date').datepicker({
+            startDate: new Date()
+            });
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+            ;
+            window.alert = function () {/*disable alert*/
+            };
+            window.confirm = function () {/*disable confirm*/
+            };
+            window.prompt = function () {/*disable prompt*/
+            };
+            window.open = function () {/*disable open*/
+            };
+            }
 
-                                    // Collapse/Expand icon
-                                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-                                    }
-                                </script>
-                                </body>
-                                </html>
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+            var links = document.getElementsByTagName("A");
+            for (var i = 0; i < links.length; i++) {
+            if (links[i].href.indexOf('#') != - 1) {
+            links[i].addEventListener("click", function (e) {
+            console.debug("prevent href=# click");
+            if (this.hash) {
+            if (this.hash == "#") {
+            e.preventDefault();
+            return false;
+            } else {
+            /*
+             var el = document.getElementById(this.hash.replace(/#/, ""));
+             if (el) {
+             el.scrollIntoView(true);
+             }
+             */
+            }
+            }
+            return false;
+            })
+            }
+            }
+            }, false);
+        </script>
+        <script>
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+            SidebarCollapse();
+            });
+            function SidebarCollapse() {
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+            } else {
+            SeparatorTitle.addClass('d-flex');
+            }
+
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
+        </script>
+    </body>
+</html>

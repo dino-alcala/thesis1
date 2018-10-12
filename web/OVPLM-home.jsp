@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM PMS Home</title>
+        <title>OVPLM Home</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -32,113 +32,88 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        
-        <script type="text/javascript">
-        <!---search table -->
-        $(document).ready(function () {
-                    $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf (va lue) > - 1)
-        });
-        });
-        });<!--- search table-->
-        function sortTable(n) {
-                    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-            table = document.getElementById("myTable");
-            switching = true;
-            // Set the sorting direction to ascending:
-            dir = "asc";
-            /* Make a loop that will continue until
-             no switching has been done: */
-            while (switching) {
-            // Start by saying: no switching is done:
-            switching = false;
-            rows = table.getElementsByTagName("TR");
-            /* Loop through all table rows (except the
-             first, which contains table headers): */
-            for (i = 0; i < (rows.length - 1); i++) {
-            // Start by saying there should be no switching:
-            shouldSwitch = false;
-            /* Get the two elements you want to compare,
-             one from current row and one from the next: */
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            /* Check if the two rows should switch place,
-             based on the direction, asc or desc: */
-            if (dir == "asc") {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-            }
-            } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-             }
-             }
-             }
-            if (shouldSwitch) {
-                    /* If a switch has been marked, make the switch
-                     and mark that a switch has been done: */
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            // Each time a switch is done, increase this count by 1:
-            switchcount++;
-            } else {
-                    /* If no switching has been done AND the direction is "asc",
-                     set the direction to "desc" and run the while loop again. */
-                    if (switchcount == 0 && dir == "asc") {
-                                                            dir = "desc";
-                                                                                    switching = true;
-                                                }
-                                                }
-                                                }
-                     }
-                     </script>
 
-                     <script type="text/javascript">
-                     <%
-                         if (request.getAttribute("successSE") != null) {
-
-            %>
-            $("document").ready(function () {
-
-            alert("<%=request.getAttribute("successSE")%>");
+        <script>
+            $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
             });
-            
-                    <%
+
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                dir = "asc";
+                while (switching) {
+                    switching = false;
+                    rows = table.getElementsByTagName("TR");
+                    for (i = 0; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
                         }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
 
-                        if (request.getAttribute("successFF") != null) {
+                        switchcount++;
+                    } else {
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+
+        </script>
+
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successSE") != null) {
 
             %>
-                    $("document").ready(function () {
+                         $("document").ready(function () {
 
-                    alert("<%=request.getAttribute("successFF")%>");
-            });
-            
+                             alert("<%=request.getAttribute("successSE")%>");
+                         });
+
+            <%
+                }
+
+                if (request.getAttribute("successFF") != null) {
+
+            %>
+                         $("document").ready(function () {
+
+                             alert("<%=request.getAttribute("successFF")%>");
+                         });
+
             <%
                 }
             %>
-            </script>
+        </script>
         <style>
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
             }
 
             body{
@@ -218,7 +193,7 @@
                 text-align: center;
                 margin-bottom: 0%;
             }
-            
+
             .accomplishmentGreen{
                 text-align: center;
                 font-size: 25px;
@@ -237,9 +212,9 @@
                 color: white;
                 background-color: red;
             }
-            
-            
-            
+
+
+
         </style>
 
     </head>
@@ -327,129 +302,112 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!--Bootstrap row -->
         <div class="row" id="body-row">
 
             <!--Sidebar -->
             <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-             <script>
+                <script>
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
                 <!---KRAs-->
-        <div class="container-fluid panels">
-            
-              <h2>Key Result Areas</h2>
-        
-              <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
-              <table class="table table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Goals</th>
-                      <th scope="col">Measures</th>
-                      <th scope="col">Targets</th>
-                      <th scope="col">Accomplishment</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                        <!--- Goal 1 Measure 1-->
-                        <tr>
-                          <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
-                          <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
-                          <td>Development of Lasallian Formation Program for graduate student</td>
-                          <td class="accomplishmentGreen">85%</td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>Existing Lasallian Formation programs for undergraduate students have been reviewed and revised </td>
-                          <td class="accomplishmentYellow">50%</td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>50% of student organizations have implemented a Lasallian formation activity</td>
-                          <td class="accomplishmentRed">15%</td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 1-->
-                      
-                        <!--- Goal 1 Measure 2-->
-                        <tr>
-                          <td></td>
-                          <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
-                          <td>50% of faculty departments have undergone Lasallian formation program</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>75% of staff have undergone Lasallian formation programs  </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>All administrators have undergone the Lasallian formation activity  </td>
-                          <td></td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 2 -->
-                      
-                      <!--- Goal 1 Measure 3-->
-                        <tr>
-                          <td></td>
-                          <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
-                          <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
-                          <td></td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 3 -->
-                      
-                      <!--- Goal 2 Measure 1-->
-                        <tr>
-                          <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
-                          <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
-                          <td>At least one interdisciplinary activity conducted each term</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 2 Measure 1 -->
-                      
-                      <!--- Goal 2 Measure 2-->
-                        <tr>
-                          <td> </td>
-                          <td><b>M2</b> Integration of faith dimension using the Lasallian Reflection Framework (LRF) in GE courses</td>
-                          <td>Review and integrate the LRF in all NLCC subjects </td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 2 Measure 2 -->
-                      
-                      <!--- Goal 2 Measure 3-->
-                        <tr>
-                          <td> </td>
-                          <td><b>M3</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
-                          <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 2 Measure 3 -->
-                      
-                      <!--- Goal 3 Measure 1-->
-                        <tr>
-                          <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
-                          <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
-                          <td>3 communities</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 3 Measure 1 -->
-                      
-                  </tbody>
-                </table>
-              
-        </div>
-    <!--- end of KRAs-->
+                <div class="container-fluid panels">
+
+                    <h2>Key Result Areas</h2>
+
+                    <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Goals</th>
+                                <th scope="col">Measures</th>
+                                <th scope="col">Targets</th>
+                                <th scope="col">Accomplishment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
+                                <td>Development of Lasallian Formation Program for graduate student</td>
+                                <td class="accomplishmentGreen">85%</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Existing Lasallian Formation programs for undergraduate students have been reviewed and revised </td>
+                                <td class="accomplishmentYellow">50%</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>50% of student organizations have implemented a Lasallian formation activity</td>
+                                <td class="accomplishmentRed">15%</td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
+                                <td>50% of faculty departments have undergone Lasallian formation program</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>75% of staff have undergone Lasallian formation programs  </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>All administrators have undergone the Lasallian formation activity  </td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
+                                <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
+                                <td>At least one interdisciplinary activity conducted each term</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td> </td>
+                                <td><b>M2</b> Integration of faith dimension using the Lasallian Reflection Framework (LRF) in GE courses</td>
+                                <td>Review and integrate the LRF in all NLCC subjects </td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td> </td>
+                                <td><b>M3</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
+                                <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
+                                <td>3 communities</td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
 
                 <!--- table -->
                 <%
@@ -505,7 +463,7 @@
                 <%
                     }
                 %>
-                <!--- end of table -->
+
 
                 <%
                     Budget b = new Budget();
@@ -521,7 +479,7 @@
                     <h1 class="budget">PHP <%=formatter.format(b.getRemainingBudget())%></h1>
 
                 </div>
-                <!--- end of budget -->
+
 
                 <!--- Quick View -->
                 <div class="container-fluid quickview">
@@ -575,72 +533,71 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
-                    <script>
-                    // sandbox disable popups
+        <script>
+            // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
-                                ;
-                        window.alert = function () {/*disable alert*/
-                    };
-        window.confirm = function () {/*disable confirm*/
-        };
-        window.prompt = function () {/*disable prompt*/
-        };
-        window.open = function () {/*disable open*/
-        };
-        }
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
 
-        // prevent href=# click jump
-        document.addEventListener("DOMContentLoaded", function () {
-                                var links = document.getElementsByTagName("A");
-                        for (var i = 0; i < links.length; i++) {
-                        if (links[i].href.indexOf('#') != - 1) {
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
                         links[i].addEventListener("click", function (e) {
-                        console.debug("prevent href=# click");
-                        if (this.hash) {
-                        if (this.hash == "#") {
-                        e.preventDefault();
-                        return false;
-        } else {
-                                /*
-                                 var el = document.getElementById(this.hash.replace(/#/, ""));
-                                 if (el) {
-                                 el.scrollIntoView(true);
-                                 }
-                                 */
-        }
-        }
-        return false;
-        })
-        }
-        }
-        }, false);
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
+                                }
+                            }
+                            return false;
+                        })
+                    }
+                }
+            }, false);
 
-                </script>
-                <script>
+        </script>
+        <script>
 
-                $('[data-toggle=sidebar-colapse]').click(function () {
-                                SidebarCollapse();
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
             });
             function SidebarCollapse() {
-                                $('.menu-collapsed').toggleClass('d-none');
-                        $('.sidebar-submenu').toggleClass('d-none');
-                        $('.submenu-icon').toggleClass('d-none');
-                        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                        // Treating d-flex/d-none on separators with title
-                        var SeparatorTitle = $('.sidebar-separator-title');
-                        if (SeparatorTitle.hasClass('d-flex')) {
-                        SeparatorTitle.removeClass('d-flex');
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
                 } else {
-                                SeparatorTitle.addClass('d-flex');
+                    SeparatorTitle.addClass('d-flex');
                 }
-                
+
                 // Collapse/Expand icon
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-                }
-                </script>
-        
+            }
+        </script>
+
 
     </body>
 </html>

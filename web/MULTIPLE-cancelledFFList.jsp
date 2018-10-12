@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Cancelled Faith Formation List</title>
+        <title>Cancelled FF Programs List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -83,28 +83,12 @@
 
         </script>
 
-        <!--datatables-->  
 
         <style> 
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }   
-
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -306,7 +290,7 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
+
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -317,7 +301,7 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
+
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -435,12 +419,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <!--- end of table -->
+
                 </form>
             </div>
 
         </div>
-        <!-- body-row END -->
+
 
         <script>
             // sandbox disable popups

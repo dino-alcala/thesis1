@@ -17,7 +17,7 @@ ProgramsForApproval
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>SE Pending List</title>
+        <title>Pending SE Programs List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -29,9 +29,6 @@ ProgramsForApproval
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-
-        <!--datatables-->    
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
@@ -47,27 +44,12 @@ ProgramsForApproval
             });
         </script>
 
-        <!--datatables--> 
 
         <style>
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -263,9 +245,9 @@ ProgramsForApproval
                 <div class="nav-button">
                     <div class="dropdown">
                         <button type="button" class="btn btn-info navbar-btn-notifications" href="#" data-toggle="dropdown">
-                        <span class="badge badge-pill badge-primary" style="background-color:red; color:white; float:right;margin-bottom:-20px;">!</span> 
-                        <i class="fa fa-bell"></i>
-                    </button>
+                            <span class="badge badge-pill badge-primary" style="background-color:red; color:white; float:right;margin-bottom:-20px;">!</span> 
+                            <i class="fa fa-bell"></i>
+                        </button>
                         <ul class="dropdown-menu">
                             <div id ="notifsScroll">
                                 <div id="notifsScroll">
@@ -302,7 +284,6 @@ ProgramsForApproval
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -313,7 +294,6 @@ ProgramsForApproval
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
 
@@ -458,14 +438,12 @@ ProgramsForApproval
                             %>
                         </table>
                     </div>
-                    <!--- end of table -->
                 </form>
             </div>
 
 
         </div>
 
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

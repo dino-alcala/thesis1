@@ -14,7 +14,7 @@
 
     <head>
 
-        <title>Log In!</title>    
+        <title>Log In</title>    
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">

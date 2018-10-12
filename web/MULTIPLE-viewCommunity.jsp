@@ -59,26 +59,11 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
-            }
-
             h1{
                 font-size: 40px;
                 text-align: left;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
-                <%--nasa loob siya ng div kaya hati border --%>
             }
 
             .btn-warning{
@@ -180,7 +165,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -191,7 +175,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">           
@@ -201,7 +184,7 @@
                             <%
                                 Community c = new Community();
                                 c = UserDAO.retrieveCommunityByID(Integer.parseInt(request.getAttribute("communityID").toString()));
-                                %>
+                            %>
                             <h1><%=c.getName()%></h1>
 
 
@@ -240,7 +223,6 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
 
         <script>

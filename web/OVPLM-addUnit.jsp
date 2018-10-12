@@ -15,12 +15,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM PMS Add Unit</title>
+        <title>Add Unit</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/formstyle1.css">
         <link rel="stylesheet" type="text/css" href="css/homepagestyle.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -82,7 +83,7 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createTextNode("Number of Staff for Department " + (i + 1) + ": "));
                         // Create an <input> element, set its type and name attributes
@@ -92,7 +93,7 @@
                         container.appendChild(input);
                         // Append a line break 
                         container.appendChild(document.createElement("br"));
-                        
+
                     }
                 }
         </script>
@@ -102,20 +103,6 @@
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -169,102 +156,13 @@
                 margin-bottom: 50px;
             }
 
-            .form-style-1 {
-                margin: 0px;
-                max-width: 400px;
-                padding: 20px 12px 10px 20px;
-                font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-            }
-            .form-style-1 li {
-                padding: 0;
-                display: block;
-                list-style: none;
-                margin: 20px 0 0 0;
-            }
-            .form-style-1 label{
-                margin:0 0 3px 0;
-                padding:0px;
-                display:block;
-                font-weight: bold;
-            }
-            .form-style-1 input[type=text], 
-            .form-style-1 input[type=date],
-            .form-style-1 input[type=datetime],
-            .form-style-1 input[type=number],
-            .form-style-1 input[type=search],
-            .form-style-1 input[type=time],
-            .form-style-1 input[type=url],
-            .form-style-1 input[type=email],
-            textarea, 
-            select{
-                box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                border:1px solid #BEBEBE;
-                padding: 7px;
-                margin:0px;
-                -webkit-transition: all 0.30s ease-in-out;
-                -moz-transition: all 0.30s ease-in-out;
-                -ms-transition: all 0.30s ease-in-out;
-                -o-transition: all 0.30s ease-in-out;
-                outline: none;  
-            }
-            .form-style-1 input[type=text]:focus, 
-            .form-style-1 input[type=date]:focus,
-            .form-style-1 input[type=datetime]:focus,
-            .form-style-1 input[type=number]:focus,
-            .form-style-1 input[type=search]:focus,
-            .form-style-1 input[type=time]:focus,
-            .form-style-1 input[type=url]:focus,
-            .form-style-1 input[type=email]:focus,
-            .form-style-1 textarea:focus, 
-            .form-style-1 select:focus{
-                -moz-box-shadow: 0 0 8px #88D5E9;
-                -webkit-box-shadow: 0 0 8px #88D5E9;
-                box-shadow: 0 0 8px #88D5E9;
-                border: 1px solid #88D5E9;
-            }
-            .form-style-1 .field-divided{
-                width: 49%;
-            }
-
-            .form-style-1 .field-long{
-                width: 100%;
-            }
-
-            .form-style-1 .field-num{
-                width: 55%;
-            }
-            .form-style-1 .field-select{
-                width: 100%;
-            }
-            .form-style-1 .field-textarea{
-                height: 150px;
-                width: 100%;
-            }
-            .form-style-1 input[type=submit], .form-style-1 input[type=button]{
-                background: #4B99AD;
-                padding: 8px 15px 8px 15px;
-                border: none;
-                color: #fff;
-            }
-            .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
-                background: #4691A4;
-                box-shadow:none;
-                -moz-box-shadow:none;
-                -webkit-box-shadow:none;
-            }
-            .form-style-1 .required{
-                color:red;
-            }
-
             h1{
                 text-align: left;
                 font-size: 30px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
-                <%--nasa loob siya ng div kaya hati border --%>
             }   
+
             .formBg{
                 width: 60%;
                 padding: 10px;
@@ -366,27 +264,27 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <%
-                                UserDAO UserDAO = new UserDAO();
-                                ArrayList<Notification> n = new ArrayList();
-                                n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <%
+                                    UserDAO UserDAO = new UserDAO();
+                                    ArrayList<Notification> n = new ArrayList();
+                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                for (int i = 0; i < n.size(); i++) {
-                            %>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                        <div class="notificationBoxMessage">
-                                            <%=n.get(i).getBody()%>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
+                                    for (int i = 0; i < n.size(); i++) {
+                                %>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                            <div class="notificationBoxMessage">
+                                                <%=n.get(i).getBody()%>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
 
-                            <%
-                                }
-                            %>    
+                                <%
+                                    }
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -398,7 +296,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -406,10 +303,9 @@
             <!-- Sidebar -->
             <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
                 <script>
-                    $("#sidebar-container").load("sidebarovplm.jsp");
+                        $("#sidebar-container").load("sidebarovplm.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -438,7 +334,7 @@
                                                         <option value="departmentacademic">Department (for academic unit)</option>
                                                     </select>
                                                 </li>
-                                                
+
                                                 <li>
                                                     <button type="submit" class="btn btn-info">Proceed</button>
                                                 </li>
@@ -454,7 +350,6 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
                 // sandbox disable popups
@@ -524,7 +419,7 @@
 
                     // Collapse/Expand icon
                     $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
+                }
         </script>
     </body>
 </html>

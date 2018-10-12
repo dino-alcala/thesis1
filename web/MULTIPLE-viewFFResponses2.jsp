@@ -41,11 +41,6 @@
                 padding: 10px;
             }
 
-            body{
-                background-color: whitesmoke;
-                padding-top: 10px;
-            }
-
             #myInput{
                 margin-bottom: 20px;
             }
@@ -265,7 +260,5 @@
                 <br>
             </div>
         </div>
-    </div>
-    <!-- body-row END -->
-</body>
+    </body>
 </html>

@@ -19,7 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM Budget Performance Report</title>
+        <title>Budget Performance Report</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -34,10 +34,7 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-        <script src="https://cdn.rawgit.com/emn178/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
-
-        <!--datatables-->    
-
+        <script src="https://cdn.rawgit.com/emn178/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>  
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
 
@@ -48,44 +45,40 @@
 
         <script>
             $(document).ready(function () {
-                $('#example').DataTable();
+            $('#example').DataTable();
             });
             $(document).ready(function () {
-                $('#example2').DataTable();
+            $('#example2').DataTable();
             });
         </script>
 
-        <!--datatables-->   
 
         <script type="text/javascript">
 
 
 
             $('#body-row .collapse').collapse('hide');
-
             // Collapse/Expand icon
             $('#collapse-icon').addClass('fa-angle-double-left');
-
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
+            SidebarCollapse();
             });
-
             function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+            } else {
+            SeparatorTitle.addClass('d-flex');
+            }
 
-                // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
 
         </script>
@@ -95,20 +88,6 @@
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -447,7 +426,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -458,7 +436,6 @@
                     $("#sidebar-container").load("sidebarovplm.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -518,55 +495,55 @@
                             <%
                                 ArrayList<Unit> units = new ArrayList();
                                 units = UserDAO.retrieveUnits();
-                                %>
+                            %>
                             Chart.defaults.global.legend.display = false;
                             var ctx = document.getElementById('chartBPRu').getContext('2d');
                             var chartBPRu = new Chart(ctx, {
-                                type: 'horizontalBar',
-                                data: {
+                            type: 'horizontalBar',
+                                    data: {
                                     labels: [<%for (int i = 0; i < units.size(); i++) {%>"<%=units.get(i).getName()%>",<%}%>],
-                                    datasets: [
-                                        {
+                                            datasets: [
+                                            {
                                             label: "Social Engagement",
-                                            backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA7A2D",<%}%>],
-                                            data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualSEBudgetRequestedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
-                                        }
-                                        , {
+                                                    backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA7A2D",<%}%>],
+                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualSEBudgetRequestedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                            }
+                                            , {
                                             label: "Faith Formation",
-                                            backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
-                                            data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetRequestedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
-                                        }]
-
-                                },
-                                options: {
-                                    legend: {
-                                        display: true,
-                                        position: 'top',
-                                        labels: {
-                                            fontSize: 15
-                                        }
-                                    },
-                                    title: {
-                                        display: true,
-                                    },
-                                    scales: {
-                                        yAxes: [{
-                                                ticks: {
-                                                    fontSize: 16
-                                                }
-                                            }],
-                                        xAxes: [{
-                                                ticks: {
-                                                    beginAtZero: true,
-                                                    fontSize: 16
-                                                }
+                                                    backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
+                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetRequestedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }]
+
                                     },
-                                    tooltips: {
-                                        titleFontSize: 18,
-                                        bodyFontSize: 18
+                                    options: {
+                                    legend: {
+                                    display: true,
+                                            position: 'top',
+                                            labels: {
+                                            fontSize: 15
+                                            }
+                                    },
+                                            title: {
+                                            display: true,
+                                            },
+                                            scales: {
+                                            yAxes: [{
+                                            ticks: {
+                                            fontSize: 16
+                                            }
+                                            }],
+                                                    xAxes: [{
+                                                    ticks: {
+                                                    beginAtZero: true,
+                                                            fontSize: 16
+                                                    }
+                                                    }]
+                                            },
+                                            tooltips: {
+                                            titleFontSize: 18,
+                                                    bodyFontSize: 18
+                                            }
                                     }
-                                }
                             });
                         </script>
                     </div>
@@ -591,29 +568,29 @@
                                     ctx.canvas.width = 35;
                                     ctx.canvas.height = 20;
                                     var chartBPRb = new Chart(ctx, {
-                                        type: 'pie',
-                                        data: {
+                                    type: 'pie',
+                                            data: {
                                             labels: ['Programs Funded by OVPLM', 'Programs Funded by Others'],
-                                            datasets:
-                                                    [{
-                                                            data: [<%=UserDAO.countOVPLMPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countOtherPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>],
-                                                            backgroundColor: ['#5A82B2', '#DCDF01']
-                                                        }],
-                                        },
-                                        options: {
-                                            legend: {
-                                                display: true,
-                                                position: 'bottom',
-                                                labels: {
-                                                    boxWidth: 60,
-                                                    fontSize: 20
-                                                }
+                                                    datasets:
+                                            [{
+                                            data: [<%=UserDAO.countOVPLMPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countOtherPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>],
+                                                    backgroundColor: ['#5A82B2', '#DCDF01']
+                                            }],
                                             },
-                                            tooltips: {
-                                                titleFontSize: 18,
-                                                bodyFontSize: 18
+                                            options: {
+                                            legend: {
+                                            display: true,
+                                                    position: 'bottom',
+                                                    labels: {
+                                                    boxWidth: 60,
+                                                            fontSize: 20
+                                                    }
+                                            },
+                                                    tooltips: {
+                                                    titleFontSize: 18,
+                                                            bodyFontSize: 18
+                                                    }
                                             }
-                                        }
 
                                     });
                                 </script> 
@@ -701,7 +678,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                              <%
+                            <%
                                 for (int i = 0; i < ffproposal.size(); i++) {
                             %>
                             <tr>
@@ -722,51 +699,49 @@
                 <%
                     }
                 %>
-                <!--- end of budget -->
 
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
-                ;
-                window.alert = function () {/*disable alert*/
-                };
-                window.confirm = function () {/*disable confirm*/
-                };
-                window.prompt = function () {/*disable prompt*/
-                };
-                window.open = function () {/*disable open*/
-                };
+            ;
+            window.alert = function () {/*disable alert*/
+            };
+            window.confirm = function () {/*disable confirm*/
+            };
+            window.prompt = function () {/*disable prompt*/
+            };
+            window.open = function () {/*disable open*/
+            };
             }
 
             // prevent href=# click jump
             document.addEventListener("DOMContentLoaded", function () {
-                var links = document.getElementsByTagName("A");
-                for (var i = 0; i < links.length; i++) {
-                    if (links[i].href.indexOf('#') != -1) {
-                        links[i].addEventListener("click", function (e) {
-                            console.debug("prevent href=# click");
-                            if (this.hash) {
-                                if (this.hash == "#") {
-                                    e.preventDefault();
-                                    return false;
-                                } else {
-                                    /*
-                                     var el = document.getElementById(this.hash.replace(/#/, ""));
-                                     if (el) {
-                                     el.scrollIntoView(true);
-                                     }
-                                     */
-                                }
-                            }
-                            return false;
-                        })
-                    }
-                }
+            var links = document.getElementsByTagName("A");
+            for (var i = 0; i < links.length; i++) {
+            if (links[i].href.indexOf('#') != - 1) {
+            links[i].addEventListener("click", function (e) {
+            console.debug("prevent href=# click");
+            if (this.hash) {
+            if (this.hash == "#") {
+            e.preventDefault();
+            return false;
+            } else {
+            /*
+             var el = document.getElementById(this.hash.replace(/#/, ""));
+             if (el) {
+             el.scrollIntoView(true);
+             }
+             */
+            }
+            }
+            return false;
+            })
+            }
+            }
             }, false);
         </script>
         <script>
@@ -776,23 +751,23 @@
             $('#collapse-icon').addClass('fa-angle-double-left');
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
+            SidebarCollapse();
             });
             function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+            } else {
+            SeparatorTitle.addClass('d-flex');
+            }
 
-                // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

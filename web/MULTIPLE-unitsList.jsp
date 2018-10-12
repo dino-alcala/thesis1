@@ -28,8 +28,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-        <!--datatables-->    
-
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
 
@@ -44,28 +42,12 @@
             });
         </script>
 
-        <!--datatables--> 
 
         <style>    
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -183,27 +165,27 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <%
-                                UserDAO UserDAO = new UserDAO();
-                                ArrayList<Notification> n = new ArrayList();
-                                n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <%
+                                    UserDAO UserDAO = new UserDAO();
+                                    ArrayList<Notification> n = new ArrayList();
+                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                for (int i = 0; i < n.size(); i++) {
-                            %>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                        <div class="notificationBoxMessage">
-                                            <%=n.get(i).getBody()%>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
-                            
-                            <%
-                                }
-                            %>
+                                    for (int i = 0; i < n.size(); i++) {
+                                %>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                            <div class="notificationBoxMessage">
+                                                <%=n.get(i).getBody()%>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+
+                                <%
+                                    }
+                                %>
                             </div>
                         </ul>
                     </div>
@@ -215,7 +197,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -226,7 +207,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -268,14 +248,9 @@
                             </tbody>
                         </table>
                     </form>
-
                 </div>
-                <!--- end of table -->
-
             </div>
-
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

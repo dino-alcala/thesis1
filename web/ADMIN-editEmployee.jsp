@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM PMS Home</title>
+        <title>Edit Employee</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -39,7 +39,7 @@
                 padding-right: 20px;
                 padding-left: 20px;
             }
-            
+
             .navbar-btn-logout {
                 padding-right: 20px;
                 padding-left: 20px;

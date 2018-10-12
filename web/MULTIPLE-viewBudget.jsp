@@ -54,10 +54,10 @@
                 if (request.getAttribute("updateBudget") != null) {
 
             %>
-                    $("document").ready(function () {
+            $("document").ready(function () {
 
-                        alert("<%=request.getAttribute("updateBudget")%>");
-                    });
+                alert("<%=request.getAttribute("updateBudget")%>");
+            });
 
             <%
                 }
@@ -70,20 +70,6 @@
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput {
@@ -237,7 +223,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -248,7 +233,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -354,12 +338,6 @@
                                 </tbody>
                             </table>
                         </div>
-
-
-
-
-                        <!--- end of budget -->
-
                     </div>
 
                 </div>
@@ -367,7 +345,6 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

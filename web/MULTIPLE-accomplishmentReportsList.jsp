@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Program Reports List</title>
+        <title>Completion Reports List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -50,7 +50,7 @@
                 padding-right: 20px;
                 padding-left: 20px;
             }
-            
+
             .navbar-btn-logout {
                 padding-right: 20px;
                 padding-left: 20px;
@@ -176,36 +176,36 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <strong class="notificationBoxHeader">Databasing</strong>
-                                        <div class="notificationBoxMessage">
-                                            Status: Approved
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <strong class="notificationBoxHeader">Programming 101</strong>
-                                        <div class="notificationBoxMessage">
-                                            Status: Step 4
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <strong class="notificationBoxHeader">*Insert name ng proposal*</strong>
-                                        <div class="notificationBoxMessage">
-                                            Status: *insert status*
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>    
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <strong class="notificationBoxHeader">Databasing</strong>
+                                            <div class="notificationBoxMessage">
+                                                Status: Approved
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <strong class="notificationBoxHeader">Programming 101</strong>
+                                            <div class="notificationBoxMessage">
+                                                Status: Step 4
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <strong class="notificationBoxHeader">*Insert name ng proposal*</strong>
+                                            <div class="notificationBoxMessage">
+                                                Status: *insert status*
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>    
                             </div>
                         </ul>
                     </div>
@@ -217,7 +217,7 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
+
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -228,7 +228,7 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
+
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -273,12 +273,12 @@
                         </tbody>
                     </table>
                 </div>
-                <!--- end of table -->
+
 
             </div>
 
         </div>
-        <!-- body-row END -->
+
 
         <script>
             // sandbox disable popups

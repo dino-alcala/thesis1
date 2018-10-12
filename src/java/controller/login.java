@@ -85,7 +85,7 @@ public class login extends HttpServlet {
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());
                     session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Lasallian Mission Director");
+                    session.setAttribute("unit", "Lasallian Mission Director (LMD)");
                     session.setAttribute("position", position);
 
                     ServletContext context = getServletContext();
@@ -96,7 +96,7 @@ public class login extends HttpServlet {
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());
                     session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Laguna Campus Lasallian Mission");
+                    session.setAttribute("unit", "Laguna Campus Lasallian Mission (LCLM)");
                     session.setAttribute("position", position);
 
                     ServletContext context = getServletContext();
@@ -107,7 +107,7 @@ public class login extends HttpServlet {
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());
                     session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Dean of Student Affairs");
+                    session.setAttribute("unit", "Dean of Student Affairs (DSA)");
                     session.setAttribute("position", position);
 
                     ServletContext context = getServletContext();
@@ -129,7 +129,7 @@ public class login extends HttpServlet {
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());
                     session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Office of Personnel Management Director");
+                    session.setAttribute("unit", "Office of Personnel Management Director (OPMD)");
                     session.setAttribute("position", position);
 
                     ServletContext context = getServletContext();
@@ -140,7 +140,7 @@ public class login extends HttpServlet {
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());
                     session.setAttribute("userID", id);
-                    session.setAttribute("unit", "Lasallian Mission Council");
+                    session.setAttribute("unit", "Lasallian Mission Council (LMC)");
                     session.setAttribute("position", position);
 
                     ServletContext context = getServletContext();

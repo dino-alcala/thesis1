@@ -29,41 +29,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-
-        <script type="text/javascript">
-            $('#body-row .collapse').collapse('hide');
-
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
-            });
-
-            function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
-
-                // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-
-        </script>
-
-
-        <!--datatables-->    
-
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
 
@@ -73,22 +38,20 @@
         <script type="text/javascript" class="init"></script>
 
         <script>
-                $(document).ready(function () {
-                    $('#example').DataTable();
-                });
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
         </script>
-
-        <!--datatables-->  
 
         <script type="text/javascript">
             <%
                 if (request.getAttribute("successFF1") != null) {
 
             %>
-                $("document").ready(function () {
+            $("document").ready(function () {
 
-                    alert("<%=request.getAttribute("successFF1")%>");
-                });
+                alert("<%=request.getAttribute("successFF1")%>");
+            });
 
             <%
                 }
@@ -96,10 +59,10 @@
                 if (request.getAttribute("reviseFF1") != null) {
 
             %>
-                $("document").ready(function () {
+            $("document").ready(function () {
 
-                    alert("<%=request.getAttribute("reviseFF1")%>");
-                });
+                alert("<%=request.getAttribute("reviseFF1")%>");
+            });
 
             <%
                 }
@@ -107,10 +70,10 @@
                 if (request.getAttribute("rejectFF1") != null) {
 
             %>
-                $("document").ready(function () {
+            $("document").ready(function () {
 
-                    alert("<%=request.getAttribute("rejectFF1")%>");
-                });
+                alert("<%=request.getAttribute("rejectFF1")%>");
+            });
 
             <%
                 }
@@ -118,28 +81,11 @@
 
         </script>
 
-        <!--datatables-->   
-
-
         <style>
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -291,7 +237,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -325,9 +270,7 @@
                     </a>
 
                 </ul>
-                <!-- List Group END-->
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
 
@@ -390,81 +333,79 @@
                             </tbody>
                         </table>
                     </div>
-                    <!--- end of table -->
                 </form>
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
-                // sandbox disable popups
-                if (window.self !== window.top && window.name != "view1") {
-                    ;
-                    window.alert = function () {/*disable alert*/
-                    };
-                    window.confirm = function () {/*disable confirm*/
-                    };
-                    window.prompt = function () {/*disable prompt*/
-                    };
-                    window.open = function () {/*disable open*/
-                    };
-                }
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
 
-                // prevent href=# click jump
-                document.addEventListener("DOMContentLoaded", function () {
-                    var links = document.getElementsByTagName("A");
-                    for (var i = 0; i < links.length; i++) {
-                        if (links[i].href.indexOf('#') != -1) {
-                            links[i].addEventListener("click", function (e) {
-                                console.debug("prevent href=# click");
-                                if (this.hash) {
-                                    if (this.hash == "#") {
-                                        e.preventDefault();
-                                        return false;
-                                    } else {
-                                        /*
-                                         var el = document.getElementById(this.hash.replace(/#/, ""));
-                                         if (el) {
-                                         el.scrollIntoView(true);
-                                         }
-                                         */
-                                    }
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
                                 }
-                                return false;
-                            })
-                        }
+                            }
+                            return false;
+                        })
                     }
-                }, false);
+                }
+            }, false);
         </script>
         <script>
-                // Hide submenus
-                $('#body-row .collapse').collapse('hide');
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
 
                 // Collapse/Expand icon
-                $('#collapse-icon').addClass('fa-angle-double-left');
-
-                // Collapse click
-                $('[data-toggle=sidebar-colapse]').click(function () {
-                    SidebarCollapse();
-                });
-
-                function SidebarCollapse() {
-                    $('.menu-collapsed').toggleClass('d-none');
-                    $('.sidebar-submenu').toggleClass('d-none');
-                    $('.submenu-icon').toggleClass('d-none');
-                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                    // Treating d-flex/d-none on separators with title
-                    var SeparatorTitle = $('.sidebar-separator-title');
-                    if (SeparatorTitle.hasClass('d-flex')) {
-                        SeparatorTitle.removeClass('d-flex');
-                    } else {
-                        SeparatorTitle.addClass('d-flex');
-                    }
-
-                    // Collapse/Expand icon
-                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

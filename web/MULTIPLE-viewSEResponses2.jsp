@@ -868,7 +868,5 @@
 
         </div>
 
-    </div>
-    <!-- body-row END -->
-</body>
+    </body>
 </html>

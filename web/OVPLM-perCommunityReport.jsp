@@ -17,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM Per-community Report</title>
+        <title>Per-community Report</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -33,7 +33,6 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
         <script src="https://cdn.rawgit.com/emn178/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
-        <!--datatables-->    
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
@@ -50,30 +49,13 @@
             $(document).ready(function () {
                 $('#example2').DataTable();
             });
-        </script>
-
-        <!--datatables-->    
+        </script> 
 
         <style>    
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput, #myInput2, #myInput3{
@@ -281,7 +263,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -292,7 +273,6 @@
                     $("#sidebar-container").load("sidebarovplm.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -303,7 +283,7 @@
                             c = UserDAO.retrieveCommunity();
                         %>
                         <p></p>
-                        <p>Enter Report Range: From: <input type="date" <%if(request.getAttribute("dated")!=null){ %> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if(request.getAttribute("dated")!=null){ %> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
+                        <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
                         <div class="form-group">
                             <label for="sel1">Choose Community:</label>
                             <select class="form-control" id="type" name="community">
@@ -311,7 +291,9 @@
                                 <%
                                     for (int i = 0; i < c.size(); i++) {
                                 %>
-                                <option value="<%=c.get(i).getId()%>" <%if(request.getAttribute("dated")!=null){ if(Integer.parseInt(request.getAttribute("communityID").toString()) == c.get(i).getId()){%> selected="selected"<%}}%> ><%=c.get(i).getName()%></option>
+                                <option value="<%=c.get(i).getId()%>" <%if (request.getAttribute("dated") != null) {
+                                        if (Integer.parseInt(request.getAttribute("communityID").toString()) == c.get(i).getId()) {%> selected="selected"<%}
+                                    }%> ><%=c.get(i).getName()%></option>
                                 <%
                                     }
                                 %>
@@ -348,7 +330,6 @@
                         </div> 
                     </div>
                 </div>
-                <!--- end of totals -->
 
 
                 <!--- Programs Completed -->
@@ -413,7 +394,7 @@
                         <%
                             ArrayList<SE> s = new ArrayList();
                             s = UserDAO.retrieveSEProposalCompletedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
-                            %>
+                        %>
                         <thead class="thead-dark">
                             <tr>
                                 <th>Date</th>
@@ -427,8 +408,8 @@
                         </thead>
                         <tbody>
                             <%
-                                for(int i = 0; i < s.size(); i++){
-                                %>
+                                for (int i = 0; i < s.size(); i++) {
+                            %>
                             <tr>
                                 <td><%=s.get(i).getDate()%></td>
                                 <td><%=s.get(i).getName()%></td>
@@ -440,12 +421,11 @@
                             </tr>
                             <%
                                 }
-                                %>
+                            %>
                         </tbody>
                     </table>
 
                 </div>
-                <!--- end of Programs Completed -->
 
                 <!--- Units -->
                 <div class="container-fluid panels">
@@ -499,7 +479,7 @@
                             });
                         </script>
                     </div>
-                    
+
                 </div>
                 <%
                     }
@@ -509,7 +489,6 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

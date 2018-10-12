@@ -21,7 +21,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM PMS Home</title>
+        <title>Term-End Report</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -37,8 +37,6 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
         <script src="https://cdn.rawgit.com/emn178/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
-
-        <!--datatables-->    
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
@@ -95,8 +93,8 @@
                 }
             %>
                     }
-            <%  } 
-            
+            <%  }
+
             %>
                     if (response == "All"){
 
@@ -461,8 +459,6 @@
             });
         </script>
 
-        <!--datatables--> 
-
         <!--
                 <script>
                     $(document).ready(function() {
@@ -495,53 +491,11 @@
         </script>
         --->
 
-        <script type="text/javascript">
-
-            $('#body-row .collapse').collapse('hide');
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-            SidebarCollapse();
-            });
-            function SidebarCollapse() {
-            $('.menu-collapsed').toggleClass('d-none');
-            $('.sidebar-submenu').toggleClass('d-none');
-            $('.submenu-icon').toggleClass('d-none');
-            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-            // Treating d-flex/d-none on separators with title
-            var SeparatorTitle = $('.sidebar-separator-title');
-            if (SeparatorTitle.hasClass('d-flex')) {
-            SeparatorTitle.removeClass('d-flex');
-            } else {
-            SeparatorTitle.addClass('d-flex');
-            }
-
-            // Collapse/Expand icon
-            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
-
-        </script>
-
         <style>
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -577,8 +531,6 @@
                 text-align: center;
                 margin-top: 20px;
             }
-
-
 
             .quickhead{
                 border-bottom: 1px solid white;
@@ -801,7 +753,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -812,7 +763,6 @@
                     $("#sidebar-container").load("sidebarovplm.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -933,7 +883,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!--- end of KRAs -->
 
                 <!---pie chart-->
                 <div class="container-fluid panels">
@@ -1074,7 +1023,6 @@
 
 
                 </div>
-                <!--- end of SE -->
 
                 <!--- FF -->
                 <div class="container-fluid panels">
@@ -1160,7 +1108,6 @@
                     </table>
 
                 </div>
-                <!--- end of FF -->
 
                 <!--- Units -->
                 <div class="container-fluid panels">
@@ -1174,10 +1121,10 @@
                             </div>
                         </div>
                         <script>
-                             <%
+                            <%
                                 ArrayList<Unit> units = new ArrayList();
                                 units = UserDAO.retrieveUnits();
-                                %>
+                            %>
                             Chart.defaults.global.legend.display = true;
                             var ctx = document.getElementById('chartU').getContext('2d');
                             var chartU = new Chart(ctx, {
@@ -1392,85 +1339,77 @@
                         }
                     %>
                 </div>
-                <!--- end of budget -->
 
             </div>
 
-
-
-
-
         </div>
 
-    </div>
-    <!-- body-row END -->
+        <script>
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+            ;
+            window.alert = function () {/*disable alert*/
+            };
+            window.confirm = function () {/*disable confirm*/
+            };
+            window.prompt = function () {/*disable prompt*/
+            };
+            window.open = function () {/*disable open*/
+            };
+            }
 
-    <script>
-        // sandbox disable popups
-        if (window.self !== window.top && window.name != "view1") {
-        ;
-        window.alert = function () {/*disable alert*/
-        };
-        window.confirm = function () {/*disable confirm*/
-        };
-        window.prompt = function () {/*disable prompt*/
-        };
-        window.open = function () {/*disable open*/
-        };
-        }
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+            var links = document.getElementsByTagName("A");
+            for (var i = 0; i < links.length; i++) {
+            if (links[i].href.indexOf('#') != - 1) {
+            links[i].addEventListener("click", function (e) {
+            console.debug("prevent href=# click");
+            if (this.hash) {
+            if (this.hash == "#") {
+            e.preventDefault();
+            return false;
+            }
+            else {
+            /*
+             var el = document.getElementById(this.hash.replace(/#/, ""));
+             if (el) {
+             el.scrollIntoView(true);
+             }
+             */
+            }
+            }
+            return false;
+            })
+            }
+            }
+            }, false);
+        </script>
+        <script>
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+            SidebarCollapse();
+            });
+            function SidebarCollapse() {
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+            } else {
+            SeparatorTitle.addClass('d-flex');
+            }
 
-        // prevent href=# click jump
-        document.addEventListener("DOMContentLoaded", function () {
-        var links = document.getElementsByTagName("A");
-        for (var i = 0; i < links.length; i++) {
-        if (links[i].href.indexOf('#') != - 1) {
-        links[i].addEventListener("click", function (e) {
-        console.debug("prevent href=# click");
-        if (this.hash) {
-        if (this.hash == "#") {
-        e.preventDefault();
-        return false;
-        }
-        else {
-        /*
-         var el = document.getElementById(this.hash.replace(/#/, ""));
-         if (el) {
-         el.scrollIntoView(true);
-         }
-         */
-        }
-        }
-        return false;
-        })
-        }
-        }
-        }, false);
-    </script>
-    <script>
-        // Hide submenus
-        $('#body-row .collapse').collapse('hide');
-        // Collapse/Expand icon
-        $('#collapse-icon').addClass('fa-angle-double-left');
-        // Collapse click
-        $('[data-toggle=sidebar-colapse]').click(function () {
-        SidebarCollapse();
-        });
-        function SidebarCollapse() {
-        $('.menu-collapsed').toggleClass('d-none');
-        $('.sidebar-submenu').toggleClass('d-none');
-        $('.submenu-icon').toggleClass('d-none');
-        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-        // Treating d-flex/d-none on separators with title
-        var SeparatorTitle = $('.sidebar-separator-title');
-        if (SeparatorTitle.hasClass('d-flex')) {
-        SeparatorTitle.removeClass('d-flex');
-        } else {
-        SeparatorTitle.addClass('d-flex');
-        }
-
-        // Collapse/Expand icon
-        $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-        }
-    </script>
-</body>
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
+        </script>
+    </body>
 </html>

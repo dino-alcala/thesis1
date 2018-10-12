@@ -19,10 +19,11 @@
         <title>Approve SE Proposal</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/homepagestyle.css">
+        <link rel="stylesheet" href="css/progressbar.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -34,20 +35,6 @@
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput {
@@ -123,296 +110,6 @@
                 border: 3px solid #4CAF50;
             }
 
-            .progress-tracker {
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                margin: 40px auto;
-                padding: 0;
-                list-style: none;
-            }
-
-            .progress-step {
-                display: block;
-                position: relative;
-                -webkit-box-flex: 1;
-                -ms-flex: 1 1 0%;
-                flex: 1 1 0%;
-                margin: 0;
-                padding: 0;
-                min-width: 28px;
-            }
-
-            .progress-step:last-child {
-                -webkit-box-flex: 0;
-                -ms-flex-positive: 0;
-                flex-grow: 0;
-            }
-
-            .progress-step:not(:last-child)::after {
-                content: '';
-                display: block;
-                position: absolute;
-                z-index: -10;
-                top: 12px;
-                bottom: 12px;
-                right: -14px;
-                width: 100%;
-                height: 4px;
-                -webkit-transition: background-color 0.3s;
-                transition: background-color 0.3s;
-            }
-
-            .progress-step.is-active .progress-title {
-                font-weight: 400;
-            }
-
-            .progress-step > a {
-                display: block;
-            }
-
-            .progress-marker {
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                justify-content: center;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                align-items: center;
-                position: relative;
-                z-index: 20;
-                width: 28px;
-                height: 28px;
-                padding-bottom: 2px;
-                color: #fff;
-                font-weight: 400;
-                border: 2px solid transparent;
-                border-radius: 50%;
-                -webkit-transition: background-color, border-color;
-                transition: background-color, border-color;
-                -webkit-transition-duration: 0.3s;
-                transition-duration: 0.3s;
-            }
-
-            .progress-text {
-                display: block;
-                padding: 14px 9.3333333333px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .progress-title {
-                margin-top: 0;
-            }
-
-            .progress-step .progress-marker {
-                color: #fff;
-                background-color: #b6b6b6;
-            }
-
-            .progress-step::after {
-                background-color: #b6b6b6;
-            }
-
-            .progress-step .progress-text, .progress-step .progress-step > a .progress-text {
-                color: #333333;
-            }
-
-            .progress-step.is-active .progress-marker {
-                background-color: yellow;
-            }
-
-            .progress-step.is-complete .progress-marker {
-                background-color: green;
-            }
-
-            .progress-step.is-complete::after {
-                background-color: #868686;
-            }
-
-            .progress-step:hover .progress-marker {
-                background-color: #56ADF5;
-            }
-
-            .progress-tracker--center .progress-step {
-                text-align: center;
-            }
-
-            .progress-tracker--center .progress-step:last-child {
-                -webkit-box-flex: 1;
-                -ms-flex-positive: 1;
-                flex-grow: 1;
-            }
-
-            .progress-tracker--center .progress-step::after {
-                right: -50%;
-            }
-
-            .progress-tracker--center .progress-marker {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .progress-tracker--right .progress-step {
-                text-align: right;
-            }
-
-            .progress-tracker--right .progress-step:last-child {
-                -webkit-box-flex: 1;
-                -ms-flex-positive: 1;
-                flex-grow: 1;
-            }
-
-            .progress-tracker--right .progress-step::after {
-                right: calc(-100% + 14px);
-            }
-
-            .progress-tracker--right .progress-marker {
-                margin-left: auto;
-            }
-
-            .progress-tracker--border {
-                padding: 5px;
-                border: 2px solid #868686;
-                border-radius: 38px;
-            }
-
-            .progress-tracker--spaced .progress-step::after {
-                width: calc(100% - 48px);
-                margin-right: 24px;
-            }
-
-            .progress-tracker--word {
-                padding-right: 38.6666666667px;
-                overflow: hidden;
-            }
-
-            .progress-tracker--word .progress-text {
-                display: inline-block;
-                white-space: nowrap;
-            }
-
-            .progress-tracker--word .progress-title {
-                margin: 0;
-            }
-
-            .progress-tracker--word-center {
-                padding-right: 38.6666666667px;
-                padding-left: 38.6666666667px;
-            }
-
-            .progress-tracker--word-center .progress-text {
-                padding-right: 0;
-                padding-left: 0;
-                -webkit-transform: translateX(calc(-50% + 14px));
-                transform: translateX(calc(-50% + 14px));
-            }
-
-            .progress-tracker--word-right {
-                padding-right: 0;
-                padding-left: 38.6666666667px;
-            }
-
-            .progress-tracker--word-right .progress-text {
-                padding-left: 0;
-                -webkit-transform: translateX(calc(-100% + 28px));
-                transform: translateX(calc(-100% + 28px));
-            }
-
-            .progress-tracker--text .progress-step:last-child {
-                -webkit-box-flex: 1;
-                -ms-flex-positive: 1;
-                flex-grow: 1;
-            }
-
-            .progress-tracker--text-top .progress-step::after {
-                top: auto;
-            }
-
-            .progress-tracker--text-top .progress-text {
-                height: 100%;
-            }
-
-            .progress-tracker--text-top .progress-marker {
-                bottom: 28px;
-            }
-
-            .progress-tracker--text-inline .progress-step {
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-            }
-
-            .progress-tracker--text-inline .progress-text {
-                position: relative;
-                z-index: 30;
-                max-width: 70%;
-                white-space: nowrap;
-                padding-top: 0;
-                padding-bottom: 0;
-                background-color: #fff;
-            }
-
-            .progress-tracker--text-inline .progress-title {
-                margin: 0;
-            }
-
-            .progress-tracker--square .progress-step {
-                padding-top: 0;
-            }
-
-            .progress-tracker--square .progress-marker {
-                -webkit-transform: scaleX(0.33) translateY(-12px);
-                transform: scaleX(0.33) translateY(-12px);
-                border-radius: 0;
-            }
-
-            @media (max-width: 399px) {
-                .progress-tracker-mobile {
-                    overflow-x: auto;
-                }
-                .progress-tracker-mobile .progress-tracker {
-                    min-width: 200%;
-                }
-            }
-
-            .progress-tracker--vertical {
-                -webkit-box-orient: vertical;
-                -webkit-box-direction: normal;
-                -ms-flex-direction: column;
-                flex-direction: column;
-            }
-
-            .progress-tracker--vertical .progress-step {
-                -webkit-box-flex: 1;
-                -ms-flex: 1 1 auto;
-                flex: 1 1 auto;
-            }
-
-            .progress-tracker--vertical .progress-step::after {
-                right: auto;
-                top: 14px;
-                left: 12px;
-                width: 4px;
-                height: 100%;
-            }
-
-            .progress-tracker--vertical .progress-marker {
-                position: absolute;
-                left: 0;
-            }
-
-            .progress-tracker--vertical .progress-text {
-                padding-top: 7px;
-                padding-left: 42px;
-            }
-
-            .progress-tracker--vertical .progress-step:not(:last-child) .progress-text {
-                padding-bottom: 42px;
-            }
-
             @-webkit-keyframes scale-up {
                 from {
                     opacity: 1;
@@ -439,210 +136,6 @@
                 }
             }
 
-            .anim-ripple .progress-marker::before, .anim-ripple-large .progress-marker::before, .anim-ripple-splash .progress-marker::before {
-                content: "";
-                display: block;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                z-index: 30;
-                background: rgba(0, 0, 0, 0.3);
-                border-radius: 50%;
-                -webkit-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
-                visibility: hidden;
-            }
-
-            .anim-ripple :not(:active) .progress-marker::before, .anim-ripple-large :not(:active) .progress-marker::before, .anim-ripple-splash :not(:active) .progress-marker::before {
-                -webkit-animation: scale-up 0.3s ease-out;
-                animation: scale-up 0.3s ease-out;
-            }
-
-            .anim-ripple :focus .progress-marker::before, .anim-ripple-large :focus .progress-marker::before, .anim-ripple-splash :focus .progress-marker::before {
-                visibility: visible;
-            }
-
-            .anim-ripple-large .progress-marker::before {
-                width: 200%;
-                height: 200%;
-            }
-
-            .anim-ripple-splash .progress-marker::before {
-                width: 200%;
-                height: 200%;
-                box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.35);
-            }
-
-            .anim-ripple-double .progress-marker::before, .anim-ripple-double .progress-marker::after {
-                content: "";
-                display: block;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                z-index: 30;
-                background: rgba(0, 0, 0, 0.3);
-                border-radius: 50%;
-                -webkit-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
-                visibility: hidden;
-                background: none;
-                border: 3px solid rgba(0, 0, 0, 0.3);
-            }
-
-            .anim-ripple-double :not(:active) .progress-marker::before, .anim-ripple-double :not(:active) .progress-marker::after {
-                -webkit-animation: scale-up 0.3s ease-out 0s;
-                animation: scale-up 0.3s ease-out 0s;
-            }
-
-            .anim-ripple-double :not(:active) .progress-marker::after {
-                -webkit-animation-delay: 0.15s;
-                animation-delay: 0.15s;
-            }
-
-            .anim-ripple-double :focus .progress-marker::before, .anim-ripple-double :focus .progress-marker::after {
-                visibility: visible;
-            }
-
-            .anim-path .progress-step::after {
-                background-image: -webkit-linear-gradient(left, #b6b6b6 50%, #868686 50%);
-                background-image: linear-gradient(to right, #b6b6b6 50%, #868686 50%);
-                background-size: 200% 100%;
-                background-position: 0% 100%;
-                -webkit-transition: background-position 0.3s ease-out;
-                transition: background-position 0.3s ease-out;
-            }
-
-            .anim-path .progress-step.is-complete::after {
-                background-position: -100% 100%;
-            }
-
-            <!--NavbarAndSidebar-->
-
-            body {
-                padding-top: 56px;
-            }
-
-            .sticky-offset {
-                top: 56px;
-            }
-
-            #body-row {
-                margin-left:0;
-                margin-right:0;
-            }
-
-            #sidebar-container {
-                min-height: 100vh;   
-                background-color: #333333;
-                padding: 0;
-            }
-
-            /* Sidebar sizes when expanded and expanded */
-            .sidebar-expanded {
-                width: 230px;
-            }
-            .sidebar-collapsed {
-                width: 60px;
-            }
-
-            /* Menu item*/
-            #sidebar-container .list-group a {
-                height: 50px;
-                color: white;
-            }
-
-            /* Submenu item*/
-            #sidebar-container .list-group .sidebar-submenu a {
-                height: 45px;
-                padding-left: 30px;
-            }
-            .sidebar-submenu {
-                font-size: 0.9rem;
-            }
-
-            .sidebar-separator {
-                background-color: #333333;
-                height: 25px;
-            }
-            .logo-separator {
-                background-color: #333333;    
-                height: 60px;
-            }
-
-            /* Closed submenu icon */
-            #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
-                content: " \f0d7";
-                font-family: FontAwesome;
-                display: inline;
-                text-align: right;
-                padding-left: 10px;
-            }
-            /* Opened submenu icon */
-            #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
-                content: " \f0da";
-                font-family: FontAwesome;
-                display: inline;
-                text-align: right;
-                padding-left: 10px;
-            }
-
-            .nav-link {
-                border-bottom: 2px solid green;
-            }
-
-            #navbar {
-                background-color: #009900;
-            }
-
-            #navbar-unit {
-                color: white;
-            }
-
-            .navbar-toggler-icon {
-                background-color: white;
-            }
-
-            #smallerscreenmenuButton {
-                color: white;
-            }
-
-            #smallerscreenmenu {
-                color: white;
-            }
-
-            #submenuCategoryBox {
-                background-color: #d9d9d9;
-            }
-
-            #submenuCategoryBox:hover {
-                background-color: lightgreen;
-            }
-
-            #submenuCategory{
-                font-size: 13px;
-                color: #4d4d4d;
-            }
-
-            #sidebarCategory {
-                background-color: #4d4d4d;
-            }
-
-            #sidebarCategory:hover {
-                background-color: lightgreen;
-            }
-
-            #sidebarCategoryActive {
-                background-color: lightgreen;
-            }
-
-            #sidebarCategoryActive:hover {
-                background-color: lightgreen;
-            }
-
             h3{
                 font-size: 40px;   
                 border-bottom: 2px solid #4CAF50;
@@ -666,12 +159,8 @@
                 padding:15px;
             }
 
-            .progress-title{
-                color: darkgreen;
-            }
-
             textarea{
-                resize:none;
+                resize: none;
             }
 
         </style>
@@ -726,27 +215,27 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <%
-                                UserDAO UserDAO = new UserDAO();
-                                ArrayList<Notification> n = new ArrayList();
-                                n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <%
+                                    UserDAO UserDAO = new UserDAO();
+                                    ArrayList<Notification> n = new ArrayList();
+                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                for (int i = 0; i < n.size(); i++) {
-                            %>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                        <div class="notificationBoxMessage">
-                                            <%=n.get(i).getBody()%>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
-                            
-                            <%
-                                }
-                            %>    
+                                    for (int i = 0; i < n.size(); i++) {
+                                %>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                            <div class="notificationBoxMessage">
+                                                <%=n.get(i).getBody()%>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+
+                                <%
+                                    }
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -758,7 +247,7 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
+
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -769,7 +258,7 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
+
 
             <!-- MAIN -->
 
@@ -904,7 +393,7 @@
                                         <h4>Work Plan</h4>
                                     </div>
                                 </div>
-                               <table style="width:100%">
+                                <table style="width:100%">
                                     <tr>
                                         <th>Date</th>
                                         <th>Activity</th> 
@@ -1036,83 +525,83 @@
                                     </tr>
                                     <tr>
                                         <td>Evaluation by COSCA</td>
-                                        <td><%if(SE.getCoscaRemarks()!=null){%><%=SE.getCoscaRemarks()%><%}%></td>
+                                        <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Enter Remarks:</td>
                                         <td>
-                                            <%if(Integer.parseInt(session.getAttribute("userID").toString())==23){
-                                                %>
-                                                <b>Br. Michael Broughton: </b> <%if(SE.getLmc1Remarks()!=null){%><%=SE.getLmc1Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Nelca Villarin: </b> <%if(SE.getLmc2Remarks()!=null){%><%=SE.getLmc2Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Margarita Perdido: </b> <%if(SE.getLmc3Remarks()!=null){%><%=SE.getLmc3Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Mr. James Laxa: </b> <%if(SE.getLmc4Remarks()!=null){%><%=SE.getLmc4Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <%  } else if(Integer.parseInt(session.getAttribute("userID").toString())==22){
-                                                    %>
-                                                <b>Br. Michael Broughton: </b> <%if(SE.getLmc1Remarks()!=null){%><%=SE.getLmc1Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Nelca Villarin: </b> <%if(SE.getLmc2Remarks()!=null){%><%=SE.getLmc2Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Margarita Perdido: </b> <%if(SE.getLmc3Remarks()!=null){%><%=SE.getLmc3Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Fritzie De Vera: </b> <%if(SE.getLmc5Remarks()!=null){%><%=SE.getLmc5Remarks()%><%}%>
-                                                <br>
-                                                
-                                                <%  } else if(Integer.parseInt(session.getAttribute("userID").toString())==20){
-                                                    %>
-                                                <b>Br. Michael Broughton: </b> <%if(SE.getLmc1Remarks()!=null){%><%=SE.getLmc1Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Margarita Perdido: </b> <%if(SE.getLmc3Remarks()!=null){%><%=SE.getLmc3Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Mr. James Laxa: </b> <%if(SE.getLmc4Remarks()!=null){%><%=SE.getLmc4Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Fritzie De Vera: </b> <%if(SE.getLmc5Remarks()!=null){%><%=SE.getLmc5Remarks()%><%}%>
-                                                <br>
-                                                
-                                                <%  } else if(Integer.parseInt(session.getAttribute("userID").toString())==19){
-                                                    %>
-                                                <b>Ms. Nelca Villarin: </b> <%if(SE.getLmc2Remarks()!=null){%><%=SE.getLmc2Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Margarita Perdido: </b> <%if(SE.getLmc3Remarks()!=null){%><%=SE.getLmc3Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Mr. James Laxa: </b> <%if(SE.getLmc4Remarks()!=null){%><%=SE.getLmc4Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Fritzie De Vera: </b> <%if(SE.getLmc5Remarks()!=null){%><%=SE.getLmc5Remarks()%><%}%>
-                                                <br>
-                                                
-                                                <%  } else if(Integer.parseInt(session.getAttribute("userID").toString())==21){
-                                                    %>
-                                                <b>Br. Michael Broughton: </b> <%if(SE.getLmc1Remarks()!=null){%><%=SE.getLmc1Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Nelca Villarin: </b> <%if(SE.getLmc2Remarks()!=null){%><%=SE.getLmc2Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Mr. James Laxa: </b> <%if(SE.getLmc4Remarks()!=null){%><%=SE.getLmc4Remarks()%><%}%>
-                                                <br>
-                                                <br>
-                                                <b>Ms. Fritzie De Vera: </b> <%if(SE.getLmc5Remarks()!=null){%><%=SE.getLmc5Remarks()%><%}%>
-                                                <br>
-                                                
-                                                <%  } %>
-                                                
+                                            <%if (Integer.parseInt(session.getAttribute("userID").toString()) == 23) {
+                                            %>
+                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 22) {
+                                            %>
+                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                            <br>
+
+                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 20) {
+                                            %>
+                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                            <br>
+
+                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
+                                            %>
+                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                            <br>
+
+                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 21) {
+                                            %>
+                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                            <br>
+
+                                            <%  } %>
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -1120,27 +609,27 @@
                                         <%
                                             if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
                                         %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if(SE.getLmc1Remarks()!=null){%><%=SE.getLmc1Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
                                                 if (Integer.parseInt(session.getAttribute("userID").toString()) == 20) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if(SE.getLmc2Remarks()!=null){%><%=SE.getLmc2Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
                                                 if (Integer.parseInt(session.getAttribute("userID").toString()) == 21) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if(SE.getLmc3Remarks()!=null){%><%=SE.getLmc3Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
                                                 if (Integer.parseInt(session.getAttribute("userID").toString()) == 22) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if(SE.getLmc4Remarks()!=null){%><%=SE.getLmc4Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
                                                 if (Integer.parseInt(session.getAttribute("userID").toString()) == 23) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if(SE.getLmc5Remarks()!=null){%><%=SE.getLmc5Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
                                             %>
@@ -1156,8 +645,6 @@
                     </div>
                 </form>
             </div>
-
-            <!-- body-row END -->
 
             <script>
                 // sandbox disable popups

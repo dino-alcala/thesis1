@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM PMS Home</title>
+        <title>KRA Details</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -33,7 +33,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-        <!--datatables-->    
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
@@ -47,10 +46,10 @@
             $(document).ready(function () {
                 $('#example').DataTable();
             });
-             $(document).ready(function () {
+            $(document).ready(function () {
                 $('#example2').DataTable();
             });
-             $(document).ready(function () {
+            $(document).ready(function () {
                 $('#example3').DataTable();
             });
         </script>
@@ -60,20 +59,6 @@
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput{
@@ -252,7 +237,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -263,7 +247,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -290,7 +273,7 @@
 
                     <h2 >Goal <%=kra.getGoals().get(i).getGoal()%>: <%=kra.getGoals().get(i).getName()%>  </h2>
 
-                   <table class="table table-striped table-bordered" style="width:100%">    
+                    <table class="table table-striped table-bordered" style="width:100%">    
                         <thead class="thead-light">
                             <tr>
                                 <th>Measure</th>
@@ -318,20 +301,19 @@
                     %>
 
                 </div>
-                <!--- end of KRAs-->
 
                 <!--- table -->
                 <div class="container-fluid panels">
                     <%
                         ArrayList<SE> s = new ArrayList();
                         s = UserDAO.retrieveSEProposalByKRAID(Integer.parseInt(request.getAttribute("kraID").toString()));
-                        %>
+                    %>
 
                     <h2>Social Engagement Programs Contributed</h2>
 
 
                     <table id="example2" class="table table-striped table-bordered" style="width:100%">    
-                            <thead class="thead-dark" >
+                        <thead class="thead-dark" >
                             <tr>
                                 <th>Program Name</th>
                                 <th>Unit</th>
@@ -343,8 +325,8 @@
                         </thead>
                         <tbody>
                             <%
-                                for(int i = 0; i < s.size(); i++){
-                                %>
+                                for (int i = 0; i < s.size(); i++) {
+                            %>
                             <tr>
                                 <td><%=s.get(i).getName()%></td>
                                 <td><%=s.get(i).getUnit()%></td>
@@ -355,22 +337,21 @@
                             </tr>
                             <%
                                 }
-                                %>
+                            %>
                         </tbody>
                     </table>
                 </div>
-                <!--- end of table -->
 
                 <div class="container-fluid panels">
                     <%
                         ArrayList<FF> f = new ArrayList();
                         f = UserDAO.retrieveFFProposalByKRAID(Integer.parseInt(request.getAttribute("kraID").toString()));
-                        %>
+                    %>
 
                     <h2>Faith Formation Programs Contributed</h2>
 
-                     <table id="example3" class="table table-striped table-bordered" style="width:100%">    
-                            <thead class="thead-dark">
+                    <table id="example3" class="table table-striped table-bordered" style="width:100%">    
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Program Name</th>
                                 <th>Unit</th>
@@ -382,8 +363,8 @@
                         </thead>
                         <tbody>
                             <%
-                                for(int i = 0; i < f.size(); i++){
-                                %>
+                                for (int i = 0; i < f.size(); i++) {
+                            %>
                             <tr>
                                 <td><%=f.get(i).getProjectName()%></td>
                                 <td><%=f.get(i).getUnit()%></td>
@@ -394,16 +375,14 @@
                             </tr>
                             <%
                                 }
-                                %>
+                            %>
                         </tbody>
                     </table>
                 </div>
-                <!--- end of table -->
 
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

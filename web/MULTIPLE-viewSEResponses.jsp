@@ -197,58 +197,58 @@
                     <div class="container-fluid panels">
                         <h2><%=SE.getName()%> Evaluation Responses - <%=sqlDate%></h2>
                     </div>
-                    
+
                     <!---pie chart-->
-                <div class="container-fluid panels">
-                    <%
-                        double overall = ((double)UserDAO.countor71(SE.getId(), 5) * 5 + UserDAO.countor71(SE.getId(), 4) * 4 + UserDAO.countor71(SE.getId(), 3) * 3 + UserDAO.countor71(SE.getId(), 2) * 2 + UserDAO.countor71(SE.getId(), 1) * 1) / (UserDAO.countor71(SE.getId(), 5) + UserDAO.countor71(SE.getId(), 4) + UserDAO.countor71(SE.getId(), 3) + UserDAO.countor71(SE.getId(), 2) + UserDAO.countor71(SE.getId(), 1));
+                    <div class="container-fluid panels">
+                        <%
+                            double overall = ((double) UserDAO.countor71(SE.getId(), 5) * 5 + UserDAO.countor71(SE.getId(), 4) * 4 + UserDAO.countor71(SE.getId(), 3) * 3 + UserDAO.countor71(SE.getId(), 2) * 2 + UserDAO.countor71(SE.getId(), 1) * 1) / (UserDAO.countor71(SE.getId(), 5) + UserDAO.countor71(SE.getId(), 4) + UserDAO.countor71(SE.getId(), 3) + UserDAO.countor71(SE.getId(), 2) + UserDAO.countor71(SE.getId(), 1));
                         %>
 
 
-                    <h2 class="kraheading">Overall Rating - <%=overall%></h2>
-                    <div class="card-deck">
-                        <div class="card bg-white">
-                            <div class="card-body text-center">
-                                <div id="canvas-holder" style="width:50%" >
-                                    <canvas id="chartVIEWSEOVERALL" style="margin-left:380px"></canvas>
-                                </div>
-                                <script>
-                                    Chart.defaults.global.legend.display = true;
-                                    var ctx = document.getElementById('chartVIEWSEOVERALL').getContext('2d');
-                                    ctx.canvas.width = 35;
-                                    ctx.canvas.height = 15;
-                                    var chartVIEWSEOVERALL = new Chart(ctx, {
-                                        type: 'pie',
-                                        data: {
-                                            labels: ['5', '4', '3', '2', '1', 'NEI', 'N/A'],
-                                            datasets:
-                                                    [{
-                                                            data: [<%=UserDAO.countor71(SE.getId(), 5)%>, <%=UserDAO.countor71(SE.getId(), 4)%>, <%=UserDAO.countor71(SE.getId(), 3)%>, <%=UserDAO.countor71(SE.getId(), 2)%>, <%=UserDAO.countor71(SE.getId(), 1)%>, <%=UserDAO.countor71(SE.getId(), 6)%>, <%=UserDAO.countor71(SE.getId(), 7)%>],
-                                                            backgroundColor: ['#F80000', '#C000F8', '#F89D00', '#0077F8', '#F8F400', '#18F800', '#0077F8']
-                                                        }],
-                                        },
-                                        options: {
-                                            legend: {
-                                                display: true,
-                                                position: 'bottom',
-                                                labels: {
-                                                    boxWidth: 60,
-                                                    fontSize: 20
-                                                }
+                        <h2 class="kraheading">Overall Rating - <%=overall%></h2>
+                        <div class="card-deck">
+                            <div class="card bg-white">
+                                <div class="card-body text-center">
+                                    <div id="canvas-holder" style="width:50%" >
+                                        <canvas id="chartVIEWSEOVERALL" style="margin-left:380px"></canvas>
+                                    </div>
+                                    <script>
+                                        Chart.defaults.global.legend.display = true;
+                                        var ctx = document.getElementById('chartVIEWSEOVERALL').getContext('2d');
+                                        ctx.canvas.width = 35;
+                                        ctx.canvas.height = 15;
+                                        var chartVIEWSEOVERALL = new Chart(ctx, {
+                                            type: 'pie',
+                                            data: {
+                                                labels: ['5', '4', '3', '2', '1', 'NEI', 'N/A'],
+                                                datasets:
+                                                        [{
+                                                                data: [<%=UserDAO.countor71(SE.getId(), 5)%>, <%=UserDAO.countor71(SE.getId(), 4)%>, <%=UserDAO.countor71(SE.getId(), 3)%>, <%=UserDAO.countor71(SE.getId(), 2)%>, <%=UserDAO.countor71(SE.getId(), 1)%>, <%=UserDAO.countor71(SE.getId(), 6)%>, <%=UserDAO.countor71(SE.getId(), 7)%>],
+                                                                backgroundColor: ['#F80000', '#C000F8', '#F89D00', '#0077F8', '#F8F400', '#18F800', '#0077F8']
+                                                            }],
                                             },
-                                            tooltips: {
-                                                titleFontSize: 18,
-                                                bodyFontSize: 18
+                                            options: {
+                                                legend: {
+                                                    display: true,
+                                                    position: 'bottom',
+                                                    labels: {
+                                                        boxWidth: 60,
+                                                        fontSize: 20
+                                                    }
+                                                },
+                                                tooltips: {
+                                                    titleFontSize: 18,
+                                                    bodyFontSize: 18
+                                                }
                                             }
-                                        }
 
-                                    });
-                                </script> 
+                                        });
+                                    </script> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--- pie chart-->
+                    <!--- pie chart-->
 
                     <!--Question 1-->
                     <div class="container-fluid panels">
@@ -1116,7 +1116,5 @@
 
         </div>
 
-    </div>
-    <!-- body-row END -->
-</body>
+    </body>
 </html>

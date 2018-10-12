@@ -253,7 +253,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("unit").equals("Lasallian Mission Director")) {
+                if (rs.getString("unit").equals("Lasallian Mission Director (LMD)")) {
                     return true;
                 }
             }
@@ -292,7 +292,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("unit").equals("Laguna Campus Lasallian Mission")) {
+                if (rs.getString("unit").equals("Laguna Campus Lasallian Mission (LCLM)")) {
                     return true;
                 }
             }
@@ -331,7 +331,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("unit").equals("Dean of Student Affairs")) {
+                if (rs.getString("unit").equals("Dean of Student Affairs (DSA)")) {
                     return true;
                 }
             }
@@ -488,7 +488,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("unit").equals("Office of Personnel Management Director")) {
+                if (rs.getString("unit").equals("Office of Personnel Management Director (OPND)")) {
                     return true;
                 }
             }

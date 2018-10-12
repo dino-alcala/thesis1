@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Program Reports List</title>
+        <title>SE Completion Reports List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -43,6 +43,7 @@
                 $('#example').DataTable();
             });
         </script>
+
         <style>
             body{
                 background-color: whitesmoke;
@@ -223,7 +224,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -234,7 +234,6 @@
                     $("#sidebar-container").load("sidebarmultiple.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -277,12 +276,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <!--- end of table -->
                 </form>
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

@@ -22,7 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>OVPLM Per-unit Report</title>
+        <title>Per-unit Report</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -38,9 +38,7 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-        <script src="https://cdn.rawgit.com/emn178/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
-
-        <!--datatables-->    
+        <script src="https://cdn.rawgit.com/emn178/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script> 
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
@@ -475,28 +473,12 @@
             });
         </script>
 
-        <!--datatables--> 
 
         <style>   
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            } 
-
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
             }
 
             #myInput, #myInput2, #myInput3{
@@ -748,7 +730,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -759,7 +740,6 @@
                     $("#sidebar-container").load("sidebarovplm.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -856,7 +836,6 @@
                     </div>
                     <p></p>
                 </div>
-                <!--- end of totals -->
 
                 <!--- Programs Completed -->
                 <div class="container-fluid panels">
@@ -934,7 +913,6 @@
                     </table>
 
                 </div>
-                <!--- end of Programs Completed -->
 
                 <!--- KRAs -->
                 <div class="container-fluid kras">
@@ -1036,7 +1014,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!--- end of KRAs -->
 
                 <!--- Communities -->
                 <div class="container-fluid panels">
@@ -1177,13 +1154,11 @@
                     </table>
 
                 </div>
-                <!--- end of budget -->
 
 
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

@@ -138,8 +138,8 @@
                 <input type="text" class="Form-control" name="code" placeholder="Enter Access Code" required="" autofocus="" /> 
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Enter</button>
-                
-                 <p>Existing User? <a href="index.jsp"><b><i>Login!</i></b></a></p>
+
+                <p>Existing User? <a href="index.jsp"><b><i>Login!</i></b></a></p>
 
             </form>
 

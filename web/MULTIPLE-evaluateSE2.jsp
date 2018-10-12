@@ -11,8 +11,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SE Evaluation</title>
+        <title>SE Program Evaluation</title>
 
+        <link rel="stylesheet" href="css/formstyle5.css">
 
         <style>
             #notifsScroll {
@@ -21,15 +22,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
             html {
                 background: #e6e9e9;
                 background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
@@ -48,130 +40,6 @@
             textarea{
                 resize: none;
             } 
-
-            .form-style-5{
-
-                max-width: 100%;
-                margin: 10px auto;
-                padding: 20px;
-                border-radius: 8px;
-                font-family: Georgia, "Times New Roman", Times, serif;
-                font-size: 13px;
-            }
-
-            .form-style-5 fieldset{
-                border: none;
-            }
-
-            .form-style-5 legend {
-                font-size: 1.4em;
-                margin-bottom: 10px;
-            }
-
-            .form-style-5 label {
-                display: block;
-                margin-bottom: 8px;
-            }
-
-            .form-style-5 input[type="text"],
-            .form-style-5 input[type="date"],
-            .form-style-5 input[type="datetime"],
-            .form-style-5 input[type="email"],
-            .form-style-5 input[type="number"],
-            .form-style-5 input[type="search"],
-            .form-style-5 input[type="time"],
-            .form-style-5 input[type="url"],
-            .form-style-5 textarea,
-            .form-style-5 select {
-
-                font-family: Georgia, "Times New Roman", Times, serif;
-                background: rgba(255,255,255,.1);
-                border: 5;
-                border-radius: 4px;
-                font-size: 16px;
-                margin-bottom: -5px;
-                outline: 0;
-                padding: 7px;
-                width: 100%;
-                box-sizing: border-box; 
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box; 
-                background-color: #e8eeef;
-                color:black;
-                -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-                box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-
-
-            }
-            .form-style-5 input[type="text"]:focus,
-            .form-style-5 input[type="date"]:focus,
-            .form-style-5 input[type="datetime"]:focus,
-            .form-style-5 input[type="email"]:focus,
-            .form-style-5 input[type="number"]:focus,
-            .form-style-5 input[type="search"]:focus,
-            .form-style-5 input[type="time"]:focus,
-            .form-style-5 input[type="url"]:focus,
-            .form-style-5 textarea:focus,
-            .form-style-5 select:focus{
-                background: #d2d9dd;
-            }
-
-            .form-style-5 select{
-                -webkit-appearance: menulist-button;
-                height:35px;
-            }
-
-            .form-style-5 .number {
-                background: green;
-                color: #fff;
-                height: 30px;
-                width: 30px;
-                display: inline-block;
-                font-size: 0.8em;
-                margin-right: 4px;
-                line-height: 30px;
-                text-align: center;
-                text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-                border-radius: 15px 15px 15px 0px;
-            }
-
-            .form-style-5 input[type="submit"]
-            {
-                position: relative;
-                display: block;
-                padding: 19px 39px 18px 39px;
-                color: #FFF;
-                margin: 0 auto;
-                background: green;
-                font-size: 18px;
-                text-align: center;
-                font-style: normal;
-                width: 20%;
-                border-radius: 10px;
-                border: 1px solid darkgreen;
-                border-width: 1px 1px 3px;
-                margin-bottom: 10px;
-            }
-            .form-style-5 input[type="button"]
-            {
-                position: relative;
-                display: block;
-                padding: 9px 9px 9px 9px;
-                color: #FFF;
-                margin: 0 auto;
-                background: green;
-                font-size: 15px;
-                text-align: center;
-                font-style: normal;
-                border-radius: 10px;
-                border: 1px solid darkgreen;
-                margin-bottom: 10px;
-            }
-            .form-style-5 input[type="submit"]:hover,
-            .form-style-5 input[type="button"]:hover
-            {
-                background: #109177;
-            }
 
             body {
                 background: #fff;

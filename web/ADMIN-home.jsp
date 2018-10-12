@@ -27,73 +27,57 @@
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-               <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
- 
-        <script >
-                   <!--- search table-->
-           $(document).re ady(function () {
-           $("#myInput").on ("keyup", function () {                var value = $(this).val().toLowerCase();
-           $("#m yTable tr").filter(function () {
-           $(this).toggle($(this).text().toLowerCase().ind exOf(value) > - 1)
-           });
-           });
-           });< !-- - search table-- >
-                   < !-- Sort Table -- >
-                   function sortTable(n) {
-                   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-                   table = document.getElementById("myTable");
-                   switching = true;
-                   //Set the sorting direction to ascending:
-                   dir = "asc";
-                   /*Make a loop that will continue until
-                    no switching has been done:*/
-                   while (switching) {
-                   //start by saying: no switching is done:
-                   switching = false;
-                   rows = table.getElementsByTagName("TR");
-                   /*Loop through all table rows (except the
-                    first, which contains table headers):*/
-                   for (i = 1; i < (rows.length - 1); i++) {
-                   //start by saying there should be no switching:
-                   shouldSwitch = false;
-                   /*Get the two elements you want to compare,
-                    one from current row and one from the next:*/
-                   x = rows[i].getElementsByTagName("TD")[n];
-                   y = rows[i + 1].getElementsByTagName("TD")[n];
-                   /*check if the two rows should switch place,
-                    based on the direction, asc or desc:*/
-                   if (dir == "asc") {
-                   if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                   //if so, mark as a switch and break the loop:
-                   shouldSwitch = true;
-                   break;
-                   }
-                   } else if (dir == "desc") {
-                   if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                   //if so, mark as a switch and break the loop:
-                   shouldSwitch = true;
-                   break;
-                   }
-                   }
-                   }
-                   if (shouldSwitch) {
-                   /*If a switch has been marked, make the switch
-                    and mark that a switch has been done:*/
-                   rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                   switching = true;
-//Ea ch time a switch is done, increase this count by 1:
-       switchcount ++;      
-     } else {
-       /*If no switching has been done AND the direction is "asc",
-       set the direction to "desc" and run the while loop again.*/
-       if (switchcount == 0 && dir == "asc") {
-         dir = "desc";
-         switching = true;
-       }
-     }
-   }
- }
-   <!-- Sort Table -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                dir = "asc";
+                while (switching) {
+                    switching = false;
+                    rows = table.getElementsByTagName("TR");
+                    for (i = 0; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+
+                        switchcount++;
+                    } else {
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+
         </script>
 
         <style>
@@ -107,7 +91,7 @@
                 padding-right: 20px;
                 padding-left: 20px;
             }
-            
+
             .navbar-btn-logout {
                 padding-right: 20px;
                 padding-left: 20px;
@@ -177,8 +161,6 @@
             #myTable tr.header, #myTable tr:hover {
                 background-color: lightgreen;
             }
-
-            <%--NavbarAndSidebar--%>
 
             body {
                 padding-top: 56px;
@@ -332,7 +314,7 @@
     </head>
 
     <body>
-        <!-- Bootstrap NavBar -->
+        <!--Bootstrap NavBar-->
         <nav class="navbar navbar-expand-md fixed-top" id="navbar">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="smallerscreenmenuButton">
                 <span class="fa fa-align-justify"></span>
@@ -370,36 +352,36 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <strong class="notificationBoxHeader">Databasing</strong>
-                                        <div class="notificationBoxMessage">
-                                            Status: Approved
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <strong class="notificationBoxHeader">Programming 101</strong>
-                                        <div class="notificationBoxMessage">
-                                            Status: Step 4
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <strong class="notificationBoxHeader">*Insert name ng proposal*</strong>
-                                        <div class="notificationBoxMessage">
-                                            Status: *insert status*
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>  
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <strong class="notificationBoxHeader">Databasing</strong>
+                                            <div class="notificationBoxMessage">
+                                                Status: Approved
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <strong class="notificationBoxHeader">Programming 101</strong>
+                                            <div class="notificationBoxMessage">
+                                                Status: Step 4
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <strong class="notificationBoxHeader">*Insert name ng proposal*</strong>
+                                            <div class="notificationBoxMessage">
+                                                Status: *insert status*
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>  
                             </div>
                         </ul>
                     </div>
@@ -411,9 +393,8 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
-        <!-- Bootstrap row -->
+        <!--Bootstrap row-->
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
@@ -427,7 +408,7 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-                    
+
                     <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span>&nbsp;+</span>
@@ -435,7 +416,7 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-                    
+
                     <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="addUser">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span>&nbsp;+</span>
@@ -444,11 +425,11 @@
                         </div>
                     </a>
                 </ul>
-                <!-- List Group END-->
-            </div>
-            <!-- sidebar-container END -->
 
-            <!-- MAIN -->
+            </div>
+
+
+            <!--MAIN-->
             <div class="col py-3">
 
                 <div class="row">
@@ -472,7 +453,7 @@
                                             <tr>
                                                 <th onclick="sortTable(0)">Name</th>
                                                 <th onclick="sortTable(1)">Type</th>
-                                                <th onclick="sortTable(2)">Email Address</th>
+                                                <th onclick=                                "sortTable(2)">Email Address</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -507,68 +488,72 @@
             </div>
 
         </div>
-        <!-- body-row END -->
-        <script>
-                    // sandbox disable popups
-                    if (window.self !== window.top && window.name != "view1") {;
-                    window.alert = function(){/*disable alert*/};
-                    window.confirm = function(){/*disable confirm*/};
-                    window.prompt = function(){/*disable prompt*/};
-                    window.open = function(){/*disable open*/};
-                    }
 
-                    // prevent href=# click jump
-                    document.addEventListener("DOMContentLoaded", function() {
-                    var links = document.getElementsByTagName("A");
-                    for (var i = 0; i < links.length; i++) {
-                    if (links[i].href.indexOf('#') != - 1) {
-                    links[i].addEventListener("click", function(e) {
-                    console.debug("prevent href=# click");
-                    if (this.hash) {
-                    if (this.hash == "#") {
-                    e.preventDefault();
-                    return false;
+        <script>
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
+
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+
+                                    var el = document.getElementById(this.hash.replace(/#/, ""));
+                                    if (el) {
+                                        el.scrollIntoView(true);
+                                    }
+
+                                }
+                            }
+                            return false;
+                        })
                     }
-                    else {
-                    /*
-                     var el = document.getElementById(this.hash.replace(/#/, ""));
-                     if (el) {
-                     el.scrollIntoView(true);
-                     }
-                     */
-                    }
-                    }
-                    return false;
-                    })
-                    }
-                    }
-                    }, false);
+                }
+            }, false);
         </script>
         <script>
-                    // Hide submenus
-                    $('#body-row .collapse').collapse('hide');
-                    // Collapse/Expand icon
-                    $('#collapse-icon').addClass('fa-angle-double-left');
-                    // Collapse click
-                    $('[data-toggle=sidebar-colapse]').click(function() {
-                    SidebarCollapse();
-                    });
-                    function SidebarCollapse () {
-                    $('.menu-collapsed').toggleClass('d-none');
-                    $('.sidebar-submenu').toggleClass('d-none');
-                    $('.submenu-icon').toggleClass('d-none');
-                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                    // Treating d-flex/d-none on separators with title
-                    var SeparatorTitle = $('.sidebar-separator-title');
-                    if (SeparatorTitle.hasClass('d-flex')) {
+            //Hide submenus
+            $('#body-row.collapse').collapse('hide');
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+            // Collapse clic        k
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
                     SeparatorTitle.removeClass('d-flex');
-                    } else {
+                } else {
                     SeparatorTitle.addClass('d-flex');
-                    }
+                }
 
-                    // Collapse/Expand icon
-                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-                    }
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
         </script>
     </body>
 </html>

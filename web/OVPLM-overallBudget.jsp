@@ -35,15 +35,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
             body{
                 background-color: whitesmoke;
                 padding-top: 56px;
@@ -200,7 +191,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -211,7 +201,6 @@
                     $("#sidebar-container").load("sidebarovplm.jsp");
                 </script>
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -229,8 +218,6 @@
 
                         <!--- budget -->
                         <div class="container panels">
-
-
 
                             <h2>Social Engagement Programs</h2>
 
@@ -328,7 +315,6 @@
                             </table>
 
                         </div>
-                        <!--- end of budget -->
 
                     </div>
 
@@ -337,7 +323,6 @@
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
             // sandbox disable popups

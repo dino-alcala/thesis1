@@ -68,20 +68,6 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
-            }
-
             #myInput{
                 margin-bottom: 20px;
             }
@@ -199,27 +185,27 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                            <%
-                                UserDAO UserDAO = new UserDAO();
-                                ArrayList<Notification> n = new ArrayList();
-                                n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <%
+                                    UserDAO UserDAO = new UserDAO();
+                                    ArrayList<Notification> n = new ArrayList();
+                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                for (int i = 0; i < n.size(); i++) {
-                            %>
-                            <li class="notification-box" href="#">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                        <div class="notificationBoxMessage">
-                                            <%=n.get(i).getBody()%>
-                                        </div>
-                                    </div>    
-                                </div>
-                            </li>
-                            
-                            <%
-                                }
-                            %>    
+                                    for (int i = 0; i < n.size(); i++) {
+                                %>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                            <div class="notificationBoxMessage">
+                                                <%=n.get(i).getBody()%>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+
+                                <%
+                                    }
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -231,7 +217,6 @@
                 </div>
             </ul>
         </nav>
-        <!-- NavBar END -->
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -306,83 +291,105 @@
                         </div>
                     </a>
                 </ul>
-                <!-- List Group END-->
             </div>
-            <!-- sidebar-container END -->
 
             <!-- MAIN -->
             <div class="col py-3">
-                <form action="viewKRA" method="post">
                 <!---KRAs-->
                 <div class="container-fluid panels">
 
-                    <h2 class="kraheading">Top 3 Key Result Areas</h2>
+                    <h2>Key Result Areas</h2>
 
-                    <div class="card-columns">
+                    <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Goals</th>
+                                <th scope="col">Measures</th>
+                                <th scope="col">Targets</th>
+                                <th scope="col">Accomplishment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
+                                <td>Development of Lasallian Formation Program for graduate student</td>
+                                <td class="accomplishmentGreen">85%</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Existing Lasallian Formation programs for undergraduate students have been reviewed and revised </td>
+                                <td class="accomplishmentYellow">50%</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>50% of student organizations have implemented a Lasallian formation activity</td>
+                                <td class="accomplishmentRed">15%</td>
+                            </tr>
 
-                            <%
-                                ArrayList<KRA> kra = new ArrayList();
-                                kra = UserDAO.retrieveSORTEDKRA();
-                                kra = UserDAO.insertPercentage(kra);
-                                Collections.sort(kra, KRA.compareDESCPercentage);
-                            %>
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
+                                <td>50% of faculty departments have undergone Lasallian formation program</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>75% of staff have undergone Lasallian formation programs  </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>All administrators have undergone the Lasallian formation activity  </td>
+                                <td></td>
+                            </tr>
 
-                            <%
-                                for (int i = 0; i < 3; i++) {
-                            %>
+                            <tr>
+                                <td></td>
+                                <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
+                                <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
+                                <td></td>
+                            </tr>
 
-                            <div class="card krascards">
-                                <div class="card-body text-left">
-                                    <p class="card-text"><b><%=kra.get(i).getName()%></b></p>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" style="width:<%=kra.get(i).getPercentage()%>%"><%=kra.get(i).getPercentage()%>%</div>
-                                    </div>
-                                    <p class="progressnum"><%=kra.get(i).getTotal()%>/<%=kra.get(i).getTargetTotal()%></p>
-                                    <p class="viewButton"><button type="submit" name="top<%=i%>" class="btn btn-primary btn-sm">View</button></p>
-                                </div>
-                            </div>
+                            <tr>
+                                <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
+                                <td>At least one interdisciplinary activity conducted each term</td>
+                                <td></td>
+                            </tr>
 
-                            <%
-                                }
-                            %>
+                            <tr>
+                                <td> </td>
+                                <td><b>M2</b> Integration of faith dimension using the Lasallian Reflection Framework (LRF) in GE courses</td>
+                                <td>Review and integrate the LRF in all NLCC subjects </td>
+                                <td></td>
+                            </tr>
 
-                        </div>
+                            <tr>
+                                <td> </td>
+                                <td><b>M3</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
+                                <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
+                                <td></td>
+                            </tr>
 
-                    <h2 class="kraheading">Bottom 3 Key Result Areas</h2>
+                            <tr>
+                                <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
+                                <td>3 communities</td>
+                                <td></td>
+                            </tr>
 
-                    <div class="card-columns">
 
-                            <%
-                                ArrayList<KRA> kra2 = new ArrayList();
-                                kra2 = UserDAO.retrieveSORTEDKRA();
-                                kra2 = UserDAO.insertPercentage(kra2);
-                                Collections.sort(kra2, KRA.sortBottomPercentage);
-                            %>
-
-                            <%
-                                for (int i = 0; i < 3; i++) {
-                            %>
-
-                            <div class="card krascards">
-                                <div class="card-body text-left">
-                                    <p class="card-text"><b><%=kra2.get(i).getName()%></b></p>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" style="width:<%=kra2.get(i).getPercentage()%>%"><%=kra2.get(i).getPercentage()%>%</div>
-                                    </div>
-                                    <p class="progressnum"><%=kra2.get(i).getTotal()%>/<%=kra2.get(i).getTargetTotal()%></p>
-                                    <p class="viewButton"><button type="submit" name="top<%=i%>" class="btn btn-primary btn-sm">View</button></p>
-                                </div>
-                            </div>
-
-                            <%
-                                }
-                            %>
-
-                        </div>
+                        </tbody>
+                    </table>
 
                 </div>
-                </form>
-                <!--- end of KRAs-->
+
 
                 <!--- table -->
                 <form action="viewProposalsProgress" method="post">
@@ -390,7 +397,7 @@
                         <%
                             ArrayList<SE> s = new ArrayList();
                             s = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
-                            %>
+                        %>
 
                         <h2>SE Proposals Progress (<%=s.size()%>)</h2>
 
@@ -409,8 +416,8 @@
                             </thead>
                             <tbody id="myTable">
                                 <%
-                                    for(int i = 0; i < s.size(); i++){
-                                    %>
+                                    for (int i = 0; i < s.size(); i++) {
+                                %>
                                 <tr>
                                     <td><%=s.get(i).getDate()%></td>
                                     <td><%=s.get(i).getName()%></td>
@@ -421,7 +428,7 @@
                                 </tr>
                                 <%
                                     }
-                                    %>
+                                %>
                             </tbody>
                         </table>
                     </div>
@@ -431,7 +438,7 @@
                         <%
                             ArrayList<FF> f = new ArrayList();
                             f = UserDAO.retrieveFFbyUnit(session.getAttribute("unit").toString());
-                            %>
+                        %>
                         <h2>FF Proposals Progress (<%=f.size()%>)</h2>
 
                         <input class="form-control" id="myInput" type="text" placeholder="Search table..">
@@ -449,8 +456,8 @@
                             </thead>
                             <tbody id="myTable">
                                 <%
-                                    for(int i = 0; i < f.size(); i++){
-                                    %>
+                                    for (int i = 0; i < f.size(); i++) {
+                                %>
                                 <tr>
                                     <td><%=f.get(i).getDatecreated()%></td>
                                     <td><%=f.get(i).getProjectName()%></td>
@@ -461,18 +468,16 @@
                                 </tr>
                                 <%
                                     }
-                                    %>
+                                %>
                             </tbody>
                         </table>
                     </div>
 
                 </form>
-                <!--- end of table -->
 
             </div>
 
         </div>
-        <!-- body-row END -->
 
         <script>
                 // sandbox disable popups
@@ -542,7 +547,7 @@
 
                     // Collapse/Expand icon
                     $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
+                }
         </script>
     </body>
 </html>
