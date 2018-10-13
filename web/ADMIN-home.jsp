@@ -4,11 +4,11 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.User"%>
 <%@page import="dao.UserDAO"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,6 +30,21 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+        <%
+            if (session.getAttribute("unit").equals("Admin")) {
+                try {
+                    session.setAttribute("jspName", "ADMIN-home.jsp");
+                } catch (Exception e) {
+                    
+                }
+            } else {
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/"+ session.getAttribute("jspName").toString());
+                    dispatcher.forward(request, response);
+            }
+        %>
+
 
         <script>
             $(document).ready(function () {

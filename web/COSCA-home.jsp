@@ -31,6 +31,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+        <%
+             if (session.getAttribute("unit").equals("Center for Social Concern and Action (COSCA)")) {
+                try {
+                    session.setAttribute("jspName", "COSCA-home.jsp");
+                } catch (Exception e) {
+                    
+                }
+            } else {
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/"+ session.getAttribute("jspName").toString());
+                    dispatcher.forward(request, response);
+            }
+        %>
+        
         <script>
             $(document).ready(function () {
                 $("#myInput").on("keyup", function () {

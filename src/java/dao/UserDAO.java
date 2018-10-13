@@ -394,6 +394,47 @@ public class UserDAO {
         return false;
     }
     
+    public boolean isDean(String username) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT position FROM informationsheet WHERE username = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                if (rs.getString("position").equals("CCS - Dean") || rs.getString("position").equals("BAGCED - Dean") || rs.getString("position").equals("COL - Dean") 
+                        || rs.getString("position").equals("CLA - Dean") || rs.getString("position").equals("GCOE - Dean") || rs.getString("position").equals("COS - Dean") 
+                        || rs.getString("position").equals("RVRCOB - Dean")){
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+    
     public boolean isDeptChair(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
