@@ -121,12 +121,22 @@ public class addSE2 extends HttpServlet {
             }
             
             if(session.getAttribute("unit").toString().equals("College of Computer Studies (CCS)")|| (session.getAttribute("unit").toString().equals("Br. Andrew Gonzales College of Education")) || (session.getAttribute("unit").toString().equals("College of Law")) || (session.getAttribute("unit").toString().equals("College of Liberal Arts"))
-                    || (session.getAttribute("unit").toString().equals("College of Science")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVRCOB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)"))){
+                    || (session.getAttribute("unit").toString().equals("College of Science")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVR-COB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)"))){
                 
-                request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
-                dispatcher.forward(request, response);
+                if(session.getAttribute("position").toString().contains("ADEALM")){
+                    
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
+                    dispatcher.forward(request, response);
+                    
+                } else {
+                
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
+                    dispatcher.forward(request, response);
+                }
             }
         }
     }

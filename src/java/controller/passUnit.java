@@ -36,10 +36,16 @@ public class passUnit extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
 
             request.setAttribute("unitID", request.getParameter("unit"));
+            
+            if(request.getParameter("type").toString().equals("Non-Academic")){
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editUnit.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                
+            }
 
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editUnit.jsp");
-            dispatcher.forward(request, response);
+            
         }
     }
 
