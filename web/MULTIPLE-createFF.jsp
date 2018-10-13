@@ -411,12 +411,14 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Activity Classification:</b> </legend>
+                                <legend><b>Type of Faith Formation</b> </legend>
                             <select name="classification">
-                                <option value="Recollection">Recollection</option>
                                 <option value="Retreat">Retreat</option>
-                                <option value="Spiritual-activity development">Spiritual-activity development</option>
-                                <option value="Others">Others</option>
+                                <option value="Recollection">Recollection</option>
+                                <option value="Prayer Service">Prayer Service</option>
+                                <option value="Spiritual Talk">Spiritual Talk</option>
+                                <option value="Talk on the life of the Founder">Talk on the life of the Founder</option>
+                                <option value="Br. Gabriel Drolin Experience">Br. Gabriel Drolin Experience</option>
                             </select>
                             <br><br><br><br>
                         </fieldset>
