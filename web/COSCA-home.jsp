@@ -32,7 +32,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <%
-             if (session.getAttribute("unit").equals("Center for Social Concern and Action (COSCA)")) {
+            if (session.getAttribute("unit").toString().equals("Center for Social Concern and Action (COSCA)")) {
                 try {
                     session.setAttribute("jspName", "COSCA-home.jsp");
                 } catch (Exception e) {
