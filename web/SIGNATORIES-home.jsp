@@ -286,11 +286,11 @@
                                 proposals = UserDAO.retrieveSEProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
 
-                            if (session.getAttribute("unit").toString().equals("External Affairs / Social Engagement Director")) {
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")) {
                                 proposals = UserDAO.retrieveSEProposalByStep(2);
                             }
 
-                            if (session.getAttribute("unit").toString().equals("Dean / VP / VC")) {
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
                                 proposals = UserDAO.retrieveSEProposalByStep(3);
                             }
                         %>

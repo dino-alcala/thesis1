@@ -272,7 +272,7 @@
                         %>
                         <tr>
 
-                            <td><input type ="date" name="date<%=i%>" value="<%=SE.getWorkplan().get(i).getDate()%>"/></td>
+                            <td><input type ="date" name="date<%=i%>" value="<%=SE.getWorkplan().get(i).getDate()%>" min="<%=SE.getActualDate()%>"/></td>
                             <td><textarea rows = "2" cols = "25%" name ="activity<%=i%>"><%=SE.getWorkplan().get(i).getActivity()%></textarea></td>
                             <td><textarea rows = "2" cols = "25%" name ="time<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend()%></textarea></td>
                             <td><textarea rows = "2" cols = "25%" name ="timeend<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></textarea></td>

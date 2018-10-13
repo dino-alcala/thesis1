@@ -64,23 +64,8 @@ public class editSE extends HttpServlet {
             SE.setObjectives(request.getParameter("measureableoutcome"));
             SE.setSourceOfFunds(request.getParameter("funds"));
 
-            if (UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 1) {
+            if (UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 1 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 2 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 3 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 4 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 5) {
                 SE.setStep(1);
-            }
-
-            if (UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 2) {
-                SE.setStep(2);
-            }
-
-            if (UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 3) {
-                SE.setStep(3);
-            }
-            if(UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 4){
-                SE.setStep(4);
-            }
-            
-            if(UserDAO.getStep(Integer.parseInt(request.getParameter("seID")))== 5){
-                SE.setStep(5);
             }
 
             String[] component;

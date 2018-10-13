@@ -46,11 +46,7 @@ public class viewSE extends HttpServlet {
                 proposals = UserDAO.retrieveSEProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
             }
 
-            if (session.getAttribute("unit").toString().equals("External Affairs / Social Engagement Director")) {
-                proposals = UserDAO.retrieveSEProposalByStep(2);
-            }
-
-            if (session.getAttribute("unit").toString().equals("Dean / VP / VC")) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
                 proposals = UserDAO.retrieveSEProposalByStep(3);
             }
 
@@ -67,14 +63,7 @@ public class viewSE extends HttpServlet {
                 dispatcher.forward(request, response);
             }
 
-            if (session.getAttribute("unit").toString().equals("External Affairs / Social Engagement Director")) {
-
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal2.jsp");
-                dispatcher.forward(request, response);
-            }
-
-            if (session.getAttribute("unit").toString().equals("Dean / VP / VC")) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal3.jsp");

@@ -15,7 +15,7 @@
     <body>
         <!--Sidebar for MULTIPLE.name pages-->
         <div id="sidebar-container">
-            <%if (session.getAttribute("unit").toString().equals("Center For Social Concern and Action (COSCA)")) {
+            <%if (session.getAttribute("unit").toString().equals("Center for Social Concern and Action (COSCA)")) {
 
             %>
 

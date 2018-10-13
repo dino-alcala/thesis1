@@ -304,12 +304,16 @@ ProgramsForApproval
 
                     <%
                         ArrayList<SE> proposals = new ArrayList();
-
-                        if (Integer.parseInt(session.getAttribute("userID").toString()) == 18) {
-                            proposals = UserDAO.retrieveSEProposalByStep(4);
-                        }
-
+                        
                         int userID = Integer.parseInt(session.getAttribute("userID").toString());
+                        
+                        if(session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")){
+                            proposals = UserDAO.retrieveSEProposalByStep(2);
+                        }                 
+                       
+                        if(session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))){
+                            proposals = UserDAO.retrieveSEProposalByStep(4);
+                        }  
 
                         if (userID == 19 || userID == 20 || userID == 21 || userID == 22 || userID == 23 || userID == 24 || userID == 25 || userID == 26) {
                             proposals = UserDAO.retrieveSEProposalByStep(5);
@@ -318,6 +322,7 @@ ProgramsForApproval
                         if (userID == 27) {
                             proposals = UserDAO.retrieveSEProposalByStep(7);
                         }
+                    
                     %>
                     <!--- table -->
                     <div class="container-fluid panels">

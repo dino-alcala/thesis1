@@ -287,7 +287,7 @@
 
             <fieldset>
                 <legend><span class="number">2</span><b> Actual Implementation Date:</b></legend>
-                <center><input type = "date" name ="actualdate" value="<%=SE.getActualDate()%>"></center>
+                <center><input type = "date" name ="actualdate" value="<%=SE.getActualDate()%>" min="<%=sqlDate%>"></center>
                 <br>
             </fieldset>
 

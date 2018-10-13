@@ -43,9 +43,33 @@ public class viewSE2 extends HttpServlet {
             HttpSession session = request.getSession();
             ArrayList<SE> proposals = new ArrayList();
 
-            if (Integer.parseInt(session.getAttribute("userID").toString()) == 18) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")) {
+                proposals = UserDAO.retrieveSEProposalByStep(2);
+            }
+            
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                 proposals = UserDAO.retrieveSEProposalByStep(4);
             }
+
+            for (int i = 0; i < proposals.size(); i++) {
+                if (request.getParameter("viewSE" + i) != null) {
+                    request.setAttribute("seID", request.getParameter("viewSE" + i));
+                }
+            }
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")) {
+                
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal2.jsp");
+                dispatcher.forward(request, response);
+            }
+            
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal3.jsp");
+                dispatcher.forward(request, response);
+            }
+            
 
             int userID = Integer.parseInt(session.getAttribute("userID").toString());
 
