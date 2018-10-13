@@ -38,7 +38,7 @@
     </servlet>
     <servlet>
         <servlet-name>editUnit</servlet-name>
-        <servlet-class>controller.editUnit</servlet-class>
+        <servlet-class>controller.editUnitNonAcademic</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>addKRA</servlet-name>
@@ -303,6 +303,10 @@
     <servlet>
         <servlet-name>logout</servlet-name>
         <servlet-class>controller.logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editUnitAcademic</servlet-name>
+        <servlet-class>controller.editUnitAcademic</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
@@ -607,6 +611,10 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editUnitAcademic</servlet-name>
+        <url-pattern>/editUnitAcademic</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

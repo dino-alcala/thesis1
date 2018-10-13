@@ -238,39 +238,46 @@
                                         <th style="width:20%"><%=d.getName()%></th>
                                     </tr>
                                     <tr>
-                                        <td><b>Total Faculty:</b></td>
-                                        <td><%=d.getFaculty()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Total Administrators:</b></td>
-                                        <td><%=d.getAdmin()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Total APSP:</b></td>
-                                        <td><%=d.getApsp()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Total ASF:</b></td>
-                                        <td><%=d.getAsf()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Total CAP:</b></td>
-                                        <td><%=d.getCap()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Total Students:</b></td>
-                                        <td><%=d.getCap()%></td>
-                                    </tr>
-
-                                    <%}%>
+                                            <td><b>Total CAP:</b></td>
+                                            <td><%=d.getCap()%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total APSP:</b></td>
+                                            <td><%=d.getApsp()%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total ASF:</b></td>
+                                            <td><%=d.getAsf()%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Faculty:</b></td>
+                                            <td><%=d.getFaculty()%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Administrators:</b></td>
+                                            <td><%=d.getAdmin()%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Number of Direct Hired Contractuals:</b></td>
+                                            <td><%=d.getDirecthired()%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Number of Independent Contractors:</b></td>
+                                            <td><%=d.getIndependent() %></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Number of External Service Personnel:</b></td>
+                                            <td><%=d.getExternal() %></td>
+                                        </tr>
+                                        <br>
+                                    <% } %>
                                     </tbody>
-
-
-
                                 </table>
+                                    <br><br>
+                                    
 
                                 <p align="right"> 
-
+                                    <input type="text" hidden name="type" id="type" value="<%= u.getType() %>"/>
                                     <button type="submit" name="unit" value="<%=u.getUnitID()%>" class="btn btn-warning">Edit</button>
                                     <button type="button" class="btn btn-danger">Delete</button>
                                     <button type="button" class="btn btn-primary">Generate Report</button>

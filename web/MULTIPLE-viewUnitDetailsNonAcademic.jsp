@@ -216,16 +216,8 @@
                                             <td><%=u.getHead()%></td>
                                         </tr> 
                                         <tr>
-                                            <td><b>Description</b></td>
-                                            <td><%=u.getDescription()%></td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Total Faculty:</b></td>
-                                            <td><%=u.getFaculty()%></td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Total Administrators:</b></td>
-                                            <td><%=u.getAdmin()%></td>
+                                            <td><b>Total CAP:</b></td>
+                                            <td><%=u.getCap()%></td>
                                         </tr>
                                         <tr>
                                             <td><b>Total APSP:</b></td>
@@ -236,19 +228,35 @@
                                             <td><%=u.getAsf()%></td>
                                         </tr>
                                         <tr>
-                                            <td><b>Total CAP:</b></td>
-                                            <td><%=u.getCap()%></td>
+                                            <td><b>Total Faculty:</b></td>
+                                            <td><%=u.getFaculty()%></td>
                                         </tr>
                                         <tr>
-                                            <td><b>Total Students:</b></td>
-                                            <td><%=u.getCap()%></td>
+                                            <td><b>Total Administrators:</b></td>
+                                            <td><%=u.getAdmin()%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Number of Direct Hired Contractuals:</b></td>
+                                            <td><%=u.getDirecthired()%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Number of Independent Contractors:</b></td>
+                                            <td><%=u.getIndependent() %></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Number of External Service Personnel:</b></td>
+                                            <td><%=u.getExternal() %></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Description</b></td>
+                                            <td><%=u.getDescription()%></td>
                                         </tr>
                                     </tbody>
-
                                 </table>
+                                        <br><br>
 
                                 <p align="right"> 
-
+                                    <input type="text" hidden name="type" id="type" value="<%= u.getType() %>"/>
                                     <button type="submit" name="unit" value="<%=u.getUnitID()%>" class="btn btn-warning">Edit</button>
                                     <button type="button" class="btn btn-danger">Delete</button>
                                     <button type="button" class="btn btn-primary">Generate Report</button>

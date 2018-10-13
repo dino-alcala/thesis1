@@ -4,6 +4,8 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Department"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="entity.Unit"%>
 <%@page import="dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -268,6 +270,7 @@
                                         UserDAO UserDAO = new UserDAO();
                                         Unit u = new Unit();
                                         u = UserDAO.getUnitbyID(Integer.parseInt(request.getAttribute("unitID").toString()));
+                                        ArrayList<Department> Departments = UserDAO.getDepartmentsIDsByUnitID(u.getUnitID());
                                     %>
                                     <div class="panel panel-success">
 
@@ -285,56 +288,56 @@
                                                         <label>Unit Head: <span class="required"></span></label>
                                                         <input type="text" name="unithead" class="field-long" value="<%=u.getHead()%>" />
                                                     </li>
-
-                                                    <li>
-                                                        <label>Unit Type: <span class="required"></span></label>
-                                                        <select name="unittype">
-                                                            <option value="Unit Type 1" <%if (u.getType().equals("Unit Type 1")) {%> selected <%}%>>Unit Type 1</option>
-                                                            <option value="Unit Type 2" <%if (u.getType().equals("Unit Type 2")) {%> selected <%}%>>Unit Type 2</option>
-                                                            <option value="Unit Type 3" <%if (u.getType().equals("Unit Type 3")) {%> selected <%}%>>Unit Type 3</option>
-                                                        </select>
-                                                    </li>
-
-                                                    <li>
-                                                        <label>Total number of Staff: <span class="required"></span></label>
-                                                        <input type="number" name="staff" class="field-num"  value="<%=u.getStaff()%>"/>
-                                                    </li>
-                                                    <li>
-                                                        <label>Total number for Faculty: <span class="required"></span></label>
-                                                        <input type="number" name="faculty" class="field-num" value="<%=u.getFaculty()%>"/>
-                                                    </li>                                                                                  
-
-                                                    <li>
-                                                        <label>Total number of Admin: <span class="required"></span></label>
-                                                        <input type="number" name="admin" class="field-num" value="<%=u.getAdmin()%>"/>
-                                                    </li>
-
-                                                    <li>
-                                                        <label>Total number of APSP: <span class="required"></span></label>
-                                                        <input type="number" name="apsp" class="field-num" value="<%=u.getApsp()%>"/>
-                                                    </li>
-
-                                                    <li>
-                                                        <label>Total number of SAF: <span class="required"></span></label>
-                                                        <input type="number" name="saf" class="field-num" value="<%=u.getSaf()%>"/>
-                                                    </li>
-
-                                                    <li>
-                                                        <label>Total number of CAP: <span class="required"></span></label>
-                                                        <input type="number" name="cap" class="field-num" value="<%=u.getCap()%>"/>
-                                                    </li>
-
-                                                    <li>
-                                                        <label>Total number of Student: <span class="required"></span></label>
-                                                        <input type="number" name="student" class="field-num" value="<%=u.getStudent()%>"/>
-                                                    </li>
-
                                                     <li>
                                                         <label>Unit Description: <span class="required"></span></label>
                                                         <textarea rows="4" cols="40" name="unitdesc"><%=u.getDescription()%></textarea>
                                                     </li>
-
-
+                                                    
+                                                    <%
+                                                        for (int x = 0; x < Departments.size(); x++) {
+                                                            Department d = new Department();
+                                                            d = UserDAO.getDepartmentByID(Departments.get(x).getDepartmentID());
+                                                    %>
+                                                    <li>
+                                                        <label>Department Name: <span class="required"></span></label>
+                                                        <input type="text" name="unitname" class="field-long" value="<%=d.getName()%>"/>
+                                                    </li>
+                                                    <li>
+                                                        <label>Total number of CAP: <span class="required"></span></label>
+                                                        <input type="number" name="cap" class="field-num" value="<%=d.getCap()%>"/>
+                                                    </li>
+                                                    <li>
+                                                        <label>Total number of APSP: <span class="required"></span></label>
+                                                        <input type="number" name="apsp" class="field-num" value="<%=d.getApsp()%>"/>
+                                                    </li>
+                                                    <li>
+                                                        <label>Total number of Asf: <span class="required"></span></label>
+                                                        <input type="number" name="saf" class="field-num" value="<%=d.getAsf()%>"/>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <label>Total number for Faculty: <span class="required"></span></label>
+                                                        <input type="number" name="faculty" class="field-num" value="<%=d.getFaculty()%>"/>
+                                                    </li>                                                                                  
+                                                    <li>
+                                                        <label>Total number of Admin: <span class="required"></span></label>
+                                                        <input type="number" name="admin" class="field-num" value="<%=d.getAdmin()%>"/>
+                                                    </li>
+                                                    <li>
+                                                        <label>Total number of Direct Hired Contractuals: <span class="required"></span></label>
+                                                        <input type="number" name="directhired" class="field-num" value="<%=d.getDirecthired() %>"/>
+                                                    </li>
+                                                    <li>
+                                                        <label>Total number of Independent Contractors: <span class="required"></span></label>
+                                                        <input type="number" name="independent" class="field-num" value="<%=d.getIndependent()%>"/>
+                                                    </li>
+                                                    <li>
+                                                        <label>Total number of External Service Personnel: <span class="required"></span></label>
+                                                        <input type="number" name="external" class="field-num" value="<%=d.getExternal()%>"/>
+                                                    </li>
+                                                    <br><hr><br>
+                                                    <% } %>
+                                                    
                                                     <li align="center">
                                                         <button type="submit" name="unit" value="<%=request.getAttribute("unitID")%>" class="btn btn-warning">Edit Unit</button>
                                                     </li>

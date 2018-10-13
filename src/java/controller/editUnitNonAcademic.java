@@ -5,6 +5,8 @@
  */
 package controller;
 
+import dao.UserDAO;
+import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author LA
  */
-public class passUnit extends HttpServlet {
+public class editUnitNonAcademic extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,19 +37,29 @@ public class passUnit extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
-            request.setAttribute("unitID", request.getParameter("unit"));
-            
-            if(request.getParameter("type").toString().equals("Non-Academic")){
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editUnitNonAcademic.jsp");
-                dispatcher.forward(request, response);
-            } else if(request.getParameter("type").toString().equals("Academic")) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editUnitAcademic.jsp");
-                dispatcher.forward(request, response);
-            }
+            UserDAO UserDAO = new UserDAO();
 
-            
+            Unit unit = new Unit();
+
+            /*
+            unit.setUnitID(Integer.parseInt(request.getParameter("unit")));
+            unit.setName(request.getParameter("unitname"));
+            unit.setHead(request.getParameter("unithead"));
+            unit.setType(request.getParameter("unittype"));
+            unit.setStaff(Integer.parseInt(request.getParameter("staff")));
+            unit.setFaculty(Integer.parseInt(request.getParameter("faculty")));
+            unit.setAdmin(Integer.parseInt(request.getParameter("admin")));
+            unit.setApsp(Integer.parseInt(request.getParameter("apsp")));
+            unit.setSaf(Integer.parseInt(request.getParameter("saf")));
+            unit.setCap(Integer.parseInt(request.getParameter("cap")));
+            unit.setStudent(Integer.parseInt(request.getParameter("student")));
+            unit.setDescription(request.getParameter("unitdesc"));
+*/
+            UserDAO.updateUnit(unit);
+
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-unitsList.jsp");
+            dispatcher.forward(request, response);
         }
     }
 
