@@ -42,8 +42,8 @@ public class viewSE extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
             ArrayList<SE> proposals = new ArrayList();
 
-            if (session.getAttribute("unit").toString().equals("Department / Unit Chair")) {
-                proposals = UserDAO.retrieveSEProposalByStep(1);
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Department Chair")) {
+                proposals = UserDAO.retrieveSEProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
             }
 
             if (session.getAttribute("unit").toString().equals("External Affairs / Social Engagement Director")) {
@@ -60,22 +60,22 @@ public class viewSE extends HttpServlet {
                 }
             }
 
-            if (session.getAttribute("unit").toString().equals("Department / Unit Chair")) {
-                
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Department Chair")) {
+
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal.jsp");
                 dispatcher.forward(request, response);
             }
-            
+
             if (session.getAttribute("unit").toString().equals("External Affairs / Social Engagement Director")) {
-                
+
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal2.jsp");
                 dispatcher.forward(request, response);
             }
-            
+
             if (session.getAttribute("unit").toString().equals("Dean / VP / VC")) {
-                
+
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal3.jsp");
                 dispatcher.forward(request, response);

@@ -1552,6 +1552,81 @@ public class UserDAO {
         }
         return department;
     }
+    
+    public int getDepartmentIDByUserID(int userID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM informationsheet WHERE id = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int department = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, userID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                department = rs.getInt("departmentID");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return department;
+    }
+    
+    public int getUserIDforNotifs(String unit, int departmentID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM informationsheet WHERE unit = ? AND departmentID = ? AND position LIKE ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userID = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            ps.setInt(2, departmentID);
+            ps.setString(3, "%Department Chair%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+               userID = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return userID;
+    }
 
     public String getUnitByUserID(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();

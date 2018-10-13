@@ -108,7 +108,7 @@ public class addSE2 extends HttpServlet {
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             
             n.setDt(sdf.format(dt));
-            n.setUserID(13);
+            n.setUserID(UserDAO.getUserIDforNotifs(SE.getUnit(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
             
             UserDAO.AddNotification(n);
 
