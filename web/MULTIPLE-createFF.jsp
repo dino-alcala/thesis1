@@ -411,7 +411,7 @@
                         </fieldset>
 
                         <fieldset>
-                                <legend><b>Type of Faith Formation</b> </legend>
+                                <legend><b>Types of Faith Formation</b> </legend>
                             <select name="classification">
                                 <option value="Retreat">Retreat</option>
                                 <option value="Recollection">Recollection</option>
