@@ -411,7 +411,7 @@ public class UserDAO {
             while (rs.next()) {
                 if (rs.getString("position").equals("CCS - Dean") || rs.getString("position").equals("BAGCED - Dean") || rs.getString("position").equals("COL - Dean") 
                         || rs.getString("position").equals("CLA - Dean") || rs.getString("position").equals("GCOE - Dean") || rs.getString("position").equals("COS - Dean") 
-                        || rs.getString("position").equals("RVRCOB - Dean")){
+                        || rs.getString("position").equals("RVRCOB - Dean") || rs.getString("position").equals("SOE - Dean")){
                     return true;
                 }
             }
