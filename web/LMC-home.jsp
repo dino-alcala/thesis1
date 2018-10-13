@@ -33,6 +33,20 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+            <%
+            if (session.getAttribute("unit").toString().equals("Lasallian Mission Counci (LMC)")) {
+                try {
+                    session.setAttribute("jspName", "LMC-home.jsp");
+                } catch (Exception e) {
+                    
+                }
+            } else {
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/"+ session.getAttribute("jspName").toString());
+                    dispatcher.forward(request, response);
+            }
+        %>
+            
             <style>
                 #notifsScroll {
                     overflow-y: auto; 
