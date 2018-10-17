@@ -71,7 +71,7 @@
             }
 
             h2{
-                font-size: 40px;
+                font-size: 30px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;

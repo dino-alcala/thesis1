@@ -104,6 +104,25 @@
                 text-align: center;
                 margin-bottom: 0%;
             }
+
+            .accomplishmentGreen{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: green;
+            }
+            .accomplishmentYellow{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: #FFBF00;
+            }
+            .accomplishmentRed{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: red;
+            }
         </style>
 
         <script type="text/javascript">
@@ -315,25 +334,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!--- Goal 1 Measure 1-->
                             <tr>
                                 <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
-                                <td>Development of Lasallian Formation Program for graduate student</td>
-                                <td class="accomplishmentGreen">85%</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>Existing Lasallian Formation programs for undergraduate students have been reviewed and revised </td>
-                                <td class="accomplishmentYellow">50%</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
                                 <td>50% of student organizations have implemented a Lasallian formation activity</td>
                                 <td class="accomplishmentRed">15%</td>
                             </tr>
+                            <!--- end of Goal 1 Measure 1-->
 
+                            <!--- Goal 1 Measure 2-->
                             <tr>
                                 <td></td>
                                 <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
@@ -352,45 +362,139 @@
                                 <td>All administrators have undergone the Lasallian formation activity  </td>
                                 <td></td>
                             </tr>
+                            <!--- end of Goal 1 Measure 2 -->
 
+                            <!--- Goal 1 Measure 3-->
                             <tr>
                                 <td></td>
                                 <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
                                 <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
                                 <td></td>
                             </tr>
+                            <!--- end of Goal 1 Measure 3 -->
 
+                            <!--- Goal 2 Measure 1-->
                             <tr>
                                 <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
                                 <td>At least one interdisciplinary activity conducted each term</td>
                                 <td></td>
                             </tr>
+                            <!--- end of Goal 2 Measure 1 -->
 
+
+                            <!--- Goal 2 Measure 2-->
                             <tr>
                                 <td> </td>
-                                <td><b>M2</b> Integration of faith dimension using the Lasallian Reflection Framework (LRF) in GE courses</td>
-                                <td>Review and integrate the LRF in all NLCC subjects </td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td> </td>
-                                <td><b>M3</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
+                                <td><b>M2</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
                                 <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
                                 <td></td>
                             </tr>
+                            <!--- end of Goal 2 Measure 2 -->
 
+                            <!--- Goal 3 Measure 1-->
                             <tr>
                                 <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
                                 <td>3 communities</td>
                                 <td></td>
                             </tr>
+                            <!--- end of Goal 3 Measure 1 -->
 
                         </tbody>
                     </table>
+                    <!--- end of KRA 3 -->
 
+                    <h5>KRA 5.  Community that is attuned to a sustainable Earth and socially engaged </h5>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Goals</th>
+                                <th scope="col">Measures</th>
+                                <th scope="col">Targets</th>
+                                <th scope="col">Accomplishment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--- Goal 1 Measure 1-->
+                            <tr>
+                                <td><b>G1 </b> Each unit of the University has at least one sustainable social engagement project </td>
+                                <td><b>M1</b> Number of sustainable social engagement project of units </td>
+                                <td>20%</td>
+                                <td class="accomplishmentGreen">20%</td>
+                            </tr>
+
+                            <!--- end of Goal 1 Measure 1-->
+
+                            <!--- Goal 1 Measure 2A-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>A.</b> Percentage of student organizations involved in community engagement programs and activities</td>
+                                <td>50%</td>
+                                <td></td>
+                            </tr>
+                            <!--- end of Goal 1 Measure 2A -->
+
+                            <!--- Goal 1 Measure 2B-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>B.</b> Percentage of staff engaged in community engagement programs and activities</td>
+                                <td>50%</td>
+                                <td></td>
+                            </tr>
+                            <!--- end of Goal 1 Measure 2B -->
+
+                            <!--- Goal 1 Measure 2C-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>C.</b> Percentage of departments with community engagement project  </td>
+                                <td>20%</td>
+                                <td></td>
+                            </tr>
+                            <!--- end of Goal 1 Measure 2C -->
+
+                            <!--- Goal 1 Measure 3-->
+                            <tr>
+                                <td></td>
+                                <td><b>M3</b> Number of social engagement choices under the four components of the Sustainable Development Goals Localization Project
+                                     L-ARAL, (Education)  L-SEED (Social Enterprise)  L-Envisage (Environment / DRR)  L-HEARTS (Health and Wellness) 
+                                </td>
+                                <td>16</td>
+                                <td></td>
+                            </tr>
+                            <!--- end of Goal 1 Measure 3 -->
+
+                            <!--- Goal 2 Measure 1A-->
+                            <tr>
+                                <td><b>G2</b> Service Learning is institutionalized</td>
+                                <td><b>M1</b> Service learning (SL) component of academic programs   
+                                    <b>A.</b> Percentage of undergraduate programs with SL component</td>
+                                <td>50%</td>
+                                <td></td>
+                            </tr>
+                            <!--- end of Goal 2 Measure 1A -->
+
+                            <!--- Goal 2 Measure 1B-->
+                            <tr>
+                                <td></td>
+                                <td><b>M1</b> Service learning (SL) component of academic programs   
+                                    <b>B.</b> Percentage of graduate programs with SL component </td>
+                                <td>10%</td>
+                                <td></td>
+                            </tr>
+                            <!--- end of Goal 2 Measure 1B -->
+
+                            <!--- Goal 2 Measure 2-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Number of international SL activities </td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+                            <!--- end of Goal 2 Measure 2 -->
+
+                        </tbody>
+                    </table>
                 </div>
 
 
