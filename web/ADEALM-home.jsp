@@ -322,13 +322,6 @@
                             <span class="menu-collapsed" id="subMenuCategory">Communities</span>
                         </a>
                     </div>
-                    <a href="MULTIPLE-viewBudget.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-money fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Budget</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
                     <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-check-square-o fa-fw mr-2"></span>
@@ -381,7 +374,6 @@
                                 <td>50% of student organizations have implemented a Lasallian formation activity</td>
                                 <td class="accomplishmentRed">15%</td>
                             </tr>
-                            <!--- end of Goal 1 Measure 1-->
 
                             <!--- Goal 1 Measure 2-->
                             <tr>
@@ -402,7 +394,6 @@
                                 <td>All administrators have undergone the Lasallian formation activity  </td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 1 Measure 2 -->
 
                             <!--- Goal 1 Measure 3-->
                             <tr>
@@ -411,7 +402,6 @@
                                 <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 1 Measure 3 -->
 
                             <!--- Goal 2 Measure 1-->
                             <tr>
@@ -420,7 +410,6 @@
                                 <td>At least one interdisciplinary activity conducted each term</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 2 Measure 1 -->
 
 
                             <!--- Goal 2 Measure 2-->
@@ -430,7 +419,6 @@
                                 <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 2 Measure 2 -->
 
                             <!--- Goal 3 Measure 1-->
                             <tr>
@@ -439,11 +427,9 @@
                                 <td>3 communities</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 3 Measure 1 -->
 
                         </tbody>
                     </table>
-                    <!--- end of KRA 3 -->
 
                     <h5>KRA 5.  Community that is attuned to a sustainable Earth and socially engaged </h5>
                     <table class="table table-bordered">
@@ -464,7 +450,6 @@
                                 <td class="accomplishmentGreen">20%</td>
                             </tr>
 
-                            <!--- end of Goal 1 Measure 1-->
 
                             <!--- Goal 1 Measure 2A-->
                             <tr>
@@ -473,7 +458,6 @@
                                 <td>50%</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 1 Measure 2A -->
 
                             <!--- Goal 1 Measure 2B-->
                             <tr>
@@ -482,7 +466,6 @@
                                 <td>50%</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 1 Measure 2B -->
 
                             <!--- Goal 1 Measure 2C-->
                             <tr>
@@ -491,7 +474,6 @@
                                 <td>20%</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 1 Measure 2C -->
 
                             <!--- Goal 1 Measure 3-->
                             <tr>
@@ -502,7 +484,6 @@
                                 <td>16</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 1 Measure 3 -->
 
                             <!--- Goal 2 Measure 1A-->
                             <tr>
@@ -512,7 +493,6 @@
                                 <td>50%</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 2 Measure 1A -->
 
                             <!--- Goal 2 Measure 1B-->
                             <tr>
@@ -522,7 +502,6 @@
                                 <td>10%</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 2 Measure 1B -->
 
                             <!--- Goal 2 Measure 2-->
                             <tr>
@@ -531,7 +510,6 @@
                                 <td>1</td>
                                 <td></td>
                             </tr>
-                            <!--- end of Goal 2 Measure 2 -->
 
                         </tbody>
                     </table>
@@ -580,9 +558,8 @@
                     <div class="container-fluid panels">
                         <%
                             ArrayList<SE> s = new ArrayList();
-                            if (session.getAttribute("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - CCS")) {
-                                s = UserDAO.retrieveSEbyUnit("College of Computer Studies (CCS)");
-                            }
+                            s = UserDAO.retrieveSEbyUnit("College of Computer Studies (CCS)");
+                            
                         %>
                         <h2>SE Proposals Progress (<%=s.size()%>)</h2>
 

@@ -145,6 +145,8 @@ body{
 .navbar-btn-profile {
     background-color:white;
     color: steelblue;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .navbar-btn-profile:hover {
@@ -163,6 +165,8 @@ body{
 .navbar-btn-logout {
     background-color:white;
     color: red;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .navbar-btn-logout:hover {

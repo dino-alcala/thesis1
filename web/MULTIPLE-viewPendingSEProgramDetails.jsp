@@ -20,7 +20,6 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="css/progressbar.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -78,12 +77,6 @@
             p{
                 margin-bottom: 0;
                 font-size: 15px;
-            }
-
-            a:link {
-                color: black; 
-                background-color: transparent; 
-                text-decoration: none;
             }
 
             table, td, th {
@@ -560,15 +553,15 @@
                                         <th style="width:65%">Remarks</th> 
                                     </tr>
                                     <tr>
-                                        <td>Signatories Department/Unit Chair</td>
+                                        <td>Department Chair</td>
                                         <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>Signatories External Affairs/SE Director</td>
+                                        <td>College ADEALM</td>
                                         <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>Signatories Dean/VP/VC</td>
+                                        <td>College Dean</td>
                                         <td><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%></td>
                                     </tr>
                                     <tr>

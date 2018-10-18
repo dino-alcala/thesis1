@@ -173,12 +173,6 @@
                 font-size: 15px;
             }
 
-            a:link {
-                color: black; 
-                background-color: transparent; 
-                text-decoration: none;
-            }
-
             table, td, th {
                 border: 1px solid black;
                 border-collapse: collapse;

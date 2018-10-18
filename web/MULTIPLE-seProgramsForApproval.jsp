@@ -311,18 +311,16 @@ ProgramsForApproval
                             proposals = UserDAO.retrieveSEProposalByStep(2);
                         }                 
                        
-                        if(session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))){
+                        if(session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")){
                             proposals = UserDAO.retrieveSEProposalByStep(4);
                         }  
 
-                        if (userID == 19 || userID == 20 || userID == 21 || userID == 22 || userID == 23 || userID == 24 || userID == 25 || userID == 26) {
+                        if(session.getAttribute("position").toString().equals("COSCA - Director") || session.getAttribute("position").toString().equals("LSPO - Director") 
+                                || session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").toString().equals("LCLM - Executive Director")
+                                || session.getAttribute("position").toString().equals("DSA - Dean")){
                             proposals = UserDAO.retrieveSEProposalByStep(5);
                         }
-
-                        if (userID == 27) {
-                            proposals = UserDAO.retrieveSEProposalByStep(7);
-                        }
-                    
+                        
                     %>
                     <!--- table -->
                     <div class="container-fluid panels">

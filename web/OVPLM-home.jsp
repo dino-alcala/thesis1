@@ -321,11 +321,136 @@
         <div class="row" id="body-row">
 
             <!--Sidebar -->
-            <div class="sidebar-expanded d-none d-md-block">
-                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
-                    <script>
-                        $("#sidebar-container").load("sidebarovplm.jsp");
-                    </script>
+            <div class="sidebar-expanded d-none d-md-block" id="sidebar-container">
+                <ul class="list-group sticky-top sticky-offset">
+                    <!-- Menu with submenu -->
+                    <a href="OVPLM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-home fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Home</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-folder-open fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Programs</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuProposals" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-createSE.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Create SE Program Proposal</span>
+                        </a>
+                        <a href="MULTIPLE-createFF.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Create FF Program Proposal</span>
+                        </a>
+
+                        <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
+                        </a>
+                        <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
+                        </a>
+                        <%
+                            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").toString().equals("OVPLM - Executive Officer")) {
+                        %>
+                        <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
+                        </a>
+                        <%
+                            }
+                        %>
+                    </div>
+                    <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-group fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Units</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuUnits" class="collapse sidebar-submenu">
+                        <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Add Unit</span>
+                        </a>
+                        <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                        </a>
+                    </div>
+                    <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-building fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Communities</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuCommunity" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
+                        </a>
+                        <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                        </a>
+                    </div>
+                    <a href="MULTIPLE-viewBudget.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-money fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Budget</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="#submenuKRA" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-check-square-o fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Key Result Areas</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuKRA" class="collapse sidebar-submenu">
+                        <a href="OVPLM-createKRA.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Create KRA</span>
+                        </a>
+                        <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Edit KRA</span>
+                        </a>
+                        <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">KRAs List</span>
+                        </a>
+                    </div>
+                    <a href="#submenuReports" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-bar-chart fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Reports</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuReports" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-seReportsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
+                        </a>
+                        <a href="OVPLM-budgetPerformanceReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
+                        </a>
+                        <a href="OVPLM-perCommunityReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Programs</span>
+                        </a>
+                        <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                        </a>
+                        <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
+                        </a>
+                    </div>
+                    <a href="MULTIPLE-evaluationSEResponsesList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-pencil-square-o fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Evaluation Forms</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
                 </ul>
             </div>
 
@@ -334,179 +459,164 @@
                 <!---KRAs-->
                 <div class="container-fluid panels">
               <h2>Key Result Areas</h2>
-        
-              <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
-              <table class="table table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Goals</th>
-                      <th scope="col">Measures</th>
-                      <th scope="col">Targets</th>
-                      <th scope="col">Accomplishment</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                        <!--- Goal 1 Measure 1-->
-                        <tr>
-                          <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
-                          <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
-                          <td>50% of student organizations have implemented a Lasallian formation activity</td>
-                          <td class="accomplishmentRed">15%</td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 1-->
-                      
-                        <!--- Goal 1 Measure 2-->
-                        <tr>
-                          <td></td>
-                          <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
-                          <td>50% of faculty departments have undergone Lasallian formation program</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>75% of staff have undergone Lasallian formation programs  </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>All administrators have undergone the Lasallian formation activity  </td>
-                          <td></td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 2 -->
-                      
-                      <!--- Goal 1 Measure 3-->
-                        <tr>
-                          <td></td>
-                          <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
-                          <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
-                          <td></td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 3 -->
-                      
-                      <!--- Goal 2 Measure 1-->
-                        <tr>
-                          <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
-                          <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
-                          <td>At least one interdisciplinary activity conducted each term</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 2 Measure 1 -->
-                    
-                      
-                      <!--- Goal 2 Measure 2-->
-                        <tr>
-                          <td> </td>
-                          <td><b>M2</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
-                          <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 2 Measure 2 -->
-                      
-                      <!--- Goal 3 Measure 1-->
-                        <tr>
-                          <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
-                          <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
-                          <td>3 communities</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 3 Measure 1 -->
-                      
-                  </tbody>
-                </table>
-             <!--- end of KRA 3 -->
-            
-            <h5>KRA 5.  Community that is attuned to a sustainable Earth and socially engaged </h5>
-              <table class="table table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Goals</th>
-                      <th scope="col">Measures</th>
-                      <th scope="col">Targets</th>
-                      <th scope="col">Accomplishment</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                        <!--- Goal 1 Measure 1-->
-                        <tr>
-                          <td><b>G1 </b> Each unit of the University has at least one sustainable social engagement project </td>
-                          <td><b>M1</b> Number of sustainable social engagement project of units </td>
-                          <td>20%</td>
-                          <td class="accomplishmentGreen">20%</td>
-                        </tr>
-                       
-                        <!--- end of Goal 1 Measure 1-->
-                      
-                        <!--- Goal 1 Measure 2A-->
-                        <tr>
-                          <td></td>
-                          <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>A.</b> Percentage of student organizations involved in community engagement programs and activities</td>
-                          <td>50%</td>
-                          <td></td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 2A -->
-                      
-                      <!--- Goal 1 Measure 2B-->
-                        <tr>
-                          <td></td>
-                          <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>B.</b> Percentage of staff engaged in community engagement programs and activities</td>
-                          <td>50%</td>
-                          <td></td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 2B -->
-                      
-                       <!--- Goal 1 Measure 2C-->
-                        <tr>
-                          <td></td>
-                          <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>C.</b> Percentage of departments with community engagement project  </td>
-                          <td>20%</td>
-                          <td></td>
-                        </tr>
-                        <!--- end of Goal 1 Measure 2C -->
-                      
-                      <!--- Goal 1 Measure 3-->
-                        <tr>
-                          <td></td>
-                          <td><b>M3</b> Number of social engagement choices under the four components of the Sustainable Development Goals Localization Project
-                               L-ARAL, (Education)  L-SEED (Social Enterprise)  L-Envisage (Environment / DRR)  L-HEARTS (Health and Wellness) 
-                          </td>
-                          <td>16</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 1 Measure 3 -->
-                      
-                      <!--- Goal 2 Measure 1A-->
-                        <tr>
-                          <td><b>G2</b> Service Learning is institutionalized</td>
-                          <td><b>M1</b> Service learning (SL) component of academic programs   
-                          <b>A.</b> Percentage of undergraduate programs with SL component</td>
-                          <td>50%</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 2 Measure 1A -->
-                      
-                      <!--- Goal 2 Measure 1B-->
-                        <tr>
-                          <td></td>
-                          <td><b>M1</b> Service learning (SL) component of academic programs   
-                          <b>B.</b> Percentage of graduate programs with SL component </td>
-                          <td>10%</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 2 Measure 1B -->
-                      
-                       <!--- Goal 2 Measure 2-->
-                        <tr>
-                          <td></td>
-                          <td><b>M2</b> Number of international SL activities </td>
-                          <td>1</td>
-                          <td></td>
-                      </tr>
-                      <!--- end of Goal 2 Measure 2 -->
-                      
-                  </tbody>
-                </table>
+
+                    <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Goals</th>
+                                <th scope="col">Measures</th>
+                                <th scope="col">Targets</th>
+                                <th scope="col">Accomplishment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--- Goal 1 Measure 1-->
+                            <tr>
+                                <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
+                                <td>50% of student organizations have implemented a Lasallian formation activity</td>
+                                <td class="accomplishmentRed">15%</td>
+                            </tr>
+
+                            <!--- Goal 1 Measure 2-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
+                                <td>50% of faculty departments have undergone Lasallian formation program</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>75% of staff have undergone Lasallian formation programs  </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>All administrators have undergone the Lasallian formation activity  </td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 1 Measure 3-->
+                            <tr>
+                                <td></td>
+                                <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
+                                <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 2 Measure 1-->
+                            <tr>
+                                <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
+                                <td>At least one interdisciplinary activity conducted each term</td>
+                                <td></td>
+                            </tr>
+
+
+                            <!--- Goal 2 Measure 2-->
+                            <tr>
+                                <td> </td>
+                                <td><b>M2</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
+                                <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 3 Measure 1-->
+                            <tr>
+                                <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
+                                <td>3 communities</td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <h5>KRA 5.  Community that is attuned to a sustainable Earth and socially engaged </h5>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Goals</th>
+                                <th scope="col">Measures</th>
+                                <th scope="col">Targets</th>
+                                <th scope="col">Accomplishment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--- Goal 1 Measure 1-->
+                            <tr>
+                                <td><b>G1 </b> Each unit of the University has at least one sustainable social engagement project </td>
+                                <td><b>M1</b> Number of sustainable social engagement project of units </td>
+                                <td>20%</td>
+                                <td class="accomplishmentGreen">20%</td>
+                            </tr>
+
+
+                            <!--- Goal 1 Measure 2A-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>A.</b> Percentage of student organizations involved in community engagement programs and activities</td>
+                                <td>50%</td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 1 Measure 2B-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>B.</b> Percentage of staff engaged in community engagement programs and activities</td>
+                                <td>50%</td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 1 Measure 2C-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>C.</b> Percentage of departments with community engagement project  </td>
+                                <td>20%</td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 1 Measure 3-->
+                            <tr>
+                                <td></td>
+                                <td><b>M3</b> Number of social engagement choices under the four components of the Sustainable Development Goals Localization Project
+                                     L-ARAL, (Education)  L-SEED (Social Enterprise)  L-Envisage (Environment / DRR)  L-HEARTS (Health and Wellness) 
+                                </td>
+                                <td>16</td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 2 Measure 1A-->
+                            <tr>
+                                <td><b>G2</b> Service Learning is institutionalized</td>
+                                <td><b>M1</b> Service learning (SL) component of academic programs   
+                                    <b>A.</b> Percentage of undergraduate programs with SL component</td>
+                                <td>50%</td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 2 Measure 1B-->
+                            <tr>
+                                <td></td>
+                                <td><b>M1</b> Service learning (SL) component of academic programs   
+                                    <b>B.</b> Percentage of graduate programs with SL component </td>
+                                <td>10%</td>
+                                <td></td>
+                            </tr>
+
+                            <!--- Goal 2 Measure 2-->
+                            <tr>
+                                <td></td>
+                                <td><b>M2</b> Number of international SL activities </td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
 
                 </div>
 

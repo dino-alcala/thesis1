@@ -250,15 +250,6 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
-                    <a href="MULTIPLE-viewBudget.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-money fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Budget</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
                     <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-check fa-fw mr-2"></span>

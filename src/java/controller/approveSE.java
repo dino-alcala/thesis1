@@ -118,9 +118,16 @@ public class approveSE extends HttpServlet {
 
                 request.setAttribute("successSE1", "You have successfully approved the SE Proposal!");
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
-                dispatcher.forward(request, response);
-
+                if (session.getAttribute("position").toString().contains("ADEALM")) {
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
+                    dispatcher.forward(request, response);
+                } else if (session.getAttribute("position").equals("CCS - Dean") || session.getAttribute("position").equals("COS - Dean")
+                        || session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
+                        || session.getAttribute("position").equals("BAGCED - Dean") || session.getAttribute("position").equals("CLA - Dean") || session.getAttribute("position").equals("SOE - Dean")
+                        || session.getAttribute("position").toString().contains("Department Chair")) {
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
+                    dispatcher.forward(request, response);
+                }
             }
 
             if (request.getParameter("revise") != null) {
@@ -167,8 +174,16 @@ public class approveSE extends HttpServlet {
 
                 request.setAttribute("reviseSE1", "Revisions has been sent to the requesting unit.");
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
-                dispatcher.forward(request, response);
+                if (session.getAttribute("position").toString().contains("ADEALM")) {
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
+                    dispatcher.forward(request, response);
+                } else if (session.getAttribute("position").equals("CCS - Dean") || session.getAttribute("position").equals("COS - Dean")
+                        || session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
+                        || session.getAttribute("position").equals("BAGCED - Dean") || session.getAttribute("position").equals("CLA - Dean") || session.getAttribute("position").equals("SOE - Dean")
+                        || session.getAttribute("position").toString().contains("Department Chair")) {
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
+                    dispatcher.forward(request, response);
+                }
             }
 
             if (request.getParameter("reject") != null) {
@@ -213,8 +228,16 @@ public class approveSE extends HttpServlet {
 
                 request.setAttribute("rejectSE1", "You have rejected the proposal.");
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
-                dispatcher.forward(request, response);
+                if (session.getAttribute("position").toString().contains("ADEALM")) {
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
+                    dispatcher.forward(request, response);
+                } else if (session.getAttribute("position").equals("CCS - Dean") || session.getAttribute("position").equals("COS - Dean")
+                        || session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
+                        || session.getAttribute("position").equals("BAGCED - Dean") || session.getAttribute("position").equals("CLA - Dean") || session.getAttribute("position").equals("SOE - Dean")
+                        || session.getAttribute("position").toString().contains("Department Chair")) {
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
+                    dispatcher.forward(request, response);
+                }
             }
         }
     }
