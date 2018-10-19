@@ -526,7 +526,7 @@
                                     <tr>
                                         <td>Enter Remarks:</td>
                                         <td>
-                                            <%if (Integer.parseInt(session.getAttribute("userID").toString()) == 23) {
+                                            <%if (session.getAttribute("position").toString().equals("COSCA - Director")) {
                                             %>
                                             <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
                                             <br>
@@ -540,7 +540,7 @@
                                             <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
                                             <br>
                                             <br>
-                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 22) {
+                                            <%  } else if (session.getAttribute("position").toString().equals("LSPO - Director")) {
                                             %>
                                             <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
                                             <br>
@@ -554,7 +554,7 @@
                                             <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
                                             <br>
 
-                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 20) {
+                                            <%  } else if (session.getAttribute("position").toString().equals("DSA - Dean")) {
                                             %>
                                             <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
                                             <br>
@@ -568,7 +568,7 @@
                                             <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
                                             <br>
 
-                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
+                                            <%  } else if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
                                             %>
                                             <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
                                             <br>
@@ -582,7 +582,7 @@
                                             <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
                                             <br>
 
-                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 21) {
+                                            <%  } else if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
                                             %>
                                             <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
                                             <br>
@@ -603,29 +603,29 @@
                                     <tr>
                                         <td>Approval by the Council</td>
                                         <%
-                                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
+                                            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
                                         %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
-                                                if (Integer.parseInt(session.getAttribute("userID").toString()) == 20) {
+                                                if (session.getAttribute("position").toString().equals("DSA - Dean")) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
-                                                if (Integer.parseInt(session.getAttribute("userID").toString()) == 21) {
+                                                if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
-                                                if (Integer.parseInt(session.getAttribute("userID").toString()) == 22) {
+                                                if (session.getAttribute("position").toString().equals("LSPO - Director")) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
-                                                if (Integer.parseInt(session.getAttribute("userID").toString()) == 23) {
+                                                if (session.getAttribute("position").toString().equals("COSCA - Director")) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%></textarea></td>
                                             <%
                                                 }
                                             %>

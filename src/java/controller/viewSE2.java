@@ -47,8 +47,14 @@ public class viewSE2 extends HttpServlet {
                 proposals = UserDAO.retrieveSEProposalByStep(2);
             }
             
-            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")) {
                 proposals = UserDAO.retrieveSEProposalByStep(4);
+            }
+            
+            if (session.getAttribute("position").toString().equals("COSCA - Director") || session.getAttribute("position").toString().equals("LSPO - Director") 
+                                || session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").toString().equals("LCLM - Executive Director")
+                                || session.getAttribute("position").toString().equals("DSA - Dean")) {
+               proposals = UserDAO.retrieveSEProposalByStep(5);
             }
 
             for (int i = 0; i < proposals.size(); i++) {
@@ -56,6 +62,7 @@ public class viewSE2 extends HttpServlet {
                     request.setAttribute("seID", request.getParameter("viewSE" + i));
                 }
             }
+            
             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")) {
                 
                 ServletContext context = getServletContext();
@@ -63,14 +70,24 @@ public class viewSE2 extends HttpServlet {
                 dispatcher.forward(request, response);
             }
             
-            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")) {
                 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal3.jsp");
                 dispatcher.forward(request, response);
             }
             
+            if(session.getAttribute("position").toString().equals("COSCA - Director") || session.getAttribute("position").toString().equals("LSPO - Director") 
+                                || session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").toString().equals("LCLM - Executive Director")
+                                || session.getAttribute("position").toString().equals("DSA - Dean")){
+                
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                dispatcher.forward(request, response);
+            }
+            
 
+            /*
             int userID = Integer.parseInt(session.getAttribute("userID").toString());
 
             if (userID == 19 || userID == 20 || userID == 21 || userID == 22 || userID == 23 || userID == 24 || userID == 25 || userID == 26) {
@@ -104,7 +121,7 @@ public class viewSE2 extends HttpServlet {
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal5.jsp");
                 dispatcher.forward(request, response);
             }
-
+            */
         }
     }
 

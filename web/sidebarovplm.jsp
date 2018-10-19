@@ -56,6 +56,15 @@
                         <%
                             }
                         %>
+                        <%
+                            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
+                        %>
+                        <a href="MULTIPLE-seProgramsForPRSUpload.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">For PRS Approval</span>
+                        </a>
+                        <%
+                            }
+                        %>
                     </div>
                     <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">

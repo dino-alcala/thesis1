@@ -51,7 +51,6 @@ public class editSE extends HttpServlet {
             SE.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
             SE.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
             SE.setTargetMeasure(Integer.parseInt(request.getParameter("measure")));
-            SE.setTitleActivity(request.getParameter("title"));
             SE.setActualDate(Date.valueOf(request.getParameter("actualdate")));
             SE.setTotalAmount(Double.parseDouble(request.getParameter("totalamount")));
             SE.setSocialCommunityProblem(request.getParameter("problemaddressed"));

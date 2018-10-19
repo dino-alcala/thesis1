@@ -41,12 +41,6 @@ public class approveSE2 extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
 
             HttpSession session = request.getSession();
-            
-            if (request.getParameter("checklist") != null) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposalChecklist.jsp");
-                dispatcher.forward(request, response);
-            }
 
             if (request.getParameter("approve") != null) {
 

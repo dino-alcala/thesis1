@@ -288,22 +288,6 @@
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 1</u></h4>
-                                            Received by OVPLM
-                                        </span>
-                                    </li>
-
-                                    <li class="progress-step is-complete">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 2</u></h4>
-                                            Initial Assessment
-                                        </span>
-                                    </li>
-
-                                    <li class="progress-step is-complete">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 3</u></h4>
                                             Evaluation by COSCA
                                         </span>
                                     </li>
@@ -311,7 +295,7 @@
                                     <li class="progress-step is-complete">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 4</u></h4>
+                                            <h4 class="progress-title"><u>Step 2</u></h4>
                                             Approval by the Council
                                         </span>
                                     </li>
@@ -319,7 +303,7 @@
                                     <li class="progress-step is-active">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 5</u></h4>
+                                            <h4 class="progress-title"><u>Step 3</u></h4>
                                             Accomplish and Upload PRS for Endorsement
                                         </span>
                                     </li>
@@ -327,7 +311,7 @@
                                     <li class="progress-step">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 6</u></h4>
+                                            <h4 class="progress-title"><u>Step 4</u></h4>
                                             Ready to Implement
                                         </span>
                                     </li>

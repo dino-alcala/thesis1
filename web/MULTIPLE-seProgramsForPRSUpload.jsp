@@ -300,27 +300,15 @@ ProgramsForApproval
             <!-- MAIN -->
 
             <div class="col py-3">
-                <form action="viewSE2" method="post">
+                <form action="viewSE5" method="post">
 
                     <%
                         ArrayList<SE> proposals = new ArrayList();
                         
                         int userID = Integer.parseInt(session.getAttribute("userID").toString());
-                        
-                        if(session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")){
-                            proposals = UserDAO.retrieveSEProposalByStep(2);
-                        }                 
-                       
-                        if(session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")){
-                            proposals = UserDAO.retrieveSEProposalByStep(4);
-                        }  
-
-                        if(session.getAttribute("position").toString().equals("COSCA - Director") || session.getAttribute("position").toString().equals("LSPO - Director") 
-                                || session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").toString().equals("LCLM - Executive Director")
-                                || session.getAttribute("position").toString().equals("DSA - Dean")){
-                            proposals = UserDAO.retrieveSEProposalByStep(5);
+                        if(session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")){
+                            proposals = UserDAO.retrieveSEProposalByStep(7);
                         }
-                        
                         
                     %>
                     <!--- table -->
@@ -348,82 +336,7 @@ ProgramsForApproval
 
                             <tbody id="myTable">
                                 <%
-                                    for (int i = 0; i < proposals.size(); i++) {
-
-                                        if (!UserDAO.isRevise(proposals.get(i).getId())) {
-
-                                            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
-
-                                                if (!UserDAO.hasMichaelVoted(proposals.get(i).getId())) {
-                                %>
-                                <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
-                                    <td><%=proposals.get(i).getName()%></td>
-                                    <td><%=proposals.get(i).getUnit()%></td>
-                                    <td><%=proposals.get(i).getDepartment()%></td>
-                                    <td><%=proposals.get(i).getProgramHead()%></td>
-                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <%
-                                    }
-                                } else if (session.getAttribute("position").toString().equals("DSA - Dean")) {
-
-                                    if (!UserDAO.hasNelcaVoted(proposals.get(i).getId())) {
-                                %>
-                                <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
-                                    <td><%=proposals.get(i).getName()%></td>
-                                    <td><%=proposals.get(i).getUnit()%></td>
-                                    <td><%=proposals.get(i).getDepartment()%></td>
-                                    <td><%=proposals.get(i).getProgramHead()%></td>
-                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <%
-                                    }
-                                } else if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
-
-                                    if (!UserDAO.hasMargaritaVoted(proposals.get(i).getId())) {
-                                %>
-                                <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
-                                    <td><%=proposals.get(i).getName()%></td>
-                                    <td><%=proposals.get(i).getUnit()%></td>
-                                    <td><%=proposals.get(i).getDepartment()%></td>
-                                    <td><%=proposals.get(i).getProgramHead()%></td>
-                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <%
-                                    }
-                                } else if (session.getAttribute("position").toString().equals("LSPO - Director")) {
-
-                                    if (!UserDAO.hasJamesVoted(proposals.get(i).getId())) {
-                                %>
-                                <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
-                                    <td><%=proposals.get(i).getName()%></td>
-                                    <td><%=proposals.get(i).getUnit()%></td>
-                                    <td><%=proposals.get(i).getDepartment()%></td>
-                                    <td><%=proposals.get(i).getProgramHead()%></td>
-                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <%
-                                    }
-                                } else if (session.getAttribute("position").toString().equals("COSCA - Director")) {
-
-                                    if (!UserDAO.hasFritzieVoted(proposals.get(i).getId())) {
-                                %>
-                                <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
-                                    <td><%=proposals.get(i).getName()%></td>
-                                    <td><%=proposals.get(i).getUnit()%></td>
-                                    <td><%=proposals.get(i).getDepartment()%></td>
-                                    <td><%=proposals.get(i).getProgramHead()%></td>
-                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <%
-                                    }
-                                } else {
-
+                                    for (int i = 0; i < proposals.size(); i++) {     
                                 %>
                                 <tr>
                                     <td><%=proposals.get(i).getDate()%></td>
@@ -437,11 +350,6 @@ ProgramsForApproval
                                     }
                                 %>
                             </tbody>
-
-                            <%
-                                    }
-                                }
-                            %>
                         </table>
                     </div>
                 </form>

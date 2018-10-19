@@ -132,6 +132,10 @@
             .progress-title{
                 color: darkgreen;
             }
+            
+            textarea{
+                resize: none;
+            }
 
         </style>
 
@@ -568,11 +572,10 @@
                                     </tr>
                                     <tr>
                                         <td>College ADEALM</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>
-                                <center><button type="submit" class="btn-info" name="checklist">Checklist</button></center><br>
                                 <center><button type ="submit" name="approve" value="<%=SE.getId()%>" class="btn-success">Approve</button>
                                     <button type = "submit" class="btn-warning" name="revise" value="<%=SE.getId()%>">Revise</button>
                                     <button type = "submit" class="btn-danger" style='background-color:red; border-color:red;' name="reject" value="<%=SE.getId()%>">Reject</button></center><br>

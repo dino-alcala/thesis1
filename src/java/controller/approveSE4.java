@@ -47,31 +47,43 @@ public class approveSE4 extends HttpServlet {
             Part filePart = request.getPart("uploadprs");
 
             UserDAO UserDAO = new UserDAO();
-
+ 
             if (request.getParameter("seID") != null) {
                 if (filePart != null) {
                     inputStream = filePart.getInputStream();
                 }
+            
+                if (request.getPart("uploadprs").getSize() == 0) {
+                    request.setAttribute("successSE1", "You have not uploaded any file.");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");
+                    dispatcher.forward(request, response);
+                    
+                } else if (!(request.getPart("uploadprs").getSize() == 0)){
+            
+                    UserDAO.uploadPRS(inputStream, Integer.parseInt(request.getParameter("seID")));
+                    UserDAO.updateStep(7, Integer.parseInt(request.getParameter("seID")));
 
-                UserDAO.uploadPRS(inputStream, Integer.parseInt(request.getParameter("seID")));
-                UserDAO.updateStep(7, Integer.parseInt(request.getParameter("seID")));
+                    
+                    Notification n = new Notification();
+                    n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
+                    n.setBody("You have new SE Proposal ready for approval!");
 
-                Notification n = new Notification();
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
-                n.setBody("You have new SE Proposal ready for approval!");
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    n.setDt(sdf.format(dt));
+                    n.setUserID(27);
 
-                n.setDt(sdf.format(dt));
-                n.setUserID(27);
+                    UserDAO.AddNotification(n);
+                    
 
-                UserDAO.AddNotification(n);
+                    request.setAttribute("successSE1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");
+                    dispatcher.forward(request, response);
+                }
 
-                request.setAttribute("successSE1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");
-                dispatcher.forward(request, response);
             }
 
             if (request.getParameter("cancelProgram") != null) {

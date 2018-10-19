@@ -312,7 +312,7 @@
                             <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                         </a>
                         <%
-                            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")) {
+                            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position") || session.getAttribute("position").toString().equals("COSCA - Director")) {
                         %>
                         <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">For Approval</span>

@@ -11,7 +11,7 @@
     <head>
 
     </head>
-    
+
     <body>
         <!--Sidebar for MULTIPLE.name pages-->
         <div id="sidebar-container">
@@ -48,7 +48,8 @@
                     <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                     </a>
-                    <%                            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")) {
+                    <%                           
+                        if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position") || session.getAttribute("position").toString().equals("COSCA - Director")) {
                     %>
                     <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
@@ -139,6 +140,15 @@
                     %>
                     <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
+                    </a>
+                    <%
+                        }
+                    %>
+                    <%
+                        if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
+                    %>
+                    <a href="MULTIPLE-seProgramsForPRSUpload.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">For PRS Approval</span>
                     </a>
                     <%
                         }
@@ -818,148 +828,148 @@
                 if (session.getAttribute("position").toString().contains("ADEALM")) {
             %>
             <ul class="list-group sticky-top sticky-offset">
-                    <!--Menu with submenu-->
-                    <a href="ADEALM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-folder-open fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuProposals" class="collapse sidebar-submenu">
-                        <a href="MULTIPLE-createSE.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Create SE Program Proposal</span>
-                        </a>
-                        <a href="MULTIPLE-createFF.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Create FF Program Proposal</span>
-                        </a>
-                        <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
-                        </a>
-                        <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
-                        </a>
-                        <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
-                        </a>
+                <!--Menu with submenu-->
+                <a href="ADEALM-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Home</span>
+                        <span class="submenu-icon ml-auto"></span>
                     </div>
-                    <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-group fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Units</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-building fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Communities</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuCommunity" class="collapse sidebar-submenu">
-                        <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
-                        </a>
-                        <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                        </a>
+                </a>
+                <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-folder-open fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Programs</span>
+                        <span class="submenu-icon ml-auto"></span>
                     </div>
-                    <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check-square-o fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Key Result Areas</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
+                </a>
+                <div id="submenuProposals" class="collapse sidebar-submenu">
+                    <a href="MULTIPLE-createSE.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Create SE Program Proposal</span>
                     </a>
-                    <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-bar-chart fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Per Unit Report</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
+                    <a href="MULTIPLE-createFF.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Create FF Program Proposal</span>
                     </a>
-                    <a href="MULTIPLE-evaluationSEResponsesList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-pencil-square-o fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Evaluation Forms</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
+                    <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
                     </a>
-                </ul>
+                    <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
+                    </a>
+                    <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
+                    </a>
+                </div>
+                <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-group fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Units</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-building fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Communities</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <div id="submenuCommunity" class="collapse sidebar-submenu">
+                    <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
+                    </a>
+                    <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                    </a>
+                </div>
+                <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-check-square-o fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Key Result Areas</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-bar-chart fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Per Unit Report</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <a href="MULTIPLE-evaluationSEResponsesList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-pencil-square-o fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Evaluation Forms</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+            </ul>
             <% }%>
-            
+
             <%
                 if (session.getAttribute("unit").equals("Admin")) {
             %>
             <ul class="list-group sticky-top sticky-offset">
-                    <!-- Menu with submenu -->
-                    <a href="ADMIN-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-group fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Units</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuUnits" class="collapse sidebar-submenu">
-                        <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Add Unit</span>
-                        </a>
-                        <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
-                        </a>
+                <!-- Menu with submenu -->
+                <a href="ADMIN-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Home</span>
+                        <span class="submenu-icon ml-auto"></span>
                     </div>
-                    <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span>&nbsp;+ &nbsp;</span>
-                            <span class="menu-collapsed">Add User</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
+                </a>
+                <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-group fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Units</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <div id="submenuUnits" class="collapse sidebar-submenu">
+                    <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Add Unit</span>
                     </a>
-                </ul>
+                    <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                    </a>
+                </div>
+                <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span>&nbsp;+ &nbsp;</span>
+                        <span class="menu-collapsed">Add User</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+            </ul>
             <% }%>
-            
+
             <%
                 //sidebar for college deans (signatories)
-                if (session.getAttribute("position").equals("CCS - Dean") ||  session.getAttribute("position").equals("COS - Dean") || 
-                        session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
+                if (session.getAttribute("position").equals("CCS - Dean") || session.getAttribute("position").equals("COS - Dean")
+                        || session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
                         || session.getAttribute("position").equals("BAGCED - Dean") || session.getAttribute("position").equals("CLA - Dean") || session.getAttribute("position").equals("SOE - Dean")
                         || session.getAttribute("position").toString().contains("Department Chair")) {
             %>
             <ul class="list-group sticky-top sticky-offset">
-                    <!-- Menu with submenu -->
-                    <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check fa-fw mr-2"></span>
-                            <span class="menu-collapsed">SE Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                </ul>
+                <!-- Menu with submenu -->
+                <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Home</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-check fa-fw mr-2"></span>
+                        <span class="menu-collapsed">SE Programs</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+            </ul>
             <% }%>
             <!-- List Group END-->
-            
-            </div>
+
+        </div>
     </body>
 </html>

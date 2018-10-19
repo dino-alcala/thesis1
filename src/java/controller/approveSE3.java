@@ -45,31 +45,31 @@ public class approveSE3 extends HttpServlet {
 
             if (request.getParameter("approve") != null) {
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
+                if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
                     UserDAO.voteMichael(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatelmc1Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 20) {
+                if (session.getAttribute("position").toString().equals("DSA - Dean")) {
                     UserDAO.voteNelca(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatelmc2Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 21) {
+                if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
                     UserDAO.voteMargarita(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatelmc3Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 22) {
+                if (session.getAttribute("position").toString().equals("LSPO - Director")) {
                     UserDAO.voteJames(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatelmc4Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 23) {
+                if (session.getAttribute("position").toString().equals("COSCA - Director")) {
                     UserDAO.voteFritzie(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatelmc5Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));

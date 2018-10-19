@@ -519,12 +519,11 @@
                                     </tr>
                                     <tr>
                                         <td>Evaluation by COSCA</td>
-                                        <td style="padding:0px"><textarea id="remarks3" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks3" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>
 
-                                <center><button type="submit" class="btn-info" name="checklist">Checklist</button></center><br>
                                 <center><button class="btn-success" name="approve" value="<%=SE.getId()%>">Approve</button>
                                     <button type = "submit" class="btn-warning" name="revise" value="<%=SE.getId()%>">Revise</button>
                                     <button class="btn-danger" style='background-color:red; border-color:red' name="reject" value="<%=SE.getId()%>">Reject</button></center><br>

@@ -378,8 +378,6 @@
 
                     <h2>Key Result Areas</h2>
 
-                    <h2>Key Result Areas</h2>
-
                     <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
                     <table class="table table-bordered">
                         <thead class="thead-light">

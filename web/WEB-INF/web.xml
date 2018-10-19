@@ -308,6 +308,10 @@
         <servlet-name>editUnitAcademic</servlet-name>
         <servlet-class>controller.editUnitAcademic</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewSE5</servlet-name>
+        <servlet-class>controller.viewSE5</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -615,6 +619,10 @@
     <servlet-mapping>
         <servlet-name>editUnitAcademic</servlet-name>
         <url-pattern>/editUnitAcademic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewSE5</servlet-name>
+        <url-pattern>/viewSE5</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

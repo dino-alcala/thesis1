@@ -299,7 +299,7 @@
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 1</u></h4>
-                                            Signatories Department/Unit Chair
+                                            Approval by Department/Unit Chair 
                                         </span>
                                     </li>
 
@@ -307,7 +307,7 @@
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 2</u></h4>
-                                            Signatories External Affairs/SE Director
+                                            Approval by College ADEALM/SE Director
                                         </span>
                                     </li>
 
@@ -315,7 +315,7 @@
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 3</u></h4>
-                                            Signatories Dean/VP/VC
+                                            Approval by Dean/VP/VC
                                         </span>
                                     </li>
 
@@ -593,16 +593,18 @@
                                 <%
                                     if (UserDAO.getStep(Integer.parseInt(request.getAttribute("seID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>
-                                <center><button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button><br></center>
-                                    <%
-                                        }
-                                    %>
+                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>                                  
+                                <center><button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button><br></center>  
+                                
+
+                                <%
+                                    }
+                                %>
 
                                 <%
                                     if (UserDAO.isRevise(Integer.parseInt(request.getAttribute("seID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <button class="btn-success" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button><br>
+                                <center><button class="btn-success" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button><br></center>
 
                                 <%
                                     }
@@ -613,6 +615,7 @@
                                 %>
 
                                 <div>
+                                    <br>
                                     <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="button">Cancel Program</button></center>
                                 </div><br><br>
                                 <%
