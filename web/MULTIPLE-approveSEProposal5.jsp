@@ -522,7 +522,7 @@
                                         <td><%=SE.getCoscaRemarks()%></td>
                                     </tr>
                                     <tr>
-                                        <td>Approval by the Council</td>
+                                        <td>Remarks by the Council</td>
                                         <td><b>Br. Michael Broughton: </b> <%=SE.getLmc1Remarks()%>
                                             <br>
                                             <br>

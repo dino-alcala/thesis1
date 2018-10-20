@@ -393,7 +393,7 @@
                                     </tr>
                                     <tr>
                                         <td>Evaluation by LSPO</td>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

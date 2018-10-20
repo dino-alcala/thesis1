@@ -418,7 +418,7 @@
                                         <td><%=FF.getLspoRemarks()%></td>
                                     </tr>
                                     <tr>
-                                        <td>Approval by the Council</td>
+                                        <td>Remarks by the Council</td>
                                         <td>
                                             <b>Br. Michael Broughton: </b> <%=FF.getLmc1Remarks()%>
                                             <br>

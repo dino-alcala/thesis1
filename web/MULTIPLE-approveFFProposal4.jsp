@@ -396,13 +396,13 @@
                                         <th style="width:65%">Remarks</th> 
                                     </tr>
                                     <tr>
-                                        <td>Evaluation by LSPO</td>
+                                        <td>Evaluation by LSPO Director</td>
                                         <td><%=FF.getLspoRemarks()%></td>
                                     </tr>
                                     <tr>
                                         <td>Enter Remarks:</td>
                                         <td>
-                                            <%if (Integer.parseInt(session.getAttribute("userID").toString()) == 23) {
+                                            <%if (session.getAttribute("position").toString().equals("COSCA - Director")) {
                                             %>
                                             <b>Br. Michael Broughton: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
                                             <br>
@@ -413,14 +413,20 @@
                                             <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
                                             <br>
                                             <br>
-                                            <b>Mr. James Laxa: </b> <%if (FF.getLmc4Remarks() != null) {%><%=FF.getLmc4Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 22) {
+
+                                            <%  } else if (session.getAttribute("position").equals("DSA - Dean")) {
                                             %>
                                             <b>Br. Michael Broughton: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
                                             <br>
                                             <br>
+                                            <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
+                                            <br>
+
+                                            <%  } else if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission")) {
+                                            %>
                                             <b>Ms. Nelca Villarin: </b> <%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%>
                                             <br>
                                             <br>
@@ -430,43 +436,12 @@
                                             <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
                                             <br>
 
-                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 20) {
-                                            %>
-                                            <b>Br. Michael Broughton: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (FF.getLmc4Remarks() != null) {%><%=FF.getLmc4Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
-                                            <br>
-
-                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
-                                            %>
-                                            <b>Ms. Nelca Villarin: </b> <%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (FF.getLmc4Remarks() != null) {%><%=FF.getLmc4Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
-                                            <br>
-
-                                            <%  } else if (Integer.parseInt(session.getAttribute("userID").toString()) == 21) {
+                                            <%  } else if (session.getAttribute("position").equals("LCLM - Executive Director")) {
                                             %>
                                             <b>Br. Michael Broughton: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
                                             <br>
                                             <br>
                                             <b>Ms. Nelca Villarin: </b> <%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (FF.getLmc4Remarks() != null) {%><%=FF.getLmc4Remarks()%><%}%>
                                             <br>
                                             <br>
                                             <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
@@ -477,8 +452,34 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Approval by the Council</td>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"></textarea></td>
+                                        <td>Remarks by the Council</td>
+                                        <%
+                                            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
+                                        %>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%></textarea></td>
+                                            <%
+                                                }
+                                                if (session.getAttribute("position").toString().equals("DSA - Dean")) {
+                                            %>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%></textarea></td>
+                                            <%
+                                                }
+                                                if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
+                                            %>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%></textarea></td>
+                                            <%
+                                                }
+                                                if (session.getAttribute("position").toString().equals("LSPO - Director")) {
+                                            %>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc4Remarks() != null) {%><%=FF.getLmc4Remarks()%><%}%></textarea></td>
+                                            <%
+                                                }
+                                                if (session.getAttribute("position").toString().equals("COSCA - Director")) {
+                                            %>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%></textarea></td>
+                                            <%
+                                                }
+                                            %>
                                     </tr>
                                 </table>
                                 <br/>

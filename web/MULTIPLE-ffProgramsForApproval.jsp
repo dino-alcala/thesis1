@@ -300,17 +300,8 @@
                     <%
                         ArrayList<FF> proposals = new ArrayList();
 
-                        if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                        if (session.getAttribute("position").equals("LSPO - Director")) {
                             proposals = UserDAO.retrieveFFProposalByStep(4);
-                        }
-
-                        int userID = Integer.parseInt(session.getAttribute("userID").toString());
-
-                        if (userID == 19 || userID == 20 || userID == 21 || userID == 22 || userID == 23 || userID == 24 || userID == 25 || userID == 26) {
-                            proposals = UserDAO.retrieveFFProposalByStep(6);
-                        }
-                        if (userID == 27) {
-                            proposals = UserDAO.retrieveFFProposalByStep(8);
                         }
                     %>
 
@@ -341,7 +332,7 @@
                                     for (int i = 0; i < proposals.size(); i++) {
 
                                         if (!UserDAO.isFFRevise(proposals.get(i).getId())) {
-                                            if (userID == 19) {
+                                            if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission")) {
 
                                                 if (!UserDAO.hasMichaelFFVoted(proposals.get(i).getId())) {
                                 %>
@@ -355,7 +346,7 @@
                                 </tr>
                                 <%
                                     }
-                                } else if (userID == 20) {
+                                } else if (session.getAttribute("position").equals("DSA - Dean")) {
 
                                     if (!UserDAO.hasNelcaFFVoted(proposals.get(i).getId())) {
                                 %>
@@ -369,7 +360,7 @@
                                 </tr>
                                 <%
                                     }
-                                } else if (userID == 21) {
+                                } else if (session.getAttribute("position").equals("LCLM - Executive Director")) {
 
                                     if (!UserDAO.hasMargaritaFFVoted(proposals.get(i).getId())) {
                                 %>
@@ -383,7 +374,7 @@
                                 </tr>
                                 <%
                                     }
-                                } else if (userID == 22) {
+                                } else if (session.getAttribute("position").equals("LSPO - Director")) {
 
                                     if (!UserDAO.hasJamesFFVoted(proposals.get(i).getId())) {
                                 %>
@@ -397,7 +388,7 @@
                                 </tr>
                                 <%
                                     }
-                                } else if (userID == 23) {
+                                } else if (session.getAttribute("position").equals("COSCA - Director")) {
 
                                     if (!UserDAO.hasFritzieFFVoted(proposals.get(i).getId())) {
                                 %>

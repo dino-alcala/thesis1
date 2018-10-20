@@ -601,7 +601,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Approval by the Council</td>
+                                        <td>Remarks by the Council</td>
                                         <%
                                             if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
                                         %>

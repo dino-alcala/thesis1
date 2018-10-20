@@ -341,12 +341,12 @@
                                         <th style="width:65%">Remarks</th> 
                                     </tr>
                                     <tr>
-                                        <td>Chairperson/Director</td>
+                                        <td>Assistant Dean for Lasallian Mission</td>
                                         <td style="padding:0px"><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></td>
                                     </tr>
 
                                     <tr>
-                                        <td>Vice President for Lasallian Mission</td>
+                                        <td>Chairperson</td>
                                         <td style="padding:0px"><textarea id="remarks1" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
