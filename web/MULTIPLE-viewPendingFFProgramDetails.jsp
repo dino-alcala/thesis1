@@ -302,31 +302,23 @@
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 1</u></h4>
-                                            Signatories Chairperson/Director
+                                            Approval by Assistant Dean for Lasallian Mission
                                         </span>
                                     </li>
                                     <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 2) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 2) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 2</u></h4>
-                                            Signatories Vice President for Lasallian Mission
+                                            Approval by Chairperson
                                         </span>
                                     </li>
                                     <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 3) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 3) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 3</u></h4>
-                                            Signatories Dean/Unit Head
+                                            Approval by Dean
                                         </span>
                                     </li>
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 4) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 4) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 4</u></h4>
-                                            Signatories Assistant Dean for Lasallian Mission/Assistant Unit Heads
-                                        </span>
-                                    </li>
-
                                     <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 5) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 5) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
@@ -365,9 +357,6 @@
                                         <h4>Targets</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><b>KRA:</b> <%=UserDAO.getKRAnameByID(FF.getTargetKRA())%></p><br>
-                                        <p><b>Goal:</b> <%=UserDAO.getGoalnameByID(FF.getTargetGoal())%></p><br>
-                                        <p><b>Measure:</b> <%=UserDAO.getMeasurenameByID(FF.getTargetMeasure())%></p><br>
                                         <p><b>Community: </b><%=UserDAO.getCommunitynameByID(FF.getTargetCommunity())%></p>
                                     </div>  
                                 </div>
@@ -459,9 +448,6 @@
                                             <br>
                                             <br>
                                             <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (FF.getLmc4Remarks() != null) {%><%=FF.getLmc4Remarks()%><%}%>
                                             <br>
                                             <br>
                                             <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>

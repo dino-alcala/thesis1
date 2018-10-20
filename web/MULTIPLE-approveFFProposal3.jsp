@@ -327,9 +327,6 @@
                                         <h4>Targets</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><b>KRA:</b> <%=UserDAO.getKRAnameByID(FF.getTargetKRA())%></p><br>
-                                        <p><b>Goal:</b> <%=UserDAO.getGoalnameByID(FF.getTargetGoal())%></p><br>
-                                        <p><b>Measure:</b> <%=UserDAO.getMeasurenameByID(FF.getTargetMeasure())%></p><br>
                                         <p><b>Community: </b><%=UserDAO.getCommunitynameByID(FF.getTargetCommunity())%></p>
                                     </div>  
                                 </div>
