@@ -178,16 +178,17 @@
                         <tr>
                             <th>Previous</th>
                             <th>Current</th>
-                        </tr>
+                            <th>Date Changed:</th>
                         <tr>
-                            <td><p><b>Date: 08/10/2018 (kung kailan binago)</b><br> Program Head: Dino Alcala</p></td>
+                            <td><p>Program Head: Dino Alcala</p></td>
                             <td><p>Program Head: Luis Grefiel</p></td>
+                            <td><p><b>Date: 08/10/2018 </b></p></td>
                         </tr>
                         <tr>
-                            <td><p><b>Date: 08/10/2018 </b><br> Item: Hammer</p></td>
+                            <td><p>Item: Hammer</p></td>
                             <td><p>Item: Sledgehammer</p></td>
+                            <td><p><b>Date: 08/10/2018 </b></p></td>
                         </tr>
-
                     </table></center>
                 <br>
             </fieldset>
