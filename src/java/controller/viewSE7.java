@@ -5,12 +5,18 @@
  */
 package controller;
 
+import dao.UserDAO;
+import entity.SE;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,16 +37,33 @@ public class viewSE7 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet viewSE7</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet viewSE7 at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            UserDAO UserDAO = new UserDAO();
+            HttpSession session = request.getSession();
+            ArrayList<SE> my = new ArrayList();
+            my = UserDAO.retrieveSEProposalByRejectedOwner(Integer.parseInt(session.getAttribute("userID").toString()));
+
+            ArrayList<SE> others = new ArrayList();
+            others = UserDAO.retrieveSEProposalByRejected(Integer.parseInt(session.getAttribute("userID").toString()));
+
+            for (int i = 0; i < my.size(); i++) {
+                if (request.getParameter("viewMy" + i) != null) {
+                    request.setAttribute("seID", request.getParameter("viewMy" + i));
+
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEProgramDetails.jsp");
+                    dispatcher.forward(request, response);
+                }
+            }
+
+            for (int i = 0; i < others.size(); i++) {
+                if (request.getParameter("viewCompleted" + i) != null) {
+                    request.setAttribute("seID", request.getParameter("viewCompleted" + i));
+
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEProgramDetails.jsp");
+                    dispatcher.forward(request, response);
+                }
+            }
         }
     }
 

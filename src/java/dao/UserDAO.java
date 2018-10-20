@@ -2602,6 +2602,46 @@ public class UserDAO {
         }
         return SE;
     }
+    
+    public ArrayList<SE> retrieveSEProposalByRejected(int userID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE userID != ? AND step = -1";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, userID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setDate(rs2.getDate("datecreated"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
 
     public ArrayList<SE> retrieveSEProposalByCompletedOwner(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -2685,6 +2725,47 @@ public class UserDAO {
         return SE;
     }
 
+    public ArrayList<SE> retrieveSEProposalByRejectedOwner(int userID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE userID = ? AND step = -1";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, userID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setDate(rs2.getDate("datecreated"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
     public ArrayList<FF> retrieveFFProposalByStep(int step) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3290,7 +3371,7 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET step = 0 WHERE id = ?";
+            String query = "UPDATE seproposal SET step = -1 WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
 
