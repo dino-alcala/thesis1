@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Department"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.Unit"%>
@@ -388,6 +389,11 @@
                 <hr size="5" noshade>
                 <br>
 
+                <%
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                    java.util.Date javaDate = new java.util.Date();
+                    java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+                %>
                 <div class="form-style-5">
                     <form action = "addSE2" method="post">
 
@@ -406,7 +412,7 @@
                                         <th>Venue</th>
                                     </tr>
                                     <tr>
-                                        <td><input style="border-radius: 0px;" style="size:200%" type ="date" name="date0" min="<%=SE.getActualDate()%>" required/></td>
+                                        <td><input style="border-radius: 0px;" style="size:200%" type ="date" name="date0" min="<%=sqlDate%>" required/></td>
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="activity0" required></textarea></td>
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="time0" required></textarea></td>
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend0" required></textarea></td>
