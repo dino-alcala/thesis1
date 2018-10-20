@@ -51,8 +51,8 @@ public class approveFF2 extends HttpServlet {
 
             if (request.getParameter("approve") != null) {
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
-                    UserDAO.updateStepFF(6, Integer.parseInt(request.getParameter("approve")));
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                    UserDAO.updateStepFF(5, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
@@ -65,43 +65,25 @@ public class approveFF2 extends HttpServlet {
 
                 n.setDt(sdf.format(dt));
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 16) {
-                    n.setUserID(17);
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 17) {
-                    n.setUserID(32);
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
-                    n.setUserID(19);
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                    n.setUserID(UserDAO.getUserIDforPositionNotifs("LCLM - Executive Director"));
                 }
 
                 UserDAO.AddNotification(n);
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
-                    n.setUserID(20);
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                    n.setUserID(UserDAO.getUserIDforPositionNotifs("COSCA - Director"));
                     UserDAO.AddNotification(n);
-                    n.setUserID(21);
+                    n.setUserID(UserDAO.getUserIDforPositionNotifs("DSA - Dean"));
                     UserDAO.AddNotification(n);
-                    n.setUserID(22);
-                    UserDAO.AddNotification(n);
-                    n.setUserID(23);
+                    n.setUserID(UserDAO.getUserIDforPositionNotifs("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
                 }
 
                 Notification n2 = new Notification();
                 n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 16) {
-                    n2.setBody("Your proposal has been approved by the OVPLM! It will now be taken to Step 2.");
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 17) {
-                    n2.setBody("Your proposal has been approved by the Ms Carmel! It will now be taken to LSPO.");
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     n2.setBody("Your proposal has been approved by the LSPO! It will now be taken to the LMC Council.");
                 }
 
@@ -121,19 +103,7 @@ public class approveFF2 extends HttpServlet {
                 Notification n3 = new Notification();
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("revise"))));
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 17) {
-                    UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
-                    UserDAO.updateFFOvplm2Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by Ms. Carmel.");
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n3.setDt(sdf.format(dt));
-                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the LSPO.");
@@ -157,29 +127,7 @@ public class approveFF2 extends HttpServlet {
                 Notification n3 = new Notification();
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))));
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 16) {
-                    UserDAO.updateFFOvplm1Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by the OVPLM. Reason: " + request.getParameter("remarks1"));
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n3.setDt(sdf.format(dt));
-                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 17) {
-                    UserDAO.updateFFOvplm2Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by Ms Carmel. Reason: " + request.getParameter("remarks1"));
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n3.setDt(sdf.format(dt));
-                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the LSPO. Reason: " + request.getParameter("remarks1"));
 

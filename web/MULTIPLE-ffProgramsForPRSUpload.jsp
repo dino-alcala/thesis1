@@ -301,7 +301,7 @@ ProgramsForApproval
             <!-- MAIN -->
 
             <div class="col py-3">
-                <form action="viewSE5" method="post">
+                <form action="viewFF5" method="post">
 
                     <%
                         ArrayList<FF> proposals = new ArrayList();
@@ -321,7 +321,7 @@ ProgramsForApproval
                         <h3></h3>
 
                         <br>
-                        <h2>Social Engagement Programs (<%=proposals.size()%>)</h2>
+                        <h2>Faith Formation Programs (<%=proposals.size()%>)</h2>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
@@ -345,7 +345,7 @@ ProgramsForApproval
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
                                     <td><%=proposals.get(i).getProgramHead()%></td>
-                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                    <td><button type="submit" name="viewFF<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
                                     }

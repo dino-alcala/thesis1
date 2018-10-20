@@ -53,7 +53,7 @@ public class approveFF5 extends HttpServlet {
             FF FF = new FF();
             FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
 
-            UserDAO.updateStepFF(9, Integer.parseInt(request.getParameter("approve")));
+            UserDAO.updateStepFF(8, Integer.parseInt(request.getParameter("approve")));
 
             Notification n2 = new Notification();
             n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));

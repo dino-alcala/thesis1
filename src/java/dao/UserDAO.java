@@ -2817,7 +2817,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step = 9";
+            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step = 8";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
@@ -2858,7 +2858,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE userID != ? AND step = 9";
+            String query = "SELECT * FROM ffproposal WHERE userID != ? AND step = 8";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
