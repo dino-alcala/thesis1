@@ -340,8 +340,8 @@ ProgramsForApproval
                                     for (int i = 0; i < proposals.size(); i++) {     
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
-                                    <td><%=proposals.get(i).getName()%></td>
+                                    <td><%=proposals.get(i).getDatecreated()%></td>
+                                    <td><%=proposals.get(i).getProjectName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
                                     <td><%=proposals.get(i).getProgramHead()%></td>
