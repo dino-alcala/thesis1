@@ -320,7 +320,7 @@
 
                     <%
                         ArrayList<SE> my = new ArrayList();
-                        my = UserDAO.retrieveSEProposalByCompletedOwner(Integer.parseInt(session.getAttribute("userID").toString()));
+                        my = UserDAO.retrieveSEProposalByRejectedOwner(Integer.parseInt(session.getAttribute("userID").toString()));
                     %>
                     <!--- table -->
                     <div class="container-fluid panels">
@@ -351,11 +351,11 @@
                                     for (int i = 0; i < my.size(); i++) {
                                 %>
                                 <tr>
-                                    <td>Date</td>
-                                    <td>Name</td>
-                                    <td>Unit</td>
-                                    <td>Department</td>
-                                    <td>Program Head</td>
+                                    <td><%=my.get(i).getDate()%></td>
+                                    <td><%=my.get(i).getName()%></td>
+                                    <td><%=my.get(i).getUnit()%></td>
+                                    <td><%=my.get(i).getDepartment()%></td>
+                                    <td><%=my.get(i).getProgramHead()%></td>
                                     <td>
                                         <%
                                             if (UserDAO.hasSEReport(my.get(i).getId())) {
@@ -381,7 +381,7 @@
 
                         <%
                             ArrayList<SE> others = new ArrayList();
-                            others = UserDAO.retrieveSEProposalByCompleted(Integer.parseInt(session.getAttribute("userID").toString()));
+                            others = UserDAO.retrieveSEProposalByRejected(Integer.parseInt(session.getAttribute("userID").toString()));
                         %>
                         <br><br>
                         <h2>All Social Engagement Programs (<%=others.size()%>)</h2>
@@ -403,11 +403,11 @@
                                     for (int i = 0; i < others.size(); i++) {
                                 %>
                                 <tr>
-                                    <td>Date</td>
-                                    <td>Name</td>
-                                    <td>Unit</td>
-                                    <td>Department</td>
-                                    <td>Program Head</td>
+                                    <td><%=others.get(i).getDate()%></td>
+                                    <td><%=others.get(i).getName()%></td>
+                                    <td><%=others.get(i).getUnit()%></td>
+                                    <td><%=others.get(i).getDepartment()%></td>
+                                    <td><%=others.get(i).getProgramHead()%></td>
                                     <td>
                                         <%
                                             if (UserDAO.hasSEReport(others.get(i).getId())) {
