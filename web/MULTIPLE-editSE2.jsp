@@ -488,6 +488,12 @@
                 <center><h2>Social Engagement Proposal</h2></center>
                 <hr size="5" noshade>
                 <br>
+                
+                <%
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                    java.util.Date javaDate = new java.util.Date();
+                    java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+                %>
 
                 <div class="form-style-5">
                     <form action = "editSE2" method="post">
@@ -509,7 +515,7 @@
                                     %>
                                     <tr>
 
-                                        <td><input style="border-radius: 0px;" type ="date" name="date<%=i%>" value="<%=SE.getWorkplan().get(i).getDate()%>" min="<%=SE.getActualDate()%>"/></td>
+                                        <td><input style="border-radius: 0px;" type ="date" name="date<%=i%>" value="<%=SE.getWorkplan().get(i).getDate()%>" min="<%=sqlDate%>"/></td>
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="activity<%=i%>"><%=SE.getWorkplan().get(i).getActivity()%></textarea></td>
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="time<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend()%></textarea></td>
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></textarea></td>
