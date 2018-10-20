@@ -67,16 +67,15 @@ public class approveSE4 extends HttpServlet {
                     
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
-                    n.setBody("You have new SE Proposal ready for approval!");
+                    n.setBody("You have new PRS ready for approval!");
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                     n.setDt(sdf.format(dt));
-                    n.setUserID(27);
+                    n.setUserID(UserDAO.getUserIDforPositionNotifs("Vice President for Lasallian Mission"));
 
                     UserDAO.AddNotification(n);
-                    
 
                     request.setAttribute("successSE1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");
                     ServletContext context = getServletContext();
