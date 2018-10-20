@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FF"%>
 <%@page import="entity.SE"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
@@ -40,6 +41,9 @@
         <script>
             $(document).ready(function () {
                 $('#example').DataTable();
+            });
+            $(document).ready(function () {
+                $('#example2').DataTable();
             });
         </script>
 
@@ -269,7 +273,7 @@
                     <div class="container-fluid panels">
 
 
-                        <h2>Proposals to Assess</h2>
+                        <h2>SE Proposals to Assess</h2>
                         <%
                             ArrayList<SE> proposals = new ArrayList();
 
@@ -317,6 +321,54 @@
                                 %>
                             </tbody>
                         </table>
+                    </div>
+                </form>
+                <%
+                    if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
+                        ArrayList<FF> ffproposals = new ArrayList();
+                        ffproposals = UserDAO.retrieveFFProposalByStep(3);
+                %>
+                <form action="viewFF" method="post">
+
+                    <div class="container-fluid panels">
+
+                        <h2>FF Proposals to Assess</h2>
+                        <table id="example2" class="table table-striped table-bordered" style="width:100%">    
+                            <thead class="thead-dark" >
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Program Name</th>
+                                    <th>Unit</th>
+                                    <th>Department</th>
+                                    <th>Program Head</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <%
+                                    for (int i = 0; i < ffproposals.size(); i++) {
+                                        if (!UserDAO.isFFRevise(ffproposals.get(i).getId())) {
+                                %>
+
+                                <tr>
+                                    <td><%=ffproposals.get(i).getDatecreated()%></td>
+                                    <td><%=ffproposals.get(i).getProjectName()%></td>
+                                    <td><%=ffproposals.get(i).getUnit()%></td>
+                                    <td><%=ffproposals.get(i).getDepartment()%></td>
+                                    <td><%=ffproposals.get(i).getProgramHead()%></td>
+                                    <td><button type="submit" name="ffID<%=i%>" value="<%=ffproposals.get(i).getId()%>"  class="btn btn-primary btn-sm">View</button></td>
+                                </tr>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+
+                        <%
+                            }
+                        %>
                     </div>
                 </form>
             </div>
