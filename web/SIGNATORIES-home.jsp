@@ -50,72 +50,27 @@
         <script type="text/javascript">
             <%
                 if (request.getAttribute("successSE1") != null) {
-
             %>
             $("document").ready(function () {
-
                 alert("<%=request.getAttribute("successSE1")%>");
             });
-
             <%
                 }
                 if (request.getAttribute("reviseSE1") != null) {
-
             %>
             $("document").ready(function () {
-
                 alert("<%=request.getAttribute("reviseSE1")%>");
             });
-
             <%
                 }
                 if (request.getAttribute("rejectSE1") != null) {
-
             %>
             $("document").ready(function () {
-
                 alert("<%=request.getAttribute("rejectSE1")%>");
             });
-
             <%
                 }
             %>
-
-            <%
-                if (request.getAttribute("successFF1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("successFF1")%>");
-            });
-
-            <%
-                }
-
-                if (request.getAttribute("reviseFF1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("reviseFF1")%>");
-            });
-
-            <%
-                }
-
-                if (request.getAttribute("rejectFF1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("rejectFF1")%>");
-            });
-
-            <%
-                }
-            %>
-
         </script>
 
         <style>
@@ -124,27 +79,21 @@
                 overflow-x: hidden;
                 height: 250px;
             }
-
             #myInput{
                 margin-bottom: 20px;
             }
-
             .card-text{
                 margin-bottom: 5px;
             }
-
             .progressnum{
                 font-size: 12px;
             }
-
             .krascards:hover {
                 background-color: lightgreen;
             }
-
             tr:hover {
                 background-color: lightgreen;
             }
-
             h2{
                 font-size: 30px;
                 text-align: left;
@@ -154,7 +103,6 @@
                 margin-bottom: 25px;
                 font-family: 'Roboto', sans-serif;
             }
-
             .budget{
                 font-size: 70px; 
                 text-align: center; 
@@ -162,22 +110,18 @@
                 padding-bottom: 20px;
                 font-family: 'Montserrat', sans-serif;
             }
-
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
-
             .quickhead{
                 border-bottom: 1px solid lightblue;
                 padding-bottom: 10px; 
                 margin-bottom: 20px;
             }
-
             .quickview{
                 margin-bottom: 50px;
             }
-
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -246,7 +190,6 @@
                                     UserDAO UserDAO = new UserDAO();
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
                                     for (int i = 0; i < n.size(); i++) {
                                 %>
                                 <li class="notification-box" href="#">
@@ -311,15 +254,12 @@
                         <h2>SE Proposals to Assess</h2>
                         <%
                             ArrayList<SE> proposals = new ArrayList();
-
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Department Chair")) {
                                 proposals = UserDAO.retrieveSEProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
-
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")) {
                                 proposals = UserDAO.retrieveSEProposalByStep(2);
                             }
-
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
                                 proposals = UserDAO.retrieveSEProposalByStep(3);
                             }
@@ -423,7 +363,6 @@
                 window.open = function () {/*disable open*/
                 };
             }
-
             // prevent href=# click jump
             document.addEventListener("DOMContentLoaded", function () {
                 var links = document.getElementsByTagName("A");
@@ -453,21 +392,17 @@
         <script>
             // Hide submenus
             $('#body-row .collapse').collapse('hide');
-
             // Collapse/Expand icon
             $('#collapse-icon').addClass('fa-angle-double-left');
-
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
                 SidebarCollapse();
             });
-
             function SidebarCollapse() {
                 $('.menu-collapsed').toggleClass('d-none');
                 $('.sidebar-submenu').toggleClass('d-none');
                 $('.submenu-icon').toggleClass('d-none');
                 $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
                 // Treating d-flex/d-none on separators with title
                 var SeparatorTitle = $('.sidebar-separator-title');
                 if (SeparatorTitle.hasClass('d-flex')) {
@@ -475,7 +410,6 @@
                 } else {
                     SeparatorTitle.addClass('d-flex');
                 }
-
                 // Collapse/Expand icon
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
