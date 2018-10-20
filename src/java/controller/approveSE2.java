@@ -122,6 +122,7 @@ public class approveSE2 extends HttpServlet {
                 n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                    UserDAO.updateStep(-1, Integer.parseInt(request.getParameter("reject")));
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by Sir Neil. Reason: " + request.getParameter("remarks1"));
 

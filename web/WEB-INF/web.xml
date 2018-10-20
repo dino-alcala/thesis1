@@ -312,6 +312,14 @@
         <servlet-name>viewSE5</servlet-name>
         <servlet-class>controller.viewSE5</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewSE6</servlet-name>
+        <servlet-class>controller.viewSE6</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewSE7</servlet-name>
+        <servlet-class>controller.viewSE7</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -623,6 +631,14 @@
     <servlet-mapping>
         <servlet-name>viewSE5</servlet-name>
         <url-pattern>/viewSE5</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewSE6</servlet-name>
+        <url-pattern>/viewSE6</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewSE7</servlet-name>
+        <url-pattern>/viewSE7</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
