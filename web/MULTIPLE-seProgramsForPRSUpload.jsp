@@ -314,8 +314,8 @@ ProgramsForApproval
                     <!--- table -->
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
-                            <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-seProgramsForApproval.jsp">Social Engagement</a>
-                            <a href="MULTIPLE-ffProgramsForApproval.jsp" type="button" class="btn btn-primary" id="buttonCompleted" >Faith Formation</a>
+                            <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-seProgramsForPRSUpload.jsp">Social Engagement</a>
+                            <a href="MULTIPLE-ffProgramsForPRSUpload.jsp" type="button" class="btn btn-primary" id="buttonCompleted" >Faith Formation</a>
                         </div>
                         <h3></h3>
 

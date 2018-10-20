@@ -1,13 +1,15 @@
 <%-- 
-    Document   : MULTIPLE-socialEngagementProgramsList
-    Created on : 06 18, 18, 7:54:10 PM
+    Document   : MULTIPLE-se
+ProgramsForApproval
+    Created on : 06 18, 18, 7:49:19 PM
     Author     : Karl Madrid
 --%>
 
-<%@page import="entity.SE"%>
+<%@page import="entity.FF"%>
 <%@page import="entity.Notification"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
+<%@page import="entity.SE"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,10 +18,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Cancelled SE Programs List</title>
+        <title>Pending SE Programs List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
@@ -40,49 +43,10 @@
             $(document).ready(function () {
                 $('#example').DataTable();
             });
-            $(document).ready(function () {
-                $('#example2').DataTable();
-            });
-        </script>
-
-        <script type="text/javascript">
-            <%
-                if (request.getAttribute("SEreport") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("SEreport")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("cancelProgram") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("cancelProgram")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("updateBudget") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("updateBudget")%>");
-            });
-
-            <%
-                }
-            %>
-
         </script>
 
 
-        <style> 
+        <style>
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
@@ -158,10 +122,7 @@
             }
 
             h3{
-                font-size: 40px;
-                text-align: left;
                 border-bottom: 2px solid green;
-                font-family: 'Roboto', sans-serif;
             }
 
             #buttonCompleted{
@@ -172,22 +133,8 @@
             }
 
             #buttonPending{
-                color: green;
-                background-color: white;
-                border-color: green;
-                margin-top:25px;
-            }
-
-            #buttonCancel{
                 color: white;
                 background-color: green;
-                border-color: green;
-                margin-top:25px;
-            }
-            
-            #buttonRejected{
-                color: green;
-                background-color: white;
                 border-color: green;
                 margin-top:25px;
             }
@@ -204,20 +151,55 @@
                 border-color: green;
             }
 
-            #buttonCancel:hover{
-                color: white;
-                background-color: green;
-                border-color: green;
-            }
-            
-            #buttonRejected:hover{
-                color: white;
-                background-color: green;
-                border-color: green;
-            }
-
 
         </style>
+
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successSE1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successSE1")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("successSE2") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successSE2")%>");
+            });
+
+            <%
+                }
+                if (request.getAttribute("reviseSE1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("reviseSE1")%>");
+            });
+
+            <%
+                }
+                if (request.getAttribute("rejectSE1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("rejectSE1")%>");
+            });
+
+            <%
+                }
+            %>
+
+        </script>
 
     </head>
 
@@ -257,8 +239,8 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
-                        <i class="fa fa-user-circle"></i>
+                    <button type="button" class="btn btn-info navbar-btn-profile"> 
+                        <i class="fa fa-user-circle-o"></i>
                     </button>
                 </div>
                 <div class="nav-button">
@@ -268,28 +250,30 @@
                             <i class="fa fa-bell"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <div id="notifsScroll">
-                                <%
-                                    UserDAO UserDAO = new UserDAO();
-                                    ArrayList<Notification> n = new ArrayList();
-                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                            <div id ="notifsScroll">
+                                <div id="notifsScroll">
+                                    <%
+                                        UserDAO UserDAO = new UserDAO();
+                                        ArrayList<Notification> n = new ArrayList();
+                                        n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                    for (int i = 0; i < n.size(); i++) {
-                                %>
-                                <li class="notification-box" href="#">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                            <div class="notificationBoxMessage">
-                                                <%=n.get(i).getBody()%>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                </li>
+                                        for (int i = 0; i < n.size(); i++) {
+                                    %>
+                                    <li class="notification-box" href="#">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                                <div class="notificationBoxMessage">
+                                                    <%=n.get(i).getBody()%>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </li>
 
-                                <%
-                                    }
-                                %>
+                                    <%
+                                        }
+                                    %>
+                                </div>
                             </div>
                         </ul>
                     </div>
@@ -315,24 +299,29 @@
             </div>
 
             <!-- MAIN -->
+
             <div class="col py-3">
-                <form action="viewSE6" method="post">
+                <form action="viewSE5" method="post">
 
                     <%
-                        ArrayList<SE> my = new ArrayList();
-                        my = UserDAO.retrieveSEProposalByCancelledOwner(Integer.parseInt(session.getAttribute("userID").toString()));
+                        ArrayList<FF> proposals = new ArrayList();
+                        
+                        int userID = Integer.parseInt(session.getAttribute("userID").toString());
+                        if(session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")){
+                            proposals = UserDAO.retrieveFFProposalByStep(7);
+                        }
+                        
                     %>
                     <!--- table -->
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
-                            <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-socialEngagementProgramsList.jsp">Completed</a>
-                            <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-pendingSEList.jsp" >Pending</a>
-                            <a type="button" class="btn btn-primary" id="buttonCancel" href="MULTIPLE-cancelledSEList.jsp">Cancelled</a>
-                            <a type="button" class="btn btn-primary" id="buttonRejected" href="MULTIPLE-rejectedSEList.jsp">Rejected</a>
+                            <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-seProgramsForPRSUpload.jsp">Social Engagement</a>
+                            <a href="MULTIPLE-ffProgramsForPRSUpload.jsp" type="button" class="btn btn-primary" id="buttonCompleted" >Faith Formation</a>
                         </div>
+                        <h3></h3>
 
                         <br>
-                        <h2>My Social Engagement Programs (<%=my.size()%>)</h2>
+                        <h2>Social Engagement Programs (<%=proposals.size()%>)</h2>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
@@ -342,88 +331,21 @@
                                     <th>Unit</th>
                                     <th>Department</th>
                                     <th>Program Head</th>
-                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
+
                             <tbody id="myTable">
                                 <%
-                                    for (int i = 0; i < my.size(); i++) {
+                                    for (int i = 0; i < proposals.size(); i++) {     
                                 %>
                                 <tr>
-                                    <td><%=my.get(i).getDate()%></td>
-                                    <td><%=my.get(i).getName()%></td>
-                                    <td><%=my.get(i).getUnit()%></td>
-                                    <td><%=my.get(i).getDepartment()%></td>
-                                    <td><%=my.get(i).getProgramHead()%></td>
-                                    <td>
-                                        <%
-                                            if (UserDAO.hasSEReport(my.get(i).getId())) {
-
-
-                                        %>
-                                        With Report
-                                        <%                                        } else {
-                                        %>
-
-                                        No Report
-                                        <%
-                                            }
-                                        %>
-                                    </td>
-                                    <td><button type="submit" name="viewMy<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <%
-                                    }
-                                %>
-                            </tbody>
-                        </table>
-
-                        <%
-                            ArrayList<SE> others = new ArrayList();
-                            others = UserDAO.retrieveSEProposalByCancelled(Integer.parseInt(session.getAttribute("userID").toString()));
-                        %>
-                        <br><br>
-                        <h2>All Social Engagement Programs (<%=others.size()%>)</h2>
-
-                        <table id="example2" class="table table-striped table-bordered" style="width:100%">    
-                            <thead class="thead-dark" >
-                                <tr>
-                                    <th>Date</th> 
-                                    <th>Program Name</th>
-                                    <th>Unit</th>
-                                    <th>Department</th>
-                                    <th>Program Head</th>
-                                    <th>Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                                <%
-                                    for (int i = 0; i < others.size(); i++) {
-                                %>
-                                <tr>
-                                    <td><%=others.get(i).getDate()%></td>
-                                    <td><%=others.get(i).getName()%></td>
-                                    <td><%=others.get(i).getUnit()%></td>
-                                    <td><%=others.get(i).getDepartment()%></td>
-                                    <td><%=others.get(i).getProgramHead()%></td>
-                                    <td>
-                                        <%
-                                            if (UserDAO.hasSEReport(others.get(i).getId())) {
-
-
-                                        %>
-                                        With Report
-                                        <%                                        } else {
-                                        %>
-
-                                        No Report
-                                        <%
-                                            }
-                                        %>
-                                    </td>
-                                    <td><button type="submit" name="viewCompleted<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getName()%></td>
+                                    <td><%=proposals.get(i).getUnit()%></td>
+                                    <td><%=proposals.get(i).getDepartment()%></td>
+                                    <td><%=proposals.get(i).getProgramHead()%></td>
+                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
                                     }
@@ -434,7 +356,9 @@
                 </form>
             </div>
 
+
         </div>
+
 
         <script>
             // sandbox disable popups
