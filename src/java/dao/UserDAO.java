@@ -2898,7 +2898,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step = 9";
+            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step = 8";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
@@ -2939,7 +2939,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE userID != ? AND step = 9";
+            String query = "SELECT * FROM ffproposal WHERE userID != ? AND step = 8";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
@@ -5499,14 +5499,14 @@ public class UserDAO {
         PreparedStatement pstmt = null;
         ResultSet rs2 = null;
         try {
-            String query = "SELECT hasVoted1, hasVoted2, hasVoted3, hasVoted4, hasVoted5 FROM ffproposal WHERE id = ?";
+            String query = "SELECT hasVoted1, hasVoted2, hasVoted3, hasVoted5 FROM ffproposal WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
 
             rs2 = pstmt.executeQuery();
 
             while (rs2.next()) {
-                if (rs2.getInt("hasVoted1") == 1 && rs2.getInt("hasVoted2") == 1 && rs2.getInt("hasVoted3") == 1 && rs2.getInt("hasVoted4") == 1 && rs2.getInt("hasVoted5") == 1) {
+                if (rs2.getInt("hasVoted1") == 1 && rs2.getInt("hasVoted2") == 1 && rs2.getInt("hasVoted3") == 1 && rs2.getInt("hasVoted5") == 1) {
                     return true;
                 }
             }

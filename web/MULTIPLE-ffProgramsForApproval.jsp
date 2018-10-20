@@ -303,6 +303,10 @@
                         if (session.getAttribute("position").equals("LSPO - Director")) {
                             proposals = UserDAO.retrieveFFProposalByStep(4);
                         }
+                        
+                        if(session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").equals("DSA - Dean") || session.getAttribute("position").equals("LCLM - Executive Director") || session.getAttribute("position").equals("COSCA - Director")){
+                            proposals = UserDAO.retrieveFFProposalByStep(5);
+                        }
                     %>
 
                     <!--- table -->
@@ -363,20 +367,6 @@
                                 } else if (session.getAttribute("position").equals("LCLM - Executive Director")) {
 
                                     if (!UserDAO.hasMargaritaFFVoted(proposals.get(i).getId())) {
-                                %>
-                                <tr>
-                                    <td><%=proposals.get(i).getDatecreated()%></td>
-                                    <td><%=proposals.get(i).getProjectName()%></td>
-                                    <td><%=proposals.get(i).getUnit()%></td>
-                                    <td><%=proposals.get(i).getDepartment()%></td>
-                                    <td><%=proposals.get(i).getProgramHead()%></td>
-                                    <td><button type="submit" name="viewFF<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <%
-                                    }
-                                } else if (session.getAttribute("position").equals("LSPO - Director")) {
-
-                                    if (!UserDAO.hasJamesFFVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
                                     <td><%=proposals.get(i).getDatecreated()%></td>

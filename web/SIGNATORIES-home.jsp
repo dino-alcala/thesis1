@@ -71,7 +71,6 @@
             <%
                 }
             %>
-<<<<<<< HEAD
 
             <%
                 if (request.getAttribute("successFF1") != null) {
@@ -108,8 +107,6 @@
                 }
             %>
 
-=======
->>>>>>> 00b57db8acffec7f4509301f873cb2498fcc8958
         </script>
 
         <style>

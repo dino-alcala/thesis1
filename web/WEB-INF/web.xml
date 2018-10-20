@@ -320,6 +320,10 @@
         <servlet-name>viewSE7</servlet-name>
         <servlet-class>controller.viewSE7</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewFF5</servlet-name>
+        <servlet-class>controller.viewFF5</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -639,6 +643,10 @@
     <servlet-mapping>
         <servlet-name>viewSE7</servlet-name>
         <url-pattern>/viewSE7</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewFF5</servlet-name>
+        <url-pattern>/viewFF5</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

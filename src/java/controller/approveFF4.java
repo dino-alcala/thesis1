@@ -65,30 +65,39 @@ public class approveFF4 extends HttpServlet {
                     inputStream = filePart.getInputStream();
                 }
 
-                UserDAO.uploadFFPRS(inputStream, Integer.parseInt(request.getParameter("ffID")));
-                UserDAO.updateStepFF(8, Integer.parseInt(request.getParameter("ffID")));
+                if (request.getPart("uploadprs").getSize() == 0) {
+                    request.setAttribute("successFF1", "You have not uploaded any file.");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingFFList.jsp");
+                    dispatcher.forward(request, response);
 
-                Notification n = new Notification();
-                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
-                n.setBody("You have new FF Proposal ready for approval!");
+                } else if (!(request.getPart("uploadprs").getSize() == 0)) {
 
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    UserDAO.uploadFFPRS(inputStream, Integer.parseInt(request.getParameter("ffID")));
+                    UserDAO.updateStepFF(7, Integer.parseInt(request.getParameter("ffID")));
 
-                n.setDt(sdf.format(dt));
-                n.setUserID(27);
+                    Notification n = new Notification();
+                    n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
+                    n.setBody("You have new FF Proposal ready for approval!");
 
-                UserDAO.AddNotification(n);
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                request.setAttribute("successFF1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingFFList.jsp");
-                dispatcher.forward(request, response);
+                    n.setDt(sdf.format(dt));
+                    n.setUserID(UserDAO.getUserIDforPositionNotifs("Vice President for Lasallian Mission"));
 
+                    UserDAO.AddNotification(n);
+
+                    request.setAttribute("successFF1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingFFList.jsp");
+                    dispatcher.forward(request, response);
+
+                }
             }
-            
+
             if (request.getParameter("cancelProgram") != null) {
-                
+
                 UserDAO.updateStepFF(0, Integer.parseInt(request.getParameter("cancelProgram")));
 
                 Notification n = new Notification();

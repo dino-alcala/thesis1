@@ -319,11 +319,19 @@
                                             Approval by Dean
                                         </span>
                                     </li>
+                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 4) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 4) {%> is-active <%}%>">
+                                        <span class="progress-marker"></span>
+                                        <span class="progress-text">
+                                            <h4 class="progress-title"><u>Step 4</u></h4>
+                                            Evaluation by LSPO
+                                        </span>
+                                    </li>
+
                                     <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 5) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 5) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 5</u></h4>
-                                            Evaluation by LSPO
+                                            Approval by the Council
                                         </span>
                                     </li>
 
@@ -331,35 +339,19 @@
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 6</u></h4>
-                                            Approval by the Council
-                                        </span>
-                                    </li>
-
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 7) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 7) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 7</u></h4>
                                             Accomplish and Upload PRS for Endorsement
                                         </span>
                                     </li>
 
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 9) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 9) {%> is-active <%}%>">
+                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 8) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 8) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 8</u></h4>
+                                            <h4 class="progress-title"><u>Step 7</u></h4>
                                             Ready to Implement
                                         </span>
                                     </li>
                                 </ul>
 
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Targets</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p><b>Community: </b><%=UserDAO.getCommunitynameByID(FF.getTargetCommunity())%></p>
-                                    </div>  
-                                </div>
                                 <br/>
 
                                 <div class="card">
@@ -430,10 +422,7 @@
                                         <td>Signatories Dean/Unit Head</td>
                                         <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%></td>
                                     </tr>
-                                    <tr>
-                                        <td>Signatories Assistant Dean for Lasallian Mission/Assistant Unit Heads</td>
-                                        <td><%if (FF.getAssistantdeanRemarks() != null) {%><%=FF.getAssistantdeanRemarks()%><%}%></td>
-                                    </tr>
+
                                     <tr>
                                         <td>Evaluation by LSPO</td>
                                         <td><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%}%></td>
@@ -460,7 +449,7 @@
                                 <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center><br>
 
                                 <%
-                                    if (UserDAO.getStepFF(Integer.parseInt(request.getAttribute("ffID").toString())) == 7 && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
+                                    if (UserDAO.getStepFF(Integer.parseInt(request.getAttribute("ffID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>
                                 <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>
                                 <center><button class="btn-success" type="submit" name="ffID" value="<%=request.getAttribute("ffID")%>">Upload</button><br></center>

@@ -51,31 +51,25 @@ public class approveFF3 extends HttpServlet {
 
             if (request.getParameter("approve") != null) {
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
+                if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission")) {
                     UserDAO.voteFFMichael(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateFFlmc1Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 20) {
+                if (session.getAttribute("position").equals("DSA - Dean")) {
                     UserDAO.voteFFNelca(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateFFlmc2Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 21) {
+                if (session.getAttribute("position").equals("LCLM - Executive Director")) {
                     UserDAO.voteFFMargarita(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateFFlmc3Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 22) {
-                    UserDAO.voteFFJames(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateFFlmc4Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 23) {
+                if (session.getAttribute("position").equals("COSCA - Director")) {
                     UserDAO.voteFFFritzie(Integer.parseInt(request.getParameter("approve")), 1);
                     UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateFFlmc5Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
@@ -83,7 +77,7 @@ public class approveFF3 extends HttpServlet {
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has voted to APPROVE your proposal. Vote Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5");
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has voted to APPROVE your proposal. Vote Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -97,6 +91,7 @@ public class approveFF3 extends HttpServlet {
                 request.setAttribute("successFF2", "You have successfully voted APPROVE for the FF Proposal!");
             }
 
+            /*
             if (request.getParameter("reject") != null) {
 
                 if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
@@ -144,14 +139,14 @@ public class approveFF3 extends HttpServlet {
 
                 request.setAttribute("rejectFF1", "You have successfully voted REJECT for the FF Proposal!");
             }
-
+*/
             if (UserDAO.hasFFEveryoneVoted(Integer.parseInt(request.getParameter("ffID")))) {
 
                 if (UserDAO.FFtallyVote(Integer.parseInt(request.getParameter("ffID"))).equals("approve")) {
 
                     if (UserDAO.isOVPLMSourceFF(Integer.parseInt(request.getParameter("ffID")))) {
 
-                        UserDAO.updateStepFF(7, Integer.parseInt(request.getParameter("ffID")));
+                        UserDAO.updateStepFF(6, Integer.parseInt(request.getParameter("ffID")));
 
                         Notification n2 = new Notification();
                         n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
@@ -164,7 +159,7 @@ public class approveFF3 extends HttpServlet {
                         n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
                         UserDAO.AddNotification(n2);
                     } else {
-                        UserDAO.updateStepFF(9, Integer.parseInt(request.getParameter("ffID")));
+                        UserDAO.updateStepFF(8, Integer.parseInt(request.getParameter("ffID")));
 
                         Notification n2 = new Notification();
                         n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
@@ -179,6 +174,7 @@ public class approveFF3 extends HttpServlet {
                     }
                 }
 
+                /*
                 if (UserDAO.FFtallyVote(Integer.parseInt(request.getParameter("ffID"))).equals("reject")) {
                     UserDAO.rejectFF(Integer.parseInt(request.getParameter("ffID")));
 
@@ -193,6 +189,7 @@ public class approveFF3 extends HttpServlet {
                     n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
                     UserDAO.AddNotification(n2);
                 }
+                */
             }
 
             ServletContext context = getServletContext();

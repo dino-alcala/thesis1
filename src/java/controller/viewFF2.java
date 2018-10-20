@@ -43,18 +43,14 @@ public class viewFF2 extends HttpServlet {
             HttpSession session = request.getSession();
             ArrayList<FF> proposals = new ArrayList();
 
-            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+            if (session.getAttribute("position").toString().equals("LSPO - Director")) {
                 proposals = UserDAO.retrieveFFProposalByStep(4);
             }
 
             int userID = Integer.parseInt(session.getAttribute("userID").toString());
 
-            if (userID == 19 || userID == 20 || userID == 21 || userID == 22 || userID == 23 || userID == 24 || userID == 25 || userID == 26) {
-                proposals = UserDAO.retrieveFFProposalByStep(6);
-            }
-
-            if (userID == 27) {
-                proposals = UserDAO.retrieveFFProposalByStep(8);
+            if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").equals("DSA - Dean") || session.getAttribute("position").equals("LCLM - Executive Director") || session.getAttribute("position").equals("COSCA - Director")) {
+                proposals = UserDAO.retrieveFFProposalByStep(5);
             }
 
             for (int i = 0; i < proposals.size(); i++) {
@@ -63,21 +59,15 @@ public class viewFF2 extends HttpServlet {
                 }
             }
 
-            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+            if (session.getAttribute("position").toString().equals("LSPO - Director")) {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
                 dispatcher.forward(request, response);
             }
 
-            if (userID == 19 || userID == 20 || userID == 21 || userID == 22 || userID == 23 || userID == 24 || userID == 25 || userID == 26) {
+            if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").equals("DSA - Dean") || session.getAttribute("position").equals("LCLM - Executive Director") || session.getAttribute("position").equals("COSCA - Director")) {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal4.jsp");
-                dispatcher.forward(request, response);
-            }
-
-            if (userID == 27) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal5.jsp");
                 dispatcher.forward(request, response);
             }
         }

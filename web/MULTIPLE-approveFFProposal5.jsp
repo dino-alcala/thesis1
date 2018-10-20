@@ -346,16 +346,6 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Targets</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p><b>Community: </b><%=UserDAO.getCommunitynameByID(FF.getTargetCommunity())%></p>
-                                    </div>  
-                                </div>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
                                         <h4>Objectives of the Project</h4>
                                     </div>
                                     <div class="card-body">   
@@ -424,9 +414,6 @@
                                             <br>
                                             <br>
                                             <b>Ms. Margarita Perdido: </b> <%=FF.getLmc3Remarks()%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%=FF.getLmc4Remarks()%>
                                             <br>
                                             <br>
                                             <b>Ms. Fritzie De Vera: </b> <%=FF.getLmc5Remarks()%>
