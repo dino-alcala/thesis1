@@ -43,8 +43,8 @@ public class viewFF2 extends HttpServlet {
             HttpSession session = request.getSession();
             ArrayList<FF> proposals = new ArrayList();
 
-            if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
-                proposals = UserDAO.retrieveFFProposalByStep(5);
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                proposals = UserDAO.retrieveFFProposalByStep(4);
             }
 
             int userID = Integer.parseInt(session.getAttribute("userID").toString());
@@ -63,7 +63,7 @@ public class viewFF2 extends HttpServlet {
                 }
             }
 
-            if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
                 dispatcher.forward(request, response);

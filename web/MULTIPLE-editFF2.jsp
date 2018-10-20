@@ -147,7 +147,7 @@
                 FF FF = new FF();
                 FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
             %>
-            <input type="text" value="<%=FF.getAttendees().size()%>" id="countattendees" name="countattendees">
+            <input type="hidden" value="<%=FF.getAttendees().size()%>" id="countattendees" name="countattendees">
             <fieldset>
                 <center><table style = "width:90%" id="attendeestable">
                         <tr>
@@ -171,7 +171,7 @@
                     <input style="background-color:red; border: red;" type ="button" onclick ="deleteRow()" value="Click to Delete Row"></center>
             </fieldset>    
             <br><br><br><br>
-            <center><button type = "submit">Submit</button></center>
+            <center><button type = "submit" name="ffID" value="<%=FF.getId()%>">Submit</button></center>
         </form>
     </div>
 </body>

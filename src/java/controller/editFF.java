@@ -48,10 +48,6 @@ public class editFF extends HttpServlet {
             FF.setId(Integer.parseInt(request.getParameter("ffID")));
             FF.setProgramHead(request.getParameter("programhead"));
             FF.setActivityClassification(request.getParameter("classification"));
-            FF.setTargetCommunity(Integer.parseInt(request.getParameter("community")));
-            FF.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
-            FF.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
-            FF.setTargetMeasure(Integer.parseInt(request.getParameter("measure")));
             FF.setProjectName(request.getParameter("pname"));
             FF.setVenue(request.getParameter("pvenue"));
             FF.setSpeaker(request.getParameter("pspeaker"));
@@ -60,24 +56,8 @@ public class editFF extends HttpServlet {
             FF.setTotalAmount(Double.parseDouble(request.getParameter("pbudget")));
             FF.setSourceOfFunds(request.getParameter("funds"));
 
-            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 1) {
+            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 1 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 2 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 3 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 4) {
                 FF.setStep(1);
-            }
-
-            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 2) {
-                FF.setStep(2);
-            }
-
-            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 3) {
-                FF.setStep(3);
-            }
-
-            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 4) {
-                FF.setStep(4);
-            }
-
-            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 5) {
-                FF.setStep(5);
             }
 
             ArrayList<FFexpenses> ffexpense = new ArrayList();

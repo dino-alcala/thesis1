@@ -187,7 +187,7 @@
             %>
 
                 if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                var optionArray = ["|",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getDescription()%>",<%}%>];
+                var optionArray = ["|",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
                     }
 
             <%
@@ -233,53 +233,6 @@
                 Ex: Seminar/Workshop
                 <center><input type = "text" name ="classification" value="<%=FF.getActivityClassification()%>"></center>
                 <br><br>
-            </fieldset>
-
-            <fieldset>
-                <legend>Target Community: </legend>
-                <%
-                    ArrayList<Community> c = new ArrayList();
-                    c = UserDAO.retrieveCommunity();
-                %>
-                <select name="community" >
-                    <%
-                        for (int m = 0; m < c.size(); m++) {
-                    %>
-                    <option value="<%=c.get(m).getId()%>" <% if (c.get(m).getName().equals(FF.getTargetCommunity())) {%> selected="selected" <%}%> ><%=c.get(m).getName()%></option>
-                    <%
-                        }
-                    %>
-                </select>
-                <br>
-            </fieldset>
-
-            <fieldset>
-                <legend>Target KRA: </legend>
-                <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')">
-                    <option></option>
-                    <%
-                        for (int m = 0; m < k.size(); m++) {
-                    %>
-                    <option value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
-                    <%
-                        }
-                    %>
-                </select>
-                <br>
-            </fieldset>
-
-            <fieldset>
-                <legend>Target Goal: </legend>
-                <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures')">
-                </select>
-                <br>
-            </fieldset>
-
-            <fieldset>
-                <legend>Target Measure: </legend>
-                <select name="measure" id="measures">
-                </select>
-                <br><br><br><br>
             </fieldset>
 
             <fieldset>
@@ -329,7 +282,7 @@
 
 
             <h2>Breakdown of Expenses:</h2>
-            <input type="text" value="<%=FF.getExpenses().size()%>" id="countexpenses" name="countexpenses">
+            <input type="hidden" value="<%=FF.getExpenses().size()%>" id="countexpenses" name="countexpenses">
             <fieldset>
                 <center><table style = "width:100%" id="breakdowntable">
                         <tr>

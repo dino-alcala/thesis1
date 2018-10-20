@@ -300,8 +300,8 @@
                     <%
                         ArrayList<FF> proposals = new ArrayList();
 
-                        if (Integer.parseInt(session.getAttribute("userID").toString()) == 32) {
-                            proposals = UserDAO.retrieveFFProposalByStep(5);
+                        if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                            proposals = UserDAO.retrieveFFProposalByStep(4);
                         }
 
                         int userID = Integer.parseInt(session.getAttribute("userID").toString());

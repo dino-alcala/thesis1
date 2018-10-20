@@ -81,6 +81,41 @@
                 }
             %>
 
+            <%
+                if (request.getAttribute("successFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successFF1")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("reviseFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("reviseFF1")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("rejectFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("rejectFF1")%>");
+            });
+
+            <%
+                }
+            %>
+
         </script>
 
         <style>

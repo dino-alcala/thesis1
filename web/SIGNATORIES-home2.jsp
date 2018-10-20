@@ -276,6 +276,15 @@
                         <%
                             ArrayList<FF> proposals = new ArrayList();
 
+                            System.out.println(session.getAttribute("unit"));
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Assistant Dean for Lasallian Mission")) {
+                                proposals = UserDAO.retrieveFFProposalByUnit(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                            }
+
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Chairperson")) {
+                                proposals = UserDAO.retrieveFFProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                            }
+                            /*
                             if (session.getAttribute("unit").toString().equals("Chairperson / Director")) {
                                 proposals = UserDAO.retrieveFFProposalByStep(1);
                             }
@@ -291,6 +300,8 @@
                             if (session.getAttribute("unit").toString().equals("Assistant Dean for Lasallian Mission / Assistant Unit Head")) {
                                 proposals = UserDAO.retrieveFFProposalByStep(4);
                             }
+
+                             */
                         %>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    

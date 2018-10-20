@@ -71,11 +71,12 @@ public class editFF2 extends HttpServlet {
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             
             n.setDt(sdf.format(dt));
-            
-            if (UserDAO.getStepFF(FF.getId()) == 1) {
-                n.setUserID(28);
+
+            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 1 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 2 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 3 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 4) {
+                n.setUserID(UserDAO.getUserIDforNotifsAssistantDean(session.getAttribute("unit").toString()));
             }
             
+            /*
             if (UserDAO.getStepFF(FF.getId()) == 2) {
                 n.setUserID(29);
             }
@@ -89,7 +90,7 @@ public class editFF2 extends HttpServlet {
             if (UserDAO.getStepFF(FF.getId()) == 5) {
                 n.setUserID(32);
             }
-            
+            */
             UserDAO.AddNotification(n);
             
             request.setAttribute("reviseFF1", "You have successfully revised the FF!");

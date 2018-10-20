@@ -43,29 +43,25 @@ public class viewFF extends HttpServlet {
 
             ArrayList<FF> proposals = new ArrayList();
 
-            if (session.getAttribute("unit").toString().equals("Chairperson / Director")) {
-                proposals = UserDAO.retrieveFFProposalByStep(1);
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Assistant Dean for Lasallian Mission")) {
+                proposals = UserDAO.retrieveFFProposalByUnit(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
             }
 
-            if (session.getAttribute("unit").toString().equals("Vice President for Lasallian Mission")) {
-                proposals = UserDAO.retrieveFFProposalByStep(2);
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Chairperson")) {
+                proposals = UserDAO.retrieveFFProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
             }
 
-            if (session.getAttribute("unit").toString().equals("Dean / Unit Head")) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
                 proposals = UserDAO.retrieveFFProposalByStep(3);
             }
 
-            if (session.getAttribute("unit").toString().equals("Assistant Dean for Lasallian Mission / Assistant Unit Head")) {
-                proposals = UserDAO.retrieveFFProposalByStep(4);
-            }
-            
             for (int i = 0; i < proposals.size(); i++) {
                 if (request.getParameter("ffID" + i) != null) {
                     request.setAttribute("ffID", proposals.get(i).getId());
                 }
             }
 
-            if (session.getAttribute("unit").toString().equals("Chairperson / Director")) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Assistant Dean for Lasallian Mission")) {
 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFProposal.jsp");
@@ -73,7 +69,7 @@ public class viewFF extends HttpServlet {
 
             }
 
-            if (session.getAttribute("unit").toString().equals("Vice President for Lasallian Mission")) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Chairperson")) {
 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFProposal2.jsp");
@@ -81,18 +77,10 @@ public class viewFF extends HttpServlet {
 
             }
 
-            if (session.getAttribute("unit").toString().equals("Dean / Unit Head")) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFProposal3.jsp");
-                dispatcher.forward(request, response);
-
-            }
-
-            if (session.getAttribute("unit").toString().equals("Assistant Dean for Lasallian Mission / Assistant Unit Head")) {
-
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFProposal4.jsp");
                 dispatcher.forward(request, response);
 
             }

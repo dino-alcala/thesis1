@@ -69,7 +69,8 @@ public class addFF2 extends HttpServlet {
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             n.setDt(sdf.format(dt));
-            n.setUserID(28);
+         
+            n.setUserID(UserDAO.getUserIDforNotifsAssistantDean(FF.getUnit()));
 
             UserDAO.AddNotification(n);
 
@@ -79,17 +80,49 @@ public class addFF2 extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
                 dispatcher.forward(request, response);
-            }
-
-            if(session.getAttribute("unit").toString().equals("College of Computer Studies (CCS)")|| (session.getAttribute("unit").toString().equals("Br. Andrew Gonzales College of Education")) || (session.getAttribute("unit").toString().equals("College of Law")) || (session.getAttribute("unit").toString().equals("College of Liberal Arts"))
-                    || (session.getAttribute("unit").toString().equals("College of Science")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVRCOB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)"))){
+            } else if (session.getAttribute("unit").toString().equals("College of Computer Studies (CCS)") || (session.getAttribute("unit").toString().equals("Br. Andrew Gonzales College of Education (BAGCED)")) || (session.getAttribute("unit").toString().equals("College of Law (COL)")) || (session.getAttribute("unit").toString().equals("College of Liberal Arts (CLA)"))
+                    || (session.getAttribute("unit").toString().equals("College of Science (COS)")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVR-COB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)"))) {
 
                 request.setAttribute("successFF", "You have successfully submitted your FF Proposal!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
                 dispatcher.forward(request, response);
-            }
 
+            } else if (session.getAttribute("unit").equals("Center for Social Concern and Action (COSCA)")) {
+
+                request.setAttribute("successFF", "You have successfully submitted your FF Proposal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/COSCA-home.jsp");
+                dispatcher.forward(request, response);
+
+            } else if (session.getAttribute("position").equals("Lasallian Pastoral Office (LSPO)")) {
+
+                request.setAttribute("successFF", "You have successfully submitted your FF Proposal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/LSPO-home.jsp");
+                dispatcher.forward(request, response);
+
+            } else if (session.getAttribute("position").equals("Dean of Student Affairs (DSA)")) {
+
+                request.setAttribute("successFF", "You have successfully submitted your FF Proposal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
+                dispatcher.forward(request, response);
+
+            } else if (session.getAttribute("position").equals("Laguna Campus Lasallian Mission (LCLM)")) {
+
+                request.setAttribute("successFF", "You have successfully submitted your FF Proposal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/LCLM-home.jsp");
+                dispatcher.forward(request, response);
+
+            } else if (session.getAttribute("position").toString().contains("ADEALM")) {
+
+                request.setAttribute("successFF", "You have successfully submitted your FF Proposal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 
