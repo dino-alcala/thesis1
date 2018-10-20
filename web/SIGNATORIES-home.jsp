@@ -71,6 +71,45 @@
             <%
                 }
             %>
+<<<<<<< HEAD
+
+            <%
+                if (request.getAttribute("successFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successFF1")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("reviseFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("reviseFF1")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("rejectFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("rejectFF1")%>");
+            });
+
+            <%
+                }
+            %>
+
+=======
+>>>>>>> 00b57db8acffec7f4509301f873cb2498fcc8958
         </script>
 
         <style>
