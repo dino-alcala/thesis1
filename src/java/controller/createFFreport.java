@@ -41,6 +41,14 @@ public class createFFreport extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             
             UserDAO UserDAO = new UserDAO();
+            
+            if (request.getParameter("viewAttendees") != null) {
+                request.setAttribute("ffID", request.getParameter("viewAttendees"));
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFViewAttendeesList.jsp");
+                dispatcher.forward(request, response);
+            }
 
             if (request.getParameter("ffID") != null) {
 

@@ -286,14 +286,16 @@
                                             <h3><%=FF.getProjectName()%></h3>
                                             <p><b>Unit: </b> <%=FF.getUnit()%></p>
                                             <p><b>Department: </b> <%=FF.getDepartment()%></p>
+                                            <p><b>Target Date of Implementation: </b> <%=FF.getActualDate()%></p>
+                                            <br>
                                             <p><b>Program Head: </b> <%=FF.getProgramHead()%></p>
                                             <p><b>Program Classification: </b> <%=FF.getActivityClassification()%></p>
                                             <p><b>Total Amount Requested:</b> ₱<%=FF.getTotalAmount()%></p>
-                                            <p><b>Actual Date of Implementation: </b> <%=FF.getActualDate()%></p>
+                                            <br>
                                             <p><b>Venue: </b> <%=FF.getVenue()%></p>
                                             <p><b>Speaker: </b> <%=FF.getSpeaker()%></p>
                                         </div>
-                                    </div><br>
+                                    </div>
 
                                 </div>
 
@@ -352,8 +354,6 @@
                                     </li>
                                 </ul>
 
-                                <br/>
-
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Objectives of the Project</h4>
@@ -366,7 +366,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Breakdown of Expenses</h4>
+                                        <h4>Breakdown of Expenses (Requested: ₱<%=FF.getTotalAmount()%>)</h4>
                                     </div>
                                 </div>
 
@@ -398,6 +398,16 @@
                                         <td>Grand Total: <%=count%></td>
                                     </tr>
                                 </table>
+                                <br/>
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Source of Funds: </h4>
+                                    </div>
+                                    <div class="card-body">   
+                                        <p><%=FF.getSourceOfFunds() %></p>
+                                    </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
@@ -461,7 +471,7 @@
                                     if (UserDAO.isFFRevise(Integer.parseInt(request.getAttribute("ffID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
 
                                 %>
-                                <button class="btn-success" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button><br>
+                                <center><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button></center><br>
 
                                 <%
                                     }

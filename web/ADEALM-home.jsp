@@ -95,6 +95,57 @@
             }
 
         </script>
+        
+        <script>
+            $(document).ready(function () {
+                $("#myInput2").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable2 tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable2");
+                switching = true;
+                dir = "asc";
+                while (switching) {
+                    switching = false;
+                    rows = table.getElementsByTagName("TR");
+                    for (i = 0; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+
+                        switchcount++;
+                    } else {
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+
+        </script>
 
         <style>
             body{
@@ -189,7 +240,7 @@
             </button>
             <a class="navbar-brand" href="#" id="navbar-unit">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c2/De_La_Salle_University_Seal.svg/1200px-De_La_Salle_University_Seal.svg.png" width="30" height="30" class="d-inline-block align-top" data-toggle="sidebar-colapse" id="collapse-icon">
-                <span class="menu-collapsed"><%=session.getAttribute("unit")%></span>
+                <span class="menu-collapsed"><%=session.getAttribute("unit")%> - ADEALM</span>
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
@@ -522,11 +573,15 @@
 
                     <div class="container-fluid panels">
 
-                        <h2>Proposals to Assess (size)</h2>
+                        
+                        <% 
+                            ArrayList<SE> proposals = new ArrayList<SE>();
+                            proposals = UserDAO.retrieveSEProposalByStep(2);
+                        %>
+                        <h2>Proposals to Assess (<%=proposals.size()%>)</h2>
 
                         <input class="form-control" id="myInput" type="text" placeholder="Search table..">
-
-                        <table class="table ">
+                        <table class="table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th onclick="sortTable(0)">Date</th>
@@ -539,16 +594,20 @@
                                 </tr>
                             </thead>
                             <tbody id="myTable">
-
+                                <%
+                                    for (int i = 0; i < proposals.size(); i++) {
+                                %>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Step</td>
-                                    <td><center></center></td>
-                            <td><button type="submit" name="viewSE" value="" class="btn btn-primary btn-sm">View</button></td>
+                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getName()%></td>
+                                    <td><%=proposals.get(i).getProgramHead()%></td>
+                                    <td><%=UserDAO.getSourceOfFunds(proposals.get(i).getId()) %></td>
+                                    <td>Step <%=UserDAO.getStep(proposals.get(i).getId()) %></td>
+                                    <td><%=proposals.get(i).getDepartment()%></td>
+                                    
+                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                             </tr>
+                            <% } %>
                             </tbody>
                         </table>
                     </div>
@@ -558,14 +617,14 @@
                     <div class="container-fluid panels">
                         <%
                             ArrayList<SE> s = new ArrayList();
-                            s = UserDAO.retrieveSEbyUnit("College of Computer Studies (CCS)");
+                            s = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
                             
                         %>
-                        <h2>SE Proposals Progress (<%=s.size()%>)</h2>
+                        <h2>SE Proposals Progress for <%=session.getAttribute("unit").toString() %> (<%=s.size()%>)</h2>
 
-                        <input class="form-control" id="myInput" type="text" placeholder="Search table..">
-
-                        <table class="table ">
+                         <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
+                         <br>
+                        <table class="table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th onclick="sortTable(0)">Date</th>
@@ -577,7 +636,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody id="myTable">
+                            <tbody id="myTable2">
                                 <%
                                     for (int i = 0; i < s.size(); i++) {
                                 %>
@@ -585,58 +644,14 @@
                                     <td><%=s.get(i).getDate()%></td>
                                     <td><%=s.get(i).getName()%></td>
                                     <td><%=s.get(i).getProgramHead()%></td>
-                                    <td><%=s.get(i).getSourceOfFunds()%></td>
-                                    <td>Step <%=s.get(i).getStep()%></td>
+                                    <td><%=UserDAO.getSourceOfFunds(s.get(i).getId()) %></td>
+                                    <td>Step <%=UserDAO.getStep(s.get(i).getId()) %></td>
                                     <td><center><%=s.get(i).getDepartment()%></center></td>
                             <td><button type="submit" name="viewSE<%=i%>" value="<%=s.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                             </tr>
                             <%
                                 }
                             %>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="container-fluid panels">
-                        <%
-                            ArrayList<FF> f = new ArrayList();
-                            if (session.getAttribute("unit").equals("Assistant Dean for External Affairs of the Lasallian Mission (ADEALM) - CCS")) {
-                                f = UserDAO.retrieveFFbyUnit("College of Computer Studies (CCS)");
-                            }
-                        %>
-                        <h2>FF Proposals Progress (<%=f.size()%>)</h2>
-
-                        <input class="form-control" id="myInput" type="text" placeholder="Search table..">
-
-                        <table class="table ">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th onclick="sortTable(0)">Date</th>
-                                    <th onclick="sortTable(1)">Program Name</th>
-                                    <th onclick="sortTable(2)">Program Head</th>
-                                    <th onclick="sortTable(3)">Funded by</th>
-                                    <th onclick="sortTable(4)">Status</th>
-                                    <th onclick="sortTable(5)">Department</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                                <%
-                                    for (int i = 0; i < f.size(); i++) {
-                                %>
-                                <tr>
-                                    <td><%=f.get(i).getDatecreated()%></td>
-                                    <td><%=f.get(i).getProjectName()%></td>
-                                    <td><%=f.get(i).getProgramHead()%></td>
-                                    <td><%=f.get(i).getSourceOfFunds()%></td>
-                                    <td>Step <%=f.get(i).getStep()%></td>
-                                    <td><center><%=f.get(i).getDepartment()%></center></td>
-                            <td><button type="submit" name="viewFF<%=i%>" value="<%=f.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                            </tr>
-                            <%
-                                }
-                            %>
-
                             </tbody>
                         </table>
                     </div>

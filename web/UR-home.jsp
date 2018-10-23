@@ -481,7 +481,7 @@
                     <div class="container-fluid panels">
                         <%
                             ArrayList<SE> s = new ArrayList();
-                            s = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
+                            s = UserDAO.retrievePendingSEProposalByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
                         %>
 
                         <h2>SE Proposals Progress (<%=s.size()%>)</h2>
@@ -507,8 +507,8 @@
                                     <td><%=s.get(i).getDate()%></td>
                                     <td><%=s.get(i).getName()%></td>
                                     <td><%=s.get(i).getProgramHead()%></td>
-                                    <td><%=s.get(i).getSourceOfFunds()%></td>
-                                    <td>Step <%=s.get(i).getStep()%></td>
+                                    <td><%=UserDAO.getSourceOfFunds(s.get(i).getId()) %></td>
+                                    <td>Step <%=UserDAO.getStep(s.get(i).getId()) %></td>
                                     <td><button type="submit" name="viewSE<%=i%>" value="<%=s.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%

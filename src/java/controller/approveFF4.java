@@ -78,7 +78,7 @@ public class approveFF4 extends HttpServlet {
 
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
-                    n.setBody("You have new FF Proposal ready for approval!");
+                    n.setBody("You have new FF PRS ready for approval!");
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

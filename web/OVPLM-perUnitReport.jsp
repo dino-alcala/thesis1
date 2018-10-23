@@ -339,6 +339,14 @@
                         <p></p>
                         <p>Enter Report Range: From: <input type="date" name="startDate"> To: <input type="date" name="endDate"></p>
                         <div class="form-group">
+                            <% if(session.getAttribute("position").equals("CCS - ADEALM")){ %>
+                                <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "College of Computer Studies (CCS)">College of Computer Studies (CCS)</option>
+                            </select>
+                            
+                            <% } else {       
+                            %>
                             <label for="sel1">Choose Unit:</label>
                             <select class="form-control" id="type" name="unit">
                                 <optgroup label="Added Units">
@@ -355,6 +363,7 @@
                                 </optgroup>
 
                             </select>
+                            <% } %>
                         </div>
                         <!--
                         <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>

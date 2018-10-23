@@ -7,6 +7,7 @@ package controller;
 
 import dao.UserDAO;
 import entity.FF;
+import entity.SE;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class viewFF5 extends HttpServlet {
+public class viewFF7 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,25 +38,36 @@ public class viewFF5 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
-            //CONTROLLER FOR PRS FOR APPROVAL FF
+            
+            
             UserDAO UserDAO = new UserDAO();
             HttpSession session = request.getSession();
-            ArrayList<FF> proposals = new ArrayList();
-            
-            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
-                proposals = UserDAO.retrieveFFProposalByStep(7);
-            }
-            
-            for (int i = 0; i < proposals.size(); i++) {
+            ArrayList<FF> my = new ArrayList();
+
+            my = UserDAO.retrieveRejectedFFProposalByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+
+            for (int i = 0; i < my.size(); i++) {
                 if (request.getParameter("viewFF" + i) != null) {
                     request.setAttribute("ffID", request.getParameter("viewFF" + i));
+
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFProgramDetails.jsp");
+                    dispatcher.forward(request, response);
                 }
             }
-            
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal5.jsp");
-            dispatcher.forward(request, response);
+
+            ArrayList<FF> others = new ArrayList();
+            others = UserDAO.retrieveRejectedFFProposalByOthers(Integer.parseInt(session.getAttribute("userID").toString()));
+
+            for (int i = 0; i < others.size(); i++) {
+                if (request.getParameter("viewOthers" + i) != null) {
+                    request.setAttribute("ffID", request.getParameter("viewOthers" + i));
+                    
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFProgramDetails.jsp");
+                    dispatcher.forward(request, response);
+                }
+            }
         }
     }
 

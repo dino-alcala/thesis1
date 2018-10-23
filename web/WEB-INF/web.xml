@@ -324,6 +324,14 @@
         <servlet-name>viewFF5</servlet-name>
         <servlet-class>controller.viewFF5</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewFF7</servlet-name>
+        <servlet-class>controller.viewFF7</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewFF6</servlet-name>
+        <servlet-class>controller.viewFF6</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -647,6 +655,14 @@
     <servlet-mapping>
         <servlet-name>viewFF5</servlet-name>
         <url-pattern>/viewFF5</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewFF7</servlet-name>
+        <url-pattern>/viewFF7</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewFF6</servlet-name>
+        <url-pattern>/viewFF6</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

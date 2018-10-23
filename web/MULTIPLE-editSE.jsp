@@ -515,7 +515,7 @@
                         <fieldset>
                             <legend><span class="number">7</span><b >Source of Funds:</b></legend>
                             <select style="width:50%" name="funds">
-                                <option value="OVPLM" <% if (SE.getSourceOfFunds().equals("OVPLM")) {%> selected="selected" <%}%> >OVPLM</option>
+                                <option value="OVPLM" <% if (SE.getSourceOfFunds().equals("OVPLM")) {%> selected="selected" <%}%> >Office of the Vice President for Lasallian Mission</option>
                                 <option value="Others" <% if (SE.getSourceOfFunds().equals("Others")) {%> selected="selected" <%}%> >Others</option>
                             </select>
                             <br>

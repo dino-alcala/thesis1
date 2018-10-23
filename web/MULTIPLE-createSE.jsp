@@ -485,7 +485,7 @@
                             <legend>Name of Partner (First name, Last name): <input type='text' name='partnername' required/><br><br>
                                 Address: <input type='text' name='partneraddress' required/><br><br>
                                 Contact Person (First name, Last name): <input type='text' name='partnercontact' required/><br><br>
-                                Mobile Number: <br><input style="width:30%" style="width:30%" type='text' name='partnernumber' required/><br><br>
+                                Mobile Number: <br><input style="width:30%" style="width:30%" type='number' name='partnernumber' required/><br><br>
                                 Email: <input type='text' name='partneremail' required/><br><br>
                                 Brief Description of Partner: <textarea name='partnerdescription' rows='5' required></textarea></legend>
                             <br>

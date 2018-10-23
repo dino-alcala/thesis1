@@ -150,7 +150,7 @@ public class login extends HttpServlet {
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());
                     session.setAttribute("userID", id);
-                    session.setAttribute("unit", UserDAO.getUnitByUserID(id) + " - ADEALM");
+                    session.setAttribute("unit", UserDAO.getUnitByUserID(id));
                     session.setAttribute("position", position);
                     
                     ServletContext context = getServletContext();

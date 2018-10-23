@@ -86,10 +86,16 @@
                 margin: 1.3em auto;
                 max-width: 95%;
             }
+            
+            td{
+                padding:15px;
+                font-size: 15px;
+            }
 
             th {
                 background-color: green;
                 color: white;
+                font-size: 15px;
             }
 
             table {
@@ -112,45 +118,6 @@
                 }
             }
         </style>
-
-        <script type='text/javascript'>
-
-            function addField() {
-                container.appendChild(document.createTextNode("Name: "));
-                var input = document.createElement("input");
-                input.type = "text";
-                input.name = "member";
-                container.appendChild(input);
-                container.appendChild(document.createElement("br"));
-                container.appendChild(document.createElement("br"));
-            }
-
-            function addRow() {
-                var table = document.getElementById("projectplantable");
-                var rows = document.getElementById("projectplantable").rows.length;
-                var row = table.insertRow(rows);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                var cell4 = row.insertCell(3);
-                cell1.innerHTML = '<td><input type ="date"/></td>';
-                cell2.innerHTML = '<textarea rows = "2" cols = "25%" name ="planoutput"></textarea>';
-                cell3.innerHTML = '<textarea rows = "2" cols = "25%" name ="planoutput"></textarea>';
-                cell4.innerHTML = '<textarea rows = "2" cols = "25%" name ="planoutput"></textarea>';
-            }
-
-            function deleteRow() {
-                var rows = document.getElementById("projectplantable").rows.length;
-                if (rows - 1 > 0) {
-                    document.getElementById("projectplantable").deleteRow(rows - 1);
-                } else {
-
-                }
-
-            }
-
-        </script>
-
     </head>
 
     <body>

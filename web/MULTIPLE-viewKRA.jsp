@@ -343,45 +343,6 @@
                         </tbody>
                     </table>
                 </div>
-
-                <div class="container-fluid panels">
-                    <%
-                        ArrayList<FF> f = new ArrayList();
-                        f = UserDAO.retrieveFFProposalByKRAID(Integer.parseInt(request.getAttribute("kraID").toString()));
-                    %>
-
-                    <h2>Faith Formation Programs Contributed</h2>
-
-                    <table id="example3" class="table table-striped table-bordered" style="width:100%">    
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Program Name</th>
-                                <th>Unit</th>
-                                <th>Department</th>
-                                <th>Program Head</th>
-                                <th>Goal</th>
-                                <th>Measure</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                for (int i = 0; i < f.size(); i++) {
-                            %>
-                            <tr>
-                                <td><%=f.get(i).getProjectName()%></td>
-                                <td><%=f.get(i).getUnit()%></td>
-                                <th><%=f.get(i).getDepartment()%></th>
-                                <td><%=f.get(i).getProgramHead()%></td>
-                                <td><%=f.get(i).getTargetGoal()%></td>
-                                <td><%=f.get(i).getTargetMeasure()%></td>
-                            </tr>
-                            <%
-                                }
-                            %>
-                        </tbody>
-                    </table>
-                </div>
-
             </div>
 
         </div>

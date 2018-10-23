@@ -67,7 +67,7 @@ public class approveSE4 extends HttpServlet {
                     
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
-                    n.setBody("You have new PRS ready for approval!");
+                    n.setBody("You have new SE PRS ready for approval!");
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

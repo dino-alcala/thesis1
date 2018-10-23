@@ -285,10 +285,11 @@
                                             <h3><%=SE.getName()%></h3>
                                             <p><b>Unit: </b> <%=SE.getUnit()%></p>
                                             <p><b>Department: </b> <%=SE.getDepartment()%></p>
+                                            <p><b>Actual Date of Implementation: </b> <%=SE.getActualDate()%></p>
+                                            <br>
                                             <p><b>Program Head: </b> <%=SE.getProgramHead()%></p>
                                             <p><b>Program Classification: </b> <%=SE.getActivityClassification()%></p>
                                             <p><b>Total Amount Requested:</b> ₱<%=SE.getTotalAmount()%></p>
-                                            <p><b>Actual Date of Implementation: </b> <%=SE.getActualDate()%></p>
                                         </div>
                                     </div>
 
@@ -450,7 +451,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Breakdown of Expenses</h4>
+                                        <h4>Breakdown of Expenses (Requested: ₱<%=SE.getTotalAmount()%>)</h4>
                                     </div>
                                 </div>
                                 <table style="width:100%">
@@ -541,6 +542,16 @@
                                     %>
                                 </table>
                                 <br/>
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Source of Funds: </h4>
+                                    </div>
+                                    <div class="card-body">   
+                                        <p><%=SE.getSourceOfFunds() %></p>
+                                    </div>
+                                </div>
+                                <br/>
 
                                 <div class="card">
                                     <div class="card-header">
@@ -595,8 +606,6 @@
                                 %>
                                 <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>                                  
                                 <center><button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button><br></center>  
-                                
-
                                 <%
                                     }
                                 %>
@@ -604,19 +613,19 @@
                                 <%
                                     if (UserDAO.isRevise(Integer.parseInt(request.getAttribute("seID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <center><button class="btn-success" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button><br></center>
+                                <center><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button><br></center>
 
                                 <%
                                     }
                                 %>
+                                
 
                                 <%
                                     if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-
                                 <div>
                                     <br>
-                                    <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="button">Cancel Program</button></center>
+                                    <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
                                 </div><br><br>
                                 <%
                                     }

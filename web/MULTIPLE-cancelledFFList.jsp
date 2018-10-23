@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FF"%>
 <%@page import="entity.SE"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
@@ -318,19 +319,18 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <form action="viewSE4" method="post">
-
+                <form action="viewFF7" method="post">
                     <%
-                        ArrayList<SE> my = new ArrayList();
-                        my = UserDAO.retrieveSEProposalByCompletedOwner(Integer.parseInt(session.getAttribute("userID").toString()));
+                        ArrayList<FF> my = new ArrayList();
+                        my = UserDAO.retrieveCancelledFFProposalByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
                     %>
                     <!--- table -->
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-faithFormationProgramsList.jsp">Completed</a>
-                            <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-pendingFFList.jsp" >Pending</a>
-                            <a type="button" class="btn btn-primary" id="buttonCancel" href="MULTIPLE-cancelledFFList.jsp">Cancelled</a>
-                            <a type="button" class="btn btn-primary" id="buttonRejected" href="MULTIPLE-rejectedFFList.jsp">Rejected</a>
+                            <a href="MULTIPLE-pendingFFList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
+                            <a href="MULTIPLE-cancelledFFList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
+                            <a href="MULTIPLE-rejectedFFList.jsp" type="button" class="btn btn-primary" id="buttonRejected" >Rejected</a>
                         </div>
 
                         <br>
@@ -353,39 +353,26 @@
                                     for (int i = 0; i < my.size(); i++) {
                                 %>
                                 <tr>
-                                    <td>Date</td>
-                                    <td>Name</td>
-                                    <td>Unit</td>
-                                    <td>Department</td>
-                                    <td>Program Head</td>
-                                    <td>
-                                        <%
-                                            if (UserDAO.hasSEReport(my.get(i).getId())) {
-
-
-                                        %>
-                                        With Report
-                                        <%                                        } else {
-                                        %>
-
-                                        No Report
-                                        <%
-                                            }
-                                        %>
-                                    </td>
-                                    <td><button type="submit" name="viewMy<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                    <td><%=my.get(i).getDatecreated()%></td>
+                                    <td><%=my.get(i).getProjectName()%></td>
+                                    <td><%=my.get(i).getUnit()%></td>
+                                    <td><%=my.get(i).getDepartment()%></td>
+                                    <td><%=my.get(i).getProgramHead()%></td>
+                                    <td>Cancelled</td>
+                                    <td><button type="submit" name="viewFF<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
+
                                     }
                                 %>
                             </tbody>
                         </table>
 
-                        <%
-                            ArrayList<SE> others = new ArrayList();
-                            others = UserDAO.retrieveSEProposalByCompleted(Integer.parseInt(session.getAttribute("userID").toString()));
-                        %>
                         <br><br>
+                        <%
+                            ArrayList<FF> others = new ArrayList();
+                            others = UserDAO.retrieveCancelledFFProposalByOthers(Integer.parseInt(session.getAttribute("userID").toString()));
+                        %>
                         <h2>All Faith Formation Programs (<%=others.size()%>)</h2>
 
                         <table id="example2" class="table table-striped table-bordered" style="width:100%">    
@@ -405,27 +392,13 @@
                                     for (int i = 0; i < others.size(); i++) {
                                 %>
                                 <tr>
-                                    <td>Date</td>
-                                    <td>Name</td>
-                                    <td>Unit</td>
-                                    <td>Department</td>
-                                    <td>Program Head</td>
-                                    <td>
-                                        <%
-                                            if (UserDAO.hasSEReport(others.get(i).getId())) {
-
-
-                                        %>
-                                        With Report
-                                        <%                                        } else {
-                                        %>
-
-                                        No Report
-                                        <%
-                                            }
-                                        %>
-                                    </td>
-                                    <td><button type="submit" name="viewCompleted<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                    <td><%=others.get(i).getDatecreated()%></td>
+                                    <td><%=others.get(i).getProjectName()%></td>
+                                    <td><%=others.get(i).getUnit()%></td>
+                                    <td><%=others.get(i).getDepartment()%></td>
+                                    <td><%=others.get(i).getProgramHead()%></td>
+                                    <td>Cancelled</td>
+                                    <td><button type="submit" name="viewOthers<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
                                     }
@@ -433,7 +406,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </form>
             </div>
 

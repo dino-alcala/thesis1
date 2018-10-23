@@ -298,24 +298,16 @@
                                         <h3><%=FF.getProjectName()%></h3>
                                         <p><b>Unit: </b> <%=FF.getUnit()%></p>
                                         <p><b>Department: </b> <%=FF.getDepartment()%></p>
+                                        <p><b>Target Date of Implementation: </b> <%=FF.getActualDate()%></p>
+                                        <br>
                                         <p><b>Program Head: </b> <%=FF.getProgramHead()%></p>
                                         <p><b>Program Classification: </b> <%=FF.getActivityClassification()%></p>
                                         <p><b>Total Amount Requested:</b> ₱<%=FF.getTotalAmount()%></p>
-                                        <p><b>Actual Date of Implementation: </b> <%=FF.getActualDate()%></p>
+                                        <br>
                                         <p><b>Venue: </b> <%=FF.getVenue()%></p>
                                         <p><b>Speaker: </b> <%=FF.getSpeaker()%></p>
                                     </div>
                                 </div><br>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Targets</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p><b>Community: </b><%=UserDAO.getCommunitynameByID(FF.getTargetCommunity())%></p>
-                                    </div>  
-                                </div>
-                                <br/>
 
                                 <div class="card">
                                     <div class="card-header">
@@ -329,7 +321,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Breakdown of Expenses</h4>
+                                        <h4>Breakdown of Expenses (Requested: ₱<%=FF.getTotalAmount()%>)</h4>
                                     </div>
                                 </div>
 
@@ -367,44 +359,84 @@
                                     </tr>
                                 </table>
                                 <br/>
-
+                                
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Prepared by</h4>
+                                        <h4>Source of Funds: </h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><%=FF.getProgramHead()%></p>
+                                        <p><%=FF.getSourceOfFunds() %></p>
                                     </div>
                                 </div>
                                 <br/>
-
+                                
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Attendees</h4>
+                                        <h4>Remarks</h4>
                                     </div>
                                 </div>
                                 <table style="width:100%">
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
+                                        <th style="width:35%">Step</th>
+                                        <th style="width:65%">Remarks</th> 
                                     </tr>
-                                    <%
-                                        for (int i = 0; i < FF.getAttendees().size(); i++) {
-                                    %>
                                     <tr>
-                                        <td><%=FF.getAttendees().get(i).getName()%></td>
-                                        <td><%=FF.getAttendees().get(i).getEmail()%></td>
+                                        <td>Signatories Chairperson/Director</td>
+                                        <td><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Signatories Vice President for Lasallian Mission</td>
+                                        <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Signatories Dean/Unit Head</td>
+                                        <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%></td>
                                     </tr>
 
-                                    <%
-                                        }
-                                    %>
+                                    <tr>
+                                        <td>Evaluation by LSPO</td>
+                                        <td><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%}%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Approval by the Council</td>
+                                        <td>
+                                            <b>Br. Michael Broughton: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Nelca Villarin: </b> <%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
+                                            <br>
+                                        </td>
+                                    </tr>
                                 </table>
-                                <br/>
+                                            <br>
 
+                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center><br>
+
+                                
+                                <% if(FF.getStep() == 8){ %>
                                 <div>
                                     <center><h2>Project is now ready for implementation</h2></center>
                                 </div><br>
+                                <% } %>
+                                
+                                <% if(FF.getStep() == 0){ %>
+                                <div>
+                                    <center><h2>Project has been canceled</h2></center>
+                                </div><br>
+                                <% } %>
+                                
+                                <% if(FF.getStep() == -1){ %>
+                                <div>
+                                    <center><h2>Project has been rejected</h2></center>
+                                </div><br>
+                                <% } %>
+                                
                                 <%
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>
@@ -417,25 +449,30 @@
                                 <div>
                                     <center><button type="submit" value="<%=FF.getId()%>" name="viewReport" class="button">View Accomplishment Report</button></center>
                                 </div><br>
-
                                 <%
                                     }
+                                 %>
+                                 
+                                 
+                                 <%
 
-                                    if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
+                                    if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() > 0) {
                                 %>
-
                                 <div>
                                     <center><button type="submit" value="<%=FF.getId()%>" name="updateBudget" class="button">Update Budget
                                         </button></center>
                                 </div><br>
-
                                 <%
                                     }
-                                    if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
+                                 %>
+                                 
+                                 
+                                 <%
+                                    if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() != 0 && FF.getStep() != -1) {
                                 %>
 
                                 <div>
-                                    <center><button type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="button-red">Cancel Program</button></center>
+                                    <center><button type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
                                 </div><br><br>
                                 <%
                                     }

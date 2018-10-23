@@ -316,7 +316,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <form action="viewSE4" method="post">
+                <form action="viewSE7" method="post">
 
                     <%
                         ArrayList<SE> my = new ArrayList();
@@ -356,21 +356,7 @@
                                     <td><%=my.get(i).getUnit()%></td>
                                     <td><%=my.get(i).getDepartment()%></td>
                                     <td><%=my.get(i).getProgramHead()%></td>
-                                    <td>
-                                        <%
-                                            if (UserDAO.hasSEReport(my.get(i).getId())) {
-
-
-                                        %>
-                                        With Report
-                                        <%                                        } else {
-                                        %>
-
-                                        No Report
-                                        <%
-                                            }
-                                        %>
-                                    </td>
+                                    <td>Rejected</td>
                                     <td><button type="submit" name="viewMy<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
@@ -408,21 +394,7 @@
                                     <td><%=others.get(i).getUnit()%></td>
                                     <td><%=others.get(i).getDepartment()%></td>
                                     <td><%=others.get(i).getProgramHead()%></td>
-                                    <td>
-                                        <%
-                                            if (UserDAO.hasSEReport(others.get(i).getId())) {
-
-
-                                        %>
-                                        With Report
-                                        <%                                        } else {
-                                        %>
-
-                                        No Report
-                                        <%
-                                            }
-                                        %>
-                                    </td>
+                                    <td>Rejected</td>
                                     <td><button type="submit" name="viewCompleted<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%

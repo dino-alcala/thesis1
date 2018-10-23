@@ -232,14 +232,6 @@
                         </div>
                     </a>
 
-                    <a href="MULTIPLE-viewBudget.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-money fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Budget</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
                     <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-check fa-fw mr-2"></span>
@@ -347,7 +339,7 @@
 
                                     <tr>
                                         <td>Chairperson</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="95" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

@@ -191,7 +191,6 @@ public class approveSE extends HttpServlet {
                 n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Department Chair")) {
-                    //UserDAO.updateStep(9, Integer.parseInt(request.getParameter("reject")));
                     UserDAO.updateDeptUnitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Department Chair. Reason: " + request.getParameter("remarks1"));
 

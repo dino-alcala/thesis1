@@ -297,10 +297,11 @@
                                         <h3><%=SE.getName()%></h3>
                                         <p><b>Unit: </b> <%=SE.getUnit()%></p>
                                         <p><b>Department: </b> <%=SE.getDepartment()%></p>
+                                        <p><b>Target Date of Implementation: </b> <%=SE.getActualDate()%></p>
+                                        <br>
                                         <p><b>Program Head: </b> <%=SE.getProgramHead()%></p>
                                         <p><b>Program Classification: </b> <%=SE.getActivityClassification()%></p>
                                         <p><b>Total Amount Requested:</b> ₱<%=SE.getTotalAmount()%></p>
-                                        <p><b>Actual Date of Implementation: </b> <%=SE.getActualDate()%></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -404,7 +405,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Breakdown of Expenses</h4>
+                                        <h4>Breakdown of Expenses (Requested: ₱<%=SE.getTotalAmount()%>)</h4>
                                     </div>
                                 </div>
                                 <table style="width:100%">
@@ -500,28 +501,96 @@
                                     %>
                                 </table>
                                 <br/>
-                                <br/>
-
+                                
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Prepared by</h4>
+                                        <h4>Source of Funds: </h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><%=SE.getProgramHead()%></p>
+                                        <p><%=SE.getSourceOfFunds() %></p>
                                     </div>
                                 </div>
-                                <br/>                 
+                                <br/>
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Remarks</h4>
+                                    </div>
+                                </div>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th style="width:35%">Step</th>
+                                        <th style="width:65%">Remarks</th> 
+                                    </tr>
+                                    <tr>
+                                        <td>Department Chair</td>
+                                        <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>College ADEALM</td>
+                                        <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>College Dean</td>
+                                        <td><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Evaluation by COSCA</td>
+                                        <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Approval by the Council</td>
+                                        <td>
+                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                            <br>
+                                            <br>
+                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                            <br>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <br/>         
 
+                                <%
+                                    if (SE.getStep() == 8) {
+                                %>
                                 <div>
                                     <center><h2>Project is now ready for implementation</h2></center>
                                 </div><br><br>
+                                <% } %>
+                                
                                 <%
-                                    if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
+                                    if (SE.getStep() == 0) {
+                                %>
+                                <div>
+                                    <center><h2>Project has been canceled</h2></center>
+                                </div><br><br>
+                                <% } %>
+                                
+                                <%
+                                    if (SE.getStep() == -1) {
+                                %>
+                                <div>
+                                    <center><h2>Project has been rejected</h2></center>
+                                </div><br><br>
+                                <% } %>
+                                
+                                <%
+                                    if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() == 8) {
                                 %>
                                 <div>
                                     <center><button type="submit" value="<%=SE.getId()%>" name="seID" class="button">Create Accomplishment Report</button></center>
                                 </div><br><br>
-
                                 <%
                                 } else if (UserDAO.hasSEReport(SE.getId())) {
                                 %>
@@ -529,24 +598,24 @@
                                     <center><button type="submit" value="<%=SE.getId()%>" name="viewReport" class="button">View Accomplishment Report</button></center>
                                 </div><br><br>
 
+                                
                                 <%
                                     }
-                                    if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
+                                    if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() > 0) {
                                 %>
-
                                 <div>
                                     <center><button type="submit" value="<%=SE.getId()%>" name="updateBudget" class="button">Update Budget
                                         </button></center>
                                 </div><br><br>
-
                                 <%
                                     }
 
-                                    if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
+                                    if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 0 && SE.getStep() != -1) {
                                 %>
 
+                                
                                 <div>
-                                    <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="button-red">Cancel Program</button></center>
+                                    <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
                                 </div><br><br>
                                 <%
                                     }
