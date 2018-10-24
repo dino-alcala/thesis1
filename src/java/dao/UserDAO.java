@@ -2397,6 +2397,49 @@ public class UserDAO {
         return SE;
     }
     
+    public ArrayList<SE> retrieveSEProposalByStepUnit(int step, String unit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE step = ? AND unit = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, step);
+            pstmt.setString(2, unit);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setDate(rs2.getDate("datecreated"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setActivityClassification(rs2.getString("activityClassification"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
     public ArrayList<SE> retrieveSEProposalByDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -10432,6 +10475,49 @@ public class UserDAO {
         }
         return SE;
     }
+    
+    public ArrayList<SE> retrieveSEbyDepartment(String department) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE department = ? AND step != 8 AND step != 0 AND step != -1 ORDER BY id DESC LIMIT 5";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, department);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setDate(rs2.getDate("datecreated"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setSourceOfFunds(rs2.getString("sourceOfFunds"));
+                s.setStep(rs2.getInt("step"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
 
     public ArrayList<FF> retrieveFFbyUnit(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -10445,6 +10531,49 @@ public class UserDAO {
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, unit);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF f = new FF();
+                f.setDatecreated(rs2.getDate("datecreated"));
+                f.setProjectName(rs2.getString("projectName"));
+                f.setProgramHead(rs2.getString("programHead"));
+                f.setUnit(rs2.getString("unit"));
+                f.setDepartment(rs2.getString("department"));
+                f.setSourceOfFunds(rs2.getString("sourceOfFunds"));
+                f.setStep(rs2.getInt("step"));
+                f.setId(rs2.getInt("id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+    
+    public ArrayList<FF> retrieveFFbyDepartment(String department) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE department = ? AND step != 9 AND STEP != 0 ORDER BY id DESC LIMIT 5";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, department);
 
             rs2 = pstmt.executeQuery();
 

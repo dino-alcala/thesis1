@@ -751,6 +751,58 @@
                         <p></p>
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate"> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate"></p>
                         <div class="form-group">
+                            <% if (session.getAttribute("position").equals("CCS - ADEALM")) { %>
+                            <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "College of Computer Studies (CCS)">College of Computer Studies (CCS)</option>
+                            </select>
+
+
+                            <% } else if (session.getAttribute("position").equals("COS - ADEALM")) { %>
+                            <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "College of Science (COS)">College of Science (COS)</option>
+                            </select>
+
+                            <% } else if (session.getAttribute("position").equals("GCOE - ADEALM")) { %>
+                            <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "Gokongwei College of Engineering">Gokongwei College of Engineering (GCOE)</option>
+                            </select>
+
+                            <% } else if (session.getAttribute("position").equals("RVRCOB - ADEALM")) { %>
+                            <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "Ramon V. Del Rosario College of Business (RVR-COB)">Ramon V. Del Rosario College of Business (RVR-COB)</option>
+                            </select>
+
+                            <% } else if (session.getAttribute("position").equals("BAGCED - ADEALM")) { %>
+                            <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "Br. Andrew Gonzales College of Education (BAGCED)">Br. Andrew Gonzales College of Education (BAGCED)</option>
+                            </select>
+
+                            <% } else if (session.getAttribute("position").equals("CLA - ADEALM")) { %>
+                            <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "College of Liberal Arts (CLA)">College of Liberal Arts (CLA)</option>
+                            </select>
+
+                            <% } else if (session.getAttribute("position").equals("COL - ADEALM")) { %>
+                            <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "College of Law (COL)">College of Law (COL)</option>
+                            </select>
+
+
+                            <% } else if (session.getAttribute("position").equals("SOE - ADEALM")) { %>
+                            <label for="sel1">Unit:</label>
+                            <select class="form-control" id="type" name="unit">
+                                <option value = "School of Economics (SOE)">School of Economics (SOE)</option>
+                            </select>
+
+                            <% } else {
+                            %>
                             <label for="sel1">Choose Unit:</label>
                             <select class="form-control" id="type" name="unit">
                                 <optgroup label="Added Units">
@@ -760,15 +812,14 @@
                                         units = UserDAO.retrieveUnits();
                                         for (int i = 0; i < units.size(); i++) {
                                     %>
-                                    <option value="<%=units.get(i).getName()%>" <%if (request.getAttribute("dated") != null) {
-                                            if (request.getAttribute("unit").toString().equals(units.get(i).getName())) {%> selected="selected"<%}
-                                                }%>><%=units.get(i).getName()%></option>
+                                    <option value="<%=units.get(i).getName()%>"><%=units.get(i).getName()%></option>
                                     <%
                                         }
                                     %>
                                 </optgroup>
 
                             </select>
+                            <% }%>
                         </div>
                         <!--
                         <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>

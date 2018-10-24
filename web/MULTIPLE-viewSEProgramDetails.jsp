@@ -523,15 +523,15 @@
                                         <th style="width:65%">Remarks</th> 
                                     </tr>
                                     <tr>
-                                        <td>Department Chair</td>
+                                        <td>Department/Unit Chair</td>
                                         <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>College ADEALM</td>
+                                        <td>College ADEALM/SE Director</td>
                                         <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>College Dean</td>
+                                        <td>College Dean/VP/VC</td>
                                         <td><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%></td>
                                     </tr>
                                     <tr>

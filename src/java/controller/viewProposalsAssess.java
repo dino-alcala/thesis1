@@ -43,14 +43,28 @@ public class viewProposalsAssess extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
             HttpSession session = request.getSession();
 
-            if (Integer.parseInt(session.getAttribute("userID").toString()) == 18) {
+            if (session.getAttribute("position").toString().contains("ADEALM")) {
 
                 ArrayList<SE> s = new ArrayList();
-                s = UserDAO.retrieveSEProposalToAssessByStep(4);
+                s = UserDAO.retrieveSEProposalToAssessByStep(2);
 
                 for (int i = 0; i < s.size(); i++) {
                     if (request.getParameter("viewSE" + i) != null) {
                         request.setAttribute("seID", request.getParameter("viewSE" + i));
+
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal2.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                }
+            }
+            
+            if(session.getAttribute("position").equals("COSCA - Sir Neil Position")){
+                ArrayList<FF> f = new ArrayList();
+                f = UserDAO.retrieveFFProposalToAssessByStep(4);
+                for (int i = 0; i < f.size(); i++) {
+                    if (request.getParameter("viewFF" + i) != null) {
+                        request.setAttribute("ffID", request.getParameter("viewFF" + i));
 
                         ServletContext context = getServletContext();
                         RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal3.jsp");
@@ -59,9 +73,9 @@ public class viewProposalsAssess extends HttpServlet {
                 }
             }
             
-            if(Integer.parseInt(session.getAttribute("userID").toString()) == 32){
+            if(session.getAttribute("position").equals("LSPO - Director")){
                 ArrayList<FF> f = new ArrayList();
-                f = UserDAO.retrieveFFProposalToAssessByStep(5);
+                f = UserDAO.retrieveFFProposalToAssessByStep(4);
                 for (int i = 0; i < f.size(); i++) {
                     if (request.getParameter("viewFF" + i) != null) {
                         request.setAttribute("ffID", request.getParameter("viewFF" + i));

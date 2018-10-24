@@ -469,58 +469,7 @@
                     </table>
                     </div>
 
-
-
-                    <!---table-->
-                    <div class="container-fluid panels">
-
-                        <h2>Proposals Progress (insert total)</h2>
-
-                        <input class="form-control" id="myInput" type="text" placeholder="Search table..">
-
-                        <table class="table ">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th onclick="sortTable(0)">Date</th>
-                                    <th onclick="sortTable(1)">Program Name</th>
-                                    <th onclick="sortTable(2)">Program Head</th>
-                                    <th onclick="sortTable(3)">Funded by</th>
-                                    <th onclick="sortTable(4)">Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                                <tr>
-                                    <td>6/18/2018</td>
-                                    <td>x</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                    <td>ary@example.com</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <tr>
-                                    <td>6/18/2018</td>
-                                    <td>y</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                    <td>mary@example.com</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <tr>
-                                    <td>6/18/2018</td>
-                                    <td>z</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                    <td>ry@example.com</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
                 </div>
-
             </div>
 
 

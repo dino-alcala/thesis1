@@ -381,15 +381,15 @@
                                         <th style="width:65%">Remarks</th> 
                                     </tr>
                                     <tr>
-                                        <td>Signatories Chairperson/Director</td>
+                                        <td>Assistant Dean for Lasallian Mission</td>
                                         <td><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>Signatories Vice President for Lasallian Mission</td>
+                                        <td>Chairperson</td>
                                         <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>Signatories Dean/Unit Head</td>
+                                        <td>Dean</td>
                                         <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%></td>
                                     </tr>
 

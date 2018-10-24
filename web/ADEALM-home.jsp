@@ -147,6 +147,68 @@
 
         </script>
 
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successSE1") != null) {
+            %>
+            $("document").ready(function () {
+                alert("<%=request.getAttribute("successSE1")%>");
+            });
+            <%
+                }
+                if (request.getAttribute("reviseSE1") != null) {
+            %>
+            $("document").ready(function () {
+                alert("<%=request.getAttribute("reviseSE1")%>");
+            });
+            <%
+                }
+                if (request.getAttribute("rejectSE1") != null) {
+            %>
+            $("document").ready(function () {
+                alert("<%=request.getAttribute("rejectSE1")%>");
+            });
+            <%
+                }
+            %>
+
+            <%
+                if (request.getAttribute("successFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successFF1")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("reviseFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("reviseFF1")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("rejectFF1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("rejectFF1")%>");
+            });
+
+            <%
+                }
+            %>
+
+        </script>
+        
         <style>
             body{
                 background-color: whitesmoke;
@@ -240,7 +302,7 @@
             </button>
             <a class="navbar-brand" href="#" id="navbar-unit">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c2/De_La_Salle_University_Seal.svg/1200px-De_La_Salle_University_Seal.svg.png" width="30" height="30" class="d-inline-block align-top" data-toggle="sidebar-colapse" id="collapse-icon">
-                <span class="menu-collapsed"><%=session.getAttribute("unit")%> - ADEALM</span>
+                <span class="menu-collapsed"><%=session.getAttribute("unit")%></span>
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
@@ -569,16 +631,18 @@
 
 
                 <!---table-->
-                <form action="viewProposalsProgress" method="post">
+                <form action="viewProposalsAssess" method="post">
 
                     <div class="container-fluid panels">
 
                         
                         <% 
                             ArrayList<SE> proposals = new ArrayList<SE>();
-                            proposals = UserDAO.retrieveSEProposalByStep(2);
+                            if(session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")){
+                                proposals = UserDAO.retrieveSEProposalByStep(2);
+                            }
                         %>
-                        <h2>Proposals to Assess (<%=proposals.size()%>)</h2>
+                        <h2>SE Proposals to Assess (<%=proposals.size()%>)</h2>
 
                         <input class="form-control" id="myInput" type="text" placeholder="Search table..">
                         <table class="table">
@@ -611,14 +675,13 @@
                             </tbody>
                         </table>
                     </div>
+                </form>
 
-
-
+                <form action="viewProposalsProgress" method="post">             
                     <div class="container-fluid panels">
                         <%
                             ArrayList<SE> s = new ArrayList();
                             s = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
-                            
                         %>
                         <h2>SE Proposals Progress for <%=session.getAttribute("unit").toString() %> (<%=s.size()%>)</h2>
 

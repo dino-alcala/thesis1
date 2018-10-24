@@ -481,7 +481,7 @@
                     <div class="container-fluid panels">
                         <%
                             ArrayList<SE> s = new ArrayList();
-                            s = UserDAO.retrievePendingSEProposalByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                            s = UserDAO.retrieveSEbyDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                         %>
 
                         <h2>SE Proposals Progress (<%=s.size()%>)</h2>
@@ -522,7 +522,7 @@
 
                         <%
                             ArrayList<FF> f = new ArrayList();
-                            f = UserDAO.retrieveFFbyUnit(session.getAttribute("unit").toString());
+                            f = UserDAO.retrieveFFbyDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                         %>
                         <h2>FF Proposals Progress (<%=f.size()%>)</h2>
 
@@ -547,8 +547,8 @@
                                     <td><%=f.get(i).getDatecreated()%></td>
                                     <td><%=f.get(i).getProjectName()%></td>
                                     <td><%=f.get(i).getProgramHead()%></td>
-                                    <td><%=f.get(i).getSourceOfFunds()%></td>
-                                    <td>Step <%=f.get(i).getStep()%></td>
+                                    <td><%=UserDAO.getSourceOfFunds(f.get(i).getId()) %></td>
+                                    <td>Step <%=UserDAO.getStep(f.get(i).getId()) %></td>
                                     <td><button type="submit" name="viewFF<%=i%>" value="<%=f.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%

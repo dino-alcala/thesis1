@@ -97,43 +97,35 @@
         </script>
 
         <style>
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
+            body{
+                background-color: whitesmoke;
+                padding-top: 56px;
             }
-
             #myInput{
                 margin-bottom: 20px;
             }
-
             .card-text{
                 margin-bottom: 5px;
             }
-
             .progressnum{
                 font-size: 12px;
                 padding-bottom: 10px;
                 border-bottom: 1px solid lightgray;
             }
-
             .krascards:hover {
                 background-color: lightgreen;
             }
-
             tr:hover {
                 background-color: lightgreen;
             }
-
             h2{
-                font-size: 40px;
+                font-size: 30px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
                 margin-bottom: 25px;
             }
-
             .budget{
                 font-size: 70px; 
                 text-align: center; 
@@ -141,21 +133,18 @@
                 padding-bottom: 20px;
                 font-family: 'Montserrat', sans-serif;
             }
-
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
-
             .quickhead{
-                border-bottom: 1px solid lightblue;
+                border-bottom: 1px solid gray;
                 padding-bottom: 10px; 
                 margin-bottom: 20px;
             }
             .quickview{
                 margin-bottom: 50px;
             }
-
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -165,8 +154,6 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-
-
             .viewButton{
                 text-align: center;
                 margin-bottom: 0%;
@@ -190,7 +177,6 @@
                 color: white;
                 background-color: red;
             }
-
         </style>
 
     </head>
@@ -532,10 +518,10 @@
                 <!---table-->
 
                 <%
-                    if (Integer.parseInt(session.getAttribute("userID").toString()) == 18) {
+                    if (session.getAttribute("position").equals("COSCA - Sir Neil Position")) {
 
-                        ArrayList<SE> s = new ArrayList();
-                        s = UserDAO.retrieveSEProposalToAssessByStep(4);
+                        ArrayList<SE> s = new ArrayList<SE>();
+                        s = UserDAO.retrieveSEProposalByStep(4);
                 %>
                 <form action="viewProposalsAssess" method="post">
                     <div class="container-fluid panels">
@@ -573,12 +559,53 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <%
-                        }
-                    %>
-
                 </form>
+                <%
+                    }
+                %>
+
+                <form action="viewProposalsProgress" method="post">             
+                    <div class="container-fluid panels">
+                        <%
+                            ArrayList<SE> proposals = new ArrayList();
+                            proposals = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
+                        %>
+                        <h2>SE Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=proposals.size()%>)</h2>
+
+                        <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
+                        <br>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th onclick="sortTable(0)">Date</th>
+                                    <th onclick="sortTable(1)">Program Name</th>
+                                    <th onclick="sortTable(2)">Program Head</th>
+                                    <th onclick="sortTable(3)">Funded by</th>
+                                    <th onclick="sortTable(4)">Status</th>
+                                    <th onclick="sortTable(5)">Department</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable2">
+                                <%
+                                    for (int i = 0; i < proposals.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getName()%></td>
+                                    <td><%=proposals.get(i).getProgramHead()%></td>
+                                    <td><%=UserDAO.getSourceOfFunds(proposals.get(i).getId())%></td>
+                                    <td>Step <%=UserDAO.getStep(proposals.get(i).getId())%></td>
+                                    <td><center><%=proposals.get(i).getDepartment()%></center></td>
+                            <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>    
             </div>
 
         </div>
