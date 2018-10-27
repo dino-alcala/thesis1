@@ -401,31 +401,31 @@
 
                         <fieldset>  
                             <legend><b>Person Responsible</b></legend>
-                            <center><input id="fname" name="responsible" size="50" type="text"></center>
+                            <center><input id="fname" name="responsible" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Number of Beneficiaries</b></legend>
-                            <input id="fname" style="width:30%" type="number" name="number" size="50" type="text">
+                            <input id="fname" style="width:30%" type="number" name="number" size="50" type="text" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Project Beneficiaries (Urban poor, women, youth, etc.)</b></legend>
-                            <input style="width:30%" id="fname" name="projben" size="50" type="text">
+                            <input style="width:30%" id="fname" name="projben" size="50" type="text" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Address of  Beneficiaries</b></legend>
-                            <center><input id="fname" name="addressben" size="50" type="text"></center>
+                            <center><input id="fname" name="addressben" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Address of  Project Implementation</b></legend>
-                            <center><input id="fname" name="addressproj" size="50" type="text"></center>
+                            <center><input id="fname" name="addressproj" size="50" type="text" required></center>
                             <br><br>
                         </fieldset>
 
@@ -439,36 +439,36 @@
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>CAP:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number0"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required></td>
 
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>APSP:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number1"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>ASF:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number2"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>Faculty:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number3"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>Administrators:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number4"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>Direct Hired Contractuals:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number5"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>Independent Contractors:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number6"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>External Service Personnel:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
                                     </tr>
                                 </table>
                             </center>
@@ -547,7 +547,7 @@
                 $('.submenu-icon').toggleClass('d-none');
                 $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
                 // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
+                var SeparatorTitle = $('.sidebar-separator-title'); 
                 if (SeparatorTitle.hasClass('d-flex')) {
                     SeparatorTitle.removeClass('d-flex');
                 } else {
