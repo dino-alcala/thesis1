@@ -47,6 +47,7 @@ public class approveSE2 extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updateStep(5, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.setClassificationforKRA(Integer.parseInt(request.getParameter("approve")), request.getParameter("classificationforkra"));
                 }
 
                 Notification n = new Notification();

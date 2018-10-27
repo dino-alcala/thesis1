@@ -519,11 +519,12 @@
                                         <td style="width:50%">Select Classification</td>
 
                                         <td class="form-style-5" style="width:50%">
-                                            <select>
-                                                <option>L-Aral</option>
-                                                <option>L-Seed</option>
-                                                <option>L-Envisage</option>
-                                                <option>L-Hearts</option>
+                                            <select required name="classificationforkra">
+                                                <option disabled selected>Select Classification</option>
+                                                <option value="L-Aral">L-Aral</option>
+                                                <option value="L-Seed">L-Seed</option>
+                                                <option value="L-Envisage">L-Envisage</option>
+                                                <option value="L-Hearts">L-Hearts</option>
                                             </select>
                                         </td>
 

@@ -66,6 +66,7 @@ public class SE {
     protected String lmc7Remarks;
     protected String lmc8Remarks;
     protected String sourceOfFunds;
+    protected String classificationforKRA;
 
     public int getId() {
         return id;
@@ -175,6 +176,16 @@ public class SE {
         return totalAmount;
     }
 
+    public String getClassificationforKRA() {
+        return classificationforKRA;
+    }
+
+    public void setClassificationforKRA(String classificationforKRA) {
+        this.classificationforKRA = classificationforKRA;
+    }
+
+    
+    
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }

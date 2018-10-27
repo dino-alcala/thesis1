@@ -7053,6 +7053,40 @@ public class UserDAO {
         }
         return b;
     }
+    
+    public void setClassificationforKRA(int seid, String classification) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "UPDATE seproposal SET classificationforkra = ? where id = ?";
+        PreparedStatement ps = null;
+        int rs = 0;
+        
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, classification);
+            ps.setInt(2, seid);
+            
+            rs = ps.executeUpdate();
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
 
     public void addLatestBudget(Budget b) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
