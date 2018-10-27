@@ -201,10 +201,7 @@
                             <div class="card bg-basic krascards">
                                 <div class="card-body text-left">
                                     <p class="card-text"><b><%=kra.get(i).getName()%></b></p>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" style="width:40%">40%</div>
-                                    </div>
-                                    <p class="progressnum">1/100</p>
+                                    <hr>
                                     <p class="viewButton"><button type="submit" name="kra<%=i%>" class="btn btn-primary btn-sm">View</button></p>
                                 </div>
                             </div>

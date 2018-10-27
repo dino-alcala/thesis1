@@ -1891,7 +1891,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, SE.getUnit());
@@ -1902,31 +1902,30 @@ public class UserDAO {
             pstmt.setInt(6, SE.getTargetCommunity());
             pstmt.setInt(7, SE.getTargetKRA());
             pstmt.setInt(8, SE.getTargetGoal());
-            pstmt.setInt(9, SE.getTargetMeasure());
-            pstmt.setString(10, SE.getTitleActivity());
-            pstmt.setDate(11, SE.getActualDate());
-            pstmt.setDouble(12, SE.getTotalAmount());
-            pstmt.setString(13, SE.getNameSEbeneficiaries());
-            pstmt.setString(14, SE.getAddressSEbeneficiaries());
-            pstmt.setString(15, SE.getContactPersonSEbeneficiaries());
-            pstmt.setString(16, SE.getMobileSEbeneficiaries());
-            pstmt.setString(17, SE.getEmailSEbeneficiaries());
-            pstmt.setString(18, SE.getDescriptionSEbeneficiaries());
-            pstmt.setString(19, SE.getObjectives());
-            pstmt.setString(20, SE.getExplanation());
-            pstmt.setInt(21, SE.getTotalpopulationAcademicStaff());
-            pstmt.setInt(22, SE.getExpectedAcademicStaff());
-            pstmt.setInt(23, SE.getTotalpopulationSupportStaff());
-            pstmt.setInt(24, SE.getExpectedSupportStaff());
-            pstmt.setInt(25, SE.getTotalpopulationUndergraduate());
-            pstmt.setInt(26, SE.getExpectedUndergraduate());
-            pstmt.setInt(27, SE.getTotalPopulationGraduate());
-            pstmt.setInt(28, SE.getExpectedGraduate());
-            pstmt.setInt(29, SE.getStep());
-            pstmt.setInt(30, SE.getUserID());
-            pstmt.setString(31, SE.getName());
-            pstmt.setString(32, SE.getSocialCommunityProblem());
-            pstmt.setString(33, SE.getSourceOfFunds());
+            pstmt.setString(9, SE.getTitleActivity());
+            pstmt.setDate(10, SE.getActualDate());
+            pstmt.setDouble(11, SE.getTotalAmount());
+            pstmt.setString(12, SE.getNameSEbeneficiaries());
+            pstmt.setString(13, SE.getAddressSEbeneficiaries());
+            pstmt.setString(14, SE.getContactPersonSEbeneficiaries());
+            pstmt.setString(15, SE.getMobileSEbeneficiaries());
+            pstmt.setString(16, SE.getEmailSEbeneficiaries());
+            pstmt.setString(17, SE.getDescriptionSEbeneficiaries());
+            pstmt.setString(18, SE.getObjectives());
+            pstmt.setString(19, SE.getExplanation());
+            pstmt.setInt(20, SE.getTotalpopulationAcademicStaff());
+            pstmt.setInt(21, SE.getExpectedAcademicStaff());
+            pstmt.setInt(22, SE.getTotalpopulationSupportStaff());
+            pstmt.setInt(23, SE.getExpectedSupportStaff());
+            pstmt.setInt(24, SE.getTotalpopulationUndergraduate());
+            pstmt.setInt(25, SE.getExpectedUndergraduate());
+            pstmt.setInt(26, SE.getTotalPopulationGraduate());
+            pstmt.setInt(27, SE.getExpectedGraduate());
+            pstmt.setInt(28, SE.getStep());
+            pstmt.setInt(29, SE.getUserID());
+            pstmt.setString(30, SE.getName());
+            pstmt.setString(31, SE.getSocialCommunityProblem());
+            pstmt.setString(32, SE.getSourceOfFunds());
 
             int rs = pstmt.executeUpdate();
 
@@ -12464,5 +12463,122 @@ public class UserDAO {
                 /* ignored */ }
         }
         return position;
+    }
+    
+    public void AddMeasures(ArrayList<Integer> measureID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal ORDER by id DESC LIMIT 1";
+
+            int seproposalID = 0;
+
+            pstmt = conn.prepareStatement(query);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                seproposalID = rs2.getInt("id");
+            }
+
+            for (int i = 0; i < measureID.size(); i++) {
+                query = "INSERT INTO se_measures (seproposalID,measureID) VALUES (?,?)";
+                pstmt = conn.prepareStatement(query);
+
+                pstmt.setInt(1, seproposalID);
+                pstmt.setInt(2, measureID.get(i));
+
+               int rs = pstmt.executeUpdate();
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public ArrayList<Integer> GetMeasures(int id) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        
+        ArrayList <Integer> ids = new ArrayList();
+
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT measureID FROM se_measures WHERE seproposalID = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, id);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                ids.add(rs2.getInt("measureID"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        
+        return ids;
+    }
+    
+    public Measure GetMeasureObject(int id) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        
+        Measure m = new Measure();
+
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM measure WHERE measureID = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, id);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                m.setMeasure(rs2.getString("measure"));
+                m.setDescription(rs2.getString("description"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        
+        return m;
     }
 }

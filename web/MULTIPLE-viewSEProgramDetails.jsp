@@ -313,8 +313,20 @@
                                     <div class="card-body">   
                                         <p><b>KRA:</b> <%=UserDAO.getKRAnameByID(SE.getTargetKRA())%></p><br>
                                         <p><b>Goal:</b> <%=UserDAO.getGoalnameByID(SE.getTargetGoal())%></p><br>
-                                        <p><b>Measure:</b> <%=UserDAO.getMeasurenameByID(SE.getTargetMeasure())%></p><br>
-                                        <p><b>Community: </b><%=UserDAO.getCommunitynameByID(SE.getTargetCommunity())%></p>
+                                        <p><b>Measure/s:</b> 
+                                            <% 
+                                                ArrayList<Integer> measures = new ArrayList();
+                                                measures = UserDAO.GetMeasures(SE.getId());
+                                                
+                                                for(int x = 0 ; x < measures.size() ; x++){
+                                            %>    
+                                        <p><%=UserDAO.GetMeasureObject(measures.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measures.get(x)).getDescription()%></p>
+                                                
+                                            <%
+                                                }
+                                            %>
+                                            <br>
+                                        <p><br><b>Community: </b> <%=UserDAO.getCommunitynameByID(SE.getTargetCommunity())%></p>
                                     </div>  
                                 </div>
                                 <br/>

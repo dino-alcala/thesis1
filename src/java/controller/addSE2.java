@@ -99,6 +99,10 @@ public class addSE2 extends HttpServlet {
             SE.setResponsible(seresponsible);
 
             UserDAO.AddSE(SE);
+            
+            ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
+            
+            UserDAO.AddMeasures(measureID);
 
             Notification n = new Notification();
             n.setTitle(SE.getName());

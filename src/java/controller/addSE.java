@@ -43,7 +43,7 @@ public class addSE extends HttpServlet {
 
             UserDAO UserDAO = new UserDAO();
             HttpSession session = request.getSession();
-            SE SE = new SE();   
+            SE SE = new SE();
 
             SE.setUnit(session.getAttribute("unit").toString());
             SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
@@ -59,7 +59,6 @@ public class addSE extends HttpServlet {
             SE.setTargetCommunity(Integer.parseInt(request.getParameter("community")));
             SE.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
             SE.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
-            SE.setTargetMeasure(Integer.parseInt(request.getParameter("measure")));
             SE.setActualDate(Date.valueOf(request.getParameter("actualdate")));
             SE.setTotalAmount(Double.parseDouble(request.getParameter("totalamount")));
             SE.setSocialCommunityProblem(request.getParameter("problemaddressed"));
@@ -71,6 +70,18 @@ public class addSE extends HttpServlet {
             SE.setDescriptionSEbeneficiaries(request.getParameter("partnerdescription"));
             SE.setObjectives(request.getParameter("measureableoutcome"));
             SE.setSourceOfFunds(request.getParameter("funds"));
+
+            ArrayList<Integer> measureID = new ArrayList();
+
+            measureID.add(Integer.parseInt(request.getParameter("measure")));
+
+            if (Integer.parseInt(request.getParameter("measure2")) != 0) {
+                measureID.add(Integer.parseInt(request.getParameter("measure2")));
+            }
+
+            if (Integer.parseInt(request.getParameter("measure3")) != 0) {
+                measureID.add(Integer.parseInt(request.getParameter("measure3")));
+            }
 
             String[] component;
             ArrayList<String> components = new ArrayList();
@@ -90,8 +101,9 @@ public class addSE extends HttpServlet {
             SE.setExplanation(request.getParameter("sustainabilityexplanation"));
             SE.setComponent(components);
             SE.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-            
+
             session.setAttribute("SE", SE);
+            session.setAttribute("measureID", measureID);
 
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE2.jsp");

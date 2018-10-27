@@ -262,9 +262,6 @@
                 <div class="container-fluid panels">
 
                     <h2 class="kraheading"><%=kra.getName()%></h2>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" style="width:50%">50%</div>
-                    </div>
 
                 </div>
 
@@ -317,12 +314,10 @@
                     <table id="example2" class="table table-striped table-bordered" style="width:100%">    
                         <thead class="thead-dark" >
                             <tr>
-                                <th>Program Name</th>
+                                <th style="width:25%">Program Name</th>
                                 <th>Unit</th>
                                 <th>Department</th>
                                 <th>Program Head</th>
-                                <th>Goal</th>
-                                <th>Measure</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -334,8 +329,6 @@
                                 <td><%=s.get(i).getUnit()%></td>
                                 <th><%=s.get(i).getDepartment()%></th>
                                 <td><%=s.get(i).getProgramHead()%></td>
-                                <td><%=s.get(i).getTargetGoal()%></td>
-                                <td><%=s.get(i).getTargetMeasure()%></td>
                             </tr>
                             <%
                                 }
