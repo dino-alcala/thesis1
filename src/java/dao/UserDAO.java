@@ -2440,6 +2440,7 @@ public class UserDAO {
         return SE;
     }
     
+    
     public ArrayList<SE> retrieveSEProposalByDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2902,6 +2903,49 @@ public class UserDAO {
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, step);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF f = new FF();
+                f.setDatecreated(rs2.getDate("datecreated"));
+                f.setProjectName(rs2.getString("projectName"));
+                f.setProgramHead(rs2.getString("programHead"));
+                f.setUnit(rs2.getString("unit"));
+                f.setDepartment(rs2.getString("department"));
+                f.setActivityClassification(rs2.getString("activityClassification"));
+                f.setId(rs2.getInt("id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+    
+    public ArrayList<FF> retrieveFFProposalByStepUnit(int step, String unit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE step = ? AND unit = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, step);
+            pstmt.setString(2, unit);
 
             rs2 = pstmt.executeQuery();
 

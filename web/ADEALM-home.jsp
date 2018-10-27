@@ -638,8 +638,8 @@
                         
                         <% 
                             ArrayList<SE> proposals = new ArrayList<SE>();
-                            if(session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")){
-                                proposals = UserDAO.retrieveSEProposalByStep(2);
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
+                                proposals = UserDAO.retrieveSEProposalByStepUnit(2, session.getAttribute("unit").toString());
                             }
                         %>
                         <h2>SE Proposals to Assess (<%=proposals.size()%>)</h2>

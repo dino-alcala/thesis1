@@ -304,14 +304,11 @@
                         <h2>SE Proposals to Assess</h2>
                         <%
                             ArrayList<SE> proposals = new ArrayList();
-                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Department Chair")) {
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
                                 proposals = UserDAO.retrieveSEProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
-                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")) {
-                                proposals = UserDAO.retrieveSEProposalByStep(2);
-                            }
-                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
-                                proposals = UserDAO.retrieveSEProposalByStep(3);
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
+                                proposals = UserDAO.retrieveSEProposalByStepUnit(3, session.getAttribute("unit").toString());
                             }
                         %>
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
@@ -349,9 +346,9 @@
                     </div>
                 </form>
                 <%
-                    if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - Dean")) {
+                    if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                         ArrayList<FF> ffproposals = new ArrayList();
-                        ffproposals = UserDAO.retrieveFFProposalByStep(3);
+                        ffproposals = UserDAO.retrieveFFProposalByStepUnit(3, session.getAttribute("unit").toString());
                 %>
                 <form action="viewFF" method="post">
 

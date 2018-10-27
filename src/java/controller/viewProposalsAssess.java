@@ -60,11 +60,11 @@ public class viewProposalsAssess extends HttpServlet {
             }
             
             if(session.getAttribute("position").equals("COSCA - Sir Neil Position")){
-                ArrayList<FF> f = new ArrayList();
-                f = UserDAO.retrieveFFProposalToAssessByStep(4);
-                for (int i = 0; i < f.size(); i++) {
-                    if (request.getParameter("viewFF" + i) != null) {
-                        request.setAttribute("ffID", request.getParameter("viewFF" + i));
+                ArrayList<SE> s = new ArrayList();
+                s = UserDAO.retrieveSEProposalToAssessByStep(4);
+                for (int i = 0; i < s.size(); i++) {
+                    if (request.getParameter("viewSE" + i) != null) {
+                        request.setAttribute("seID", request.getParameter("viewSE" + i));
 
                         ServletContext context = getServletContext();
                         RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal3.jsp");

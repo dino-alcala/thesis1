@@ -307,8 +307,8 @@ ProgramsForApproval
                         
                         int userID = Integer.parseInt(session.getAttribute("userID").toString());
                         
-                        if(session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) + " - ADEALM")){
-                            proposals = UserDAO.retrieveSEProposalByStep(2);
+                        if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
+                            proposals = UserDAO.retrieveSEProposalByStepUnit(2, session.getAttribute("unit").toString());
                         }                 
                        
                         if(session.getAttribute("position").toString().equals("COSCA - Sir Neil Position")){

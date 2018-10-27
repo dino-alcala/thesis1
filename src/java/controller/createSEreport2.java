@@ -55,7 +55,7 @@ public class createSEreport2 extends HttpServlet {
             SEreport.setTargetMeasure(request.getParameter("measure"));
             SEreport.setProjectProponent(request.getParameter("proponents"));
             SEreport.setPersonResponsible(request.getParameter("responsible"));
-            SEreport.setNumberOfBeneficiaries(Integer.parseInt(request.getParameter("numben")));
+            SEreport.setNumberOfBeneficiaries(Integer.parseInt(request.getParameter("number")));
             SEreport.setProjectBeneficiaries(request.getParameter("projben"));
             SEreport.setAddressBeneficiaries(request.getParameter("addressben"));
             SEreport.setAddressOfProject(request.getParameter("addressproj"));

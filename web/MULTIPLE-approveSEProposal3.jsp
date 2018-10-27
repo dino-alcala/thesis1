@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="css/sidebar.css">
         <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="css/progressbar.css">
+        <link rel="stylesheet" href="css/formstyle5.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -506,6 +507,31 @@
                                     %>
                                 </table>
                                 <br/>
+
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Classification</h4>
+                                    </div>
+                                </div>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="width:50%">Select Classification</td>
+
+                                        <td class="form-style-5" style="width:50%">
+                                            <select>
+                                                <option>L-Aral</option>
+                                                <option>L-Seed</option>
+                                                <option>L-Envisage</option>
+                                                <option>L-Hearts</option>
+                                            </select>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                                <br/>
+
 
                                 <div class="card">
                                     <div class="card-header">
