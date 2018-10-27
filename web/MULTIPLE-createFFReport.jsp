@@ -384,13 +384,13 @@
 
                         <fieldset>  
                             <legend><b>Person Responsible</b></legend>
-                            <center><input id="fname" name="responsible" size="50" type="text"></center>
+                            <center><input id="fname" name="responsible" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Program Head</b></legend>
-                            <center><input id="fname" name="responsible" size="50" type="text"></center>
+                            <center><input id="fname" name="responsible" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
@@ -406,36 +406,36 @@
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>CAP:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number0"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required></td>
 
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>APSP:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number1"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>ASF:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number2"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>Faculty:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number3"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>Administrators:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number4"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>Direct Hired Contractuals:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number5"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>Independent Contractors:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number6"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px"><b>External Service Personnel:</b></td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7"></td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
                                     </tr>
                                 </table>
                             </center>
