@@ -390,13 +390,13 @@
                     <form action="createSEreport4" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend><span class="number">5</span><b>Major Problems Encountered</b></legend>
-                            <center><textarea rows="10" cols="90%" name="problem"></textarea> </center>
+                            <center><textarea rows="10" cols="90%" name="problem" required></textarea> </center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">6</span><b>Other Recommendations (Comments / Feedbacks / Participation of Stakeholders)</b></legend>
-                            <center><textarea rows="10" cols="90%" name="recommendation"></textarea> </center>
+                            <center><textarea rows="10" cols="90%" name="recommendation" required></textarea> </center>
                             <br><br>
                         </fieldset>
 

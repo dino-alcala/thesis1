@@ -193,8 +193,8 @@
                 var row = table.insertRow(rows);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='attendee" + count + "'></textarea>";
-                cell2.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='email" + count + "'></textarea>";
+                cell1.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='attendee" + count + "' required></textarea>";
+                cell2.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='email" + count + "' required></textarea>";
                 count++;
                 document.getElementById("countattendees").setAttribute('value', count);
             }
@@ -323,8 +323,8 @@
                                         <th>Email</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea style='border-radius:0px' rows = "1" cols = "45%" name ="attendee0"></textarea></td>
-                                        <td><textarea style='border-radius:0px' rows = "1" cols = "45%" name ="email0"></textarea></td>
+                                        <td><textarea style='border-radius:0px' rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
+                                        <td><textarea style='border-radius:0px' rows = "1" cols = "45%" name ="email0" required></textarea></td>
                                     </tr>
                                 </table></center>
                             <br>
