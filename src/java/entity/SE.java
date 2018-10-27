@@ -54,6 +54,9 @@ public class SE {
     protected String deptunitRemarks;
     protected String externaldirectorRemarks;
     protected String deanRemarks;
+    protected String unitChairRemarks;
+    protected String seDirectorRemarks;
+    protected String vpVcRemarks;
     protected String jayRemarks;
     protected String carmelRemarks;
     protected String coscaRemarks;
@@ -502,6 +505,32 @@ public class SE {
     public void setUnittype(String unittype) {
         this.unittype = unittype;
     }
+
+    public String getUnitChairRemarks() {
+        return unitChairRemarks;
+    }
+
+    public void setUnitChairRemarks(String unitChairRemarks) {
+        this.unitChairRemarks = unitChairRemarks;
+    }
+
+    public String getSeDirectorRemarks() {
+        return seDirectorRemarks;
+    }
+
+    public void setSeDirectorRemarks(String seDirectorRemarks) {
+        this.seDirectorRemarks = seDirectorRemarks;
+    }
+
+    public String getVpVcRemarks() {
+        return vpVcRemarks;
+    }
+
+    public void setVpVcRemarks(String vpVcRemarks) {
+        this.vpVcRemarks = vpVcRemarks;
+    }
+    
+    
     
     
 }
