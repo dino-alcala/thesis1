@@ -21,6 +21,9 @@ public abstract class DBConnectionFactory {
 =======
     private String username = "root";
     private String password = "#oraytrocknrollwooh3";
+<<<<<<< HEAD
+>>>>>>> be426d1e21462cec4b69f0f7ee78dcbb036ad777
+=======
 >>>>>>> be426d1e21462cec4b69f0f7ee78dcbb036ad777
     
     public static DBConnectionFactory getInstance() {
