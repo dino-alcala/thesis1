@@ -1556,7 +1556,7 @@ public class UserDAO {
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, unit);
-            ps.setString(2, "%Assistant Dean for Lasallian Mission%");
+            ps.setString(2, "%ADLM%");
             rs = ps.executeQuery();
 
             while (rs.next()) {
