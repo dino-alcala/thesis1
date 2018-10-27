@@ -275,7 +275,7 @@
 
                         <%
                             ArrayList<FF> proposals = new ArrayList();
-                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                                 proposals = UserDAO.retrieveFFProposalByUnit(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
 

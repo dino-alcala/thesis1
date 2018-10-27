@@ -52,7 +52,7 @@ public class approveFF extends HttpServlet {
 
             if (request.getParameter("approve") != null) {
 
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     UserDAO.updateStepFF(2, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateChairDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
@@ -76,7 +76,7 @@ public class approveFF extends HttpServlet {
 
                 n.setDt(sdf.format(dt));
 
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     n.setUserID(UserDAO.getUserIDforChairpersonNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())), UserDAO.getDepartmentIDByName(UserDAO.getDepartmentByffID(Integer.parseInt(request.getParameter("approve"))))));
                 }
 
@@ -93,7 +93,7 @@ public class approveFF extends HttpServlet {
                 Notification n2 = new Notification();
                 n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
 
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     n2.setBody("Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.");
                 }
 
@@ -127,7 +127,7 @@ public class approveFF extends HttpServlet {
 
                 Notification n3 = new Notification();
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("revise"))));
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateChairDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the Assistant Dean for Lasallian Mission.");
@@ -182,7 +182,7 @@ public class approveFF extends HttpServlet {
                 Notification n3 = new Notification();
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))));
 
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     UserDAO.updateChairDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Assistant Dean for Lasallian Mission. Reason: " + request.getParameter("remarks1"));
 

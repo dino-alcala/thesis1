@@ -43,7 +43,7 @@ public class viewFF extends HttpServlet {
 
             ArrayList<FF> proposals = new ArrayList();
 
-            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                 proposals = UserDAO.retrieveFFProposalByUnit(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
             }
 
@@ -61,12 +61,11 @@ public class viewFF extends HttpServlet {
                 }
             }
 
-            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFProposal.jsp");
                 dispatcher.forward(request, response);
-
             }
 
             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {

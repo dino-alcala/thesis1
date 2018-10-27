@@ -97,10 +97,6 @@
         <servlet-class>controller.addFF2</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>viewFF</servlet-name>
-        <servlet-class>controller.viewFF</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>approveFF</servlet-name>
         <servlet-class>controller.approveFF</servlet-class>
     </servlet>
@@ -332,6 +328,10 @@
         <servlet-name>viewFF6</servlet-name>
         <servlet-class>controller.viewFF6</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewFF</servlet-name>
+        <servlet-class>controller.viewFF</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -427,10 +427,6 @@
     <servlet-mapping>
         <servlet-name>addFF2</servlet-name>
         <url-pattern>/addFF2</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>viewFF</servlet-name>
-        <url-pattern>/viewFF</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>approveFF</servlet-name>
@@ -663,6 +659,10 @@
     <servlet-mapping>
         <servlet-name>viewFF6</servlet-name>
         <url-pattern>/viewFF6</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewFF</servlet-name>
+        <url-pattern>/viewFF</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -450,7 +450,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if(rs.getString("position").contains("Assistant Dean for Lasallian Mission")){
+                if(rs.getString("position").contains("ADLM")){
                     return true;
                 }
             }
