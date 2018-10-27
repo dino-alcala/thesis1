@@ -67,6 +67,7 @@ public class SE {
     protected String lmc8Remarks;
     protected String sourceOfFunds;
     protected String classificationforKRA;
+    protected String unittype;
 
     public int getId() {
         return id;
@@ -493,4 +494,14 @@ public class SE {
     public void setSourceOfFunds(String sourceOfFunds) {
         this.sourceOfFunds = sourceOfFunds;
     }
+
+    public String getUnittype() {
+        return unittype;
+    }
+
+    public void setUnittype(String unittype) {
+        this.unittype = unittype;
+    }
+    
+    
 }

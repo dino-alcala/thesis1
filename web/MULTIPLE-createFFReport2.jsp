@@ -436,7 +436,7 @@
                         <fieldset>
                             <%
                                 ArrayList<SEexpenses> expenses = new ArrayList();
-                                expenses = UserDAO.retrieveExpenses(Integer.parseInt(request.getParameter("seID").toString()));
+                                expenses = UserDAO.retrieveExpenses(Integer.parseInt(request.getParameter("ffID").toString()));
                             %>
                             <%
                                 if (FF.getSourceOfFunds().equals("OVPLM")) {

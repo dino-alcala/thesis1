@@ -362,7 +362,7 @@
                     <form action="createFFreport2" method="post">
                         <%
                             FF FF = new FF();
-                            FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("seID").toString()));
+                            FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
                         %>
                         <fieldset>
                             <legend><span class="number">1</span><b> Information Identification</b></legend>
