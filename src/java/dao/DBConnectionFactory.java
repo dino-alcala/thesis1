@@ -16,7 +16,7 @@ public abstract class DBConnectionFactory {
     private String driverName = "com.mysql.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/thsis01";
     private String username = "root";
-    private String password = "dino";
+    private String password = "#oraytrocknrollwooh3";
     
     public static DBConnectionFactory getInstance() {
         return new DBConnectionFactoryImpl();

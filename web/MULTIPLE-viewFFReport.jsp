@@ -1,10 +1,11 @@
 <%-- 
-    Document   : MULTIPLE-viewFFReport
-    Created on : 07 10, 18, 7:34:21 PM
+    Document   : MULTIPLE-viewProgramReport
+    Created on : 06 12, 18, 1:31:18 PM
     Author     : Karl Madrid
 --%>
 
 <%@page import="entity.FFreport"%>
+<%@page import="entity.SEreport"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
@@ -26,11 +27,10 @@
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://c dnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
-
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
@@ -79,7 +79,7 @@
                 margin-bottom: 0;
                 font-size: 15px;
             }
-
+            
             table, td, th {
                 border: 1px solid black;
                 border-collapse: collapse;
@@ -246,7 +246,7 @@
 
                                 <%
                                     }
-                                %>
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -273,12 +273,12 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <form action="viewFFreportphoto" method="post">
+                <form action="viewSEreportphoto" method="post">
+
                     <%
                         FFreport FFreport = new FFreport();
                         FFreport = UserDAO.retrieveFFreportByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
                     %>
-
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
@@ -286,10 +286,9 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h3><%=FFreport.getProjectTitle()%></h3>
-                                        <p><b>Targeted KRA:</b> <%=FFreport.getTargetKRA()%></p>
                                         <br/>
                                         <p><b>Project Proponents/s:</b> <%=FFreport.getProjectProponent()%></p>
-                                        <p><b>Person Responsible: </b> Khalid Malo</p>
+                                        <p><b>Person Responsible: </b> <%=FFreport.getPersonResponsible()%></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -299,8 +298,7 @@
                                         <h4>Information Identification</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><b>Facilitator: </b>&nbsp;&nbsp;<%=FFreport.getNameOfFacilitator()%></p>
-                                        <hr/>
+                                        <p><b>List of DLSU Participants:</b></p>
                                         <br/>
                                         <table style="width:100%">
                                             <tr>
@@ -317,9 +315,11 @@
                                             <%
                                                 }
                                             %>
+
                                         </table>
                                         <br>
                                         <hr/>
+                                        <p><b>Amount of Grants Received from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("ffID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund:  </b>&nbsp;&nbsp;₱ <%=FFreport.getAmountReceivedOVPLM()%></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -367,7 +367,8 @@
                                         <h4>Financial Aspect</h4>
                                     </div>
                                     <div class="card-body">
-                                        <center><p><b>Grant from <%if (UserDAO.isOVPLMSourceFF(Integer.parseInt(request.getAttribute("ffID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund</b></p></center>
+                                        <br>
+                                        <center><p><b>Grant from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("seID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund</b></p></center>
                                         <br>
                                         <table style="width:100%">
                                             <tr>
@@ -391,8 +392,7 @@
                                             <%
                                                 }
                                             %>
-                                        </table>          
-                                        <br>    
+                                        </table>    
                                     </div>
                                 </div>
                                 <br/>
@@ -483,21 +483,17 @@
         <script>
             // Hide submenus
             $('#body-row .collapse').collapse('hide');
-
             // Collapse/Expand icon
             $('#collapse-icon').addClass('fa-angle-double-left');
-
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
                 SidebarCollapse();
             });
-
             function SidebarCollapse() {
                 $('.menu-collapsed').toggleClass('d-none');
                 $('.sidebar-submenu').toggleClass('d-none');
                 $('.submenu-icon').toggleClass('d-none');
                 $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
                 // Treating d-flex/d-none on separators with title
                 var SeparatorTitle = $('.sidebar-separator-title');
                 if (SeparatorTitle.hasClass('d-flex')) {
