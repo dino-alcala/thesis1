@@ -309,7 +309,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>   
-                <center><h1>Social Engagement Program Attendees</h1></center>
+                <center><h2>Social Engagement Program Attendees</h2></center>
                 <hr size="5" noshade>
 
 
