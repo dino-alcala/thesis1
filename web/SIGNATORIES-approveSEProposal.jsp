@@ -503,7 +503,7 @@
                                         <th style="width:65%">Remarks</th> 
                                     </tr>
                                     <tr>
-                                        <td>Department Chair</td>
+                                        <td>Department/Unit Chair</td>
                                         <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>

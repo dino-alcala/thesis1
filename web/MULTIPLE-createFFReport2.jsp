@@ -196,9 +196,9 @@
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
-                cell1.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='expected" + count + "'></textarea></td>";
-                cell2.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='actual" + count + "'></textarea></td>";
-                cell3.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='hinder" + count + "'></textarea></td>";
+                cell1.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='expected" + count + "' required></textarea></td>";
+                cell2.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='actual" + count + "' required></textarea></td>";
+                cell3.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='hinder" + count + "' required></textarea></td>";
                 count++;
                 document.getElementById("countobjectives").setAttribute('value', count);
             }
@@ -217,7 +217,7 @@
                 cell2.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='approved" + count + "'></textarea></td>";
                 cell3.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='expended" + count + "'></textarea></td>";
                 cell4.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='variance" + count + "'></textarea></td>";
-                cell5.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='reason" + count + "'></textarea></td>";
+                cell5.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='reason" + count + "' required></textarea></td>";
                 count++;
                 document.getElementById("countovplm").setAttribute('value', count);
 
@@ -237,7 +237,7 @@
                 cell2.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='approved" + count + "'></textarea></td>";
                 cell3.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='expended" + count + "'></textarea></td>";
                 cell4.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='variance" + count + "'></textarea></td>";
-                cell5.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='reason" + count + "'></textarea></td>";
+                cell5.innerHTML = "<td><textarea style='border-radius:0px' rows = '2' cols = '20%' name='reason" + count + "' required></textarea></td>";
                 count++;
                 document.getElementById("countothers").setAttribute('value', count);
 
@@ -394,13 +394,13 @@
 
                         <fieldset>
                             <legend><b>What is the significance of the project?</b></legend>
-                            <center><textarea rows="8" cols="90%" name="significance"></textarea> </center>
+                            <center><textarea rows="8" cols="90%" name="significance" required></textarea> </center>
                             <br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>What are the highlights of the project?</b></legend>
-                            <center><textarea rows="8" cols="90%" name="highlights"></textarea> </center>
+                            <center><textarea rows="8" cols="90%" name="highlights" required></textarea> </center>
                             <br><br>
                         </fieldset>
 
@@ -417,9 +417,9 @@
                                         <th>Hindering Factors</th>
                                     </tr>
                                     <tr>
-                                        <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="expected0"></textarea></td>
-                                        <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="actual0"></textarea></td>
-                                        <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="hinder0"></textarea></td>
+                                        <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="expected0" required></textarea></td>
+                                        <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="actual0" required></textarea></td>
+                                        <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="hinder0" required></textarea></td>
                                     </tr>
 
                                 </table></center>
@@ -436,7 +436,7 @@
                         <fieldset>
                             <%
                                 ArrayList<SEexpenses> expenses = new ArrayList();
-                                expenses = UserDAO.retrieveExpenses(Integer.parseInt(request.getParameter("seID").toString()));
+                                expenses = UserDAO.retrieveExpenses(Integer.parseInt(request.getParameter("ffID").toString()));
                             %>
                             <%
                                 if (FF.getSourceOfFunds().equals("OVPLM")) {
@@ -459,7 +459,7 @@
                                         <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="approved<%=i%>" readonly><%=expenses.get(i).getUnitcost() * expenses.get(i).getQuantity()%></textarea></td>
                                         <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="expended<%=i%>" readonly><%=expenses.get(i).getAmountUsed()%></textarea></td>
                                         <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="variance<%=i%>" readonly><%=(expenses.get(i).getUnitcost() * expenses.get(i).getQuantity()) - expenses.get(i).getAmountUsed()%></textarea></td>
-                                        <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="reason<%=i%>"></textarea></td>
+                                        <td><textarea style="border-radius:0px" rows = "2" cols = "20%" name ="reason<%=i%>" required></textarea></td>
                                     </tr>
                                     <%
                                         }
@@ -468,7 +468,7 @@
                                 </table></center>
                             <br>
                             <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
-                                <input id="deleteRowButton" type ="button" onclick ="deleteRow2()" value="Delete Row"></center>
+                                <input style="background-color:red; border: red;" id="deleteRowButton" type ="button" onclick ="deleteRow2()" value="Delete Row"></center>
                             <br>
                             <br>
                             <%
@@ -492,7 +492,7 @@
                                         <td><textarea rows = "2" cols = "20%" name ="approved<%=i%>" readonly><%=expenses.get(i).getUnitcost() * expenses.get(i).getQuantity()%></textarea></td>
                                         <td><textarea rows = "2" cols = "20%" name ="expended<%=i%>" readonly><%=expenses.get(i).getAmountUsed()%></textarea></td>
                                         <td><textarea rows = "2" cols = "20%" name ="variance<%=i%>" readonly><%=(expenses.get(i).getUnitcost() * expenses.get(i).getQuantity()) - expenses.get(i).getAmountUsed()%></textarea></td>
-                                        <td><textarea rows = "2" cols = "20%" name ="reason<%=i%>"></textarea></td>
+                                        <td><textarea rows = "2" cols = "20%" name ="reason<%=i%>" required></textarea></td>
                                     </tr>
                                     <%
                                         }
@@ -501,7 +501,7 @@
                                 </table></center>
                             <br>
                             <center><input type ="button" id="addRowButton" onclick ="addRow3()" value="Add Row">
-                                <input id="deleteRowButton" type ="button" onclick ="deleteRow3()" value="Delete Row"></center>
+                                <input style="background-color:red; border: red;" id="deleteRowButton" type ="button" onclick ="deleteRow3()" value="Delete Row"></center>
                                 <%
                                     }
                                 %>
