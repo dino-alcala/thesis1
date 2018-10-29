@@ -354,7 +354,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isADEALM(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -370,7 +370,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("position").contains("ADEALM")){
+                if (rs.getString("position").contains("ADEALM")) {
                     return true;
                 }
             }
@@ -393,7 +393,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isDean(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -409,9 +409,9 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("position").equals("CCS - Dean") || rs.getString("position").equals("BAGCED - Dean") || rs.getString("position").equals("COL - Dean") 
-                        || rs.getString("position").equals("CLA - Dean") || rs.getString("position").equals("GCOE - Dean") || rs.getString("position").equals("COS - Dean") 
-                        || rs.getString("position").equals("RVRCOB - Dean") || rs.getString("position").equals("SOE - Dean")){
+                if (rs.getString("position").equals("CCS - Dean") || rs.getString("position").equals("BAGCED - Dean") || rs.getString("position").equals("COL - Dean")
+                        || rs.getString("position").equals("CLA - Dean") || rs.getString("position").equals("GCOE - Dean") || rs.getString("position").equals("COS - Dean")
+                        || rs.getString("position").equals("RVRCOB - Dean") || rs.getString("position").equals("SOE - Dean")) {
                     return true;
                 }
             }
@@ -434,7 +434,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isAssistantDeanforLM(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -450,7 +450,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if(rs.getString("position").contains("ADLM")){
+                if (rs.getString("position").contains("ADLM")) {
                     return true;
                 }
             }
@@ -473,7 +473,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isChairperson(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -489,7 +489,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                if(rs.getString("position").contains("Chairperson")){
+                if (rs.getString("position").contains("Chairperson")) {
                     return true;
                 }
             }
@@ -512,7 +512,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isDeptChair(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -527,9 +527,9 @@ public class UserDAO {
 
             rs = ps.executeQuery();
             boolean y = false;
-            
-            while (rs.next()) {                
-                if(rs.getString("position").contains("Department Chair")){
+
+            while (rs.next()) {
+                if (rs.getString("position").contains("Department Chair")) {
                     return true;
                 }
             }
@@ -552,7 +552,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isUnitChair(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -567,9 +567,9 @@ public class UserDAO {
 
             rs = ps.executeQuery();
             boolean y = false;
-            
-            while (rs.next()) {                
-                if(rs.getString("position").contains("Unit Chair")){
+
+            while (rs.next()) {
+                if (rs.getString("position").contains("Unit Chair")) {
                     return true;
                 }
             }
@@ -592,7 +592,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isSEDirector(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -607,9 +607,9 @@ public class UserDAO {
 
             rs = ps.executeQuery();
             boolean y = false;
-            
-            while (rs.next()) {                
-                if(rs.getString("position").contains("Social Engagement Director")){
+
+            while (rs.next()) {
+                if (rs.getString("position").contains("Social Engagement Director")) {
                     return true;
                 }
             }
@@ -1080,7 +1080,7 @@ public class UserDAO {
         }
         return units;
     }
-    
+
     public ArrayList<Unit> retrieveUnitsAcademic() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1227,8 +1227,8 @@ public class UserDAO {
         }
         return deptid;
     }
-    
-    public ArrayList<Department> getDepartmentsIDsByUnitID(int unitID){
+
+    public ArrayList<Department> getDepartmentsIDsByUnitID(int unitID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1247,7 +1247,7 @@ public class UserDAO {
                 d.setDepartmentID(rs.getInt("departmentID"));
                 Departments.add(d);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -1312,7 +1312,7 @@ public class UserDAO {
         }
         return dept;
     }
-    
+
     public String getDepartmentByffID(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1328,7 +1328,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               department = rs.getString("department");
+                department = rs.getString("department");
             }
 
         } catch (SQLException ex) {
@@ -1349,7 +1349,7 @@ public class UserDAO {
         }
         return department;
     }
-    
+
     public int getDepartmentIDByName(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1365,7 +1365,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-              departmentID = rs.getInt("departmentID");
+                departmentID = rs.getInt("departmentID");
             }
 
         } catch (SQLException ex) {
@@ -1551,7 +1551,7 @@ public class UserDAO {
         }
         return department;
     }
-    
+
     public int getDepartmentIDByUserID(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1588,6 +1588,7 @@ public class UserDAO {
         }
         return department;
     }
+
     
     /*public int getUserIDforNotifs(String unit, int departmentID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1643,7 +1644,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1664,6 +1665,7 @@ public class UserDAO {
         }
         return userID;
     }
+
     
     public int getUserIDforNotifsUnitChair(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1680,7 +1682,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1701,7 +1703,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforChairpersonNotifs(String unit, int departmentID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1718,7 +1720,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1755,7 +1757,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1778,6 +1780,10 @@ public class UserDAO {
     }
     
     /*public int getUserIDforUnitNotifs(String unit) {
+=======
+
+    public int getUserIDforNotifsAssistantDean(String unit) {
+>>>>>>> e8211e87e8aa3ec1554b41e00596edb74fbd35b0
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1829,7 +1835,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1850,8 +1856,10 @@ public class UserDAO {
         }
         return userID;
     }
+
     
     public int getUserIDforNotifsDean(String unit) {
+
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1866,7 +1874,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1903,7 +1911,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1924,6 +1932,7 @@ public class UserDAO {
         }
         return userID;
     }
+
     
     public int getUserIDforNotifsVPVC(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1977,7 +1986,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1998,7 +2007,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforJamesNotifs() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2014,7 +2023,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -2035,7 +2044,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforPositionNotifs(String position) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2050,7 +2059,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -2108,7 +2117,7 @@ public class UserDAO {
         }
         return unit;
     }
-    
+
     public String getUnitTypeByName(String unitname) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2186,7 +2195,7 @@ public class UserDAO {
         }
         return u;
     }
-    
+
     public Unit getDepartmentDetailsByDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2332,6 +2341,79 @@ public class UserDAO {
 
                 rs = pstmt.executeUpdate();
             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+
+    public void auditSE(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+
+        int rs = 0;
+        try {
+
+            String query = "INSERT INTO seproposal_revisions(seproposalID, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, programName, problemaddressed, sourceOfFunds) SELECT id, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, programName, problemaddressed, sourceOfFunds FROM seproposal WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "UPDATE seproposal_revisions SET datetime = ? WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
+            pstmt.setString(1, sdf.format(dt));
+            pstmt.setInt(2, seID);
+            
+            rs = pstmt.executeUpdate();
+
+            query = "INSERT INTO seproposal_revisions_component(seproposalID, component) SELECT seproposalID, component FROM seproposal_component WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "INSERT INTO seproposal_revisions_workplan(startdate, activity, timestartTimeend, venue, timeend, seproposalID) SELECT startdate, activity, timestartTimeend, venue, timeend, seproposalID FROM seproposal_workplan WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "INSERT INTO seproposal_revisions_expenses(item, unitcost, quantity, subtotal, seproposalID) SELECT item, unitcost, quantity, subtotal, seproposalID FROM seproposal_expenses WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "INSERT INTO seproposal_revisions_personresponsible(name, email, seproposalID) SELECT name, email, seproposalID FROM seproposal_personresponsible WHERE seproposalID = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "INSERT INTO seproposal_revisions_measures(seproposalID, measureID) SELECT seproposalID, measureID FROM se_measures WHERE seproposalID = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -2738,7 +2820,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<SE> retrieveSEProposalByStepUnit(int step, String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2781,8 +2863,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
-    
+
     public ArrayList<SE> retrieveSEProposalByDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2824,7 +2905,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<FF> retrieveFFProposalByUnit(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2866,7 +2947,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public ArrayList<FF> retrieveFFProposalByDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2948,7 +3029,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<SE> retrieveSEProposalByCancelled(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2988,7 +3069,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<SE> retrieveSEProposalByRejected(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3028,7 +3109,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<FF> retrieveFFProposalByRejected(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3109,7 +3190,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<SE> retrieveSEProposalByCancelledOwner(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3191,7 +3272,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<FF> retrieveFFProposalByRejectedOwner(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3232,7 +3313,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public ArrayList<FF> retrieveFFProposalByStep(int step) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3274,7 +3355,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public ArrayList<FF> retrieveFFProposalByStepUnit(int step, String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3522,7 +3603,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public ArrayList<FF> retrieveRejectedFFProposalByUserID(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3563,7 +3644,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public ArrayList<FF> retrieveCancelledFFProposalByUserID(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3645,7 +3726,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public ArrayList<FF> retrieveRejectedFFProposalByOthers(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3686,7 +3767,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public ArrayList<FF> retrieveCancelledFFProposalByOthers(int userID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4318,7 +4399,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void updateUnitChairRemarks(String remarks, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -6748,7 +6829,7 @@ public class UserDAO {
         }
         return step;
     }
-    
+
     public String getSourceOfFunds(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -7478,7 +7559,7 @@ public class UserDAO {
         }
         return b;
     }
-    
+
     public void setClassificationforKRA(int seid, String classification) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -7486,15 +7567,13 @@ public class UserDAO {
         String query = "UPDATE seproposal SET classificationforkra = ? where id = ?";
         PreparedStatement ps = null;
         int rs = 0;
-        
 
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, classification);
             ps.setInt(2, seid);
-            
-            rs = ps.executeUpdate();
 
+            rs = ps.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -10978,7 +11057,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<SE> retrieveSEbyDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -11064,7 +11143,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public ArrayList<FF> retrieveFFbyDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -12853,7 +12932,7 @@ public class UserDAO {
         }
         return budget;
     }
-    
+
     public String getPosition(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -12869,7 +12948,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               position = rs.getString("position");
+                position = rs.getString("position");
             }
 
         } catch (SQLException ex) {
@@ -12890,7 +12969,7 @@ public class UserDAO {
         }
         return position;
     }
-    
+
     public void AddMeasures(ArrayList<Integer> measureID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -12917,7 +12996,7 @@ public class UserDAO {
                 pstmt.setInt(1, seproposalID);
                 pstmt.setInt(2, measureID.get(i));
 
-               int rs = pstmt.executeUpdate();
+                int rs = pstmt.executeUpdate();
 
             }
 
@@ -12934,13 +13013,13 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public ArrayList<Integer> GetMeasures(int id) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
-        
-        ArrayList <Integer> ids = new ArrayList();
+
+        ArrayList<Integer> ids = new ArrayList();
 
         ResultSet rs2 = null;
         try {
@@ -12967,15 +13046,15 @@ public class UserDAO {
             } catch (Exception e) {
                 /* ignored */ }
         }
-        
+
         return ids;
     }
-    
+
     public Measure GetMeasureObject(int id) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
-        
+
         Measure m = new Measure();
 
         ResultSet rs2 = null;
@@ -13004,7 +13083,7 @@ public class UserDAO {
             } catch (Exception e) {
                 /* ignored */ }
         }
-        
+
         return m;
     }
     

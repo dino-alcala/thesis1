@@ -97,6 +97,7 @@ public class editSE2 extends HttpServlet {
             
             SE.setResponsible(seresponsible);
             
+            UserDAO.auditSE(SE.getId());
             UserDAO.EditSE(SE);
             
             UserDAO.completeReviseSE(SE.getId());
