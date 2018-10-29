@@ -58,6 +58,10 @@ public class viewSE extends HttpServlet {
             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
                 proposals = UserDAO.retrieveSEProposalByStepUnit(2, session.getAttribute("unit").toString());
             }
+            
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
+                proposals = UserDAO.retrieveSEProposalByStepUnit(3, session.getAttribute("unit").toString());
+            }
 
             for (int i = 0; i < proposals.size(); i++) {
                 if (request.getParameter("seID" + i) != null) {
@@ -90,6 +94,13 @@ public class viewSE extends HttpServlet {
 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal2.jsp");
+                dispatcher.forward(request, response);
+            }
+            
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveSEProposal3.jsp");
                 dispatcher.forward(request, response);
             }
         }

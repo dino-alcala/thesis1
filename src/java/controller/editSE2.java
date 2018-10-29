@@ -111,7 +111,7 @@ public class editSE2 extends HttpServlet {
             n.setDt(sdf.format(dt));
             
             if (UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4) {
-                n.setUserID(UserDAO.getUserIDforNotifs(session.getAttribute("unit").toString(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                //n.setUserID(UserDAO.getUserIDforNotifs(session.getAttribute("unit").toString(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
             }
             
             UserDAO.AddNotification(n);

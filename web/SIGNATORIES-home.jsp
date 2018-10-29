@@ -317,6 +317,10 @@
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
                                 proposals = UserDAO.retrieveSEProposalByStepUnit(2, session.getAttribute("unit").toString());
                             }
+                            
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
+                                proposals = UserDAO.retrieveSEProposalByStepUnit(3, session.getAttribute("unit").toString());
+                            }
                         %>
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >

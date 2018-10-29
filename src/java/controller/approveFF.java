@@ -81,7 +81,7 @@ public class approveFF extends HttpServlet {
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
-                    n.setUserID(UserDAO.getUserIDforDeanNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    //n.setUserID(UserDAO.getUserIDforDeanNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
