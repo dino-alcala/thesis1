@@ -1606,7 +1606,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1665,7 +1665,6 @@ public class UserDAO {
         }
         return userID;
     }
-
     
     public int getUserIDforNotifsUnitChair(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1778,9 +1777,12 @@ public class UserDAO {
         }
         return userID;
     }
+
     
     /*public int getUserIDforUnitNotifs(String unit) {
 =======
+=======
+>>>>>>> e8211e87e8aa3ec1554b41e00596edb74fbd35b0
 
     public int getUserIDforNotifsAssistantDean(String unit) {
 >>>>>>> e8211e87e8aa3ec1554b41e00596edb74fbd35b0
@@ -1798,7 +1800,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
@@ -1856,10 +1858,8 @@ public class UserDAO {
         }
         return userID;
     }
-
     
     public int getUserIDforNotifsDean(String unit) {
-
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1949,7 +1949,7 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               userID = rs.getInt("id");
+                userID = rs.getInt("id");
             }
 
         } catch (SQLException ex) {
