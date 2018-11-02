@@ -232,11 +232,15 @@
 
                 }
 
-                function changemeasure(c1, c2) {
+                function changemeasure(c1, c2, c3, c4) {
 
                 var c1 = document.getElementById(c1);
                 var c2 = document.getElementById(c2);
+                var c3 = document.getElementById(c3);
+                var c4 = document.getElementById(c4);
                 c2.innerHTML = "";
+                c3.innerHTML = "";
+                c4.innerHTML = "";
             <%
                 for (int i = 0; i < k.size(); i++) {
                     for (int j = 0; j < k.get(i).getGoals().size(); j++) {
@@ -244,6 +248,10 @@
 
                 if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
                 var optionArray = ["|",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                    }
+                    
+                                    if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
+                var optionArray2 = ["0|None",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
                     }
 
             <%
@@ -257,7 +265,24 @@
                     newOption.value = pair[0];
                     newOption.innerHTML = pair[1];
                     c2.options.add(newOption);
-                    }
+                }
+                
+                 for (var option in optionArray2) {
+                    var pair = optionArray2[option].split("|");
+                    var newOption = document.createElement("option");
+                    newOption.value = pair[0];
+                    newOption.innerHTML = pair[1];
+                    c3.options.add(newOption);
+                }
+                
+                 for (var option in optionArray2) {
+                    var pair = optionArray2[option].split("|");
+                    var newOption = document.createElement("option");
+                    newOption.value = pair[0];
+                    newOption.innerHTML = pair[1];
+                    c4.options.add(newOption);
+                }
+                    
 
                     }
         </script>
@@ -430,7 +455,7 @@
 
                         <fieldset>
                             <legend><b>Target KRA:</b></legend>
-                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')">
+                            <select value ="<%=SE.getTargetKRA()%>" name="kra" id="kra" onchange="changegoal(this.id, 'goals')">
                                 <option></option>
                                 <%
                                     for (int m = 0; m < k.size(); m++) {
@@ -445,18 +470,32 @@
 
                         <fieldset>
                             <legend><b>Target Goal:</b></legend>
-                            <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures')">
+                            <select value ="<%=SE.getTargetGoal()%>" name="goal" id="goals" onchange="changemeasure(this.id, 'measures')">
                             </select>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Target Measure:</b></legend>
-                            <select name="measure" id="measures">
+                            <select value ="<%=SE.getTargetMeasure()%>" name="measure" id="measures" required>
+                            </select>
+                            <br><br><br>
+                        </fieldset> 
+                            
+                            <fieldset>
+                            <legend><b>Target Measure 2:</b></legend>
+                            <select name="measure2" id="measures2">
+                            </select>
+                            <br><br><br>
+                        </fieldset>
+                            
+                            <fieldset>
+                            <legend><b>Target Measure 3:</b></legend>
+                            <select name="measure3" id="measures3">
                             </select>
                             <br><br>
                             <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a></center>
-                            <br><br><br><br>
+                            <br><br><br>
                         </fieldset>
 
                         <fieldset>

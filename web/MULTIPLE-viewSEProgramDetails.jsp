@@ -536,15 +536,15 @@
                                     </tr>
                                     <tr>
                                         <td>Department/Unit Chair</td>
-                                        <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%></td>
+                                        <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>College ADEALM/SE Director</td>
-                                        <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%></td>
+                                        <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%><%if (SE.getSeDirectorRemarks() != null) {%><%=SE.getSeDirectorRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>College Dean/VP/VC</td>
-                                        <td><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%></td>
+                                        <td><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%><%if (SE.getVpVcRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Evaluation by COSCA</td>

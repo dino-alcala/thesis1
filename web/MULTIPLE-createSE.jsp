@@ -431,13 +431,13 @@
                         <br>
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
-                            <input type = "text" name ="programname" required>
+                            <input  type = "text" name ="programname" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Program Head (First name, Last name):</b></legend>
-                            <input type = "text" name ="programhead" required>
+                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" required>
                             <br><br><br><br>
                         </fieldset>
                         

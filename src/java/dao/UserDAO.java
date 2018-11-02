@@ -632,6 +632,46 @@ public class UserDAO {
         }
         return false;
     }
+    
+    public boolean isVpVc(String username) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT position FROM informationsheet WHERE username = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+            boolean y = false;
+            
+            while (rs.next()) {                
+                if(rs.getString("position").contains("VP/VC")){
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
 
     public boolean isCOSCA(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1549,7 +1589,46 @@ public class UserDAO {
         return department;
     }
 
-    public int getUserIDforNotifs(String unit, int departmentID) {
+    
+    /*public int getUserIDforNotifs(String unit, int departmentID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM informationsheet WHERE unit = ? AND departmentID = ? AND position LIKE ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userID = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            ps.setInt(2, departmentID);
+            ps.setString(3, "%Department Chair%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                userID = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                 }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                 }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                }
+        }
+        return userID;
+    }*/
+    
+    public int getUserIDforNotifsDepartmentChair(String unit, int departmentID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1586,8 +1665,8 @@ public class UserDAO {
         }
         return userID;
     }
-
-    public int getUserIDforNotifsUnitChair(String unit, int departmentID) {
+    
+    public int getUserIDforNotifsUnitChair(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1661,44 +1740,7 @@ public class UserDAO {
         }
         return userID;
     }
-
-    public int getUserIDforUnitChairNotifs(String unit) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT * FROM informationsheet WHERE unit = ? AND position LIKE ? ";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        int userID = 0;
-        try {
-            ps = conn.prepareStatement(query);
-            ps.setString(1, unit);
-            ps.setString(2, "%Unit Chair%");
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                userID = rs.getInt("id");
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return userID;
-    }
-
+    
     public int getUserIDforNotifsAssistantDean(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1736,7 +1778,51 @@ public class UserDAO {
         return userID;
     }
 
-    public int getUserIDforUnitNotifs(String unit) {
+    
+    /*public int getUserIDforUnitNotifs(String unit) {
+=======
+=======
+>>>>>>> e8211e87e8aa3ec1554b41e00596edb74fbd35b0
+
+    public int getUserIDforNotifsAssistantDean(String unit) {
+>>>>>>> e8211e87e8aa3ec1554b41e00596edb74fbd35b0
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM informationsheet WHERE unit = ? AND position LIKE ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userID = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            ps.setString(2, "%ADEALM%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                userID = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                 }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                 }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                }
+        }
+        return userID;
+    }*/
+    
+    public int getUserIDforNotifsADEALM(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1772,8 +1858,8 @@ public class UserDAO {
         }
         return userID;
     }
-
-    public int getUserIDforDeanNotifs(String unit) {
+    
+    public int getUserIDforNotifsDean(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1809,8 +1895,83 @@ public class UserDAO {
         }
         return userID;
     }
+    
+    public int getUserIDforNotifsSEDirector(String unit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
 
-    public int getUserIDforNeilNotifs() {
+        String query = "SELECT * FROM informationsheet WHERE unit = ? AND position LIKE ? LIMIT 1";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userID = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            ps.setString(2, "%Social Engagement Director%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                userID = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return userID;
+    }
+
+    
+    public int getUserIDforNotifsVPVC(String unit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM informationsheet WHERE unit = ? AND position LIKE ? LIMIT 1";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userID = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            ps.setString(2, "%VP/VC%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                userID = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return userID;
+    }
+    
+    public int getUserIDforNotifsNeil() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -2082,7 +2243,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?)";
+            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, SE.getUnit());
@@ -2093,31 +2254,30 @@ public class UserDAO {
             pstmt.setInt(6, SE.getTargetCommunity());
             pstmt.setInt(7, SE.getTargetKRA());
             pstmt.setInt(8, SE.getTargetGoal());
-            pstmt.setString(9, SE.getTitleActivity());
-            pstmt.setDate(10, SE.getActualDate());
-            pstmt.setDouble(11, SE.getTotalAmount());
-            pstmt.setString(12, SE.getNameSEbeneficiaries());
-            pstmt.setString(13, SE.getAddressSEbeneficiaries());
-            pstmt.setString(14, SE.getContactPersonSEbeneficiaries());
-            pstmt.setString(15, SE.getMobileSEbeneficiaries());
-            pstmt.setString(16, SE.getEmailSEbeneficiaries());
-            pstmt.setString(17, SE.getDescriptionSEbeneficiaries());
-            pstmt.setString(18, SE.getObjectives());
-            pstmt.setString(19, SE.getExplanation());
-            pstmt.setInt(20, SE.getTotalpopulationAcademicStaff());
-            pstmt.setInt(21, SE.getExpectedAcademicStaff());
-            pstmt.setInt(22, SE.getTotalpopulationSupportStaff());
-            pstmt.setInt(23, SE.getExpectedSupportStaff());
-            pstmt.setInt(24, SE.getTotalpopulationUndergraduate());
-            pstmt.setInt(25, SE.getExpectedUndergraduate());
-            pstmt.setInt(26, SE.getTotalPopulationGraduate());
-            pstmt.setInt(27, SE.getExpectedGraduate());
-            pstmt.setInt(28, SE.getStep());
-            pstmt.setInt(29, SE.getUserID());
-            pstmt.setString(30, SE.getName());
-            pstmt.setString(31, SE.getSocialCommunityProblem());
-            pstmt.setString(32, SE.getSourceOfFunds());
-            pstmt.setString(33, SE.getUnittype());
+            pstmt.setDate(9, SE.getActualDate());
+            pstmt.setDouble(10, SE.getTotalAmount());
+            pstmt.setString(11, SE.getNameSEbeneficiaries());
+            pstmt.setString(12, SE.getAddressSEbeneficiaries());
+            pstmt.setString(13, SE.getContactPersonSEbeneficiaries());
+            pstmt.setString(14, SE.getMobileSEbeneficiaries());
+            pstmt.setString(15, SE.getEmailSEbeneficiaries());
+            pstmt.setString(16, SE.getDescriptionSEbeneficiaries());
+            pstmt.setString(17, SE.getObjectives());
+            pstmt.setString(18, SE.getExplanation());
+            pstmt.setInt(19, SE.getTotalpopulationAcademicStaff());
+            pstmt.setInt(20, SE.getExpectedAcademicStaff());
+            pstmt.setInt(21, SE.getTotalpopulationSupportStaff());
+            pstmt.setInt(22, SE.getExpectedSupportStaff());
+            pstmt.setInt(23, SE.getTotalpopulationUndergraduate());
+            pstmt.setInt(24, SE.getExpectedUndergraduate());
+            pstmt.setInt(25, SE.getTotalPopulationGraduate());
+            pstmt.setInt(26, SE.getExpectedGraduate());
+            pstmt.setInt(27, SE.getStep());
+            pstmt.setInt(28, SE.getUserID());
+            pstmt.setString(29, SE.getName());
+            pstmt.setString(30, SE.getSocialCommunityProblem());
+            pstmt.setString(31, SE.getSourceOfFunds());
+            pstmt.setString(32, SE.getUnittype());
 
             int rs = pstmt.executeUpdate();
 
@@ -3675,8 +3835,7 @@ public class UserDAO {
                 SE.setTargetCommunity(rs2.getInt("targetCommunity"));
                 SE.setTargetKRA(rs2.getInt("targetKRA"));
                 SE.setTargetGoal(rs2.getInt("targetGoal"));
-                SE.setTargetMeasure(rs2.getInt("targetMeasure"));
-                SE.setTitleActivity(rs2.getString("titleOfActivity"));
+                //SE.setTargetMeasure(rs2.getInt("targetMeasure"));
                 SE.setActualDate(rs2.getDate("actualImplementation"));
                 SE.setTotalAmount(rs2.getDouble("totalAmountRequested"));
                 SE.setSocialCommunityProblem(rs2.getString("problemaddressed"));
@@ -3711,6 +3870,9 @@ public class UserDAO {
                 SE.setLmc6Remarks(rs2.getString("lmc6Remarks"));
                 SE.setLmc7Remarks(rs2.getString("lmc7Remarks"));
                 SE.setLmc8Remarks(rs2.getString("lmc8Remarks"));
+                SE.setUnitChairRemarks(rs2.getString("unitchairremarks"));
+                SE.setSeDirectorRemarks(rs2.getString("sedirectorremarks"));
+                SE.setVpVcRemarks(rs2.getString("vpvcremarks"));
                 SE.setSourceOfFunds(rs2.getString("sourceOfFunds"));
                 SE.setUserID(rs2.getInt("userID"));
             }
@@ -4291,7 +4453,34 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
+    
+    public void updateVPVCRemarks(String remarks, int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
 
+        try {
+            String query = "UPDATE seproposal SET vpvcremarks = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, remarks);
+            pstmt.setInt(2, seID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
     public void updateChairDirectorRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -12896,5 +13085,79 @@ public class UserDAO {
         }
 
         return m;
+    }
+    
+    public String getFirstName(int id){
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        String name = null;
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        
+        Measure m = new Measure();
+
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT firstName FROM informationsheet WHERE id = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, id);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                name = (rs2.getString("firstName"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        
+        return name;
+    }
+    
+    public String getLastName(int id){
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        String name = null;
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        
+        Measure m = new Measure();
+
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT lastName FROM informationsheet WHERE id = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, id);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                name = (rs2.getString("lastName"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        
+        return name;
     }
 }

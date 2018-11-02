@@ -75,10 +75,14 @@ public class approveSE extends HttpServlet {
                     UserDAO.updateDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
                 
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VPVC")) {
+                    UserDAO.updateStep(4, Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updateDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                }
                 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody("You have new SE Proposal ready for approval!");
+                n.setBody("New SE Proposal ready for approval!");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -86,19 +90,24 @@ public class approveSE extends HttpServlet {
                 n.setDt(sdf.format(dt));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
-                    n.setUserID(UserDAO.getUserIDforUnitNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setUserID(UserDAO.getUserIDforNotifsADEALM(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
-                    n.setUserID(UserDAO.getUserIDforDeanNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setUserID(UserDAO.getUserIDforNotifsDean(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
-                    n.setUserID(UserDAO.getUserIDforUnitNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setUserID(UserDAO.getUserIDforNotifsNeil());
+                    
                 }
                 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
-                    n.setUserID(UserDAO.getUserIDforUnitNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setUserID(UserDAO.getUserIDforNotifsSEDirector(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
+                    n.setUserID(UserDAO.getUserIDforNotifsVPVC(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                 }
 
                 UserDAO.AddNotification(n);
@@ -109,19 +118,39 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
                     n2.setBody("Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.");
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
+                    n2.setBody("Your proposal has been approved by the Unit Chair! It will now be taken to the SE Director.");
+                }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
                     n2.setBody("Your proposal has been approved by the ADEALM! It will now be taken to the Dean.");
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
+                    n2.setBody("Your proposal has been approved by the SE Director! It will now be taken to the VP/VC.");
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
+                    n2.setBody("Your proposal has been approved by the VP/VC! It will now be taken to COSCA.");
+                    
+                    Notification n3 = new Notification();
+                    n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+                    n3.setBody("New SE Proposal ready for approval!");
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getUserIDforNotifsNeil());
+
+                    UserDAO.AddNotification(n3);
+                }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
-                    n2.setBody("Your proposal has been approved by the Dean! It will now be taken to Sir Neil.");
+                    n2.setBody("Your proposal has been approved by the Dean! It will now be taken to COSCA.");
 
                     Notification n3 = new Notification();
                     n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-                    n3.setBody("You have new SE Proposal ready for approval!");
+                    n3.setBody("New SE Proposal ready for approval!");
                     n3.setDt(sdf.format(dt));
-                    n3.setUserID(UserDAO.getUserIDforNeilNotifs());
+                    n3.setUserID(UserDAO.getUserIDforNotifsNeil());
 
                     UserDAO.AddNotification(n3);
                 }
@@ -139,7 +168,8 @@ public class approveSE extends HttpServlet {
                 } else if (session.getAttribute("position").equals("CCS - Dean") || session.getAttribute("position").equals("COS - Dean")
                         || session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
                         || session.getAttribute("position").equals("BAGCED - Dean") || session.getAttribute("position").equals("CLA - Dean") || session.getAttribute("position").equals("SOE - Dean")
-                        || session.getAttribute("position").toString().contains("Department Chair")) {
+                        || session.getAttribute("position").toString().contains("Department Chair") || session.getAttribute("position").toString().contains("Unit Chair")
+                        || session.getAttribute("position").toString().contains("Social Engagement Director") || session.getAttribute("position").toString().contains("VP/VC")) {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
                     dispatcher.forward(request, response);
                 }
@@ -184,10 +214,46 @@ public class approveSE extends HttpServlet {
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
+                    UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.updateUnitChairRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    n3.setBody("Your proposal has some revisions before it is approved by the Unit Chair.");
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
+                    UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.updateSEDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    n3.setBody("Your proposal has some revisions before it is approved by the SE Director.");
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
+                    UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.updateVPVCRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    n3.setBody("Your proposal has some revisions before it is approved by the VP/VC.");
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                }
 
                 UserDAO.AddNotification(n3);
 
-                request.setAttribute("reviseSE1", "Revisions has been sent to the requesting unit.");
+                request.setAttribute("reviseSE1", "The requesting unit has been notified for a proposal revision.");
                 ServletContext context = getServletContext();
                 if (session.getAttribute("position").toString().contains("ADEALM")) {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
@@ -195,7 +261,8 @@ public class approveSE extends HttpServlet {
                 } else if (session.getAttribute("position").equals("CCS - Dean") || session.getAttribute("position").equals("COS - Dean")
                         || session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
                         || session.getAttribute("position").equals("BAGCED - Dean") || session.getAttribute("position").equals("CLA - Dean") || session.getAttribute("position").equals("SOE - Dean")
-                        || session.getAttribute("position").toString().contains("Department Chair")) {
+                        || session.getAttribute("position").toString().contains("Department Chair") || session.getAttribute("position").toString().contains("Unit Chair") 
+                        || session.getAttribute("position").toString().contains("Social Engagement Director") || session.getAttribute("position").toString().contains("VP/VC")) {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
                     dispatcher.forward(request, response);
                 }
@@ -211,7 +278,19 @@ public class approveSE extends HttpServlet {
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
+                    UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
+                    UserDAO.updateDeptUnitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    n3.setBody("Your proposal has been rejected by the Unit Chair. Reason: " + request.getParameter("remarks1"));
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
 
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
@@ -220,6 +299,17 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
                     UserDAO.updateExternalRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the ADEALM. Reason: " + request.getParameter("remarks1"));
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
+                    UserDAO.updateExternalRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    n3.setBody("Your proposal has been rejected by the SE Director. Reason: " + request.getParameter("remarks1"));
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -238,6 +328,17 @@ public class approveSE extends HttpServlet {
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
+                    UserDAO.updateDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    n3.setBody("Your proposal has been rejected by the VP/VC. Reason: " + request.getParameter("remarks1"));
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                }
 
                 UserDAO.AddNotification(n3);
 
@@ -249,7 +350,8 @@ public class approveSE extends HttpServlet {
                 } else if (session.getAttribute("position").equals("CCS - Dean") || session.getAttribute("position").equals("COS - Dean")
                         || session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
                         || session.getAttribute("position").equals("BAGCED - Dean") || session.getAttribute("position").equals("CLA - Dean") || session.getAttribute("position").equals("SOE - Dean")
-                        || session.getAttribute("position").toString().contains("Department Chair")) {
+                        || session.getAttribute("position").toString().contains("Department Chair") || session.getAttribute("position").toString().contains("Unit Chair") 
+                        || session.getAttribute("position").toString().contains("Social Engagement Director") || session.getAttribute("position").toString().contains("VP/VC")) {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
                     dispatcher.forward(request, response);
                 }

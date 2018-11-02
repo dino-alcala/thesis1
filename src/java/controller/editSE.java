@@ -50,7 +50,6 @@ public class editSE extends HttpServlet {
             SE.setTargetCommunity(Integer.parseInt(request.getParameter("community")));
             SE.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
             SE.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
-            SE.setTargetMeasure(Integer.parseInt(request.getParameter("measure")));
             SE.setActualDate(Date.valueOf(request.getParameter("actualdate")));
             SE.setTotalAmount(Double.parseDouble(request.getParameter("totalamount")));
             SE.setSocialCommunityProblem(request.getParameter("problemaddressed"));
@@ -63,7 +62,7 @@ public class editSE extends HttpServlet {
             SE.setObjectives(request.getParameter("measureableoutcome"));
             SE.setSourceOfFunds(request.getParameter("funds"));
 
-            if (UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 1 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 2 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 3 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 4 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 5) {
+            if (UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 1 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 2 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 3 || UserDAO.getStep(Integer.parseInt(request.getParameter("seID"))) == 4) {
                 SE.setStep(1);
             }
 
@@ -81,6 +80,9 @@ public class editSE extends HttpServlet {
                     }
                 }
             }
+            
+            ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
+            UserDAO.AddMeasures(measureID);
 
             SE.setExplanation(request.getParameter("sustainabilityexplanation"));
             SE.setComponent(components);

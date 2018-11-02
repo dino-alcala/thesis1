@@ -198,6 +198,17 @@ public class login extends HttpServlet {
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
                     dispatcher.forward(request, response);
+                } else if (UserDAO.isVpVc(u.getUsername())){
+                    int id = UserDAO.getIDbyUsername(u.getUsername());
+                    String position = UserDAO.getPosition(u.getUsername());
+                    session.setAttribute("userID", id);
+                    session.setAttribute("unit", UserDAO.getUnitByUserID(id));
+                    session.setAttribute("position", position);
+                    
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
+                    dispatcher.forward(request, response);
+                    
                 } else if (UserDAO.isAssistantDeanforLM(u.getUsername())) {
                     
                     int id = UserDAO.getIDbyUsername(u.getUsername());

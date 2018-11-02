@@ -107,7 +107,7 @@ public class addSE2 extends HttpServlet {
             
             Notification n = new Notification();
             n.setTitle(SE.getName());
-            n.setBody("You have new SE Proposal ready for approval!");
+            n.setBody("New SE Proposal ready for approval!");
 
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -115,9 +115,9 @@ public class addSE2 extends HttpServlet {
             n.setDt(sdf.format(dt));
             
             if(SE.getUnittype().equals("Academic")){
-                n.setUserID(UserDAO.getUserIDforNotifs(SE.getUnit(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(SE.getUnit(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
             } else if(SE.getUnittype().equals("Non-Academic")) {
-                n.setUserID(UserDAO.getUserIDforNotifsUnitChair(SE.getUnit(), UserDAO.getUserIDforUnitChairNotifs(SE.getUnit())));
+                n.setUserID(UserDAO.getUserIDforNotifsUnitChair(SE.getUnit()));
             }
             
             UserDAO.AddNotification(n);
@@ -130,7 +130,7 @@ public class addSE2 extends HttpServlet {
                 dispatcher.forward(request, response);
             } else if (session.getAttribute("unit").toString().equals("College of Computer Studies (CCS)") || (session.getAttribute("unit").toString().equals("Br. Andrew Gonzales College of Education (BAGCED)")) || (session.getAttribute("unit").toString().equals("College of Law (COL)")) || (session.getAttribute("unit").toString().equals("College of Liberal Arts (CLA)"))
                     || (session.getAttribute("unit").toString().equals("College of Science (COS)")) || (session.getAttribute("unit").toString().equals("Gokongwei College of Engineering (GCOE)")) || (session.getAttribute("unit").toString().equals("Ramon V. Del Rosario College of Business (RVR-COB)")) || (session.getAttribute("unit").toString().equals("School of Economics (SOE)"))
-                    || (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)") && session.getAttribute("position").toString().contains("Unit Representative"))) {
+                    || (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)") || (session.getAttribute("unit").toString().equals("Office of Personnel Management (OPM)")) && session.getAttribute("position").toString().contains("Unit Representative"))) {
 
                 request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
                 ServletContext context = getServletContext();
