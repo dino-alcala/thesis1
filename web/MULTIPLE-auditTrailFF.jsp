@@ -1,21 +1,35 @@
 <%-- 
-    Document   : MULTIPLE-evaluateSE
-    Created on : 07 24, 18, 4:48:35 PM
+    Document   : UR-home
+    Created on : 06 27, 18, 1:25:59 PM
     Author     : Karl Madrid
 --%>
 
-<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="entity.FF"%>
+<%@page import="entity.SE"%>
+<%@page import="java.util.Collections"%>
+<%@page import="entity.KRA"%>
+<%@page import="entity.Notification"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>FF Audit Trail</title>
 
-        <link rel="stylesheet" href="css/formstyle5.css">
+        <title>UR Home</title>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
             #notifsScroll {
@@ -24,54 +38,81 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
+            #myInput{
+                margin-bottom: 20px;
             }
 
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            html {
-                background: #e6e9e9;
-                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-                -webkit-font-smoothing: antialiased;
+            .card-text{
+                margin-bottom: 5px;
             }
 
-            table,th,td{
-                border:.5px solid
-                    black;
+            .progressnum{
+                font-size: 12px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid lightgray;
             }
 
-            hr{
-                background-color:green;
+            .krascards:hover {
+                background-color: lightgreen;
             }
 
-            textarea{
-                resize: none;
-            } 
-
-            body {
-                background: #fff;
-                box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-                color: #545454;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 16px;
-                line-height: 1.5;
-                margin: 0 auto;
-                max-width: 800px;
-                padding: 2em 2em 4em;
+            tr:hover {
+                background-color: lightgreen;
             }
 
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
+            .budget{
+                font-size: 70px; 
+                text-align: center; 
+                border-bottom: 2px solid lightgray;
+                padding-bottom: 20px;
+                font-family: 'Montserrat', sans-serif;
             }
 
-            h2 {
-                margin-top: 1.3em;
+            .table{
+                border-bottom: 2px solid lightgray;
+                margin-bottom: 30px;
+            }
+
+            .quickhead{
+                border-bottom: 1px solid gray;
+                padding-bottom: 10px; 
+                margin-bottom: 20px;
+            }
+            .quickview{
+                margin-bottom: 50px;
+            }
+
+            .panels{
+                margin-top: 20px;
+                background-color: white;
+                padding-bottom: 15px;
+                border-style: solid;
+                border-color: lightgray;
+                border-width: 1px;
+                border-radius: 8px;
+            }
+            .viewButton{
+                text-align: center;
+                margin-bottom: 0%;
+            }
+
+            .accomplishmentGreen{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: green;
+            }
+            .accomplishmentYellow{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: #FFBF00;
+            }
+            .accomplishmentRed{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: red;
             }
 
             a {
@@ -84,16 +125,6 @@
 
             samp {
                 display: none;
-            }
-
-            img {
-                animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
-                background: transparent;
-                border: 10px solid rgba(0, 0, 0, 0.12);
-                border-radius: 4px;
-                display: block;
-                margin: 1.3em auto;
-                max-width: 95%;
             }
 
             th {
@@ -109,276 +140,273 @@
                 padding:15px;
             }
 
-            td{
-                font-size: 15px;
-                margin-left: 10px;
-            }
-
             p{
                 margin-left: 10px;
-                font-size: 17px;
             }
 
-
-            @keyframes colorize {
-                0% {
-                    -webkit-filter: grayscale(100%);
-                    filter: grayscale(100%);
-                }
-                100% {
-                    -webkit-filter: grayscale(0%);
-                    filter: grayscale(0%);
-                }
+            table,th,td{
+                border:.5px solid
+                    black;
             }
+
+            hr{
+                background-color:green;
+            }
+
+            textarea{
+                resize: none;
+            } 
+
         </style>
 
-        <script type='text/javascript'>
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successSE") != null) {
 
-            function addField() {
-                container.appendChild(document.createTextNode("Name: "));
-                var input = document.createElement("input");
-                input.type = "text";
-                input.name = "member";
-                container.appendChild(input);
-                container.appendChild(document.createElement("br"));
-                container.appendChild(document.createElement("br"));
-            }
+            %>
+            $("document").ready(function () {
 
+                alert("<%=request.getAttribute("successSE")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("successFF") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successFF")%>");
+            });
+
+            <%
+                }
+            %>
         </script>
 
     </head>
 
     <body>
-        <hr size="5" noshade>    
-    <center><h1>STUDENT / EMPLOYEE EVALUATION OF SOCIAL-ENGAGEMENT EXPERIENCE / ACTIVITY</h1></center>
-    <hr size="5" noshade>
+        <!-- Bootstrap NavBar -->
+        <nav class="navbar navbar-expand-md fixed-top" id="navbar">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="smallerscreenmenuButton">
+                <span class="fa fa-align-justify"></span>
+            </button>
+            <a class="navbar-brand" href="#" id="navbar-unit">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c2/De_La_Salle_University_Seal.svg/1200px-De_La_Salle_University_Seal.svg.png" width="30" height="30" class="d-inline-block align-top" data-toggle="sidebar-colapse" id="collapse-icon">
+                <span class="menu-collapsed"><%=session.getAttribute("unit")%></span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown d-sm-block d-md-none">
+                        <a class="nav-link" href="UR-home.jsp" id="smallerscreenmenu">
+                            Home
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-faithFormationProgramsList.jsp" id="smallerscreenmenu">
+                            Programs
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-unitsList.jsp" id="smallerscreenmenu">
+                            Units
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-communityList.jsp" id="smallerscreenmenu">
+                            Communities
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-krasList.jsp" id="smallerscreenmenu">
+                            Key Result Areas
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-evaluationSEResponsesList.jsp" id="smallerscreenmenu">
+                            Evaluation Forms
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="navbar-nav mr auto">
+                <div class="nav-button">
+                    <button type="button" class="btn btn-info navbar-btn-profile">
+                        <i class="fa fa-user-circle"></i>
+                    </button>
+                </div>
+                <div class="nav-button">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-notifications" href="#" data-toggle="dropdown">
+                            <span class="badge badge-pill badge-primary" style="background-color:red; color:white; float:right;margin-bottom:-20px;">!</span> 
+                            <i class="fa fa-bell"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <div id="notifsScroll">
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"></strong>
+                                            <div class="notificationBoxMessage">
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="nav-button">
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
+                </div>
+            </ul>
+        </nav>
+
+        <!-- Bootstrap row -->
+        <div class="row" id="body-row">
+
+            <!-- Sidebar -->
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group sticky-top sticky-offset">
+                    <!-- Menu with submenu -->
+                    <a href="UR-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-home fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Home</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-folder-open fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Programs</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuProposals" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-createSE.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Create SE Program Proposal</span>
+                        </a>
+                        <a href="MULTIPLE-createFF.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Create FF Program Proposal</span>
+                        </a>
+                        <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
+                        </a>
+                        <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
+                        </a>
+                    </div>
+                    <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-group fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Units</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-building fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Communities</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuCommunity" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
+                        </a>
+                        <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                        </a>
+                    </div>
+                    <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-check-square-o fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Key Result Areas</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <a href="MULTIPLE-evaluationSEResponsesList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-pencil-square-o fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Evaluation Forms</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+
+            <!-- MAIN -->
+            <div class="col py-3">
 
 
-    <div class="form-style-5">
-        <form action = "addSEevaluation" method="post">
-            <%
-                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-                java.util.Date javaDate = new java.util.Date();
-                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+                <iframe src="MULTIPLE-auditTrailListFF.jsp" style="height:600px;width:525px" align="left"></iframe>
+                <iframe src="MULTIPLE-viewAuditTrailFF.jsp" style="height:600px;width:525px" align="right"></iframe>
 
-            %>
-            <fieldset>
-                <legend><b>Date: <%=sqlDate%></b></legend>
-                <br><br>
-            </fieldset>
+            
+        </div>
+        <script>
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
 
-            <fieldset>
-                <legend><b>Name (optional):</b></legend>
-                <center><input type = "text" name ="name"></center>
-                <br><br>
-            </fieldset>
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
+                                }
+                            }
+                            return false;
+                        })
+                    }
+                }
+            }, false);
+        </script>
+        <script>
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
 
-            <fieldset>
-                <legend><b>College / Department / Unit:</b></legend>
-                <center><input type = "text" name ="unit"></center>
-                <br><br>
-            </fieldset>
-
-            <fieldset>
-                <legend><b>Subject Name / Code (for SL Students):</b></legend>
-                <center><input type = "text" name ="subject"></center>
-                <br><br>
-            </fieldset>
-
-            <p>Instructions: Using the following scale: circle the letter that corresponds to your level of agreement or
-                disagreement with each statement. If you don’t have enough information to rate the item, encircle Not
-                Enough Information (NIE). If the item is not applicable to your social engagement project, encircle Not
-                Applicable (N/A)
-                <br><br>
-                SCALE:<br> 
-                <b>5</b>- Strongly Agree<br> 
-                <b>4</b>- Agree<br>
-                <b>3</b>- Moderate<br> 
-                <b>2</b>- Disagree<br> 
-                <b>1</b>- Strongly Disagree<br>
-                <b>NEI</b> – Not Enough Information<br> 
-                <b>N/A</b>- Not Applicable</p>
-            <br><br>
-
-            <fieldset>
-                <center><table style = "width:100%" id = "SEEvaluation">
-                        <tr>
-                            <th>Criteria</th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>NEI</th>
-                            <th>N/A</th>
-                        </tr>
-                        <tr>
-                            <td><b><p>1. STUDENT LEARNING (For SL Related Projects Only)</b></p></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><p>1.1. Service-Learning is relevant to the course I am taking.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q1.1" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.1" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.1" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.1" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.1" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.1" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.1" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><p>1.2. We were provided with course-based knowledge and skills necessary for project implementation.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q1.2" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.2" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.2" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.2" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.2" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.2" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.2" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><p>1.3. The learning outcomes of the course have been attained.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q1.3" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.3" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.3" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.3" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.3" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.3" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.3" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><p>1.4. The service component of the course has strengthened my belief that students like me can contribute to the empowerment of poor and marginalized communities/sectors.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q1.4" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.4" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.4" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.4" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.4" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.4" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.4" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><p>1.5. I have gained better understanding of Service-Learning because of course.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q1.5" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.5" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.5" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.5" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.5" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.5" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q1.5" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><b><p>2. STUDENT SAFETY (For Students Only)</b></p></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><p>2.1. We were oriented about the partner organization and off-campus policies prior to the actual visit.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q2.1" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.1" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.1" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.1" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.1" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.1" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.1" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><p>2.2. The vehicle drivers were alert and careful. (If DLSU Provided)</p></td>
-                            <td><center><input type="radio" size = "10%" name="q2.2" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.2" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.2" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.2" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.2" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.2" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.2" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><p>2.3. The vehicles are in good condition. (If DLSU Provided)</p></td>
-                            <td><center><input type="radio" size = "10%" name="q2.3" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.3" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.3" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.3" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.3" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.3" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.3" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><p>2.4. The partner coordinators and adult companions were proactive in ensuring the safety of the students at all times.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q2.4" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.4" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.4" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.4" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.4" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.4" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.4" value="7"></center></td>
-                        <tr>
-                            <td><p>2.5. We felt safe and secure in the community during the community service / social engagement activity.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q2.5" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.5" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.5" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.5" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.5" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.5" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q2.5" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><b><p>3. PROJECT EFFECTIVENESS</b></p></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><p>3.1. Our project contributed to the efforts of the organization / community to respond to their own needs.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q3.1" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q3.1" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q3.1" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q3.1" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q3.1" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q3.1" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q3.1" value="7"></center></td>
-                        </tr>
-                        <tr>
-                            <td><b><p>4. PROJECT EFFICIENCY</b></p></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><p>4.1. A project / activity plan was formulated.</p></td>
-                            <td><center><input type="radio" size = "10%" name="q4.1" value="5"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q4.1" value="4"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q4.1" value="3"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q4.1" value="2"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q4.1" value="1"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q4.1" value="6"></center></td>
-                        <td><center><input type="radio" size = "10%" name="q4.1" value="7"></center></td>
-                        </tr>
-
-                    </table></center>
-                <br>
-            </fieldset>
-
-            <button type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Next</button>
-        </form>
-    </div>
-</body>
-
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
+        </script>
+        <a href="OVPLM-overallBudget.jsp"></a>
+    </body>
 </html>
+

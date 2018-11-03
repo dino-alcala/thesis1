@@ -1,19 +1,35 @@
 <%-- 
-    Document   : MULTIPLE-createSE
-    Created on : 06 12, 18, 1:25:42 PM
+    Document   : UR-home
+    Created on : 06 27, 18, 1:25:59 PM
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FF"%>
+<%@page import="entity.SE"%>
+<%@page import="java.util.Collections"%>
+<%@page import="entity.KRA"%>
+<%@page import="entity.Notification"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SE Audit Trail</title>
 
-        <link rel="stylesheet" href="css/formstyle5.css">
+        <title>UR Home</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
             #notifsScroll {
@@ -22,54 +38,81 @@
                 height: 250px;
             }
 
-            .navbar-btn-profile {
-                padding-right: 20px;
-                padding-left: 20px;
+            #myInput{
+                margin-bottom: 20px;
             }
 
-            .navbar-btn-logout {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            html {
-                background: #e6e9e9;
-                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-                -webkit-font-smoothing: antialiased;
+            .card-text{
+                margin-bottom: 5px;
             }
 
-            table,th,td{
-                border:.5px solid
-                    black;
+            .progressnum{
+                font-size: 12px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid lightgray;
             }
 
-            hr{
-                background-color:green;
+            .krascards:hover {
+                background-color: lightgreen;
             }
 
-            textarea{
-                resize: none;
-            } 
-
-            body {
-                background: #fff;
-                box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-                color: #545454;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 16px;
-                line-height: 1.5;
-                margin: 0 auto;
-                max-width: 800px;
-                padding: 2em 2em 4em;
+            tr:hover {
+                background-color: lightgreen;
             }
 
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
+            .budget{
+                font-size: 70px; 
+                text-align: center; 
+                border-bottom: 2px solid lightgray;
+                padding-bottom: 20px;
+                font-family: 'Montserrat', sans-serif;
             }
 
-            h2 {
-                margin-top: 1.3em;
+            .table{
+                border-bottom: 2px solid lightgray;
+                margin-bottom: 30px;
+            }
+
+            .quickhead{
+                border-bottom: 1px solid gray;
+                padding-bottom: 10px; 
+                margin-bottom: 20px;
+            }
+            .quickview{
+                margin-bottom: 50px;
+            }
+
+            .panels{
+                margin-top: 20px;
+                background-color: white;
+                padding-bottom: 15px;
+                border-style: solid;
+                border-color: lightgray;
+                border-width: 1px;
+                border-radius: 8px;
+            }
+            .viewButton{
+                text-align: center;
+                margin-bottom: 0%;
+            }
+
+            .accomplishmentGreen{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: green;
+            }
+            .accomplishmentYellow{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: #FFBF00;
+            }
+            .accomplishmentRed{
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                background-color: red;
             }
 
             a {
@@ -82,16 +125,6 @@
 
             samp {
                 display: none;
-            }
-
-            img {
-                animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
-                background: transparent;
-                border: 10px solid rgba(0, 0, 0, 0.12);
-                border-radius: 4px;
-                display: block;
-                margin: 1.3em auto;
-                max-width: 95%;
             }
 
             th {
@@ -111,89 +144,269 @@
                 margin-left: 10px;
             }
 
-
-            @keyframes colorize {
-                0% {
-                    -webkit-filter: grayscale(100%);
-                    filter: grayscale(100%);
-                }
-                100% {
-                    -webkit-filter: grayscale(0%);
-                    filter: grayscale(0%);
-                }
+            table,th,td{
+                border:.5px solid
+                    black;
             }
+
+            hr{
+                background-color:green;
+            }
+
+            textarea{
+                resize: none;
+            } 
+
         </style>
 
-        <script type='text/javascript'>
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successSE") != null) {
 
-            function addField() {
-                container.appendChild(document.createTextNode("Name: "));
-                var input = document.createElement("input");
-                input.type = "text";
-                input.name = "member";
-                container.appendChild(input);
-                container.appendChild(document.createElement("br"));
-                container.appendChild(document.createElement("br"));
-            }
+            %>
+            $("document").ready(function () {
 
-            function addRow() {
-                var table = document.getElementById("projectplantable");
-                var rows = document.getElementById("projectplantable").rows.length;
-                var row = table.insertRow(rows);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                var cell4 = row.insertCell(3);
-                cell1.innerHTML = '<td><input type ="date"/></td>';
-                cell2.innerHTML = '<textarea rows = "2" cols = "25%" name ="planoutput"></textarea>';
-                cell3.innerHTML = '<textarea rows = "2" cols = "25%" name ="planoutput"></textarea>';
-                cell4.innerHTML = '<textarea rows = "2" cols = "25%" name ="planoutput"></textarea>';
-            }
+                alert("<%=request.getAttribute("successSE")%>");
+            });
 
-            function deleteRow() {
-                var rows = document.getElementById("projectplantable").rows.length;
-                if (rows - 1 > 0) {
-                    document.getElementById("projectplantable").deleteRow(rows - 1);
-                } else {
-
+            <%
                 }
 
-            }
+                if (request.getAttribute("successFF") != null) {
 
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successFF")%>");
+            });
+
+            <%
+                }
+            %>
         </script>
 
     </head>
 
     <body>
-        <hr size="5" noshade>    
-    <center><h1>Audit Trail</h1></center>
-    <hr size="5" noshade>
+        <!-- Bootstrap NavBar -->
+        <nav class="navbar navbar-expand-md fixed-top" id="navbar">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="smallerscreenmenuButton">
+                <span class="fa fa-align-justify"></span>
+            </button>
+            <a class="navbar-brand" href="#" id="navbar-unit">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c2/De_La_Salle_University_Seal.svg/1200px-De_La_Salle_University_Seal.svg.png" width="30" height="30" class="d-inline-block align-top" data-toggle="sidebar-colapse" id="collapse-icon">
+                <span class="menu-collapsed"><%=session.getAttribute("unit")%></span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown d-sm-block d-md-none">
+                        <a class="nav-link" href="UR-home.jsp" id="smallerscreenmenu">
+                            Home
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-faithFormationProgramsList.jsp" id="smallerscreenmenu">
+                            Programs
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-unitsList.jsp" id="smallerscreenmenu">
+                            Units
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-communityList.jsp" id="smallerscreenmenu">
+                            Communities
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-krasList.jsp" id="smallerscreenmenu">
+                            Key Result Areas
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-evaluationSEResponsesList.jsp" id="smallerscreenmenu">
+                            Evaluation Forms
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="navbar-nav mr auto">
+                <div class="nav-button">
+                    <button type="button" class="btn btn-info navbar-btn-profile">
+                        <i class="fa fa-user-circle"></i>
+                    </button>
+                </div>
+                <div class="nav-button">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-notifications" href="#" data-toggle="dropdown">
+                            <span class="badge badge-pill badge-primary" style="background-color:red; color:white; float:right;margin-bottom:-20px;">!</span> 
+                            <i class="fa fa-bell"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <div id="notifsScroll">
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"></strong>
+                                            <div class="notificationBoxMessage">
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="nav-button">
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
+                </div>
+            </ul>
+        </nav>
+
+        <!-- Bootstrap row -->
+        <div class="row" id="body-row">
+
+            <!-- Sidebar -->
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group sticky-top sticky-offset">
+                    <!-- Menu with submenu -->
+                    <a href="UR-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-home fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Home</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-folder-open fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Programs</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuProposals" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-createSE.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Create SE Program Proposal</span>
+                        </a>
+                        <a href="MULTIPLE-createFF.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Create FF Program Proposal</span>
+                        </a>
+                        <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
+                        </a>
+                        <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
+                        </a>
+                    </div>
+                    <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-group fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Units</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-building fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Communities</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuCommunity" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
+                        </a>
+                        <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                        </a>
+                    </div>
+                    <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-check-square-o fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Key Result Areas</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <a href="MULTIPLE-evaluationSEResponsesList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-pencil-square-o fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Evaluation Forms</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+
+            <!-- MAIN -->
+            <div class="col py-3">
 
 
-    <div class="form-style-5">
-        <form action = "">
+                <iframe src="MULTIPLE-auditTrailListSE.jsp" style="height:600px;width:525px" align="left"></iframe>
+                <iframe src="MULTIPLE-viewAuditTrailSE.jsp" style="height:600px;width:525px" align="right"></iframe>
 
-            <fieldset>
-                <center><table style = "width:100%" id = "SEchecklist">
-                        <tr>
-                            <th>Previous</th>
-                            <th>Current</th>
-                            <th>Date Changed:</th>
-                        <tr>
-                            <td><p>Program Head: Dino Alcala</p></td>
-                            <td><p>Program Head: Luis Grefiel</p></td>
-                            <td><p><b>Date: 08/10/2018 </b></p></td>
-                        </tr>
-                        <tr>
-                            <td><p>Item: Hammer</p></td>
-                            <td><p>Item: Sledgehammer</p></td>
-                            <td><p><b>Date: 08/10/2018 </b></p></td>
-                        </tr>
-                    </table></center>
-                <br>
-            </fieldset>
-        </form>
-    </div>
-</body>
+            
+        </div>
+        <script>
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
 
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
+                                }
+                            }
+                            return false;
+                        })
+                    }
+                }
+            }, false);
+        </script>
+        <script>
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
+
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
+        </script>
+        <a href="OVPLM-overallBudget.jsp"></a>
+    </body>
 </html>
+
