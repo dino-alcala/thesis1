@@ -45,6 +45,14 @@ public class SEreport {
     protected int seproposalID;
     protected String unit;
     protected String programhead;
+    protected int cap;
+    protected int apsp;
+    protected int asf;
+    protected int faculty;
+    protected int admin;
+    protected int directhired;
+    protected int independent;
+    protected int external;
 
     public int getId() {
         return id;
@@ -293,4 +301,70 @@ public class SEreport {
     public void setProgramhead(String programhead) {
         this.programhead = programhead;
     }
+
+    public int getCap() {
+        return cap;
+    }
+
+    public void setCap(int cap) {
+        this.cap = cap;
+    }
+
+    public int getApsp() {
+        return apsp;
+    }
+
+    public void setApsp(int apsp) {
+        this.apsp = apsp;
+    }
+
+    public int getAsf() {
+        return asf;
+    }
+
+    public void setAsf(int asf) {
+        this.asf = asf;
+    }
+
+    public int getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(int faculty) {
+        this.faculty = faculty;
+    }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+
+    public int getDirecthired() {
+        return directhired;
+    }
+
+    public void setDirecthired(int directhired) {
+        this.directhired = directhired;
+    }
+
+    public int getIndependent() {
+        return independent;
+    }
+
+    public void setIndependent(int independent) {
+        this.independent = independent;
+    }
+
+    public int getExternal() {
+        return external;
+    }
+
+    public void setExternal(int external) {
+        this.external = external;
+    }
+    
+    
 }

@@ -108,30 +108,21 @@ public class editSE2 extends HttpServlet {
 
             Notification n = new Notification();
             n.setTitle(SE.getName());
-            n.setBody("You have a Revised SE Proposal ready for approval!");
-
+            n.setBody("Revised SE Proposal ready for approval!");
+            
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             n.setDt(sdf.format(dt));
-
-            if (UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4) {
-                //n.setUserID(UserDAO.getUserIDforNotifs(session.getAttribute("unit").toString(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-            }
-
+            
+            if(UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4 && SE.getUnittype().equals("Academic")){
+                n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(SE.getUnit(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+            } else if(UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4 && SE.getUnittype().equals("Non-Academic")){
+                n.setUserID(UserDAO.getUserIDforNotifsUnitChair(SE.getUnit()));
+            } 
+            
             UserDAO.AddNotification(n);
-
-            if (UserDAO.getStep(SE.getId()) == 5) {
-                n.setUserID(20);
-                UserDAO.AddNotification(n);
-                n.setUserID(21);
-                UserDAO.AddNotification(n);
-                n.setUserID(22);
-                UserDAO.AddNotification(n);
-                n.setUserID(23);
-                UserDAO.AddNotification(n);
-            }
-
+            
             request.setAttribute("reviseSE1", "You have successfully revised the SE!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");

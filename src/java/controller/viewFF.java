@@ -51,8 +51,16 @@ public class viewFF extends HttpServlet {
                 proposals = UserDAO.retrieveFFProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
             }
 
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
+                proposals = UserDAO.retrieveFFProposalByStepUnit(2,UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) );
+            }
+            
             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
-                proposals = UserDAO.retrieveFFProposalByStep(3);
+                proposals = UserDAO.retrieveFFProposalByStepUnit(3,UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) );
+            }
+            
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
+                proposals = UserDAO.retrieveFFProposalByStepUnit(3,UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())) );
             }
 
             for (int i = 0; i < proposals.size(); i++) {
@@ -75,8 +83,24 @@ public class viewFF extends HttpServlet {
                 dispatcher.forward(request, response);
 
             }
+            
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFProposal2.jsp");
+                dispatcher.forward(request, response);
+
+            }
 
             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFProposal3.jsp");
+                dispatcher.forward(request, response);
+
+            }
+            
+            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFProposal3.jsp");

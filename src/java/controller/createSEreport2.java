@@ -59,17 +59,14 @@ public class createSEreport2 extends HttpServlet {
             SEreport.setProjectBeneficiaries(request.getParameter("projben"));
             SEreport.setAddressBeneficiaries(request.getParameter("addressben"));
             SEreport.setAddressOfProject(request.getParameter("addressproj"));
-
-            ArrayList<SEparticipants> participants = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countparticipants")); i++) {
-                SEparticipants p = new SEparticipants();
-                p.setClassification(request.getParameter("classification" + i));
-                p.setNumberOfIndividuals(Integer.parseInt(request.getParameter("number" + i)));
-                participants.add(p);
-            }
-
-            SEreport.setParticipants(participants);
+            SEreport.setCap(Integer.parseInt(request.getParameter("number0")));
+            SEreport.setApsp(Integer.parseInt(request.getParameter("number1")));
+            SEreport.setAsf(Integer.parseInt(request.getParameter("number2")));
+            SEreport.setFaculty(Integer.parseInt(request.getParameter("number3")));
+            SEreport.setAdmin(Integer.parseInt(request.getParameter("number4")));
+            SEreport.setDirecthired(Integer.parseInt(request.getParameter("number5")));
+            SEreport.setIndependent(Integer.parseInt(request.getParameter("number6")));
+            SEreport.setExternal(Integer.parseInt(request.getParameter("number7")));
             SEreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
             SEreport.setSeproposalID(Integer.parseInt(request.getParameter("seID")));
 

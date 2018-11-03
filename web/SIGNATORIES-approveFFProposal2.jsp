@@ -338,8 +338,8 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Chairperson</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%></textarea></td>
+                                        <td>Chairperson/Unit Head</td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

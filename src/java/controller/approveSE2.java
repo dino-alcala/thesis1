@@ -52,7 +52,7 @@ public class approveSE2 extends HttpServlet {
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody("You have new SE Proposal ready for approval!");
+                n.setBody("New SE Proposal ready for approval!");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -60,19 +60,15 @@ public class approveSE2 extends HttpServlet {
                 n.setDt(sdf.format(dt));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("OVPLM - Vice President for Lasallian Mission"));
-                }
-
-                UserDAO.AddNotification(n);
-
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("LSPO - Director"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("LSPO - Director"));
                     UserDAO.AddNotification(n);
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("LCLM - Executive Director"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("LCLM - Executive Director"));
                     UserDAO.AddNotification(n);
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("COSCA - Director"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("COSCA - Director"));
                     UserDAO.AddNotification(n);
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("DSA - Dean"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("DSA - Dean"));
+                    UserDAO.AddNotification(n);
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
                 }
 
@@ -80,7 +76,7 @@ public class approveSE2 extends HttpServlet {
                 n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n2.setBody("Your proposal has been approved by Sir Neil. It will now be taken to the LMC Council.");
+                    n2.setBody("Your proposal has been approved by COSCA. It will now be taken to the LMC Council.");
                 }
 
                 n2.setDt(sdf.format(dt));
@@ -102,7 +98,7 @@ public class approveSE2 extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by Sir Neil.");
+                    n3.setBody("Your proposal has some revisions before it is approved by COSCA.");
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -124,7 +120,7 @@ public class approveSE2 extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by Sir Neil. Reason: " + request.getParameter("remarks1"));
+                    n3.setBody("Your proposal has been rejected by COSCA. Reason: " + request.getParameter("remarks1"));
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

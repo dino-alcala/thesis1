@@ -39,6 +39,8 @@ public class FF {
     protected String vplmRemarks;
     protected String deanunitRemarks;
     protected String assistantdeanRemarks;
+    protected String unitheadremarks;
+    protected String directorremarks;
     protected String jayRemarks;
     protected String carmelRemarks;
     protected String lspoRemarks;
@@ -47,6 +49,7 @@ public class FF {
     protected String lmc3Remarks;
     protected String lmc4Remarks;
     protected String lmc5Remarks;
+    protected String unittype;
 
     public int getId() {
         return id;
@@ -311,4 +314,30 @@ public class FF {
     public void setLmc5Remarks(String lmc5Remarks) {
         this.lmc5Remarks = lmc5Remarks;
     }
+
+    public String getUnitheadremarks() {
+        return unitheadremarks;
+    }
+
+    public void setUnitheadremarks(String unitheadremarks) {
+        this.unitheadremarks = unitheadremarks;
+    }
+
+    public String getDirectorremarks() {
+        return directorremarks;
+    }
+
+    public void setDirectorremarks(String directorremarks) {
+        this.directorremarks = directorremarks;
+    }
+
+    public String getUnittype() {
+        return unittype;
+    }
+
+    public void setUnittype(String unittype) {
+        this.unittype = unittype;
+    }
+    
+    
 }

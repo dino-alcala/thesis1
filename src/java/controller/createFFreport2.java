@@ -56,15 +56,6 @@ public class createFFreport2 extends HttpServlet {
             FFreport.setPersonResponsible(request.getParameter("responsible"));
             FFreport.setNameOfFacilitator(request.getParameter("facilitator"));
             
-            ArrayList<FFparticipants> participants = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countparticipants")); i++) {
-                FFparticipants p = new FFparticipants();
-                p.setClassification(request.getParameter("classification" + i));
-                p.setNumberOfIndividuals(Integer.parseInt(request.getParameter("number" + i)));
-                participants.add(p);
-            }
-            FFreport.setParticipants(participants);
             FFreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
             FFreport.setFfproposalID(Integer.parseInt(request.getParameter("ffID")));
             
