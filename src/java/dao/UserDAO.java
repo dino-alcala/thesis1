@@ -3723,7 +3723,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step != 9 AND step != 0 AND step != -1";
+            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step != 8 AND step != 0 AND step != -1";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
@@ -7908,40 +7908,39 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, targetMeasure, projectProponent, personResponsible, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, projectProponent, personResponsible, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, SEreport.getProjectTitle());
             pstmt.setString(2, SEreport.getTargetKRA());
             pstmt.setString(3, SEreport.getTargetGoal());
-            pstmt.setString(4, SEreport.getTargetMeasure());
-            pstmt.setString(5, SEreport.getProjectProponent());
-            pstmt.setString(6, SEreport.getPersonResponsible());
-            pstmt.setInt(7, SEreport.getNumberOfBeneficiaries());
-            pstmt.setString(8, SEreport.getProjectBeneficiaries());
-            pstmt.setString(9, SEreport.getAddressBeneficiaries());
-            pstmt.setString(10, SEreport.getAddressOfProject());
-            pstmt.setDouble(11, SEreport.getAmountReceivedOVPLM());
-            pstmt.setString(12, SEreport.getSignificanceProject());
-            pstmt.setString(13, SEreport.getHappenedImplementationProject());
-            pstmt.setString(14, SEreport.getWhenwhereProject());
-            pstmt.setString(15, SEreport.getParticipantsProject());
-            pstmt.setString(16, SEreport.getHighlightsProject());
-            pstmt.setString(17, SEreport.getMajorProblems());
-            pstmt.setString(18, SEreport.getOtherRecommendations());
-            pstmt.setBlob(19, SEreport.getAnnexes());
-            pstmt.setBlob(20, SEreport.getAttendanceBeneficiaries());
-            pstmt.setBlob(21, SEreport.getAttendanceDLSU());
-            pstmt.setBlob(22, SEreport.getBeneficiariesLetters());
-            pstmt.setDate(23, SEreport.getDate());
-            pstmt.setInt(24, SEreport.getSeproposalID());
-            pstmt.setInt(25, SEreport.getCap());
-            pstmt.setInt(26, SEreport.getApsp());
-            pstmt.setInt(27, SEreport.getAsf());
-            pstmt.setInt(28, SEreport.getFaculty());
-            pstmt.setInt(29, SEreport.getAdmin());
-            pstmt.setInt(30, SEreport.getDirecthired());
-            pstmt.setInt(31, SEreport.getIndependent());
-            pstmt.setInt(32, SEreport.getExternal());
+            pstmt.setString(4, SEreport.getProjectProponent());
+            pstmt.setString(5, SEreport.getPersonResponsible());
+            pstmt.setInt(6, SEreport.getNumberOfBeneficiaries());
+            pstmt.setString(7, SEreport.getProjectBeneficiaries());
+            pstmt.setString(8, SEreport.getAddressBeneficiaries());
+            pstmt.setString(9, SEreport.getAddressOfProject());
+            pstmt.setDouble(10, SEreport.getAmountReceivedOVPLM());
+            pstmt.setString(11, SEreport.getSignificanceProject());
+            pstmt.setString(12, SEreport.getHappenedImplementationProject());
+            pstmt.setString(13, SEreport.getWhenwhereProject());
+            pstmt.setString(14, SEreport.getParticipantsProject());
+            pstmt.setString(15, SEreport.getHighlightsProject());
+            pstmt.setString(16, SEreport.getMajorProblems());
+            pstmt.setString(17, SEreport.getOtherRecommendations());
+            pstmt.setBlob(18, SEreport.getAnnexes());
+            pstmt.setBlob(19, SEreport.getAttendanceBeneficiaries());
+            pstmt.setBlob(20, SEreport.getAttendanceDLSU());
+            pstmt.setBlob(21, SEreport.getBeneficiariesLetters());
+            pstmt.setDate(22, SEreport.getDate());
+            pstmt.setInt(23, SEreport.getSeproposalID());
+            pstmt.setInt(24, SEreport.getCap());
+            pstmt.setInt(25, SEreport.getApsp());
+            pstmt.setInt(26, SEreport.getAsf());
+            pstmt.setInt(27, SEreport.getFaculty());
+            pstmt.setInt(28, SEreport.getAdmin());
+            pstmt.setInt(29, SEreport.getDirecthired());
+            pstmt.setInt(30, SEreport.getIndependent());
+            pstmt.setInt(31, SEreport.getExternal());
 
             int rs = pstmt.executeUpdate();
 
@@ -8030,7 +8029,6 @@ public class UserDAO {
                 SEreport.setProjectTitle(rs2.getString("projectTitle"));
                 SEreport.setTargetKRA(rs2.getString("targetKRA"));
                 SEreport.setTargetGoal(rs2.getString("targetMeasure"));
-                SEreport.setTargetMeasure(rs2.getString("targetMeasure"));
                 SEreport.setProjectProponent(rs2.getString("projectProponent"));
                 SEreport.setPersonResponsible(rs2.getString("personResponsible"));
                 SEreport.setNumberOfBeneficiaries(rs2.getInt("numberOfBeneficiaries"));
@@ -8047,24 +8045,6 @@ public class UserDAO {
                 SEreport.setOtherRecommendations(rs2.getString("otherRecommendations"));
                 SEreport.setSeproposalID(rs2.getInt("seproposalID"));
             }
-
-            ArrayList<SEparticipants> participants = new ArrayList();
-
-            query = "SELECT * FROM sereport_participants WHERE sereportID = ?";
-            pstmt = conn.prepareStatement(query);
-
-            pstmt.setInt(1, SEreport.getId());
-
-            rs2 = pstmt.executeQuery();
-
-            while (rs2.next()) {
-                SEparticipants p = new SEparticipants();
-                p.setClassification(rs2.getString("classification"));
-                p.setNumberOfIndividuals(rs2.getInt("numberOfIndividuals"));
-                participants.add(p);
-            }
-
-            SEreport.setParticipants(participants);
 
             ArrayList<SEobjectives> objectives = new ArrayList();
 

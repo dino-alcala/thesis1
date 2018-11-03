@@ -5,6 +5,9 @@
  */
 package controller;
 
+import dao.UserDAO;
+import entity.Measure;
+import entity.SE;
 import entity.SEparticipants;
 import entity.SEreport;
 import java.io.IOException;
@@ -52,7 +55,6 @@ public class createSEreport2 extends HttpServlet {
             SEreport.setDate(sqlDate);
             SEreport.setTargetKRA(request.getParameter("kra"));
             SEreport.setTargetGoal(request.getParameter("goal"));
-            SEreport.setTargetMeasure(request.getParameter("measure"));
             SEreport.setProjectProponent(request.getParameter("proponents"));
             SEreport.setPersonResponsible(request.getParameter("responsible"));
             SEreport.setNumberOfBeneficiaries(Integer.parseInt(request.getParameter("number")));
@@ -69,6 +71,18 @@ public class createSEreport2 extends HttpServlet {
             SEreport.setExternal(Integer.parseInt(request.getParameter("number7")));
             SEreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
             SEreport.setSeproposalID(Integer.parseInt(request.getParameter("seID")));
+            
+            ArrayList<Measure> targetmeasures = new ArrayList();
+            UserDAO UserDAO = new UserDAO();
+            
+            ArrayList<Integer> measuresid = new ArrayList();
+            measuresid = UserDAO.GetMeasures(Integer.parseInt(request.getParameter("seID")));
+            
+            for(int x = 0 ; x < measuresid.size() ; x++){
+                targetmeasures.add(UserDAO.GetMeasureObject(x));
+            }
+            
+            SEreport.setTargetmeasures(targetmeasures);
 
             session.setAttribute("SEreport", SEreport);
             request.setAttribute("seID", request.getParameter("seID"));

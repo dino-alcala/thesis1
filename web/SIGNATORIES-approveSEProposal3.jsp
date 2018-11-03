@@ -513,7 +513,7 @@
                                     </tr>
                                     <tr>
                                         <td>College Dean/VP/VC</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getDeanRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%><%if (SE.getDeanRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%><%if (SE.getVpVcRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

@@ -277,6 +277,7 @@
                     <%
                         SEreport SEreport = new SEreport();
                         SEreport = UserDAO.retrieveSEreportBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
+                        System.out.println("DSADADHJSALHASJFHSAJDKHSAJDSAKDLJASKLFJAKLJASLKDJKASL" + Integer.parseInt(request.getAttribute("seID").toString()));
                     %>
                     <div class="container-fluid">
                         <div class="row">
@@ -286,7 +287,20 @@
                                     <div class="card-body">
                                         <h3><%=SEreport.getProjectTitle()%></h3>
                                         <p><b>Targeted KRA:</b> <%=SEreport.getTargetKRA()%></p>
-                                        <br/>
+                                        <p><b>Targeted Goal:</b> <%=SEreport.getTargetGoal()%></p>
+                                        <p><b>Targeted Measure/s:</b> 
+                                            <% 
+                                                ArrayList<Integer> measures = new ArrayList();
+                                                measures = UserDAO.GetMeasures(Integer.parseInt(request.getParameter("seID")));
+                                                
+                                                for(int x = 0 ; x < measures.size() ; x++){
+                                            %>    
+                                        <p><%=UserDAO.GetMeasureObject(measures.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measures.get(x)).getDescription()%></p>
+                                                
+                                            <%
+                                                }
+                                            %>
+                                        <br>
                                         <p><b>Project Proponents/s:</b> <%=SEreport.getProjectProponent()%></p>
                                         <p><b>Person Responsible: </b> <%=SEreport.getPersonResponsible()%></p>
                                     </div>

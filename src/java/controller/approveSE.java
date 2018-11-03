@@ -77,7 +77,7 @@ public class approveSE extends HttpServlet {
                 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
                     UserDAO.updateStep(4, Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updateVPVCRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
                 
                 Notification n = new Notification();
@@ -96,6 +96,10 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
                     n.setUserID(UserDAO.getUserIDforNotifsDean(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
+                    n.setUserID(UserDAO.getUserIDforNotifsVPVC(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n.setUserID(UserDAO.getUserIDforNotifsNeil());
@@ -107,7 +111,7 @@ public class approveSE extends HttpServlet {
                 }
                 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
-                    n.setUserID(UserDAO.getUserIDforNotifsVPVC(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setUserID(UserDAO.getUserIDforNotifsNeil());
                 }
 
                 UserDAO.AddNotification(n);
@@ -302,6 +306,7 @@ public class approveSE extends HttpServlet {
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
 
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
@@ -313,6 +318,7 @@ public class approveSE extends HttpServlet {
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
 
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
@@ -324,6 +330,7 @@ public class approveSE extends HttpServlet {
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
 
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
@@ -335,6 +342,7 @@ public class approveSE extends HttpServlet {
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
 
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));

@@ -19,7 +19,6 @@ public class SEreport {
     protected String projectTitle;
     protected String targetKRA;
     protected String targetGoal;
-    protected String targetMeasure;
     protected String projectProponent;
     protected String personResponsible;
     protected int numberOfBeneficiaries;
@@ -53,6 +52,7 @@ public class SEreport {
     protected int directhired;
     protected int independent;
     protected int external;
+    protected ArrayList<Measure> targetmeasures;
 
     public int getId() {
         return id;
@@ -94,13 +94,15 @@ public class SEreport {
         this.targetGoal = targetGoal;
     }
 
-    public String getTargetMeasure() {
-        return targetMeasure;
+    public ArrayList<Measure> getTargetmeasures() {
+        return targetmeasures;
     }
 
-    public void setTargetMeasure(String targetMeasure) {
-        this.targetMeasure = targetMeasure;
+    public void setTargetmeasures(ArrayList<Measure> targetmeasures) {
+        this.targetmeasures = targetmeasures;
     }
+
+   
 
     public String getProjectProponent() {
         return projectProponent;

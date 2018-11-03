@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Measure"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
 <%@page import="dao.OvplmDAO"%>
@@ -380,12 +381,23 @@
                             <br><br>
                         </fieldset>
 
+
+                        <%
+                            ArrayList<Integer> measuresid = new ArrayList();
+                            measuresid = UserDAO.GetMeasures(SE.getId());
+
+                            for (int x = 0; x < measuresid.size(); x++) {
+                                
+                        %>
                         <fieldset>
                             <legend><b>Target Measure:</b> </legend>
-                            <input name="measure" size="50" type="text" readonly value="<%=UserDAO.getMeasurenameByID(SE.getTargetMeasure())%>">
-                            <br><br><br>
+                            <input name="measure<%=x%>" size="50" type="text" readonly value="<%=UserDAO.GetMeasureObject(measuresid.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measuresid.get(x)).getDescription()%>">
+                            <br><br>
                         </fieldset>
-                        <br/>
+                        <%
+                            }
+                        %>
+                        <br><br><br>
 
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
@@ -546,7 +558,7 @@
                 $('.submenu-icon').toggleClass('d-none');
                 $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
                 // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title'); 
+                var SeparatorTitle = $('.sidebar-separator-title');
                 if (SeparatorTitle.hasClass('d-flex')) {
                     SeparatorTitle.removeClass('d-flex');
                 } else {

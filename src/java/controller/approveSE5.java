@@ -71,7 +71,7 @@ public class approveSE5 extends HttpServlet {
             n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
             n3.setBody("₱" + SE.getTotalAmount() + " has been deducted to the budget!");
             n3.setDt(sdf.format(dt));
-            n3.setUserID(4);
+            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
             UserDAO.AddNotification(n3);
 
             Budget current = new Budget();
