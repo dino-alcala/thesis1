@@ -470,7 +470,7 @@
 
                         <fieldset>
                             <legend><b>Target Goal:</b></legend>
-                            <select value ="<%=SE.getTargetGoal()%>" name="goal" id="goals" onchange="changemeasure(this.id, 'measures')">
+                            <select value ="<%=SE.getTargetGoal()%>" name="goal" id="goals" onchange="changemeasure(this.id, 'measures', 'measures2', 'measures3')">
                             </select>
                             <br><br>
                         </fieldset>

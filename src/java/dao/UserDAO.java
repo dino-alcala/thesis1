@@ -13013,6 +13013,46 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
+    
+    public void editMeasures(ArrayList<Integer> measureID, int seproposalID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+        try {
+            String query = "DELETE FROM se_measures WHERE seproposalID = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seproposalID);
+            
+            int rs = pstmt.executeUpdate();
+
+
+            for (int i = 0; i < measureID.size(); i++) {
+                query = "INSERT INTO se_measures (seproposalID,measureID) VALUES (?,?)";
+                pstmt = conn.prepareStatement(query);
+
+                pstmt.setInt(1, seproposalID);
+                pstmt.setInt(2, measureID.get(i));
+
+                rs = pstmt.executeUpdate();
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
 
     public ArrayList<Integer> GetMeasures(int id) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();

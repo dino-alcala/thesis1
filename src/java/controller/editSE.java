@@ -80,15 +80,25 @@ public class editSE extends HttpServlet {
                     }
                 }
             }
+
+            ArrayList<Integer> measureID = new ArrayList();
             
-            ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
-            UserDAO.AddMeasures(measureID);
+            measureID.add(Integer.parseInt(request.getParameter("measure")));
+
+            if (Integer.parseInt(request.getParameter("measure2")) != 0) {
+                measureID.add(Integer.parseInt(request.getParameter("measure2")));
+            }
+
+            if (Integer.parseInt(request.getParameter("measure3")) != 0) {
+                measureID.add(Integer.parseInt(request.getParameter("measure3")));
+            }
 
             SE.setExplanation(request.getParameter("sustainabilityexplanation"));
             SE.setComponent(components);
 
             session.setAttribute("SE", SE);
             request.setAttribute("seID", request.getParameter("seID"));
+            session.setAttribute("measureID", measureID);
 
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editSE2.jsp");
