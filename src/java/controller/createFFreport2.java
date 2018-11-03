@@ -9,6 +9,7 @@ import entity.FFparticipants;
 import entity.FFreport;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -62,6 +63,8 @@ public class createFFreport2 extends HttpServlet {
             FFreport.setExternal(Integer.parseInt(request.getParameter("number7")));
             FFreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
             FFreport.setFfproposalID(Integer.parseInt(request.getParameter("ffID")));
+            FFreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
+            FFreport.setVenue(request.getParameter("venue"));
             
             session.setAttribute("FFreport", FFreport);
             request.setAttribute("ffID", request.getParameter("ffID"));

@@ -286,8 +286,8 @@
                                     <div class="card-body">
                                         <h3><%=SEreport.getProjectTitle()%></h3>
                                         <p><b>Date of Implementation: </b> <%=SEreport.getImplementationdate()%></p>
-                                        
-                                        <br><br>
+                                        <p><b>Address of Implementation: </b> <%=SEreport.getAddressOfProject() %></p>
+                                        <br>
                                         <p><b>Targeted KRA:</b> <%=SEreport.getTargetKRA()%></p>
                                         <p><b>Targeted Goal:</b> <%=SEreport.getTargetGoal()%></p>
                                         <p><b>Targeted Measure/s:</b> 

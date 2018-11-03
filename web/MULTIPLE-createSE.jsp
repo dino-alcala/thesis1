@@ -521,7 +521,7 @@
                             
                         <fieldset>
                             <legend><span class="number">2</span><b> Implementation Address:</b></legend>
-                            <input type = "date" name ="implementationaddress" required>
+                            <input type = "text" name ="implementationaddress" required>
                             <br><br><br>
                         </fieldset>
 

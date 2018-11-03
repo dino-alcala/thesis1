@@ -286,7 +286,9 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h3><%=FFreport.getProjectTitle()%></h3>
-                                        <br/>
+                                        <p><b>Date of Implementation: </b> <%=FFreport.getImplementationdate()%></p>
+                                        <p><b>Address of Implementation: </b> <%=FFreport.getVenue() %></p>
+                                        <br>
                                         <p><b>Project Proponents/s:</b> <%=FFreport.getProjectProponent()%></p>
                                         <p><b>Person Responsible: </b> <%=FFreport.getPersonResponsible()%></p>
                                     </div>

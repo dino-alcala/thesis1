@@ -437,7 +437,7 @@
 
                         <fieldset>  
                             <legend><b>Date of Project Implementation</b></legend>
-                            <center><input value="<%=SE.getImplementationaddress()%>" id="fname" name="implementationdate" readonly size="50" type="date" required></center>
+                            <center><input value="<%=SE.getActualDate()%>" id="fname" name="implementationdate" readonly size="50" type="date" required></center>
                             <br><br>
                         </fieldset>
                             

@@ -8240,7 +8240,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, projectProponent, personResponsible, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, projectProponent, personResponsible, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, implementationdate, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, SEreport.getProjectTitle());
             pstmt.setString(2, SEreport.getTargetKRA());
@@ -8250,29 +8250,30 @@ public class UserDAO {
             pstmt.setInt(6, SEreport.getNumberOfBeneficiaries());
             pstmt.setString(7, SEreport.getProjectBeneficiaries());
             pstmt.setString(8, SEreport.getAddressBeneficiaries());
-            pstmt.setString(9, SEreport.getAddressOfProject());
-            pstmt.setDouble(10, SEreport.getAmountReceivedOVPLM());
-            pstmt.setString(11, SEreport.getSignificanceProject());
-            pstmt.setString(12, SEreport.getHappenedImplementationProject());
-            pstmt.setString(13, SEreport.getWhenwhereProject());
-            pstmt.setString(14, SEreport.getParticipantsProject());
-            pstmt.setString(15, SEreport.getHighlightsProject());
-            pstmt.setString(16, SEreport.getMajorProblems());
-            pstmt.setString(17, SEreport.getOtherRecommendations());
-            pstmt.setBlob(18, SEreport.getAnnexes());
-            pstmt.setBlob(19, SEreport.getAttendanceBeneficiaries());
-            pstmt.setBlob(20, SEreport.getAttendanceDLSU());
-            pstmt.setBlob(21, SEreport.getBeneficiariesLetters());
-            pstmt.setDate(22, SEreport.getDate());
-            pstmt.setInt(23, SEreport.getSeproposalID());
-            pstmt.setInt(24, SEreport.getCap());
-            pstmt.setInt(25, SEreport.getApsp());
-            pstmt.setInt(26, SEreport.getAsf());
-            pstmt.setInt(27, SEreport.getFaculty());
-            pstmt.setInt(28, SEreport.getAdmin());
-            pstmt.setInt(29, SEreport.getDirecthired());
-            pstmt.setInt(30, SEreport.getIndependent());
-            pstmt.setInt(31, SEreport.getExternal());
+            pstmt.setDate(9, SEreport.getImplementationdate());
+            pstmt.setString(10, SEreport.getAddressOfProject());
+            pstmt.setDouble(11, SEreport.getAmountReceivedOVPLM());
+            pstmt.setString(12, SEreport.getSignificanceProject());
+            pstmt.setString(13, SEreport.getHappenedImplementationProject());
+            pstmt.setString(14, SEreport.getWhenwhereProject());
+            pstmt.setString(15, SEreport.getParticipantsProject());
+            pstmt.setString(16, SEreport.getHighlightsProject());
+            pstmt.setString(17, SEreport.getMajorProblems());
+            pstmt.setString(18, SEreport.getOtherRecommendations());
+            pstmt.setBlob(19, SEreport.getAnnexes());
+            pstmt.setBlob(20, SEreport.getAttendanceBeneficiaries());
+            pstmt.setBlob(21, SEreport.getAttendanceDLSU());
+            pstmt.setBlob(22, SEreport.getBeneficiariesLetters());
+            pstmt.setDate(23, SEreport.getDate());
+            pstmt.setInt(24, SEreport.getSeproposalID());
+            pstmt.setInt(25, SEreport.getCap());
+            pstmt.setInt(26, SEreport.getApsp());
+            pstmt.setInt(27, SEreport.getAsf());
+            pstmt.setInt(28, SEreport.getFaculty());
+            pstmt.setInt(29, SEreport.getAdmin());
+            pstmt.setInt(30, SEreport.getDirecthired());
+            pstmt.setInt(31, SEreport.getIndependent());
+            pstmt.setInt(32, SEreport.getExternal());
 
             int rs = pstmt.executeUpdate();
 
@@ -8360,7 +8361,7 @@ public class UserDAO {
                 SEreport.setDate(rs2.getDate("date"));
                 SEreport.setProjectTitle(rs2.getString("projectTitle"));
                 SEreport.setTargetKRA(rs2.getString("targetKRA"));
-                SEreport.setTargetGoal(rs2.getString("targetMeasure"));
+                SEreport.setTargetGoal(rs2.getString("targetGoal"));
                 SEreport.setProjectProponent(rs2.getString("projectProponent"));
                 SEreport.setPersonResponsible(rs2.getString("personResponsible"));
                 SEreport.setNumberOfBeneficiaries(rs2.getInt("numberOfBeneficiaries"));
@@ -8478,9 +8479,6 @@ public class UserDAO {
                 FFreport.setId(rs2.getInt("id"));
                 FFreport.setDate(rs2.getDate("date"));
                 FFreport.setProjectTitle(rs2.getString("projectTitle"));
-                FFreport.setTargetKRA(rs2.getString("targetKRA"));
-                FFreport.setTargetGoal(rs2.getString("targetMeasure"));
-                FFreport.setTargetMeasure(rs2.getString("targetMeasure"));
                 FFreport.setProjectProponent(rs2.getString("projectProponent"));
                 FFreport.setPersonResponsible(rs2.getString("personResponsible"));
                 FFreport.setNameOfFacilitator(rs2.getString("facilitatorName"));
@@ -8571,32 +8569,31 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO ffreport(projectTitle, targetKRA, targetGoal, targetMeasure, projectProponent, personResponsible, facilitatorName, amountReceivedOVPLM, significanceProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceDLSU, date, ffproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO ffreport(projectTitle, projectProponent, personResponsible, facilitatorName, amountReceivedOVPLM, significanceProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceDLSU, date, ffproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, implementationdate, venue) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FFreport.getProjectTitle());
-            pstmt.setString(2, FFreport.getTargetKRA());
-            pstmt.setString(3, FFreport.getTargetGoal());
-            pstmt.setString(4, FFreport.getTargetMeasure());
-            pstmt.setString(5, FFreport.getProjectProponent());
-            pstmt.setString(6, FFreport.getPersonResponsible());
-            pstmt.setString(7, FFreport.getNameOfFacilitator());
-            pstmt.setDouble(8, FFreport.getAmountReceivedOVPLM());
-            pstmt.setString(9, FFreport.getSignificanceProject());
-            pstmt.setString(10, FFreport.getHighlightsProject());
-            pstmt.setString(11, FFreport.getMajorProblems());
-            pstmt.setString(12, FFreport.getOtherRecommendations());
-            pstmt.setBlob(13, FFreport.getAnnexes());
-            pstmt.setBlob(14, FFreport.getAttendanceDLSU());
-            pstmt.setDate(15, FFreport.getDate());
-            pstmt.setInt(16, FFreport.getFfproposalID());
-            pstmt.setInt(17, FFreport.getCap());
-            pstmt.setInt(18, FFreport.getApsp());
-            pstmt.setInt(19, FFreport.getAsf());
-            pstmt.setInt(20, FFreport.getFaculty());
-            pstmt.setInt(21, FFreport.getAdmin());
-            pstmt.setInt(22, FFreport.getDirecthired());
-            pstmt.setInt(23, FFreport.getIndependent());
-            pstmt.setInt(24, FFreport.getExternal());
+            pstmt.setString(2, FFreport.getProjectProponent());
+            pstmt.setString(3, FFreport.getPersonResponsible());
+            pstmt.setString(4, FFreport.getNameOfFacilitator());
+            pstmt.setDouble(5, FFreport.getAmountReceivedOVPLM());
+            pstmt.setString(6, FFreport.getSignificanceProject());
+            pstmt.setString(7, FFreport.getHighlightsProject());
+            pstmt.setString(8, FFreport.getMajorProblems());
+            pstmt.setString(9, FFreport.getOtherRecommendations());
+            pstmt.setBlob(10, FFreport.getAnnexes());
+            pstmt.setBlob(11, FFreport.getAttendanceDLSU());
+            pstmt.setDate(12, FFreport.getDate());
+            pstmt.setInt(13, FFreport.getFfproposalID());
+            pstmt.setInt(14, FFreport.getCap());
+            pstmt.setInt(15, FFreport.getApsp());
+            pstmt.setInt(16, FFreport.getAsf());
+            pstmt.setInt(17, FFreport.getFaculty());
+            pstmt.setInt(18, FFreport.getAdmin());
+            pstmt.setInt(19, FFreport.getDirecthired());
+            pstmt.setInt(20, FFreport.getIndependent());
+            pstmt.setInt(21, FFreport.getExternal());
+            pstmt.setDate(22, FFreport.getImplementationdate());
+            pstmt.setString(23, FFreport.getVenue());
 
             int rs = pstmt.executeUpdate();
 

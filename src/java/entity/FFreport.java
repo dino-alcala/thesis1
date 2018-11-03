@@ -17,10 +17,9 @@ public class FFreport {
 
     protected int id;
     protected Date date;
+    protected Date implementationdate;
+    protected String venue;
     protected String projectTitle;
-    protected String targetKRA;
-    protected String targetGoal;
-    protected String targetMeasure;
     protected String projectProponent;
     protected String personResponsible;
     protected String nameOfFacilitator;
@@ -68,30 +67,6 @@ public class FFreport {
 
     public void setProjectTitle(String projectTitle) {
         this.projectTitle = projectTitle;
-    }
-
-    public String getTargetKRA() {
-        return targetKRA;
-    }
-
-    public void setTargetKRA(String targetKRA) {
-        this.targetKRA = targetKRA;
-    }
-
-    public String getTargetGoal() {
-        return targetGoal;
-    }
-
-    public void setTargetGoal(String targetGoal) {
-        this.targetGoal = targetGoal;
-    }
-
-    public String getTargetMeasure() {
-        return targetMeasure;
-    }
-
-    public void setTargetMeasure(String targetMeasure) {
-        this.targetMeasure = targetMeasure;
     }
 
     public String getProjectProponent() {
@@ -284,6 +259,22 @@ public class FFreport {
 
     public void setExternal(int external) {
         this.external = external;
+    }
+
+    public Date getImplementationdate() {
+        return implementationdate;
+    }
+
+    public void setImplementationdate(Date implementationdate) {
+        this.implementationdate = implementationdate;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
     
     

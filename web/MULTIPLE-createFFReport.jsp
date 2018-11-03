@@ -381,6 +381,18 @@
                             <center><input name="proponents" size="50" type="text" readonly value="<%=UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>, <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>"></center>
                             <br>
                         </fieldset>
+                            
+                        <fieldset>  
+                            <legend><b>Date of Project Implementation</b></legend>
+                            <center><input value="<%=FF.getActualDate()%>" id="fname" name="implementationdate" readonly size="50" type="date" required></center>
+                            <br><br>
+                        </fieldset>
+                            
+                        <fieldset>  
+                            <legend><b>Address of Project Implementation</b></legend>
+                            <center><input value="<%=FF.getVenue()%>" id="fname" name="venue" readonly size="50" type="text" required></center>
+                            <br><br>
+                        </fieldset>
 
                         <fieldset>  
                             <legend><b>Person Responsible</b></legend>
