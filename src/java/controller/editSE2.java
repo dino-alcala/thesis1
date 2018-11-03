@@ -43,15 +43,15 @@ public class editSE2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
             HttpSession session = request.getSession();
             SE SE;
             UserDAO UserDAO = new UserDAO();
-            
+
             SE = (SE) session.getAttribute("SE");
-            
+
             ArrayList<SEworkplan> sework = new ArrayList();
-            
+
             for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
                 SEworkplan SEworkplan = new SEworkplan();
                 SEworkplan.setDate(Date.valueOf(request.getParameter("date" + i)));
@@ -61,11 +61,11 @@ public class editSE2 extends HttpServlet {
                 SEworkplan.setVenue(request.getParameter("venue" + i));
                 sework.add(SEworkplan);
             }
-            
+
             SE.setWorkplan(sework);
-            
+
             ArrayList<SEexpenses> seexpense = new ArrayList();
-            
+
             for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
                 SEexpenses SEexpenses = new SEexpenses();
                 SEexpenses.setItem(request.getParameter("seitem" + i));
@@ -74,9 +74,9 @@ public class editSE2 extends HttpServlet {
                 SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
                 seexpense.add(SEexpenses);
             }
-            
+
             SE.setExpenses(seexpense);
-            
+
             SE.setTotalpopulationAcademicStaff(Integer.parseInt(request.getParameter("seacademictotal")));
             SE.setExpectedAcademicStaff(Integer.parseInt(request.getParameter("seacademicexpected")));
             SE.setTotalpopulationSupportStaff(Integer.parseInt(request.getParameter("sesupporttotal")));
@@ -85,53 +85,49 @@ public class editSE2 extends HttpServlet {
             SE.setExpectedUndergraduate(Integer.parseInt(request.getParameter("seundergraduateexpected")));
             SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
             SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
-            
+
             ArrayList<SEresponsible> seresponsible = new ArrayList();
-            
+
             for (int i = 0; i < Integer.parseInt(request.getParameter("countresponsible")); i++) {
                 SEresponsible SEresponsible = new SEresponsible();
                 SEresponsible.setName(request.getParameter("responsiblename" + i));
                 SEresponsible.setEmail(request.getParameter("responsibleemail" + i));
                 seresponsible.add(SEresponsible);
             }
-            
+
             SE.setResponsible(seresponsible);
-            
+
+            ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
+
+            UserDAO.editMeasures(measureID, SE.getId());
+
+            UserDAO.auditSE(SE.getId());
             UserDAO.EditSE(SE);
-            
+
             UserDAO.completeReviseSE(SE.getId());
-            
+
             Notification n = new Notification();
             n.setTitle(SE.getName());
-            n.setBody("You have a Revised SE Proposal ready for approval!");
+            n.setBody("Revised SE Proposal ready for approval!");
             
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
+
             n.setDt(sdf.format(dt));
             
-            if (UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4) {
-                n.setUserID(UserDAO.getUserIDforNotifs(session.getAttribute("unit").toString(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-            }
+            if(UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4 && SE.getUnittype().equals("Academic")){
+                n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(SE.getUnit(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+            } else if(UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4 && SE.getUnittype().equals("Non-Academic")){
+                n.setUserID(UserDAO.getUserIDforNotifsUnitChair(SE.getUnit()));
+            } 
             
             UserDAO.AddNotification(n);
-            
-            if (UserDAO.getStep(SE.getId()) == 5) {
-                n.setUserID(20);
-                UserDAO.AddNotification(n);
-                n.setUserID(21);
-                UserDAO.AddNotification(n);
-                n.setUserID(22);
-                UserDAO.AddNotification(n);
-                n.setUserID(23);
-                UserDAO.AddNotification(n);
-            }
             
             request.setAttribute("reviseSE1", "You have successfully revised the SE!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");
             dispatcher.forward(request, response);
-            
+
         }
     }
 

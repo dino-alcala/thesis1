@@ -61,15 +61,25 @@ public class approveFF extends HttpServlet {
                     UserDAO.updateStepFF(3, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
+                    UserDAO.updateStepFF(3, Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updateUnitHeadRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     UserDAO.updateStepFF(4, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
+                    UserDAO.updateStepFF(4, Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updateDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                }
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody("You have new FF Proposal ready for approval!");
+                n.setBody("New FF Proposal ready for approval!");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -77,15 +87,28 @@ public class approveFF extends HttpServlet {
                 n.setDt(sdf.format(dt));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
-                    n.setUserID(UserDAO.getUserIDforChairpersonNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())), UserDAO.getDepartmentIDByName(UserDAO.getDepartmentByffID(Integer.parseInt(request.getParameter("approve"))))));
+                    if(UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()).equals("Academic")){
+                        n.setUserID(UserDAO.getUserIDforNotifsChairperson(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())), UserDAO.getDepartmentIDByName(UserDAO.getDepartmentByffID(Integer.parseInt(request.getParameter("approve"))))));
+                    } else if(UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()).equals("Non-Academic")){
+                        n.setUserID(UserDAO.getUserIDforNotifsUnitHead(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    }
+                    
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
-                    n.setUserID(UserDAO.getUserIDforDeanNotifs(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setUserID(UserDAO.getUserIDforNotifsDean(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
+                    n.setUserID(UserDAO.getUserIDforNotifsDirector(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
-                    n.setUserID(UserDAO.getUserIDforJamesNotifs());
+                    n.setUserID(UserDAO.getUserIDforNotifsJames());
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
+                    n.setUserID(UserDAO.getUserIDforNotifsJames());
                 }
 
                 UserDAO.AddNotification(n);
@@ -100,9 +123,17 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
                     n2.setBody("Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.");
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
+                    n2.setBody("Your proposal has been approved by the Unit Head! It will now be taken to the Director.");
+                }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n2.setBody("Your proposal has been approved by the Dean! It will now be taken to Sir James.");
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
+                    n2.setBody("Your proposal has been approved by the Dean! It will now be taken to the LSPO.");
                 }
 
                 n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
@@ -150,11 +181,35 @@ public class approveFF extends HttpServlet {
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
+                    UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
+                    //UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    n3.setBody("Your proposal has some revisions before it is approved by the Unit Head.");
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
+                }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the Dean.");
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
+                    UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
+                    //UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    n3.setBody("Your proposal has some revisions before it is approved by the Director.");
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -203,10 +258,32 @@ public class approveFF extends HttpServlet {
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
                 }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
+                    UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    n3.setBody("Your proposal has been rejected by the Unit Head. Reason: " + request.getParameter("remarks1"));
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
+                }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Dean. Reason: " + request.getParameter("remarks1"));
+
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    n3.setDt(sdf.format(dt));
+                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
+                }
+                
+                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
+                    UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    n3.setBody("Your proposal has been rejected by the Director. Reason: " + request.getParameter("remarks1"));
 
                     java.util.Date dt = new java.util.Date();
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
