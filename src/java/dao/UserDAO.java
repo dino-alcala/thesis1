@@ -2353,7 +2353,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype, datetime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype, datetime, addressimplementation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             
             java.util.Date dt = new java.util.Date();
@@ -2392,6 +2392,7 @@ public class UserDAO {
             pstmt.setString(31, SE.getSourceOfFunds());
             pstmt.setString(32, SE.getUnittype());
             pstmt.setString(33, sdf.format(dt));
+            pstmt.setString(34, SE.getImplementationaddress());
 
             int rs = pstmt.executeUpdate();
 
@@ -2714,26 +2715,23 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, targetKRA, targetGoal, targetMeasure, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?)";
+            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FF.getUnit());
             pstmt.setString(2, FF.getDepartment());
             pstmt.setDate(3, FF.getDatecreated());
             pstmt.setString(4, FF.getProgramHead());
             pstmt.setString(5, FF.getActivityClassification());
-            pstmt.setInt(6, FF.getTargetKRA());
-            pstmt.setInt(7, FF.getTargetGoal());
-            pstmt.setInt(8, FF.getTargetMeasure());
-            pstmt.setString(9, FF.getProjectName());
-            pstmt.setString(10, FF.getVenue());
-            pstmt.setString(11, FF.getSpeaker());
-            pstmt.setString(12, FF.getObjectives());
-            pstmt.setDouble(13, FF.getTotalAmount());
-            pstmt.setString(14, FF.getSourceOfFunds());
-            pstmt.setInt(15, FF.getStep());
-            pstmt.setInt(16, FF.getUserID());
-            pstmt.setDate(17, FF.getActualDate());
-            pstmt.setString(18, FF.getUnittype());
+            pstmt.setString(6, FF.getProjectName());
+            pstmt.setString(7, FF.getVenue());
+            pstmt.setString(8, FF.getSpeaker());
+            pstmt.setString(9, FF.getObjectives());
+            pstmt.setDouble(10, FF.getTotalAmount());
+            pstmt.setString(11, FF.getSourceOfFunds());
+            pstmt.setInt(12, FF.getStep());
+            pstmt.setInt(13, FF.getUserID());
+            pstmt.setDate(14, FF.getActualDate());
+            pstmt.setString(15, FF.getUnittype());
 
             int rs = pstmt.executeUpdate();
 
@@ -3984,8 +3982,8 @@ public class UserDAO {
                 SE.setTargetCommunity(rs2.getInt("targetCommunity"));
                 SE.setTargetKRA(rs2.getInt("targetKRA"));
                 SE.setTargetGoal(rs2.getInt("targetGoal"));
-                //SE.setTargetMeasure(rs2.getInt("targetMeasure"));
                 SE.setActualDate(rs2.getDate("actualImplementation"));
+                SE.setImplementationaddress(rs2.getString("addressimplementation"));
                 SE.setTotalAmount(rs2.getDouble("totalAmountRequested"));
                 SE.setSocialCommunityProblem(rs2.getString("problemaddressed"));
                 SE.setNameSEbeneficiaries(rs2.getString("nameOfPartner"));
@@ -4299,9 +4297,6 @@ public class UserDAO {
                 FF.setProjectName(rs2.getString("projectName"));
                 FF.setProgramHead(rs2.getString("programHead"));
                 FF.setActivityClassification(rs2.getString("activityClassification"));
-                FF.setTargetKRA(rs2.getInt("targetKRA"));
-                FF.setTargetGoal(rs2.getInt("targetGoal"));
-                FF.setTargetMeasure(rs2.getInt("targetMeasure"));
                 FF.setActualDate(rs2.getDate("actualImplementation"));
                 FF.setTotalAmount(rs2.getDouble("totalAmount"));
                 FF.setStep(rs2.getInt("step"));
@@ -8201,6 +8196,15 @@ public class UserDAO {
                 SEreport.setMajorProblems(rs2.getString("majorProblems"));
                 SEreport.setOtherRecommendations(rs2.getString("otherRecommendations"));
                 SEreport.setSeproposalID(rs2.getInt("seproposalID"));
+                SEreport.setCap(rs2.getInt("cap"));
+                SEreport.setApsp(rs2.getInt("apsp"));
+                SEreport.setAsf(rs2.getInt("asf"));
+                SEreport.setFaculty(rs2.getInt("faculty"));
+                SEreport.setAdmin(rs2.getInt("admin"));
+                SEreport.setDirecthired(rs2.getInt("directhired"));
+                SEreport.setIndependent(rs2.getInt("independent"));
+                SEreport.setExternal(rs2.getInt("external"));
+                SEreport.setImplementationdate(rs2.getDate("implementationdate"));
             }
 
             ArrayList<SEobjectives> objectives = new ArrayList();
@@ -10801,8 +10805,6 @@ public class UserDAO {
                 f.setProgramHead(rs2.getString("programHead"));
                 f.setUnit(rs2.getString("unit"));
                 f.setDepartment(rs2.getString("department"));
-                f.setTargetGoal(rs2.getInt("targetGoal"));
-                f.setTargetMeasure(rs2.getInt("targetMeasure"));
                 f.setId(rs2.getInt("id"));
                 FF.add(f);
             }
@@ -11216,7 +11218,6 @@ public class UserDAO {
                 f.setProjectName(rs2.getString("projectName"));
                 f.setProgramHead(rs2.getString("programHead"));
                 f.setActivityClassification(rs2.getString("activityClassification"));
-                f.setTargetCommunity(rs2.getInt("targetCommunity"));
                 f.setSourceOfFunds(rs2.getString("sourceOfFunds"));
                 f.setId(rs2.getInt("id"));
                 FF.add(f);
@@ -11259,7 +11260,6 @@ public class UserDAO {
                 f.setProjectName(rs2.getString("projectName"));
                 f.setProgramHead(rs2.getString("programHead"));
                 f.setActivityClassification(rs2.getString("activityClassification"));
-                f.setTargetCommunity(rs2.getInt("targetCommunity"));
                 f.setSourceOfFunds(rs2.getString("sourceOfFunds"));
                 f.setId(rs2.getInt("id"));
                 FF.add(f);
@@ -12358,7 +12358,6 @@ public class UserDAO {
                 f.setProjectName(rs2.getString("projectName"));
                 f.setProgramHead(rs2.getString("programHead"));
                 f.setActivityClassification(rs2.getString("activityClassification"));
-                f.setTargetCommunity(rs2.getInt("targetCommunity"));
                 f.setSourceOfFunds(rs2.getString("sourceOfFunds"));
                 f.setDepartment(rs2.getString("department"));
                 f.setId(rs2.getInt("id"));
@@ -12403,7 +12402,6 @@ public class UserDAO {
                 f.setProjectName(rs2.getString("projectName"));
                 f.setProgramHead(rs2.getString("programHead"));
                 f.setActivityClassification(rs2.getString("activityClassification"));
-                f.setTargetCommunity(rs2.getInt("targetCommunity"));
                 f.setSourceOfFunds(rs2.getString("sourceOfFunds"));
                 f.setDepartment(rs2.getString("department"));
                 f.setId(rs2.getInt("id"));

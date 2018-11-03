@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FFexpenses"%>
 <%@page import="entity.SEexpenses"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
@@ -385,7 +386,7 @@
                     <form action="createFFreport3" method="post">
                         <%
                             FF FF = new FF();
-                            FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("seID")));
+                            FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
                         %>
                         <fieldset>
                             <legend><span class="number">2</span><b>Executive Summary</b></legend>
@@ -435,8 +436,8 @@
 
                         <fieldset>
                             <%
-                                ArrayList<SEexpenses> expenses = new ArrayList();
-                                expenses = UserDAO.retrieveExpenses(Integer.parseInt(request.getParameter("ffID").toString()));
+                                ArrayList<FFexpenses> expenses = new ArrayList();
+                                expenses = UserDAO.retrieveExpensesFF(Integer.parseInt(request.getParameter("ffID").toString()));
                             %>
                             <%
                                 if (FF.getSourceOfFunds().equals("OVPLM")) {

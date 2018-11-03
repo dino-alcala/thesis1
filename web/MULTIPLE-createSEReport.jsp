@@ -430,14 +430,20 @@
                         </fieldset>
 
                         <fieldset>  
-                            <legend><b>Address of  Beneficiaries</b></legend>
+                            <legend><b>Address of Beneficiaries</b></legend>
                             <center><input id="fname" name="addressben" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
-                            <legend><b>Address of  Project Implementation</b></legend>
-                            <center><input id="fname" name="addressproj" size="50" type="text" required></center>
+                            <legend><b>Date of Project Implementation</b></legend>
+                            <center><input value="<%=SE.getImplementationaddress()%>" id="fname" name="implementationdate" readonly size="50" type="date" required></center>
+                            <br><br>
+                        </fieldset>
+                            
+                        <fieldset>  
+                            <legend><b>Address of Project Implementation</b></legend>
+                            <center><input value="<%=SE.getImplementationaddress()%>" id="fname" name="addressproj" readonly size="50" type="text" required></center>
                             <br><br>
                         </fieldset>
 

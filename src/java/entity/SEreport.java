@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class SEreport {
     protected int id;
     protected Date date;
+    protected Date implementationdate;
     protected String projectTitle;
     protected String targetKRA;
     protected String targetGoal;
@@ -366,6 +367,14 @@ public class SEreport {
 
     public void setExternal(int external) {
         this.external = external;
+    }
+
+    public Date getImplementationdate() {
+        return implementationdate;
+    }
+
+    public void setImplementationdate(Date implementationdate) {
+        this.implementationdate = implementationdate;
     }
     
     

@@ -287,6 +287,7 @@
                                             <p><b>Program Classification: </b> <%=SE.getActivityClassification()%></p>
                                             <p><b>Total Amount Requested:</b> ₱<%=SE.getTotalAmount()%></p>
                                             <p><b>Actual Date of Implementation: </b> <%=SE.getActualDate()%></p>
+                                            <p><b>Implementation Address: </b> <%=SE.getImplementationaddress()%></p>
                                         </div>
                                     </div><br>
 

@@ -60,6 +60,7 @@ public class addSE extends HttpServlet {
             SE.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
             SE.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
             SE.setActualDate(Date.valueOf(request.getParameter("actualdate")));
+            SE.setImplementationaddress(request.getParameter("implementationaddress"));
             SE.setTotalAmount(Double.parseDouble(request.getParameter("totalamount")));
             SE.setSocialCommunityProblem(request.getParameter("problemaddressed"));
             SE.setNameSEbeneficiaries(request.getParameter("partnername"));

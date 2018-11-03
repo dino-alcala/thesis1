@@ -277,7 +277,6 @@
                     <%
                         SEreport SEreport = new SEreport();
                         SEreport = UserDAO.retrieveSEreportBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
-                        System.out.println("DSADADHJSALHASJFHSAJDKHSAJDSAKDLJASKLFJAKLJASLKDJKASL" + Integer.parseInt(request.getAttribute("seID").toString()));
                     %>
                     <div class="container-fluid">
                         <div class="row">
@@ -286,12 +285,15 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h3><%=SEreport.getProjectTitle()%></h3>
+                                        <p><b>Date of Implementation: </b> <%=SEreport.getImplementationdate()%></p>
+                                        
+                                        <br><br>
                                         <p><b>Targeted KRA:</b> <%=SEreport.getTargetKRA()%></p>
                                         <p><b>Targeted Goal:</b> <%=SEreport.getTargetGoal()%></p>
                                         <p><b>Targeted Measure/s:</b> 
                                             <% 
                                                 ArrayList<Integer> measures = new ArrayList();
-                                                measures = UserDAO.GetMeasures(Integer.parseInt(request.getParameter("seID")));
+                                                measures = UserDAO.GetMeasures(Integer.parseInt(request.getAttribute("seID").toString()));
                                                 
                                                 for(int x = 0 ; x < measures.size() ; x++){
                                             %>    
@@ -327,17 +329,38 @@
                                                 <th>Classification</th>
                                                 <th>Number of Individuals</th>
                                             </tr>
-                                            <%
-                                                for (int i = 0; i < SEreport.getParticipants().size(); i++) {
-                                            %>
                                             <tr>
-                                                <td><%=SEreport.getParticipants().get(i).getClassification()%></td>
-                                                <td><%=SEreport.getParticipants().get(i).getNumberOfIndividuals()%></td>
+                                                <td>CAP</td>
+                                                <td><%=SEreport.getCap()%></td>
                                             </tr>
-                                            <%
-                                                }
-                                            %>
-
+                                            <tr>
+                                                <td>APSP</td>
+                                                <td><%=SEreport.getApsp()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ASF</td>
+                                                <td><%=SEreport.getAsf()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Faculty</td>
+                                                <td><%=SEreport.getFaculty()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Admin</td>
+                                                <td><%=SEreport.getAdmin()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Direct Hired Contractuals</td>
+                                                <td><%=SEreport.getDirecthired()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Independent Contractor</td>
+                                                <td><%=SEreport.getIndependent()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>External Service Personnel</td>
+                                                <td><%=SEreport.getExternal()%></td>
+                                            </tr>
                                         </table>
                                         <br>
                                         <hr/>

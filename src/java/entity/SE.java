@@ -19,6 +19,7 @@ public class SE {
     protected String unit;
     protected String department;
     protected Date date;
+    protected String implementationaddress;
     protected String programHead;
     protected String activityClassification;
     protected int targetCommunity;
@@ -538,5 +539,14 @@ public class SE {
     public void setRevisionTime(String revisionTime) {
         this.revisionTime = revisionTime;
     }
+
+    public String getImplementationaddress() {
+        return implementationaddress;
+    }
+
+    public void setImplementationaddress(String implementationaddress) {
+        this.implementationaddress = implementationaddress;
+    }
+    
     
 }

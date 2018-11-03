@@ -12,6 +12,7 @@ import entity.SEparticipants;
 import entity.SEreport;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -60,6 +61,7 @@ public class createSEreport2 extends HttpServlet {
             SEreport.setNumberOfBeneficiaries(Integer.parseInt(request.getParameter("number")));
             SEreport.setProjectBeneficiaries(request.getParameter("projben"));
             SEreport.setAddressBeneficiaries(request.getParameter("addressben"));
+            SEreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
             SEreport.setAddressOfProject(request.getParameter("addressproj"));
             SEreport.setCap(Integer.parseInt(request.getParameter("number0")));
             SEreport.setApsp(Integer.parseInt(request.getParameter("number1")));
