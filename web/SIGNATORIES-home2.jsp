@@ -276,11 +276,19 @@
                         <%
                             ArrayList<FF> proposals = new ArrayList();
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
-                                proposals = UserDAO.retrieveFFProposalByUnit(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                                proposals = UserDAO.retrieveFFProposalByStepUnit(1, UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
 
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
                                 proposals = UserDAO.retrieveFFProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                            }
+                            
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
+                                proposals = UserDAO.retrieveFFProposalByStepUnit(2, UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                            }
+                            
+                            if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
+                                proposals = UserDAO.retrieveFFProposalByStepUnit(3, UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
                         %>
 

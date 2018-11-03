@@ -485,9 +485,6 @@
 
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
-                                <input id="deleteRowButton" type ="button" onclick ="deleteRow2()" value="Delete Row"></center>
-                            <br>
                             <br>
                             <%
                             } else {

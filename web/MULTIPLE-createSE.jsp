@@ -202,6 +202,23 @@
                 k = OvplmDAO.retrieveKRA();
 
             %>
+                
+                function changeKRA(c1, c2){
+                    var c1 = document.getElementById(c1);
+                    var c2 = document.getElementById(c2);
+                    c2.innerHTML = "";
+                    
+                    var optionArray = ["|",<%for(int m = 0; m < k.size(); m++){%>"<%=k.get(m).getId()%>|<%=k.get(m).getName()%>",<%}%>];
+                    
+                    for (var option in optionArray) {
+                    var pair = optionArray[option].split("|");
+                    var newOption = document.createElement("option");
+                    newOption.value = pair[0];
+                    newOption.innerHTML = pair[1];
+                    
+                    c2.options.add(newOption);
+                }
+                }
 
             function changegoal(c1, c2) {
 
@@ -243,7 +260,7 @@
             %>
 
                 if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                var optionArray = ["|",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                var optionArray = [<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
                     }
                     
                                     if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
@@ -414,30 +431,16 @@
                         <br>
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
-                            <input type = "text" name ="programname" required>
+                            <input  type = "text" name ="programname" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Program Head (First name, Last name):</b></legend>
-                            <input type = "text" name ="programhead" required>
+                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" required>
                             <br><br><br><br>
                         </fieldset>
-
-                        <fieldset>
-                            <legend><b>Type of Social Engagement:</b></legend>
-                            <select name="classification">
-                                <option value="Socially Engaged Research">Socially Engaged Research</option>
-                                <option value="Service-Learning">Service-Learning</option>
-                                <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
-                                <option value="Direct Service to the Poor and Marginalized">Direct Service to the Poor and Marginalized</option>
-                                <option value="Issue Awareness and Advocacy">Issue Awareness and Advocacy</option>
-                                <option value="Public Engagement">Public Engagement</option>
-                                <option value="Others">Others</option>
-                            </select>
-                            <br><br>
-                        </fieldset>
-
+                        
                         <fieldset>
                             <legend><b>Target Community:</b></legend>
                             <%
@@ -457,16 +460,24 @@
                         </fieldset>
 
                         <fieldset>
+                            <legend><b>Type of Social Engagement:</b></legend>
+                            <select name="classification" onchange="changeKRA(this.id, 'kra')">
+                                <option value=""></option>
+                                <option value="Socially Engaged Research">Socially Engaged Research</option>
+                                <option value="Service-Learning">Service-Learning</option>
+                                <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
+                                <option value="Direct Service to the Poor and Marginalized">Direct Service to the Poor and Marginalized</option>
+                                <option value="Issue Awareness and Advocacy">Issue Awareness and Advocacy</option>
+                                <option value="Public Engagement">Public Engagement</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <br><br>
+                        </fieldset>
+
+                        <fieldset>
                             <legend><b>Target KRA:</b></legend>
                             <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')" required>
-                                <option></option>
-                                <%
-                                    for (int m = 0; m < k.size(); m++) {
-                                %>
-                                <option value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
-                                <%
-                                    }
-                                %>
+                               
                             </select>
                             <br><br>
                         </fieldset>

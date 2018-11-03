@@ -311,14 +311,14 @@
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 2</u></h4>
-                                            Approval by Chairperson
+                                            Approval by Chairperson/Unit Head
                                         </span>
                                     </li>
                                     <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 3) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 3) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
                                             <h4 class="progress-title"><u>Step 3</u></h4>
-                                            Approval by Dean
+                                            Approval by Dean/Director
                                         </span>
                                     </li>
                                     <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 4) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 4) {%> is-active <%}%>">
@@ -425,12 +425,12 @@
                                         <td><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>Chairperson</td>
-                                        <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%></td>
+                                        <td>Chairperson/Unit Head</td>
+                                        <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>Dean</td>
-                                        <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%></td>
+                                        <td>Dean/Director</td>
+                                        <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></td>
                                     </tr>
 
                                     <tr>
@@ -461,7 +461,7 @@
                                 <%
                                     if (UserDAO.getStepFF(Integer.parseInt(request.getAttribute("ffID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>
-                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>
+                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br><br>
                                 <center><button class="btn-success" type="submit" name="ffID" value="<%=request.getAttribute("ffID")%>">Upload</button><br></center>
                                     <%
                                         }

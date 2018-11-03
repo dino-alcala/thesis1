@@ -228,10 +228,7 @@
             <!-- Sidebar -->
             <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
                 <%
-                    if (session.getAttribute("position").equals("CCS - Dean") || session.getAttribute("position").equals("COS - Dean")
-                            || session.getAttribute("position").equals("GCOE - Dean") || session.getAttribute("position").equals("RVRCOB - Dean") || session.getAttribute("position").equals("COL - Dean")
-                            || session.getAttribute("position").equals("BAGCED - Dean") || session.getAttribute("position").equals("CLA - Dean") || session.getAttribute("position").equals("SOE - Dean")
-                            || session.getAttribute("position").toString().contains("Department Chair")) {
+                    if (session.getAttribute("position").toString().contains("Social Engagement Director")) {
                 %>
                 <ul class="list-group sticky-top sticky-offset">
                     <!-- Menu with submenu -->
@@ -246,13 +243,6 @@
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-check fa-fw mr-2"></span>
                             <span class="menu-collapsed">SE Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check fa-fw mr-2"></span>
-                            <span class="menu-collapsed">FF Programs</span>
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
@@ -586,12 +576,12 @@
                                         <th style="width:65%">Remarks</th> 
                                     </tr>
                                     <tr>
-                                        <td>Department Chair</td>
-                                        <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%></td>
+                                        <td>Department/Unit Chair</td>
+                                        <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>College ADEALM</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%></textarea></td>
+                                        <td>College ADEALM/SE Director</td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%> <%if (SE.getSeDirectorRemarks() != null) {%><%=SE.getSeDirectorRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

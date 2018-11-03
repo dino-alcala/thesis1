@@ -504,16 +504,16 @@
                                         <th style="width:65%">Remarks</th> 
                                     </tr>
                                     <tr>
-                                        <td>Department Chair</td>
-                                        <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%></td>
+                                        <td>Department/Unit Chair</td>
+                                        <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>College ADEALM</td>
-                                        <td style="padding:0px"><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%></td>
+                                        <td>College ADEALM/SE Director</td>
+                                        <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%><%if (SE.getSeDirectorRemarks() != null) {%><%=SE.getSeDirectorRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
-                                        <td>College Dean</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%></textarea></td>
+                                        <td>College Dean/VP/VC</td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getDeanRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%><%if (SE.getDeanRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

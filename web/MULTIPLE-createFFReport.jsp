@@ -362,7 +362,7 @@
                     <form action="createFFreport2" method="post">
                         <%
                             FF FF = new FF();
-                            FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("seID").toString()));
+                            FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
                         %>
                         <fieldset>
                             <legend><span class="number">1</span><b> Information Identification</b></legend>
@@ -372,32 +372,31 @@
 
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
-                            <center><input id="fname" name="name" size="50" type="text" readonly value="<%=FF.getProjectName() %>"></center>
+                            <center><input name="name" size="50" type="text" readonly value="<%=FF.getProjectName() %>"></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Project Proponents/s (College / Department / Unit)</b></legend>
-                            <center><input id="fname" name="proponents" size="50" type="text" readonly value="<%=UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>, <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>"></center>
+                            <center><input name="proponents" size="50" type="text" readonly value="<%=UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>, <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>"></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Person Responsible</b></legend>
-                            <center><input id="fname" name="responsible" size="50" type="text" required></center>
+                            <center><input name="responsible" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Program Head</b></legend>
-                            <center><input id="fname" name="responsible" size="50" type="text" required></center>
+                            <center><input name="responsible" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
 
 
                         <fieldset>
-                            <input type="hidden" name="countparticipants" id="countparticipants" value="1">
                             <legend><b>List of DLSU Participants</b></legend>
                             <center><table style = "width:40%" id="participants">
                                     <tr>
@@ -444,7 +443,7 @@
 
                         <fieldset>  
                             <legend><b>Amount of Grants Received from OVPLM or Others:</b></legend>
-                            <center><input id="fname" name="source" size="50" readonly value="<%=FF.getTotalAmount()%>" type="text"></center>
+                            <center><input name="source" size="50" readonly value="<%=FF.getTotalAmount()%>" type="text"></center>
                             <br>
                         </fieldset>
 
