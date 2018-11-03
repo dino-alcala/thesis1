@@ -49,13 +49,17 @@ public class createFFreport2 extends HttpServlet {
             
             FFreport.setProjectTitle(request.getParameter("name"));
             FFreport.setDate(sqlDate);
-            FFreport.setTargetKRA(request.getParameter("kra"));
-            FFreport.setTargetGoal(request.getParameter("goal"));
-            FFreport.setTargetMeasure(request.getParameter("measure"));
             FFreport.setProjectProponent(request.getParameter("proponents"));
             FFreport.setPersonResponsible(request.getParameter("responsible"));
             FFreport.setNameOfFacilitator(request.getParameter("facilitator"));
-            
+            FFreport.setCap(Integer.parseInt(request.getParameter("number0")));
+            FFreport.setApsp(Integer.parseInt(request.getParameter("number1")));
+            FFreport.setAsf(Integer.parseInt(request.getParameter("number2")));
+            FFreport.setFaculty(Integer.parseInt(request.getParameter("number3")));
+            FFreport.setAdmin(Integer.parseInt(request.getParameter("number4")));
+            FFreport.setDirecthired(Integer.parseInt(request.getParameter("number5")));
+            FFreport.setIndependent(Integer.parseInt(request.getParameter("number6")));
+            FFreport.setExternal(Integer.parseInt(request.getParameter("number7")));
             FFreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
             FFreport.setFfproposalID(Integer.parseInt(request.getParameter("ffID")));
             

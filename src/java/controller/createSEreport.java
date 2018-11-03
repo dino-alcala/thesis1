@@ -52,7 +52,7 @@ public class createSEreport extends HttpServlet {
 
             if (request.getParameter("viewReport") != null) {
 
-                request.setAttribute("seID", request.getParameter("viewReport"));
+                request.setAttribute("seID", Integer.parseInt(request.getParameter("viewReport")));
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEReport.jsp");
                 dispatcher.forward(request, response);

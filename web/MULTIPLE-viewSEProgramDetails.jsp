@@ -298,6 +298,7 @@
                                         <p><b>Unit: </b> <%=SE.getUnit()%></p>
                                         <p><b>Department: </b> <%=SE.getDepartment()%></p>
                                         <p><b>Target Date of Implementation: </b> <%=SE.getActualDate()%></p>
+                                        <p><b>Implementation Address: </b> <%=SE.getImplementationaddress()%></p>
                                         <br>
                                         <p><b>Program Head: </b> <%=SE.getProgramHead()%></p>
                                         <p><b>Program Classification: </b> <%=SE.getActivityClassification()%></p>

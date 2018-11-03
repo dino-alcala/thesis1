@@ -5,10 +5,14 @@
  */
 package controller;
 
+import dao.UserDAO;
+import entity.Measure;
+import entity.SE;
 import entity.SEparticipants;
 import entity.SEreport;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -52,12 +56,12 @@ public class createSEreport2 extends HttpServlet {
             SEreport.setDate(sqlDate);
             SEreport.setTargetKRA(request.getParameter("kra"));
             SEreport.setTargetGoal(request.getParameter("goal"));
-            SEreport.setTargetMeasure(request.getParameter("measure"));
             SEreport.setProjectProponent(request.getParameter("proponents"));
             SEreport.setPersonResponsible(request.getParameter("responsible"));
             SEreport.setNumberOfBeneficiaries(Integer.parseInt(request.getParameter("number")));
             SEreport.setProjectBeneficiaries(request.getParameter("projben"));
             SEreport.setAddressBeneficiaries(request.getParameter("addressben"));
+            SEreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
             SEreport.setAddressOfProject(request.getParameter("addressproj"));
             SEreport.setCap(Integer.parseInt(request.getParameter("number0")));
             SEreport.setApsp(Integer.parseInt(request.getParameter("number1")));
@@ -69,6 +73,18 @@ public class createSEreport2 extends HttpServlet {
             SEreport.setExternal(Integer.parseInt(request.getParameter("number7")));
             SEreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
             SEreport.setSeproposalID(Integer.parseInt(request.getParameter("seID")));
+            
+            ArrayList<Measure> targetmeasures = new ArrayList();
+            UserDAO UserDAO = new UserDAO();
+            
+            ArrayList<Integer> measuresid = new ArrayList();
+            measuresid = UserDAO.GetMeasures(Integer.parseInt(request.getParameter("seID")));
+            
+            for(int x = 0 ; x < measuresid.size() ; x++){
+                targetmeasures.add(UserDAO.GetMeasureObject(x));
+            }
+            
+            SEreport.setTargetmeasures(targetmeasures);
 
             session.setAttribute("SEreport", SEreport);
             request.setAttribute("seID", request.getParameter("seID"));

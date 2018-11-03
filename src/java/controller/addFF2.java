@@ -57,7 +57,7 @@ public class addFF2 extends HttpServlet {
             }
 
             FF.setAttendees(attendees);
-            FF.setUnittype(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+            FF.setUnittype(UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()));
             FF.setStep(1);
 
             UserDAO.AddFF(FF);

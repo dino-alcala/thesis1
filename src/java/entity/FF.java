@@ -20,10 +20,6 @@ public class FF {
     protected Date datecreated;
     protected String programHead;
     protected String activityClassification;
-    protected int targetCommunity;
-    protected int targetKRA;
-    protected int targetGoal;
-    protected int targetMeasure;
     protected String projectName;
     protected String venue;
     protected String speaker;
@@ -98,38 +94,6 @@ public class FF {
 
     public void setActivityClassification(String activityClassification) {
         this.activityClassification = activityClassification;
-    }
-
-    public int getTargetCommunity() {
-        return targetCommunity;
-    }
-
-    public void setTargetCommunity(int targetCommunity) {
-        this.targetCommunity = targetCommunity;
-    }
-
-    public int getTargetKRA() {
-        return targetKRA;
-    }
-
-    public void setTargetKRA(int targetKRA) {
-        this.targetKRA = targetKRA;
-    }
-
-    public int getTargetGoal() {
-        return targetGoal;
-    }
-
-    public void setTargetGoal(int targetGoal) {
-        this.targetGoal = targetGoal;
-    }
-
-    public int getTargetMeasure() {
-        return targetMeasure;
-    }
-
-    public void setTargetMeasure(int targetMeasure) {
-        this.targetMeasure = targetMeasure;
     }
 
     public String getProjectName() {

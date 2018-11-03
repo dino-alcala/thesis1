@@ -115,10 +115,10 @@ public class editSE2 extends HttpServlet {
 
             n.setDt(sdf.format(dt));
             
-            if(UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4 && SE.getUnittype().equals("Academic")){
-                n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(SE.getUnit(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-            } else if(UserDAO.getStep(SE.getId()) == 1 || UserDAO.getStep(SE.getId()) == 2 || UserDAO.getStep(SE.getId()) == 3 || UserDAO.getStep(SE.getId()) == 4 && SE.getUnittype().equals("Non-Academic")){
-                n.setUserID(UserDAO.getUserIDforNotifsUnitChair(SE.getUnit()));
+            if(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))).equals("Academic")){
+                n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(session.getAttribute("unit").toString(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+            } else if(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))).equals("Non-Academic")){
+                n.setUserID(UserDAO.getUserIDforNotifsUnitChair(session.getAttribute("unit").toString()));
             } 
             
             UserDAO.AddNotification(n);

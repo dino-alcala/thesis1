@@ -1068,7 +1068,7 @@
             
             <%
                 //sidebar for college deans (signatories)
-                if (session.getAttribute("position").toString().contains("Director") && !session.getAttribute("unit").equals("Lasallian Pastoral Office (LSPO)")) {
+                if (session.getAttribute("position").toString().contains("Director") && !session.getAttribute("unit").equals("Lasallian Pastoral Office (LSPO)") && !session.getAttribute("position").toString().contains("Social Engagement")) {
             %>
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->

@@ -287,6 +287,7 @@
                                             <p><b>Program Classification: </b> <%=SE.getActivityClassification()%></p>
                                             <p><b>Total Amount Requested:</b> ₱<%=SE.getTotalAmount()%></p>
                                             <p><b>Actual Date of Implementation: </b> <%=SE.getActualDate()%></p>
+                                            <p><b>Implementation Address: </b> <%=SE.getImplementationaddress()%></p>
                                         </div>
                                     </div><br>
 
@@ -513,7 +514,7 @@
                                     </tr>
                                     <tr>
                                         <td>College Dean/VP/VC</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getDeanRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%><%if (SE.getDeanRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%><%if (SE.getVpVcRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>
