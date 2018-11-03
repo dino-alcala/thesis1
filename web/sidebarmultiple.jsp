@@ -1022,7 +1022,53 @@
             
             <%
                 //sidebar for college deans (signatories)
-                if (session.getAttribute("position").toString().contains("Assistant Dean for Lasallian Mission")) {
+                if (session.getAttribute("position").toString().contains("ADLM")) {
+            %>
+            <ul class="list-group sticky-top sticky-offset">
+                <!-- Menu with submenu -->
+                <a href="SIGNATORIES-home2.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Home</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-check fa-fw mr-2"></span>
+                            <span class="menu-collapsed">FF Programs</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+            </ul>
+            <% }%>
+            
+            <%
+                //sidebar for college deans (signatories)
+                if (session.getAttribute("position").toString().contains("Unit Head")) {
+            %>
+            <ul class="list-group sticky-top sticky-offset">
+                <!-- Menu with submenu -->
+                <a href="SIGNATORIES-home2.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Home</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-check fa-fw mr-2"></span>
+                            <span class="menu-collapsed">FF Programs</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+            </ul>
+            <% }%>
+            
+            <%
+                //sidebar for college deans (signatories)
+                if (session.getAttribute("position").toString().contains("Director") && !session.getAttribute("unit").equals("Lasallian Pastoral Office (LSPO)")) {
             %>
             <ul class="list-group sticky-top sticky-offset">
                 <!-- Menu with submenu -->
@@ -1065,6 +1111,53 @@
                 </a>
             </ul>
             <% }%>
+            <%
+                //sidebar for college deans (signatories)
+                if (session.getAttribute("position").toString().contains("Social Engagement Director")) {
+            %>
+            <ul class="list-group sticky-top sticky-offset">
+                <!-- Menu with submenu -->
+                <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Home</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-check fa-fw mr-2"></span>
+                        <span class="menu-collapsed">SE Programs</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+            </ul>
+            <% }%>
+            
+            <%
+                //sidebar for college deans (signatories)
+                if (session.getAttribute("position").toString().contains("VP/VC")) {
+            %>
+            <ul class="list-group sticky-top sticky-offset">
+                <!-- Menu with submenu -->
+                <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-2"></span>
+                        <span class="menu-collapsed">Home</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-check fa-fw mr-2"></span>
+                        <span class="menu-collapsed">SE Programs</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+            </ul>
+            <% }%>
+            
+            
             <!-- List Group END-->
 
         </div>

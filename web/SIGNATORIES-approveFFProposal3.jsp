@@ -222,6 +222,9 @@
 
             <!-- Sidebar -->
             <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <%
+                    if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
+                %>
                 <ul class="list-group sticky-top sticky-offset">
                     <!-- Menu with submenu -->
                     <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
@@ -245,7 +248,27 @@
                             <span class="submenu-icon ml-auto"></span>
                         </div>
                     </a>
-
+                    <% } %>
+                </ul>
+                <%
+                    if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
+                %>
+                <ul class="list-group sticky-top sticky-offset">
+                    <a href="SIGNATORIES-home2.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-home fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Home</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-check fa-fw mr-2"></span>
+                            <span class="menu-collapsed">FF Programs</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <% } %>
                 </ul>
             </div>
 
@@ -345,12 +368,12 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Chairperson</td>
-                                        <td style="padding:0px"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%></td>
+                                        <td>Chairperson/Unit Head</td>
+                                        <td style="padding:0px"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%><%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Dean/Director</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%><%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

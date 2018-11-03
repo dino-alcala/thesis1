@@ -1974,7 +1974,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM informationsheet WHERE unit = ? AND position LIKE ? LIMIT 1";
+        String query = "SELECT * FROM informationsheet WHERE unit = ? AND position LIKE ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
         int userID = 0;
