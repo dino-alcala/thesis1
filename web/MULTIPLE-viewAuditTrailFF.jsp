@@ -242,19 +242,19 @@
                                 </tr>
 
                                 <%
-                                        double count = 0;
-                                        for (int i = 0; i < FF.getExpenses().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=FF.getExpenses().get(i).getItem()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
-                                        <td><%=FF.getExpenses().get(i).getQuantity()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
-                                    </tr>
-                                    <%
-                                            count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
-                                        }
-                                    %>
+                                    double count = 0;
+                                    for (int i = 0; i < FF.getExpenses().size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=FF.getExpenses().get(i).getItem()%></td>
+                                    <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
+                                    <td><%=FF.getExpenses().get(i).getQuantity()%></td>
+                                    <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
+                                </tr>
+                                <%
+                                        count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
+                                    }
+                                %>
 
                                 <tr>
                                     <td></td>
@@ -270,12 +270,34 @@
                                     <h4>Source of Funds: </h4>
                                 </div>
                                 <div class="card-body">   
-                                    <p><%=FF.getSourceOfFunds() %></p>
+                                    <p><%=FF.getSourceOfFunds()%></p>
                                 </div>
                             </div>
                             <br/>
 
-                            <center><button class='btn-info' type="submit" name="viewAttendees" value="">Attendees List</button></center><br>
+                            <fieldset>
+                                
+                                <center><p><b>Attendees List</b></p></center>
+                                <br/>
+                                <center><table style = "width:100%" id = "SEchecklist">
+                                        <tr>
+                                            <th style="width:50%">Name</th>
+                                            <th>Email</th>
+                                        </tr>
+                                        <%
+                                            for (int i = 0; i < FF.getAttendees().size(); i++) {
+                                        %>
+                                        <tr>
+                                            <td><%=FF.getAttendees().get(i).getName()%></td>
+                                            <td><%=FF.getAttendees().get(i).getEmail()%></td>
+                                        </tr>
+
+                                        <%
+                                            }
+                                        %>
+                                    </table></center>
+                                <br>
+                            </fieldset>
 
                         </div>
 

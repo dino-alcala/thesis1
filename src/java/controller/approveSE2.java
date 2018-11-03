@@ -42,6 +42,14 @@ public class approveSE2 extends HttpServlet {
 
             HttpSession session = request.getSession();
 
+            if (request.getParameter("auditSE") != null) {
+
+                session.setAttribute("auditSE", request.getParameter("auditSE"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailSE.jsp");
+                dispatcher.forward(request, response);
+            }
+            
             if (request.getParameter("approve") != null) {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {

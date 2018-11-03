@@ -42,6 +42,14 @@ public class approveSE3 extends HttpServlet {
 
             HttpSession session = request.getSession();
 
+            if (request.getParameter("auditSE") != null) {
+
+                session.setAttribute("auditSE", request.getParameter("auditSE"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailSE.jsp");
+                dispatcher.forward(request, response);
+            }
+            
             if (request.getParameter("approve") != null) {
 
                 if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {

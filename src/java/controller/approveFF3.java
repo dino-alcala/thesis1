@@ -41,6 +41,14 @@ public class approveFF3 extends HttpServlet {
 
             HttpSession session = request.getSession();
 
+            if (request.getParameter("auditFF") != null) {
+
+                session.setAttribute("auditFF", request.getParameter("auditFF"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailFF.jsp");
+                dispatcher.forward(request, response);
+            }
+
             if (request.getParameter("viewAttendees") != null) {
                 request.setAttribute("ffID", request.getParameter("viewAttendees"));
 
@@ -139,7 +147,7 @@ public class approveFF3 extends HttpServlet {
 
                 request.setAttribute("rejectFF1", "You have successfully voted REJECT for the FF Proposal!");
             }
-*/
+             */
             if (UserDAO.hasFFEveryoneVoted(Integer.parseInt(request.getParameter("ffID")))) {
 
                 if (UserDAO.FFtallyVote(Integer.parseInt(request.getParameter("ffID"))).equals("approve")) {
@@ -189,7 +197,7 @@ public class approveFF3 extends HttpServlet {
                     n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
                     UserDAO.AddNotification(n2);
                 }
-                */
+                 */
             }
 
             ServletContext context = getServletContext();

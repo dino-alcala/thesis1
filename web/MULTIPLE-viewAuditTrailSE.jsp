@@ -328,7 +328,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Breakdown of Expenses (Requested: ₱</h4>
+                                    <h4>Breakdown of Expenses (Requested: ₱<%=SE.getTotalAmount()%>)</h4>
                                 </div>
                             </div>
                             <table style="width:100%">

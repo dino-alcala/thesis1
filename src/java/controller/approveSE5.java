@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,7 +41,16 @@ public class approveSE5 extends HttpServlet {
         response.setContentType("image/jpg");
 
         UserDAO UserDAO = new UserDAO();
+        HttpSession session = request.getSession();
+        
+        if (request.getParameter("auditSE") != null) {
 
+                session.setAttribute("auditSE", request.getParameter("auditSE"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailSE.jsp");
+                dispatcher.forward(request, response);
+            }
+        
         if (request.getParameter("prs") != null) {
             OutputStream o = response.getOutputStream();
             o.write(UserDAO.viewPRS(Integer.parseInt(request.getParameter("prs"))));

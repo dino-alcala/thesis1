@@ -35,7 +35,7 @@ CREATE TABLE `budget` (
   PRIMARY KEY (`id`),
   KEY `LA17_idx` (`seID`),
   KEY `LA18_idx` (`ffID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `budget` (
 
 LOCK TABLES `budget` WRITE;
 /*!40000 ALTER TABLE `budget` DISABLE KEYS */;
-INSERT INTO `budget` VALUES (1,'2018-10-19',0,5000,-5000,1,0),(2,'2018-10-19',-5000,321313,-326313,7,0),(3,'2018-10-19',-326313,32,-326345,15,0),(4,'2018-10-20',-326345,13,-326358,22,0),(5,'2018-10-20',-326358,4,-326362,13,0),(6,'2018-10-21',-326362,2,-326364,0,5),(7,'2018-10-21',-326364,23,-326387,0,6),(8,'2018-10-23',-326387,234,-326621,0,8),(9,'2018-10-23',-326621,32,-326653,25,0),(10,'2018-10-24',-326653,24,-326677,0,15),(11,'2018-10-27',-326677,30000,-356677,29,0),(12,'2018-11-03',-356677,700,-357377,42,0);
+INSERT INTO `budget` VALUES (1,'2018-10-19',0,5000,-5000,1,0),(2,'2018-10-19',-5000,321313,-326313,7,0),(3,'2018-10-19',-326313,32,-326345,15,0),(4,'2018-10-20',-326345,13,-326358,22,0),(5,'2018-10-20',-326358,4,-326362,13,0),(6,'2018-10-21',-326362,2,-326364,0,5),(7,'2018-10-21',-326364,23,-326387,0,6),(8,'2018-10-23',-326387,234,-326621,0,8),(9,'2018-10-23',-326621,32,-326653,25,0),(10,'2018-10-24',-326653,24,-326677,0,15),(11,'2018-10-27',-326677,30000,-356677,29,0),(12,'2018-11-03',-356677,700,-357377,42,0),(13,'2018-11-04',-357377,5000,-362377,0,17);
 /*!40000 ALTER TABLE `budget` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,8 +210,9 @@ CREATE TABLE `ffproposal` (
   `unitheadremarks` varchar(100) DEFAULT NULL,
   `directorremarks` varchar(100) DEFAULT NULL,
   `unittype` varchar(45) DEFAULT NULL,
+  `datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +239,7 @@ CREATE TABLE `ffproposal_attendees` (
   PRIMARY KEY (`id`),
   KEY `LA16_idx` (`ffproposalID`),
   CONSTRAINT `LA16` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,7 +269,7 @@ CREATE TABLE `ffproposal_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA15_idx` (`ffproposalID`),
   CONSTRAINT `LA15` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,6 +279,139 @@ CREATE TABLE `ffproposal_expenses` (
 LOCK TABLES `ffproposal_expenses` WRITE;
 /*!40000 ALTER TABLE `ffproposal_expenses` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ffproposal_expenses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ffproposal_revisions`
+--
+
+DROP TABLE IF EXISTS `ffproposal_revisions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ffproposal_revisions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ffproposalID` int(11) DEFAULT NULL,
+  `unit` varchar(200) DEFAULT NULL,
+  `department` varchar(200) DEFAULT NULL,
+  `datecreated` date DEFAULT NULL,
+  `programHead` varchar(200) DEFAULT NULL,
+  `activityClassification` varchar(200) DEFAULT NULL,
+  `targetKRA` int(11) DEFAULT NULL,
+  `targetGoal` int(11) DEFAULT NULL,
+  `targetMeasure` int(11) DEFAULT NULL,
+  `projectName` varchar(500) DEFAULT NULL,
+  `venue` varchar(200) DEFAULT NULL,
+  `speaker` varchar(200) DEFAULT NULL,
+  `objectives` varchar(500) DEFAULT NULL,
+  `actualImplementation` date DEFAULT NULL,
+  `totalAmount` double DEFAULT NULL,
+  `sourceOfFunds` varchar(200) DEFAULT NULL,
+  `step` int(11) DEFAULT NULL,
+  `chairdirectorRemarks` varchar(500) DEFAULT NULL,
+  `vplmRemarks` varchar(500) DEFAULT NULL,
+  `deanunitRemarks` varchar(500) DEFAULT NULL,
+  `assistantdeanRemarks` varchar(500) DEFAULT NULL,
+  `ovplm1Remarks` varchar(500) DEFAULT NULL,
+  `ovplm2Remarks` varchar(500) DEFAULT NULL,
+  `lspoRemarks` varchar(500) DEFAULT NULL,
+  `lmc1` int(11) DEFAULT NULL,
+  `lmc2` int(11) DEFAULT NULL,
+  `lmc3` int(11) DEFAULT NULL,
+  `lmc4` int(11) DEFAULT NULL,
+  `lmc5` int(11) DEFAULT NULL,
+  `hasVoted1` int(11) DEFAULT NULL,
+  `hasVoted2` int(11) DEFAULT NULL,
+  `hasVoted3` int(11) DEFAULT NULL,
+  `hasVoted4` int(11) DEFAULT NULL,
+  `hasVoted5` int(11) DEFAULT NULL,
+  `lmcApprovalCount` int(11) DEFAULT NULL,
+  `lmcReviseCount` int(11) DEFAULT NULL,
+  `lmcRejectCount` int(11) DEFAULT NULL,
+  `isRevise` int(11) DEFAULT NULL,
+  `userID` int(11) DEFAULT NULL,
+  `lmc1Remarks` varchar(500) DEFAULT NULL,
+  `lmc2Remarks` varchar(500) DEFAULT NULL,
+  `lmc3Remarks` varchar(500) DEFAULT NULL,
+  `lmc4Remarks` varchar(500) DEFAULT NULL,
+  `lmc5Remarks` varchar(500) DEFAULT NULL,
+  `prs` longblob,
+  `code` varchar(45) DEFAULT NULL,
+  `unitheadremarks` varchar(100) DEFAULT NULL,
+  `directorremarks` varchar(100) DEFAULT NULL,
+  `unittype` varchar(45) DEFAULT NULL,
+  `datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `LA46_idx` (`ffproposalID`),
+  CONSTRAINT `LA46` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ffproposal_revisions`
+--
+
+LOCK TABLES `ffproposal_revisions` WRITE;
+/*!40000 ALTER TABLE `ffproposal_revisions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ffproposal_revisions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ffproposal_revisions_attendees`
+--
+
+DROP TABLE IF EXISTS `ffproposal_revisions_attendees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ffproposal_revisions_attendees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `ffproposalID` int(11) DEFAULT NULL,
+  `revisionID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `LA47_idx` (`ffproposalID`),
+  CONSTRAINT `LA49` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal_revisions` (`ffproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ffproposal_revisions_attendees`
+--
+
+LOCK TABLES `ffproposal_revisions_attendees` WRITE;
+/*!40000 ALTER TABLE `ffproposal_revisions_attendees` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ffproposal_revisions_attendees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ffproposal_revisions_expenses`
+--
+
+DROP TABLE IF EXISTS `ffproposal_revisions_expenses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ffproposal_revisions_expenses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item` varchar(200) DEFAULT NULL,
+  `unitcost` double DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `amountUsed` double DEFAULT NULL,
+  `ffproposalID` int(11) DEFAULT NULL,
+  `subtotal` double DEFAULT NULL,
+  `revisionID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `LA50_idx` (`ffproposalID`),
+  CONSTRAINT `LA50` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal_revisions` (`ffproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ffproposal_revisions_expenses`
+--
+
+LOCK TABLES `ffproposal_revisions_expenses` WRITE;
+/*!40000 ALTER TABLE `ffproposal_revisions_expenses` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ffproposal_revisions_expenses` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -295,7 +429,6 @@ CREATE TABLE `ffreport` (
   `targetGoal` varchar(5000) DEFAULT NULL,
   `targetMeasure` varchar(500) DEFAULT NULL,
   `projectProponent` varchar(500) DEFAULT NULL,
-  `personResponsible` varchar(500) DEFAULT NULL,
   `facilitatorName` varchar(500) DEFAULT NULL,
   `amountReceivedOVPLM` double DEFAULT NULL,
   `significanceProject` varchar(1000) DEFAULT NULL,
@@ -313,6 +446,8 @@ CREATE TABLE `ffreport` (
   `directhired` int(11) DEFAULT NULL,
   `independent` int(11) DEFAULT NULL,
   `external` int(11) DEFAULT NULL,
+  `venue` varchar(100) DEFAULT NULL,
+  `implementationdate` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA22_idx` (`ffproposalID`),
   CONSTRAINT `LA22` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -550,7 +685,7 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`id`),
   KEY `LA14_idx` (`userID`),
   CONSTRAINT `LA14` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=709 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=812 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -578,7 +713,7 @@ CREATE TABLE `se_measures` (
   KEY `LA71_idx` (`measureID`),
   CONSTRAINT `LA70` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA71` FOREIGN KEY (`measureID`) REFERENCES `measure` (`measureID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -735,10 +870,11 @@ CREATE TABLE `seproposal` (
   `sedirectorremarks` varchar(100) DEFAULT NULL,
   `vpvcremarks` varchar(100) DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
+  `addressimplementation` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA9_idx` (`userID`),
   CONSTRAINT `LA9` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -764,7 +900,7 @@ CREATE TABLE `seproposal_component` (
   PRIMARY KEY (`id`),
   KEY `LA10_idx` (`seproposalID`),
   CONSTRAINT `LA10` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -794,7 +930,7 @@ CREATE TABLE `seproposal_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA12_idx` (`seproposalID`),
   CONSTRAINT `LA12` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -821,7 +957,7 @@ CREATE TABLE `seproposal_personresponsible` (
   PRIMARY KEY (`id`),
   KEY `LA13_idx` (`seproposalID`),
   CONSTRAINT `LA13` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -921,7 +1057,7 @@ CREATE TABLE `seproposal_revisions` (
   PRIMARY KEY (`id`),
   KEY `LA40_idx` (`seproposalID`),
   CONSTRAINT `LA40` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -948,7 +1084,7 @@ CREATE TABLE `seproposal_revisions_component` (
   PRIMARY KEY (`id`),
   KEY `LA45_idx` (`seproposalID`),
   CONSTRAINT `LA45` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -979,7 +1115,7 @@ CREATE TABLE `seproposal_revisions_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA44_idx` (`seproposalID`),
   CONSTRAINT `LA44` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1008,7 +1144,7 @@ CREATE TABLE `seproposal_revisions_measures` (
   KEY `LA43_idx` (`measureID`),
   CONSTRAINT `LA42` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA43` FOREIGN KEY (`measureID`) REFERENCES `measure` (`measureID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1036,7 +1172,7 @@ CREATE TABLE `seproposal_revisions_personresponsible` (
   PRIMARY KEY (`id`),
   KEY `LA46_idx` (`seproposalID`),
   CONSTRAINT `LA47` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1067,7 +1203,7 @@ CREATE TABLE `seproposal_revisions_workplan` (
   PRIMARY KEY (`id`),
   KEY `LA41_idx` (`seproposalID`),
   CONSTRAINT `LA41` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1097,7 +1233,7 @@ CREATE TABLE `seproposal_workplan` (
   PRIMARY KEY (`id`),
   KEY `LA11_idx` (`seproposalID`),
   CONSTRAINT `LA11` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1124,7 +1260,6 @@ CREATE TABLE `sereport` (
   `targetGoal` varchar(500) DEFAULT NULL,
   `targetMeasure` varchar(500) DEFAULT NULL,
   `projectProponent` varchar(500) DEFAULT NULL,
-  `personResponsible` varchar(500) DEFAULT NULL,
   `numberOfBeneficiaries` int(11) DEFAULT NULL,
   `projectBeneficiaries` varchar(500) DEFAULT NULL,
   `addressBeneficiaries` varchar(500) DEFAULT NULL,
@@ -1150,6 +1285,7 @@ CREATE TABLE `sereport` (
   `directhired` int(11) DEFAULT NULL,
   `independent` int(11) DEFAULT NULL,
   `external` int(11) DEFAULT NULL,
+  `implementationdate` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA17_idx` (`seproposalID`),
   CONSTRAINT `LA17` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -1352,4 +1488,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-03 21:04:12
+-- Dump completed on 2018-11-04  1:32:16

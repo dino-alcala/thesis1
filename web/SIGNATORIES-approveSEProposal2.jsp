@@ -586,9 +586,19 @@
                                     </tr>
                                 </table>
                                 <br/>
-                                <center><button type ="submit" name="approve" value="<%=SE.getId()%>" class="btn-success">Approve</button>
+                                <center>
+
+                                    <br/>
+                                    <button type ="submit" name="approve" value="<%=SE.getId()%>" class="btn-success">Approve</button>
                                     <button type = "submit" class="btn-warning" name="revise" value="<%=SE.getId()%>">Revise</button>
                                     <button type = "submit" class="btn-danger" style='background-color:red; border-color:red;' name="reject" value="<%=SE.getId()%>">Reject</button></center><br>
+                                <%
+                                    if(UserDAO.hasRevisionsAuditSE(Integer.parseInt(request.getAttribute("seID").toString()))){
+                                %>
+                                    <center><button class="btn-success" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button><br></center>  
+                                    <%
+                                        }   
+                                        %>
                             </div>
 
                         </div>

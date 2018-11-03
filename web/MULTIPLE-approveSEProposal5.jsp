@@ -559,6 +559,14 @@
                                 <center><button type="submit" name="prs" value="<%=SE.getId()%>">View PRS</button></center>
                                 <br>
                                 <center><button class="btn-success" name="approve" value="<%=SE.getId()%>">Approve</button><br></center>
+                                <br/>
+                                <%
+                                    if(UserDAO.hasRevisionsAuditSE(Integer.parseInt(request.getAttribute("seID").toString()))){
+                                %>
+                                    <center><button class="btn-success" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button><br></center>  
+                                    <%
+                                        }   
+                                        %>
                             </div>
 
                         </div>

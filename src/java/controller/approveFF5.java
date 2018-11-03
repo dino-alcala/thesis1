@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,6 +41,15 @@ public class approveFF5 extends HttpServlet {
         response.setContentType("image/jpg");
 
         UserDAO UserDAO = new UserDAO();
+        HttpSession session = request.getSession();
+
+        if (request.getParameter("auditFF") != null) {
+
+            session.setAttribute("auditFF", request.getParameter("auditFF"));
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailFF.jsp");
+            dispatcher.forward(request, response);
+        }
 
         if (request.getParameter("prs") != null) {
             OutputStream o = response.getOutputStream();

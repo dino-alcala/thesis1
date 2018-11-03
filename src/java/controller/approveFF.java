@@ -42,6 +42,14 @@ public class approveFF extends HttpServlet {
 
             UserDAO UserDAO = new UserDAO();
 
+            if (request.getParameter("auditFF") != null) {
+
+                session.setAttribute("auditFF", request.getParameter("auditFF"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailFF.jsp");
+                dispatcher.forward(request, response);
+            }
+
             if (request.getParameter("viewAttendees") != null) {
                 request.setAttribute("ffID", request.getParameter("viewAttendees"));
 
@@ -61,7 +69,7 @@ public class approveFF extends HttpServlet {
                     UserDAO.updateStepFF(3, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
                     UserDAO.updateStepFF(3, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateUnitHeadRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
@@ -71,7 +79,7 @@ public class approveFF extends HttpServlet {
                     UserDAO.updateStepFF(4, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                     UserDAO.updateStepFF(4, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
@@ -87,18 +95,18 @@ public class approveFF extends HttpServlet {
                 n.setDt(sdf.format(dt));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
-                    if(UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()).equals("Academic")){
+                    if (UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()).equals("Academic")) {
                         n.setUserID(UserDAO.getUserIDforNotifsChairperson(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())), UserDAO.getDepartmentIDByName(UserDAO.getDepartmentByffID(Integer.parseInt(request.getParameter("approve"))))));
-                    } else if(UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()).equals("Non-Academic")){
+                    } else if (UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()).equals("Non-Academic")) {
                         n.setUserID(UserDAO.getUserIDforNotifsUnitHead(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                     }
-                    
+
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
                     n.setUserID(UserDAO.getUserIDforNotifsDean(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
                     n.setUserID(UserDAO.getUserIDforNotifsDirector(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
                 }
@@ -106,7 +114,7 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n.setUserID(UserDAO.getUserIDforNotifsJames());
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                     n.setUserID(UserDAO.getUserIDforNotifsJames());
                 }
@@ -123,7 +131,7 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
                     n2.setBody("Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.");
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
                     n2.setBody("Your proposal has been approved by the Unit Head! It will now be taken to the Director.");
                 }
@@ -131,7 +139,7 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n2.setBody("Your proposal has been approved by the Dean! It will now be taken to Sir James.");
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                     n2.setBody("Your proposal has been approved by the Dean! It will now be taken to the LSPO.");
                 }
@@ -181,7 +189,7 @@ public class approveFF extends HttpServlet {
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateUnitHeadRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
@@ -205,7 +213,7 @@ public class approveFF extends HttpServlet {
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
@@ -258,7 +266,7 @@ public class approveFF extends HttpServlet {
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
                     UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Unit Head. Reason: " + request.getParameter("remarks1"));
@@ -280,7 +288,7 @@ public class approveFF extends HttpServlet {
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
                 }
-                
+
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                     UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Director. Reason: " + request.getParameter("remarks1"));
@@ -302,7 +310,7 @@ public class approveFF extends HttpServlet {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home.jsp");
                     dispatcher.forward(request, response);
                 }
-                
+
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
                 dispatcher.forward(request, response);

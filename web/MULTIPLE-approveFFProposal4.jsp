@@ -328,16 +328,6 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Targets</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p><b>Community: </b><%=UserDAO.getCommunitynameByID(FF.getTargetCommunity())%></p>
-                                    </div>  
-                                </div>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
                                         <h4>Objectives of the Project</h4>
                                     </div>
                                     <div class="card-body">   
@@ -481,8 +471,17 @@
                                 </table>
                                 <br/>
                                 <input type="hidden" name="ffID" value="<%=FF.getId()%>">
+                                
                                 <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center><br>
                                 <center><button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center>
+                                <br/>
+                                <%
+                                    if(UserDAO.hasRevisionsAuditFF(Integer.parseInt(request.getAttribute("ffID").toString()))){
+                                %>
+                                    <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
+                                    <%
+                                        }   
+                                        %>
 
                             </div>
 

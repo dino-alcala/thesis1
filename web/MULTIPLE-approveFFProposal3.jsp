@@ -321,15 +321,6 @@
                                         </span>
                                     </li>
                                 </ul>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Targets</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p><b>Community: </b><%=UserDAO.getCommunitynameByID(FF.getTargetCommunity())%></p>
-                                    </div>  
-                                </div>
                                 <br/>
 
                                 <div class="card">
@@ -399,6 +390,13 @@
                                 <center><button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
                                     <button class="btn-warning" type="submit" name="revise" value="<%=FF.getId()%>">Revise</button>
                                     <button class="btn-danger" tyep="submit" name="reject" value="<%=FF.getId()%>" style='background-color:red; border-color:red'>Reject</button></center><br>
+                                                                    <%
+                                    if(UserDAO.hasRevisionsAuditFF(Integer.parseInt(request.getAttribute("ffID").toString()))){
+                                %>
+                                    <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
+                                    <%
+                                        }   
+                                        %>
                             </div>
 
                         </div>
