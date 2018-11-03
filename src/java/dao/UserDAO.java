@@ -2781,11 +2781,8 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-<<<<<<< HEAD
-            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, targetKRA, targetGoal, targetMeasure, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype, datetime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-=======
-            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
->>>>>>> 7b1e948e3ece31b77b8d00da19933b7050f6ae08
+
+            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype, datetime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             
             java.util.Date dt = new java.util.Date();
@@ -2796,22 +2793,6 @@ public class UserDAO {
             pstmt.setDate(3, FF.getDatecreated());
             pstmt.setString(4, FF.getProgramHead());
             pstmt.setString(5, FF.getActivityClassification());
-<<<<<<< HEAD
-            pstmt.setInt(6, FF.getTargetKRA());
-            pstmt.setInt(7, FF.getTargetGoal());
-            pstmt.setInt(8, FF.getTargetMeasure());
-            pstmt.setString(9, FF.getProjectName());
-            pstmt.setString(10, FF.getVenue());
-            pstmt.setString(11, FF.getSpeaker());
-            pstmt.setString(12, FF.getObjectives());
-            pstmt.setDouble(13, FF.getTotalAmount());
-            pstmt.setString(14, FF.getSourceOfFunds());
-            pstmt.setInt(15, FF.getStep());
-            pstmt.setInt(16, FF.getUserID());
-            pstmt.setDate(17, FF.getActualDate());
-            pstmt.setString(18, FF.getUnittype());
-            pstmt.setString(19, sdf.format(dt));
-=======
             pstmt.setString(6, FF.getProjectName());
             pstmt.setString(7, FF.getVenue());
             pstmt.setString(8, FF.getSpeaker());
@@ -2822,7 +2803,7 @@ public class UserDAO {
             pstmt.setInt(13, FF.getUserID());
             pstmt.setDate(14, FF.getActualDate());
             pstmt.setString(15, FF.getUnittype());
->>>>>>> 7b1e948e3ece31b77b8d00da19933b7050f6ae08
+            pstmt.setString(16, sdf.format(dt));
 
             int rs = pstmt.executeUpdate();
 
@@ -4495,9 +4476,6 @@ public class UserDAO {
                 FF.setProjectName(rs2.getString("projectName"));
                 FF.setProgramHead(rs2.getString("programHead"));
                 FF.setActivityClassification(rs2.getString("activityClassification"));
-                FF.setTargetKRA(rs2.getInt("targetKRA"));
-                FF.setTargetGoal(rs2.getInt("targetGoal"));
-                FF.setTargetMeasure(rs2.getInt("targetMeasure"));
                 FF.setActualDate(rs2.getDate("actualImplementation"));
                 FF.setTotalAmount(rs2.getDouble("totalAmount"));
                 FF.setStep(rs2.getInt("step"));
