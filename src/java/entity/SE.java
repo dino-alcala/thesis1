@@ -71,6 +71,7 @@ public class SE {
     protected String sourceOfFunds;
     protected String classificationforKRA;
     protected String unittype;
+    protected String revisionTime;
 
     public int getId() {
         return id;
@@ -529,8 +530,13 @@ public class SE {
     public void setVpVcRemarks(String vpVcRemarks) {
         this.vpVcRemarks = vpVcRemarks;
     }
-    
-    
-    
+
+    public String getRevisionTime() {
+        return revisionTime;
+    }
+
+    public void setRevisionTime(String revisionTime) {
+        this.revisionTime = revisionTime;
+    }
     
 }

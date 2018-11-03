@@ -174,283 +174,335 @@
 
     <body>
 
-            <!-- MAIN -->
+        <!-- MAIN -->
 
-            <div class="col py-3">
-                <form action="approveSE4" method="post" enctype="multipart/form-data">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12">
+        <%
+            UserDAO UserDAO = new UserDAO();
+            SE SE = new SE();
 
-                                <!-- sidebar-container END -->
-                                <div class="panel panel-success ">
+            SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("auditSE").toString()));
+            
+            if(request.getAttribute("current")==null){
+                SE = UserDAO.retrieveSERevisionBySEID(Integer.parseInt(request.getAttribute("auditSE").toString()));
+            }
 
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3>Program Name</h3>
-                                            <p><b>Unit: </b></p>
-                                            <p><b>Department: </b></p>
-                                            <p><b>Actual Date of Implementation: </b></p>
-                                            <br>
-                                            <p><b>Program Head: </b></p>
-                                            <p><b>Program Classification: </b></p>
-                                            <p><b>Total Amount Requested:</b></p>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                
-                                <br/><br/>
+        %>
+
+        <div class="col py-3">
+            <form action="approveSE4" method="post" enctype="multipart/form-data">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <!-- sidebar-container END -->
+                            <div class="panel panel-success ">
 
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h4>Targets</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p><b>KRA:</b></p><br>
-                                        <p><b>Goal:</b></p><br>
-                                        <p><b>Measure/s:</b> 
- 
-                                        <p></p>
-
-                                            <br>
-                                        <p><br><b>Community: </b></p>
-                                    </div>  
-                                </div>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Social/Community Problem being Addressed</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Social Engagement Partner(s)/Beneficiaries</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p>Name of Partner:</p>
-                                        <p>Address: </p>
-                                        <p>Contact Person: </p>
-                                        <p>Mobile Number: </p>
-                                        <p>Email: <br>
-                                        <p>Brief Description of Partner: </p>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Measurable Outcomes/Objectives of the Project</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Sustainability Component</h4>
-                                    </div>
                                     <div class="card-body">
+                                        <h3><%=SE.getName()%></h3>
+                                        <p><b>Unit: </b><%=SE.getUnit()%></p>
+                                        <p><b>Department: </b><%=SE.getDepartment()%></p>
+                                        <p><b>Actual Date of Implementation: </b><%=SE.getActualDate()%></p>
+                                        <br>
+                                        <p><b>Program Head: </b><%=SE.getProgramHead()%></p>
+                                        <p><b>Program Classification: </b><%=SE.getActivityClassification()%></p>
+                                        <p><b>Total Amount Requested:</b> ₱<%=SE.getTotalAmount()%></p>
                                     </div>
                                 </div>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Work Plan</h4>
-                                    </div>
-                                </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Activity</th> 
-                                        <th>Time Start</th>
-                                        <th>Time End</th>
-                                        <th>Venue</th>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-
-
-                                </table>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Breakdown of Expenses (Requested: ₱</h4>
-                                    </div>
-                                </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Unit Cost</th> 
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Grand Total: </td>
-                                    </tr>
-                                </table>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Expected Participants vs. Total Population of the Unit</h4>
-                                    </div>
-                                </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Sector</th>
-                                        <th>Total Population</th>
-                                        <th>Expected Number of Participants</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Academic Staff from Unit</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Support Staff from Unit</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Undergraduate Students</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Graduate Students</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Persons Responsible</h4>
-                                    </div>
-                                </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-
-                                </table>
-                                <br/>
-                                
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Source of Funds: </h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <br/>
 
                             </div>
+
+                            <br/><br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Targets</h4>
+                                </div>
+                                <div class="card-body">   
+                                    <p><b>KRA:</b> <%=UserDAO.getKRAnameByID(SE.getTargetKRA())%></p><br>
+                                    <p><b>Goal:</b> <%=UserDAO.getGoalnameByID(SE.getTargetGoal())%></p><br>
+                                    <p><b>Measure/s:</b> 
+                                        <%
+                                            ArrayList<Integer> measures = new ArrayList();
+                                            measures = UserDAO.GetMeasures(SE.getId());
+                                            if(request.getAttribute("current")==null){
+                                                measures = UserDAO.GetRevisionsMeasures(SE.getId());
+                                            }
+
+                                            for (int x = 0; x < measures.size(); x++) {
+                                        %>    
+                                    <p><%=UserDAO.GetMeasureObject(measures.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measures.get(x)).getDescription()%></p>
+
+                                    <%
+                                        }
+                                    %>
+                                    <br>
+                                    <p><br><b>Community: </b> <%=UserDAO.getCommunitynameByID(SE.getTargetCommunity())%></p>
+                                </div>  
+                            </div>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Social/Community Problem being Addressed</h4>
+                                </div>
+                                <div class="card-body">   
+                                    <p><%=SE.getSocialCommunityProblem()%></p>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Social Engagement Partner(s)/Beneficiaries</h4>
+                                </div>
+                                <div class="card-body">   
+                                    <p>Name of Partner: <%=SE.getNameSEbeneficiaries()%></p>
+                                    <p>Address: <%=SE.getAddressSEbeneficiaries()%></p>
+                                    <p>Contact Person: <%=SE.getContactPersonSEbeneficiaries()%></p>
+                                    <p>Mobile Number: <%=SE.getMobileSEbeneficiaries()%></p>
+                                    <p>Email: <%=SE.getEmailSEbeneficiaries()%></p><br>
+                                    <p>Brief Description of Partner: <%=SE.getDescriptionSEbeneficiaries()%></p>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Measurable Outcomes/Objectives of the Project</h4>
+                                </div>
+                                <div class="card-body">   
+                                    <p><%=SE.getObjectives()%></p>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Sustainability Component</h4>
+                                </div>
+                                <div class="card-body">
+                                    <%
+                                        for (int i = 0; i < SE.getComponent().size(); i++) {
+                                    %>
+                                    <p><%=SE.getComponent().get(i)%></p>
+
+                                    <%
+                                        }
+                                    %>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Work Plan</h4>
+                                </div>
+                            </div>
+                            <table style="width:100%">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Activity</th> 
+                                    <th>Time Start</th>
+                                    <th>Time End</th>
+                                    <th>Venue</th>
+                                </tr>
+                                <%
+                                    for (int i = 0; i < SE.getWorkplan().size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=SE.getWorkplan().get(i).getDate()%></td>
+                                    <td><%=SE.getWorkplan().get(i).getActivity()%></td>
+                                    <td><%=SE.getWorkplan().get(i).getTimestarttimeend()%></td>
+                                    <td><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></td>
+                                    <td><%=SE.getWorkplan().get(i).getVenue()%></td>
+                                </tr>
+
+                                <%
+                                    }
+                                %>
+
+                            </table>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Breakdown of Expenses (Requested: ₱</h4>
+                                </div>
+                            </div>
+                            <table style="width:100%">
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Unit Cost</th> 
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                                <%
+                                    double count = 0;
+                                    for (int i = 0; i < SE.getExpenses().size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=SE.getExpenses().get(i).getItem()%></td>
+                                    <td><%=SE.getExpenses().get(i).getUnitcost()%></td>
+                                    <td><%=SE.getExpenses().get(i).getQuantity()%></td>
+                                    <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
+                                </tr>
+                                <%
+                                        count += SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity();
+                                    }
+                                %>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Grand Total: <%=count%></td>
+                                </tr>
+                            </table>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Expected Participants vs. Total Population of the Unit</h4>
+                                </div>
+                            </div>
+                            <table style="width:100%">
+                                <tr>
+                                    <th>Sector</th>
+                                    <th>Total Population</th>
+                                    <th>Expected Number of Participants</th>
+                                </tr>
+                                <tr>
+                                    <td>Academic Staff from Unit</td>
+                                    <td><%=SE.getTotalpopulationAcademicStaff()%></td>
+                                    <td><%=SE.getExpectedAcademicStaff()%></td>
+                                </tr>
+                                <tr>
+                                    <td>Support Staff from Unit</td>
+                                    <td><%=SE.getTotalpopulationSupportStaff()%></td>
+                                    <td><%=SE.getExpectedSupportStaff()%></td>
+                                </tr>
+                                <tr>
+                                    <td>Undergraduate Students</td>
+                                    <td><%=SE.getTotalpopulationUndergraduate()%></td>
+                                    <td><%=SE.getExpectedUndergraduate()%></td>
+                                </tr>
+                                <tr>
+                                    <td>Graduate Students</td>
+                                    <td><%=SE.getTotalPopulationGraduate()%></td>
+                                    <td><%=SE.getExpectedGraduate()%></td>
+                                </tr>
+                            </table>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Persons Responsible</h4>
+                                </div>
+                            </div>
+                            <table style="width:100%">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                </tr>
+                                <%
+                                    for (int i = 0; i < SE.getResponsible().size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=SE.getResponsible().get(i).getName()%></td>
+                                    <td><%=SE.getResponsible().get(i).getEmail()%></td>
+                                </tr>
+
+                                <%
+                                    }
+                                %>
+                            </table>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Source of Funds: </h4>
+                                </div>
+                                <div class="card-body">   
+                                    <p><%=SE.getSourceOfFunds()%></p>
+                                </div>
+                            </div>
+                            <br/>
 
                         </div>
 
                     </div>
-                </form>
-            </div>
 
-            <script>
-                // sandbox disable popups
-                if (window.self !== window.top && window.name != "view1") {
-                    ;
-                    window.alert = function () {/*disable alert*/
-                    };
-                    window.confirm = function () {/*disable confirm*/
-                    };
-                    window.prompt = function () {/*disable prompt*/
-                    };
-                    window.open = function () {/*disable open*/
-                    };
-                }
+                </div>
+            </form>
+        </div>
 
-                // prevent href=# click jump
-                document.addEventListener("DOMContentLoaded", function () {
-                    var links = document.getElementsByTagName("A");
-                    for (var i = 0; i < links.length; i++) {
-                        if (links[i].href.indexOf('#') != -1) {
-                            links[i].addEventListener("click", function (e) {
-                                console.debug("prevent href=# click");
-                                if (this.hash) {
-                                    if (this.hash == "#") {
-                                        e.preventDefault();
-                                        return false;
-                                    } else {
-                                        /*
-                                         var el = document.getElementById(this.hash.replace(/#/, ""));
-                                         if (el) {
-                                         el.scrollIntoView(true);
-                                         }
-                                         */
-                                    }
+        <script>
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
+
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
                                 }
-                                return false;
-                            })
-                        }
+                            }
+                            return false;
+                        })
                     }
-                }, false);
-            </script>
-            <script>
-                // Hide submenus
-                $('#body-row .collapse').collapse('hide');
-                // Collapse/Expand icon
-                $('#collapse-icon').addClass('fa-angle-double-left');
-                // Collapse click
-                $('[data-toggle=sidebar-colapse]').click(function () {
-                    SidebarCollapse();
-                });
-                function SidebarCollapse() {
-                    $('.menu-collapsed').toggleClass('d-none');
-                    $('.sidebar-submenu').toggleClass('d-none');
-                    $('.submenu-icon').toggleClass('d-none');
-                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                    // Treating d-flex/d-none on separators with title
-                    var SeparatorTitle = $('.sidebar-separator-title');
-                    if (SeparatorTitle.hasClass('d-flex')) {
-                        SeparatorTitle.removeClass('d-flex');
-                    } else {
-                        SeparatorTitle.addClass('d-flex');
-                    }
-
-                    // Collapse/Expand icon
-                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
                 }
-            </script>
+            }, false);
+        </script>
+        <script>
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
+
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
+        </script>
     </body>
 </html>

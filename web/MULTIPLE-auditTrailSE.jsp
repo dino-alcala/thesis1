@@ -336,7 +336,7 @@
 
 
                 <iframe src="MULTIPLE-auditTrailListSE.jsp" style="height:100%;width:50%" align="left"></iframe>
-                <iframe src="MULTIPLE-viewAuditTrailSE.jsp" style="height:100%;width:50%" align="right"></iframe>
+                <iframe src="MULTIPLE-auditTrailListSE.jsp" style="height:100%;width:50%" align="right"></iframe>
 
             
         </div>
