@@ -15,11 +15,18 @@ import java.sql.Connection;
 public abstract class DBConnectionFactory {
     private String driverName = "com.mysql.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/thsis01";
+<<<<<<< HEAD
 
     private String username = "root";
     private String password = "#oraytrocknrollwooh3";
     
+=======
     
+    private String username = "la";
+    private String password = "1234";
+>>>>>>> 475539f1a52aad33b07560b66fda3aaeb22de839
+    
+
     public static DBConnectionFactory getInstance() {
         return new DBConnectionFactoryImpl();
     }
