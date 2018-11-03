@@ -512,7 +512,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isUnitHead(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -551,7 +551,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isDirector(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -710,7 +710,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean isVpVc(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -725,9 +725,9 @@ public class UserDAO {
 
             rs = ps.executeQuery();
             boolean y = false;
-            
-            while (rs.next()) {                
-                if(rs.getString("position").contains("VP/VC")){
+
+            while (rs.next()) {
+                if (rs.getString("position").contains("VP/VC")) {
                     return true;
                 }
             }
@@ -1666,7 +1666,7 @@ public class UserDAO {
         }
         return department;
     }
-    
+
     public int getUserIDforNotifsDepartmentChair(String unit, int departmentID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1704,7 +1704,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforNotifsUnitChair(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1779,7 +1779,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforNotifsAssistantDean(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1817,7 +1817,6 @@ public class UserDAO {
         return userID;
     }
 
-    
     /*public int getUserIDforUnitNotifs(String unit) {
 =======
 =======
@@ -1860,7 +1859,6 @@ public class UserDAO {
         }
         return userID;
     }*/
-    
     public int getUserIDforNotifsADEALM(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1897,7 +1895,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforNotifsDean(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1934,7 +1932,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforNotifsUnitHead(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1971,7 +1969,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforNotifsDirector(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2008,7 +2006,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforNotifsSEDirector(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2046,7 +2044,6 @@ public class UserDAO {
         return userID;
     }
 
-    
     public int getUserIDforNotifsVPVC(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2083,7 +2080,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforNotifsNeil() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2157,7 +2154,7 @@ public class UserDAO {
         }
         return userID;
     }
-    
+
     public int getUserIDforNotifsPosition(String position) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2485,20 +2482,37 @@ public class UserDAO {
 
             rs = pstmt.executeUpdate();
 
+            query = "SELECT * FROM seproposal_revisions ORDER BY id DESC LIMIT 1";
+            pstmt = conn.prepareStatement(query);
+
+            int newID = 0;
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                newID = rs2.getInt("id");
+            }
+
             query = "UPDATE seproposal_revisions SET datetime = ? WHERE seproposalID = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
+
             pstmt.setString(1, sdf.format(dt));
             pstmt.setInt(2, seID);
-            
+
             rs = pstmt.executeUpdate();
 
             query = "INSERT INTO seproposal_revisions_component(seproposalID, component) SELECT seproposalID, component FROM seproposal_component WHERE seproposalID = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "UPDATE seproposal_revisions_component SET revisionID = ? WHERE revisionID is null";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newID);
 
             rs = pstmt.executeUpdate();
 
@@ -2508,9 +2522,21 @@ public class UserDAO {
 
             rs = pstmt.executeUpdate();
 
+            query = "UPDATE seproposal_revisions_workplan SET revisionID = ? WHERE revisionID is null";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newID);
+
+            rs = pstmt.executeUpdate();
+
             query = "INSERT INTO seproposal_revisions_expenses(item, unitcost, quantity, subtotal, seproposalID) SELECT item, unitcost, quantity, subtotal, seproposalID FROM seproposal_expenses WHERE seproposalID = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "UPDATE seproposal_revisions_expenses SET revisionID = ? WHERE revisionID is null";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newID);
 
             rs = pstmt.executeUpdate();
 
@@ -2521,10 +2547,22 @@ public class UserDAO {
 
             rs = pstmt.executeUpdate();
 
+            query = "UPDATE seproposal_revisions_personresponsible SET revisionID = ? WHERE revisionID is null";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newID);
+
+            rs = pstmt.executeUpdate();
+
             query = "INSERT INTO seproposal_revisions_measures(seproposalID, measureID) SELECT seproposalID, measureID FROM se_measures WHERE seproposalID = ?";
 
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "UPDATE seproposal_revisions_measures SET revisionID = ? WHERE revisionID is null";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newID);
 
             rs = pstmt.executeUpdate();
 
@@ -3061,7 +3099,6 @@ public class UserDAO {
         }
         return FF;
     }
-    
 
     public ArrayList<FF> retrieveFFProposalByDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -4514,8 +4551,6 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
-    
 
     public void updateUnitChairRemarks(String remarks, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -4570,7 +4605,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void updateVPVCRemarks(String remarks, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4597,7 +4632,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void updateChairDirectorRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4624,7 +4659,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void updateUnitHeadRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4651,7 +4686,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void updateDirectorRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13178,7 +13213,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void editMeasures(ArrayList<Integer> measureID, int seproposalID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13190,9 +13225,8 @@ public class UserDAO {
 
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seproposalID);
-            
-            int rs = pstmt.executeUpdate();
 
+            int rs = pstmt.executeUpdate();
 
             for (int i = 0; i < measureID.size(); i++) {
                 query = "INSERT INTO se_measures (seproposalID,measureID) VALUES (?,?)";
@@ -13291,13 +13325,13 @@ public class UserDAO {
 
         return m;
     }
-    
-    public String getFirstName(int id){
+
+    public String getFirstName(int id) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         String name = null;
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
-        
+
         Measure m = new Measure();
 
         ResultSet rs2 = null;
@@ -13325,16 +13359,16 @@ public class UserDAO {
             } catch (Exception e) {
                 /* ignored */ }
         }
-        
+
         return name;
     }
-    
-    public String getLastName(int id){
+
+    public String getLastName(int id) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         String name = null;
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
-        
+
         Measure m = new Measure();
 
         ResultSet rs2 = null;
@@ -13362,7 +13396,7 @@ public class UserDAO {
             } catch (Exception e) {
                 /* ignored */ }
         }
-        
+
         return name;
     }
 }
