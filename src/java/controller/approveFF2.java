@@ -66,17 +66,17 @@ public class approveFF2 extends HttpServlet {
                 n.setDt(sdf.format(dt));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("LCLM - Executive Director"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("LCLM - Executive Director"));
                 }
 
                 UserDAO.AddNotification(n);
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("COSCA - Director"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("COSCA - Director"));
                     UserDAO.AddNotification(n);
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("DSA - Dean"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("DSA - Dean"));
                     UserDAO.AddNotification(n);
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("OVPLM - Vice President for Lasallian Mission"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
                 }
 

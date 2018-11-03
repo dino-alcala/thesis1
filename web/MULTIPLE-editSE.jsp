@@ -193,19 +193,36 @@
                 }
             %>
         </script>
-
+        
         <script type="text/javascript">
             <%
                 UserDAO UserDAO = new UserDAO();
-
+                
                 SE SE = new SE();
                 SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
-
+                
                 OvplmDAO OvplmDAO = new OvplmDAO();
                 ArrayList<KRA> k = new ArrayList();
                 k = OvplmDAO.retrieveKRA();
 
             %>
+                
+                function changeKRA(c1, c2){
+                    var c1 = document.getElementById(c1);
+                    var c2 = document.getElementById(c2);
+                    c2.innerHTML = "";
+                    
+                    var optionArray = ["|",<%for(int m = 0; m < k.size(); m++){%>"<%=k.get(m).getId()%>|<%=k.get(m).getName()%>",<%}%>];
+                    
+                    for (var option in optionArray) {
+                    var pair = optionArray[option].split("|");
+                    var newOption = document.createElement("option");
+                    newOption.value = pair[0];
+                    newOption.innerHTML = pair[1];
+                    
+                    c2.options.add(newOption);
+                }
+                }
 
             function changegoal(c1, c2) {
 
@@ -247,7 +264,7 @@
             %>
 
                 if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                var optionArray = ["|",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                var optionArray = [<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
                     }
                     
                                     if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
@@ -423,7 +440,7 @@
 
                         <fieldset>
                             <legend><b>Type of Social Engagement:</b></legend>
-                            <select value ="<%=SE.getActivityClassification()%>" name="classification">
+                            <select value ="<%=SE.getActivityClassification()%>" name="classification" onchange="changeKRA(this.id, 'kra')">
                                 <option value="Socially Engaged Research">Socially Engaged Research</option>
                                 <option value="Service-Learning">Service-Learning</option>
                                 <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
@@ -455,7 +472,7 @@
 
                         <fieldset>
                             <legend><b>Target KRA:</b></legend>
-                            <select value ="<%=SE.getTargetKRA()%>" name="kra" id="kra" onchange="changegoal(this.id, 'goals')">
+                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')">
                                 <option></option>
                                 <%
                                     for (int m = 0; m < k.size(); m++) {
@@ -470,14 +487,14 @@
 
                         <fieldset>
                             <legend><b>Target Goal:</b></legend>
-                            <select value ="<%=SE.getTargetGoal()%>" name="goal" id="goals" onchange="changemeasure(this.id, 'measures')">
+                            <select  name="goal" id="goals" onchange="changemeasure(this.id, 'measures')">
                             </select>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Target Measure:</b></legend>
-                            <select value ="<%=SE.getTargetMeasure()%>" name="measure" id="measures" required>
+                            <select  name="measure" id="measures" required>
                             </select>
                             <br><br><br>
                         </fieldset> 

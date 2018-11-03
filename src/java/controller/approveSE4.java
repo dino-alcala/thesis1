@@ -73,7 +73,7 @@ public class approveSE4 extends HttpServlet {
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                     n.setDt(sdf.format(dt));
-                    n.setUserID(UserDAO.getUserIDforPositionNotifs("Vice President for Lasallian Mission"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
 
                     UserDAO.AddNotification(n);
 

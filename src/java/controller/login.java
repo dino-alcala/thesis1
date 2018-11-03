@@ -231,7 +231,29 @@ public class login extends HttpServlet {
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
                     dispatcher.forward(request, response);
-                }  else if (UserDAO.isUnit(u.getUsername(), u.getPassword())) {
+                }  else if (UserDAO.isUnitHead(u.getUsername())) {
+                    
+                    int id = UserDAO.getIDbyUsername(u.getUsername());
+                    String position = UserDAO.getPosition(u.getUsername());
+                    session.setAttribute("userID", id);
+                    session.setAttribute("unit", UserDAO.getUnitByUserID(id));
+                    session.setAttribute("position", position);
+                    
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
+                    dispatcher.forward(request, response);
+                } else if (UserDAO.isDirector(u.getUsername())) {
+                    
+                    int id = UserDAO.getIDbyUsername(u.getUsername());
+                    String position = UserDAO.getPosition(u.getUsername());
+                    session.setAttribute("userID", id);
+                    session.setAttribute("unit", UserDAO.getUnitByUserID(id));
+                    session.setAttribute("position", position);
+                    
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
+                    dispatcher.forward(request, response);
+                } else if (UserDAO.isUnit(u.getUsername(), u.getPassword())) {
                     
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());

@@ -430,7 +430,6 @@
                         </fieldset>
 
                         <fieldset>
-                            <input type="hidden" name="countparticipants" id="countparticipants" value="1">
                             <legend><b>List of DLSU Participants</b></legend>
                             <center><table style = "width:40%" id="participants">
                                     <tr>

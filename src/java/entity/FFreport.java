@@ -37,6 +37,14 @@ public class FFreport {
     protected int ffproposalID;
     protected String unit;
     protected String programHead;
+    protected int cap;
+    protected int apsp;
+    protected int asf;
+    protected int faculty;
+    protected int admin;
+    protected int directhired;
+    protected int independent;
+    protected int external;
 
     public int getId() {
         return id;
@@ -213,4 +221,70 @@ public class FFreport {
     public void setProgramHead(String programHead) {
         this.programHead = programHead;
     }
+
+    public int getCap() {
+        return cap;
+    }
+
+    public void setCap(int cap) {
+        this.cap = cap;
+    }
+
+    public int getApsp() {
+        return apsp;
+    }
+
+    public void setApsp(int apsp) {
+        this.apsp = apsp;
+    }
+
+    public int getAsf() {
+        return asf;
+    }
+
+    public void setAsf(int asf) {
+        this.asf = asf;
+    }
+
+    public int getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(int faculty) {
+        this.faculty = faculty;
+    }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+
+    public int getDirecthired() {
+        return directhired;
+    }
+
+    public void setDirecthired(int directhired) {
+        this.directhired = directhired;
+    }
+
+    public int getIndependent() {
+        return independent;
+    }
+
+    public void setIndependent(int independent) {
+        this.independent = independent;
+    }
+
+    public int getExternal() {
+        return external;
+    }
+
+    public void setExternal(int external) {
+        this.external = external;
+    }
+    
+    
 }

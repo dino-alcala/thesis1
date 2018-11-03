@@ -512,6 +512,84 @@ public class UserDAO {
         }
         return false;
     }
+    
+    public boolean isUnitHead(String username) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT position FROM informationsheet WHERE username = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                if (rs.getString("position").contains("Unit Head")) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+    
+    public boolean isDirector(String username) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT position FROM informationsheet WHERE username = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                if (rs.getString("position").contains("Director")) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
 
     public boolean isDeptChair(String username) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1588,45 +1666,6 @@ public class UserDAO {
         }
         return department;
     }
-
-    
-    /*public int getUserIDforNotifs(String unit, int departmentID) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-
-        String query = "SELECT * FROM informationsheet WHERE unit = ? AND departmentID = ? AND position LIKE ?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        int userID = 0;
-        try {
-            ps = conn.prepareStatement(query);
-            ps.setString(1, unit);
-            ps.setInt(2, departmentID);
-            ps.setString(3, "%Department Chair%");
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                userID = rs.getInt("id");
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                 }
-            try {
-                ps.close();
-            } catch (Exception e) {
-                 }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                }
-        }
-        return userID;
-    }*/
     
     public int getUserIDforNotifsDepartmentChair(String unit, int departmentID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1703,7 +1742,7 @@ public class UserDAO {
         return userID;
     }
 
-    public int getUserIDforChairpersonNotifs(String unit, int departmentID) {
+    public int getUserIDforNotifsChairperson(String unit, int departmentID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -1896,6 +1935,80 @@ public class UserDAO {
         return userID;
     }
     
+    public int getUserIDforNotifsUnitHead(String unit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM informationsheet WHERE unit = ? AND position LIKE ? LIMIT 1";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userID = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            ps.setString(2, "%Unit Head%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                userID = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return userID;
+    }
+    
+    public int getUserIDforNotifsDirector(String unit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM informationsheet WHERE unit = ? AND position LIKE ? LIMIT 1";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userID = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            ps.setString(2, "%Director%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                userID = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return userID;
+    }
+    
     public int getUserIDforNotifsSEDirector(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2008,7 +2121,7 @@ public class UserDAO {
         return userID;
     }
 
-    public int getUserIDforJamesNotifs() {
+    public int getUserIDforNotifsJames() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -2044,8 +2157,8 @@ public class UserDAO {
         }
         return userID;
     }
-
-    public int getUserIDforPositionNotifs(String position) {
+    
+    public int getUserIDforNotifsPosition(String position) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -2566,7 +2679,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, targetKRA, targetGoal, targetMeasure, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, targetKRA, targetGoal, targetMeasure, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FF.getUnit());
             pstmt.setString(2, FF.getDepartment());
@@ -2585,6 +2698,7 @@ public class UserDAO {
             pstmt.setInt(15, FF.getStep());
             pstmt.setInt(16, FF.getUserID());
             pstmt.setDate(17, FF.getActualDate());
+            pstmt.setString(18, FF.getUnittype());
 
             int rs = pstmt.executeUpdate();
 
@@ -2947,6 +3061,7 @@ public class UserDAO {
         }
         return FF;
     }
+    
 
     public ArrayList<FF> retrieveFFProposalByDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -4399,6 +4514,8 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
+    
+    
 
     public void updateUnitChairRemarks(String remarks, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -4488,6 +4605,60 @@ public class UserDAO {
 
         try {
             String query = "UPDATE ffproposal SET chairdirectorRemarks = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, remarks);
+            pstmt.setInt(2, ffID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void updateUnitHeadRemarks(String remarks, int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE ffproposal SET unitheadremarks = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, remarks);
+            pstmt.setInt(2, ffID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void updateDirectorRemarks(String remarks, int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE ffproposal SET directorremarks = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
             pstmt.setInt(2, ffID);
@@ -7700,7 +7871,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, targetMeasure, projectProponent, personResponsible, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, targetMeasure, projectProponent, personResponsible, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, SEreport.getProjectTitle());
             pstmt.setString(2, SEreport.getTargetKRA());
@@ -7726,6 +7897,14 @@ public class UserDAO {
             pstmt.setBlob(22, SEreport.getBeneficiariesLetters());
             pstmt.setDate(23, SEreport.getDate());
             pstmt.setInt(24, SEreport.getSeproposalID());
+            pstmt.setInt(25, SEreport.getCap());
+            pstmt.setInt(26, SEreport.getApsp());
+            pstmt.setInt(27, SEreport.getAsf());
+            pstmt.setInt(28, SEreport.getFaculty());
+            pstmt.setInt(29, SEreport.getAdmin());
+            pstmt.setInt(30, SEreport.getDirecthired());
+            pstmt.setInt(31, SEreport.getIndependent());
+            pstmt.setInt(32, SEreport.getExternal());
 
             int rs = pstmt.executeUpdate();
 
@@ -7739,17 +7918,6 @@ public class UserDAO {
 
             while (rs2.next()) {
                 sereportID = rs2.getInt("id");
-            }
-
-            for (int i = 0; i < SEreport.getParticipants().size(); i++) {
-                query = "INSERT INTO sereport_participants(classification, numberOfIndividuals, sereportID) VALUES(?,?,?)";
-
-                pstmt = conn.prepareStatement(query);
-                pstmt.setString(1, SEreport.getParticipants().get(i).getClassification());
-                pstmt.setInt(2, SEreport.getParticipants().get(i).getNumberOfIndividuals());
-                pstmt.setInt(3, sereportID);
-
-                rs = pstmt.executeUpdate();
             }
 
             for (int i = 0; i < SEreport.getObjectives().size(); i++) {
@@ -8045,7 +8213,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO ffreport(projectTitle, targetKRA, targetGoal, targetMeasure, projectProponent, personResponsible, facilitatorName, amountReceivedOVPLM, significanceProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceDLSU, date, ffproposalID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO ffreport(projectTitle, targetKRA, targetGoal, targetMeasure, projectProponent, personResponsible, facilitatorName, amountReceivedOVPLM, significanceProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceDLSU, date, ffproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FFreport.getProjectTitle());
             pstmt.setString(2, FFreport.getTargetKRA());
@@ -8063,6 +8231,14 @@ public class UserDAO {
             pstmt.setBlob(14, FFreport.getAttendanceDLSU());
             pstmt.setDate(15, FFreport.getDate());
             pstmt.setInt(16, FFreport.getFfproposalID());
+            pstmt.setInt(17, FFreport.getCap());
+            pstmt.setInt(18, FFreport.getApsp());
+            pstmt.setInt(19, FFreport.getAsf());
+            pstmt.setInt(20, FFreport.getFaculty());
+            pstmt.setInt(21, FFreport.getAdmin());
+            pstmt.setInt(22, FFreport.getDirecthired());
+            pstmt.setInt(23, FFreport.getIndependent());
+            pstmt.setInt(24, FFreport.getExternal());
 
             int rs = pstmt.executeUpdate();
 
@@ -8076,17 +8252,6 @@ public class UserDAO {
 
             while (rs2.next()) {
                 ffreportID = rs2.getInt("id");
-            }
-
-            for (int i = 0; i < FFreport.getParticipants().size(); i++) {
-                query = "INSERT INTO ffreport_participants(classification, numberOfIndividuals, ffreportID) VALUES(?,?,?)";
-
-                pstmt = conn.prepareStatement(query);
-                pstmt.setString(1, FFreport.getParticipants().get(i).getClassification());
-                pstmt.setInt(2, FFreport.getParticipants().get(i).getNumberOfIndividuals());
-                pstmt.setInt(3, ffreportID);
-
-                rs = pstmt.executeUpdate();
             }
 
             for (int i = 0; i < FFreport.getObjectives().size(); i++) {
