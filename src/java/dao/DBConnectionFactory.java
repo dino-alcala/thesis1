@@ -18,7 +18,6 @@ public abstract class DBConnectionFactory {
 
     private String username = "root";
     private String password = "#oraytrocknrollwooh3";
-
     
     public static DBConnectionFactory getInstance() {
         return new DBConnectionFactoryImpl();
