@@ -49,9 +49,9 @@ public class createFFreport2 extends HttpServlet {
             java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
             
             FFreport.setProjectTitle(request.getParameter("name"));
+            FFreport.setProgramHead(request.getParameter("programhead"));
             FFreport.setDate(sqlDate);
             FFreport.setProjectProponent(request.getParameter("proponents"));
-            FFreport.setPersonResponsible(request.getParameter("responsible"));
             FFreport.setNameOfFacilitator(request.getParameter("facilitator"));
             FFreport.setCap(Integer.parseInt(request.getParameter("number0")));
             FFreport.setApsp(Integer.parseInt(request.getParameter("number1")));

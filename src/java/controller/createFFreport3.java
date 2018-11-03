@@ -64,14 +64,26 @@ public class createFFreport3 extends HttpServlet {
 
             ArrayList<FFfunds> funds = new ArrayList();
             
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countovplm")); i++) {
-                FFfunds f = new FFfunds();
-                f.setLineItem(request.getParameter("item" + i));
-                f.setApprovedAmount(Double.parseDouble(request.getParameter("approved" + i)));
-                f.setExpendedAmount(Double.parseDouble(request.getParameter("expended" + i)));
-                f.setVariance(Double.parseDouble(request.getParameter("variance" + i)));
-                f.setReasonVariance(request.getParameter("reason" + i));
-                funds.add(f);
+            if (request.getParameter("funds").equals("OVPLM")) {
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countovplm")); i++) {
+                    FFfunds f = new FFfunds();
+                    f.setLineItem(request.getParameter("item" + i));
+                    f.setApprovedAmount(Double.parseDouble(request.getParameter("approved" + i)));
+                    f.setExpendedAmount(Double.parseDouble(request.getParameter("expended" + i)));
+                    f.setVariance(Double.parseDouble(request.getParameter("variance" + i)));
+                    f.setReasonVariance(request.getParameter("reason" + i));
+                    funds.add(f);
+                }
+            } else {
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countothers")); i++) {
+                    FFfunds f = new FFfunds();
+                    f.setLineItem(request.getParameter("item" + i));
+                    f.setApprovedAmount(Double.parseDouble(request.getParameter("approved" + i)));
+                    f.setExpendedAmount(Double.parseDouble(request.getParameter("expended" + i)));
+                    f.setVariance(Double.parseDouble(request.getParameter("variance" + i)));
+                    f.setReasonVariance(request.getParameter("reason" + i));
+                    funds.add(f);
+                }
             }
             
             FFreport.setFunds(funds);

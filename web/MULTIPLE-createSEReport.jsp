@@ -404,16 +404,16 @@
                             <center><input id="fname" name="name" size="50" type="text" readonly value="<%=SE.getName()%>"></center>
                             <br>
                         </fieldset>
-
+                            
                         <fieldset>  
-                            <legend><b>Project Proponents/s (College / Department / Unit)</b></legend>
-                            <center><input id="fname" name="proponents" size="50" type="text" readonly value="<%=UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>, <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>"></center>
+                            <legend><b>Program Head</b></legend>
+                            <center><input value="<%=SE.getProgramHead()%>" readonly name="programhead" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
-                            <legend><b>Person Responsible</b></legend>
-                            <center><input id="fname" name="responsible" size="50" type="text" required></center>
+                            <legend><b>Project Proponents/s (College / Department / Unit)</b></legend>
+                            <center><input id="fname" name="proponents" size="50" type="text" readonly value="<%=UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>, <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>"></center>
                             <br>
                         </fieldset>
 

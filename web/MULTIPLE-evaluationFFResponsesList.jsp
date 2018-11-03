@@ -253,14 +253,8 @@
 
             <div class="col py-3">
                 <form action="viewFFResponses" method="post">
-
-
                     <!--- table -->
                     <div class="container-fluid panels">
-
-
-
-
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-evaluationSEResponsesList.jsp">Social Engagement</a>
                             <a href="MULTIPLE-evaluationFFResponsesList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Faith Formation</a>
@@ -271,7 +265,7 @@
 
                         <%
                             ArrayList<FF> f = new ArrayList();
-                            f = UserDAO.retrieveFFProposalByStep(9);
+                            f = UserDAO.retrieveFFProposalByStep(8);
                         %>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    

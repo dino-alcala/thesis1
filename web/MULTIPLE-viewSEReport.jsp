@@ -4,6 +4,8 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.SEresponsible"%>
+<%@page import="entity.SE"%>
 <%@page import="entity.SEreport"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
@@ -277,6 +279,9 @@
                     <%
                         SEreport SEreport = new SEreport();
                         SEreport = UserDAO.retrieveSEreportBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
+                        
+                        SE SE = new SE();
+                        SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
                     %>
                     <div class="container-fluid">
                         <div class="row">
@@ -304,11 +309,32 @@
                                             %>
                                         <br>
                                         <p><b>Project Proponents/s:</b> <%=SEreport.getProjectProponent()%></p>
-                                        <p><b>Person Responsible: </b> <%=SEreport.getPersonResponsible()%></p>
+                                        <p><b>Program Head: </b> <%=SE.getProgramHead()%></p>
                                     </div>
                                 </div>
                                 <br/>
 
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Persons Responsible</h4>
+                                    </div>
+                                    <div class="card-body">
+                                    <%
+                                        SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
+                                        
+                                        ArrayList<SEresponsible> responsible = SE.getResponsible();
+                                        
+                                        for (int i = 0; i < responsible.size(); i++) {
+                                    %>
+                                    <p><%=SE.getResponsible().get(i).getName()%> - <%=SE.getResponsible().get(i).getEmail()%></p>
+                                    <%
+                                        }
+                                    %>
+                                        
+                                    </div>
+                                </div>
+                                <br/>
+                                
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Information Identification</h4>

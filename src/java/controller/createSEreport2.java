@@ -53,11 +53,11 @@ public class createSEreport2 extends HttpServlet {
             java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
             SEreport.setProjectTitle(request.getParameter("name"));
+            SEreport.setProgramHead(request.getParameter("programhead"));
             SEreport.setDate(sqlDate);
             SEreport.setTargetKRA(request.getParameter("kra"));
             SEreport.setTargetGoal(request.getParameter("goal"));
             SEreport.setProjectProponent(request.getParameter("proponents"));
-            SEreport.setPersonResponsible(request.getParameter("responsible"));
             SEreport.setNumberOfBeneficiaries(Integer.parseInt(request.getParameter("number")));
             SEreport.setProjectBeneficiaries(request.getParameter("projben"));
             SEreport.setAddressBeneficiaries(request.getParameter("addressben"));

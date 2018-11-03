@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FF"%>
 <%@page import="entity.FFreport"%>
 <%@page import="entity.SEreport"%>
 <%@page import="entity.Notification"%>
@@ -273,11 +274,15 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <form action="viewSEreportphoto" method="post">
+                <form action="viewFFreportphoto" method="post">
 
                     <%
                         FFreport FFreport = new FFreport();
                         FFreport = UserDAO.retrieveFFreportByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
+                        System.out.println("DJSAKLDJSAKLDJAKL " + Integer.parseInt(request.getAttribute("ffID").toString()));
+                        
+                        FF FF = new FF();
+                        FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
                     %>
                     <div class="container-fluid">
                         <div class="row">
@@ -290,7 +295,7 @@
                                         <p><b>Address of Implementation: </b> <%=FFreport.getVenue() %></p>
                                         <br>
                                         <p><b>Project Proponents/s:</b> <%=FFreport.getProjectProponent()%></p>
-                                        <p><b>Person Responsible: </b> <%=FFreport.getPersonResponsible()%></p>
+                                        <p><b>Program Head: </b> <%=FF.getProgramHead()%></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -307,17 +312,38 @@
                                                 <th>Classification</th>
                                                 <th>Number of Individuals</th>
                                             </tr>
-                                            <%
-                                                for (int i = 0; i < FFreport.getParticipants().size(); i++) {
-                                            %>
                                             <tr>
-                                                <td><%=FFreport.getParticipants().get(i).getClassification()%></td>
-                                                <td><%=FFreport.getParticipants().get(i).getNumberOfIndividuals()%></td>
+                                                <td>CAP</td>
+                                                <td><%=FFreport.getCap()%></td>
                                             </tr>
-                                            <%
-                                                }
-                                            %>
-
+                                            <tr>
+                                                <td>APSP</td>
+                                                <td><%=FFreport.getApsp()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ASF</td>
+                                                <td><%=FFreport.getAsf()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Faculty</td>
+                                                <td><%=FFreport.getFaculty()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Admin</td>
+                                                <td><%=FFreport.getAdmin()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Direct Hired Contractuals</td>
+                                                <td><%=FFreport.getDirecthired()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Independent Contractor</td>
+                                                <td><%=FFreport.getIndependent()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>External Service Personnel</td>
+                                                <td><%=FFreport.getExternal()%></td>
+                                            </tr>
                                         </table>
                                         <br>
                                         <hr/>
@@ -370,7 +396,7 @@
                                     </div>
                                     <div class="card-body">
                                         <br>
-                                        <center><p><b>Grant from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("seID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund</b></p></center>
+                                        <center><p><b>Grant from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("ffID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund</b></p></center>
                                         <br>
                                         <table style="width:100%">
                                             <tr>

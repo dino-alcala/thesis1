@@ -40,7 +40,7 @@ public class viewFFResponses extends HttpServlet {
 
             UserDAO UserDAO = new UserDAO();
             ArrayList<FF> f = new ArrayList();
-            f = UserDAO.retrieveFFProposalByStep(9);
+            f = UserDAO.retrieveFFProposalByStep(8);
 
             for (int i = 0; i < f.size(); i++) {
                 if (UserDAO.hasFFEvaluation(f.get(i).getId())) {

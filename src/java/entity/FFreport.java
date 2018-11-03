@@ -21,7 +21,6 @@ public class FFreport {
     protected String venue;
     protected String projectTitle;
     protected String projectProponent;
-    protected String personResponsible;
     protected String nameOfFacilitator;
     protected double amountReceivedOVPLM;
     protected String significanceProject;
@@ -77,13 +76,6 @@ public class FFreport {
         this.projectProponent = projectProponent;
     }
 
-    public String getPersonResponsible() {
-        return personResponsible;
-    }
-
-    public void setPersonResponsible(String personResponsible) {
-        this.personResponsible = personResponsible;
-    }
 
     public String getNameOfFacilitator() {
         return nameOfFacilitator;

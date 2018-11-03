@@ -395,18 +395,10 @@
                         </fieldset>
 
                         <fieldset>  
-                            <legend><b>Person Responsible</b></legend>
-                            <center><input name="responsible" size="50" type="text" required></center>
-                            <br>
-                        </fieldset>
-
-                        <fieldset>  
                             <legend><b>Program Head</b></legend>
-                            <center><input name="responsible" size="50" type="text" required></center>
+                            <center><input value="<%=FF.getProgramHead()%>" readonly name="programhead" size="50" type="text" required></center>
                             <br>
                         </fieldset>
-
-
 
                         <fieldset>
                             <legend><b>List of DLSU Participants</b></legend>

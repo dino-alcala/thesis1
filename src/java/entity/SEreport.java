@@ -21,7 +21,7 @@ public class SEreport {
     protected String targetKRA;
     protected String targetGoal;
     protected String projectProponent;
-    protected String personResponsible;
+    protected String programHead;
     protected int numberOfBeneficiaries;
     protected String projectBeneficiaries;
     protected String addressBeneficiaries;
@@ -111,14 +111,6 @@ public class SEreport {
 
     public void setProjectProponent(String projectProponent) {
         this.projectProponent = projectProponent;
-    }
-
-    public String getPersonResponsible() {
-        return personResponsible;
-    }
-
-    public void setPersonResponsible(String personResponsible) {
-        this.personResponsible = personResponsible;
     }
 
     public int getNumberOfBeneficiaries() {
@@ -375,6 +367,14 @@ public class SEreport {
 
     public void setImplementationdate(Date implementationdate) {
         this.implementationdate = implementationdate;
+    }
+
+    public String getProgramHead() {
+        return programHead;
+    }
+
+    public void setProgramHead(String programHead) {
+        this.programHead = programHead;
     }
     
     
