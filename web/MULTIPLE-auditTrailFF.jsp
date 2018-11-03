@@ -335,8 +335,8 @@
             <div class="col py-3">
 
 
-                <iframe src="MULTIPLE-auditTrailListFF.jsp" style="height:600px;width:525px" align="left"></iframe>
-                <iframe src="MULTIPLE-viewAuditTrailFF.jsp" style="height:600px;width:525px" align="right"></iframe>
+                <iframe src="MULTIPLE-auditTrailListFF.jsp" style="height:100%;width:50%" align="left"></iframe>
+                <iframe src="MULTIPLE-auditTrailListFF.jsp" style="height:100%;width:50%" align="right"></iframe>
 
             
         </div>

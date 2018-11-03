@@ -336,6 +336,10 @@
         <servlet-name>viewAuditSE</servlet-name>
         <servlet-class>controller.viewAuditSE</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewAuditFF</servlet-name>
+        <servlet-class>controller.viewAuditFF</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -671,6 +675,10 @@
     <servlet-mapping>
         <servlet-name>viewAuditSE</servlet-name>
         <url-pattern>/viewAuditSE</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewAuditFF</servlet-name>
+        <url-pattern>/viewAuditFF</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,6 +4,9 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FF"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -165,29 +168,36 @@
     </head>
 
     <body>
-    <hr size="5" noshade>    
+        <hr size="5" noshade>    
     <center><h1>List of Revisions:</h1></center>
     <hr size="5" noshade>
 
+    <%
+        UserDAO UserDAO = new UserDAO();
+        ArrayList<FF> revisions = new ArrayList();
+        revisions = UserDAO.retrieveFFRevisions(Integer.parseInt(session.getAttribute("auditFF").toString()));
+    %>
 
     <div class="form-style-5">
-        <form action = "">
+        <form action = "viewAuditFF">
             <fieldset>
                 <center><table style = "width:100%" id = "SEchecklist">
                         <tr>
                             <th>Proposal Name</th>
                             <th>Date:</th>
                             <th></th>
+                                <%
+                                    for (int i = 0; i < revisions.size(); i++) {
+                                %>
                         <tr>
-                            <td><p>Dino Project</p></td>
-                            <td><p><b>08/10/2018 </b></p></td>
-                            <td><p><b><button>View</button></b></p></td>
+                            <td><p><%=revisions.get(i).getProjectName()%></p></td>
+                            <td><p><b><%=revisions.get(i).getRevisionTime()%></b></p></td>
+                            <td><p><b><button type="submit" name="auditFF<%=i%>" value="<%=revisions.get(i).getId()%>">View</button></b></p></td>
                         </tr>
-                        <tr>
-                            <td><p>Luis Project</p></td>
-                            <td><p><b>08/10/2018 </b></p></td>
-                            <td><p><b><button>View</button></b></p></td>
-                        </tr>
+
+                        <%
+                            }
+                        %>
                     </table></center>
                 <br>
             </fieldset>

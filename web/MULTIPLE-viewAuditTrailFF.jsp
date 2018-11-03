@@ -174,165 +174,186 @@
 
     </head>
 
+    <%
+        UserDAO UserDAO = new UserDAO();
+        FF FF = new FF();
+
+        FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("auditFF").toString()));
+
+        if (request.getAttribute("current") == null) {
+            FF = UserDAO.retrieveFFRevisionByFFID(Integer.parseInt(request.getAttribute("auditFF").toString()));
+        }
+
+
+    %>
+
     <body>
-            <!-- MAIN -->
-            <div class="col py-3">
-                <form action="approveFF4" method="post" enctype="multipart/form-data">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12">
+        <!-- MAIN -->
+        <div class="col py-3">
+            <form action="approveFF4" method="post" enctype="multipart/form-data">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
 
-                                <div class="panel panel-success ">
-
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3>Program Name</h3>
-                                            <p><b>Unit: </b></p>
-                                            <p><b>Department: </b></p>
-                                            <p><b>Target Date of Implementation: </b></p>
-                                            <br>
-                                            <p><b>Program Head: </b></p>
-                                            <p><b>Program Classification: </b></p>
-                                            <p><b>Total Amount Requested:</b> ₱</p>
-                                            <br>
-                                            <p><b>Venue: </b></p>
-                                            <p><b>Speaker: </b></p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                
-                                <br/><br/>
+                            <div class="panel panel-success ">
 
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h4>Objectives of the Project</h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <br/>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Breakdown of Expenses (Requested: ₱)</h4>
-                                    </div>
-                                </div>
-
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Unit Cost</th> 
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Grand Total:</td>
-                                    </tr>
-                                </table>
-                                <br/>
-                                
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Source of Funds: </h4>
-                                    </div>
-                                    <div class="card-body">   
-                                        <p></p>
+                                    <div class="card-body">
+                                        <h3><%=FF.getProjectName()%></h3>
+                                        <p><b>Unit: </b> <%=FF.getUnit()%></p>
+                                        <p><b>Department: </b> <%=FF.getDepartment()%></p>
+                                        <p><b>Target Date of Implementation: </b> <%=FF.getActualDate()%></p>
+                                        <br>
+                                        <p><b>Program Head: </b> <%=FF.getProgramHead()%></p>
+                                        <p><b>Program Classification: </b> <%=FF.getActivityClassification()%></p>
+                                        <p><b>Total Amount Requested:</b> ₱<%=FF.getTotalAmount()%></p>
+                                        <br>
+                                        <p><b>Venue: </b> <%=FF.getVenue()%></p>
+                                        <p><b>Speaker: </b> <%=FF.getSpeaker()%></p>
                                     </div>
                                 </div>
-                                <br/>
-
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="">Attendees List</button></center><br>
 
                             </div>
+
+                            <br/><br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Objectives of the Project</h4>
+                                </div>
+                                <div class="card-body">   
+                                    <p><%=FF.getObjectives()%></p>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Breakdown of Expenses (Requested: ₱<%=FF.getTotalAmount()%>)</h4>
+                                </div>
+                            </div>
+
+                            <table style="width:100%">
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Unit Cost</th> 
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+
+                                <%
+                                        double count = 0;
+                                        for (int i = 0; i < FF.getExpenses().size(); i++) {
+                                    %>
+                                    <tr>
+                                        <td><%=FF.getExpenses().get(i).getItem()%></td>
+                                        <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
+                                        <td><%=FF.getExpenses().get(i).getQuantity()%></td>
+                                        <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
+                                    </tr>
+                                    <%
+                                            count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
+                                        }
+                                    %>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Grand Total: <%=count%></td>
+                                </tr>
+                            </table>
+                            <br/>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Source of Funds: </h4>
+                                </div>
+                                <div class="card-body">   
+                                    <p><%=FF.getSourceOfFunds() %></p>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <center><button class='btn-info' type="submit" name="viewAttendees" value="">Attendees List</button></center><br>
 
                         </div>
 
                     </div>
-                </form>
-            </div>
 
-            <script>
-                // sandbox disable popups
-                if (window.self !== window.top && window.name != "view1") {
-                    ;
-                    window.alert = function () {/*disable alert*/
-                    };
-                    window.confirm = function () {/*disable confirm*/
-                    };
-                    window.prompt = function () {/*disable prompt*/
-                    };
-                    window.open = function () {/*disable open*/
-                    };
-                }
+                </div>
+            </form>
+        </div>
 
-                // prevent href=# click jump
-                document.addEventListener("DOMContentLoaded", function () {
-                    var links = document.getElementsByTagName("A");
-                    for (var i = 0; i < links.length; i++) {
-                        if (links[i].href.indexOf('#') != -1) {
-                            links[i].addEventListener("click", function (e) {
-                                console.debug("prevent href=# click");
-                                if (this.hash) {
-                                    if (this.hash == "#") {
-                                        e.preventDefault();
-                                        return false;
-                                    } else {
-                                        /*
-                                         var el = document.getElementById(this.hash.replace(/#/, ""));
-                                         if (el) {
-                                         el.scrollIntoView(true);
-                                         }
-                                         */
-                                    }
+        <script>
+            // sandbox disable popups
+            if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+            }
+
+            // prevent href=# click jump
+            document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
                                 }
-                                return false;
-                            })
-                        }
+                            }
+                            return false;
+                        })
                     }
-                }, false);
-            </script>
-            <script>
-                // Hide submenus
-                $('#body-row .collapse').collapse('hide');
+                }
+            }, false);
+        </script>
+        <script>
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
 
                 // Collapse/Expand icon
-                $('#collapse-icon').addClass('fa-angle-double-left');
-
-                // Collapse click
-                $('[data-toggle=sidebar-colapse]').click(function () {
-                    SidebarCollapse();
-                });
-
-                function SidebarCollapse() {
-                    $('.menu-collapsed').toggleClass('d-none');
-                    $('.sidebar-submenu').toggleClass('d-none');
-                    $('.submenu-icon').toggleClass('d-none');
-                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                    // Treating d-flex/d-none on separators with title
-                    var SeparatorTitle = $('.sidebar-separator-title');
-                    if (SeparatorTitle.hasClass('d-flex')) {
-                        SeparatorTitle.removeClass('d-flex');
-                    } else {
-                        SeparatorTitle.addClass('d-flex');
-                    }
-
-                    // Collapse/Expand icon
-                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-                }
-            </script>
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
+        </script>
     </body>
 </html>

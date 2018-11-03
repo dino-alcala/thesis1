@@ -7,9 +7,6 @@ package controller;
 
 import dao.UserDAO;
 import entity.FF;
-import entity.FFattendees;
-import entity.Notification;
-import entity.SE;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -25,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author LA
  */
-public class editFF2 extends HttpServlet {
+public class viewAuditFF extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,63 +38,24 @@ public class editFF2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
-            HttpSession session = request.getSession();
-            FF FF;
-            UserDAO UserDAO = new UserDAO();
-
-            FF = (FF) session.getAttribute("FF");
-
-            ArrayList<FFattendees> attendees = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countattendees")); i++) {
-                FFattendees FFattendees = new FFattendees();
-                FFattendees.setName(request.getParameter("attendee" + i));
-                FFattendees.setEmail(request.getParameter("email" + i));
-                attendees.add(FFattendees);
-            }
-
-            FF.setAttendees(attendees);
-
-            UserDAO.auditFF(FF.getId());
-
-            UserDAO.EditFF(FF);
-
-            UserDAO.completeReviseFF(FF.getId());
-
-            Notification n = new Notification();
-            n.setTitle(FF.getProjectName());
-            n.setBody("You have a Revised FF Proposal ready for approval!");
-
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            n.setDt(sdf.format(dt));
-
-            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 1 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 2 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 3 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 4) {
-                n.setUserID(UserDAO.getUserIDforNotifsAssistantDean(session.getAttribute("unit").toString()));
-            }
-
-            /*
-            if (UserDAO.getStepFF(FF.getId()) == 2) {
-                n.setUserID(29);
-            }
             
-            if (UserDAO.getStepFF(FF.getId()) == 3) {
-                n.setUserID(30);
-            }
-            if (UserDAO.getStepFF(FF.getId()) == 4) {
-                n.setUserID(31);
-            }
-            if (UserDAO.getStepFF(FF.getId()) == 5) {
-                n.setUserID(32);
-            }
-             */
-            UserDAO.AddNotification(n);
+            HttpSession session = request.getSession();
+            UserDAO UserDAO = new UserDAO();
+            ArrayList<FF> revisions = new ArrayList();
+            revisions = UserDAO.retrieveFFRevisions(Integer.parseInt(session.getAttribute("auditFF").toString()));
 
-            request.setAttribute("reviseFF1", "You have successfully revised the FF!");
+            for (int i = 0; i < revisions.size(); i++) {
+                
+                if (request.getParameter("auditFF" + i) != null) {
+                    if (i == 0) {
+                        request.setAttribute("current", "current");
+                    }
+                    request.setAttribute("auditFF", revisions.get(i).getId());
+                }
+            }
+
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingFFList.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewAuditTrailFF.jsp");
             dispatcher.forward(request, response);
         }
     }

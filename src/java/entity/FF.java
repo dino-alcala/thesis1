@@ -50,6 +50,7 @@ public class FF {
     protected String lmc4Remarks;
     protected String lmc5Remarks;
     protected String unittype;
+    protected String revisionTime;
 
     public int getId() {
         return id;
@@ -338,6 +339,13 @@ public class FF {
     public void setUnittype(String unittype) {
         this.unittype = unittype;
     }
-    
+
+    public String getRevisionTime() {
+        return revisionTime;
+    }
+
+    public void setRevisionTime(String revisionTime) {
+        this.revisionTime = revisionTime;
+    }
     
 }

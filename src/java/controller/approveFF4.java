@@ -49,6 +49,14 @@ public class approveFF4 extends HttpServlet {
 
             UserDAO UserDAO = new UserDAO();
 
+            if (request.getParameter("auditFF") != null) {
+
+                session.setAttribute("auditFF", request.getParameter("auditFF"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailFF.jsp");
+                dispatcher.forward(request, response);
+            }
+
             if (request.getParameter("viewAttendees") != null) {
                 request.setAttribute("ffID", request.getParameter("viewAttendees"));
 

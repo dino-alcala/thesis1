@@ -2572,6 +2572,72 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
+    
+    public void auditFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+
+        int rs = 0;
+        try {
+
+            String query = "INSERT INTO ffproposal_revisions(ffproposalID, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, datetime) SELECT id, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, datetime FROM ffproposal WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "SELECT * FROM ffproposal_revisions ORDER BY id DESC LIMIT 1";
+            pstmt = conn.prepareStatement(query);
+
+            int newID = 0;
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                newID = rs2.getInt("id");
+            }
+
+            query = "INSERT INTO ffproposal_revisions_attendees(ffproposalID, name, email) SELECT ffproposalID, name, email FROM ffproposal_attendees WHERE ffproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "UPDATE ffproposal_revisions_attendees SET revisionID = ? WHERE revisionID is null";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "INSERT INTO ffproposal_revisions_expenses(item, unitcost, quantity, subtotal, ffproposalID) SELECT item, unitcost, quantity, subtotal, ffproposalID FROM ffproposal_expenses WHERE ffproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs = pstmt.executeUpdate();
+
+            query = "UPDATE ffproposal_revisions_expenses SET revisionID = ? WHERE revisionID is null";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newID);
+
+            rs = pstmt.executeUpdate();
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
 
     public void EditSE(SE SE) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -2714,8 +2780,12 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, targetKRA, targetGoal, targetMeasure, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?)";
+            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, targetKRA, targetGoal, targetMeasure, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype, datetime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             pstmt.setString(1, FF.getUnit());
             pstmt.setString(2, FF.getDepartment());
             pstmt.setDate(3, FF.getDatecreated());
@@ -2734,6 +2804,7 @@ public class UserDAO {
             pstmt.setInt(16, FF.getUserID());
             pstmt.setDate(17, FF.getActualDate());
             pstmt.setString(18, FF.getUnittype());
+            pstmt.setString(19, sdf.format(dt));
 
             int rs = pstmt.executeUpdate();
 
@@ -2794,7 +2865,11 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "UPDATE ffproposal SET programHead = ?, activityClassification = ?, projectName = ?, venue = ?, speaker = ?, objectives = ?, totalAmount = ?, sourceOfFunds = ?, step = ?, actualImplementation = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET programHead = ?, activityClassification = ?, projectName = ?, venue = ?, speaker = ?, objectives = ?, totalAmount = ?, sourceOfFunds = ?, step = ?, actualImplementation = ?, datetime = ? WHERE id = ?";
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FF.getProgramHead());
             pstmt.setString(2, FF.getActivityClassification());
@@ -2806,7 +2881,8 @@ public class UserDAO {
             pstmt.setString(8, FF.getSourceOfFunds());
             pstmt.setInt(9, FF.getStep());
             pstmt.setDate(10, FF.getActualDate());
-            pstmt.setInt(11, FF.getId());
+            pstmt.setString(11, sdf.format(dt));
+            pstmt.setInt(12, FF.getId());
 
             int rs = pstmt.executeUpdate();
 
@@ -4324,6 +4400,7 @@ public class UserDAO {
                 FF.setLmc5Remarks(rs2.getString("lmc5Remarks"));
                 FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
                 FF.setDirectorremarks(rs2.getString("directorremarks"));
+                FF.setRevisionTime(rs2.getString("datetime"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
@@ -4380,6 +4457,111 @@ public class UserDAO {
         return FF;
     }
 
+    public FF retrieveFFRevisionByFFID(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+        FF FF = new FF();
+        try {
+            String query = "SELECT * FROM ffproposal_revisions WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF.setId(rs2.getInt("id"));
+                FF.setUnit(rs2.getString("unit"));
+                FF.setDepartment(rs2.getString("department"));
+                FF.setDatecreated(rs2.getDate("datecreated"));
+                FF.setProjectName(rs2.getString("projectName"));
+                FF.setProgramHead(rs2.getString("programHead"));
+                FF.setActivityClassification(rs2.getString("activityClassification"));
+                FF.setTargetKRA(rs2.getInt("targetKRA"));
+                FF.setTargetGoal(rs2.getInt("targetGoal"));
+                FF.setTargetMeasure(rs2.getInt("targetMeasure"));
+                FF.setActualDate(rs2.getDate("actualImplementation"));
+                FF.setTotalAmount(rs2.getDouble("totalAmount"));
+                FF.setStep(rs2.getInt("step"));
+                FF.setSourceOfFunds(rs2.getString("sourceOfFunds"));
+                FF.setVenue(rs2.getString("venue"));
+                FF.setSpeaker(rs2.getString("speaker"));
+                FF.setObjectives(rs2.getString("objectives"));
+                FF.setUserID(rs2.getInt("userID"));
+                FF.setChairdirectorRemarks(rs2.getString("chairdirectorRemarks"));
+                FF.setVplmRemarks(rs2.getString("vplmRemarks"));
+                FF.setDeanunitRemarks(rs2.getString("deanunitRemarks"));
+                FF.setAssistantdeanRemarks(rs2.getString("assistantdeanRemarks"));
+                FF.setJayRemarks(rs2.getString("ovplm1Remarks"));
+                FF.setCarmelRemarks(rs2.getString("ovplm2Remarks"));
+                FF.setLspoRemarks(rs2.getString("lspoRemarks"));
+                FF.setLmc1Remarks(rs2.getString("lmc1Remarks"));
+                FF.setLmc2Remarks(rs2.getString("lmc2Remarks"));
+                FF.setLmc3Remarks(rs2.getString("lmc3Remarks"));
+                FF.setLmc4Remarks(rs2.getString("lmc4Remarks"));
+                FF.setLmc5Remarks(rs2.getString("lmc5Remarks"));
+                FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
+                FF.setDirectorremarks(rs2.getString("directorremarks"));
+                FF.setRevisionTime(rs2.getString("datetime"));
+            }
+
+            ArrayList<FFexpenses> expenses = new ArrayList();
+
+            query = "SELECT * FROM ffproposal_revisions_expenses WHERE revisionID = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FFexpenses ff = new FFexpenses();
+                ff.setItem(rs2.getString("item"));
+                ff.setUnitcost(rs2.getDouble("unitcost"));
+                ff.setQuantity(rs2.getInt("quantity"));
+                ff.setSubtotal(rs2.getDouble("subtotal"));
+                ff.setAmountUsed(rs2.getDouble("amountUsed"));
+                expenses.add(ff);
+            }
+
+            FF.setExpenses(expenses);
+
+            ArrayList<FFattendees> attendees = new ArrayList();
+
+            query = "SELECT * FROM ffproposal_revisions_attendees WHERE revisionID = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FFattendees attendee = new FFattendees();
+                attendee.setName(rs2.getString("name"));
+                attendee.setEmail(rs2.getString("email"));
+                attendees.add(attendee);
+            }
+
+            FF.setAttendees(attendees);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+    
     public void updateStep(int step, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13626,6 +13808,38 @@ public class UserDAO {
         }
         return false;
     }
+    
+    public boolean hasRevisionsAuditFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+
+        try {
+            String query = "SELECT * FROM ffproposal_revisions WHERE ffproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
 
     public ArrayList<SE> retrieveSERevisions(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -13669,5 +13883,49 @@ public class UserDAO {
                 /* ignored */ }
         }
         return se;
+    }
+    
+    public ArrayList<FF> retrieveFFRevisions(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM ffproposal_revisions WHERE ffproposalID = ? ORDER BY datetime DESC";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<FF> ff = new ArrayList();
+        
+        ff.add(this.retrieveFFByFFID(ffID));
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+               FF f = new FF();
+               f.setId(rs.getInt("id"));
+               f.setProjectName(rs.getString("projectName"));
+               f.setRevisionTime(rs.getString("datetime"));
+               ff.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return ff;
     }
 }
