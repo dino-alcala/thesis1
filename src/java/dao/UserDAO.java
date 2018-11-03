@@ -2353,8 +2353,11 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype, datetime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             pstmt.setString(1, SE.getUnit());
             pstmt.setString(2, SE.getDepartment());
@@ -2388,6 +2391,7 @@ public class UserDAO {
             pstmt.setString(30, SE.getSocialCommunityProblem());
             pstmt.setString(31, SE.getSourceOfFunds());
             pstmt.setString(32, SE.getUnittype());
+            pstmt.setString(33, sdf.format(dt));
 
             int rs = pstmt.executeUpdate();
 
@@ -2476,7 +2480,7 @@ public class UserDAO {
         int rs = 0;
         try {
 
-            String query = "INSERT INTO seproposal_revisions(seproposalID, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, programName, problemaddressed, sourceOfFunds) SELECT id, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, programName, problemaddressed, sourceOfFunds FROM seproposal WHERE id = ?";
+            String query = "INSERT INTO seproposal_revisions(seproposalID, unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, programName, problemaddressed, sourceOfFunds, datetime) SELECT id, unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, programName, problemaddressed, sourceOfFunds, datetime FROM seproposal WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
 
@@ -2492,17 +2496,6 @@ public class UserDAO {
             while (rs2.next()) {
                 newID = rs2.getInt("id");
             }
-
-            query = "UPDATE seproposal_revisions SET datetime = ? WHERE seproposalID = ?";
-            pstmt = conn.prepareStatement(query);
-
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            pstmt.setString(1, sdf.format(dt));
-            pstmt.setInt(2, seID);
-
-            rs = pstmt.executeUpdate();
 
             query = "INSERT INTO seproposal_revisions_component(seproposalID, component) SELECT seproposalID, component FROM seproposal_component WHERE seproposalID = ?";
             pstmt = conn.prepareStatement(query);
@@ -2587,8 +2580,11 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "UPDATE seproposal SET programHead = ?, activityClassification = ?, targetCommunity = ?, targetKRA = ?, targetGoal = ?, targetMeasure = ?, titleOfActivity = ?, actualImplementation = ?, totalAmountRequested = ?, nameOfPartner = ?, address = ?, contactPerson = ?, mobileNumber = ?, email = ?, description = ?, objectives = ?, explanation = ?, academicStaffPopulation = ?, academicStaffExpected = ?, supportStaffPopulation = ?, supportStaffExpected = ?, undergraduatePopulation = ?, undergraduateExpected = ?, graduatePopulation = ?, graduateExpected = ?, step = ?, programName = ?, problemaddressed = ?, sourceOfFunds = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET programHead = ?, activityClassification = ?, targetCommunity = ?, targetKRA = ?, targetGoal = ?, targetMeasure = ?, titleOfActivity = ?, actualImplementation = ?, totalAmountRequested = ?, nameOfPartner = ?, address = ?, contactPerson = ?, mobileNumber = ?, email = ?, description = ?, objectives = ?, explanation = ?, academicStaffPopulation = ?, academicStaffExpected = ?, supportStaffPopulation = ?, supportStaffExpected = ?, undergraduatePopulation = ?, undergraduateExpected = ?, graduatePopulation = ?, graduateExpected = ?, step = ?, programName = ?, problemaddressed = ?, sourceOfFunds = ?, datetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             pstmt.setString(1, SE.getProgramHead());
             pstmt.setString(2, SE.getActivityClassification());
@@ -2619,7 +2615,8 @@ public class UserDAO {
             pstmt.setString(27, SE.getName());
             pstmt.setString(28, SE.getSocialCommunityProblem());
             pstmt.setString(29, SE.getSourceOfFunds());
-            pstmt.setInt(30, SE.getId());
+            pstmt.setString(30, sdf.format(dt));
+            pstmt.setInt(31, SE.getId());
 
             int rs = pstmt.executeUpdate();
 
@@ -4027,6 +4024,7 @@ public class UserDAO {
                 SE.setVpVcRemarks(rs2.getString("vpvcremarks"));
                 SE.setSourceOfFunds(rs2.getString("sourceOfFunds"));
                 SE.setUserID(rs2.getInt("userID"));
+                SE.setRevisionTime(rs2.getString("datetime"));
             }
 
             ArrayList<String> component = new ArrayList();
@@ -4086,6 +4084,165 @@ public class UserDAO {
             ArrayList<SEworkplan> workplan = new ArrayList();
 
             query = "SELECT * FROM seproposal_workplan WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SEworkplan plan = new SEworkplan();
+                plan.setDate(rs2.getDate("startdate"));
+                plan.setActivity(rs2.getString("activity"));
+                plan.setTimestarttimeend(rs2.getString("timestartTimeend"));
+                plan.setVenue(rs2.getString("venue"));
+                plan.setTimestarttimeend2(rs2.getString("timeend"));
+                workplan.add(plan);
+            }
+
+            SE.setWorkplan(workplan);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
+    public SE retrieveSERevisionBySEID(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+        SE SE = new SE();
+        try {
+            String query = "SELECT * FROM seproposal_revisions WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE.setId(rs2.getInt("id"));
+                SE.setUnit(rs2.getString("unit"));
+                SE.setDepartment(rs2.getString("department"));
+                SE.setDate(rs2.getDate("datecreated"));
+                SE.setName(rs2.getString("programName"));
+                SE.setProgramHead(rs2.getString("programHead"));
+                SE.setActivityClassification(rs2.getString("activityClassification"));
+                SE.setTargetCommunity(rs2.getInt("targetCommunity"));
+                SE.setTargetKRA(rs2.getInt("targetKRA"));
+                SE.setTargetGoal(rs2.getInt("targetGoal"));
+                //SE.setTargetMeasure(rs2.getInt("targetMeasure"));
+                SE.setActualDate(rs2.getDate("actualImplementation"));
+                SE.setTotalAmount(rs2.getDouble("totalAmountRequested"));
+                SE.setSocialCommunityProblem(rs2.getString("problemaddressed"));
+                SE.setNameSEbeneficiaries(rs2.getString("nameOfPartner"));
+                SE.setAddressSEbeneficiaries(rs2.getString("address"));
+                SE.setContactPersonSEbeneficiaries(rs2.getString("contactPerson"));
+                SE.setMobileSEbeneficiaries(rs2.getString("mobileNumber"));
+                SE.setEmailSEbeneficiaries(rs2.getString("email"));
+                SE.setDescriptionSEbeneficiaries(rs2.getString("description"));
+                SE.setObjectives(rs2.getString("objectives"));
+                SE.setExplanation(rs2.getString("explanation"));
+                SE.setTotalpopulationAcademicStaff(rs2.getInt("academicStaffPopulation"));
+                SE.setExpectedAcademicStaff(rs2.getInt("academicStaffExpected"));
+                SE.setTotalpopulationSupportStaff(rs2.getInt("supportStaffPopulation"));
+                SE.setExpectedSupportStaff(rs2.getInt("supportStaffExpected"));
+                SE.setTotalpopulationUndergraduate(rs2.getInt("undergraduatePopulation"));
+                SE.setExpectedUndergraduate(rs2.getInt("undergraduateExpected"));
+                SE.setTotalPopulationGraduate(rs2.getInt("graduatePopulation"));
+                SE.setExpectedGraduate(rs2.getInt("graduateExpected"));
+                SE.setStep(rs2.getInt("step"));
+                SE.setDeptunitRemarks(rs2.getString("deptunitRemarks"));
+                SE.setExternaldirectorRemarks(rs2.getString("externaldirectorRemarks"));
+                SE.setDeanRemarks(rs2.getString("deanRemarks"));
+                SE.setJayRemarks(rs2.getString("ovplm1Remarks"));
+                SE.setCarmelRemarks(rs2.getString("ovplm2Remarks"));
+                SE.setCoscaRemarks(rs2.getString("coscaRemarks"));
+                SE.setLmc1Remarks(rs2.getString("lmc1Remarks"));
+                SE.setLmc2Remarks(rs2.getString("lmc2Remarks"));
+                SE.setLmc3Remarks(rs2.getString("lmc3Remarks"));
+                SE.setLmc4Remarks(rs2.getString("lmc4Remarks"));
+                SE.setLmc5Remarks(rs2.getString("lmc5Remarks"));
+                SE.setLmc6Remarks(rs2.getString("lmc6Remarks"));
+                SE.setLmc7Remarks(rs2.getString("lmc7Remarks"));
+                SE.setLmc8Remarks(rs2.getString("lmc8Remarks"));
+                SE.setUnitChairRemarks(rs2.getString("unitchairremarks"));
+                SE.setSeDirectorRemarks(rs2.getString("sedirectorremarks"));
+                SE.setVpVcRemarks(rs2.getString("vpvcremarks"));
+                SE.setSourceOfFunds(rs2.getString("sourceOfFunds"));
+                SE.setUserID(rs2.getInt("userID"));
+                SE.setRevisionTime(rs2.getString("datetime"));
+            }
+
+            ArrayList<String> component = new ArrayList();
+
+            query = "SELECT * FROM seproposal_revisions_component WHERE revisionID = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                component.add(rs2.getString("component"));
+            }
+
+            SE.setComponent(component);
+
+            ArrayList<SEexpenses> expenses = new ArrayList();
+
+            query = "SELECT * FROM seproposal_revisions_expenses WHERE revisionID = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SEexpenses se = new SEexpenses();
+                se.setItem(rs2.getString("item"));
+                se.setUnitcost(rs2.getDouble("unitcost"));
+                se.setQuantity(rs2.getInt("quantity"));
+                se.setSubtotal(rs2.getDouble("subtotal"));
+                se.setAmountUsed(rs2.getDouble("amountUsed"));
+                expenses.add(se);
+            }
+
+            SE.setExpenses(expenses);
+
+            ArrayList<SEresponsible> responsible = new ArrayList();
+
+            query = "SELECT * FROM seproposal_revisions_personresponsible WHERE revisionID = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SEresponsible p = new SEresponsible();
+                p.setName(rs2.getString("name"));
+                p.setEmail(rs2.getString("email"));
+                responsible.add(p);
+            }
+
+            SE.setResponsible(responsible);
+
+            ArrayList<SEworkplan> workplan = new ArrayList();
+
+            query = "SELECT * FROM seproposal_revisions_workplan WHERE revisionID = ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, seID);
@@ -13270,6 +13427,42 @@ public class UserDAO {
 
         return ids;
     }
+    
+    public ArrayList<Integer> GetRevisionsMeasures(int id) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<Integer> ids = new ArrayList();
+
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT measureID FROM seproposal_revisions_measures WHERE revisionID = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, id);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                ids.add(rs2.getInt("measureID"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+
+        return ids;
+    }
 
     public Measure GetMeasureObject(int id) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -13380,5 +13573,81 @@ public class UserDAO {
         }
 
         return name;
+    }
+
+    public boolean hasRevisionsAuditSE(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+
+        try {
+            String query = "SELECT * FROM seproposal_revisions WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+
+    public ArrayList<SE> retrieveSERevisions(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM seproposal_revisions WHERE seproposalID = ? ORDER BY datetime DESC";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<SE> se = new ArrayList();
+        
+        se.add(this.retrieveSEBySEID(seID));
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+               SE s = new SE();
+               s.setId(rs.getInt("id"));
+               s.setName(rs.getString("programName"));
+               s.setRevisionTime(rs.getString("datetime"));
+               se.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return se;
     }
 }

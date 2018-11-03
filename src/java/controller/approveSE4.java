@@ -20,6 +20,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 /**
@@ -43,28 +44,36 @@ public class approveSE4 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
             InputStream inputStream = null;
             Part filePart = request.getPart("uploadprs");
 
             UserDAO UserDAO = new UserDAO();
- 
+            
+            if (request.getParameter("auditSE") != null) {
+
+                session.setAttribute("auditSE", request.getParameter("auditSE"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailSE.jsp");
+                dispatcher.forward(request, response);
+            }
+
             if (request.getParameter("seID") != null) {
                 if (filePart != null) {
                     inputStream = filePart.getInputStream();
                 }
-            
+
                 if (request.getPart("uploadprs").getSize() == 0) {
                     request.setAttribute("successSE1", "You have not uploaded any file.");
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");
                     dispatcher.forward(request, response);
-                    
-                } else if (!(request.getPart("uploadprs").getSize() == 0)){
-            
+
+                } else if (!(request.getPart("uploadprs").getSize() == 0)) {
+
                     UserDAO.uploadPRS(inputStream, Integer.parseInt(request.getParameter("seID")));
                     UserDAO.updateStep(7, Integer.parseInt(request.getParameter("seID")));
 
-                    
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
                     n.setBody("You have new SE PRS ready for approval!");

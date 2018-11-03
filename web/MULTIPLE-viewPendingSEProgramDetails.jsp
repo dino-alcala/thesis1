@@ -614,6 +614,14 @@
                                 <br/>
 
                                 <%
+                                    if(UserDAO.hasRevisionsAuditSE(Integer.parseInt(request.getAttribute("seID").toString()))){
+                                %>
+                                    <center><button class="btn-success" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button><br></center>  
+                                    <%
+                                        }   
+                                        %>
+                                    <br>
+                                <%
                                     if (UserDAO.getStep(Integer.parseInt(request.getAttribute("seID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
                                 <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>                                  
