@@ -407,7 +407,7 @@
                         <fieldset>
                             <legend><b>Program Head:</b></legend>
                             <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" required>
-                            <br>
+                            <br><br>
                         </fieldset>
 
                         <fieldset>

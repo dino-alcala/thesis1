@@ -184,7 +184,7 @@ public class approveFF extends HttpServlet {
                 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
-                    //UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.updateUnitHeadRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the Unit Head.");
 
                     java.util.Date dt = new java.util.Date();
@@ -208,7 +208,7 @@ public class approveFF extends HttpServlet {
                 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
-                    //UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.updateDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the Director.");
 
                     java.util.Date dt = new java.util.Date();
