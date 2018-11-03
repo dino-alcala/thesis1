@@ -4165,6 +4165,8 @@ public class UserDAO {
                 FF.setLmc3Remarks(rs2.getString("lmc3Remarks"));
                 FF.setLmc4Remarks(rs2.getString("lmc4Remarks"));
                 FF.setLmc5Remarks(rs2.getString("lmc5Remarks"));
+                FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
+                FF.setDirectorremarks(rs2.getString("directorremarks"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
