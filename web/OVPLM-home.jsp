@@ -444,9 +444,6 @@
                         <a href="OVPLM-perCommunityReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">Communities</span>
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Programs</span>
-                        </a>
                         <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">Units</span>
                         </a>
@@ -700,57 +697,7 @@
                     <h1 class="budget">PHP <%=formatter.format(b.getRemainingBudget())%></h1>
 
                 </div>
-
-
-                <!--- Quick View -->
-                <div class="container-fluid quickview">
-
-                    <h4>Quick View</h4>
-
-                    <div class="card-deck">
-                        <div class="card bg-basic">
-                            <div class="card-body text-center">
-                                <p class="card-text quickhead"><b>Top 5 Units</b></p>
-                                <p>1. Sample (30 programs)</p>
-                                <p>2. Sample (29 programs)</p>
-                                <p>3. Sample (28 programs)</p>
-                                <p>4. Sample (27 programs)</p>
-                                <p>5. Sample (26 programs)</p>
-                            </div>
-                        </div>
-                        <div class="card bg-basic">
-                            <div class="card-body text-center">
-                                <p class="card-text quickhead"><b>Bottom 5 Units</b></p>
-                                <p>1. Sample</p>
-                                <p>2. Sample</p>
-                                <p>3. Sample</p>
-                                <p>4. Sample</p>
-                                <p>5. Sample</p>
-                            </div>
-                        </div>
-                        <div class="card bg-basic">
-                            <div class="card-body text-center">
-                                <p class="card-text quickhead"><b>Top 5 Communities</b></p>
-                                <p>1. Sample (30 programs)</p>
-                                <p>2. Sample (29 programs)</p>
-                                <p>3. Sample (28 programs)</p>
-                                <p>4. Sample (27 programs)</p>
-                                <p>5. Sample (26 programs)</p>
-                            </div>
-                        </div>
-                        <div class="card bg-basic">
-                            <div class="card-body text-center">
-                                <p class="card-text quickhead"><b>Bottom 5 Communities</b></p>
-                                <p>1. Sample</p>
-                                <p>2. Sample</p>
-                                <p>3. Sample</p>
-                                <p>4. Sample</p>
-                                <p>5. Sample</p>
-                            </div>
-                        </div> 
-                    </div>
-
-                </div>
+                <br/>    
             </div>
 
         </div>

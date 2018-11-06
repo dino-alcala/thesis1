@@ -340,7 +340,7 @@
                                         <thead>
                                             <tr>
                                                 <th onclick="sortTable(0)">Name</th>
-                                                <th onclick="sortTable(1)">Type</th>
+                                                <th onclick="sortTable(1)">Office</th>
                                                 <th onclick=                                "sortTable(2)">Email Address</th>
                                                 <th></th>
                                             </tr>

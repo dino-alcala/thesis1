@@ -351,7 +351,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -372,7 +371,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -393,7 +391,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -414,7 +411,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -435,7 +431,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -1114,7 +1109,7 @@
                 <!--- Units -->
                 <div class="container-fluid panels">
 
-                    <h2>Unit's Number of Programs (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                    <h2>Number of Programs Implemented (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
 
                     <div class="card-deck">
                         <div class="card chartscards">
@@ -1195,7 +1190,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Community</th>
-                                <th># of Programs</th>
+                                <th>Number of Programs Implemented</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1223,7 +1218,7 @@
                         DecimalFormat df = new DecimalFormat("#,###,###,###.##");
                     %>
 
-                    <h2>Program's Budget (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                    <h2>Budget (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
 
                     <div class="card-deck">
                         <div class="card bg-info">
