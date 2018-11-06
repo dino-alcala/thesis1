@@ -124,8 +124,13 @@
                 color: #0083e8;
             }
 
-            b, strong {
+            b, strong{
                 font-weight: 600;
+                font-size: 20px;
+            }
+            
+            h3{
+                font-family: "Times New Roman", Times, serif;
             }
 
             samp {
@@ -157,6 +162,7 @@
 
             #addRowButton, #deleteRowButton {
                 display:inline-block;
+                font-family: "Times New Roman", Times, serif;
             }
 
             .button{
@@ -168,6 +174,12 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Times New Roman", Times, serif;
+            }
+            
+            legend, th, td{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
             }
 
 
@@ -385,7 +397,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h2>Social Engagement Proposal</h2></center>
+                <center><h3>Social Engagement Proposal</h3></center>
                 <hr size="5" noshade>
                 <br>
 

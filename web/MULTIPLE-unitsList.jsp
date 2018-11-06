@@ -70,8 +70,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -220,7 +220,7 @@
                         ArrayList<Unit> u = new ArrayList();
                         u = UserDAO.retrieveUnits();
                     %>
-                    <h2>Unit List (<%=u.size()%>)</h2>
+                    <h4>Unit List (<%=u.size()%>)</h4>
 
 
                     <form action="viewUnit" method="post">

@@ -157,8 +157,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -468,7 +468,7 @@
             <div class="col py-3">
                 <!---KRAs-->
                 <div class="container-fluid panels">
-              <h2>Key Result Areas</h2>
+              <h4>Key Result Areas</h4>
 
                     <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
                     <table class="table table-bordered">
@@ -645,7 +645,7 @@
                 <div class="container-fluid panels">
 
 
-                    <h2>Proposals to assess (<%=proposals.size()%>)</h2>
+                    <h4>Proposals to assess (<%=proposals.size()%>)</h4>
 
                     <input class="form-control" id="myInput" type="text" placeholder="Search table..">
 
@@ -695,7 +695,7 @@
                 <!--- budget -->
                 <div class="container-fluid panels">
 
-                    <h2>Current Budget</h2>
+                    <h4>Current Budget</h4>
 
                     <h1 class="budget">PHP <%=formatter.format(b.getRemainingBudget())%></h1>
 
@@ -705,7 +705,7 @@
                 <!--- Quick View -->
                 <div class="container-fluid quickview">
 
-                    <h2>Quick View</h2>
+                    <h4>Quick View</h4>
 
                     <div class="card-deck">
                         <div class="card bg-basic">

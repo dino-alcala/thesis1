@@ -119,8 +119,8 @@
                 border-radius: 8px;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -249,7 +249,7 @@
                         %>
 
                         <div class="container-fluid panels">
-                            <h2>Total Budget Available</h2>
+                            <h4>Total Budget Available</h4>
                             <h1 class="budget">PHP <%=formatter.format(b.getRemainingBudget())%></h1>
 
                             <%
@@ -273,7 +273,7 @@
                                 seproposal = UserDAO.retrieveSEProposalAmountRequestedByAll();
                             %>
 
-                            <h2>Social Engagement Programs</h2>
+                            <h4>Social Engagement Programs</h4>
 
                             <table id="example" class="table table-striped table-bordered" style="width:100%">
                                 <thead  class="thead-dark">
@@ -306,7 +306,7 @@
                         </div>
 
                         <div class="container-fluid panels">
-                            <h2>Faith Formation Programs</h2>
+                            <h4>Faith Formation Programs</h4>
                             <%
                                 ArrayList<FF> ffproposal = new ArrayList();
                                 ffproposal = UserDAO.retrieveFFProposalAmountRequestedByAll();

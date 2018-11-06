@@ -132,6 +132,11 @@
 
             b, strong {
                 font-weight: 600;
+                font-size: 20px;
+            }
+
+            h3{
+                font-family: "Times New Roman", Times, serif;
             }
 
             samp {
@@ -158,7 +163,24 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Times New Roman", Times, serif;
             }
+
+            #addRowButton, #deleteRowButton {
+                display:inline-block;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+            legend{
+                font-family: "Times New Roman", Times, serif;
+            }
+
+            table,th,td{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
+
+            }
+
         </style>
 
         <script type="text/javascript">
@@ -377,7 +399,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h2>Faith Formation Program Proposal</h2></center>
+                <center><h3>Faith Formation Program Proposal</h3></center>
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
@@ -411,7 +433,7 @@
                         </fieldset>
 
                         <fieldset>
-                                <legend><b>Type of Faith Formation:</b> </legend>
+                            <legend><b>Type of Faith Formation:</b> </legend>
                             <select name="classification">
                                 <option value="Retreat">Retreat</option>
                                 <option value="Recollection">Recollection</option>
@@ -498,8 +520,8 @@
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" onclick ="addRow()" value="Click to Add Row">
-                                <input style="background-color:red; border: red;" type ="button" onclick ="deleteRow()" value="Click to Delete Row"></center>
+                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Click to Add Row">
+                                <input style= "background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Click to Delete Row"></center>
                         </fieldset>
 
                         <br><br><br><br>

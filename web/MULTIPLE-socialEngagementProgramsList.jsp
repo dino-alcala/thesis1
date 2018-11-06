@@ -111,8 +111,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -333,7 +333,7 @@
                         </div>
 
                         <br>
-                        <h2>My Social Engagement Programs (<%=my.size()%>)</h2>
+                        <h4>My Social Engagement Programs (<%=my.size()%>)</h4>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
@@ -385,7 +385,7 @@
                             others = UserDAO.retrieveSEProposalByCompleted(Integer.parseInt(session.getAttribute("userID").toString()));
                         %>
                         <br><br>
-                        <h2>All Social Engagement Programs (<%=others.size()%>)</h2>
+                        <h4>All Social Engagement Programs (<%=others.size()%>)</h4>
 
                         <table id="example2" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >

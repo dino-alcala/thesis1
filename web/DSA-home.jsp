@@ -123,8 +123,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 40px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -353,7 +353,7 @@
 
                 <!---KRAs-->
                 <div class="container-fluid panels">
-                    <h2>Key Result Areas</h2>
+                    <h4>Key Result Areas</h4>
 
                     <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
                     <table class="table table-bordered">

@@ -158,7 +158,7 @@
 
             h1{
                 text-align: left;
-                font-size: 30px;
+                font-size: 25px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
             }   

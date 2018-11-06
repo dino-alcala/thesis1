@@ -106,6 +106,16 @@
                 padding: 7px;
                 font-size: 17px;
             }
+            
+            h3{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 25px;
+            }
+
+            legend, th, td{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 18px;
+            }
 
             @keyframes colorize {
                 0% {
@@ -162,7 +172,7 @@
     <body>
 
         <hr size="5" noshade>    
-    <center><h1>Measure Details</h1></center>
+    <center><h3>Measure Details</h3></center>
     <hr size="5" noshade>
 
 

@@ -72,8 +72,8 @@ ProgramsForApproval
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -332,7 +332,7 @@ ProgramsForApproval
                         <h3></h3>
 
                         <br>
-                        <h2>Social Engagement Programs (<%=proposals.size()%>)</h2>
+                        <h4>Social Engagement Programs (<%=proposals.size()%>)</h4>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
