@@ -44,6 +44,7 @@
                 height: 250px;
             }
 
+            
             #myInput{
                 margin-bottom: 20px;
             }
@@ -173,6 +174,8 @@
                     filter: grayscale(0%);
                 }
             }
+            
+            
 
         </style>
 

@@ -465,7 +465,11 @@
             <div class="col py-3">
                 <!---KRAs-->
                 <div class="container-fluid panels">
+<<<<<<< HEAD
+              <h2 style="font-family: Verdana">Key Result Areas</h2>
+=======
               <h4>Key Result Areas</h4>
+>>>>>>> 1b6d80499fa4bb953a69266110bdfdb7fe00f17c
 
                     <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
                     <table class="table table-bordered">
