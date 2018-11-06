@@ -108,8 +108,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -271,7 +271,7 @@
                     <div class="container-fluid panels">
 
 
-                        <h2>Proposals to Assess</h2>
+                        <h4>Proposals to Assess</h4>
 
                         <%
                             ArrayList<FF> proposals = new ArrayList();

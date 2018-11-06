@@ -108,8 +108,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -331,7 +331,7 @@
 
 
                         <br>
-                        <h2>My Faith Formation Programs (<%=my.size()%>)</h2>
+                        <h4>My Faith Formation Programs (<%=my.size()%>)</h4>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
@@ -383,7 +383,7 @@
                             ArrayList<FF> others = new ArrayList();
                             others = UserDAO.retrieveFFProposalByCompleted(Integer.parseInt(session.getAttribute("userID").toString()));
                         %>
-                        <h2>All Faith Formation Programs (<%=others.size()%>)</h2>
+                        <h4>All Faith Formation Programs (<%=others.size()%>)</h4>
 
                         <table id="example2" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >

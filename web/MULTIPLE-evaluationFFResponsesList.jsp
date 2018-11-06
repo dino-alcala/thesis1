@@ -72,8 +72,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 0px;
                 border-bottom: 2px solid green;
@@ -261,7 +261,7 @@
                         </div>
                         <br><br>
 
-                        <h2>Faith Formation Evaluation</h2>
+                        <h4>Faith Formation Evaluation</h4>
 
                         <%
                             ArrayList<FF> f = new ArrayList();

@@ -149,7 +149,7 @@
             }
 
             .panel-title{
-                font-size: 30px;
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;

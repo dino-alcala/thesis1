@@ -59,9 +59,10 @@
             tr:hover {
                 background-color: lightgreen;
             }
+           
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -314,7 +315,7 @@
                 <!---KRAs-->
                 <div class="container-fluid panels">
 
-                    <h2>Key Result Areas</h2>
+                    <h4>Key Result Areas</h4>
 
                     <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
                     <table class="table table-bordered">
@@ -484,7 +485,7 @@
                             s = UserDAO.retrieveSEbyDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                         %>
 
-                        <h2>SE Proposals Progress (<%=s.size()%>)</h2>
+                        <h4>SE Proposals Progress (<%=s.size()%>)</h4>
 
                         <input class="form-control" id="myInput" type="text" placeholder="Search table..">
 
@@ -524,7 +525,7 @@
                             ArrayList<FF> f = new ArrayList();
                             f = UserDAO.retrieveFFbyDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                         %>
-                        <h2>FF Proposals Progress (<%=f.size()%>)</h2>
+                        <h4>FF Proposals Progress (<%=f.size()%>)</h4>
 
                         <input class="form-control" id="myInput" type="text" placeholder="Search table..">
 

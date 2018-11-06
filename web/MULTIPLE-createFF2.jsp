@@ -107,6 +107,13 @@
             table,th,td{
                 border:.5px solid
                     black;
+                font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
+
+            }
+
+            h3{
+                font-family: "Times New Roman", Times, serif;
             }
 
             hr{
@@ -156,6 +163,12 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+            #addRowButton, #deleteRowButton {
+                display:inline-block;
+                font-family: "Times New Roman", Times, serif;
             }
         </style>
 
@@ -312,7 +325,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h2>Faith Formation Program Attendees</h2></center>
+                <center><h3>Faith Formation Program Attendees</h3></center>
                 <hr size="5" noshade>
 
 
@@ -331,8 +344,8 @@
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" onclick ="addRow()" value="Click to Add Row">
-                                <input style="background-color:red; border: red;" type ="button" onclick ="deleteRow()" value="Click to Delete Row"></center>
+                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Click to Add Row">
+                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Click to Delete Row"></center>
                         </fieldset>    
                         <br><br><br><br>
                         <center><button type = "submit" class="button">Submit</button></center>

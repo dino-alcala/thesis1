@@ -128,6 +128,8 @@
 
             b, strong {
                 font-weight: 600;
+                font-family: "Times New Roman", Times, serif;
+                font-size: 20px;
             }
 
             samp {
@@ -170,10 +172,20 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Times New Roman", Times, serif;
             }
             
             td{
                 padding:15px
+            }
+            
+            h3{
+                font-family: "Times New Roman", Times, serif;
+            }
+            
+            legend, th, td{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
             }
 
             @keyframes colorize {
@@ -381,7 +393,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h1>Program Accomplishment Report Form</h1></center>
+                <center><h3>Program Accomplishment Report Form</h3></center>
                 <hr size="5" noshade>
 
                 <div class="form-style-5">

@@ -61,8 +61,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -238,7 +238,7 @@
                             <a href="MULTIPLE-ffReportsList.jsp" type="button" class="btn btn-primary" id="ffButton" >Faith Formation</a>
                         </div>
 
-                        <h2>FF Program Reports List</h2>
+                        <h4>FF Program Reports List</h4>
 
                         <table id="example" class="table table-striped table-bordered">
                             <thead class="thead-dark">

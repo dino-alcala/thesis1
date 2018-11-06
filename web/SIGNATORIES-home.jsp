@@ -130,8 +130,8 @@
             tr:hover {
                 background-color: lightgreen;
             }
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -301,7 +301,7 @@
                     <div class="container-fluid panels">
 
 
-                        <h2>SE Proposals to Assess</h2>
+                        <h4>SE Proposals to Assess</h4>
                         <%
                             ArrayList<SE> proposals = new ArrayList();
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
@@ -365,7 +365,7 @@
 
                     <div class="container-fluid panels">
 
-                        <h2>FF Proposals to Assess</h2>
+                        <h4>FF Proposals to Assess</h4>
                         <table id="example2" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
                                 <tr>

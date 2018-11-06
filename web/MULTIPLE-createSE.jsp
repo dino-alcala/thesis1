@@ -128,8 +128,9 @@
 
             b, strong {
                 font-weight: 600;
+                font-size: 20px;
             }
-
+            
             samp {
                 display: none;
             }
@@ -156,8 +157,12 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Times New Roman", Times, serif;
             }
 
+            legend, h3{
+                font-family: "Times New Roman", Times, serif;
+            }
 
             @keyframes colorize {
                 0% {

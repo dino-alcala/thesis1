@@ -118,8 +118,8 @@
             tr:hover {
                 background-color: lightgreen;
             }
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -352,7 +352,7 @@
 
                 <!---KRAs-->
                 <div class="container-fluid panels">
-                    <h2>Key Result Areas</h2>
+                    <h4>Key Result Areas</h4>
 
                     <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
                     <table class="table table-bordered">
@@ -526,7 +526,7 @@
                 <form action="viewProposalsAssess" method="post">
                     <div class="container-fluid panels">
 
-                        <h2>SE Proposals to assess (<%=s.size()%>)</h2>
+                        <h4>SE Proposals to assess (<%=s.size()%>)</h4>
 
                         <input class="form-control" id="myInput" type="text" placeholder="Search table..">
 
@@ -570,7 +570,7 @@
                             ArrayList<SE> proposals = new ArrayList();
                             proposals = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
                         %>
-                        <h2>SE Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=proposals.size()%>)</h2>
+                        <h4>SE Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=proposals.size()%>)</h4>
 
                         <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
                         <br>

@@ -51,9 +51,9 @@
                 padding-top: 56px;
             }
 
-            h1{
+            h4{
                 text-align: left;
-                font-size: 30px;
+                font-size: 25px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
 
@@ -180,7 +180,7 @@
                 <div class="container">
                     <div class="col-lg-12">
                         <div class="formBg">
-                            <h1>Add Community</h1>
+                            <h4>Add Community</h4>
 
                             <p><i>Fields with "*" are required</i></p>
 

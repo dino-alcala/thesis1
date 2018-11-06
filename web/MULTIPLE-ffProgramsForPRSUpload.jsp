@@ -73,8 +73,8 @@ ProgramsForApproval
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -315,13 +315,13 @@ ProgramsForApproval
                     <!--- table -->
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
-                            <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-seProgramsForPRSUpload.jsp">Social Engagement</a>
-                            <a href="MULTIPLE-ffProgramsForPRSUpload.jsp" type="button" class="btn btn-primary" id="buttonCompleted" >Faith Formation</a>
+                            <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-seProgramsForPRSUpload.jsp">Social Engagement</a>
+                            <a href="MULTIPLE-ffProgramsForPRSUpload.jsp" type="button" class="btn btn-primary" id="buttonPending" >Faith Formation</a>
                         </div>
                         <h3></h3>
 
                         <br>
-                        <h2>Faith Formation Programs (<%=proposals.size()%>)</h2>
+                        <h4>Faith Formation Programs (<%=proposals.size()%>)</h4>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >

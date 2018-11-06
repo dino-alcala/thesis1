@@ -170,6 +170,21 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+            h3{
+                font-family: "Times New Roman", Times, serif;
+            }
+
+            legend, th, td{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
+            }
+
+            #addRowButton, #deleteRowButton {
+                display:inline-block;
+                font-family: "Times New Roman", Times, serif;
             }
 
             @keyframes colorize {
@@ -309,7 +324,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>   
-                <center><h2>Social Engagement Program Attendees</h2></center>
+                <center><h3>Social Engagement Program Attendees</h3></center>
                 <hr size="5" noshade>
 
 

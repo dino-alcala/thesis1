@@ -67,8 +67,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -212,7 +212,7 @@
                 <!--- table -->
                 <div class="container-fluid panels">
                     <form action="viewCommunity" method="post">
-                        <h2>Community List</h2>
+                        <h4>Community List</h4>
 
 
 

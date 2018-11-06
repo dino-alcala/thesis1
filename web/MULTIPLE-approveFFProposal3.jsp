@@ -1,4 +1,4 @@
-~~<%-- 
+<%-- 
     Document   : MULTIPLE-approveCoscaSE
     Created on : 06 18, 18, 7:21:12 PM
     Author     : Karl Madrid

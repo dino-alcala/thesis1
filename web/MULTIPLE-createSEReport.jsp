@@ -128,6 +128,8 @@
 
             b, strong {
                 font-weight: 600;
+                font-family: "Times New Roman", Times, serif;
+                font-size: 20px;
             }
 
             samp {
@@ -170,6 +172,16 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Times New Roman", Times, serif;
+            }
+            
+            h3{
+                font-family: "Times New Roman", Times, serif;
+            }
+            
+            legend, th, td{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
             }
 
 
@@ -354,7 +366,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h2>Program Accomplishment Report Form</h2></center>
+                <center><h3>Program Accomplishment Report Form</h3></center>
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
@@ -455,36 +467,36 @@
                                         <th>Number of Individuals</th>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px"><b>CAP:</b></td>
+                                        <td style="padding:12px">CAP:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required></td>
 
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px"><b>APSP:</b></td>
+                                        <td style="padding:12px">APSP:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px"><b>ASF:</b></td>
+                                        <td style="padding:12px">ASF:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px"><b>Faculty:</b></td>
+                                        <td style="padding:12px">Faculty:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px"><b>Administrators:</b></td>
+                                        <td style="padding:12px">Administrators:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px"><b>Direct Hired Contractuals:</b></td>
+                                        <td style="padding:12px">Direct Hired Contractuals:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px"><b>Independent Contractors:</b></td>
+                                        <td style="padding:12px">Independent Contractors:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px"><b>External Service Personnel:</b></td>
+                                        <td style="padding:12px">External Service Personnel:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
                                     </tr>
                                 </table>

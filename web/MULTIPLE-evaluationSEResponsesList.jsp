@@ -76,8 +76,8 @@
                 background-color: lightgreen;
             }
 
-            h2{
-                font-size: 30px;
+            h4{
+                font-size: 25px;
                 text-align: left;
                 margin-top: 0px;
                 border-bottom: 2px solid green;
@@ -267,7 +267,7 @@
                         </div>
                         <br><br>
 
-                        <h2>Social Engagement Evaluation</h2>
+                        <h4>Social Engagement Evaluation</h4>
 
                         <%
                             ArrayList<SE> s = new ArrayList();
