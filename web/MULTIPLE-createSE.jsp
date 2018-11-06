@@ -44,6 +44,7 @@
                 height: 250px;
             }
 
+            
             #myInput{
                 margin-bottom: 20px;
             }
@@ -168,6 +169,8 @@
                     filter: grayscale(0%);
                 }
             }
+            
+            
 
         </style>
 
@@ -397,7 +400,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h2>Social Engagement Proposal</h2></center>
+                <center><h3>Social Engagement Proposal</h3></center>
                 <hr size="5" noshade>
 
                 <div class="form-style-5">

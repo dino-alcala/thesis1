@@ -351,7 +351,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -372,7 +371,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -393,7 +391,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -414,7 +411,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -435,7 +431,6 @@
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
-                            '<%=UserDAO2.getCommunitynameByID(f.get(i).getTargetCommunity())%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
