@@ -53,6 +53,7 @@ public class createSEreport5 extends HttpServlet {
                 SEattendees a = new SEattendees();
                 a.setName(request.getParameter("attendee" + i));
                 a.setEmail(request.getParameter("email" + i));
+                a.setType(request.getParameter("type" + i));
                 attendees.add(a);
             }
 

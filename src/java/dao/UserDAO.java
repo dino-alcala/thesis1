@@ -8316,12 +8316,13 @@ public class UserDAO {
             }
 
             for (int i = 0; i < SEreport.getAttendees().size(); i++) {
-                query = "INSERT INTO sereport_attendees(name, email, sereportID) VALUES(?,?,?)";
+                query = "INSERT INTO sereport_attendees(name, email, type, sereportID) VALUES(?,?,?,?)";
 
                 pstmt = conn.prepareCall(query);
                 pstmt.setString(1, SEreport.getAttendees().get(i).getName());
                 pstmt.setString(2, SEreport.getAttendees().get(i).getEmail());
-                pstmt.setInt(3, sereportID);
+                pstmt.setString(3, SEreport.getAttendees().get(i).getType());
+                pstmt.setInt(4, sereportID);
 
                 rs = pstmt.executeUpdate();
             }

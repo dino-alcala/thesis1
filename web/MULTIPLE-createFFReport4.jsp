@@ -23,7 +23,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create SE Completion Report</title>
+        <title>Create FF Completion Report</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -128,6 +128,8 @@
 
             b, strong {
                 font-weight: 600;
+                font-family: "Times New Roman", Times, serif;
+                font-size: 20px;
             }
 
             samp {
@@ -173,6 +175,10 @@
                 font-family: "Times New Roman", Times, serif;
             }
 
+            td{
+                padding:15px
+            }
+
             h3{
                 font-family: "Times New Roman", Times, serif;
             }
@@ -180,11 +186,6 @@
             legend, th, td{
                 font-family: "Times New Roman", Times, serif;
                 font-size: 15px;
-            }
-
-            #addRowButton, #deleteRowButton {
-                display:inline-block;
-                font-family: "Times New Roman", Times, serif;
             }
 
             @keyframes colorize {
@@ -199,8 +200,7 @@
             }
         </style>
 
-        <script>
-
+        <script type='text/javascript'>
             function addRow() {
                 var count = document.getElementById("countattendees").value;
                 var table = document.getElementById("attendeestable");
@@ -227,6 +227,7 @@
 
                 }
             }
+
         </script>
     </head>
 
@@ -325,12 +326,14 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>   
-                <center><h3>Social Engagement Program Attendees</h3></center>
+                <hr size="5" noshade>    
+                <center><h3>Program Accomplishment Report Form</h3></center>
                 <hr size="5" noshade>
 
+                <div class="form-style-5">
 
-                <form action="createSEreport5" method="post">
+
+                    <form action="" method="post">
                     <div class="form-style-5">
                         <fieldset>
                             <input type="text" hidden name="countattendees" id="countattendees" value="1"/>
@@ -366,6 +369,7 @@
                         <center><button class="button" type = "submit">Submit</button></center>
                     </div>
                 </form>
+                </div>
 
             </div>
 

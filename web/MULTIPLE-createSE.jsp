@@ -44,7 +44,7 @@
                 height: 250px;
             }
 
-            
+
             #myInput{
                 margin-bottom: 20px;
             }
@@ -68,7 +68,7 @@
             .krascards:hover {
                 background-color: lightgreen;
             }
-            
+
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
@@ -130,7 +130,7 @@
                 font-weight: 600;
                 font-size: 20px;
             }
-            
+
             samp {
                 display: none;
             }
@@ -174,8 +174,8 @@
                     filter: grayscale(0%);
                 }
             }
-            
-            
+
+
 
         </style>
 
@@ -203,46 +203,24 @@
             %>
         </script>
 
-        <script type="text/javascript">
+        <script>
+            var created = 0;
+            
             <%
                 OvplmDAO OvplmDAO = new OvplmDAO();
                 ArrayList<KRA> k = new ArrayList();
                 k = OvplmDAO.retrieveKRA();
-
             %>
-                
-                function changeKRA(c1, c2){
-                    var c1 = document.getElementById(c1);
-                    var c2 = document.getElementById(c2);
-                    c2.innerHTML = "";
-                    
-                    var optionArray = ["|",<%for(int m = 0; m < k.size(); m++){%>"<%=k.get(m).getId()%>|<%=k.get(m).getName()%>",<%}%>];
-                    
-                    for (var option in optionArray) {
-                    var pair = optionArray[option].split("|");
-                    var newOption = document.createElement("option");
-                    newOption.value = pair[0];
-                    newOption.innerHTML = pair[1];
-                    
-                    c2.options.add(newOption);
-                }
-                }
-
-            function changegoal(c1, c2) {
-
+            
+            function displayAccordingly(c1, c2) {
+            var classification = document.getElementById('classification');
             var c1 = document.getElementById(c1);
             var c2 = document.getElementById(c2);
             c2.innerHTML = "";
-            <%                    for (int i = 0; i < k.size(); i++) {
-            %>
-            if (c1.value == "<%=k.get(i).getId()%>") {
-            var optionArray = ["|",<%for (int j = 0; j < k.get(i).getGoals().size(); j++) {%>"<%=k.get(i).getGoals().get(j).getGoalID()%>|<%=k.get(i).getGoals().get(j).getName()%>",<%}%>];
-                }
-
-            <%
-                }
-            %>
-
+            
+            if (classification.value == "Socially Engaged Research") { 
+                var optionArray = ["|", "2|KRA5 - Community that is attuned to a sustainable Earth and socially engaged"];
+    
                 for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
                 var newOption = document.createElement("option");
@@ -250,33 +228,64 @@
                 newOption.innerHTML = pair[1];
                 c2.options.add(newOption);
                 }
-
+                
+            } else if (classification.value == "Service-Learning") {
+                var option1=document.createElement("option");
+                option1.text="Community that is attuned to a sustainable Earth and socially engaged";
+                selectkra.add(option1,selectkra.options[null]);
+            } else if (classification.value == "Interdisciplinary Fora") {
+                var option1=document.createElement("option");
+                option1.text="Formation for all sectors that is truly Lasallian";
+                selectkra.add(option1,selectkra.options[null]);
+            } else if (classification.value == "Direct Service to the Poor and Marginalized") {
+                var option1=document.createElement("option");
+                option1.text="Community that is attuned to a sustainable Earth and socially engaged";
+                selectkra.add(option1,selectkra.options[null]);
+            } else if (classification.value == "Issue Awareness and Advocacy") {
+                var option1=document.createElement("option");
+                option1.text="Formation for all sectors that is truly Lasallian";
+                selectkra.add(option1,selectkra.options[null]);
+            } else if (classification.value == "Public Engagement") {
+                var option1=document.createElement("option");
+                option1.text="Community that is attuned to a sustainable Earth and socially engaged";
+                selectkra.add(option1,selectkra.options[null]);
+            } else if (classification.value == "Others") {
+                var option1=document.createElement("option");
+                option1.text="Formation for all sectors that is truly Lasallian";
+                selectkra.add(option1,selectkra.options[null]);
+                
+                var option2=document.createElement("option");
+                option2.text="Community that is attuned to a sustainable Earth and socially engaged";
+                selectkra.add(option2,selectkra.options[null]);
+            } 
+        }
+        
+        function changeKRA(c1, c2){
+            var c1 = document.getElementById(c1);
+            var c2 = document.getElementById(c2);
+            c2.innerHTML = "";
+            var optionArray = ["|",<%for (int m = 0; m < k.size(); m++) {%>"<%=k.get(m).getId()%>|<%=k.get(m).getName()%>",<%}%>];
+                for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair[1];
+                c2.options.add(newOption);
                 }
-
-                function changemeasure(c1, c2, c3, c4) {
+                }
+        
+        function changegoal(c1, c2) {
 
                 var c1 = document.getElementById(c1);
                 var c2 = document.getElementById(c2);
-                var c3 = document.getElementById(c3);
-                var c4 = document.getElementById(c4);
                 c2.innerHTML = "";
-                c3.innerHTML = "";
-                c4.innerHTML = "";
-            <%
-                for (int i = 0; i < k.size(); i++) {
-                    for (int j = 0; j < k.get(i).getGoals().size(); j++) {
+            <%                    for (int i = 0; i < k.size(); i++) {
             %>
-
-                if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                var optionArray = [<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
-                    }
-                    
-                                    if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                var optionArray2 = ["0|None",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                if (c1.value == "<%=k.get(i).getId()%>") {
+                var optionArray = ["|",<%for (int j = 0; j < k.get(i).getGoals().size(); j++) {%>"<%=k.get(i).getGoals().get(j).getGoalID()%>|<%=k.get(i).getGoals().get(j).getName()%>",<%}%>];
                     }
 
             <%
-                    }
                 }
             %>
 
@@ -286,27 +295,67 @@
                     newOption.value = pair[0];
                     newOption.innerHTML = pair[1];
                     c2.options.add(newOption);
-                }
-                
-                 for (var option in optionArray2) {
-                    var pair = optionArray2[option].split("|");
-                    var newOption = document.createElement("option");
-                    newOption.value = pair[0];
-                    newOption.innerHTML = pair[1];
-                    c3.options.add(newOption);
-                }
-                
-                 for (var option in optionArray2) {
-                    var pair = optionArray2[option].split("|");
-                    var newOption = document.createElement("option");
-                    newOption.value = pair[0];
-                    newOption.innerHTML = pair[1];
-                    c4.options.add(newOption);
-                }
-                    
+                    }
 
                     }
+
+                    function changemeasure(c1, c2, c3, c4) {
+
+                    var c1 = document.getElementById(c1);
+                    var c2 = document.getElementById(c2);
+                    var c3 = document.getElementById(c3);
+                    var c4 = document.getElementById(c4);
+                    c2.innerHTML = "";
+                    c3.innerHTML = "";
+                    c4.innerHTML = "";
+            <%
+                for (int i = 0; i < k.size(); i++) {
+                    for (int j = 0; j < k.get(i).getGoals().size(); j++) {
+            %>
+
+                    if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
+                    var optionArray = [<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                        }
+
+                        if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
+                        var optionArray2 = ["0|None",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                            }
+
+            <%
+                    }
+                }
+            %>
+
+                            for (var option in optionArray) {
+                            var pair = optionArray[option].split("|");
+                            var newOption = document.createElement("option");
+                            newOption.value = pair[0];
+                            newOption.innerHTML = pair[1];
+                            c2.options.add(newOption);
+                            }
+
+                            for (var option in optionArray2) {
+                            var pair = optionArray2[option].split("|");
+                            var newOption = document.createElement("option");
+                            newOption.value = pair[0];
+                            newOption.innerHTML = pair[1];
+                            c3.options.add(newOption);
+                            }
+
+                            for (var option in optionArray2) {
+                            var pair = optionArray2[option].split("|");
+                            var newOption = document.createElement("option");
+                            newOption.value = pair[0];
+                            newOption.innerHTML = pair[1];
+                            c4.options.add(newOption);
+                            }
+
+
+                            }
+
         </script>
+        
+        
     </head>
 
     <body>
@@ -448,7 +497,7 @@
                             <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" required>
                             <br><br><br><br>
                         </fieldset>
-                        
+
                         <fieldset>
                             <legend><b>Target Community:</b></legend>
                             <%
@@ -466,10 +515,10 @@
                             </select>
                             <br><br>
                         </fieldset>
-
+                            
                         <fieldset>
                             <legend><b>Type of Social Engagement:</b></legend>
-                            <select name="classification" onchange="changeKRA(this.id, 'kra')">
+                            <select id="classification" name="classification" onchange="changeKRA(this.id, 'kra')">
                                 <option value=""></option>
                                 <option value="Socially Engaged Research">Socially Engaged Research</option>
                                 <option value="Service-Learning">Service-Learning</option>
@@ -481,11 +530,10 @@
                             </select>
                             <br><br>
                         </fieldset>
-
+                            
                         <fieldset>
                             <legend><b>Target KRA:</b></legend>
                             <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')" required>
-                               
                             </select>
                             <br><br>
                         </fieldset>
@@ -493,28 +541,32 @@
                         <fieldset>
                             <legend><b>Target Goal:</b></legend>
                             <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures', 'measures2', 'measures3')" required>
+
                             </select>
                             <br><br>
                         </fieldset>
-                            
+
 
                         <fieldset>
                             <legend><b>Target Measure:</b></legend>
                             <select name="measure" id="measures" required>
+
                             </select>
                             <br><br><br>
                         </fieldset> 
-                            
-                            <fieldset>
+
+                        <fieldset>
                             <legend><b>Target Measure 2:</b></legend>
                             <select name="measure2" id="measures2">
+                                
                             </select>
                             <br><br><br>
                         </fieldset>
-                            
-                            <fieldset>
+
+                        <fieldset>
                             <legend><b>Target Measure 3:</b></legend>
                             <select name="measure3" id="measures3">
+                    
                             </select>
                             <br><br>
                             <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a></center>
@@ -526,7 +578,7 @@
                             <input style="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
                             <br><br><br>
                         </fieldset>
-                            
+
                         <fieldset>
                             <legend><span class="number">2</span><b> Implementation Address:</b></legend>
                             <input type = "text" name ="implementationaddress" required>

@@ -482,7 +482,8 @@
                             <tr>
                                 <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
-                                <td>50% of student organizations have implemented a Lasallian formation activity</td>
+                                <td>50% of student organizations have implemented a Lasallian formation activity<br><br>
+                                Basta may FF yung student org pasok na dito</td>
                                 <td class="accomplishmentRed">15%</td>
                             </tr>
 
@@ -490,19 +491,22 @@
                             <tr>
                                 <td></td>
                                 <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
-                                <td>50% of faculty departments have undergone Lasallian formation program</td>
+                                <td>50% of faculty departments have undergone Lasallian formation program<br><br>
+                                Basta may FF yung department pasok na dito</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td>75% of staff have undergone Lasallian formation programs  </td>
+                                <td>75% of staff have undergone Lasallian formation programs <br><br>
+                                Basta may FF yung staff pasok na dito</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td>All administrators have undergone the Lasallian formation activity  </td>
+                                <td>All administrators have undergone the Lasallian formation activity<br><br>
+                                Basta may FF yung admin pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -510,7 +514,8 @@
                             <tr>
                                 <td></td>
                                 <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
-                                <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
+                                <td>At Least one formation activity engaging alumni, parents, and community partners. <br><br>
+                                Basta may FF yung pasok na dito (di pa sure kung kaya to matrack)</td>
                                 <td></td>
                             </tr>
 
@@ -518,7 +523,8 @@
                             <tr>
                                 <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
-                                <td>At least one interdisciplinary activity conducted each term</td>
+                                <td>At least one interdisciplinary activity conducted each term<br><br>
+                                Basta may SE type na fora pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -527,7 +533,8 @@
                             <tr>
                                 <td> </td>
                                 <td><b>M2</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
-                                <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
+                                <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity<br><br>
+                                Basta may SE type na fora pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -535,7 +542,8 @@
                             <tr>
                                 <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
-                                <td>3 communities</td>
+                                <td>3 communities <br><br>
+                                Di pa sure pano to matrack</td>
                                 <td></td>
                             </tr>
 
@@ -557,7 +565,8 @@
                             <tr>
                                 <td><b>G1 </b> Each unit of the University has at least one sustainable social engagement project </td>
                                 <td><b>M1</b> Number of sustainable social engagement project of units </td>
-                                <td>20%</td>
+                                <td>20%<br><br>
+                                Pag yung isang SE proposal nakacheck yung Sustainability Component, sustainable na siya so pasok na dito</td>
                                 <td class="accomplishmentGreen">20%</td>
                             </tr>
 
@@ -566,7 +575,8 @@
                             <tr>
                                 <td></td>
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>A.</b> Percentage of student organizations involved in community engagement programs and activities</td>
-                                <td>50%</td>
+                                <td>50% <br><br>
+                                Basta may SE program pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -574,7 +584,8 @@
                             <tr>
                                 <td></td>
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>B.</b> Percentage of staff engaged in community engagement programs and activities</td>
-                                <td>50%</td>
+                                <td>50% <br><br>
+                                Basta may SE program pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -582,7 +593,8 @@
                             <tr>
                                 <td></td>
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>C.</b> Percentage of departments with community engagement project  </td>
-                                <td>20%</td>
+                                <td>20% <br><br>
+                                Basta may SE program pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -592,7 +604,8 @@
                                 <td><b>M3</b> Number of social engagement choices under the four components of the Sustainable Development Goals Localization Project
                                      L-ARAL, (Education)  L-SEED (Social Enterprise)  L-Envisage (Environment / DRR)  L-HEARTS (Health and Wellness) 
                                 </td>
-                                <td>16</td>
+                                <td>16 <br><br>
+                                Nasa seproposal yung classification sa db</td>
                                 <td></td>
                             </tr>
 
@@ -601,7 +614,8 @@
                                 <td><b>G2</b> Service Learning is institutionalized</td>
                                 <td><b>M1</b> Service learning (SL) component of academic programs   
                                     <b>A.</b> Percentage of undergraduate programs with SL component</td>
-                                <td>50%</td>
+                                <td>50% <br><br>
+                                Basta may service-learning na SE type pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -610,7 +624,8 @@
                                 <td></td>
                                 <td><b>M1</b> Service learning (SL) component of academic programs   
                                     <b>B.</b> Percentage of graduate programs with SL component </td>
-                                <td>10%</td>
+                                <td>10% <br><br>
+                                Basta may service-learning na SE type pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -618,7 +633,8 @@
                             <tr>
                                 <td></td>
                                 <td><b>M2</b> Number of international SL activities </td>
-                                <td>1</td>
+                                <td>1 <br><br>
+                                Basta may service-learning na SE type pasok na dito</td>
                                 <td></td>
                             </tr>
 

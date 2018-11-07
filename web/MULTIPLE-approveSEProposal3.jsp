@@ -534,6 +534,7 @@
                                         <td class="form-style-5" style="width:50%">
                                             <select required name="classificationforkra">
                                                 <option disabled selected>Select Classification</option>
+                                                <option value="None">None</option>
                                                 <option value="L-Aral">L-Aral</option>
                                                 <option value="L-Seed">L-Seed</option>
                                                 <option value="L-Envisage">L-Envisage</option>
