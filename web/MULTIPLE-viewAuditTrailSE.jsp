@@ -181,8 +181,8 @@
             SE SE = new SE();
 
             SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("auditSE").toString()));
-            
-            if(request.getAttribute("current")==null){
+
+            if (request.getAttribute("current") == null) {
                 SE = UserDAO.retrieveSERevisionBySEID(Integer.parseInt(request.getAttribute("auditSE").toString()));
             }
 
@@ -226,7 +226,7 @@
                                         <%
                                             ArrayList<Integer> measures = new ArrayList();
                                             measures = UserDAO.GetMeasures(SE.getId());
-                                            if(request.getAttribute("current")==null){
+                                            if (request.getAttribute("current") == null) {
                                                 measures = UserDAO.GetRevisionsMeasures(SE.getId());
                                             }
 
@@ -429,7 +429,30 @@
                                 </div>
                             </div>
                             <br/>
-
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Remarks: </h4>
+                                </div>
+                            </div>
+                            <table style="width:100%">
+                                <tr>
+                                    <td>Department/Unit Chair</td>
+                                    <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%> <%if (SE.getExternaldirectorRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=SE.getDeptunitdatetime()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%if (SE.getSeDirectorRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=SE.getUnitchairdatetime()%><%}%></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>College ADEALM/SE Director</td>
+                                    <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%if (SE.getDeanRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=SE.getExternaldirectordatetime()%><%}%><%if (SE.getSeDirectorRemarks() != null) {%><%=SE.getSeDirectorRemarks()%><%if (SE.getVpVcRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=SE.getSedirectordatetime() %><%}%></td>
+                                </tr>
+                                <tr>
+                                    <td>College Dean/VP/VC</td>
+                                    <td><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%if (SE.getCoscaRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=SE.getDeandatetime() %><%}%><%if (SE.getVpVcRemarks() != null) {%><%=SE.getVpVcRemarks()%><%if (SE.getCoscaRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=SE.getVpvcdatetime() %><%}%></td>
+                                </tr>
+                                <tr>
+                                    <td>Evaluation by COSCA</td>
+                                    <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%if (SE.getLmc1Remarks() !=null || SE.getLmc2Remarks() !=null || SE.getLmc3Remarks() !=null || SE.getLmc4Remarks() !=null || SE.getLmc5Remarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=SE.getCoscadatetime() %><%}%></td>
+                                </tr>
+                            </table>
                         </div>
 
                     </div>

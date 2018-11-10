@@ -2355,7 +2355,7 @@ public class UserDAO {
         try {
             String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype, datetime, addressimplementation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
-            
+
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -2481,7 +2481,7 @@ public class UserDAO {
         int rs = 0;
         try {
 
-            String query = "INSERT INTO seproposal_revisions(seproposalID, unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, programName, problemaddressed, sourceOfFunds, datetime) SELECT id, unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, programName, problemaddressed, sourceOfFunds, datetime FROM seproposal WHERE id = ?";
+            String query = "INSERT INTO seproposal_revisions(seproposalID, unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, deptunitRemarks, externaldirectorRemarks, deanRemarks, coscaRemarks, unitchairremarks, sedirectorremarks, vpvcremarks, programName, problemaddressed, sourceOfFunds, deptunitdatetime, externaldirectordatetime, deandatetime, coscadatetime, unitchairdatetime, sedirectordatetime, vpvcdatetime, isRevise, datetime) SELECT id, unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, targetMeasure, titleOfActivity, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, deptunitRemarks, externaldirectorRemarks, deanRemarks, coscaRemarks, unitchairremarks, sedirectorremarks, vpvcremarks, programName, problemaddressed, sourceOfFunds, deptunitdatetime, externaldirectordatetime, deandatetime, coscadatetime, unitchairdatetime, sedirectordatetime, vpvcdatetime, isRevise, datetime FROM seproposal WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
 
@@ -2573,7 +2573,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void auditFF(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2584,7 +2584,7 @@ public class UserDAO {
         int rs = 0;
         try {
 
-            String query = "INSERT INTO ffproposal_revisions(ffproposalID, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, datetime) SELECT id, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, datetime FROM ffproposal WHERE id = ?";
+            String query = "INSERT INTO ffproposal_revisions(ffproposalID, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, chairdirectorRemarks, vplmRemarks, deanunitRemarks, lspoRemarks, unitheadremarks, directorremarks, chairdirectordatetime, vplmdatetime, deanunitdatetime, lspodatetime, unitheaddatetime, directordatetime, datetime) SELECT id, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, chairdirectorRemarks, vplmRemarks, deanunitRemarks, lspoRemarks, unitheadremarks, directorremarks, chairdirectordatetime, vplmdatetime, deanunitdatetime, lspodatetime, unitheaddatetime, directordatetime, datetime FROM ffproposal WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
 
@@ -2625,7 +2625,6 @@ public class UserDAO {
 
             rs = pstmt.executeUpdate();
 
-
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -2649,7 +2648,7 @@ public class UserDAO {
         try {
             String query = "UPDATE seproposal SET programHead = ?, activityClassification = ?, targetCommunity = ?, targetKRA = ?, targetGoal = ?, targetMeasure = ?, titleOfActivity = ?, actualImplementation = ?, totalAmountRequested = ?, nameOfPartner = ?, address = ?, contactPerson = ?, mobileNumber = ?, email = ?, description = ?, objectives = ?, explanation = ?, academicStaffPopulation = ?, academicStaffExpected = ?, supportStaffPopulation = ?, supportStaffExpected = ?, undergraduatePopulation = ?, undergraduateExpected = ?, graduatePopulation = ?, graduateExpected = ?, step = ?, programName = ?, problemaddressed = ?, sourceOfFunds = ?, datetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
-            
+
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -2784,10 +2783,10 @@ public class UserDAO {
 
             String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype, datetime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
-            
+
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
+
             pstmt.setString(1, FF.getUnit());
             pstmt.setString(2, FF.getDepartment());
             pstmt.setDate(3, FF.getDatecreated());
@@ -2865,10 +2864,10 @@ public class UserDAO {
         ResultSet rs2 = null;
         try {
             String query = "UPDATE ffproposal SET programHead = ?, activityClassification = ?, projectName = ?, venue = ?, speaker = ?, objectives = ?, totalAmount = ?, sourceOfFunds = ?, step = ?, actualImplementation = ?, datetime = ? WHERE id = ?";
-            
+
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
+
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FF.getProgramHead());
             pstmt.setString(2, FF.getActivityClassification());
@@ -4100,6 +4099,14 @@ public class UserDAO {
                 SE.setSourceOfFunds(rs2.getString("sourceOfFunds"));
                 SE.setUserID(rs2.getInt("userID"));
                 SE.setRevisionTime(rs2.getString("datetime"));
+                SE.setDeptunitdatetime(rs2.getString("deptunitdatetime"));
+                SE.setExternaldirectordatetime(rs2.getString("externaldirectordatetime"));
+                SE.setDeandatetime(rs2.getString("deandatetime"));
+                SE.setCoscadatetime(rs2.getString("coscadatetime"));
+                SE.setUnitchairdatetime(rs2.getString("unitchairdatetime"));
+                SE.setSedirectordatetime(rs2.getString("sedirectordatetime"));
+                SE.setVpvcdatetime(rs2.getString("vpvcdatetime"));
+                SE.setIsRevise(rs2.getInt("isRevise"));
             }
 
             ArrayList<String> component = new ArrayList();
@@ -4191,7 +4198,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public SE retrieveSERevisionBySEID(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4259,6 +4266,14 @@ public class UserDAO {
                 SE.setSourceOfFunds(rs2.getString("sourceOfFunds"));
                 SE.setUserID(rs2.getInt("userID"));
                 SE.setRevisionTime(rs2.getString("datetime"));
+                SE.setDeptunitdatetime(rs2.getString("deptunitdatetime"));
+                SE.setExternaldirectordatetime(rs2.getString("externaldirectordatetime"));
+                SE.setDeandatetime(rs2.getString("deandatetime"));
+                SE.setCoscadatetime(rs2.getString("coscadatetime"));
+                SE.setUnitchairdatetime(rs2.getString("unitchairdatetime"));
+                SE.setSedirectordatetime(rs2.getString("sedirectordatetime"));
+                SE.setVpvcdatetime(rs2.getString("vpvcdatetime"));
+                SE.setIsRevise(rs2.getInt("isRevise"));
             }
 
             ArrayList<String> component = new ArrayList();
@@ -4397,6 +4412,12 @@ public class UserDAO {
                 FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
                 FF.setDirectorremarks(rs2.getString("directorremarks"));
                 FF.setRevisionTime(rs2.getString("datetime"));
+                FF.setChairdirectordatetime(rs2.getString("chairdirectordatetime"));
+                FF.setVplmdatetime(rs2.getString("vplmdatetime"));
+                FF.setDeanunitdatetime(rs2.getString("deanunitdatetime"));
+                FF.setLspodatetime(rs2.getString("lspodatetime"));
+                FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
+                FF.setDirectordatetime(rs2.getString("directordatetime"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
@@ -4499,6 +4520,12 @@ public class UserDAO {
                 FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
                 FF.setDirectorremarks(rs2.getString("directorremarks"));
                 FF.setRevisionTime(rs2.getString("datetime"));
+                FF.setChairdirectordatetime(rs2.getString("chairdirectordatetime"));
+                FF.setVplmdatetime(rs2.getString("vplmdatetime"));
+                FF.setDeanunitdatetime(rs2.getString("deanunitdatetime"));
+                FF.setLspodatetime(rs2.getString("lspodatetime"));
+                FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
+                FF.setDirectordatetime(rs2.getString("directordatetime"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
@@ -4554,7 +4581,7 @@ public class UserDAO {
         }
         return FF;
     }
-    
+
     public void updateStep(int step, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4865,10 +4892,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET deptunitRemarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET deptunitRemarks = ?, deptunitdatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -4892,10 +4924,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET unitchairremarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET unitchairremarks = ?, unitchairdatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -4919,10 +4956,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET sedirectorremarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET sedirectorremarks = ?, sedirectordatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -4946,10 +4988,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET vpvcremarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET vpvcremarks = ?, vpvcdatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -4973,10 +5020,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET chairdirectorRemarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET chairdirectorRemarks = ?, chairdirectordatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -5000,10 +5052,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET unitheadremarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET unitheadremarks = ?, unitheaddatetim = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -5027,10 +5084,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET directorremarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET directorremarks = ?, directordatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -5054,10 +5116,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET vplmRemarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET vplmRemarks = ?, vplmdatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -5081,10 +5148,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET deanunitRemarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET deanunitRemarks = ?, deanunitdatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -5271,10 +5343,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET externaldirectorRemarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET externaldirectorRemarks = ?, externaldirectordatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -5298,10 +5375,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET deanRemarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET deanRemarks = ?, deandatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -5460,10 +5542,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET coscaRemarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET coscaRemarks = ?, coscadatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -13609,7 +13696,7 @@ public class UserDAO {
 
         return ids;
     }
-    
+
     public ArrayList<Integer> GetRevisionsMeasures(int id) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13788,7 +13875,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean hasRevisionsAuditFF(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13829,7 +13916,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<SE> se = new ArrayList();
-        
+
         se.add(this.retrieveSEBySEID(seID));
 
         try {
@@ -13839,11 +13926,15 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               SE s = new SE();
-               s.setId(rs.getInt("id"));
-               s.setName(rs.getString("programName"));
-               s.setRevisionTime(rs.getString("datetime"));
-               se.add(s);
+                SE s = new SE();
+                s.setId(rs.getInt("id"));
+                s.setName(rs.getString("programName"));
+                s.setRevisionTime(rs.getString("datetime"));
+                s.setDeanRemarks(rs.getString("deanRemarks"));
+                s.setJayRemarks(rs.getString("ovplm1Remarks"));
+                s.setCarmelRemarks(rs.getString("ovplm2Remarks"));
+                s.setCoscaRemarks(rs.getString("coscaRemarks"));
+                se.add(s);
             }
 
         } catch (SQLException ex) {
@@ -13864,7 +13955,7 @@ public class UserDAO {
         }
         return se;
     }
-    
+
     public ArrayList<FF> retrieveFFRevisions(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13873,7 +13964,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<FF> ff = new ArrayList();
-        
+
         ff.add(this.retrieveFFByFFID(ffID));
 
         try {
@@ -13883,11 +13974,11 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               FF f = new FF();
-               f.setId(rs.getInt("id"));
-               f.setProjectName(rs.getString("projectName"));
-               f.setRevisionTime(rs.getString("datetime"));
-               ff.add(f);
+                FF f = new FF();
+                f.setId(rs.getInt("id"));
+                f.setProjectName(rs.getString("projectName"));
+                f.setRevisionTime(rs.getString("datetime"));
+                ff.add(f);
             }
 
         } catch (SQLException ex) {

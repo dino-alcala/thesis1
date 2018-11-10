@@ -47,6 +47,12 @@ public class FF {
     protected String lmc5Remarks;
     protected String unittype;
     protected String revisionTime;
+    protected String chairdirectordatetime;
+    protected String vplmdatetime;
+    protected String deanunitdatetime;
+    protected String lspodatetime;
+    protected String unitheaddatetime;
+    protected String directordatetime;
 
     public int getId() {
         return id;
@@ -310,6 +316,54 @@ public class FF {
 
     public void setRevisionTime(String revisionTime) {
         this.revisionTime = revisionTime;
+    }
+
+    public String getChairdirectordatetime() {
+        return chairdirectordatetime;
+    }
+
+    public void setChairdirectordatetime(String chairdirectordatetime) {
+        this.chairdirectordatetime = chairdirectordatetime;
+    }
+
+    public String getVplmdatetime() {
+        return vplmdatetime;
+    }
+
+    public void setVplmdatetime(String vplmdatetime) {
+        this.vplmdatetime = vplmdatetime;
+    }
+
+    public String getDeanunitdatetime() {
+        return deanunitdatetime;
+    }
+
+    public void setDeanunitdatetime(String deanunitdatetime) {
+        this.deanunitdatetime = deanunitdatetime;
+    }
+
+    public String getLspodatetime() {
+        return lspodatetime;
+    }
+
+    public void setLspodatetime(String lspodatetime) {
+        this.lspodatetime = lspodatetime;
+    }
+
+    public String getUnitheaddatetime() {
+        return unitheaddatetime;
+    }
+
+    public void setUnitheaddatetime(String unitheaddatetime) {
+        this.unitheaddatetime = unitheaddatetime;
+    }
+
+    public String getDirectordatetime() {
+        return directordatetime;
+    }
+
+    public void setDirectordatetime(String directordatetime) {
+        this.directordatetime = directordatetime;
     }
     
 }

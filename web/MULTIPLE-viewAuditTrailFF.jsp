@@ -276,7 +276,7 @@
                             <br/>
 
                             <fieldset>
-                                
+
                                 <center><p><b>Attendees List</b></p></center>
                                 <br/>
                                 <center><table style = "width:100%" id = "SEchecklist">
@@ -298,7 +298,30 @@
                                     </table></center>
                                 <br>
                             </fieldset>
-
+                            <br>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Remarks: </h4>
+                                </div>
+                            </div>
+                            <table style="width:100%">
+                                <tr>
+                                    <td>Assistant Dean for Lasallian Mission</td>
+                                    <td><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%if (FF.getVplmRemarks() !=null || FF.getUnitheadremarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=FF.getChairdirectordatetime()%><%}%></td>
+                                </tr>
+                                <tr>
+                                    <td>Chairperson/Unit Head</td>
+                                    <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%if (FF.getDeanunitRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=FF.getVplmdatetime()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%if (FF.getDirectorremarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=FF.getUnitheaddatetime()%><%}%></td>
+                                </tr>
+                                <tr>
+                                    <td>Dean/Director</td>
+                                    <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%if (FF.getLspoRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=FF.getDeanunitdatetime()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%if (FF.getLspoRemarks() !=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=FF.getDirectordatetime()%><%}%></td>
+                                </tr>
+                                <tr>
+                                    <td>Evaluation by LSPO</td>
+                                    <td><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%if (FF.getLmc1Remarks() !=null || FF.getLmc2Remarks() !=null || FF.getLmc3Remarks() !=null || FF.getLmc4Remarks() !=null || FF.getLmc5Remarks()!=null){%><b><font color = "green"> APPROVED:</font></b> <%} else {%> <b><font color = "red">REVISED:</font></b><%}%> <%=FF.getLspodatetime()%><%}%></td>
+                                </tr>
+                            </table>
                         </div>
 
                     </div>

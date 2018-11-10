@@ -73,7 +73,15 @@ public class SE {
     protected String classificationforKRA;
     protected String unittype;
     protected String revisionTime;
-
+    protected String deptunitdatetime;
+    protected String externaldirectordatetime;
+    protected String deandatetime;
+    protected String coscadatetime;
+    protected String unitchairdatetime;
+    protected String sedirectordatetime;
+    protected String vpvcdatetime;
+    protected int isRevise;
+    
     public int getId() {
         return id;
     }
@@ -547,6 +555,69 @@ public class SE {
     public void setImplementationaddress(String implementationaddress) {
         this.implementationaddress = implementationaddress;
     }
-    
+
+    public String getDeptunitdatetime() {
+        return deptunitdatetime;
+    }
+
+    public void setDeptunitdatetime(String deptunitdatetime) {
+        this.deptunitdatetime = deptunitdatetime;
+    }
+
+    public String getExternaldirectordatetime() {
+        return externaldirectordatetime;
+    }
+
+    public void setExternaldirectordatetime(String externaldirectordatetime) {
+        this.externaldirectordatetime = externaldirectordatetime;
+    }
+
+    public String getDeandatetime() {
+        return deandatetime;
+    }
+
+    public void setDeandatetime(String deandatetime) {
+        this.deandatetime = deandatetime;
+    }
+
+    public String getCoscadatetime() {
+        return coscadatetime;
+    }
+
+    public void setCoscadatetime(String coscadatetime) {
+        this.coscadatetime = coscadatetime;
+    }
+
+    public String getUnitchairdatetime() {
+        return unitchairdatetime;
+    }
+
+    public void setUnitchairdatetime(String unitchairdatetime) {
+        this.unitchairdatetime = unitchairdatetime;
+    }
+
+    public String getSedirectordatetime() {
+        return sedirectordatetime;
+    }
+
+    public void setSedirectordatetime(String sedirectordatetime) {
+        this.sedirectordatetime = sedirectordatetime;
+    }
+
+    public String getVpvcdatetime() {
+        return vpvcdatetime;
+    }
+
+    public void setVpvcdatetime(String vpvcdatetime) {
+        this.vpvcdatetime = vpvcdatetime;
+    }
+
+    public int getIsRevise() {
+        return isRevise;
+    }
+
+    public void setIsRevise(int isRevise) {
+        this.isRevise = isRevise;
+    }
     
 }
