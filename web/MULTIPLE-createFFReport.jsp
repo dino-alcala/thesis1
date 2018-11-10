@@ -411,6 +411,12 @@
                             <center><input value="<%=FF.getProgramHead()%>" readonly name="programhead" size="50" type="text" required></center>
                             <br>
                         </fieldset>
+                            
+                        <fieldset>  
+                            <legend><b>Link to Google Sheets:</b></legend>
+                            <input style="width:30%" id="fname" name="gsheets" size="50" type="text" required>
+                            <br><br>
+                        </fieldset>
 
                         <fieldset>
                             <legend><b>List of DLSU Participants</b></legend>

@@ -111,7 +111,7 @@
             }
 
             h2{
-                font-size: 30px;
+                font-size: 25px;
                 text-align: left;
                 margin-top: 10px;
                 border-bottom: 2px solid green;
@@ -478,6 +478,21 @@
                             </div>
                         </div> 
                     </div>
+                    <br/>        
+                    <div class="card-deck">
+                        <div class="card bg-success">
+                            <div class="card-body text-center">
+                                <p class="card-text"><b>Budget used for SE programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                <p class="total2">PHP</p>
+                            </div>
+                        </div>
+                        <div class="card bg-success">
+                            <div class="card-body text-center">
+                                <p class="card-text"><b>Budget used for FF programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                <p class="total2">PHP</p>
+                            </div>
+                        </div> 
+                    </div>           
 
                 </div>
                 <!--- pie chart-->
@@ -486,7 +501,15 @@
                 <div class="container-fluid panels">
 
                     <h2>Unit's Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
-
+                                        
+                    <div class="form-group" style="width:100%">
+                        <label for="sel1">Choose classification:</label>
+                        <select class="form-control" id="ffprogram" name="unit">
+                                <option value="Academic">Academic</option>
+                                <option value="Non-Academic">Non-Academic</option>
+                                <option value="StudentOrgs">Student Organizations</option>
+                        </select>
+                    </div>
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">

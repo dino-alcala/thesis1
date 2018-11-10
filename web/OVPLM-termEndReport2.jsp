@@ -514,7 +514,7 @@
             }
 
             h2{
-                font-size: 30px;
+                font-size: 25px;
                 text-align: left;
                 margin-top: 10px;
                 border-bottom: 2px solid green;
@@ -986,7 +986,7 @@
 
                     <p></p>
                     <div class="form-group" style="width:100%">
-                        <label for="sel1">Choose SE Classification:</label>
+                        <label for="sel1">Choose SE Type:</label>
                         <select class="form-control" id="seprogram" name="unit">
                             <optgroup label="SE Classification">
                                 <option>All</option>
@@ -1038,7 +1038,7 @@
                             var chartFF = new Chart(ctx, {
                             type: 'bar',
                                     data: {
-                                    labels: ["Recollection", "Retreat", "Spiritual-development Activity", "Others"],
+                                    labels: ["Retreat", "Recollection", "Prayer Service", "Spiritual Talk", "Talk on the life of the Founder", "Br. Gabriel Drolin Experience"],
                                             datasets: [
                                             {
                                             label: "# of Programs",
@@ -1073,16 +1073,18 @@
                             });
                         </script>
                     </div>
-                    <p></p>
+                    <br/>
                     <div class="form-group" style="width:100%">
-                        <label for="sel1">Choose FF Classification:</label>
+                        <label for="sel1">Choose FF Type:</label>
                         <select class="form-control" id="ffprogram" name="unit">
                             <optgroup label="FF Classification">
                                 <option value="All">All</option>
-                                <option value="Recollection">Recollection</option>
-                                <option value="Retreat">Retreat</option>
-                                <option value="Spiritual-development Activity">Spiritual-development Activity</option>
-                                <option value="Others">Others</option>
+                                <option value="Recollection">Retreat</option>
+                                <option value="Retreat">Recollection</option>
+                                <option value="Prayer Service">Prayer Service</option>
+                                <option value="Spiritual Talk">Spiritual Talk</option>
+                                <option value="Talk on the life of the Founder">Talk on the life of the Founder</option>
+                                <option value="Br. Gabriel Drolin Experience">Br. Gabriel Drolin Experience</option>
                             </optgroup>
                         </select>
                     </div>
@@ -1110,7 +1112,16 @@
                 <div class="container-fluid panels">
 
                     <h2>Number of Programs Implemented (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
-
+                    
+                    <div class="form-group" style="width:100%">
+                        <label for="sel1">Choose classification:</label>
+                        <select class="form-control" id="ffprogram" name="unit">
+                                <option value="Academic">Academic</option>
+                                <option value="Non-Academic">Non-Academic</option>
+                                <option value="StudentOrgs">Student Organizations</option>
+                        </select>
+                    </div>
+                    
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
@@ -1258,6 +1269,21 @@
                             </div>
                         </div> 
                     </div>
+                    <br/>        
+                    <div class="card-deck">
+                        <div class="card bg-success">
+                            <div class="card-body text-center">
+                                <p class="card-text"><b>Budget used for SE programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                <p class="total2">PHP</p>
+                            </div>
+                        </div>
+                        <div class="card bg-success">
+                            <div class="card-body text-center">
+                                <p class="card-text"><b>Budget used for FF programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                <p class="total2">PHP</p>
+                            </div>
+                        </div> 
+                    </div>        
 
                     <h2></h2>
 

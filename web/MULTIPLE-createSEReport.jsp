@@ -458,6 +458,12 @@
                             <center><input value="<%=SE.getImplementationaddress()%>" id="fname" name="addressproj" readonly size="50" type="text" required></center>
                             <br><br>
                         </fieldset>
+                            
+                        <fieldset>  
+                            <legend><b>Link to Google Sheets:</b></legend>
+                            <input style="width:30%" id="fname" name="gsheets" size="50" type="text" required>
+                            <br><br>
+                        </fieldset>  
 
                         <fieldset>
                             <legend><b>List of DLSU Participants</b></legend>

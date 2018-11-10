@@ -79,7 +79,7 @@
             }
 
             h2{
-                font-size: 30px;
+                font-size: 25px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -116,7 +116,7 @@
 
             .totaltitle{
                 text-align: center;
-                font-size: 40px;
+                font-size: 25px;
             }
 
             .card-text{

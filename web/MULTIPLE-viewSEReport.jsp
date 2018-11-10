@@ -310,6 +310,7 @@
                                         <br>
                                         <p><b>Project Proponents/s:</b> <%=SEreport.getProjectProponent()%></p>
                                         <p><b>Program Head: </b> <%=SE.getProgramHead()%></p>
+                                        <p><b>Google Sheets Link: </b></p>
                                     </div>
                                 </div>
                                 <br/>
