@@ -376,10 +376,10 @@
             <%
                 }
             %>
-                    } else if (response == "Spiritual-development Activity"){
+                    } else if (response == "Spiritual Talk"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByClassificationDate("Spiritual-activity development", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFProposalByClassificationDate("Spiritual Talk", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -396,10 +396,50 @@
             <%
                 }
             %>
-                    } else if (response == "Others"){
+                    } else if (response == "Prayer Service"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByClassificationDate("Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFProposalByClassificationDate("Prayer Service", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            %>
+
+            <%
+                for (int i = 0; i < f.size(); i++) {
+            %>
+                    var counter = 1;
+                    table2.row.add([
+                            '<%=f.get(i).getDatecreated()%>',
+                            '<%=f.get(i).getProjectName()%>',
+                            '<%=f.get(i).getProgramHead()%>',
+                            '<%=f.get(i).getActivityClassification()%>',
+                            '<%=f.get(i).getSourceOfFunds()%>'
+                    ]).draw(false);
+            <%
+                }
+            %>
+                    } else if (response == "Talk on the life of the Founder"){
+
+            <%
+                f = UserDAO2.retrieveFFProposalByClassificationDate("Talk on the life of the Founder", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            %>
+
+            <%
+                for (int i = 0; i < f.size(); i++) {
+            %>
+                    var counter = 1;
+                    table2.row.add([
+                            '<%=f.get(i).getDatecreated()%>',
+                            '<%=f.get(i).getProjectName()%>',
+                            '<%=f.get(i).getProgramHead()%>',
+                            '<%=f.get(i).getActivityClassification()%>',
+                            '<%=f.get(i).getSourceOfFunds()%>'
+                    ]).draw(false);
+            <%
+                }
+            %>
+                    } else if (response == "Br. Gabriel Drolin Experience"){
+
+            <%
+                f = UserDAO2.retrieveFFProposalByClassificationDate("Br. Gabriel Drolin Experience", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -1042,8 +1082,8 @@
                                             datasets: [
                                             {
                                             label: "# of Programs",
-                                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
-                                                    data: [<%=UserDAO.countFFProposalByClassificationDate("Recollection", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByClassificationDate("Retreat", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByClassificationDate("Spiritual-activity development", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByClassificationDate("Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>]
+                                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D"],
+                                                    data: [<%=UserDAO.countFFProposalByClassificationDate("Retreat", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByClassificationDate("Recollection", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByClassificationDate("Prayer Service", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByClassificationDate("Spiritual Talk", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByClassificationDate("Talk on the life of the Founder", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByClassificationDate("Br. Gabriel Drolin Experience", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>]
                                             }
                                             ]
                                     },
@@ -1079,8 +1119,8 @@
                         <select class="form-control" id="ffprogram" name="unit">
                             <optgroup label="FF Classification">
                                 <option value="All">All</option>
-                                <option value="Recollection">Retreat</option>
-                                <option value="Retreat">Recollection</option>
+                                <option value="Retreat">Retreat</option>
+                                <option value="Recollection">Recollection</option>
                                 <option value="Prayer Service">Prayer Service</option>
                                 <option value="Spiritual Talk">Spiritual Talk</option>
                                 <option value="Talk on the life of the Founder">Talk on the life of the Founder</option>
@@ -1098,7 +1138,6 @@
                                 <th>Program Name</th>
                                 <th>Program Head</th>
                                 <th>Activity Classification</th>
-                                <th>Community</th>
                                 <th>Funded By</th>
                             </tr>
                         </thead>
@@ -1274,13 +1313,13 @@
                         <div class="card bg-success">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget used for SE programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP</p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getSEUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-success">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget used for FF programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP</p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getSEUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div> 
                     </div>        

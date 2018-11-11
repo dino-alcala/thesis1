@@ -283,7 +283,7 @@
                             '<%=f.get(i).getDepartment()%>',
                             '<%=f.get(i).getProjectName()%>',
                             '<%=f.get(i).getProgramHead()%>',
-                            '<%=f.get(i).getActivityClassification()%>',,
+                            '<%=f.get(i).getActivityClassification()%>', ,
                             '<%=f.get(i).getSourceOfFunds()%>'
                     ]).draw(false);
             <%
@@ -310,31 +310,10 @@
             <%
                 }
             %>
-                    } else if (response == "Spiritual-development Activity"){
+                    } else if (response == "Spiritual Talk"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Spiritual-activity development", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
-            %>
-
-            <%
-                for (int i = 0; i < f.size(); i++) {
-            %>
-                    var counter = 1;
-                    table2.row.add([
-                            '<%=f.get(i).getDatecreated()%>',
-                            '<%=f.get(i).getDepartment()%>',
-                            '<%=f.get(i).getProjectName()%>',
-                            '<%=f.get(i).getProgramHead()%>',
-                            '<%=f.get(i).getActivityClassification()%>',
-                            '<%=f.get(i).getSourceOfFunds()%>'
-                    ]).draw(false);
-            <%
-                }
-            %>
-                    } else if (response == "Others"){
-
-            <%
-                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Spiritual Talk", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -352,7 +331,72 @@
             <%
                 }
             %>
-                    } else if (response == "All"){
+                    } else if (response == "Prayer Service"){
+
+            <%
+                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Prayer Service", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            %>
+
+            <%
+                for (int i = 0; i < f.size(); i++) {
+            %>
+                    var counter = 1;
+                    table2.row.add([
+                            '<%=f.get(i).getDatecreated()%>',
+                            '<%=f.get(i).getDepartment()%>',
+                            '<%=f.get(i).getProjectName()%>',
+                            '<%=f.get(i).getProgramHead()%>',
+                            '<%=f.get(i).getActivityClassification()%>',
+                            '<%=f.get(i).getSourceOfFunds()%>'
+                    ]).draw(false);
+            <%
+                }
+            %>
+                    } else if (response == "Talk on the life of the Founder"){
+
+            <%
+                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Talk on the life of the Founder", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            %>
+
+            <%
+                for (int i = 0; i < f.size(); i++) {
+            %>
+                    var counter = 1;
+                    table2.row.add([
+                            '<%=f.get(i).getDatecreated()%>',
+                            '<%=f.get(i).getDepartment()%>',
+                            '<%=f.get(i).getProjectName()%>',
+                            '<%=f.get(i).getProgramHead()%>',
+                            '<%=f.get(i).getActivityClassification()%>',
+                            '<%=f.get(i).getSourceOfFunds()%>'
+                    ]).draw(false);
+            <%
+                }
+            %>
+                    } else if (response == "Br. Gabriel Drolin Experience"){
+
+            <%
+                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Br. Gabriel Drolin Experience", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            %>
+
+            <%
+                for (int i = 0; i < f.size(); i++) {
+            %>
+                    var counter = 1;
+                    table2.row.add([
+                            '<%=f.get(i).getDatecreated()%>',
+                            '<%=f.get(i).getDepartment()%>',
+                            '<%=f.get(i).getProjectName()%>',
+                            '<%=f.get(i).getProgramHead()%>',
+                            '<%=f.get(i).getActivityClassification()%>',
+                            '<%=f.get(i).getSourceOfFunds()%>'
+                    ]).draw(false);
+            <%
+                }
+            %>
+                    }
+                    
+                else if (response == "All"){
 
             <%
                 f = UserDAO2.retrieveALLFFProposalByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
@@ -937,10 +981,12 @@
                         <select class="form-control" id="ffprogram" name="unit">
                             <optgroup label="SE Classification">
                                 <option value="All">All</option>
-                                <option value="Recollection">Recollection</option>
                                 <option value="Retreat">Retreat</option>
-                                <option value="Spiritual-development Activity">Spiritual-development Activity</option>
-                                <option value="Others">Others</option>
+                                <option value="Recollection">Recollection</option>
+                                <option value="Prayer Service">Prayer Service</option>
+                                <option value="Spiritual Talk">Spiritual Talk</option>
+                                <option value="Talk on the life of the Founder">Talk on the life of the Founder</option>
+                                <option value="Br. Gabriel Drolin Experience">Br. Gabriel Drolin Experience</option>
                             </optgroup>
                         </select>
                     </div>
@@ -953,7 +999,6 @@
                                 <th>Program Name</th>
                                 <th>Program Head</th>
                                 <th>Activity Classification</th>
-                                <th>Community</th>
                                 <th>Funded By</th>
                             </tr>
                         </thead>

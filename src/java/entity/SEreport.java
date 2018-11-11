@@ -54,6 +54,7 @@ public class SEreport {
     protected int independent;
     protected int external;
     protected ArrayList<Measure> targetmeasures;
+    protected String gsheets;
 
     public int getId() {
         return id;
@@ -376,6 +377,12 @@ public class SEreport {
     public void setProgramHead(String programHead) {
         this.programHead = programHead;
     }
-    
-    
+
+    public String getGsheets() {
+        return gsheets;
+    }
+
+    public void setGsheets(String gsheets) {
+        this.gsheets = gsheets;
+    } 
 }

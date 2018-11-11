@@ -43,6 +43,7 @@ public class FFreport {
     protected int directhired;
     protected int independent;
     protected int external;
+    protected String gsheets;
 
     public int getId() {
         return id;
@@ -268,6 +269,13 @@ public class FFreport {
     public void setVenue(String venue) {
         this.venue = venue;
     }
-    
+
+    public String getGsheets() {
+        return gsheets;
+    }
+
+    public void setGsheets(String gsheets) {
+        this.gsheets = gsheets;
+    }
     
 }

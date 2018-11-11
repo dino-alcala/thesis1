@@ -73,6 +73,7 @@ public class createSEreport2 extends HttpServlet {
             SEreport.setExternal(Integer.parseInt(request.getParameter("number7")));
             SEreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
             SEreport.setSeproposalID(Integer.parseInt(request.getParameter("seID")));
+            SEreport.setGsheets(request.getParameter("gsheets"));
             
             ArrayList<Measure> targetmeasures = new ArrayList();
             UserDAO UserDAO = new UserDAO();

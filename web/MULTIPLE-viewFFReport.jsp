@@ -279,7 +279,6 @@
                     <%
                         FFreport FFreport = new FFreport();
                         FFreport = UserDAO.retrieveFFreportByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
-                        System.out.println("DJSAKLDJSAKLDJAKL " + Integer.parseInt(request.getAttribute("ffID").toString()));
                         
                         FF FF = new FF();
                         FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
@@ -296,7 +295,7 @@
                                         <br>
                                         <p><b>Project Proponents/s:</b> <%=FFreport.getProjectProponent()%></p>
                                         <p><b>Program Head: </b> <%=FF.getProgramHead()%></p>
-                                        <p><b>Google Sheets Link: </b> <%=FF.getProgramHead()%></p>
+                                        <p><b>Google Sheets Link: </b> <%=FFreport.getGsheets()%></p>
                                     </div>
                                 </div>
                                 <br/>

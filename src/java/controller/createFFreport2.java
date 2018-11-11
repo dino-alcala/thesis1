@@ -65,6 +65,7 @@ public class createFFreport2 extends HttpServlet {
             FFreport.setFfproposalID(Integer.parseInt(request.getParameter("ffID")));
             FFreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
             FFreport.setVenue(request.getParameter("venue"));
+            FFreport.setGsheets(request.getParameter("gsheets"));
             
             session.setAttribute("FFreport", FFreport);
             request.setAttribute("ffID", request.getParameter("ffID"));
