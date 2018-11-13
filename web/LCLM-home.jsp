@@ -359,7 +359,7 @@
 
                             <!--- Goal 2 Measure 1-->
                             <tr>
-                                <td><b>G2 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>G2 </b> Create a conducive environment that helps bridge faith and scholarship </td>
                                 <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
                                 <td>At least one interdisciplinary activity conducted each term</td>
                                 <td></td>
@@ -376,7 +376,7 @@
 
                             <!--- Goal 3 Measure 1-->
                             <tr>
-                                <td><b>G3 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
+                                <td><b>G3 </b> Create and nurture communities dedicated to promoting the Lasallian mission and spirituality  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
                                 <td>3 communities</td>
                                 <td></td>

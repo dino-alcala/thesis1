@@ -119,6 +119,7 @@
             }
 
             h3{
+                font-size: 25px;
                 padding-top: 25px;
                 text-align: center;
                 margin-bottom: 25px;
@@ -431,8 +432,8 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div class="sidebar-expanded d-none d-md-block">
-                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group sticky-top sticky-offset">
                     <script>
                         $("#sidebar-container").load("sidebarovplm.jsp");
                     </script>
@@ -465,13 +466,13 @@
                     <h2 class="kraheading"> Overall Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
 
                     <div class="card-deck">
-                        <div class="card bg-info">
+                        <div class="card bg-primary">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Initial Budget (as of <%=Date.valueOf(request.getAttribute("startDate").toString())%>)</b></p>
                                 <p class="total">PHP <%=df.format(UserDAO.getInitialBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
-                        <div class="card bg-info">
+                        <div class="card bg-primary">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget Remaining (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
                                 <p class="total">PHP <%=df.format(UserDAO.getRemainingBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>

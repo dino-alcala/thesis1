@@ -289,8 +289,8 @@ ProgramsForApproval
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div class="sidebar-expanded d-none d-md-block">
-                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+            <div  id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group sticky-top sticky-offset">
                     <script>
                         $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
@@ -329,7 +329,6 @@ ProgramsForApproval
                             <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-seProgramsForApproval.jsp">Social Engagement</a>
                             <a href="MULTIPLE-ffProgramsForApproval.jsp" type="button" class="btn btn-primary" id="buttonCompleted" >Faith Formation</a>
                         </div>
-                        <h3></h3>
 
                         <br>
                         <h4>Social Engagement Programs (<%=proposals.size()%>)</h4>

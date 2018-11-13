@@ -577,6 +577,7 @@
             }
 
             h3{
+                font-size: 25px;
                 text-align: center;
                 margin-top: 20px;
             }
@@ -786,7 +787,7 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <form action="viewUnitReport" method="post">
-                    <div class="container-fluid panels">
+                    <div class="container panels">
                         <p></p>
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate"> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate"></p>
                         <div class="form-group">
@@ -914,13 +915,19 @@
                     </div>
                     <p></p>
                     <div class="card-deck">
-                        <div class="card bg-info">
+                        <div class="card bg-primary">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Communities Visited</b></p>
                                 <p class="total"><%=UserDAO.countCommunitiesVisited(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></p>
                             </div>
                         </div>
-                        <div class="card bg-info">
+                            <div class="card bg-warning">
+                            <div class="card-body text-center">
+                                <p class="card-text"><b>Overall Programs Rating</b></p>
+                                <p class="total">4.5/5</p>
+                            </div>
+                        </div>
+                        <div class="card bg-primary">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>KRAs Targeted</b></p>
                                 <p class="total"><%=kra.size()%></p>
@@ -934,7 +941,71 @@
                 <div class="container-fluid panels">
 
                     <h2>Programs Completed (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                     
+                    <!--- etong chart yung departments ng unit dapat -->
+                    <div class="card-deck">
+                        <div class="card chartscards">
+                            <div id="canvas-holder" style="width:75%;">
+                                <canvas id="chartU"  width="100" height="90" style="margin-left:115px"></canvas>
+                            </div>
+                        </div>
+                        <script>
+                            <%
+                                ArrayList<Unit> units = new ArrayList();
+                                units = UserDAO.retrieveUnits();
+                            %>
+                            Chart.defaults.global.legend.display = true;
+                            var ctx = document.getElementById('chartU').getContext('2d');
+                            var chartU = new Chart(ctx, {
+                            type: 'horizontalBar',
+                                    data: {
+                                    labels: [<%for (int i = 0; i < units.size(); i++) {%>"<%=units.get(i).getName()%>",<%}%>],
+                                            datasets: [
+                                            {
+                                            label: "Social Engagement",
+                                                    backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA7A2D",<%}%>],
+                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.countSEProposalByUnit(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                            }
+                                            , {
+                                            label: "Faith Formation",
+                                                    backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
+                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.countFFProposalByUnit(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                            }]
 
+                                    },
+                                    options: {
+                                    legend: {
+                                    display: true,
+                                            position: 'top',
+                                            labels: {
+                                            fontSize: 16
+                                            }
+                                    },
+                                            title: {
+                                            display: true,
+                                            },
+                                            scales: {
+                                            yAxes: [{
+                                            ticks: {
+                                            fontSize: 16
+                                            }
+                                            }],
+                                                    xAxes: [{
+                                                    ticks: {
+                                                    beginAtZero: true,
+                                                            fontSize: 16
+                                                    }
+                                                    }]
+                                            },
+                                            tooltips: {
+                                            titleFontSize: 18,
+                                                    bodyFontSize: 18
+                                            }
+                                    }
+                            });
+                        </script>
+                    </div>
+                                            
                     <h3>Social Engagement</h3>
 
                     <p></p>
