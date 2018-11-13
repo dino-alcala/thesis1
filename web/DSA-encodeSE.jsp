@@ -128,7 +128,7 @@
 
             b, strong {
                 font-weight: 600;
-                font-size: 20px;
+                font-size: 17px;
             }
 
             samp {
@@ -149,19 +149,28 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: #009900;
                 border: none;
+                border-radius: 5px;
                 color: white;
                 padding: 15px 32px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             legend, h3{
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            #inputText { 
+                font-family: "Arial", Helvetica, sans-serif; 
+            }
+            
+            option, select{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             @keyframes colorize {
@@ -443,8 +452,8 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <ul class="list-group sticky-top sticky-offset">
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
                     <script>
                         $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
@@ -469,32 +478,40 @@
                         %>
 
                         <center>
-
-                            <fieldset>
-                                <legend><b>Unit:</b> <%=session.getAttribute("unit")%></legend>
-
-                            </fieldset>
-
-                            <fieldset>
-                                <legend><b>Department:</b> <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
-
-                            </fieldset>
-
                             <fieldset>
                                 <legend><b>Date:</b> <%=sqlDate%></legend>
                             </fieldset>
                         </center>
 
+                            <fieldset>
+                            <legend><b>Student Organization:</b></legend>
+                            <select id="classification" name="studentOrg">
+                                <option value=""></option>
+                                <option value="Santugon">Santugon</option>
+                                <option value="Tapat">Tapat</option>
+                                <option value="LSCS">La Salle Computer Society (LSCS)</option>
+                                <option value="Math Circle">Mathematics Circle (Math Circle)</option>
+                                <option value="POLISCY">Political Science Society (POLISCY)</option>
+                                <option value="SPRINT">Society of Proactive Role Models Inspiring Total Development (SPRINT)</option>
+                                <option value="SRDP">Student Research and Development Program (SRDP)</option>
+                                <option value="CES">Civil Engineering Society (CES)</option>
+                                <option value="SME">Society of Manufacturing Engineering (SME)</option>
+                                <option value="BMS">Business Management Society (BMS)</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <br><br>
+                            </fieldset>
+
                         <br>
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
-                            <input  type = "text" name ="programname" required>
+                            <input id="inputText" type = "text" name ="programname" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Program Head (First name, Last name):</b></legend>
-                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" required>
+                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" id="inputText" required>
                             <br><br><br><br>
                         </fieldset>
 
@@ -575,61 +592,61 @@
 
                         <fieldset>
                             <legend><span class="number">1</span><b> Target Implementation Date:</b></legend>
-                            <input style="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
+                            <input id="inputText" style="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">2</span><b> Implementation Address:</b></legend>
-                            <input type = "text" name ="implementationaddress" required>
+                            <input id="inputText" type = "text" name ="implementationaddress" required>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">3</span><b> Total Amount Requested:</b></legend>
-                            <input style="width:30%" type = "number" name ="totalamount" required>
+                            <input id="inputText" style="width:30%" type = "number" name ="totalamount" required>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">4</span><b>Explain the Social/Community Problem being Addressed:</b></legend>
-                            <center><textarea rows = "6" cols = "100%" name ="problemaddressed" required></textarea></center>
+                            <center><textarea id="inputText" rows = "6" cols = "100%" name ="problemaddressed" required></textarea></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">5</span> <b>Social Engagement Partner/Beneficiary:</b><br></legend>
-                            <legend>Name of Partner (First name, Last name): <input type='text' name='partnername' required/><br><br>
-                                Address: <input type='text' name='partneraddress' required/><br><br>
-                                Contact Person (First name, Last name): <input type='text' name='partnercontact' required/><br><br>
-                                Mobile Number: <br><input style="width:30%" style="width:30%" type='number' name='partnernumber' required/><br><br>
-                                Email: <input type='text' name='partneremail' required/><br><br>
-                                Brief Description of Partner: <textarea name='partnerdescription' rows='5' required></textarea></legend>
+                            <legend>Name of Partner (First name, Last name): <input id="inputText" type='text' name='partnername' required/><br><br>
+                                Address: <input id="inputText" type='text' name='partneraddress' required/><br><br>
+                                Contact Person (First name, Last name): <input id="inputText" type='text' name='partnercontact' required/><br><br>
+                                Mobile Number: <br><input style="width:30%" style="width:30%" id="inputText" type='number' name='partnernumber' required/><br><br>
+                                Email: <input id="inputText" type='text' name='partneremail' required/><br><br>
+                                Brief Description of Partner: <textarea id="inputText" name='partnerdescription' rows='5' required></textarea></legend>
                             <br>
                         </fieldset>
 
 
                         <fieldset>
                             <legend><span class="number">6</span><b >Measurable Outcomes/Objectives of the Project:</b></legend>
-                            <center><textarea rows = "6" cols = "100%" name ="measureableoutcome" required></textarea></center>
+                            <center><textarea id="inputText" rows = "6" cols = "100%" name ="measureableoutcome" required></textarea></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">7</span><b> Sustainability Component (Check all that apply, if none proceed to next number):</b>
                                 <br><br>
-                                <input type='checkbox' name="component" value="Training/Capacity Building for the Partner"/>Training/Capacity Building for the Partner<br>
-                                <input type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed"/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
-                                <input type='checkbox' name="component" value="Continuing and Developmental Partnership"/>Continuing and Developmental Partnership<br>
-                                <input type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
+                                <input id="inputText" type='checkbox' name="component" value="Training/Capacity Building for the Partner"/>Training/Capacity Building for the Partner<br>
+                                <input id="inputText" type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed"/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
+                                <input id="inputText" type='checkbox' name="component" value="Continuing and Developmental Partnership"/>Continuing and Developmental Partnership<br>
+                                <input id="inputText" type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
                             <legend>Explanation:</legend>
-                            <textarea name='sustainabilityexplanation' rows='4' required></textarea>
+                            <textarea id="inputText" name='sustainabilityexplanation' rows='4' required></textarea>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">8</span><b >Source of Funds:</b></legend>
-                            <select style="width:50%" name="funds" required>
+                            <select id="inputText" style="width:50%" name="funds" required>
                                 <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
                                 <option value="Others">Others</option>
                             </select>

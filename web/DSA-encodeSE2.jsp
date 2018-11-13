@@ -126,11 +126,11 @@
 
             b, strong{
                 font-weight: 600;
-                font-size: 20px;
+                font-size: 17px;
             }
             
             h3{
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             samp {
@@ -162,11 +162,11 @@
 
             #addRowButton, #deleteRowButton {
                 display:inline-block;
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: #009900;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -174,12 +174,19 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            legend, h3{
+                font-family: "Arial", Helvetica, sans-serif;
             }
             
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
-                font-size: 15px;
+            #inputText { 
+                font-family: "Arial", Helvetica, sans-serif; 
+            }
+            
+            option, select{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 

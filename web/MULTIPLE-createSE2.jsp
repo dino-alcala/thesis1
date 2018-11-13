@@ -166,8 +166,9 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: #009900;
                 border: none;
+                border-radius: 5px;
                 color: white;
                 padding: 15px 32px;
                 text-align: center;
