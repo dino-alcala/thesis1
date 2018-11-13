@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `thsis01` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `thsis01`;
--- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.23, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: thsis01
+-- Host: localhost    Database: thsis01
 -- ------------------------------------------------------
--- Server version	5.6.25-log
+-- Server version	5.7.23-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -217,6 +217,18 @@ CREATE TABLE `ffproposal` (
   `directordatetime` datetime DEFAULT NULL,
   `unittype` varchar(45) DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
+  `approve1` int(1) DEFAULT NULL,
+  `approve2` int(1) DEFAULT NULL,
+  `approve3` int(1) DEFAULT NULL,
+  `approve4` int(1) DEFAULT NULL,
+  `revise1` int(1) DEFAULT NULL,
+  `revise2` int(1) DEFAULT NULL,
+  `revise3` int(1) DEFAULT NULL,
+  `revise4` int(1) DEFAULT NULL,
+  `reject1` int(1) DEFAULT NULL,
+  `reject2` int(1) DEFAULT NULL,
+  `reject3` int(1) DEFAULT NULL,
+  `reject4` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -698,7 +710,7 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`id`),
   KEY `LA14_idx` (`userID`),
   CONSTRAINT `LA14` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=950 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=972 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -707,6 +719,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+INSERT INTO `notification` VALUES (950,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:08:41',80),(951,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:11:58',82),(952,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 14:11:58',83),(953,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:17:53',81),(954,'Kalbuhan 2020','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 14:17:53',83),(955,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 14:32:36',83),(956,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 14:33:39',80),(957,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:36:09',80),(958,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:36:38',82),(959,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:36:38',83),(960,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 15:38:37',83),(961,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 15:40:35',80),(962,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:47:11',82),(963,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:47:11',83),(964,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 15:49:16',83),(965,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 15:50:08',80),(966,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:51:10',82),(967,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:51:10',83),(968,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:51:24',81),(969,'Kalbuhan 2020','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 15:51:24',83),(970,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 16:15:02',83),(971,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 16:44:16',80);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -726,7 +739,7 @@ CREATE TABLE `se_measures` (
   KEY `LA71_idx` (`measureID`),
   CONSTRAINT `LA70` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA71` FOREIGN KEY (`measureID`) REFERENCES `measure` (`measureID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -735,6 +748,7 @@ CREATE TABLE `se_measures` (
 
 LOCK TABLES `se_measures` WRITE;
 /*!40000 ALTER TABLE `se_measures` DISABLE KEYS */;
+INSERT INTO `se_measures` VALUES (134,53,17);
 /*!40000 ALTER TABLE `se_measures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -891,10 +905,22 @@ CREATE TABLE `seproposal` (
   `vpvcdatetime` datetime DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `addressimplementation` varchar(100) DEFAULT NULL,
+  `approve1` int(1) DEFAULT NULL,
+  `approve2` int(1) DEFAULT NULL,
+  `approve3` int(1) DEFAULT NULL,
+  `approve4` int(1) DEFAULT NULL,
+  `revise1` int(1) DEFAULT NULL,
+  `revise2` int(1) DEFAULT NULL,
+  `revise3` int(1) DEFAULT NULL,
+  `revise4` int(1) DEFAULT NULL,
+  `reject1` int(1) DEFAULT NULL,
+  `reject2` int(1) DEFAULT NULL,
+  `reject3` int(1) DEFAULT NULL,
+  `reject4` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA9_idx` (`userID`),
   CONSTRAINT `LA9` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -903,6 +929,7 @@ CREATE TABLE `seproposal` (
 
 LOCK TABLES `seproposal` WRITE;
 /*!40000 ALTER TABLE `seproposal` DISABLE KEYS */;
+INSERT INTO `seproposal` VALUES (53,'College of Computer Studies (CCS)','Computer Technology (CT)','2018-11-13','Kung di rin','unitrep ccsct','Direct Service to the Poor and Marginalized',2,2,7,NULL,NULL,'2018-11-30',5000,'Kung di rin','Kung di rin','Kung di rin','Kung di rin','123','Kung di rin','Kung di rin','Kung di rin','Kung di rin','Others',100,1,55,1,1,1,1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,83,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-13 16:44:15','Kung di rin',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `seproposal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -920,7 +947,7 @@ CREATE TABLE `seproposal_component` (
   PRIMARY KEY (`id`),
   KEY `LA10_idx` (`seproposalID`),
   CONSTRAINT `LA10` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -950,7 +977,7 @@ CREATE TABLE `seproposal_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA12_idx` (`seproposalID`),
   CONSTRAINT `LA12` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -959,6 +986,7 @@ CREATE TABLE `seproposal_expenses` (
 
 LOCK TABLES `seproposal_expenses` WRITE;
 /*!40000 ALTER TABLE `seproposal_expenses` DISABLE KEYS */;
+INSERT INTO `seproposal_expenses` VALUES (110,'Kung di rin',1,1,NULL,53,1);
 /*!40000 ALTER TABLE `seproposal_expenses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -977,7 +1005,7 @@ CREATE TABLE `seproposal_personresponsible` (
   PRIMARY KEY (`id`),
   KEY `LA13_idx` (`seproposalID`),
   CONSTRAINT `LA13` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -986,6 +1014,7 @@ CREATE TABLE `seproposal_personresponsible` (
 
 LOCK TABLES `seproposal_personresponsible` WRITE;
 /*!40000 ALTER TABLE `seproposal_personresponsible` DISABLE KEYS */;
+INSERT INTO `seproposal_personresponsible` VALUES (106,'Kung di rin','Kung di rin',53);
 /*!40000 ALTER TABLE `seproposal_personresponsible` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1084,7 +1113,7 @@ CREATE TABLE `seproposal_revisions` (
   PRIMARY KEY (`id`),
   KEY `LA40_idx` (`seproposalID`),
   CONSTRAINT `LA40` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1111,7 +1140,7 @@ CREATE TABLE `seproposal_revisions_component` (
   PRIMARY KEY (`id`),
   KEY `LA45_idx` (`seproposalID`),
   CONSTRAINT `LA45` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1142,7 +1171,7 @@ CREATE TABLE `seproposal_revisions_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA44_idx` (`seproposalID`),
   CONSTRAINT `LA44` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1171,7 +1200,7 @@ CREATE TABLE `seproposal_revisions_measures` (
   KEY `LA43_idx` (`measureID`),
   CONSTRAINT `LA42` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA43` FOREIGN KEY (`measureID`) REFERENCES `measure` (`measureID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1199,7 +1228,7 @@ CREATE TABLE `seproposal_revisions_personresponsible` (
   PRIMARY KEY (`id`),
   KEY `LA46_idx` (`seproposalID`),
   CONSTRAINT `LA47` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1230,7 +1259,7 @@ CREATE TABLE `seproposal_revisions_workplan` (
   PRIMARY KEY (`id`),
   KEY `LA41_idx` (`seproposalID`),
   CONSTRAINT `LA41` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1260,7 +1289,7 @@ CREATE TABLE `seproposal_workplan` (
   PRIMARY KEY (`id`),
   KEY `LA11_idx` (`seproposalID`),
   CONSTRAINT `LA11` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1269,6 +1298,7 @@ CREATE TABLE `seproposal_workplan` (
 
 LOCK TABLES `seproposal_workplan` WRITE;
 /*!40000 ALTER TABLE `seproposal_workplan` DISABLE KEYS */;
+INSERT INTO `seproposal_workplan` VALUES (105,'2018-11-27','Kung di rin','Kung di rin','Kung di rin','Kung di rin',53);
 /*!40000 ALTER TABLE `seproposal_workplan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1516,4 +1546,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-11 11:41:22
+-- Dump completed on 2018-11-13 17:40:15
