@@ -54,6 +54,7 @@ public class approveSE2 extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updateStep(5, Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.approveCOSCA(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                     UserDAO.setClassificationforKRA(Integer.parseInt(request.getParameter("approve")), request.getParameter("classificationforkra"));
                 }
@@ -106,6 +107,7 @@ public class approveSE2 extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.reviseCOSCA(Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by COSCA.");
 
                     java.util.Date dt = new java.util.Date();
@@ -128,6 +130,7 @@ public class approveSE2 extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    UserDAO.rejectCOSCA(Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by COSCA. Reason: " + request.getParameter("remarks1"));
 
                     java.util.Date dt = new java.util.Date();
