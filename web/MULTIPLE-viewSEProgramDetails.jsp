@@ -573,7 +573,7 @@
                                 </table>
                                 <br/>
                                 <br/>         
-
+                                <center><button class="btn-success" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button><br></center>  
                                 <%
                                     if (SE.getStep() == 8) {
                                 %>

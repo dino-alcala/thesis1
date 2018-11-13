@@ -184,7 +184,7 @@
                 <center><table style = "width:100%" id = "SEchecklist">
                         <tr>
                             <th>Proposal Name</th>
-                            <th>Date:</th>
+                            <th>Date Submitted:</th>
                             <th></th>
                                 <%
                                     for (int i = 0; i < revisions.size(); i++) {

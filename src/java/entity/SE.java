@@ -81,6 +81,18 @@ public class SE {
     protected String sedirectordatetime;
     protected String vpvcdatetime;
     protected int isRevise;
+    protected int approve1;
+    protected int approve2;
+    protected int approve3;
+    protected int approve4;
+    protected int revise1;
+    protected int revise2;
+    protected int revise3;
+    protected int revise4;
+    protected int reject1;
+    protected int reject2;
+    protected int reject3;
+    protected int reject4;
     
     public int getId() {
         return id;
@@ -619,5 +631,100 @@ public class SE {
     public void setIsRevise(int isRevise) {
         this.isRevise = isRevise;
     }
-    
+
+    public int getApprove1() {
+        return approve1;
+    }
+
+    public void setApprove1(int approve1) {
+        this.approve1 = approve1;
+    }
+
+    public int getApprove2() {
+        return approve2;
+    }
+
+    public void setApprove2(int approve2) {
+        this.approve2 = approve2;
+    }
+
+    public int getApprove3() {
+        return approve3;
+    }
+
+    public void setApprove3(int approve3) {
+        this.approve3 = approve3;
+    }
+
+    public int getApprove4() {
+        return approve4;
+    }
+
+    public void setApprove4(int approve4) {
+        this.approve4 = approve4;
+    }
+
+    public int getRevise1() {
+        return revise1;
+    }
+
+    public void setRevise1(int revise1) {
+        this.revise1 = revise1;
+    }
+
+    public int getRevise2() {
+        return revise2;
+    }
+
+    public void setRevise2(int revise2) {
+        this.revise2 = revise2;
+    }
+
+    public int getRevise3() {
+        return revise3;
+    }
+
+    public void setRevise3(int revise3) {
+        this.revise3 = revise3;
+    }
+
+    public int getRevise4() {
+        return revise4;
+    }
+
+    public void setRevise4(int revise4) {
+        this.revise4 = revise4;
+    }
+
+    public int getReject1() {
+        return reject1;
+    }
+
+    public void setReject1(int reject1) {
+        this.reject1 = reject1;
+    }
+
+    public int getReject2() {
+        return reject2;
+    }
+
+    public void setReject2(int reject2) {
+        this.reject2 = reject2;
+    }
+
+    public int getReject3() {
+        return reject3;
+    }
+
+    public void setReject3(int reject3) {
+        this.reject3 = reject3;
+    }
+
+    public int getReject4() {
+        return reject4;
+    }
+
+    public void setReject4(int reject4) {
+        this.reject4 = reject4;
+    }
 }

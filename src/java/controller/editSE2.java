@@ -100,7 +100,6 @@ public class editSE2 extends HttpServlet {
             ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
 
             UserDAO.editMeasures(measureID, SE.getId());
-
             UserDAO.auditSE(SE.getId());
             UserDAO.EditSE(SE);
 

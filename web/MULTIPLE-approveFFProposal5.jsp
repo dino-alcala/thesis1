@@ -428,16 +428,9 @@
                                 <br>
                                 <center><button class="btn-success" name="approve" value="<%=FF.getId()%>">Approve</button><br></center>
                                 <br/>
-                                <%
-                                    if(UserDAO.hasRevisionsAuditFF(Integer.parseInt(request.getAttribute("ffID").toString()))){
-                                %>
-                                    <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
-                                    <%
-                                        }   
-                                        %>
-
+                                <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
+                                
                             </div>
-
                         </div>
 
                     </div>

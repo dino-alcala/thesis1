@@ -226,9 +226,6 @@
                     <a href="OVPLM-perCommunityReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">Communities</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Programs</span>
-                    </a>
                     <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">Units</span>
                     </a>
@@ -304,21 +301,6 @@
                     </div>
                 </a>
                 <div id="submenuReports" class="collapse sidebar-submenu">
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Programs</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Units</span>
-                    </a>
                     <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
                     </a>
@@ -390,21 +372,6 @@
                     </div>
                 </a>
                 <div id="submenuReports" class="collapse sidebar-submenu">
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Programs</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Units</span>
-                    </a>
                     <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
                     </a>
@@ -471,21 +438,6 @@
                     </div>
                 </a>
                 <div id="submenuReports" class="collapse sidebar-submenu">
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Programs</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Units</span>
-                    </a>
                     <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
                     </a>
@@ -798,21 +750,6 @@
                     </div>
                 </a>
                 <div id="submenuReports" class="collapse sidebar-submenu">
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Programs</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Units</span>
-                    </a>
                     <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
                     </a>

@@ -475,13 +475,7 @@
                                 <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center><br>
                                 <center><button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center>
                                 <br/>
-                                <%
-                                    if(UserDAO.hasRevisionsAuditFF(Integer.parseInt(request.getAttribute("ffID").toString()))){
-                                %>
-                                    <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
-                                    <%
-                                        }   
-                                        %>
+                                <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
 
                             </div>
 

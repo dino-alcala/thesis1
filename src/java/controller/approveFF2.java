@@ -61,6 +61,7 @@ public class approveFF2 extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updateStepFF(5, Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.approveLSPO(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
@@ -113,6 +114,7 @@ public class approveFF2 extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.reviseLSPO(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the LSPO.");
 
@@ -137,6 +139,7 @@ public class approveFF2 extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    UserDAO.rejectLSPO(Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the LSPO. Reason: " + request.getParameter("remarks1"));
 
                     java.util.Date dt = new java.util.Date();
