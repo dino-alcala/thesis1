@@ -279,6 +279,12 @@
                         </div>
                     </a>
                     <div id="submenuProposals" class="collapse sidebar-submenu">
+                        <a href="DSA-encodeSE.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Encode SE Proposal</span>
+                        </a>
+                        <a href="DSA-encodeFF.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Encode FF Proposal</span>
+                        </a>
                         <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
                             <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
                         </a>

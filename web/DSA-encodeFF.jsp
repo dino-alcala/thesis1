@@ -4,9 +4,10 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="dao.OvplmDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
-<%@page import="dao.OvplmDAO"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.FF"%>
 <%@page import="entity.SE"%>
 <%@page import="java.util.Collections"%>
@@ -22,20 +23,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create SE Program</title>
+        <title>Create FF Program</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/formstyle5.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/formstyle5.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
             #notifsScroll {
@@ -43,7 +42,6 @@
                 overflow-x: hidden;
                 height: 250px;
             }
-
 
             #myInput{
                 margin-bottom: 20px;
@@ -53,9 +51,14 @@
                 margin-bottom: 5px;
             }
 
+            .krascards:hover {
+                background-color: lightgreen;
+            }
+
             tr:hover {
                 background-color: lightgreen;
             }
+
 
             .budget{
                 font-size: 70px; 
@@ -63,10 +66,6 @@
                 border-bottom: 2px solid lightgray;
                 padding-bottom: 20px;
                 font-family: 'Montserrat', sans-serif;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
             }
 
             .table{
@@ -122,18 +121,28 @@
                 resize: none;
             } 
 
+
+            th{
+                padding:15px;
+            }
+
             a {
                 color: #0083e8;
             }
 
             b, strong {
                 font-weight: 600;
-                font-size: 17px;
+                font-size: 20px;
+            }
+
+            h3{
+                font-family: "Times New Roman", Times, serif;
             }
 
             samp {
                 display: none;
             }
+
 
             th {
                 background-color: green;
@@ -142,49 +151,35 @@
 
             table {
                 border-collapse: collapse;
-            }
 
-            th{
-                padding:15px;
             }
 
             .button{
-                background-color: #009900;
+                background-color: #4CAF50;
                 border: none;
-                border-radius: 5px;
                 color: white;
                 padding: 15px 32px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
-                font-family: "Arial", Helvetica, sans-serif;
+                font-family: "Times New Roman", Times, serif;
             }
 
-            legend, h3{
-                font-family: "Arial", Helvetica, sans-serif;
-            }
-            
-            #inputText { 
-                font-family: "Arial", Helvetica, sans-serif; 
-            }
-            
-            option, select{
-                font-family: "Arial", Helvetica, sans-serif;
+            #addRowButton, #deleteRowButton {
+                display:inline-block;
+                font-family: "Times New Roman", Times, serif;
             }
 
-            @keyframes colorize {
-                0% {
-                    -webkit-filter: grayscale(100%);
-                    filter: grayscale(100%);
-                }
-                100% {
-                    -webkit-filter: grayscale(0%);
-                    filter: grayscale(0%);
-                }
+            legend{
+                font-family: "Times New Roman", Times, serif;
             }
 
+            table,th,td{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
 
+            }
 
         </style>
 
@@ -213,23 +208,59 @@
         </script>
 
         <script>
-            var created = 0;
-            
+            function addRow(){
+
+            var count = document.getElementById("countexpenses").value;
+            var table = document.getElementById("breakdowntable");
+            var rows = document.getElementById("breakdowntable").rows.length;
+            var row = table.insertRow(rows - 1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            cell1.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffitem" + count + "' required></textarea></td>";
+            cell2.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffunitcost" + count + "' required></textarea></td>";
+            cell3.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffquantity" + count + "' required></textarea></td>";
+            cell4.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffsubtotal" + count + "' required></textarea></td>";
+            count++;
+            document.getElementById("countexpenses").setAttribute('value', count);
+            }
+            function deleteRow(){
+            var count = document.getElementById("countexpenses").value;
+            var rows = document.getElementById("breakdowntable").rows.length;
+            if (rows - 1 > 0){
+            document.getElementById("breakdowntable").deleteRow(rows - 2);
+            count--;
+            document.getElementById("countexpenses").setAttribute('value', count);
+            } else {
+
+            }
+            }
+        </script>
+
+        <script type="text/javascript">
             <%
                 OvplmDAO OvplmDAO = new OvplmDAO();
                 ArrayList<KRA> k = new ArrayList();
                 k = OvplmDAO.retrieveKRA();
+
             %>
-            
-            function displayAccordingly(c1, c2) {
-            var classification = document.getElementById('classification');
+
+            function changegoal(c1, c2) {
+
             var c1 = document.getElementById(c1);
             var c2 = document.getElementById(c2);
             c2.innerHTML = "";
-            
-            if (classification.value == "Socially Engaged Research") { 
-                var optionArray = ["|", "2|KRA5 - Community that is attuned to a sustainable Earth and socially engaged"];
-    
+            <%                    for (int i = 0; i < k.size(); i++) {
+            %>
+            if (c1.value == "<%=k.get(i).getId()%>") {
+            var optionArray = ["|",<%for (int j = 0; j < k.get(i).getGoals().size(); j++) {%>"<%=k.get(i).getGoals().get(j).getGoalID()%>|<%=k.get(i).getGoals().get(j).getName()%>",<%}%>];
+                }
+
+            <%
+                }
+            %>
+
                 for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
                 var newOption = document.createElement("option");
@@ -237,64 +268,25 @@
                 newOption.innerHTML = pair[1];
                 c2.options.add(newOption);
                 }
-                
-            } else if (classification.value == "Service-Learning") {
-                var option1=document.createElement("option");
-                option1.text="Community that is attuned to a sustainable Earth and socially engaged";
-                selectkra.add(option1,selectkra.options[null]);
-            } else if (classification.value == "Interdisciplinary Fora") {
-                var option1=document.createElement("option");
-                option1.text="Formation for all sectors that is truly Lasallian";
-                selectkra.add(option1,selectkra.options[null]);
-            } else if (classification.value == "Direct Service to the Poor and Marginalized") {
-                var option1=document.createElement("option");
-                option1.text="Community that is attuned to a sustainable Earth and socially engaged";
-                selectkra.add(option1,selectkra.options[null]);
-            } else if (classification.value == "Issue Awareness and Advocacy") {
-                var option1=document.createElement("option");
-                option1.text="Formation for all sectors that is truly Lasallian";
-                selectkra.add(option1,selectkra.options[null]);
-            } else if (classification.value == "Public Engagement") {
-                var option1=document.createElement("option");
-                option1.text="Community that is attuned to a sustainable Earth and socially engaged";
-                selectkra.add(option1,selectkra.options[null]);
-            } else if (classification.value == "Others") {
-                var option1=document.createElement("option");
-                option1.text="Formation for all sectors that is truly Lasallian";
-                selectkra.add(option1,selectkra.options[null]);
-                
-                var option2=document.createElement("option");
-                option2.text="Community that is attuned to a sustainable Earth and socially engaged";
-                selectkra.add(option2,selectkra.options[null]);
-            } 
-        }
-        
-        function changeKRA(c1, c2){
-            var c1 = document.getElementById(c1);
-            var c2 = document.getElementById(c2);
-            c2.innerHTML = "";
-            var optionArray = ["|",<%for (int m = 0; m < k.size(); m++) {%>"<%=k.get(m).getId()%>|<%=k.get(m).getName()%>",<%}%>];
-                for (var option in optionArray) {
-                var pair = optionArray[option].split("|");
-                var newOption = document.createElement("option");
-                newOption.value = pair[0];
-                newOption.innerHTML = pair[1];
-                c2.options.add(newOption);
+
                 }
-                }
-        
-        function changegoal(c1, c2) {
+
+                function changemeasure(c1, c2) {
 
                 var c1 = document.getElementById(c1);
                 var c2 = document.getElementById(c2);
                 c2.innerHTML = "";
-            <%                    for (int i = 0; i < k.size(); i++) {
+            <%
+                for (int i = 0; i < k.size(); i++) {
+                    for (int j = 0; j < k.get(i).getGoals().size(); j++) {
             %>
-                if (c1.value == "<%=k.get(i).getId()%>") {
-                var optionArray = ["|",<%for (int j = 0; j < k.get(i).getGoals().size(); j++) {%>"<%=k.get(i).getGoals().get(j).getGoalID()%>|<%=k.get(i).getGoals().get(j).getName()%>",<%}%>];
+
+                if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
+                var optionArray = ["|",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
                     }
 
             <%
+                    }
                 }
             %>
 
@@ -307,64 +299,8 @@
                     }
 
                     }
-
-                    function changemeasure(c1, c2, c3, c4) {
-
-                    var c1 = document.getElementById(c1);
-                    var c2 = document.getElementById(c2);
-                    var c3 = document.getElementById(c3);
-                    var c4 = document.getElementById(c4);
-                    c2.innerHTML = "";
-                    c3.innerHTML = "";
-                    c4.innerHTML = "";
-            <%
-                for (int i = 0; i < k.size(); i++) {
-                    for (int j = 0; j < k.get(i).getGoals().size(); j++) {
-            %>
-
-                    if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                    var optionArray = [<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
-                        }
-
-                        if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                        var optionArray2 = ["0|None",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
-                            }
-
-            <%
-                    }
-                }
-            %>
-
-                            for (var option in optionArray) {
-                            var pair = optionArray[option].split("|");
-                            var newOption = document.createElement("option");
-                            newOption.value = pair[0];
-                            newOption.innerHTML = pair[1];
-                            c2.options.add(newOption);
-                            }
-
-                            for (var option in optionArray2) {
-                            var pair = optionArray2[option].split("|");
-                            var newOption = document.createElement("option");
-                            newOption.value = pair[0];
-                            newOption.innerHTML = pair[1];
-                            c3.options.add(newOption);
-                            }
-
-                            for (var option in optionArray2) {
-                            var pair = optionArray2[option].split("|");
-                            var newOption = document.createElement("option");
-                            newOption.value = pair[0];
-                            newOption.innerHTML = pair[1];
-                            c4.options.add(newOption);
-                            }
-
-
-                            }
-
         </script>
-        
-        
+
     </head>
 
     <body>
@@ -452,8 +388,8 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div class="sidebar-expanded d-none d-md-block">
-                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group sticky-top sticky-offset">
                     <script>
                         $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
@@ -463,15 +399,13 @@
             <!-- MAIN -->
             <div class="col py-3">
                 <hr size="5" noshade>    
-                <center><h3>Social Engagement Proposal</h3></center>
+                <center><h3>Faith Formation Program Proposal</h3></center>
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
-                    <form action = "addSE" method="post"> 
-
+                    <form action = "addFF" method="post">
                         <%
                             UserDAO = new UserDAO();
-
                             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                             java.util.Date javaDate = new java.util.Date();
                             java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
@@ -479,10 +413,18 @@
 
                         <center>
                             <fieldset>
+                                <legend><b>Unit:</b> <%=session.getAttribute("unit")%></legend>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend><b>Department:</b> <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                            </fieldset>
+
+                            <fieldset>
                                 <legend><b>Date:</b> <%=sqlDate%></legend>
                             </fieldset>
                         </center>
-
+                            
                         <fieldset>
                             <legend><b>Student Organization:</b></legend>
                             <select id="classification" name="studentOrg">
@@ -504,157 +446,105 @@
 
                         <br>
                         <fieldset>
-                            <legend><b>Program Name:</b></legend>
-                            <input id="inputText" type = "text" name ="programname" required>
+                            <legend><b>Program Head:</b></legend>
+                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Program Head (First name, Last name):</b></legend>
-                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" id="inputText" required>
+                            <legend><b>Type of Faith Formation:</b> </legend>
+                            <select name="classification">
+                                <option value="Retreat">Retreat</option>
+                                <option value="Recollection">Recollection</option>
+                                <option value="Prayer Service">Prayer Service</option>
+                                <option value="Spiritual Talk">Spiritual Talk</option>
+                                <option value="Talk on the life of the Founder">Talk on the life of the Founder</option>
+                                <option value="Br. Gabriel Drolin Experience">Br. Gabriel Drolin Experience</option>
+                            </select>
                             <br><br><br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Target Community:</b></legend>
-                            <%
-                                ArrayList<Community> c = new ArrayList();
-                                c = UserDAO.retrieveCommunity();
-                            %>
-                            <select name="community">
-                                <%
-                                    for (int m = 0; m < c.size(); m++) {
-                                %>
-                                <option value="<%=c.get(m).getId()%>"><%=c.get(m).getName()%></option>
-                                <%
-                                    }
-                                %>
-                            </select>
-                            <br><br>
-                        </fieldset>
-                            
-                        <fieldset>
-                            <legend><b>Type of Social Engagement:</b></legend>
-                            <select id="classification" name="classification" onchange="changeKRA(this.id, 'kra')">
-                                <option value=""></option>
-                                <option value="Socially Engaged Research">Socially Engaged Research</option>
-                                <option value="Service-Learning">Service-Learning</option>
-                                <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
-                                <option value="Direct Service to the Poor and Marginalized">Direct Service to the Poor and Marginalized</option>
-                                <option value="Issue Awareness and Advocacy">Issue Awareness and Advocacy</option>
-                                <option value="Public Engagement">Public Engagement</option>
-                                <option value="Others">Others</option>
-                            </select>
-                            <br><br>
-                        </fieldset>
-                            
-                        <fieldset>
-                            <legend><b>Target KRA:</b></legend>
-                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')" required>
-                            </select>
+                            <legend><span class="number">1</span><b> Project Name:</b></legend>
+                            <center><input type = "text" name ="pname" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Target Goal:</b></legend>
-                            <select name="goal" id="goals" onchange="changemeasure(this.id, 'measures', 'measures2', 'measures3')" required>
-
-                            </select>
-                            <br><br>
-                        </fieldset>
-
-
-                        <fieldset>
-                            <legend><b>Target Measure:</b></legend>
-                            <select name="measure" id="measures" required>
-
-                            </select>
-                            <br><br><br>
-                        </fieldset> 
-
-                        <fieldset>
-                            <legend><b>Target Measure 2:</b></legend>
-                            <select name="measure2" id="measures2">
-                                
-                            </select>
-                            <br><br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><b>Target Measure 3:</b></legend>
-                            <select name="measure3" id="measures3">
-                    
-                            </select>
-                            <br><br>
-                            <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a></center>
-                            <br><br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><span class="number">1</span><b> Target Implementation Date:</b></legend>
-                            <input id="inputText" style="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
-                            <br><br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><span class="number">2</span><b> Implementation Address:</b></legend>
-                            <input id="inputText" type = "text" name ="implementationaddress" required>
-                            <br><br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><span class="number">3</span><b> Total Amount Requested:</b></legend>
-                            <input id="inputText" style="width:30%" type = "number" name ="totalamount" required>
-                            <br><br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><span class="number">4</span><b>Explain the Social/Community Problem being Addressed:</b></legend>
-                            <center><textarea id="inputText" rows = "6" cols = "100%" name ="problemaddressed" required></textarea></center>
+                            <legend><span class="number">2</span><b> Venue:</b></legend>
+                            <center><input type = "text" name ="pvenue" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">5</span> <b>Social Engagement Partner/Beneficiary:</b><br></legend>
-                            <legend>Name of Partner (First name, Last name): <input id="inputText" type='text' name='partnername' required/><br><br>
-                                Address: <input id="inputText" type='text' name='partneraddress' required/><br><br>
-                                Contact Person (First name, Last name): <input id="inputText" type='text' name='partnercontact' required/><br><br>
-                                Mobile Number: <br><input style="width:30%" style="width:30%" id="inputText" type='number' name='partnernumber' required/><br><br>
-                                Email: <input id="inputText" type='text' name='partneremail' required/><br><br>
-                                Brief Description of Partner: <textarea id="inputText" name='partnerdescription' rows='5' required></textarea></legend>
-                            <br>
-                        </fieldset>
-
-
-                        <fieldset>
-                            <legend><span class="number">6</span><b >Measurable Outcomes/Objectives of the Project:</b></legend>
-                            <center><textarea id="inputText" rows = "6" cols = "100%" name ="measureableoutcome" required></textarea></center>
+                            <legend><span class="number">3</span><b> Speaker:</b></legend>
+                            <center><input type = "text" name ="pspeaker" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">7</span><b> Sustainability Component (Check all that apply, if none proceed to next number):</b>
-                                <br><br>
-                                <input id="inputText" type='checkbox' name="component" value="Training/Capacity Building for the Partner"/>Training/Capacity Building for the Partner<br>
-                                <input id="inputText" type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed"/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
-                                <input id="inputText" type='checkbox' name="component" value="Continuing and Developmental Partnership"/>Continuing and Developmental Partnership<br>
-                                <input id="inputText" type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
-                            <legend>Explanation:</legend>
-                            <textarea id="inputText" name='sustainabilityexplanation' rows='4' required></textarea>
+                            <legend><span class="number">4</span><b> Objectives:</b></legend>
+                            <center><textarea rows="3" cols = "50%" name="objectives" required></textarea></center>
+                            <br><br>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><span class="number">5</span><b> Target Implementation Date:</b></legend>
+                            <input style ="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">8</span><b >Source of Funds:</b></legend>
-                            <select id="inputText" style="width:50%" name="funds" required>
+                            <legend><span class="number">6</span><b> Total Amount Requested:</b></legend>
+                            <input style ="width:30%" type = "number" name ="pbudget" required>
+                            <br><br><br>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><span class="number">7</span><b>Source of Funds:</b></legend>
+                            <select style ="width:50%" name="funds">
                                 <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
                                 <option value="Others">Others</option>
                             </select>
                             <br>
                         </fieldset>
+
+                        <%
+                            DecimalFormat df = new DecimalFormat("#,###,###,###.##");
+                        %>
+
                         <br><br>
-                        <br>
-                        <center><button type="submit" class="button">Next</button></center>
+                        <legend><b>Breakdown of Expenses (Budget of 2000 per head)</b></legend>
+                        <input type="hidden" value="1" id="countexpenses" name="countexpenses">
+                        <fieldset>
+                            <center><table style = "width:100%" id="breakdowntable">
+                                    <tr>
+
+                                        <th>Item</th>
+                                        <th>Unit Cost</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                    <tr>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffitem0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffunitcost0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffquantity0" required></textarea></td>
+                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffsubtotal0" required></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Grand Total: </td>
+                                    </tr>
+                                </table></center>
+                            <br>
+                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Click to Add Row">
+                                <input style= "background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Click to Delete Row"></center>
+                        </fieldset>
+
+                        <br><br><br><br>
+                        <center><button type = "submit" class="button">Next</button></center>
                     </form>
                 </div>
             </div>
@@ -662,9 +552,6 @@
         </div>
 
         <script>
-            $('#date').datepicker({
-            startDate: new Date()
-            });
             // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
             ;
@@ -732,3 +619,4 @@
         </script>
     </body>
 </html>
+
