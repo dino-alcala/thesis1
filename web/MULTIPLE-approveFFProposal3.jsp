@@ -386,11 +386,15 @@
                                 </table>
                                 <br/>
 
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center><br>
-                                <center><button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
+                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>  
+                                <br>
+                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
+                                <br>
+                                <center>
+                                    <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
                                     <button class="btn-warning" type="submit" name="revise" value="<%=FF.getId()%>">Revise</button>
-                                    <button class="btn-danger" tyep="submit" name="reject" value="<%=FF.getId()%>" style='background-color:red; border-color:red'>Reject</button></center><br>
-                                    <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
+                                    <button class="btn-danger" tyep="submit" name="reject" value="<%=FF.getId()%>" style='background-color:red; border-color:red'>Reject</button>
+                                </center>
                             </div>
 
                         </div>

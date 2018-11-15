@@ -340,6 +340,18 @@
         <servlet-name>viewAuditFF</servlet-name>
         <servlet-class>controller.viewAuditFF</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>encodeSE</servlet-name>
+        <servlet-class>controller.encodeSE</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeSE2</servlet-name>
+        <servlet-class>controller.encodeSE2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addStudentOrg</servlet-name>
+        <servlet-class>controller.addStudentOrg</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -679,6 +691,18 @@
     <servlet-mapping>
         <servlet-name>viewAuditFF</servlet-name>
         <url-pattern>/viewAuditFF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeSE</servlet-name>
+        <url-pattern>/encodeSE</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeSE2</servlet-name>
+        <url-pattern>/encodeSE2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addStudentOrg</servlet-name>
+        <url-pattern>/addStudentOrg</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

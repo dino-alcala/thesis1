@@ -249,63 +249,104 @@
                 if (session.getAttribute("unit").equals("Dean of Student Affairs (DSA)")) {
             %>
             <ul class="list-group sticky-top sticky-offset">
-                <!-- Menu with submenu -->
-                <a href="DSA-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                    <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span class="fa fa-home fa-fw mr-2"></span>
-                        <span class="menu-collapsed">Home</span>
-                        <span class="submenu-icon ml-auto"></span>
-                    </div>
-                </a>
-                <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                    <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span class="fa fa-folder-open fa-fw mr-2"></span>
-                        <span class="menu-collapsed">Programs</span>
-                        <span class="submenu-icon ml-auto"></span>
-                    </div>
-                </a>
-                <div id="submenuProposals" class="collapse sidebar-submenu">
-                    <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
+                    <!-- Menu with submenu -->
+                    <a href="DSA-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-home fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Home</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
                     </a>
-                    <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
+                    <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-folder-open fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Programs</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
                     </a>
-                </div>
-                <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                    <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span class="fa fa-group fa-fw mr-2"></span>
-                        <span class="menu-collapsed">Units</span>
-                        <span class="submenu-icon ml-auto"></span>
+                    <div id="submenuProposals" class="collapse sidebar-submenu">
+                        <a href="DSA-encodeSE.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Encode SE Proposal</span>
+                        </a>
+                        <a href="DSA-encodeFF.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Encode FF Proposal</span>
+                        </a>
+                        <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
+                        </a>
+                        <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
+                        </a>
+                        <%
+                            if (session.getAttribute("position").toString().equals("DSA - Dean")) {
+                        %>
+                        <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
+                        </a>                        
+                        <%
+                            }
+                        %>
                     </div>
-                </a>
-                <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                    <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span class="fa fa-building fa-fw mr-2"></span>
-                        <span class="menu-collapsed">Communities</span>
-                        <span class="submenu-icon ml-auto"></span>
+                    <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-group fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Units</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuUnits" class="collapse sidebar-submenu">
+                        <a href="DSA-addStudentOrg.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Add Student Org</span>
+                        </a>
+                        <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                        </a>
                     </div>
-                </a>
-                <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                    <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span class="fa fa-check-square-o fa-fw mr-2"></span>
-                        <span class="menu-collapsed">Key Result Areas</span>
-                        <span class="submenu-icon ml-auto"></span>
-                    </div>
-                </a>
-                <a href="#submenuReports" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                    <div class="d-flex w-100 justify-content-start align-items-center">
-                        <span class="fa fa-bar-chart fa-fw mr-2"></span>
-                        <span class="menu-collapsed">Reports</span>
-                        <span class="submenu-icon ml-auto"></span>
-                    </div>
-                </a>
-                <div id="submenuReports" class="collapse sidebar-submenu">
+                    <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-building fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Communities</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-check-square-o fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Key Result Areas</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <a href="#submenuReports" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-bar-chart fa-fw mr-2"></span>
+                            <span class="menu-collapsed">Reports</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                    <div id="submenuReports" class="collapse sidebar-submenu">
+                        <a href="MULTIPLE-seReportsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
+                    </a>
+                    <%
+                        if (session.getAttribute("position").toString().equals("DSA - Dean")) {
+                     %>
+                    <a href="OVPLM-budgetPerformanceReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
+                    </a>
+                    <a href="OVPLM-perCommunityReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                    </a>
+                    <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                        <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                    </a>
                     <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
                     </a>
-                </div>
-            </ul>
+                    <%
+                        }
+                        %>
+                    </div>
+                </ul>
             <%
                 }
             %>

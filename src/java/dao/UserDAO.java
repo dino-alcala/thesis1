@@ -2353,7 +2353,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, explanation, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype, datetime, addressimplementation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype, datetime, addressimplementation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -2376,23 +2376,22 @@ public class UserDAO {
             pstmt.setString(15, SE.getEmailSEbeneficiaries());
             pstmt.setString(16, SE.getDescriptionSEbeneficiaries());
             pstmt.setString(17, SE.getObjectives());
-            pstmt.setString(18, SE.getExplanation());
-            pstmt.setInt(19, SE.getTotalpopulationAcademicStaff());
-            pstmt.setInt(20, SE.getExpectedAcademicStaff());
-            pstmt.setInt(21, SE.getTotalpopulationSupportStaff());
-            pstmt.setInt(22, SE.getExpectedSupportStaff());
-            pstmt.setInt(23, SE.getTotalpopulationUndergraduate());
-            pstmt.setInt(24, SE.getExpectedUndergraduate());
-            pstmt.setInt(25, SE.getTotalPopulationGraduate());
-            pstmt.setInt(26, SE.getExpectedGraduate());
-            pstmt.setInt(27, SE.getStep());
-            pstmt.setInt(28, SE.getUserID());
-            pstmt.setString(29, SE.getName());
-            pstmt.setString(30, SE.getSocialCommunityProblem());
-            pstmt.setString(31, SE.getSourceOfFunds());
-            pstmt.setString(32, SE.getUnittype());
-            pstmt.setString(33, sdf.format(dt));
-            pstmt.setString(34, SE.getImplementationaddress());
+            pstmt.setInt(18, SE.getTotalpopulationAcademicStaff());
+            pstmt.setInt(19, SE.getExpectedAcademicStaff());
+            pstmt.setInt(20, SE.getTotalpopulationSupportStaff());
+            pstmt.setInt(21, SE.getExpectedSupportStaff());
+            pstmt.setInt(22, SE.getTotalpopulationUndergraduate());
+            pstmt.setInt(23, SE.getExpectedUndergraduate());
+            pstmt.setInt(24, SE.getTotalPopulationGraduate());
+            pstmt.setInt(25, SE.getExpectedGraduate());
+            pstmt.setInt(26, SE.getStep());
+            pstmt.setInt(27, SE.getUserID());
+            pstmt.setString(28, SE.getName());
+            pstmt.setString(29, SE.getSocialCommunityProblem());
+            pstmt.setString(30, SE.getSourceOfFunds());
+            pstmt.setString(31, SE.getUnittype());
+            pstmt.setString(32, sdf.format(dt));
+            pstmt.setString(33, SE.getImplementationaddress());
 
             int rs = pstmt.executeUpdate();
 
@@ -2454,6 +2453,46 @@ public class UserDAO {
                 pstmt.setString(2, SE.getResponsible().get(i).getEmail());
                 pstmt.setInt(3, seID);
 
+                rs = pstmt.executeUpdate();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void AddSEComponent(ArrayList<String> component, int seID, String explanation) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        
+        try {
+            String query = "UPDATE seproposal SET explanation = ? WHERE id = ?";
+            
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, explanation);
+            pstmt.setInt(2, seID);
+            
+            int rs = pstmt.executeUpdate();
+
+            for (int i = 0; i < component.size(); i++) {
+                query = "INSERT INTO seproposal_component(seproposalID, component) VALUES(?,?)";
+
+                pstmt = conn.prepareStatement(query);
+                pstmt.setInt(1, seID);
+                pstmt.setString(2, component.get(i));
+                
+                
                 rs = pstmt.executeUpdate();
             }
 
@@ -4430,6 +4469,18 @@ public class UserDAO {
                 FF.setLspodatetime(rs2.getString("lspodatetime"));
                 FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
                 FF.setDirectordatetime(rs2.getString("directordatetime"));
+                FF.setApprove1(rs2.getInt("approve1"));
+                FF.setApprove2(rs2.getInt("approve2"));
+                FF.setApprove3(rs2.getInt("approve3"));
+                FF.setApprove4(rs2.getInt("approve4"));
+                FF.setRevise1(rs2.getInt("revise1"));
+                FF.setRevise2(rs2.getInt("revise2"));
+                FF.setRevise3(rs2.getInt("revise3"));
+                FF.setRevise4(rs2.getInt("revise4"));
+                FF.setReject1(rs2.getInt("reject1"));
+                FF.setReject2(rs2.getInt("reject2"));
+                FF.setReject3(rs2.getInt("reject3"));
+                FF.setReject4(rs2.getInt("reject4"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
@@ -6540,11 +6591,15 @@ public class UserDAO {
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
         try {
-            String query = "UPDATE ffproposal SET lspoRemarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET lspoRemarks = ?, lspodatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, sdf.format(dt));
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 

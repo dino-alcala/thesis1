@@ -541,10 +541,29 @@
                                                 <option value="L-Hearts">L-Hearts</option>
                                             </select>
                                         </td>
-
                                     </tr>
-
                                 </table>
+                                <br/>
+                                
+                                
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h4>Set Sustainability Component</h4>
+                                    </div>
+                                    <div class="card-body">   
+                                        <div class="form-style-5">
+                                        <p>Check all that apply, if none, proceed to explanation</p>
+                                        <br><br>
+                                        <input id="inputText" type='checkbox' name="component" value="Training/Capacity Building for the Partner"/>Training/Capacity Building for the Partner<br>
+                                        <input id="inputText" type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed"/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
+                                        <input id="inputText" type='checkbox' name="component" value="Continuing and Developmental Partnership"/>Continuing and Developmental Partnership<br>
+                                        <input id="inputText" type='checkbox' name="component" value="Others"/>
+                                        Others:<textarea name='otherscomponent' rows='2'></textarea><br><br>
+                                        <p>Explanation:</p>
+                                        <textarea id="sustainabilityexplanation" name='sustainabilityexplanation' rows='4' required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                                 <br/>
 
 
@@ -566,11 +585,12 @@
                                 <br/>
 
                                 <center>
-
+                                    <button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
+                                    <br><br>
                                     <button class="btn-success" name="approve" value="<%=SE.getId()%>">Approve</button>
                                     <button type = "submit" class="btn-warning" name="revise" value="<%=SE.getId()%>">Revise</button>
-                                    <button class="btn-danger" style='background-color:red; border-color:red' name="reject" value="<%=SE.getId()%>">Reject</button></center><br>
-                                    <center><button class="btn-success" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button><br></center>  
+                                    <button class="btn-danger" style='background-color:red; border-color:red' name="reject" value="<%=SE.getId()%>">Reject</button>
+                                </center>
                             </div>
 
                         </div>

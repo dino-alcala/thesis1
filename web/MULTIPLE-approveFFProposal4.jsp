@@ -472,11 +472,12 @@
                                 <br/>
                                 <input type="hidden" name="ffID" value="<%=FF.getId()%>">
                                 
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center><br>
+                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>  
+                                <br>
+                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
+                                <br>
                                 <center><button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center>
                                 <br/>
-                                <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
-
                             </div>
 
                         </div>

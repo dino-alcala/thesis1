@@ -7,8 +7,10 @@ package controller;
 
 import dao.UserDAO;
 import entity.Notification;
+import entity.SE;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -51,12 +53,31 @@ public class approveSE2 extends HttpServlet {
             }
             
             if (request.getParameter("approve") != null) {
-
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updateStep(5, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.approveCOSCA(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                     UserDAO.setClassificationforKRA(Integer.parseInt(request.getParameter("approve")), request.getParameter("classificationforkra"));
+                    
+                    String[] component;
+                    ArrayList<String> components = new ArrayList();
+
+                    component = request.getParameterValues("component");
+
+                    if (component != null) {
+                        for (int i = 0; i < component.length; i++) {
+                            if (component[i].equals("Others")) {
+                                components.add(request.getParameter("otherscomponent"));
+                            } else {
+                                components.add(component[i]);
+                            }
+                        }
+                    }
+                    SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+                    SE.setExplanation(request.getParameter("sustainabilityexplanation"));
+                    SE.setComponent(components);
+                    UserDAO.AddSEComponent(components, Integer.parseInt(request.getParameter("approve")), request.getParameter("sustainabilityexplanation"));
+                    
                 }
 
                 Notification n = new Notification();

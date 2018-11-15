@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,8 +40,16 @@ public class createFFreport extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+            HttpSession session = request.getSession();
             UserDAO UserDAO = new UserDAO();
+            
+            if (request.getParameter("auditFF") != null) {
+
+                session.setAttribute("auditFF", request.getParameter("auditFF"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailFF.jsp");
+                dispatcher.forward(request, response);
+            }
             
             if (request.getParameter("viewAttendees") != null) {
                 request.setAttribute("ffID", request.getParameter("viewAttendees"));

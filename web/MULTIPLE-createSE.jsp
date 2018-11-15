@@ -452,8 +452,8 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <ul class="list-group sticky-top sticky-offset">
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
                     <script>
                         $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
@@ -625,19 +625,7 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">7</span><b> Sustainability Component (Check all that apply, if none proceed to next number):</b>
-                                <br><br>
-                                <input id="inputText" type='checkbox' name="component" value="Training/Capacity Building for the Partner"/>Training/Capacity Building for the Partner<br>
-                                <input id="inputText" type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed"/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
-                                <input id="inputText" type='checkbox' name="component" value="Continuing and Developmental Partnership"/>Continuing and Developmental Partnership<br>
-                                <input id="inputText" type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
-                            <legend>Explanation:</legend>
-                            <textarea id="inputText" name='sustainabilityexplanation' rows='4' required></textarea>
-                            <br><br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><span class="number">8</span><b >Source of Funds:</b></legend>
+                            <legend><span class="number">7</span><b >Source of Funds:</b></legend>
                             <select style="width:50%" name="funds" id="inputText" required>
                                 <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
                                 <option value="Others">Others</option>

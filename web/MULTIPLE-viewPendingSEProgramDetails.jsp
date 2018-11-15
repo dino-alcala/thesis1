@@ -614,14 +614,16 @@
                                 </table>
                                 <br/>
 
-                                <center><button class="btn-success" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button><br></center>  
-
-                                    <br>
+                                <center><button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button></center>  
+                                <br>
+                                
                                 <%
                                     if (UserDAO.getStep(Integer.parseInt(request.getAttribute("seID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>                                  
-                                <center><button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button><br></center>  
+                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center>
+                                <br>                                  
+                                <center><button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button></center>
+                                <br>
                                 <%
                                     }
                                 %>
@@ -629,8 +631,8 @@
                                 <%
                                     if (UserDAO.isRevise(Integer.parseInt(request.getAttribute("seID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <center><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button><br></center>
-
+                                <center><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button></center>
+                                <br>
                                 <%
                                     }
                                 %>
@@ -640,9 +642,8 @@
                                     if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
                                 <div>
-                                    <br>
-                                    <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
-                                </div><br><br>
+                                    <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="button" style="background-color:red;">Cancel Program</button></center>
+                                </div>
                                 <%
                                     }
                                 %>

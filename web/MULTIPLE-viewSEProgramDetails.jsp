@@ -525,6 +525,9 @@
                                 </div>
                                 <br/>
                                 
+                                <% 
+                                    if(!SE.getUnit().equals("Student Organization")){
+                                %>
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Remarks</h4>
@@ -571,15 +574,19 @@
                                         </td>
                                     </tr>
                                 </table>
+                                            <%
+                                                }
+                                            %>
                                 <br/>
                                 <br/>         
-                                <center><button class="btn-success" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button><br></center>  
+                                
                                 <%
                                     if (SE.getStep() == 8) {
                                 %>
                                 <div>
                                     <center><h2>Project is now ready for implementation</h2></center>
-                                </div><br><br>
+                                </div>
+                                <br>
                                 <% } %>
                                 
                                 <%
@@ -587,7 +594,8 @@
                                 %>
                                 <div>
                                     <center><h2>Project has been canceled</h2></center>
-                                </div><br><br>
+                                </div>
+                                <br>
                                 <% } %>
                                 
                                 <%
@@ -595,41 +603,48 @@
                                 %>
                                 <div>
                                     <center><h2>Project has been rejected</h2></center>
-                                </div><br><br>
+                                </div>
+                                <br>
                                 <% } %>
+                                
+                                <center><button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button></center>
+                                <br>
                                 
                                 <%
                                     if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() == 8) {
                                 %>
                                 <div>
                                     <center><button type="submit" value="<%=SE.getId()%>" name="seID" class="button">Create Accomplishment Report</button></center>
-                                </div><br><br>
+                                </div>
+                                <br>
                                 <%
                                 } else if (UserDAO.hasSEReport(SE.getId())) {
                                 %>
                                 <div>
                                     <center><button type="submit" value="<%=SE.getId()%>" name="viewReport" class="button">View Accomplishment Report</button></center>
-                                </div><br><br>
+                                </div>
+                                <br>
 
-                                
                                 <%
                                     }
                                     if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() > 0) {
                                 %>
                                 <div>
-                                    <center><button type="submit" value="<%=SE.getId()%>" name="updateBudget" class="button">Update Budget
-                                        </button></center>
-                                </div><br><br>
+                                    <center>
+                                        <button type="submit" value="<%=SE.getId()%>" name="updateBudget" class="button">Update Budget</button>
+                                    </center>
+                                </div>
+                                <br>
                                 <%
                                     }
 
                                     if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 0 && SE.getStep() != -1) {
                                 %>
 
-                                
                                 <div>
-                                    <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
-                                </div><br><br>
+                                    <center><button type="submit" value="<%=SE.getId()%>" name="cancelProgram" style="background-color:red;" class="button">Cancel Program</button></center>
+                                </div>
+                                <br>
                                 <%
                                     }
                                 %>

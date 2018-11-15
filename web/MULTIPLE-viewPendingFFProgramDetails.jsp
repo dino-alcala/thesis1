@@ -456,22 +456,18 @@
                                 </table>
                                 <br/>
 
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center><br>
-
-                                                                <%
-                                    if(UserDAO.hasRevisionsAuditFF(Integer.parseInt(request.getAttribute("ffID").toString()))){
-                                %>
-                                    <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
-                                    <%
-                                        }   
-                                        %>
-                                    <br>
+                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
+                                <br>
+                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>
+                                <br>
                                     
                                 <%
                                     if (UserDAO.getStepFF(Integer.parseInt(request.getAttribute("ffID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>
-                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br><br>
-                                <center><button class="btn-success" type="submit" name="ffID" value="<%=request.getAttribute("ffID")%>">Upload</button><br></center>
+                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>
+                                <br>
+                                <center><button class="btn-success" type="submit" name="ffID" value="<%=request.getAttribute("ffID")%>">Upload</button></center>
+                                <br>
                                     <%
                                         }
                                     %>
@@ -480,7 +476,8 @@
                                     if (UserDAO.isFFRevise(Integer.parseInt(request.getAttribute("ffID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
 
                                 %>
-                                <center><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button></center><br>
+                                <center><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button></center>
+                                <br>
 
                                 <%
                                     }
@@ -492,7 +489,7 @@
 
                                 <div>
                                     <center><button type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="button">Cancel Program</button></center>
-                                </div><br><br>
+                                </div>
                                 <%
                                     }
                                 %>

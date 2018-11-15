@@ -493,7 +493,6 @@
                     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                     java.util.Date javaDate = new java.util.Date();
                     java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
-                    System.out.println(Integer.parseInt("ASDJSAKDJASKLDJAKL" + request.getAttribute("seID").toString()));
                 %>
 
                 <div class="form-style-5">

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.StudentOrgDAO;
 import dao.UserDAO;
 import entity.SE;
 import java.io.IOException;
@@ -22,9 +23,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class addSE extends HttpServlet {
+public class encodeSE extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,14 +40,13 @@ public class addSE extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
             UserDAO UserDAO = new UserDAO();
             HttpSession session = request.getSession();
             SE SE = new SE();
+            StudentOrgDAO StudentOrgDAO = new StudentOrgDAO();
 
-            SE.setUnit(session.getAttribute("unit").toString());
-            SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+            SE.setUnit(StudentOrgDAO.getCollegeByOrgName(request.getParameter("studentorg")) + " - Student Organization");
+            SE.setDepartment(request.getParameter("studentorg"));
 
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
             java.util.Date javaDate = new java.util.Date();
@@ -83,15 +83,32 @@ public class addSE extends HttpServlet {
             if (Integer.parseInt(request.getParameter("measure3")) != 0) {
                 measureID.add(Integer.parseInt(request.getParameter("measure3")));
             }
+
+            String[] component;
+            ArrayList<String> components = new ArrayList();
+
+            component = request.getParameterValues("component");
+
+            if (component != null) {
+                for (int i = 0; i < component.length; i++) {
+                    if (component[i].equals("Others")) {
+                        components.add(request.getParameter("otherscomponent"));
+                    } else {
+                        components.add(component[i]);
+                    }
+                }
+            }
+
+            SE.setExplanation(request.getParameter("sustainabilityexplanation"));
+            SE.setComponent(components);
             SE.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
             session.setAttribute("SE", SE);
             session.setAttribute("measureID", measureID);
 
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE2.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSE2.jsp");
             dispatcher.forward(request, response);
-
         }
     }
 

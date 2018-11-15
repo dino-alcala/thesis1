@@ -414,41 +414,49 @@
                                         </td>
                                     </tr>
                                 </table>
-                                            <br>
-
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center><br>
+                                <br>
 
                                 
                                 <% if(FF.getStep() == 8){ %>
                                 <div>
                                     <center><h2>Project is now ready for implementation</h2></center>
-                                </div><br>
+                                </div>
+                                <br>
                                 <% } %>
                                 
                                 <% if(FF.getStep() == 0){ %>
                                 <div>
                                     <center><h2>Project has been canceled</h2></center>
-                                </div><br>
+                                </div>
+                                <br>
                                 <% } %>
                                 
                                 <% if(FF.getStep() == -1){ %>
                                 <div>
                                     <center><h2>Project has been rejected</h2></center>
-                                </div><br>
+                                </div>
+                                <br>
                                 <% } %>
+                                
+                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
+                                <br>
+                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>
+                                <br>
                                 
                                 <%
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>
                                 <div>
                                     <center><button type="submit" value="<%=FF.getId()%>" class="button" name="ffID">Create Accomplishment Report</button></center>
-                                </div><br>
+                                </div>
+                                <br>
 
                                 <%    } else if (UserDAO.hasFFReport(FF.getId())) {
                                 %>
                                 <div>
                                     <center><button type="submit" value="<%=FF.getId()%>" name="viewReport" class="button">View Accomplishment Report</button></center>
-                                </div><br>
+                                </div>
+                                <br>
                                 <%
                                     }
                                  %>
@@ -459,9 +467,11 @@
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() > 0) {
                                 %>
                                 <div>
-                                    <center><button type="submit" value="<%=FF.getId()%>" name="updateBudget" class="button">Update Budget
-                                        </button></center>
-                                </div><br>
+                                    <center>
+                                        <button type="submit" value="<%=FF.getId()%>" name="updateBudget" class="button">Update Budget</button>
+                                    </center>
+                                </div>
+                                <br>
                                 <%
                                     }
                                  %>
@@ -473,7 +483,7 @@
 
                                 <div>
                                     <center><button type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
-                                </div><br><br>
+                                </div>
                                 <%
                                     }
                                 %>

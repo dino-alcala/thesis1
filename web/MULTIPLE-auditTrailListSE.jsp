@@ -14,7 +14,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SE Audit Trail</title>
+        <title>Audit Trail SE</title>
 
         <link rel="stylesheet" href="css/formstyle5.css">
 

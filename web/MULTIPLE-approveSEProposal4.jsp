@@ -649,9 +649,10 @@
                                 
 
                                 <center>
+                                    <button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
+                                    <br>
                                     <button class="btn-success" name="approve" value="<%=SE.getId()%>">Proceed</button>
-                                    <br/><br/>
-                                    <center><button class="btn-success" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button><br></center>  
+                                </center>    
                             </div>
 
                         </div>

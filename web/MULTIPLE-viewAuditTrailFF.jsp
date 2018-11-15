@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Pending FF Program Details</title>
+        <title>Audit Trail FF</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -311,11 +311,11 @@
                                 </tr>
                                 <tr>
                                     <td>Chairperson/Unit Head</td>
-                                    <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%if (FF.getApprove2()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise2()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(FF.getRevise2()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getVplmdatetime()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%if (FF.getApprove2()==1){%><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise2()==1) {%> <b><font color = "orange">Revised:</font></b><%} else if(FF.getReject2()==1) {%> <b><font color = "red">Rejected:</font></b><%}%> <%=FF.getUnitheaddatetime()%><%}%></td>
+                                    <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%if (FF.getApprove2()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise2()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(FF.getReject2()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getVplmdatetime()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%if (FF.getApprove2()==1){%><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise2()==1) {%> <b><font color = "orange">Revised:</font></b><%} else if(FF.getReject2()==1) {%> <b><font color = "red">Rejected:</font></b><%}%> <%=FF.getUnitheaddatetime()%><%}%></td>
                                 </tr>
                                 <tr>
                                     <td>Dean/Director</td>
-                                    <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%if (FF.getApprove3()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise3()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(FF.getRevise3()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getDeanunitdatetime()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%if (FF.getLspoRemarks() !=null){%><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise3()==1) {%> <b><font color = "orange">Revised:</font></b><%} else if(FF.getReject3()==1) {%> <b><font color = "red">Rejected:</font></b><%}%> <%=FF.getDirectordatetime()%><%}%></td>
+                                    <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%if (FF.getApprove3()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise3()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(FF.getReject3()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getDeanunitdatetime()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%if (FF.getLspoRemarks() !=null){%><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise3()==1) {%> <b><font color = "orange">Revised:</font></b><%} else if(FF.getReject3()==1) {%> <b><font color = "red">Rejected:</font></b><%}%> <%=FF.getDirectordatetime()%><%}%></td>
                                 </tr>
                                 <tr>
                                     <td>Evaluation by LSPO</td>

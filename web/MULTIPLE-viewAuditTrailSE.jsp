@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Pending SE Program Details</title>
+        <title>Audit Trail SE</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -437,7 +437,7 @@
                             <table style="width:100%">
                                 <tr>
                                     <td>Department/Unit Chair</td>
-                                    <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%> <%if (SE.getApprove1() == 1){%><br><b><font color = "green"><br>Approved:</font></b> <%} else if(SE.getRevise1() == 1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(SE.getReject1() == 1) {%><br><b><font color = "red"><br>Rejected:</font></b><%}%> <%=SE.getDeptunitdatetime()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%if (SE.getApprove1() == 1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(SE.getRevise1()== 1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(SE.getReject1()== 1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=SE.getUnitchairdatetime()%><%}%></td>
+                                    <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%> <%if (SE.getApprove1() == 1){%><br><b><font color = "green">Approved:</font></b> <%} else if(SE.getRevise1() == 1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(SE.getReject1() == 1) {%><br><b><font color = "red"><br>Rejected:</font></b><%}%> <%=SE.getDeptunitdatetime()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%if (SE.getApprove1() == 1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(SE.getRevise1()== 1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(SE.getReject1()== 1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=SE.getUnitchairdatetime()%><%}%></td>
                                     
                                 </tr>
                                 <tr>
@@ -450,7 +450,7 @@
                                 </tr>
                                 <tr>
                                     <td>Evaluation by COSCA</td>
-                                    <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%if (SE.getApprove4()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(SE.getRevise4()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(SE.getReject4()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%>%> <%=SE.getCoscadatetime() %><%}%></td>
+                                    <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%if (SE.getApprove4()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(SE.getRevise4()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(SE.getReject4()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=SE.getCoscadatetime() %><%}%></td>
                                 </tr>
                             </table>
                         </div>

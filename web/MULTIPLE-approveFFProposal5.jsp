@@ -423,13 +423,12 @@
                                 </table>
                                 <br/>
 
-                                
+                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>
+                                <br>
                                 <center><button type="submit" name="prs" value="<%=FF.getId()%>">View PRS</button></center>
                                 <br>
                                 <center><button class="btn-success" name="approve" value="<%=FF.getId()%>">Approve</button><br></center>
                                 <br/>
-                                <center><button class="btn-success" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br></center>  
-                                
                             </div>
                         </div>
 

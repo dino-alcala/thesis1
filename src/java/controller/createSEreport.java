@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,15 +40,30 @@ public class createSEreport extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            HttpSession session = request.getSession();
             UserDAO UserDAO = new UserDAO();
 
+            if (request.getParameter("auditSE") != null) {
+
+                session.setAttribute("auditSE", request.getParameter("auditSE"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailSE.jsp");
+                dispatcher.forward(request, response);
+            }
+            
             if (request.getParameter("seID") != null) {
 
                 request.setAttribute("seID", request.getParameter("seID"));
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEReport.jsp");
-                dispatcher.forward(request, response);
+                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
+                
+                if(SE.getUnit().equals("Student Organization")){
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSEReport.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEReport.jsp");
+                    dispatcher.forward(request, response);
+                }
             }
 
             if (request.getParameter("viewReport") != null) {

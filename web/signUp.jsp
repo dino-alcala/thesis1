@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-
+        
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -311,9 +311,6 @@
             <%
                 }
             %>
-
-
-
                             for (var option in optionArray) {
                                 var pair = optionArray[option].split("|");
                                 var newOption = document.createElement("option");
@@ -322,8 +319,14 @@
                                 c2.options.add(newOption);
                             }
 
-                        }
+            }
+            
+                
+            
+
         </script>
+        
+        
     </head>
 
     <body>
@@ -444,6 +447,7 @@
                     </a>
                 </ul>
             </div>
+            
 
             <!-- MAIN -->
             <div class="col py-3">
@@ -464,7 +468,7 @@
 
                     <div class="form-group">
                         <label for="sel1">Unit:</label>
-                        <select class="form-control" id="type" name="unit" onchange="department(this.id, 'dept')">
+                        <select class="form-control" id="type" name="unit" onchange="myFunction()">
                             <optgroup label="Added Units">
                                 <option disabled selected>Select Unit</option>
                                 <%
@@ -475,7 +479,6 @@
                                     }
                                 %>
                             </optgroup>
-
                         </select>
                     </div>
 
@@ -487,8 +490,17 @@
 
                     </div>
 
-                    <p class="hint"><i>(e.g. OVPLM - Executive Officer)</i></p>   
-                    <input type="text" class="Form-control" name="position" placeholder="Position*" required="" autofocus="" />
+                    <!-- <p class="hint"><i>(e.g. OVPLM - Executive Officer)</i></p>   
+                    <input type="text" class="Form-control" name="position" placeholder="Position*" required="" autofocus="" /> !-->
+                    
+                    <div class="form-group">
+                        <label>Position:</label>
+                        <select id="positionselect" class="form-control" name="position">
+                            <option>Select Position</option>
+                            
+                        </select>
+                    </div>
+
                     <input type="text" class="Form-control" name="username" placeholder="Username*" required="" autofocus="" />
                     <input type="password" class="Form-control" name="password" placeholder="Password*" required=""/>
                     <input type="password" class="Form-control" name="password2" placeholder="Confirm Password*" required=""/>
