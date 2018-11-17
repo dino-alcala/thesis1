@@ -480,16 +480,15 @@
                         <tbody>
                             <%
                                 DecimalFormat percentage = new DecimalFormat("0.00");
-                                
-                                %>
+
+                            %>
                             <!--- Goal 1 Measure 1-->
                             <tr>
                                 <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
                                 <td>50% of student organizations have implemented a Lasallian formation activity<br><br>
                                     Basta may FF yung student org pasok na dito</td>
-                                <%
-                                        double percent1 = UserDAO.firstTarget();
+                                    <%                                    double percent1 = UserDAO.firstTarget();
 
                                         if (percent1 < 17) {
                                     %>
@@ -569,7 +568,23 @@
                                 <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
                                 <td>At Least one formation activity engaging alumni, parents, and community partners. <br><br>
                                     Basta may FF yung pasok na dito (di pa sure kung kaya to matrack)</td>
-                                <td></td>
+                                    <%
+                                        if (!UserDAO.fifthTarget()) {
+                                    %>
+                                <td class="accomplishmentRed"><%=0%>%</td>
+
+                                <%
+                                    }
+
+                                    if (UserDAO.fifthTarget()) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=100%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 2 Measure 1-->
@@ -578,21 +593,21 @@
                                 <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
                                 <td>At least one interdisciplinary activity conducted each term<br><br>
                                     Basta may SE type na fora pasok na dito</td>
-                                <%
-                                        double percent5 = UserDAO.fifthTarget();
+                                    <%
+                                        double percent6 = UserDAO.sixthTarget();
 
-                                        if (percent5 < 1) {
+                                        if (percent6 < 1) {
                                     %>
-                                <td class="accomplishmentRed"><%=percentage.format(percent5)%>%</td>
+                                <td class="accomplishmentRed"><%=0%>%</td>
 
-                                <%  
+                                <%
                                     }
 
-                                    if (percent5 >= 1) {
+                                    if (percent6 >= 1) {
 
                                 %>
 
-                                <td class="accomplishmentGreen"><%=percentage.format(percent5)%>%</td>
+                                <td class="accomplishmentGreen"><%=100%>%</td>
 
                                 <%
                                     }
@@ -638,7 +653,7 @@
                                 <td><b>M1</b> Number of sustainable social engagement project of units </td>
                                 <td>20%<br><br>
                                     Pag yung isang SE proposal nakacheck yung Sustainability Component, sustainable na siya so pasok na dito</td>
-                                <%
+                                    <%
                                         double percent9 = UserDAO.NinthTarget();
 
                                         if (percent9 < 7) {
@@ -672,7 +687,7 @@
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>A.</b> Percentage of student organizations involved in community engagement programs and activities</td>
                                 <td>50% <br><br>
                                     Basta may SE program pasok na dito</td>
-                                 <%
+                                    <%
                                         double percent10 = UserDAO.tenthTarget();
 
                                         if (percent10 < 17) {
@@ -714,7 +729,7 @@
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>C.</b> Percentage of departments with community engagement project  </td>
                                 <td>20% <br><br>
                                     Basta may SE program pasok na dito</td>
-                                <%
+                                    <%
                                         double percent12 = UserDAO.twelfthTarget();
 
                                         if (percent12 < 7) {
@@ -749,7 +764,7 @@
                                 </td>
                                 <td>16 <br><br>
                                     Nasa seproposal yung classification sa db</td>
-                                <%
+                                    <%
                                         double percent13 = UserDAO.thirteenthTarget();
 
                                         if (percent13 < 33) {
@@ -802,21 +817,21 @@
                                 <td><b>M2</b> Number of international SL activities </td>
                                 <td>1 <br><br>
                                     Basta may service-learning na SE type pasok na dito</td>
-                                <%
+                                    <%
                                         double percent16 = UserDAO.sixteenthTarget();
 
                                         if (percent16 < 1) {
                                     %>
-                                <td class="accomplishmentRed"><%=percentage.format(percent16)%>%</td>
+                                <td class="accomplishmentRed"><%=0%>%</td>
 
-                                <%  
+                                <%
                                     }
 
                                     if (percent16 >= 1) {
 
                                 %>
 
-                                <td class="accomplishmentGreen"><%=percentage.format(percent16)%>%</td>
+                                <td class="accomplishmentGreen"><%=100%>%</td>
 
                                 <%
                                     }
