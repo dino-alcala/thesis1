@@ -66,6 +66,7 @@ CREATE TABLE `community` (
   `city` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
+  `international` int(1) DEFAULT NULL,
   PRIMARY KEY (`communityID`),
   KEY `LA4_idx` (`userID`),
   CONSTRAINT `LA4` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -78,7 +79,7 @@ CREATE TABLE `community` (
 
 LOCK TABLES `community` WRITE;
 /*!40000 ALTER TABLE `community` DISABLE KEYS */;
-INSERT INTO `community` VALUES (1,'Khalids Retirement Home','Khalid Malo','09291107660','24','Mabango Street','Barangay Rahim','Makati City','Khalid\'s Retirement Home',71),(2,'Karls Community for the Jobless','Karl Madrid','09566082949','8','New York Street','Barangay KM','Quezon City','Karl\'s Community for the Jobless',71),(4,'Angelos School for the Special','Angelo De Jesus','09174029299','17','Matuwid Street','Barangay Tibay','Paranaque City','Angelo\'s School for the Special',71);
+INSERT INTO `community` VALUES (1,'Khalids Retirement Home','Khalid Malo','09291107660','24','Mabango Street','Barangay Rahim','Makati City','Khalid\'s Retirement Home',71,NULL),(2,'Karls Community for the Jobless','Karl Madrid','09566082949','8','New York Street','Barangay KM','Quezon City','Karl\'s Community for the Jobless',71,NULL),(3,'Lasalle Singapore','Luis Grefiel','09291577712','9','Woodlands Street','Example Barangay','Singapore City','Lasalle Singapore Description',71,1),(4,'Angelos School for the Special','Angelo De Jesus','09174029299','17','Matuwid Street','Barangay Tibay','Paranaque City','Angelo\'s School for the Special',71,NULL);
 /*!40000 ALTER TABLE `community` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1587,4 +1588,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-17 23:36:35
+-- Dump completed on 2018-11-18  0:25:45
