@@ -15237,8 +15237,6 @@ public class UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        User u = new User();
-
         int count = 0;
         try {
             ps = conn.prepareStatement(query);
@@ -15271,7 +15269,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 8";
+        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 8 AND f.studentorg != 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -15316,8 +15314,6 @@ public class UserDAO {
         String query = "SELECT count(distinct(name)) FROM studentorgs";
         PreparedStatement ps = null;
         ResultSet rs = null;
-
-        User u = new User();
 
         int count = 0;
         try {
@@ -15519,6 +15515,88 @@ public class UserDAO {
                 /* ignored */ }
         }
         return count;
+    }
+    
+    public double tenthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT count(distinct(unit)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.studentorg = 1";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        double count = 0;
+
+        double percent = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt("count");
+            }
+
+            percent = (count / this.countStudentOrgs()) * 100;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return percent;
+    }
+    
+    public double eleventhTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT count(distinct(department)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.studentorg != 1";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double count = 0;
+
+        double percent = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt("count");
+            }
+
+            percent = (count / this.countDepartments()) * 100;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return percent;
     }
 }
 

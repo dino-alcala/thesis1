@@ -654,7 +654,31 @@
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>A.</b> Percentage of student organizations involved in community engagement programs and activities</td>
                                 <td>50% <br><br>
                                     Basta may SE program pasok na dito</td>
-                                <td></td>
+                                 <%
+                                        double percent10 = UserDAO.tenthTarget();
+
+                                        if (percent10 < 17) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent10)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent10 >= 17 && percent10 <= 35) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent10)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent10 > 35) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent10)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 1 Measure 2B-->
@@ -672,7 +696,31 @@
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>C.</b> Percentage of departments with community engagement project  </td>
                                 <td>20% <br><br>
                                     Basta may SE program pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent12 = UserDAO.eleventhTarget();
+
+                                        if (percent12 < 7) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent12)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent12 >= 7 && percent12 <= 15) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent12)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent12 > 15) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent10)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 1 Measure 3-->
