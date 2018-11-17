@@ -15,6 +15,7 @@ import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ import javax.servlet.http.Part;
  *
  * @author Dino Alcala
  */
+@MultipartConfig(maxFileSize = 16177215)
 public class encodeFFReport3 extends HttpServlet {
 
     /**

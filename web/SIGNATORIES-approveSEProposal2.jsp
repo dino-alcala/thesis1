@@ -440,6 +440,8 @@
                                         <%
                                             }
                                         %>
+                                        <br>
+                                        <p><%if(SE.getExplanation() != null){%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
                                     </div>
                                 </div>
                                 <br/>

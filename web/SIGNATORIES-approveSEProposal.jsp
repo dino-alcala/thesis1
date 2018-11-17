@@ -348,7 +348,8 @@
                                             for (int i = 0; i < SE.getComponent().size(); i++) {
                                         %>
                                         <p><%=SE.getComponent().get(i)%></p>
-
+                                        <br>
+                                        <p><%if(SE.getExplanation() != null){%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
                                         <%
                                             }
                                         %>
