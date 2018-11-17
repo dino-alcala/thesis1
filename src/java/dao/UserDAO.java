@@ -15276,4 +15276,82 @@ public class UserDAO {
         }
         return percent;
     }
+    
+    public int countStudentOrgs() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT count(distinct(name)) FROM studentorgs";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        int count = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt("count(distinct(name))");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public double firstTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN studentorgs so ON f.department = so.name WHERE f.step = 8";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        double count = 0;
+        
+        double percent = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt("count");
+            }
+            
+            percent = (count / this.countStudentOrgs()) * 100;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return percent;
+    }
 }

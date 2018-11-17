@@ -484,7 +484,31 @@
                                 <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
                                 <td>50% of student organizations have implemented a Lasallian formation activity<br><br>
                                     Basta may FF yung student org pasok na dito</td>
-                                <td class="accomplishmentRed">15%</td>
+                                <%
+                                        double percent1 = UserDAO.firstTarget();
+
+                                        if (percent1 <= 17) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percent1%>%</td>
+                                <%
+                                    }
+
+                                    if (percent1 >= 18 && percent1 <= 35) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percent1%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent1 >= 36) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percent1%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 1 Measure 2-->
@@ -494,26 +518,26 @@
                                 <td>50% of faculty departments have undergone Lasallian formation program<br><br>
                                     Basta may FF yung department pasok na dito</td>
                                     <%
-                                        double percent = UserDAO.secondTarget();
+                                        double percent2 = UserDAO.secondTarget();
 
-                                        if (percent <= 17) {
+                                        if (percent2 <= 17) {
                                     %>
-                                <td class="accomplishmentRed"><%=percent%>%</td>
+                                <td class="accomplishmentRed"><%=percent2%>%</td>
                                 <%
                                     }
 
-                                    if (percent >= 18 && percent <= 35) {
+                                    if (percent2 >= 18 && percent2 <= 35) {
                                 %>
-                                <td class="accomplishmentYellow"><%=percent%>%</td>
+                                <td class="accomplishmentYellow"><%=percent2%>%</td>
 
                                 <%
                                     }
 
-                                    if (percent >= 36) {
+                                    if (percent2 >= 36) {
 
                                 %>
 
-                                <td class="accomplishmentGreen"><%=percent%>%</td>
+                                <td class="accomplishmentGreen"><%=percent2%>%</td>
 
                                 <%
                                     }
