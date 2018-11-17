@@ -69,10 +69,10 @@ public class addFFevaluation extends HttpServlet {
             UserDAO.AddFFevaluation(FFevaluation);
             System.out.println("ADJASKDJSKLDJSKLJDKASLJDASDKL " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "%");
             
-            if(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 == 30){
+            if(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 >= 50 && UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 <= 60){
                 Notification n2 = new Notification();
-                n2.setTitle(FFevaluation.getName() + " Evaluators: 30%");
-                n2.setBody("30% of Attendees have now Evaluated!");
+                n2.setTitle(FFevaluation.getName() + " Evaluators: 50%");
+                n2.setBody("Evaluation received, 50% of Attendees have now Evaluated!");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

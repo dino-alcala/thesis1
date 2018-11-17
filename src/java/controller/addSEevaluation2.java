@@ -70,10 +70,10 @@ public class addSEevaluation2 extends HttpServlet {
             UserDAO.AddSEevaluation(SEevaluation);
             System.out.println("ADJASKDJSKLDJSKLJDKASLJDASDKL " + UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 + "%");
             
-            if(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 == 30){
+            if(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 >= 50 && UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 <= 60){
                 Notification n2 = new Notification();
-                n2.setTitle(SEevaluation.getName() + " Evaluators: 30%");
-                n2.setBody("30% of Attendees have now Evaluated!");
+                n2.setTitle(SEevaluation.getName() + " Evaluators: 50%");
+                n2.setBody("Evaluation received, 50% of Attendees have now Evaluated!");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

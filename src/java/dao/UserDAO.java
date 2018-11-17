@@ -11987,14 +11987,14 @@ public class UserDAO {
         return feedbacks;
     }
     
-    public int getNumberEvaluators(int seID) {
+    public double getNumberEvaluators(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
         String query = "SELECT * FROM seevaluation WHERE seproposalID = ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
-        int number = 0;
+        double number = 0;
 
         try {
             ps = conn.prepareStatement(query);
@@ -12024,14 +12024,14 @@ public class UserDAO {
         return number;
     }
     
-    public int getNumberEvaluatorsFF(int ffID) {
+    public double getNumberEvaluatorsFF(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
         String query = "SELECT * FROM ffevaluation WHERE ffproposalID = ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
-        int number = 0;
+        double number = 0;
 
         try {
             ps = conn.prepareStatement(query);
