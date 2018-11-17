@@ -11986,7 +11986,7 @@ public class UserDAO {
         }
         return feedbacks;
     }
-    
+
     public double getNumberEvaluators(int seID) {
 
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -12024,7 +12024,7 @@ public class UserDAO {
         }
         return number;
     }
-    
+
     public double getNumberEvaluatorsFF(int ffID) {
 
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -15921,7 +15921,7 @@ public class UserDAO {
         }
         return percent;
     }
-    
+
     public double thirdTarget() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -15932,20 +15932,63 @@ public class UserDAO {
         int count = 0;
 
         double percent = 0;
-        
+
         try {
 
-                String query = "SELECT a.type FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8";
+            String query = "SELECT a.type FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8";
 
-                ps = conn.prepareStatement(query);
-                rs = ps.executeQuery();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
 
-                while (rs.next()) {
-                    count += 1;
-                }
-                
-                percent = ((double)count / (double) 2297) * 100;
-           
+            while (rs.next()) {
+                count += 1;
+            }
+
+            percent = ((double) count / (double) 2297) * 100;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return percent;
+    }
+
+    public double eleventhTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        int count = 0;
+
+        double percent = 0;
+
+        try {
+
+            String query = "SELECT a.type FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 8";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count += 1;
+            }
+
+            percent = ((double) count / (double) 2297) * 100;
+
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

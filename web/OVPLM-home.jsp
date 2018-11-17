@@ -768,7 +768,31 @@
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>B.</b> Percentage of staff engaged in community engagement programs and activities</td>
                                 <td>50% <br><br>
                                     Basta may SE program pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent11 = UserDAO.eleventhTarget();
+
+                                        if (percent11 < 17) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent11)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent11 >= 17 && percent11 <= 35) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent11)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent11 > 35) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent11)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 1 Measure 2C-->
