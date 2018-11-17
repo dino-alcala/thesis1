@@ -552,7 +552,31 @@
                                 <td></td>
                                 <td>75% of staff have undergone Lasallian formation programs <br><br>
                                     Basta may FF yung staff pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent3 = UserDAO.thirdTarget();
+
+                                        if (percent3 < 25) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent3)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent3 >= 25 && percent3 <= 50) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent3)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent3 > 50) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent3)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
                             <tr>
                                 <td></td>

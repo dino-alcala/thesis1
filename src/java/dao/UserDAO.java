@@ -15921,4 +15921,47 @@ public class UserDAO {
         }
         return percent;
     }
+    
+    public double thirdTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        int count = 0;
+
+        double percent = 0;
+        
+        try {
+
+                String query = "SELECT a.type FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8";
+
+                ps = conn.prepareStatement(query);
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    count += 1;
+                }
+                
+                percent = ((double)count / (double) 2297) * 100;
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return percent;
+    }
 }
