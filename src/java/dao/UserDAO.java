@@ -13086,7 +13086,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT remainingBudget FROM budget WHERE date >= ? AND date <= ? ORDER BY remainingBudget ASC LIMIT 1";
+            String query = "SELECT remainingBudget FROM budget WHERE date >= ? AND date <= ? ORDER BY id DESC LIMIT 1";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
