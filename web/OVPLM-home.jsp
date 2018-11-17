@@ -621,7 +621,31 @@
                                 <td><b>M2</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
                                 <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity<br><br>
                                     Basta may SE type na fora pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent7 = UserDAO.seventhTarget();
+
+                                        if (percent7 < 17) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent7)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent7 >= 17 && percent7 <= 35) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent7)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent7 > 35) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent7)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 3 Measure 1-->

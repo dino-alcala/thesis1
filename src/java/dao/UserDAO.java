@@ -11986,8 +11986,13 @@ public class UserDAO {
         }
         return feedbacks;
     }
+<<<<<<< HEAD
     
     public double getNumberEvaluators(int seID) {
+=======
+
+    public int getNumberEvaluators(int seID) {
+>>>>>>> 9b62e5d24540ff9e8a409681bd0002e9327ccb33
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -12023,8 +12028,13 @@ public class UserDAO {
         }
         return number;
     }
+<<<<<<< HEAD
     
     public double getNumberEvaluatorsFF(int ffID) {
+=======
+
+    public int getNumberEvaluatorsFF(int ffID) {
+>>>>>>> 9b62e5d24540ff9e8a409681bd0002e9327ccb33
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -15805,8 +15815,8 @@ public class UserDAO {
 
             for (int i = 0; i < FF.size(); i++) {
                 count = 0;
-                
-                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? f.step = 8 AND a.type IN ('Alumni', 'Parent')";
+
+                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 8 AND a.type IN ('Alumni', 'Parent')";
 
                 ps = conn.prepareStatement(query);
                 ps.setInt(1, FF.get(i).getId());
@@ -15877,5 +15887,46 @@ public class UserDAO {
                 /* ignored */ }
         }
         return FF;
+    }
+
+    public double seventhTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        int count = 0;
+
+        double percent = 0;
+        try {
+
+            String query = "SELECT s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Interdisciplinary Fora' AND s.step = 8 AND a.type IN ('International')";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count += 1;
+            }
+
+            percent = ((double) count / (double) 20) * 100;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return percent;
     }
 }
