@@ -15238,7 +15238,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(distinct(department)) as count from ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 8";
+        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 8 AND f.unit LIKE '%Student Organization%'";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
