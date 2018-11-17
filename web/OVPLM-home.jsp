@@ -583,7 +583,7 @@
 
                                         if (percent5 < 1) {
                                     %>
-                                <td class="accomplishmentRed"><%=percentage.format(percent5)%>%</td>
+                                <td class="accomplishmentRed"><%=0%>%</td>
 
                                 <%  
                                     }
@@ -592,7 +592,7 @@
 
                                 %>
 
-                                <td class="accomplishmentGreen"><%=percentage.format(percent5)%>%</td>
+                                <td class="accomplishmentGreen"><%=100%>%</td>
 
                                 <%
                                     }
@@ -807,7 +807,7 @@
 
                                         if (percent16 < 1) {
                                     %>
-                                <td class="accomplishmentRed"><%=percentage.format(percent16)%>%</td>
+                                <td class="accomplishmentRed"><%=0%>%</td>
 
                                 <%  
                                     }
@@ -816,7 +816,7 @@
 
                                 %>
 
-                                <td class="accomplishmentGreen"><%=percentage.format(percent16)%>%</td>
+                                <td class="accomplishmentGreen"><%=100%>%</td>
 
                                 <%
                                     }
