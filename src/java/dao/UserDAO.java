@@ -11986,13 +11986,9 @@ public class UserDAO {
         }
         return feedbacks;
     }
-<<<<<<< HEAD
     
     public double getNumberEvaluators(int seID) {
-=======
 
-    public int getNumberEvaluators(int seID) {
->>>>>>> 9b62e5d24540ff9e8a409681bd0002e9327ccb33
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -12028,13 +12024,9 @@ public class UserDAO {
         }
         return number;
     }
-<<<<<<< HEAD
     
     public double getNumberEvaluatorsFF(int ffID) {
-=======
 
-    public int getNumberEvaluatorsFF(int ffID) {
->>>>>>> 9b62e5d24540ff9e8a409681bd0002e9327ccb33
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
