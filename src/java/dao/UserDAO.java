@@ -15351,7 +15351,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN studentorgs so ON f.department = so.name WHERE f.step = 8";
+        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN studentorgs so ON f.department = so.name JOIN ffreport ff ON ff.ffproposalID = f.id WHERE f.step = 8";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -15455,8 +15455,6 @@ public class UserDAO {
                 double percent = 0;
 
                 if (count != 0) {
-                    System.out.println(count);
-                System.out.println(this.countTotalProposalByUnit(units.get(i).getName()));
                     percent = (count / this.countTotalProposalByUnit(units.get(i).getName()) * 100);
                 }
 
