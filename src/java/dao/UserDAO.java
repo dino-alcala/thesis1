@@ -15681,4 +15681,43 @@ public class UserDAO {
         }
         return count;
     }
+    
+    public int fifthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        int count = 0;
+
+        try {
+
+            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.activityClassification = 'Interdisciplinary Fora'";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt("count(unit)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
 }

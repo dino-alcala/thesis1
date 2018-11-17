@@ -578,7 +578,25 @@
                                 <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
                                 <td>At least one interdisciplinary activity conducted each term<br><br>
                                     Basta may SE type na fora pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent5 = UserDAO.fifthTarget();
+
+                                        if (percent5 < 1) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent5)%>%</td>
+
+                                <%  
+                                    }
+
+                                    if (percent5 >= 1) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent5)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
 
@@ -794,7 +812,7 @@
                                 <%  
                                     }
 
-                                    if (percent16 > 1) {
+                                    if (percent16 >= 1) {
 
                                 %>
 
