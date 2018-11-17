@@ -9822,6 +9822,9 @@ public class UserDAO {
 
             }
 
+            double totalApproved = 0;
+            double totalExpended = 0;
+            
             for (int i = 0; i < FFreport.getFunds().size(); i++) {
                 query = "INSERT INTO ffreport_funds(lineItem, approvedAmount, expendedAmount, variance, reasonVariance, ffreportID) VALUES(?,?,?,?,?,?)";
 
@@ -9832,8 +9835,25 @@ public class UserDAO {
                 pstmt.setDouble(4, FFreport.getFunds().get(i).getVariance());
                 pstmt.setString(5, FFreport.getFunds().get(i).getReasonVariance());
                 pstmt.setInt(6, ffreportID);
+                
+                totalApproved += FFreport.getFunds().get(i).getApprovedAmount();
+                totalExpended += FFreport.getFunds().get(i).getExpendedAmount();
 
                 rs = pstmt.executeUpdate();
+            }
+
+            if (totalApproved > totalExpended && this.isOVPLMSourceFF(FFreport.getFfproposalID())) {
+                Budget b = new Budget();
+
+                java.util.Date javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+
+                b.setDate(sqlDate);
+                b.setCurrentBudget(this.getLatestBudget().getRemainingBudget());
+                b.setBudgetRequested(totalExpended - totalApproved);
+                b.setRemainingBudget(b.getCurrentBudget() - b.getBudgetRequested());
+                b.setFfID(FFreport.getFfproposalID());
+                this.addLatestBudget(b);
             }
 
         } catch (SQLException ex) {
