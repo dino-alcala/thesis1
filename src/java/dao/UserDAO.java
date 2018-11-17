@@ -1465,7 +1465,7 @@ public class UserDAO {
         return departmentID;
     }
 
-    public void updateUnit(Unit u) {
+    public void updateUnitAcademic(Unit u, ArrayList<Department> d) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -1487,6 +1487,44 @@ public class UserDAO {
             pstmt.setString(11, u.getDescription());
             pstmt.setInt(12, u.getUnitID());
              */
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OvplmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void updateUnitNonAcademic(Unit u) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE unit SET unitName = ?, unitHead = ?, numberOfCAP = ?, numberOfAPSP = ?, numberOfASF = ?, numberOfFaculty = ?, numberOfAdmin = ?, numberOfDirectHired = ?, numberofIndependent = ?, numberOfExternal = ?, unitDescription = ? WHERE unitID = ?";
+            pstmt = conn.prepareStatement(query);
+            
+            pstmt.setString(1, u.getName());
+            pstmt.setString(2, u.getHead());
+            pstmt.setInt(3, u.getCap());
+            pstmt.setInt(4, u.getApsp());
+            pstmt.setInt(5, u.getAsf());
+            pstmt.setInt(6, u.getFaculty());
+            pstmt.setInt(7, u.getAdmin());
+            pstmt.setInt(8, u.getDirecthired());
+            pstmt.setInt(9, u.getIndependent());
+            pstmt.setInt(10, u.getExternal());
+            pstmt.setString(11, u.getDescription());
+            pstmt.setInt(12, u.getUnitID());
+             
             int rs = pstmt.executeUpdate();
 
         } catch (SQLException ex) {

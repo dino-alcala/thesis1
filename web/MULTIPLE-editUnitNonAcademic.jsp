@@ -268,10 +268,9 @@
                                         UserDAO UserDAO = new UserDAO();
                                         Unit u = new Unit();
                                         u = UserDAO.getUnitbyID(Integer.parseInt(request.getAttribute("unitID").toString()));
+                                        System.out.println("DSJAKDSALJKDLAS " + request.getAttribute("unitID"));
                                     %>
                                     <div class="panel panel-success">
-
-                                        <div class="panel-heading"></div>
 
                                         <div class="panel-body">
 
@@ -285,14 +284,6 @@
                                                         <label>Unit Head: <span class="required"></span></label>
                                                         <input type="text" name="unithead" class="field-long" value="<%=u.getHead()%>" />
                                                     </li>
-
-                                                    <li>
-                                                        <label>Unit Type: <span class="required"></span></label>
-                                                        <select name="unittype">
-                                                            <option value="Unit Type 1" <%if (u.getType().equals("Academic")) {%> selected <%}%>>Academic</option>
-                                                            <option value="Unit Type 2" <%if (u.getType().equals("Non-Academic")) {%> selected <%}%>>Non-Academic</option>
-                                                        </select>
-                                                    </li>
                                                     <li>
                                                         <label>Total number of CAP: <span class="required"></span></label>
                                                         <input type="number" name="cap" class="field-num" value="<%=u.getCap()%>"/>
@@ -302,8 +293,8 @@
                                                         <input type="number" name="apsp" class="field-num" value="<%=u.getApsp()%>"/>
                                                     </li>
                                                     <li>
-                                                        <label>Total number of Asf: <span class="required"></span></label>
-                                                        <input type="number" name="saf" class="field-num" value="<%=u.getAsf()%>"/>
+                                                        <label>Total number of ASF: <span class="required"></span></label>
+                                                        <input type="number" name="asf" class="field-num" value="<%=u.getAsf()%>"/>
                                                     </li>
                                                     
                                                     <li>
