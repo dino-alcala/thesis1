@@ -15681,25 +15681,70 @@ public class UserDAO {
         }
         return count;
     }
-    
-    public int fifthTarget() {
+
+    public int sixthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.activityClassification = 'Interdisciplinary Fora'";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt("count(unit)");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public boolean fifthTarget() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        int count = 0;
+        ArrayList<FF> FF = this.retrieveALLFFProposal();
+
+        int count;
+
+        boolean positive = false;
 
         try {
 
-            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.activityClassification = 'Interdisciplinary Fora'";
+            for (int i = 0; i < FF.size(); i++) {
+                count = 0;
+                
+                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? f.step = 8 AND a.type IN ('Alumni', 'Parent')";
 
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
+                ps = conn.prepareStatement(query);
+                ps.setInt(1, FF.get(i).getId());
+                rs = ps.executeQuery();
 
-            while (rs.next()) {
-                count = rs.getInt("count(unit)");
+                while (rs.next()) {
+                    count += 1;
+                }
+
+                if (count >= 2) {
+                    positive = true;
+                }
             }
 
         } catch (SQLException ex) {
@@ -15718,6 +15763,45 @@ public class UserDAO {
             } catch (Exception e) {
                 /* ignored */ }
         }
-        return count;
+        return positive;
+    }
+
+    public ArrayList<FF> retrieveALLFFProposal() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE step = 8";
+            pstmt = conn.prepareStatement(query);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF f = new FF();
+                f.setDatecreated(rs2.getDate("datecreated"));
+                f.setProjectName(rs2.getString("projectName"));
+                f.setProgramHead(rs2.getString("programHead"));
+                f.setActivityClassification(rs2.getString("activityClassification"));
+                f.setSourceOfFunds(rs2.getString("sourceOfFunds"));
+                f.setId(rs2.getInt("id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
     }
 }
