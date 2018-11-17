@@ -206,10 +206,6 @@
                             <td>Integration of faith dimension using the Lasallian Reflection Framework (LRF) in GE courses</td>
                         </tr>
                         <tr>
-                            <td>KRA3-G2-M3 </td>
-                            <td>Participation of international students in co-curricular activities promoting interfaith and multicultural diversity</td>
-                        </tr>
-                        <tr>
                             <td>KRA3-G3-M1 </td>
                             <td>Number of Lasallian communities committed to the Lasallian mission</td>
                         </tr>
@@ -239,46 +235,6 @@
                         <tr>
                             <td>KRA5-G2-M2</td>
                             <td>Number of international SL activities</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G2-M3</td>
-                            <td>Student satisfaction in service learning experience</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G3-M1</td>
-                            <td>Percentage of members of Lasallian Community engaged in activities related to the realization of the SDGs</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G3-M2</td>
-                            <td>Number of public engagements that allows sharing of expertise for the realization of the SDGs</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G3-M3</td>
-                            <td>Metrics to gauge SD impact of DLSU initiatives</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G4-M1</td>
-                            <td>Compliance with green building standards for both existing and new construction</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G4-M2</td>
-                            <td>Resource use efficiency (i.e. material resources, utilities, etc.)</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G4-M3</td>
-                            <td>University's per Capita Carbon Footprint</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G4-M4</td>
-                            <td>Percentage of total energy requirements provided by alternative energy sources</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G4-M5</td>
-                            <td>University's per Capita Water Footprint</td>
-                        </tr>
-                        <tr>
-                            <td>KRA5-G4-M6</td>
-                            <td>Percentage of spaces dedicated to biodiversity 'green zones' and open spaces</td>
                         </tr>
                     </table></center>
                 <br>

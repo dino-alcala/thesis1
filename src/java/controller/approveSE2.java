@@ -10,7 +10,11 @@ import entity.Notification;
 import entity.SE;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -82,7 +86,27 @@ public class approveSE2 extends HttpServlet {
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody("New SE Proposal ready for approval!");
+                
+                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+                SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                String input1 = new java.sql.Date(javaDate.getTime()).toString();
+                String input2 = SE.getActualDate().toString();
+                
+                try {
+                    java.util.Date date1 = myFormat.parse(input1);
+                    java.util.Date date2 = myFormat.parse(input2);
+                    long diff = date2.getTime() - date1.getTime();
+                    long days = (diff / (1000*60*60*24));
+
+                    if(days <= 14){
+                        n.setBody("URGENT SE Proposal ready for approval!!");
+                    } else if (days >= 15){
+                        n.setBody("New SE Proposal ready for approval!");
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

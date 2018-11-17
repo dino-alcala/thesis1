@@ -7,8 +7,13 @@ package controller;
 
 import dao.UserDAO;
 import entity.Notification;
+import entity.SE;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -109,6 +114,27 @@ public class approveSE3 extends HttpServlet {
                         Notification n2 = new Notification();
                         n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
                         n2.setBody("Your proposal has been approved by the Council. You may now upload the PRS for endorsement.");
+                        
+                        SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+                        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+                        java.util.Date javaDate = new java.util.Date();
+                        String input1 = new java.sql.Date(javaDate.getTime()).toString();
+                        String input2 = SE.getActualDate().toString();
+
+                        try {
+                            java.util.Date date1 = myFormat.parse(input1);
+                            java.util.Date date2 = myFormat.parse(input2);
+                            long diff = date2.getTime() - date1.getTime();
+                            long days = (diff / (1000*60*60*24));
+
+                            if(days <= 14){
+                                n2.setBody("Your URGENT proposal has been approved by the Council. You may now upload the PRS for endorsement!");
+                            } else if (days >= 15){
+                                n2.setBody("Your proposal has been approved by the Council. You may now upload the PRS for endorsement.");
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
 
                         java.util.Date dt = new java.util.Date();
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

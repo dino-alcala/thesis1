@@ -114,6 +114,88 @@ public class OvplmDAO {
                 /* ignored */ }
         }
     }
+    
+    public void AddDepartment(Department d, String college) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM department ORDER by departmentID DESC LIMIT 1";
+
+            int lastdepartmentID = 0;
+
+            pstmt = conn.prepareStatement(query);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                lastdepartmentID = rs2.getInt("departmentID");
+            }
+
+            
+            query = "INSERT INTO department(departmentID, department, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal) VALUES(?,?,?,?,?,?,?,?,?,?)";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, lastdepartmentID + 1);
+            pstmt.setString(2, d.getName());
+            pstmt.setInt(3, d.getFaculty());
+            pstmt.setInt(4, d.getAdmin());
+            pstmt.setInt(5, d.getApsp());
+            pstmt.setInt(6, d.getAsf());
+            pstmt.setInt(7, d.getCap());
+            pstmt.setInt(8, d.getDirecthired());
+            pstmt.setInt(9, d.getIndependent());
+            pstmt.setInt(10, d.getExternal());
+
+            int rs = pstmt.executeUpdate();
+            query = "UPDATE unit SET departments = departments + 1 where unitName = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, college);
+            
+            rs = pstmt.executeUpdate();
+            
+            int unitID = 0, departmentID = 0;
+            
+            query = "SELECT unitID FROM unit WHERE unitName = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, college);
+            
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                unitID = rs2.getInt("unitID");
+            }
+            
+            query = "SELECT departmentID FROM department WHERE department = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, d.getName());
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                departmentID = rs2.getInt("departmentID");
+            }
+            
+            
+            query = "INSERT INTO unit_department (unitID, departmentID) VALUES (?,?)";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, unitID);
+            pstmt.setInt(2, departmentID);
+            
+            rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OvplmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
 
     public void AddNonAcademicUnit(Unit u) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();

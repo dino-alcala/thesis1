@@ -323,7 +323,7 @@
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
                                 <tr>
-                                    <th>Date</th> 
+                                    <th>Implementation</th> 
                                     <th>Program Name</th>
                                     <th>Unit</th>
                                     <th>Department</th>
@@ -341,7 +341,7 @@
                                                 if (!UserDAO.hasMichaelFFVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDatecreated()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getProjectName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -355,7 +355,7 @@
                                     if (!UserDAO.hasNelcaFFVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDatecreated()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getProjectName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -369,7 +369,7 @@
                                     if (!UserDAO.hasMargaritaFFVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDatecreated()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getProjectName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -383,7 +383,7 @@
                                     if (!UserDAO.hasFritzieFFVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDatecreated()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getProjectName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -396,7 +396,7 @@
 
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDatecreated()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getProjectName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>

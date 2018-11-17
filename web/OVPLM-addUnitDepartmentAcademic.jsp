@@ -417,7 +417,7 @@
 
                                         <p><i>All fields are required</i></p>
 
-                                        <form action="addAcademicUnit" method="post">
+                                        <form action="addDepartmentAcademic" method="post">
                                             <ul class="form-style-1">
                                                 <li>
                                                     <label>Select Unit: <span class="required"></span></label>
@@ -438,46 +438,38 @@
                                                     <label>Department Name: <span class="required"></span></label>
                                                     <input type="text" name="unitname" class="field-long" />
                                                 </li>
-                                                <li>
-                                                    <label>Department Head: <span class="required"></span></label>
-                                                    <input type="text" name="unithead" class="field-long" />
-                                                </li>
                                                 <br>
                                                 <li>
                                                     <label>Total Number of CAP: <span class="required"></span></label>
-                                                    <input type="text" name="cap" class="field-long" />
+                                                    <input type="number" name="cap" class="field-long" />
                                                 </li>                                                
                                                 <li>
                                                     <label>Total Number of APSP: <span class="required"></span></label>
-                                                    <input type="text" name="apsp" class="field-long" />
+                                                    <input type="number" name="apsp" class="field-long" />
                                                 </li>                                                
                                                 <li>
                                                     <label>Total Number of ASF: <span class="required"></span></label>
-                                                    <input type="text" name="asf" class="field-long" />
+                                                    <input type="number" name="asf" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of Faculty (full-time and part-time): <span class="required"></span></label>
-                                                    <input type="text" name="faculty" class="field-long" />
+                                                    <input type="number" name="faculty" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of Administrators: <span class="required"></span></label>
-                                                    <input type="text" name="admin" class="field-long" />
+                                                    <input type="number" name="admin" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of Direct Hired Contractuals: <span class="required"></span></label>
-                                                    <input type="text" name="direct" class="field-long" />
+                                                    <input type="number" name="direct" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of Independent Contractors: <span class="required"></span></label>
-                                                    <input type="text" name="independent" class="field-long" />
+                                                    <input type="number" name="independent" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of External Service Personnel: <span class="required"></span></label>
-                                                    <input type="text" name="external" class="field-long" />
-                                                </li>
-                                                <li>
-                                                    <label>Department Description: <span class="required"></span></label>
-                                                    <textarea name="unitdescription" rows="4" class="field-long"></textarea>
+                                                    <input type="number" name="external" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <button type="submit" class="btn btn-info">Add Department</button>

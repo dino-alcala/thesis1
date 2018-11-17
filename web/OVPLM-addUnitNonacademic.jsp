@@ -270,35 +270,35 @@
                                                 <br>
                                                 <li>
                                                     <label>Total Number of CAP: <span class="required"></span></label>
-                                                    <input type="text" name="cap" class="field-long" />
+                                                    <input type="number" name="cap" class="field-long" />
                                                 </li>                                                
                                                 <li>
                                                     <label>Total Number of APSP: <span class="required"></span></label>
-                                                    <input type="text" name="apsp" class="field-long" />
+                                                    <input type="number" name="apsp" class="field-long" />
                                                 </li>                                                
                                                 <li>
                                                     <label>Total Number of ASF: <span class="required"></span></label>
-                                                    <input type="text" name="asf" class="field-long" />
+                                                    <input type="number" name="asf" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of Faculty (full-time and part-time): <span class="required"></span></label>
-                                                    <input type="text" name="faculty" class="field-long" />
+                                                    <input type="number" name="faculty" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of Administrators: <span class="required"></span></label>
-                                                    <input type="text" name="admin" class="field-long" />
+                                                    <input type="number" name="admin" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of Direct Hired Contractuals: <span class="required"></span></label>
-                                                    <input type="text" name="direct" class="field-long" />
+                                                    <input type="number" name="direct" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of Independent Contractors: <span class="required"></span></label>
-                                                    <input type="text" name="independent" class="field-long" />
+                                                    <input type="number" name="independent" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Total Number of External Service Personnel: <span class="required"></span></label>
-                                                    <input type="text" name="external" class="field-long" />
+                                                    <input type="number" name="external" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Unit Description: <span class="required"></span></label>

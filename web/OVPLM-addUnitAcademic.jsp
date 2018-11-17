@@ -59,7 +59,7 @@
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
-                    input.type = "text";
+                    input.type = "number";
                     input.name = "cap" + i;
                     container.appendChild(input);
                     // Append a line break 
@@ -70,7 +70,7 @@
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
-                    input.type = "text";
+                    input.type = "number";
                     input.name = "apsp" + i;
                     container.appendChild(input);
                     // Append a line break 
@@ -81,7 +81,7 @@
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
-                    input.type = "text";
+                    input.type = "number";
                     input.name = "asf" + i;
                     container.appendChild(input);
                     // Append a line break 
@@ -92,7 +92,7 @@
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
-                    input.type = "text";
+                    input.type = "number";
                     input.name = "faculty" + i;
                     container.appendChild(input);
                     // Append a line break 
@@ -103,7 +103,7 @@
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
-                    input.type = "text";
+                    input.type = "number";
                     input.name = "admin" + i;
                     container.appendChild(input);
                     // Append a line break 
@@ -114,7 +114,7 @@
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
-                    input.type = "text";
+                    input.type = "number";
                     input.name = "direct" + i;
                     container.appendChild(input);
                     // Append a line break 
@@ -125,7 +125,7 @@
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
-                    input.type = "text";
+                    input.type = "number";
                     input.name = "independent" + i;
                     container.appendChild(input);
                     // Append a line break 
@@ -136,7 +136,7 @@
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
-                    input.type = "text";
+                    input.type = "number";
                     input.name = "external" + i;
                     container.appendChild(input);
                     // Append a line break 

@@ -336,7 +336,7 @@ ProgramsForApproval
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
                                 <tr>
-                                    <th>Date</th> 
+                                    <th>Implementation</th> 
                                     <th>Program Name</th>
                                     <th>Unit</th>
                                     <th>Department</th>
@@ -356,7 +356,7 @@ ProgramsForApproval
                                                 if (!UserDAO.hasMichaelVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -370,7 +370,7 @@ ProgramsForApproval
                                     if (!UserDAO.hasNelcaVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -384,7 +384,7 @@ ProgramsForApproval
                                     if (!UserDAO.hasMargaritaVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -398,7 +398,7 @@ ProgramsForApproval
                                     if (!UserDAO.hasJamesVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -412,7 +412,7 @@ ProgramsForApproval
                                     if (!UserDAO.hasFritzieVoted(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>
@@ -425,7 +425,7 @@ ProgramsForApproval
 
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>

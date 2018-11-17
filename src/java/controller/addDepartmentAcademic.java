@@ -5,12 +5,18 @@
  */
 package controller;
 
+import dao.OvplmDAO;
+import entity.Department;
+import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,7 +37,34 @@ public class addDepartmentAcademic extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            OvplmDAO OvplmDAO = new OvplmDAO();
+
+            HttpSession session = request.getSession();
+            Department d = new Department();
+            Unit u = new Unit();
+
+            d.setName(request.getParameter("unitname"));
+            d.setFaculty(Integer.parseInt(request.getParameter("faculty")));
+            d.setAdmin(Integer.parseInt(request.getParameter("admin")));
+            d.setApsp(Integer.parseInt(request.getParameter("apsp")));
+            d.setAsf(Integer.parseInt(request.getParameter("asf")));
+            d.setCap(Integer.parseInt(request.getParameter("cap")));
+            d.setDirecthired(Integer.parseInt(request.getParameter("direct")));
+            d.setIndependent(Integer.parseInt(request.getParameter("independent")));
+            d.setExternal(Integer.parseInt(request.getParameter("external")));
+           
+            OvplmDAO.AddDepartment(d, request.getParameter("unit"));
             
+            if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
+                dispatcher.forward(request, response);
+            }
+            if (session.getAttribute("unit").toString().equals("Admin")) {
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 

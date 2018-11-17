@@ -331,7 +331,7 @@
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
                                 <tr>
-                                    <th>Date</th> 
+                                    <th>Implementation</th> 
                                     <th>Program Name</th>
                                     <th>Unit</th>
                                     <th>Department</th>
@@ -345,7 +345,7 @@
                                     for (int i = 0; i < my.size(); i++) {
                                 %>
                                 <tr>
-                                    <td><%=my.get(i).getDatecreated()%></td>
+                                    <td><%=my.get(i).getActualDate()%></td>
                                     <td><%=my.get(i).getProjectName()%></td>
                                     <td><%=my.get(i).getUnit()%></td>
                                     <td><%=my.get(i).getDepartment()%></td>
@@ -370,7 +370,7 @@
                         <table id="example2" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
                                 <tr>
-                                    <th>Date</th> 
+                                    <th>Implementation</th> 
                                     <th>Program Name</th>
                                     <th>Unit</th>
                                     <th>Department</th>
@@ -384,7 +384,7 @@
                                     for (int i = 0; i < others.size(); i++) {
                                 %>
                                 <tr>
-                                    <td><%=others.get(i).getDatecreated()%></td>
+                                    <td><%=others.get(i).getActualDate()%></td>
                                     <td><%=others.get(i).getProjectName()%></td>
                                     <td><%=others.get(i).getUnit()%></td>
                                     <td><%=others.get(i).getDepartment()%></td>
