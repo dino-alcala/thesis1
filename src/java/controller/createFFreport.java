@@ -65,7 +65,7 @@ public class createFFreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
                 
-                if(FF.getUnit().contains("Student Organization")){
+                if(FF.getStudentorg() == 1){
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFFReport.jsp");
                     dispatcher.forward(request, response);
                 } else {
@@ -89,16 +89,18 @@ public class createFFreport extends HttpServlet {
                 java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
                 FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("cancelProgram")));
-                Budget b = new Budget();
-                b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
-                b.setBudgetRequested(FF.getTotalAmount() * -1);
-                b.setRemainingBudget(b.getCurrentBudget() - b.getBudgetRequested());
-                b.setFfID(Integer.parseInt(request.getParameter("cancelProgram")));
-                b.setDate(sqlDate);
+                if(FF.getStep() == 8 && FF.getSourceOfFunds().equals("OVPLM")){
+                    Budget b = new Budget();
+                    b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
+                    b.setBudgetRequested(FF.getTotalAmount() * -1);
+                    b.setRemainingBudget(b.getCurrentBudget() - b.getBudgetRequested());
+                    b.setFfID(Integer.parseInt(request.getParameter("cancelProgram")));
+                    b.setDate(sqlDate);
 
-                UserDAO.addLatestBudget(b);
+                    UserDAO.addLatestBudget(b);
 
-                UserDAO.updateStepFF(0, Integer.parseInt(request.getParameter("cancelProgram")));
+                    UserDAO.updateStepFF(0, Integer.parseInt(request.getParameter("cancelProgram")));
+                }
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("cancelProgram"))));
@@ -109,8 +111,11 @@ public class createFFreport extends HttpServlet {
 
                 n.setDt(sdf.format(dt));
 
-                n.setUserID(17);
-
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
+                UserDAO.AddNotification(n);
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n);
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("cancelProgram", "You have successfully canceled the program!");

@@ -57,7 +57,7 @@ public class createSEreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
                 
-                if(SE.getUnit().contains("Student Organization")){
+                if(SE.getStudentorg() == 1){
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSEReport.jsp");
                     dispatcher.forward(request, response);
                 } else {
@@ -81,28 +81,33 @@ public class createSEreport extends HttpServlet {
                 java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("cancelProgram")));
-                Budget b = new Budget();
-                b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
-                b.setBudgetRequested(SE.getTotalAmount() * -1);
-                b.setRemainingBudget(b.getCurrentBudget() - b.getBudgetRequested());
-                b.setSeID(Integer.parseInt(request.getParameter("cancelProgram")));
-                b.setDate(sqlDate);
+                if(SE.getStep() == 8 && SE.getSourceOfFunds().equals("OVPLM")){
+                    Budget b = new Budget();
+                    b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
+                    b.setBudgetRequested(SE.getTotalAmount() * -1);
+                    b.setRemainingBudget(b.getCurrentBudget() - b.getBudgetRequested());
+                    b.setSeID(Integer.parseInt(request.getParameter("cancelProgram")));
+                    b.setDate(sqlDate);
 
-                UserDAO.addLatestBudget(b);
+                    UserDAO.addLatestBudget(b);
 
-                UserDAO.updateStep(0, Integer.parseInt(request.getParameter("cancelProgram")));
-
+                    UserDAO.updateStep(0, Integer.parseInt(request.getParameter("cancelProgram")));
+                }
+                
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled!");
+                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 n.setDt(sdf.format(dt));
 
-                n.setUserID(17);
-
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
+                UserDAO.AddNotification(n);
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n);
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("cancelProgram", "You have successfully canceled the program!");

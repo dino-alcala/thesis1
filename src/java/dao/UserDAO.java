@@ -11986,6 +11986,80 @@ public class UserDAO {
         }
         return feedbacks;
     }
+    
+    public int getNumberEvaluators(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM seevaluation WHERE seproposalID = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int number = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                number++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return number;
+    }
+    
+    public int getNumberEvaluatorsFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM ffevaluation WHERE ffproposalID = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int number = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                number++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return number;
+    }
 
     public ArrayList<String> getLearningEvaluation(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();

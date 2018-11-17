@@ -79,9 +79,14 @@ public class approveFF5 extends HttpServlet {
 
             Notification n3 = new Notification();
             n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-            n3.setBody("₱" + FF.getTotalAmount() + " has been deducted to the budget!");
+            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
             n3.setDt(sdf.format(dt));
-            n3.setUserID(4);
+            
+            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            UserDAO.AddNotification(n3);
+            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            UserDAO.AddNotification(n3);
+            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
             UserDAO.AddNotification(n3);
 
             Budget current = new Budget();

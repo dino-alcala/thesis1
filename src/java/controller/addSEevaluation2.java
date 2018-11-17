@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import entity.Notification;
 import entity.SEevaluation;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -67,6 +68,24 @@ public class addSEevaluation2 extends HttpServlet {
             SEevaluation.setFeedbacks(request.getParameter("feedback"));
             
             UserDAO.AddSEevaluation(SEevaluation);
+            System.out.println("ADJASKDJSKLDJSKLJDKASLJDASDKL " + UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 + "%");
+            
+            if(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 == 30){
+                Notification n2 = new Notification();
+                n2.setTitle(SEevaluation.getName() + " Evaluators: 30%");
+                n2.setBody("30% of Attendees have now Evaluated!");
+
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                n2.setDt(sdf.format(dt));
+                n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n2);
+                n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n2);
+                n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                UserDAO.AddNotification(n2);                
+            }
             
             request.setAttribute("successEvaluation", "You have successfully submitted the evaluation!");
             ServletContext context = getServletContext();

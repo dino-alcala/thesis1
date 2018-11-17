@@ -211,7 +211,7 @@
                 var cell3 = row.insertCell(2);
                 cell1.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='attendee" + count + "' required></textarea>";
                 cell2.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='email" + count + "' required></textarea>";
-                cell3.innerHTML = "<td><select style='border-radius:0px;' name='type"+count+"'><option value='CAP'>CAP</option><option value='APSP'>APSP</option><option value='ASF'>ASF</option><option value='Faculty'>Faculty</option><option value='Admin'>Administrator</option><option value='Directhired'>Direct Hired Contractual</option><option value='Independent'>Independent Contractor</option><option value='External'>External Service Personnel</option><option value='Undergrad'>Undergraduate Student</option><option value='Grad'>Graduate Student</option><option value='International'>International Student</option></select></td>"
+                cell3.innerHTML = "<td><select style='border-radius:0px;' name='type"+count+"'><option value='CAP'>CAP</option><option value='APSP'>APSP</option><option value='ASF'>ASF</option><option value='Faculty'>Faculty</option><option value='Admin'>Administrator</option><option value='Directhired'>Direct Hired Contractual</option><option value='Independent'>Independent Contractor</option><option value='External'>External Service Personnel</option><option value='Undergrad'>Undergraduate Student</option><option value='Grad'>Graduate Student</option><option value='International'>International Student</option><option value='Alumni'>Alumni</option><option value='Parent'>Parent</option></select></td>"
                 count++;
                 document.getElementById("countattendees").setAttribute('value', count);
             }
@@ -358,6 +358,8 @@
                                                 <option value="Undergrad">Undergraduate Student</option>
                                                 <option value="Grad">Graduate Student</option>
                                                 <option value="International">International Student</option>
+                                                <option value="Alumni">Alumni</option>
+                                                <option value="Parent">Parent</option>
                                             </select></td>
                                     </tr>
                                 </table></center>
