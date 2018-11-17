@@ -37,7 +37,7 @@
         <servlet-class>controller.passUnit</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>editUnit</servlet-name>
+        <servlet-name>editUnitNonAcademic</servlet-name>
         <servlet-class>controller.editUnitNonAcademic</servlet-class>
     </servlet>
     <servlet>
@@ -433,8 +433,8 @@
         <url-pattern>/passUnit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>editUnit</servlet-name>
-        <url-pattern>/editUnit</url-pattern>
+        <servlet-name>editUnitNonAcademic</servlet-name>
+        <url-pattern>/editUnitNonAcademic</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addKRA</servlet-name>

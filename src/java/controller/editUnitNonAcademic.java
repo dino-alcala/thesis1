@@ -38,25 +38,24 @@ public class editUnitNonAcademic extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
 
             UserDAO UserDAO = new UserDAO();
-
             Unit unit = new Unit();
 
-            /*
             unit.setUnitID(Integer.parseInt(request.getParameter("unit")));
             unit.setName(request.getParameter("unitname"));
             unit.setHead(request.getParameter("unithead"));
-            unit.setType(request.getParameter("unittype"));
-            unit.setStaff(Integer.parseInt(request.getParameter("staff")));
+            unit.setCap(Integer.parseInt(request.getParameter("cap")));
+            unit.setApsp(Integer.parseInt(request.getParameter("apsp")));
+            unit.setAsf(Integer.parseInt(request.getParameter("asf")));
             unit.setFaculty(Integer.parseInt(request.getParameter("faculty")));
             unit.setAdmin(Integer.parseInt(request.getParameter("admin")));
-            unit.setApsp(Integer.parseInt(request.getParameter("apsp")));
-            unit.setSaf(Integer.parseInt(request.getParameter("saf")));
-            unit.setCap(Integer.parseInt(request.getParameter("cap")));
-            unit.setStudent(Integer.parseInt(request.getParameter("student")));
+            unit.setDirecthired(Integer.parseInt(request.getParameter("directhired")));
+            unit.setIndependent(Integer.parseInt(request.getParameter("independent")));
+            unit.setExternal(Integer.parseInt(request.getParameter("external")));
             unit.setDescription(request.getParameter("unitdesc"));
-*/
-            UserDAO.updateUnit(unit);
 
+            UserDAO.updateUnitNonAcademic(unit);
+
+            request.setAttribute("successSE", "You have successfully edited the unit!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-unitsList.jsp");
             dispatcher.forward(request, response);

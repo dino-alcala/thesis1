@@ -6,9 +6,11 @@
 package controller;
 
 import dao.UserDAO;
+import entity.Department;
 import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -45,18 +47,35 @@ public class editUnitAcademic extends HttpServlet {
             unit.setUnitID(Integer.parseInt(request.getParameter("unit")));
             unit.setName(request.getParameter("unitname"));
             unit.setHead(request.getParameter("unithead"));
-            unit.setType(request.getParameter("unittype"));
-            unit.setStaff(Integer.parseInt(request.getParameter("staff")));
+            unit.setCap(Integer.parseInt(request.getParameter("cap")));
+            unit.setApsp(Integer.parseInt(request.getParameter("apsp")));
+            unit.setAsf(Integer.parseInt(request.getParameter("asf")));
             unit.setFaculty(Integer.parseInt(request.getParameter("faculty")));
             unit.setAdmin(Integer.parseInt(request.getParameter("admin")));
-            unit.setApsp(Integer.parseInt(request.getParameter("apsp")));
-            unit.setSaf(Integer.parseInt(request.getParameter("saf")));
-            unit.setCap(Integer.parseInt(request.getParameter("cap")));
-            unit.setStudent(Integer.parseInt(request.getParameter("student")));
+            unit.setDirecthired(Integer.parseInt(request.getParameter("directhired")));
+            unit.setIndependent(Integer.parseInt(request.getParameter("independent")));
+            unit.setExternal(Integer.parseInt(request.getParameter("external")));
             unit.setDescription(request.getParameter("unitdesc"));
-*/
-            UserDAO.updateUnit(unit);
 
+            ArrayList<Department> d = new ArrayList();
+
+            for (int i = 0; i < Integer.parseInt(request.getParameter("numberdept")); i++) {
+                Department department = new Department();
+                department.setName(request.getParameter("department" + i));
+                department.setFaculty(Integer.parseInt(request.getParameter("faculty" + i)));
+                department.setAdmin(Integer.parseInt(request.getParameter("admin" + i)));
+                department.setApsp(Integer.parseInt(request.getParameter("apsp" + i)));
+                department.setAsf(Integer.parseInt(request.getParameter("asf" + i)));
+                department.setCap(Integer.parseInt(request.getParameter("cap" + i)));
+                department.setDirecthired(Integer.parseInt(request.getParameter("direct" + i)));
+                department.setIndependent(Integer.parseInt(request.getParameter("independent" + i)));
+                department.setExternal(Integer.parseInt(request.getParameter("external" + i)));
+                d.add(department);
+            }
+            
+            UserDAO.updateUnitAcademic(unit, d);*/
+
+            request.setAttribute("successSE", "You have successfully edited the unit!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-unitsList.jsp");
             dispatcher.forward(request, response);

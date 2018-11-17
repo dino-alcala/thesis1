@@ -111,6 +111,32 @@
                 border-radius: 8px;
             }
         </style>  
+        
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successSE") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successSE")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("successFF") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successFF")%>");
+            });
+
+            <%
+                }
+            %>
+        </script>
 
     </head>
 

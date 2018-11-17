@@ -278,7 +278,7 @@
 
                                         <div class="panel-body">
 
-                                            <form action="editUnit" method="post">
+                                            <form action="editUnitAcademic" method="post">
                                                 <ul class="form-style-1">
                                                     <li>
                                                         <label>Unit Name: <span class="required"></span></label>
@@ -311,8 +311,8 @@
                                                         <input type="number" name="apsp" class="field-num" value="<%=d.getApsp()%>"/>
                                                     </li>
                                                     <li>
-                                                        <label>Total number of Asf: <span class="required"></span></label>
-                                                        <input type="number" name="saf" class="field-num" value="<%=d.getAsf()%>"/>
+                                                        <label>Total number of ASF: <span class="required"></span></label>
+                                                        <input type="number" name="asf" class="field-num" value="<%=d.getAsf()%>"/>
                                                     </li>
                                                     
                                                     <li>
