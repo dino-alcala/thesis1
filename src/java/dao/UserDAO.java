@@ -2353,7 +2353,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype, datetime, addressimplementation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO seproposal(unit, department, datecreated, programHead, activityClassification, targetCommunity, targetKRA, targetGoal, actualImplementation, totalAmountRequested, nameOfPartner, address, contactPerson, mobileNumber, email, description, objectives, academicStaffPopulation, academicStaffExpected, supportStaffPopulation, supportStaffExpected, undergraduatePopulation, undergraduateExpected, graduatePopulation, graduateExpected, step, userID, programName, problemaddressed, sourceOfFunds, unittype, datetime, addressimplementation, studentorg) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -2392,6 +2392,7 @@ public class UserDAO {
             pstmt.setString(31, SE.getUnittype());
             pstmt.setString(32, sdf.format(dt));
             pstmt.setString(33, SE.getImplementationaddress());
+            pstmt.setInt(34, SE.getStudentorg());
 
             int rs = pstmt.executeUpdate();
 
@@ -2819,7 +2820,7 @@ public class UserDAO {
         ResultSet rs2 = null;
         try {
 
-            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype, datetime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO ffproposal(unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, totalAmount, sourceOfFunds, step, userID, actualImplementation, unittype, datetime, studentorg) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -2841,6 +2842,7 @@ public class UserDAO {
             pstmt.setDate(14, FF.getActualDate());
             pstmt.setString(15, FF.getUnittype());
             pstmt.setString(16, sdf.format(dt));
+            pstmt.setInt(17, FF.getStudentorg());
 
             int rs = pstmt.executeUpdate();
 
@@ -4157,6 +4159,7 @@ public class UserDAO {
                 SE.setReject2(rs2.getInt("reject2"));
                 SE.setReject3(rs2.getInt("reject3"));
                 SE.setReject4(rs2.getInt("reject4"));
+                SE.setStudentorg(rs2.getInt("studentorg"));
             }
 
             ArrayList<String> component = new ArrayList();
@@ -4480,6 +4483,7 @@ public class UserDAO {
                 FF.setReject2(rs2.getInt("reject2"));
                 FF.setReject3(rs2.getInt("reject3"));
                 FF.setReject4(rs2.getInt("reject4"));
+                FF.setStudentorg(rs2.getInt("studentorg"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
@@ -9407,7 +9411,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, projectProponent, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, implementationdate, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, gsheets) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, projectProponent, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, implementationdate, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, gsheets, graduate, undergraduate, alumni, parents) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, SEreport.getProjectTitle());
             pstmt.setString(2, SEreport.getTargetKRA());
@@ -9441,6 +9445,10 @@ public class UserDAO {
             pstmt.setInt(30, SEreport.getIndependent());
             pstmt.setInt(31, SEreport.getExternal());
             pstmt.setString(32, SEreport.getGsheets());
+            pstmt.setInt(33, SEreport.getGraduate());
+            pstmt.setInt(34, SEreport.getUndergraduate());
+            pstmt.setInt(35, SEreport.getAlumni());
+            pstmt.setInt(36, SEreport.getParents());
 
             int rs = pstmt.executeUpdate();
 
@@ -9574,6 +9582,10 @@ public class UserDAO {
                 SEreport.setExternal(rs2.getInt("external"));
                 SEreport.setImplementationdate(rs2.getDate("implementationdate"));
                 SEreport.setGsheets(rs2.getString("gsheets"));
+                SEreport.setGraduate(rs2.getInt("graduate"));
+                SEreport.setUndergraduate(rs2.getInt("undergraduate"));
+                SEreport.setAlumni(rs2.getInt("alumni"));
+                SEreport.setParents(rs2.getInt("parents"));
             }
 
             ArrayList<SEobjectives> objectives = new ArrayList();
@@ -9687,6 +9699,10 @@ public class UserDAO {
                 FFreport.setImplementationdate(rs2.getDate("implementationdate"));
                 FFreport.setVenue(rs2.getString("venue"));
                 FFreport.setGsheets(rs2.getString("gsheets"));
+                FFreport.setGraduate(rs2.getInt("graduate"));
+                FFreport.setUndergraduate(rs2.getInt("undergraduate"));
+                FFreport.setAlumni(rs2.getInt("alumni"));
+                FFreport.setParents(rs2.getInt("parents"));
             }
 
             ArrayList<FFparticipants> participants = new ArrayList();
@@ -9769,7 +9785,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO ffreport(projectTitle, projectProponent, facilitatorName, amountReceivedOVPLM, significanceProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceDLSU, date, ffproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, implementationdate, venue, gsheets) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO ffreport(projectTitle, projectProponent, facilitatorName, amountReceivedOVPLM, significanceProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceDLSU, date, ffproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, implementationdate, venue, gsheets, graduate, undergraduate, alumni, parents) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FFreport.getProjectTitle());
             pstmt.setString(2, FFreport.getProjectProponent());
@@ -9794,6 +9810,10 @@ public class UserDAO {
             pstmt.setDate(21, FFreport.getImplementationdate());
             pstmt.setString(22, FFreport.getVenue());
             pstmt.setString(23, FFreport.getGsheets());
+            pstmt.setInt(24, FFreport.getGraduate());
+            pstmt.setInt(25, FFreport.getUndergraduate());
+            pstmt.setInt(26, FFreport.getAlumni());
+            pstmt.setInt(27, FFreport.getParents());
 
             int rs = pstmt.executeUpdate();
 
@@ -9854,6 +9874,18 @@ public class UserDAO {
                 b.setRemainingBudget(b.getCurrentBudget() - b.getBudgetRequested());
                 b.setFfID(FFreport.getFfproposalID());
                 this.addLatestBudget(b);
+            }
+            
+            for (int i = 0; i < FFreport.getAttendees().size(); i++) {
+                query = "INSERT INTO ffreport_attendees(name, email, type, ffreportID) VALUES(?,?,?,?)";
+
+                pstmt = conn.prepareCall(query);
+                pstmt.setString(1, FFreport.getAttendees().get(i).getName());
+                pstmt.setString(2, FFreport.getAttendees().get(i).getEmail());
+                pstmt.setString(3, FFreport.getAttendees().get(i).getType());
+                pstmt.setInt(4, ffreportID);
+
+                rs = pstmt.executeUpdate();
             }
 
         } catch (SQLException ex) {
@@ -15277,3 +15309,4 @@ public class UserDAO {
         return percent;
     }
 }
+

@@ -5,12 +5,12 @@
  */
 package controller;
 
-import entity.FFparticipants;
+import dao.UserDAO;
+import entity.FFfunds;
+import entity.FFobjectives;
 import entity.FFreport;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -22,9 +22,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class createFFreport2 extends HttpServlet {
+public class encodeFFReport2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,40 +41,55 @@ public class createFFreport2 extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            
+            UserDAO UserDAO = new UserDAO();
             FFreport FFreport = new FFreport();
+
+            FFreport = (FFreport) session.getAttribute("FFreport");
+
+            FFreport.setSignificanceProject(request.getParameter("significance"));
+            FFreport.setHighlightsProject(request.getParameter("highlights"));
+
+            ArrayList<FFobjectives> objectives = new ArrayList();
+
+            for (int i = 0; i < Integer.parseInt(request.getParameter("countobjectives")); i++) {
+                FFobjectives o = new FFobjectives();
+                o.setExpectedOutcomes(request.getParameter("expected" + i));
+                o.setActualAccomplishment(request.getParameter("actual" + i));
+                o.setHinderingFactors(request.getParameter("hinder" + i));
+                objectives.add(o);
+            }
+
+            FFreport.setObjectives(objectives);
+
+            ArrayList<FFfunds> funds = new ArrayList();
             
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date javaDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+            if (request.getParameter("funds").equals("OVPLM")) {
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countovplm")); i++) {
+                    FFfunds f = new FFfunds();
+                    f.setLineItem(request.getParameter("item" + i));
+                    f.setApprovedAmount(Double.parseDouble(request.getParameter("approved" + i)));
+                    f.setExpendedAmount(Double.parseDouble(request.getParameter("expended" + i)));
+                    f.setVariance(Double.parseDouble(request.getParameter("variance" + i)));
+                    f.setReasonVariance(request.getParameter("reason" + i));
+                    funds.add(f);
+                }
+            } else {
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countothers")); i++) {
+                    FFfunds f = new FFfunds();
+                    f.setLineItem(request.getParameter("item" + i));
+                    f.setApprovedAmount(Double.parseDouble(request.getParameter("approved" + i)));
+                    f.setExpendedAmount(Double.parseDouble(request.getParameter("expended" + i)));
+                    f.setVariance(Double.parseDouble(request.getParameter("variance" + i)));
+                    f.setReasonVariance(request.getParameter("reason" + i));
+                    funds.add(f);
+                }
+            }
             
-            FFreport.setProjectTitle(request.getParameter("name"));
-            FFreport.setProgramHead(request.getParameter("programhead"));
-            FFreport.setDate(sqlDate);
-            FFreport.setProjectProponent(request.getParameter("proponents"));
-            FFreport.setNameOfFacilitator(request.getParameter("facilitator"));
-            FFreport.setCap(Integer.parseInt(request.getParameter("number0")));
-            FFreport.setApsp(Integer.parseInt(request.getParameter("number1")));
-            FFreport.setAsf(Integer.parseInt(request.getParameter("number2")));
-            FFreport.setFaculty(Integer.parseInt(request.getParameter("number3")));
-            FFreport.setAdmin(Integer.parseInt(request.getParameter("number4")));
-            FFreport.setDirecthired(Integer.parseInt(request.getParameter("number5")));
-            FFreport.setIndependent(Integer.parseInt(request.getParameter("number6")));
-            FFreport.setExternal(Integer.parseInt(request.getParameter("number7")));
-            FFreport.setGraduate(Integer.parseInt(request.getParameter("number8")));
-            FFreport.setUndergraduate(Integer.parseInt(request.getParameter("number9")));
-            FFreport.setAlumni(Integer.parseInt(request.getParameter("number10")));
-            FFreport.setParents(Integer.parseInt(request.getParameter("number11")));
-            FFreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
-            FFreport.setFfproposalID(Integer.parseInt(request.getParameter("ffID")));
-            FFreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
-            FFreport.setVenue(request.getParameter("venue"));
-            FFreport.setGsheets(request.getParameter("gsheets"));
+            FFreport.setFunds(funds);
             
             session.setAttribute("FFreport", FFreport);
-            request.setAttribute("ffID", request.getParameter("ffID"));
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport2.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFFReport3.jsp");
             dispatcher.forward(request, response);
         }
     }

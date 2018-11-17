@@ -7,8 +7,6 @@ package controller;
 
 import dao.UserDAO;
 import entity.Measure;
-import entity.SE;
-import entity.SEparticipants;
 import entity.SEreport;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,9 +23,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class createSEreport2 extends HttpServlet {
+public class encodeSEReport extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +41,6 @@ public class createSEreport2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
             HttpSession session = request.getSession();
 
             SEreport SEreport = new SEreport();
@@ -94,9 +91,8 @@ public class createSEreport2 extends HttpServlet {
             session.setAttribute("SEreport", SEreport);
             request.setAttribute("seID", request.getParameter("seID"));
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEReport2.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSEReport2.jsp");
             dispatcher.forward(request, response);
-
         }
     }
 

@@ -5,12 +5,11 @@
  */
 package controller;
 
-import entity.FFparticipants;
-import entity.FFreport;
+import dao.UserDAO;
+import entity.FF;
+import entity.FFattendees;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -22,9 +21,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class createFFreport2 extends HttpServlet {
+public class encodeFF2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,41 +39,32 @@ public class createFFreport2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
             HttpSession session = request.getSession();
+            FF FF;
+            UserDAO UserDAO = new UserDAO();
+
+            FF = (FF) session.getAttribute("FF");
+
+            ArrayList<FFattendees> attendees = new ArrayList();
+
+            for (int i = 0; i < Integer.parseInt(request.getParameter("countattendees")); i++) {
+                FFattendees FFattendees = new FFattendees();
+                FFattendees.setName(request.getParameter("attendee" + i));
+                FFattendees.setEmail(request.getParameter("email" + i));
+                attendees.add(FFattendees);
+            }
+
+            FF.setAttendees(attendees);
+            FF.setUnittype(UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()));
+            FF.setStep(8);
+            FF.setStudentorg(1);
+
+            UserDAO.AddFF(FF);
             
-            FFreport FFreport = new FFreport();
-            
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date javaDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
-            
-            FFreport.setProjectTitle(request.getParameter("name"));
-            FFreport.setProgramHead(request.getParameter("programhead"));
-            FFreport.setDate(sqlDate);
-            FFreport.setProjectProponent(request.getParameter("proponents"));
-            FFreport.setNameOfFacilitator(request.getParameter("facilitator"));
-            FFreport.setCap(Integer.parseInt(request.getParameter("number0")));
-            FFreport.setApsp(Integer.parseInt(request.getParameter("number1")));
-            FFreport.setAsf(Integer.parseInt(request.getParameter("number2")));
-            FFreport.setFaculty(Integer.parseInt(request.getParameter("number3")));
-            FFreport.setAdmin(Integer.parseInt(request.getParameter("number4")));
-            FFreport.setDirecthired(Integer.parseInt(request.getParameter("number5")));
-            FFreport.setIndependent(Integer.parseInt(request.getParameter("number6")));
-            FFreport.setExternal(Integer.parseInt(request.getParameter("number7")));
-            FFreport.setGraduate(Integer.parseInt(request.getParameter("number8")));
-            FFreport.setUndergraduate(Integer.parseInt(request.getParameter("number9")));
-            FFreport.setAlumni(Integer.parseInt(request.getParameter("number10")));
-            FFreport.setParents(Integer.parseInt(request.getParameter("number11")));
-            FFreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
-            FFreport.setFfproposalID(Integer.parseInt(request.getParameter("ffID")));
-            FFreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
-            FFreport.setVenue(request.getParameter("venue"));
-            FFreport.setGsheets(request.getParameter("gsheets"));
-            
-            session.setAttribute("FFreport", FFreport);
-            request.setAttribute("ffID", request.getParameter("ffID"));
+            request.setAttribute("successSE", "You have successfully encoded a Student Org FF Proposal!");
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport2.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
             dispatcher.forward(request, response);
         }
     }

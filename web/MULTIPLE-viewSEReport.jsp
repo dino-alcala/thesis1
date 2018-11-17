@@ -388,6 +388,22 @@
                                                 <td>External Service Personnel</td>
                                                 <td><%=SEreport.getExternal()%></td>
                                             </tr>
+                                            <tr>
+                                                <td>Graduate Students:</td>
+                                                <td><%=SEreport.getGraduate()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Undergraduate Students</td>
+                                                <td><%=SEreport.getUndergraduate()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alumni</td>
+                                                <td><%=SEreport.getAlumni()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Parents</td>
+                                                <td><%=SEreport.getParents()%></td>
+                                            </tr>
                                         </table>
                                         <br>
                                         <hr/>

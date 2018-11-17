@@ -5,13 +5,11 @@
  */
 package controller;
 
-import entity.FFparticipants;
-import entity.FFreport;
+import dao.UserDAO;
+import entity.SEreport;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,12 +17,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class createFFreport2 extends HttpServlet {
+public class encodeSEReport3 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,40 +40,51 @@ public class createFFreport2 extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            
-            FFreport FFreport = new FFreport();
-            
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date javaDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
-            
-            FFreport.setProjectTitle(request.getParameter("name"));
-            FFreport.setProgramHead(request.getParameter("programhead"));
-            FFreport.setDate(sqlDate);
-            FFreport.setProjectProponent(request.getParameter("proponents"));
-            FFreport.setNameOfFacilitator(request.getParameter("facilitator"));
-            FFreport.setCap(Integer.parseInt(request.getParameter("number0")));
-            FFreport.setApsp(Integer.parseInt(request.getParameter("number1")));
-            FFreport.setAsf(Integer.parseInt(request.getParameter("number2")));
-            FFreport.setFaculty(Integer.parseInt(request.getParameter("number3")));
-            FFreport.setAdmin(Integer.parseInt(request.getParameter("number4")));
-            FFreport.setDirecthired(Integer.parseInt(request.getParameter("number5")));
-            FFreport.setIndependent(Integer.parseInt(request.getParameter("number6")));
-            FFreport.setExternal(Integer.parseInt(request.getParameter("number7")));
-            FFreport.setGraduate(Integer.parseInt(request.getParameter("number8")));
-            FFreport.setUndergraduate(Integer.parseInt(request.getParameter("number9")));
-            FFreport.setAlumni(Integer.parseInt(request.getParameter("number10")));
-            FFreport.setParents(Integer.parseInt(request.getParameter("number11")));
-            FFreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
-            FFreport.setFfproposalID(Integer.parseInt(request.getParameter("ffID")));
-            FFreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
-            FFreport.setVenue(request.getParameter("venue"));
-            FFreport.setGsheets(request.getParameter("gsheets"));
-            
-            session.setAttribute("FFreport", FFreport);
-            request.setAttribute("ffID", request.getParameter("ffID"));
+            UserDAO UserDAO = new UserDAO();
+
+            SEreport SEreport = new SEreport();
+            SEreport = (SEreport) session.getAttribute("SEreport");
+
+            SEreport.setMajorProblems(request.getParameter("problem"));
+            SEreport.setOtherRecommendations(request.getParameter("recommendation"));
+
+            InputStream inputStream1 = null;
+            Part filePart1 = request.getPart("uploadphoto");
+
+            InputStream inputStream2 = null;
+            Part filePart2 = request.getPart("uploadbeneficiaries");
+
+            InputStream inputStream3 = null;
+            Part filePart3 = request.getPart("uploadparticipants");
+
+            InputStream inputStream4 = null;
+            Part filePart4 = request.getPart("uploadletters");
+
+            if (filePart1 != null) {
+                inputStream1 = filePart1.getInputStream();
+            }
+
+            if (filePart2 != null) {
+                inputStream2 = filePart2.getInputStream();
+            }
+
+            if (filePart3 != null) {
+                inputStream3 = filePart3.getInputStream();
+            }
+
+            if (filePart4 != null) {
+                inputStream4 = filePart4.getInputStream();
+            }
+
+            SEreport.setAnnexes(inputStream1);
+            SEreport.setAttendanceBeneficiaries(inputStream2);
+            SEreport.setAttendanceDLSU(inputStream3);
+            SEreport.setBeneficiariesLetters(inputStream4);
+
+            session.setAttribute("SEreport", SEreport);
+
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport2.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSEReport4.jsp");
             dispatcher.forward(request, response);
         }
     }

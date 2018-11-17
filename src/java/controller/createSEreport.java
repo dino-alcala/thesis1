@@ -57,7 +57,7 @@ public class createSEreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
                 
-                if(SE.getUnit().equals("Student Organization")){
+                if(SE.getUnit().contains("Student Organization")){
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSEReport.jsp");
                     dispatcher.forward(request, response);
                 } else {

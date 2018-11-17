@@ -333,7 +333,7 @@
                 <div class="form-style-5">
 
 
-                    <form action="" method="post">
+                    <form action="createFFReport5" method="post">
                     <div class="form-style-5">
                         <fieldset>
                             <input type="text" hidden name="countattendees" id="countattendees" value="1"/>

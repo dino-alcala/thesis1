@@ -5,13 +5,11 @@
  */
 package controller;
 
-import entity.FFparticipants;
 import entity.FFreport;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -22,9 +20,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class createFFreport2 extends HttpServlet {
+public class encodeFFReport extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,7 +72,7 @@ public class createFFreport2 extends HttpServlet {
             session.setAttribute("FFreport", FFreport);
             request.setAttribute("ffID", request.getParameter("ffID"));
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport2.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFFReport2.jsp");
             dispatcher.forward(request, response);
         }
     }

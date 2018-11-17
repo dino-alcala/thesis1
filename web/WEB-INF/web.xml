@@ -352,6 +352,50 @@
         <servlet-name>addStudentOrg</servlet-name>
         <servlet-class>controller.addStudentOrg</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>encodeFF</servlet-name>
+        <servlet-class>controller.encodeFF</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeFF2</servlet-name>
+        <servlet-class>controller.encodeFF2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeSEReport</servlet-name>
+        <servlet-class>controller.encodeSEReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeSEReport2</servlet-name>
+        <servlet-class>controller.encodeSEReport2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeSEReport3</servlet-name>
+        <servlet-class>controller.encodeSEReport3</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeSEReport4</servlet-name>
+        <servlet-class>controller.encodeSEReport4</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeFFReport</servlet-name>
+        <servlet-class>controller.encodeFFReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeFFReport2</servlet-name>
+        <servlet-class>controller.encodeFFReport2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeFFReport3</servlet-name>
+        <servlet-class>controller.encodeFFReport3</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>encodeFFReport4</servlet-name>
+        <servlet-class>controller.encodeFFReport4</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>createFFReport5</servlet-name>
+        <servlet-class>controller.createFFReport5</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -703,6 +747,50 @@
     <servlet-mapping>
         <servlet-name>addStudentOrg</servlet-name>
         <url-pattern>/addStudentOrg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeFF</servlet-name>
+        <url-pattern>/encodeFF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeFF2</servlet-name>
+        <url-pattern>/encodeFF2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeSEReport</servlet-name>
+        <url-pattern>/encodeSEReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeSEReport2</servlet-name>
+        <url-pattern>/encodeSEReport2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeSEReport3</servlet-name>
+        <url-pattern>/encodeSEReport3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeSEReport4</servlet-name>
+        <url-pattern>/encodeSEReport4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeFFReport</servlet-name>
+        <url-pattern>/encodeFFReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeFFReport2</servlet-name>
+        <url-pattern>/encodeFFReport2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeFFReport3</servlet-name>
+        <url-pattern>/encodeFFReport3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>encodeFFReport4</servlet-name>
+        <url-pattern>/encodeFFReport4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createFFReport5</servlet-name>
+        <url-pattern>/createFFReport5</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
