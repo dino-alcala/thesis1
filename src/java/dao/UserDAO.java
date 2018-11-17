@@ -9876,7 +9876,7 @@ public class UserDAO {
                 b.setFfID(FFreport.getFfproposalID());
                 this.addLatestBudget(b);
             }
-            
+
             for (int i = 0; i < FFreport.getAttendees().size(); i++) {
                 query = "INSERT INTO ffreport_attendees(name, email, type, ffreportID) VALUES(?,?,?,?)";
 
@@ -15431,7 +15431,7 @@ public class UserDAO {
         ArrayList<Unit> units = this.retrieveUnits();
 
         int overallCount = 0;
-        
+
         double total = 0;
         try {
             for (int i = 0; i < units.size(); i++) {
@@ -15451,14 +15451,14 @@ public class UserDAO {
                 double percent = 0;
 
                 if (count != 0) {
-                    percent = ((double)count / (double)this.countTotalProposalByUnit(units.get(i).getName()) * 100);
+                    percent = ((double) count / (double) this.countTotalProposalByUnit(units.get(i).getName()) * 100);
                 }
 
                 if (percent >= 20) {
                     overallCount += 1;
                 }
             }
-            
+
             total = (double) overallCount / (double) units.size() * 100;
 
         } catch (SQLException ex) {
@@ -15477,7 +15477,7 @@ public class UserDAO {
             } catch (Exception e) {
                 /* ignored */ }
         }
-        return  total;
+        return total;
     }
 
     public int countTotalProposalByUnit(String unit) {
@@ -15516,7 +15516,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public double tenthTarget() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -15556,8 +15556,8 @@ public class UserDAO {
         }
         return percent;
     }
-    
-    public double eleventhTarget() {
+
+    public double twelfthTarget() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
@@ -15598,5 +15598,126 @@ public class UserDAO {
         }
         return percent;
     }
-}
 
+    public double thirteenthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        double total = 0;
+        try {
+
+            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.classificationforkra != 'None'";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            int count = 0;
+
+            while (rs.next()) {
+                count = rs.getInt("count(unit)");
+            }
+
+            double percent = 0;
+
+            total = (double) count / (double) 16 * 100;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return total;
+    }
+
+    public int sixteenthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        int count = 0;
+
+        try {
+
+            String query = "SELECT count(c.international) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 8 AND s.activityClassification = 'Service-Learning' AND c.international = 1";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt("count(c.international)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int fifthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        int count = 0;
+
+        try {
+
+            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.activityClassification = 'Interdisciplinary Fora'";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt("count(unit)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+}
