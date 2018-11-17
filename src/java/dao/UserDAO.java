@@ -2469,20 +2469,20 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void AddSEComponent(ArrayList<String> component, int seID, String explanation) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
         ResultSet rs2 = null;
-        
+
         try {
             String query = "UPDATE seproposal SET explanation = ? WHERE id = ?";
-            
+
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, explanation);
             pstmt.setInt(2, seID);
-            
+
             int rs = pstmt.executeUpdate();
 
             for (int i = 0; i < component.size(); i++) {
@@ -2491,8 +2491,7 @@ public class UserDAO {
                 pstmt = conn.prepareStatement(query);
                 pstmt.setInt(1, seID);
                 pstmt.setString(2, component.get(i));
-                
-                
+
                 rs = pstmt.executeUpdate();
             }
 
@@ -4671,7 +4670,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveDeptChair(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4697,7 +4696,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveUnitChair(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4723,7 +4722,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveADEALM(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4749,7 +4748,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveSEDirector(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4775,7 +4774,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveDean(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4801,7 +4800,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveVPVC(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4827,7 +4826,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveCOSCA(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4853,7 +4852,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseDeptChair(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4879,7 +4878,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseUnitChair(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4905,7 +4904,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseADEALM(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4931,7 +4930,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseSEDirector(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4957,7 +4956,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseDean(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -4983,7 +4982,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseVPVC(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5009,7 +5008,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseCOSCA(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5035,7 +5034,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectDeptChair(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5061,7 +5060,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectUnitChair(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5087,7 +5086,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectADEALM(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5113,7 +5112,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectSEDirector(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5139,7 +5138,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectDean(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5165,7 +5164,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectVPVC(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5191,7 +5190,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectCOSCA(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5217,7 +5216,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveADLM(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5243,7 +5242,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveChairperson(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5269,7 +5268,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveUnitHead(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5321,7 +5320,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveDirector(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5347,7 +5346,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void approveLSPO(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5373,7 +5372,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseADLM(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5399,7 +5398,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseUnitHead(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5425,7 +5424,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseChairperson(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5451,7 +5450,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseFFDean(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5477,7 +5476,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseDirector(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5503,7 +5502,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void reviseLSPO(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5529,7 +5528,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectADLM(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5555,7 +5554,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectChairperson(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5581,7 +5580,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectUnitHead(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5607,7 +5606,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectFFDean(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5633,7 +5632,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectDirector(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5659,7 +5658,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void rejectLSPO(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5685,7 +5684,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void resetVoteSE(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -6593,7 +6592,7 @@ public class UserDAO {
 
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
+
         try {
             String query = "UPDATE ffproposal SET lspoRemarks = ?, lspodatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
@@ -9470,6 +9469,9 @@ public class UserDAO {
 
             }
 
+            double totalApproved = 0;
+            double totalExpended = 0;
+
             for (int i = 0; i < SEreport.getFunds().size(); i++) {
                 query = "INSERT INTO sereport_funds(lineItem, approvedAmount, expendedAmount, variance, reasonVariance, sereportID) VALUES(?,?,?,?,?,?)";
 
@@ -9481,7 +9483,24 @@ public class UserDAO {
                 pstmt.setString(5, SEreport.getFunds().get(i).getReasonVariance());
                 pstmt.setInt(6, sereportID);
 
+                totalApproved += SEreport.getFunds().get(i).getApprovedAmount();
+                totalExpended += SEreport.getFunds().get(i).getExpendedAmount();
+
                 rs = pstmt.executeUpdate();
+            }
+
+            if (totalApproved > totalExpended && this.isOVPLMSource(SEreport.getSeproposalID())) {
+                Budget b = new Budget();
+
+                java.util.Date javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+
+                b.setDate(sqlDate);
+                b.setCurrentBudget(this.getLatestBudget().getRemainingBudget());
+                b.setBudgetRequested(totalExpended - totalApproved);
+                b.setRemainingBudget(b.getCurrentBudget() - b.getBudgetRequested());
+                b.setSeID(SEreport.getSeproposalID());
+                this.addLatestBudget(b);
             }
 
             for (int i = 0; i < SEreport.getAttendees().size(); i++) {
@@ -13142,7 +13161,7 @@ public class UserDAO {
         }
         return budget;
     }
-    
+
     public double getFFUtilizedBudgetByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -14265,7 +14284,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(totalAmount) FROM ffproposal WHERE step = 9 AND unit = ? AND sourceOfFunds = 'OVPLM' AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT SUM(totalAmount) FROM ffproposal WHERE step = 8 AND unit = ? AND sourceOfFunds = 'OVPLM' AND datecreated >= ? AND datecreated <= ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
