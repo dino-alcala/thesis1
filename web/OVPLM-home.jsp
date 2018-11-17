@@ -32,21 +32,21 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        
+
         <%
-             if (session.getAttribute("unit").equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
+            if (session.getAttribute("unit").equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
                 try {
                     session.setAttribute("jspName", "OVPLM-home.jsp");
                 } catch (Exception e) {
-                    
+
                 }
             } else {
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/"+ session.getAttribute("jspName").toString());
-                    dispatcher.forward(request, response);
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/" + session.getAttribute("jspName").toString());
+                dispatcher.forward(request, response);
             }
         %>
-        
+
         <script>
             $(document).ready(function () {
                 $("#myInput").on("keyup", function () {
@@ -103,10 +103,10 @@
                 if (request.getAttribute("successSE") != null) {
 
             %>
-                         $("document").ready(function () {
+            $("document").ready(function () {
 
-                             alert("<%=request.getAttribute("successSE")%>");
-                         });
+                alert("<%=request.getAttribute("successSE")%>");
+            });
 
             <%
                 }
@@ -114,10 +114,10 @@
                 if (request.getAttribute("successFF") != null) {
 
             %>
-                         $("document").ready(function () {
+            $("document").ready(function () {
 
-                             alert("<%=request.getAttribute("successFF")%>");
-                         });
+                alert("<%=request.getAttribute("successFF")%>");
+            });
 
             <%
                 }
@@ -370,7 +370,7 @@
                         <%
                             }
                         %>
-                        
+
                     </div>
                     <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                         <div class="d-flex w-100 justify-content-start align-items-center">
@@ -465,7 +465,7 @@
             <div class="col py-3">
                 <!---KRAs-->
                 <div class="container-fluid panels">
-              <h4>Key Result Areas</h4>
+                    <h4>Key Result Areas</h4>
 
                     <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
                     <table class="table table-bordered">
@@ -483,7 +483,7 @@
                                 <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
                                 <td>50% of student organizations have implemented a Lasallian formation activity<br><br>
-                                Basta may FF yung student org pasok na dito</td>
+                                    Basta may FF yung student org pasok na dito</td>
                                 <td class="accomplishmentRed">15%</td>
                             </tr>
 
@@ -492,21 +492,46 @@
                                 <td></td>
                                 <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
                                 <td>50% of faculty departments have undergone Lasallian formation program<br><br>
-                                Basta may FF yung department pasok na dito</td>
-                                <td></td>
+                                    Basta may FF yung department pasok na dito</td>
+                                    <%
+                                        double percent = UserDAO.secondTarget();
+
+                                        if (percent <= 17) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percent%>%</td>
+                                <%
+                                    }
+
+                                    if (percent >= 18 && percent <= 35) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percent%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent >= 36) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percent%>%</td>
+
+                                <%
+                                    }
+                                %>
+
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td>75% of staff have undergone Lasallian formation programs <br><br>
-                                Basta may FF yung staff pasok na dito</td>
+                                    Basta may FF yung staff pasok na dito</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td>All administrators have undergone the Lasallian formation activity<br><br>
-                                Basta may FF yung admin pasok na dito</td>
+                                    Basta may FF yung admin pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -515,7 +540,7 @@
                                 <td></td>
                                 <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
                                 <td>At Least one formation activity engaging alumni, parents, and community partners. <br><br>
-                                Basta may FF yung pasok na dito (di pa sure kung kaya to matrack)</td>
+                                    Basta may FF yung pasok na dito (di pa sure kung kaya to matrack)</td>
                                 <td></td>
                             </tr>
 
@@ -524,7 +549,7 @@
                                 <td><b>G2 </b> Create a conducive environment that helps bridge faith and scholarship </td>
                                 <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
                                 <td>At least one interdisciplinary activity conducted each term<br><br>
-                                Basta may SE type na fora pasok na dito</td>
+                                    Basta may SE type na fora pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -534,7 +559,7 @@
                                 <td> </td>
                                 <td><b>M2</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
                                 <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity<br><br>
-                                Basta may SE type na fora pasok na dito</td>
+                                    Basta may SE type na fora pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -543,7 +568,7 @@
                                 <td><b>G3 </b> Create and nurture communities dedicated to promoting the Lasallian mission and spirituality  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
                                 <td>3 communities <br><br>
-                                Di pa sure pano to matrack</td>
+                                    Di pa sure pano to matrack</td>
                                 <td></td>
                             </tr>
 
@@ -566,7 +591,7 @@
                                 <td><b>G1 </b> Each unit of the University has at least one sustainable social engagement project </td>
                                 <td><b>M1</b> Number of sustainable social engagement project of units </td>
                                 <td>20%<br><br>
-                                Pag yung isang SE proposal nakacheck yung Sustainability Component, sustainable na siya so pasok na dito</td>
+                                    Pag yung isang SE proposal nakacheck yung Sustainability Component, sustainable na siya so pasok na dito</td>
                                 <td class="accomplishmentGreen">20%</td>
                             </tr>
 
@@ -576,7 +601,7 @@
                                 <td></td>
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>A.</b> Percentage of student organizations involved in community engagement programs and activities</td>
                                 <td>50% <br><br>
-                                Basta may SE program pasok na dito</td>
+                                    Basta may SE program pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -585,7 +610,7 @@
                                 <td></td>
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>B.</b> Percentage of staff engaged in community engagement programs and activities</td>
                                 <td>50% <br><br>
-                                Basta may SE program pasok na dito</td>
+                                    Basta may SE program pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -594,7 +619,7 @@
                                 <td></td>
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>C.</b> Percentage of departments with community engagement project  </td>
                                 <td>20% <br><br>
-                                Basta may SE program pasok na dito</td>
+                                    Basta may SE program pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -605,7 +630,7 @@
                                      L-ARAL, (Education)  L-SEED (Social Enterprise)  L-Envisage (Environment / DRR)  L-HEARTS (Health and Wellness) 
                                 </td>
                                 <td>16 <br><br>
-                                Nasa seproposal yung classification sa db</td>
+                                    Nasa seproposal yung classification sa db</td>
                                 <td></td>
                             </tr>
 
@@ -615,7 +640,7 @@
                                 <td><b>M1</b> Service learning (SL) component of academic programs   
                                     <b>A.</b> Percentage of undergraduate programs with SL component</td>
                                 <td>50% <br><br>
-                                Basta may service-learning na SE type pasok na dito</td>
+                                    Basta may service-learning na SE type pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -625,7 +650,7 @@
                                 <td><b>M1</b> Service learning (SL) component of academic programs   
                                     <b>B.</b> Percentage of graduate programs with SL component </td>
                                 <td>10% <br><br>
-                                Basta may service-learning na SE type pasok na dito</td>
+                                    Basta may service-learning na SE type pasok na dito</td>
                                 <td></td>
                             </tr>
 
@@ -634,7 +659,7 @@
                                 <td></td>
                                 <td><b>M2</b> Number of international SL activities </td>
                                 <td>1 <br><br>
-                                Basta may service-learning na SE type pasok na dito</td>
+                                    Basta may service-learning na SE type pasok na dito</td>
                                 <td></td>
                             </tr>
 
