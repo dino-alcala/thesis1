@@ -784,7 +784,25 @@
                                 <td><b>M2</b> Number of international SL activities </td>
                                 <td>1 <br><br>
                                     Basta may service-learning na SE type pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent16 = UserDAO.sixteenthTarget();
+
+                                        if (percent16 < 1) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent16)%>%</td>
+
+                                <%  
+                                    }
+
+                                    if (percent16 > 1) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent16)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                         </tbody>
