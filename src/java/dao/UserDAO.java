@@ -15440,7 +15440,7 @@ public class UserDAO {
         try {
             for (int i = 0; i < units.size(); i++) {
 
-                String query = "SELECT count(unit) FROM seproposal s JOIN seproposal_component sc ON s.id = sc.seproposalID JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.unit = ?";
+                String query = "SELECT count(unit) FROM seproposal s JOIN seproposal_component sc ON s.id = sc.seproposalID JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.unit = ? AND studentorg != 1";
 
                 ps = conn.prepareStatement(query);
                 ps.setString(1, units.get(i).getName());
@@ -15455,7 +15455,7 @@ public class UserDAO {
                 double percent = 0;
 
                 if (count != 0) {
-                    percent = (count / this.countTotalProposalByUnit(units.get(i).getName()) * 100);
+                    percent = ((double)count / (double)this.countTotalProposalByUnit(units.get(i).getName()) * 100);
                 }
 
                 if (percent >= 20) {
@@ -15464,8 +15464,6 @@ public class UserDAO {
             }
             
             total = (double) overallCount / (double) units.size() * 100;
-            
-            System.out.println("size: " + units.size());
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
