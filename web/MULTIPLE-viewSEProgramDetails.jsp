@@ -380,6 +380,8 @@
                                         <%
                                             }
                                         %>
+                                        <br>
+                                        <p>Explanation: <%=SE.getExplanation()%></p>
                                     </div>
                                 </div>
                                 <br/>

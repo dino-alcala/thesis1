@@ -80,7 +80,7 @@ public class approveSE4 extends HttpServlet {
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
                     
-                    SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+                    SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
                     SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
                     java.util.Date javaDate = new java.util.Date();
                     String input1 = new java.sql.Date(javaDate.getTime()).toString();
