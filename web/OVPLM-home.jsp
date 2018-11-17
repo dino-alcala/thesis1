@@ -552,14 +552,62 @@
                                 <td></td>
                                 <td>75% of staff have undergone Lasallian formation programs <br><br>
                                     Basta may FF yung staff pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent3 = UserDAO.thirdTarget();
+
+                                        if (percent3 < 25) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent3)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent3 >= 25 && percent3 <= 50) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent3)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent3 > 50) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent3)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td>All administrators have undergone the Lasallian formation activity<br><br>
                                     Basta may FF yung admin pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent4 = UserDAO.fourthTarget();
+
+                                        if (percent4 < 33) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent4)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent4 >= 33 && percent4 <= 66) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent4)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent4 > 66) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent4)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 1 Measure 3-->
@@ -744,7 +792,31 @@
                                 <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>B.</b> Percentage of staff engaged in community engagement programs and activities</td>
                                 <td>50% <br><br>
                                     Basta may SE program pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent11 = UserDAO.eleventhTarget();
+
+                                        if (percent11 < 17) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent11)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent11 >= 17 && percent11 <= 35) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent11)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent11 > 35) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent11)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 1 Measure 2C-->
@@ -804,7 +876,7 @@
                                 <%
                                     }
 
-                                    if (percent12 > 66) {
+                                    if (percent13 > 66) {
 
                                 %>
 
