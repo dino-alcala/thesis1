@@ -15806,7 +15806,7 @@ public class UserDAO {
             for (int i = 0; i < FF.size(); i++) {
                 count = 0;
                 
-                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? f.step = 8 AND a.type IN ('Alumni', 'Parent')";
+                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 8 AND a.type IN ('Alumni', 'Parent')";
 
                 ps = conn.prepareStatement(query);
                 ps.setInt(1, FF.get(i).getId());
