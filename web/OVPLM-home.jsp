@@ -697,7 +697,7 @@
                                 <td>20% <br><br>
                                     Basta may SE program pasok na dito</td>
                                 <%
-                                        double percent12 = UserDAO.eleventhTarget();
+                                        double percent12 = UserDAO.twelfthTarget();
 
                                         if (percent12 < 7) {
                                     %>
@@ -716,7 +716,7 @@
 
                                 %>
 
-                                <td class="accomplishmentGreen"><%=percentage.format(percent10)%>%</td>
+                                <td class="accomplishmentGreen"><%=percentage.format(percent12)%>%</td>
 
                                 <%
                                     }
@@ -731,7 +731,31 @@
                                 </td>
                                 <td>16 <br><br>
                                     Nasa seproposal yung classification sa db</td>
-                                <td></td>
+                                <%
+                                        double percent13 = UserDAO.thirteenthTarget();
+
+                                        if (percent13 < 33) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent13)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent13 >= 33 && percent13 <= 66) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent13)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent12 > 66) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent13)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 2 Measure 1A-->
