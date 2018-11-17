@@ -478,13 +478,41 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <%
+                                DecimalFormat percentage = new DecimalFormat("0.00");
+                                
+                                %>
                             <!--- Goal 1 Measure 1-->
                             <tr>
                                 <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                 <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
                                 <td>50% of student organizations have implemented a Lasallian formation activity<br><br>
                                     Basta may FF yung student org pasok na dito</td>
-                                <td class="accomplishmentRed">15%</td>
+                                <%
+                                        double percent1 = UserDAO.firstTarget();
+
+                                        if (percent1 < 17) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent1)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent1 >= 17 && percent1 <= 35) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent1)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent1 > 35) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent1)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 1 Measure 2-->
@@ -494,26 +522,26 @@
                                 <td>50% of faculty departments have undergone Lasallian formation program<br><br>
                                     Basta may FF yung department pasok na dito</td>
                                     <%
-                                        double percent = UserDAO.secondTarget();
+                                        double percent2 = UserDAO.secondTarget();
 
-                                        if (percent <= 17) {
+                                        if (percent2 < 17) {
                                     %>
-                                <td class="accomplishmentRed"><%=percent%>%</td>
+                                <td class="accomplishmentRed"><%=percentage.format(percent2)%>%</td>
                                 <%
                                     }
 
-                                    if (percent >= 18 && percent <= 35) {
+                                    if (percent2 >= 17 && percent2 <= 35) {
                                 %>
-                                <td class="accomplishmentYellow"><%=percent%>%</td>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent2)%>%</td>
 
                                 <%
                                     }
 
-                                    if (percent >= 36) {
+                                    if (percent2 > 35) {
 
                                 %>
 
-                                <td class="accomplishmentGreen"><%=percent%>%</td>
+                                <td class="accomplishmentGreen"><%=percentage.format(percent2)%>%</td>
 
                                 <%
                                     }
@@ -592,7 +620,31 @@
                                 <td><b>M1</b> Number of sustainable social engagement project of units </td>
                                 <td>20%<br><br>
                                     Pag yung isang SE proposal nakacheck yung Sustainability Component, sustainable na siya so pasok na dito</td>
-                                <td class="accomplishmentGreen">20%</td>
+                                <%
+                                        double percent9 = UserDAO.NinthTarget();
+
+                                        if (percent9 < 7) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent9)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent9 >= 7 && percent9 <= 15) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent9)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent9 > 15) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent9)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
 
