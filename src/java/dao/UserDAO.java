@@ -16163,4 +16163,64 @@ public class UserDAO {
         }
         return Departments;
     }
+    
+    public double getCollegeRating(String unit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT AVG(or71) FROM seevaluation se JOIN seproposal s ON se.seproposalID = s.id WHERE unit = ? AND s.step = 8";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        double seaverage = 0;
+        double ffaverage = 0;
+        
+        double overall = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                seaverage = rs.getDouble("AVG(or71)");
+            }
+            
+            query = "SELECT AVG(q9) FROM ffevaluation ff JOIN ffproposal f ON ff.ffproposalID = f.id WHERE unit = ? AND f.step = 8";
+            
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                ffaverage = rs.getDouble("AVG(q9)");
+            }
+            
+            if(seaverage !=0 && ffaverage != 0){
+                overall = (seaverage + ffaverage) / 2;
+            }
+            if(seaverage != 0 && ffaverage == 0){
+                overall = seaverage;
+            }
+            if(seaverage == 0 && ffaverage !=0){
+                overall = ffaverage;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return overall;
+    }
 }

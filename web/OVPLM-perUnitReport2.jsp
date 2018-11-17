@@ -922,10 +922,13 @@
                                 <p class="total"><%=UserDAO.countCommunitiesVisited(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></p>
                             </div>
                         </div>
+                            <%
+                                DecimalFormat formatter = new DecimalFormat("0.0");
+                                %>
                             <div class="card bg-warning">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Overall Programs Rating</b></p>
-                                <p class="total">4.5/5</p>
+                                <p class="total"><%=formatter.format(UserDAO.getCollegeRating(request.getAttribute("unit").toString()))%>/5</p>
                             </div>
                         </div>
                         <div class="card bg-primary">
