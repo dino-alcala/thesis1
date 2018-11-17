@@ -15900,7 +15900,7 @@ public class UserDAO {
                 count += 1;
             }
 
-            percent = (count / 20) * 100;
+            percent = ((double) count / (double) 20) * 100;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
