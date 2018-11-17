@@ -396,7 +396,7 @@
                                     </div>
                                     <div class="card-body">
                                         <br>
-                                        <center><p><b>Grant from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("ffID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund</b></p></center>
+                                        <center><p><b>Grant from <%if (UserDAO.isOVPLMSourceFF(Integer.parseInt(request.getAttribute("ffID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund</b></p></center>
                                         <br>
                                         <table style="width:100%">
                                             <tr>
