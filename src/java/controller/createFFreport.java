@@ -63,8 +63,15 @@ public class createFFreport extends HttpServlet {
 
                 request.setAttribute("ffID", request.getParameter("ffID"));
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport.jsp");
-                dispatcher.forward(request, response);
+                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
+                
+                if(FF.getUnit().contains("Student Organization")){
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFFReport.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport.jsp");
+                    dispatcher.forward(request, response);
+                }
             }
             
             if (request.getParameter("viewReport") != null) {

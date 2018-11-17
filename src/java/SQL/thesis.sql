@@ -35,7 +35,7 @@ CREATE TABLE `budget` (
   PRIMARY KEY (`id`),
   KEY `LA17_idx` (`seID`),
   KEY `LA18_idx` (`ffID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `budget` (
 
 LOCK TABLES `budget` WRITE;
 /*!40000 ALTER TABLE `budget` DISABLE KEYS */;
-INSERT INTO `budget` VALUES (1,'2018-10-19',10000000,NULL,10000000,NULL,NULL);
+INSERT INTO `budget` VALUES (1,'2018-10-19',10000000,NULL,10000000,NULL,NULL),(2,'2018-11-17',10000000,-4000,10004000,66,0);
 /*!40000 ALTER TABLE `budget` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (0,'No Department',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,'Admin ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Computer Technology (CT)',50,5,50,50,50,5,5,5),(3,'Information Technology (IT)',40,4,40,40,40,4,4,4),(4,'Software Technology (ST)',30,3,30,30,30,3,3,3),(5,'Counselling and Educational Psychology Department (CEPD)',30,40,40,50,30,50,30,40),(6,'Department of English and Applied Linguistics (DEAL)',30,40,40,50,30,50,30,40),(7,'Educational Leadership and Management Department (ELMD)',30,40,40,50,30,50,30,40),(8,'Physical Education Department (PED)',30,40,40,50,30,50,30,40),(9,'Science Education Department (SED)',30,40,40,50,30,50,30,40),(10,'Behavioral Sciences (BS)',30,40,40,50,30,50,30,40),(11,'Communication (COMM)',30,40,40,50,30,50,30,40),(12,'Literature (LIT)',30,40,40,50,30,50,30,40),(13,'Filipino (FIL)',30,40,40,50,30,50,30,40),(14,'History (HIS)',30,40,40,50,30,50,30,40),(15,'International Studies (IS)',30,40,40,50,30,50,30,40),(16,'Philosophy (PHILO)',30,40,40,50,30,50,30,40),(17,'Political Science (POLSCI)',30,40,40,50,30,50,30,40),(18,'Psychology (PSYCH)',30,40,40,50,30,50,30,40),(19,'Theology and Religious Education (TRED)',30,40,40,50,30,50,30,40),(20,'Biology (BIO)',30,40,40,50,30,50,30,40),(21,'Chemistry (CHEM)',30,40,40,50,30,50,30,40),(22,'Physics (PHYS)',30,40,40,50,30,50,30,40),(23,'Chemical Engineering (CHEMENG)',30,40,40,50,30,50,30,40),(24,'Civil Engineering (CIV)',30,40,40,50,30,50,30,40),(25,'Electronics and Communications Engineering (ECE)',30,40,40,50,30,50,30,40),(26,'Industrial Engineering (IE)',30,40,40,50,30,50,30,40),(27,'Manufacturing Engineering and Management (MEM)',30,40,40,50,30,50,30,40),(28,'Mechanical Engineering (ME)',30,40,40,50,30,50,30,40),(29,'Accountancy (ACC)',30,40,40,50,30,50,30,40),(30,'Commercial Law (CL)',30,40,40,50,30,50,30,40),(31,'Decision Sciences and Innovation Department (DSID)',30,40,40,50,30,50,30,40),(32,'Management of Financial Institutions (MFI)',30,40,40,50,30,50,30,40),(33,'Management and Organization Department (MOD)',30,40,40,50,30,50,30,40),(34,'Marketing Management (MM)',30,40,40,50,30,50,30,40),(35,'Industrial Applied Economics (IAE)',30,40,40,50,30,50,30,40),(36,'Financial Applied Economics (FAE)',30,40,40,50,30,50,30,40),(37,'Ladderized Applied Economics (LAE)',30,40,40,50,30,50,30,40),(38,'Management of Financial Institutions (MFI)',30,40,40,50,30,50,30,40),(39,'Management and Organization Department (MOD)',30,40,40,50,30,50,30,40),(40,'Marketing Management (MM)',30,40,40,50,30,50,30,40);
+INSERT INTO `department` VALUES (0,'No Department',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,'Admin ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Computer Technology (CT)',50,5,50,50,50,5,5,5),(3,'Information Technology (IT)',40,4,40,40,40,4,4,4),(4,'Software Technology (ST)',30,3,30,30,30,3,3,3),(5,'Counselling and Educational Psychology Department (CEPD)',30,40,40,50,30,50,30,40),(6,'Department of English and Applied Linguistics (DEAL)',30,40,40,50,30,50,30,40),(7,'Educational Leadership and Management Department (ELMD)',30,40,40,50,30,50,30,40),(8,'Physical Education Department (PED)',30,40,40,50,30,50,30,40),(9,'Science Education Department (SED)',30,40,40,50,30,50,30,40),(10,'Behavioral Sciences (BS)',30,40,40,50,30,50,30,40),(11,'Communication (COMM)',30,40,40,50,30,50,30,40),(12,'Literature (LIT)',30,40,40,50,30,50,30,40),(13,'Filipino (FIL)',30,40,40,50,30,50,30,40),(14,'History (HIS)',30,40,40,50,30,50,30,40),(15,'International Studies (IS)',30,40,40,50,30,50,30,40),(16,'Philosophy (PHILO)',30,40,40,50,30,50,30,40),(17,'Political Science (POLSCI)',30,40,40,50,30,50,30,40),(18,'Psychology (PSYCH)',30,40,40,50,30,50,30,40),(19,'Theology and Religious Education (TRED)',30,40,40,50,30,50,30,40),(20,'Biology (BIO)',30,40,40,50,30,50,30,40),(21,'Chemistry (CHEM)',30,40,40,50,30,50,30,40),(22,'Physics (PHYS)',30,40,40,50,30,50,30,40),(23,'Chemical Engineering (CHEMENG)',30,40,40,50,30,50,30,40),(24,'Civil Engineering (CIV)',30,40,40,50,30,50,30,40),(25,'Electronics and Communications Engineering (ECE)',30,40,40,50,30,50,30,40),(26,'Industrial Engineering (IE)',30,40,40,50,30,50,30,40),(27,'Manufacturing Engineering and Management (MEM)',30,40,40,50,30,50,30,40),(28,'Mechanical Engineering (ME)',30,40,40,50,30,50,30,40),(29,'Accountancy (ACC)',30,40,40,50,30,50,30,40),(30,'Commercial Law (CL)',30,40,40,50,30,50,30,40),(31,'Decision Sciences and Innovation Department (DSID)',30,40,40,50,30,50,30,40),(32,'Management of Financial Institutions (RVRCOB-MFI)',30,40,40,50,30,50,30,40),(33,'Management and Organization Department (RVRCOB-MOD)',30,40,40,50,30,50,30,40),(34,'Marketing Management (RVRCOB-MM)',30,40,40,50,30,50,30,40),(35,'Industrial Applied Economics (IAE)',30,40,40,50,30,50,30,40),(36,'Financial Applied Economics (FAE)',30,40,40,50,30,50,30,40),(37,'Ladderized Applied Economics (LAE)',30,40,40,50,30,50,30,40),(38,'Management of Financial Institutions (SOE-MFI)',30,40,40,50,30,50,30,40),(39,'Management and Organization Department (SOE-MOD)',30,40,40,50,30,50,30,40),(40,'Marketing Management (SOE-MM)',30,40,40,50,30,50,30,40);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,8 +229,9 @@ CREATE TABLE `ffproposal` (
   `reject2` int(1) DEFAULT NULL,
   `reject3` int(1) DEFAULT NULL,
   `reject4` int(1) DEFAULT NULL,
+  `studentorg` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +240,7 @@ CREATE TABLE `ffproposal` (
 
 LOCK TABLES `ffproposal` WRITE;
 /*!40000 ALTER TABLE `ffproposal` DISABLE KEYS */;
-INSERT INTO `ffproposal` VALUES (22,'College of Liberal Arts (CLA)','Philosophy (PHILO)','2018-11-13','unitrep claphilo','Retreat',NULL,NULL,NULL,'2oo2!!!!!!!!!!!!!!!','Love','Love','Love','2018-11-30',4000,'Others',8,'ge!!!','2018-11-13 19:15:31','gege! ! !','2018-11-13 19:15:44','OK!!','2018-11-13 19:15:54',NULL,NULL,NULL,'OKI1E','2018-11-13 19:15:18',1,1,1,NULL,1,1,1,1,NULL,1,4,NULL,NULL,0,110,'dsadsada','dsadsa','dsadsadsa',NULL,'dsadsadadfdsgs',NULL,NULL,NULL,NULL,NULL,NULL,'Academic','2018-11-13 19:15:18',1,1,1,1,NULL,1,1,1,NULL,NULL,NULL,NULL),(23,'Br. Andrew Gonzales College of Education (BAGCED)','Physical Education Department (PED)','2018-11-13','unitrep bagcedped','Prayer Service',NULL,NULL,NULL,'EFEF','EFEFEFEF','EFEF','EFEF','2018-11-29',4000,'Others',-1,'ge','2018-11-13 19:57:06',' gege','2018-11-13 19:57:40','yoko hehe','2018-11-13 19:57:55',NULL,NULL,NULL,NULL,'2018-11-13 19:15:18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,143,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Academic','2018-11-13 19:56:03',1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL);
+INSERT INTO `ffproposal` VALUES (22,'College of Liberal Arts (CLA)','Philosophy (PHILO)','2018-11-13','unitrep claphilo','Retreat',NULL,NULL,NULL,'2oo2!!!!!!!!!!!!!!!','Love','Love','Love','2018-11-30',4000,'Others',8,'ge!!!','2018-11-13 19:15:31','gege! ! !','2018-11-13 19:15:44','OK!!','2018-11-13 19:15:54',NULL,NULL,NULL,'OKI1E','2018-11-13 19:15:18',1,1,1,NULL,1,1,1,1,NULL,1,4,NULL,NULL,0,110,'dsadsada','dsadsa','dsadsadsa',NULL,'dsadsadadfdsgs',NULL,NULL,NULL,NULL,NULL,NULL,'Academic','2018-11-13 19:15:18',1,1,1,1,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL),(23,'Br. Andrew Gonzales College of Education (BAGCED)','Physical Education Department (PED)','2018-11-13','unitrep bagcedped','Prayer Service',NULL,NULL,NULL,'EFEF','EFEFEFEF','EFEF','EFEF','2018-11-29',4000,'Others',-1,'ge','2018-11-13 19:57:06',' gege','2018-11-13 19:57:40','yoko hehe','2018-11-13 19:57:55',NULL,NULL,NULL,NULL,'2018-11-13 19:15:18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,143,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Academic','2018-11-13 19:56:03',1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL),(24,'No College ','Tapat','2018-11-17','djsakdjsalk','Retreat',NULL,NULL,NULL,'EncodeFF Testing','DLSU','Bose Speaker','fksaldjsakl','2018-11-19',4000,'OVPLM',8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,78,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Non-Academic','2018-11-17 20:37:31',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `ffproposal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,7 +259,7 @@ CREATE TABLE `ffproposal_attendees` (
   PRIMARY KEY (`id`),
   KEY `LA16_idx` (`ffproposalID`),
   CONSTRAINT `LA16` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +268,7 @@ CREATE TABLE `ffproposal_attendees` (
 
 LOCK TABLES `ffproposal_attendees` WRITE;
 /*!40000 ALTER TABLE `ffproposal_attendees` DISABLE KEYS */;
-INSERT INTO `ffproposal_attendees` VALUES (97,'Love','Love',22),(98,'EFEF','EFEF',23);
+INSERT INTO `ffproposal_attendees` VALUES (97,'Love','Love',22),(98,'EFEF','EFEF',23),(99,'dsadsajkl','dsajkdlsa',24);
 /*!40000 ALTER TABLE `ffproposal_attendees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,7 +290,7 @@ CREATE TABLE `ffproposal_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA15_idx` (`ffproposalID`),
   CONSTRAINT `LA15` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -298,7 +299,7 @@ CREATE TABLE `ffproposal_expenses` (
 
 LOCK TABLES `ffproposal_expenses` WRITE;
 /*!40000 ALTER TABLE `ffproposal_expenses` DISABLE KEYS */;
-INSERT INTO `ffproposal_expenses` VALUES (74,'Love',1,1,NULL,22,1),(75,'EFEF',1,1,NULL,23,1);
+INSERT INTO `ffproposal_expenses` VALUES (74,'Love',1,1,NULL,22,1),(75,'EFEF',1,1,NULL,23,1),(76,'dsadsa',4000,1,NULL,24,4000);
 /*!40000 ALTER TABLE `ffproposal_expenses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,6 +480,10 @@ CREATE TABLE `ffreport` (
   `venue` varchar(100) DEFAULT NULL,
   `gsheets` varchar(100) DEFAULT NULL,
   `implementationdate` date DEFAULT NULL,
+  `graduate` int(11) DEFAULT NULL,
+  `undergraduate` int(11) DEFAULT NULL,
+  `alumni` int(11) DEFAULT NULL,
+  `parents` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA22_idx` (`ffproposalID`),
   CONSTRAINT `LA22` FOREIGN KEY (`ffproposalID`) REFERENCES `ffproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -492,6 +497,34 @@ CREATE TABLE `ffreport` (
 LOCK TABLES `ffreport` WRITE;
 /*!40000 ALTER TABLE `ffreport` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ffreport` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ffreport_attendees`
+--
+
+DROP TABLE IF EXISTS `ffreport_attendees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ffreport_attendees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `ffreportID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FFREPORT_idx` (`ffreportID`),
+  CONSTRAINT `ffreport` FOREIGN KEY (`ffreportID`) REFERENCES `ffreport` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ffreport_attendees`
+--
+
+LOCK TABLES `ffreport_attendees` WRITE;
+/*!40000 ALTER TABLE `ffreport_attendees` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ffreport_attendees` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -550,33 +583,6 @@ CREATE TABLE `ffreport_objectives` (
 LOCK TABLES `ffreport_objectives` WRITE;
 /*!40000 ALTER TABLE `ffreport_objectives` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ffreport_objectives` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ffreport_participants`
---
-
-DROP TABLE IF EXISTS `ffreport_participants`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ffreport_participants` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `classification` varchar(500) DEFAULT NULL,
-  `numberOfIndividuals` int(11) DEFAULT NULL,
-  `ffreportID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `LA23_idx` (`ffreportID`),
-  CONSTRAINT `LA23` FOREIGN KEY (`ffreportID`) REFERENCES `ffreport` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ffreport_participants`
---
-
-LOCK TABLES `ffreport_participants` WRITE;
-/*!40000 ALTER TABLE `ffreport_participants` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ffreport_participants` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -716,7 +722,7 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`id`),
   KEY `LA14_idx` (`userID`),
   CONSTRAINT `LA14` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1096 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1111 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -725,7 +731,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-INSERT INTO `notification` VALUES (950,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:08:41',80),(951,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:11:58',82),(952,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 14:11:58',83),(953,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:17:53',81),(954,'Kalbuhan 2020','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 14:17:53',83),(955,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 14:32:36',83),(956,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 14:33:39',80),(957,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:36:09',80),(958,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:36:38',82),(959,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:36:38',83),(960,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 15:38:37',83),(961,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 15:40:35',80),(962,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:47:11',82),(963,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:47:11',83),(964,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 15:49:16',83),(965,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 15:50:08',80),(966,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:51:10',82),(967,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:51:10',83),(968,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:51:24',81),(969,'Kalbuhan 2020','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 15:51:24',83),(970,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 16:15:02',83),(971,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 16:44:16',80),(972,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 17:41:41',82),(973,'Kung di rin','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 17:41:41',83),(974,'Kung di rin','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 17:42:23',83),(975,'Kung di rin','Revised SE Proposal ready for approval!','2018-11-13 17:45:39',80),(976,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 17:46:09',82),(977,'Kung di rin','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 17:46:09',83),(978,'Kung di rin','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 17:46:28',83),(979,'Kung di rin','Revised SE Proposal ready for approval!','2018-11-13 17:47:17',80),(980,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 17:48:06',82),(981,'Kung di rin','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 17:48:06',83),(982,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 17:48:39',81),(983,'Kung di rin','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 17:48:39',83),(984,'Kung di rin','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 17:49:14',83),(985,'Kung di rin!','Revised SE Proposal ready for approval!','2018-11-13 17:51:55',80),(986,'Kung di rin!','New SE Proposal ready for approval!','2018-11-13 17:52:28',82),(987,'Kung di rin!','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 17:52:28',83),(988,'Kung di rin!','New SE Proposal ready for approval!','2018-11-13 17:52:43',81),(989,'Kung di rin!','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 17:52:43',83),(990,'Kung di rin!','New SE Proposal ready for approval!','2018-11-13 17:54:55',75),(991,'Kung di rin!','New SE Proposal ready for approval!','2018-11-13 17:54:55',75),(992,'Kung di rin!','Your proposal has been approved by the Dean! It will now be taken to COSCA.','2018-11-13 17:54:55',83),(993,'Kung di rin!','Your proposal has some revisions before it is approved by COSCA.','2018-11-13 17:56:08',83),(994,'Kung di rin!!','Revised SE Proposal ready for approval!','2018-11-13 17:56:55',80),(995,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:00:41',82),(996,'Kung di rin!!','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 18:00:41',83),(997,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:00:59',81),(998,'Kung di rin!!','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 18:00:59',83),(999,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:11',75),(1000,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:11',75),(1001,'Kung di rin!!','Your proposal has been approved by the Dean! It will now be taken to COSCA.','2018-11-13 18:01:11',83),(1002,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',76),(1003,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',77),(1004,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',79),(1005,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',78),(1006,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',74),(1007,'Kung di rin!!','Your proposal has been approved by COSCA. It will now be taken to the LMC Council.','2018-11-13 18:01:57',83),(1008,'Kung di rin!!','Nelca Villarin has voted to APPROVE your proposal. Vote Count: 1/5','2018-11-13 18:02:26',83),(1009,'Kung di rin!!','Margarita Perdido has voted to APPROVE your proposal. Vote Count: 2/5','2018-11-13 18:02:39',83),(1010,'Kung di rin!!','James Laxa has voted to APPROVE your proposal. Vote Count: 3/5','2018-11-13 18:02:58',83),(1011,'Kung di rin!!','Fritzie De Vera has voted to APPROVE your proposal. Vote Count: 4/5','2018-11-13 18:03:10',83),(1012,'Kung di rin!!','Michael Broughton has voted to APPROVE your proposal. Vote Count: 5/5','2018-11-13 18:03:24',83),(1013,'Kung di rin!!','Congratulations! Your SE Proposal has been approved!','2018-11-13 18:03:24',83),(1014,'2oo2','New FF Proposal ready for approval!','2018-11-13 18:19:51',193),(1015,'2oo2','New FF Proposal ready for approval!','2018-11-13 18:20:53',200),(1016,'2oo2','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 18:20:53',110),(1017,'2oo2','Your proposal has some revisions before it is approved by the Chairperson of the Department.','2018-11-13 18:21:22',110),(1018,'Smile','New SE Proposal ready for approval!','2018-11-13 18:23:55',87),(1019,'Smile','New SE Proposal ready for approval!','2018-11-13 18:24:38',82),(1020,'Smile','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 18:24:38',85),(1021,'Smile','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 18:24:52',85),(1022,'Smile!','Revised SE Proposal ready for approval!','2018-11-13 18:25:45',87),(1023,'Smile!','New SE Proposal ready for approval!','2018-11-13 18:26:00',82),(1024,'Smile!','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 18:26:00',85),(1025,'Smile!','New SE Proposal ready for approval!','2018-11-13 18:26:12',81),(1026,'Smile!','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 18:26:12',85),(1027,'Smile!','Your proposal has been rejected by the Dean. Reason: Yoko eh','2018-11-13 18:26:33',85),(1028,'IDGAF','New SE Proposal ready for approval!','2018-11-13 18:27:53',87),(1029,'IDGAF','New SE Proposal ready for approval!','2018-11-13 18:28:05',82),(1030,'IDGAF','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 18:28:05',85),(1031,'IDGAF','New SE Proposal ready for approval!','2018-11-13 18:28:19',81),(1032,'IDGAF','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 18:28:19',85),(1034,'2oo2!!!','You have a Revised FF Proposal ready for approval!','2018-11-13 19:03:23',193),(1035,'2oo2!!!','New FF Proposal ready for approval!','2018-11-13 19:03:59',200),(1036,'2oo2!!!','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:03:59',110),(1037,'2oo2!!!','Your proposal has some revisions before it is approved by the Chairperson of the Department.','2018-11-13 19:11:12',110),(1038,'2oo2!!!!!!','You have a Revised FF Proposal ready for approval!','2018-11-13 19:11:44',193),(1039,'2oo2!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:12:24',200),(1040,'2oo2!!!!!!','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:12:24',110),(1041,'2oo2!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:12:49',125),(1042,'2oo2!!!!!!','Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.','2018-11-13 19:12:49',110),(1043,'2oo2!!!!!!','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 19:13:26',110),(1044,'2oo2!!!!!!!!','You have a Revised FF Proposal ready for approval!','2018-11-13 19:13:51',193),(1045,'2oo2!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:14:04',200),(1046,'2oo2!!!!!!!!','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:14:04',110),(1047,'2oo2!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:14:18',125),(1048,'2oo2!!!!!!!!','Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.','2018-11-13 19:14:18',110),(1049,'2oo2!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:14:33',76),(1050,'2oo2!!!!!!!!','Your proposal has been approved by the Dean! It will now be taken to Sir James.','2018-11-13 19:14:33',110),(1051,'2oo2!!!!!!!!','Your proposal has some revisions before it is approved by the LSPO.','2018-11-13 19:14:57',110),(1052,'2oo2!!!!!!!!!!!!!!!','You have a Revised FF Proposal ready for approval!','2018-11-13 19:15:19',193),(1053,'2oo2!!!!!!!!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:15:31',200),(1054,'2oo2!!!!!!!!!!!!!!!','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:15:31',110),(1055,'2oo2!!!!!!!!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:15:44',125),(1056,'2oo2!!!!!!!!!!!!!!!','Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.','2018-11-13 19:15:44',110),(1057,'2oo2!!!!!!!!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:15:54',76),(1058,'2oo2!!!!!!!!!!!!!!!','Your proposal has been approved by the Dean! It will now be taken to Sir James.','2018-11-13 19:15:54',110),(1059,'2oo2!!!!!!!!!!!!!!!','You have new FF Proposal ready for approval!','2018-11-13 19:16:09',77),(1060,'2oo2!!!!!!!!!!!!!!!','You have new FF Proposal ready for approval!','2018-11-13 19:16:09',79),(1061,'2oo2!!!!!!!!!!!!!!!','You have new FF Proposal ready for approval!','2018-11-13 19:16:09',78),(1062,'2oo2!!!!!!!!!!!!!!!','You have new FF Proposal ready for approval!','2018-11-13 19:16:09',74),(1063,'2oo2!!!!!!!!!!!!!!!','Your proposal has been approved by the LSPO! It will now be taken to the LMC Council.','2018-11-13 19:16:09',110),(1064,'EFEF','New FF Proposal ready for approval!','2018-11-13 19:56:03',219),(1065,'EFEF','New FF Proposal ready for approval!','2018-11-13 19:57:06',223),(1066,'EFEF','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:57:06',143),(1067,'EFEF','New FF Proposal ready for approval!','2018-11-13 19:57:40',151),(1068,'EFEF','Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.','2018-11-13 19:57:40',143),(1069,'EFEF','Your proposal has been rejected by the Dean. Reason: yoko hehe','2018-11-13 19:57:55',143),(1070,'2oo2!!!!!!!!!!!!!!!','Michael Broughton has voted to APPROVE your proposal. Vote Count: 1/4','2018-11-13 20:22:43',110),(1071,'2oo2!!!!!!!!!!!!!!!','Nelca Villarin has voted to APPROVE your proposal. Vote Count: 2/4','2018-11-13 20:24:51',110),(1072,'2oo2!!!!!!!!!!!!!!!','Fritzie De Vera has voted to APPROVE your proposal. Vote Count: 3/4','2018-11-13 20:25:23',110),(1073,'2oo2!!!!!!!!!!!!!!!','Margarita Perdido has voted to APPROVE your proposal. Vote Count: 4/4','2018-11-13 20:25:48',110),(1074,'2oo2!!!!!!!!!!!!!!!','Congratulations! Your FF Proposal has been approved!','2018-11-13 20:25:48',110),(1075,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:05:02',80),(1076,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:08:33',80),(1077,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:09:05',82),(1078,'Bilibid Prison Reachout','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-14 22:09:05',83),(1079,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:09:25',81),(1080,'Bilibid Prison Reachout','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-14 22:09:25',83),(1081,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:10:24',75),(1082,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:10:24',75),(1083,'Bilibid Prison Reachout','Your proposal has been approved by the Dean! It will now be taken to COSCA.','2018-11-14 22:10:24',83),(1084,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',76),(1085,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',77),(1086,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',79),(1087,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',78),(1088,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',74),(1089,'Bilibid Prison Reachout','Your proposal has been approved by COSCA. It will now be taken to the LMC Council.','2018-11-14 22:28:17',83),(1090,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',76),(1091,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',77),(1092,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',79),(1093,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',78),(1094,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',74),(1095,'Bilibid Prison Reachout','Your proposal has been approved by COSCA. It will now be taken to the LMC Council.','2018-11-14 22:34:16',83);
+INSERT INTO `notification` VALUES (950,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:08:41',80),(951,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:11:58',82),(952,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 14:11:58',83),(953,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 14:17:53',81),(954,'Kalbuhan 2020','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 14:17:53',83),(955,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 14:32:36',83),(956,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 14:33:39',80),(957,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:36:09',80),(958,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:36:38',82),(959,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:36:38',83),(960,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 15:38:37',83),(961,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 15:40:35',80),(962,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:47:11',82),(963,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:47:11',83),(964,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 15:49:16',83),(965,'Kalbuhan 2020','Revised SE Proposal ready for approval!','2018-11-13 15:50:08',80),(966,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:51:10',82),(967,'Kalbuhan 2020','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 15:51:10',83),(968,'Kalbuhan 2020','New SE Proposal ready for approval!','2018-11-13 15:51:24',81),(969,'Kalbuhan 2020','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 15:51:24',83),(970,'Kalbuhan 2020','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 16:15:02',83),(971,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 16:44:16',80),(972,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 17:41:41',82),(973,'Kung di rin','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 17:41:41',83),(974,'Kung di rin','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 17:42:23',83),(975,'Kung di rin','Revised SE Proposal ready for approval!','2018-11-13 17:45:39',80),(976,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 17:46:09',82),(977,'Kung di rin','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 17:46:09',83),(978,'Kung di rin','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 17:46:28',83),(979,'Kung di rin','Revised SE Proposal ready for approval!','2018-11-13 17:47:17',80),(980,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 17:48:06',82),(981,'Kung di rin','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 17:48:06',83),(982,'Kung di rin','New SE Proposal ready for approval!','2018-11-13 17:48:39',81),(983,'Kung di rin','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 17:48:39',83),(984,'Kung di rin','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 17:49:14',83),(985,'Kung di rin!','Revised SE Proposal ready for approval!','2018-11-13 17:51:55',80),(986,'Kung di rin!','New SE Proposal ready for approval!','2018-11-13 17:52:28',82),(987,'Kung di rin!','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 17:52:28',83),(988,'Kung di rin!','New SE Proposal ready for approval!','2018-11-13 17:52:43',81),(989,'Kung di rin!','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 17:52:43',83),(990,'Kung di rin!','New SE Proposal ready for approval!','2018-11-13 17:54:55',75),(991,'Kung di rin!','New SE Proposal ready for approval!','2018-11-13 17:54:55',75),(992,'Kung di rin!','Your proposal has been approved by the Dean! It will now be taken to COSCA.','2018-11-13 17:54:55',83),(993,'Kung di rin!','Your proposal has some revisions before it is approved by COSCA.','2018-11-13 17:56:08',83),(994,'Kung di rin!!','Revised SE Proposal ready for approval!','2018-11-13 17:56:55',80),(995,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:00:41',82),(996,'Kung di rin!!','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 18:00:41',83),(997,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:00:59',81),(998,'Kung di rin!!','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 18:00:59',83),(999,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:11',75),(1000,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:11',75),(1001,'Kung di rin!!','Your proposal has been approved by the Dean! It will now be taken to COSCA.','2018-11-13 18:01:11',83),(1002,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',76),(1003,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',77),(1004,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',79),(1005,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',78),(1006,'Kung di rin!!','New SE Proposal ready for approval!','2018-11-13 18:01:57',74),(1007,'Kung di rin!!','Your proposal has been approved by COSCA. It will now be taken to the LMC Council.','2018-11-13 18:01:57',83),(1008,'Kung di rin!!','Nelca Villarin has voted to APPROVE your proposal. Vote Count: 1/5','2018-11-13 18:02:26',83),(1009,'Kung di rin!!','Margarita Perdido has voted to APPROVE your proposal. Vote Count: 2/5','2018-11-13 18:02:39',83),(1010,'Kung di rin!!','James Laxa has voted to APPROVE your proposal. Vote Count: 3/5','2018-11-13 18:02:58',83),(1011,'Kung di rin!!','Fritzie De Vera has voted to APPROVE your proposal. Vote Count: 4/5','2018-11-13 18:03:10',83),(1012,'Kung di rin!!','Michael Broughton has voted to APPROVE your proposal. Vote Count: 5/5','2018-11-13 18:03:24',83),(1013,'Kung di rin!!','Congratulations! Your SE Proposal has been approved!','2018-11-13 18:03:24',83),(1014,'2oo2','New FF Proposal ready for approval!','2018-11-13 18:19:51',193),(1015,'2oo2','New FF Proposal ready for approval!','2018-11-13 18:20:53',200),(1016,'2oo2','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 18:20:53',110),(1017,'2oo2','Your proposal has some revisions before it is approved by the Chairperson of the Department.','2018-11-13 18:21:22',110),(1018,'Smile','New SE Proposal ready for approval!','2018-11-13 18:23:55',87),(1019,'Smile','New SE Proposal ready for approval!','2018-11-13 18:24:38',82),(1020,'Smile','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 18:24:38',85),(1021,'Smile','Your proposal has some revisions before it is approved by the ADEALM.','2018-11-13 18:24:52',85),(1022,'Smile!','Revised SE Proposal ready for approval!','2018-11-13 18:25:45',87),(1023,'Smile!','New SE Proposal ready for approval!','2018-11-13 18:26:00',82),(1024,'Smile!','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 18:26:00',85),(1025,'Smile!','New SE Proposal ready for approval!','2018-11-13 18:26:12',81),(1026,'Smile!','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 18:26:12',85),(1027,'Smile!','Your proposal has been rejected by the Dean. Reason: Yoko eh','2018-11-13 18:26:33',85),(1028,'IDGAF','New SE Proposal ready for approval!','2018-11-13 18:27:53',87),(1029,'IDGAF','New SE Proposal ready for approval!','2018-11-13 18:28:05',82),(1030,'IDGAF','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-13 18:28:05',85),(1031,'IDGAF','New SE Proposal ready for approval!','2018-11-13 18:28:19',81),(1032,'IDGAF','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-13 18:28:19',85),(1034,'2oo2!!!','You have a Revised FF Proposal ready for approval!','2018-11-13 19:03:23',193),(1035,'2oo2!!!','New FF Proposal ready for approval!','2018-11-13 19:03:59',200),(1036,'2oo2!!!','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:03:59',110),(1037,'2oo2!!!','Your proposal has some revisions before it is approved by the Chairperson of the Department.','2018-11-13 19:11:12',110),(1038,'2oo2!!!!!!','You have a Revised FF Proposal ready for approval!','2018-11-13 19:11:44',193),(1039,'2oo2!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:12:24',200),(1040,'2oo2!!!!!!','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:12:24',110),(1041,'2oo2!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:12:49',125),(1042,'2oo2!!!!!!','Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.','2018-11-13 19:12:49',110),(1043,'2oo2!!!!!!','Your proposal has some revisions before it is approved by the Dean.','2018-11-13 19:13:26',110),(1044,'2oo2!!!!!!!!','You have a Revised FF Proposal ready for approval!','2018-11-13 19:13:51',193),(1045,'2oo2!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:14:04',200),(1046,'2oo2!!!!!!!!','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:14:04',110),(1047,'2oo2!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:14:18',125),(1048,'2oo2!!!!!!!!','Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.','2018-11-13 19:14:18',110),(1049,'2oo2!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:14:33',76),(1050,'2oo2!!!!!!!!','Your proposal has been approved by the Dean! It will now be taken to Sir James.','2018-11-13 19:14:33',110),(1051,'2oo2!!!!!!!!','Your proposal has some revisions before it is approved by the LSPO.','2018-11-13 19:14:57',110),(1052,'2oo2!!!!!!!!!!!!!!!','You have a Revised FF Proposal ready for approval!','2018-11-13 19:15:19',193),(1053,'2oo2!!!!!!!!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:15:31',200),(1054,'2oo2!!!!!!!!!!!!!!!','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:15:31',110),(1055,'2oo2!!!!!!!!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:15:44',125),(1056,'2oo2!!!!!!!!!!!!!!!','Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.','2018-11-13 19:15:44',110),(1057,'2oo2!!!!!!!!!!!!!!!','New FF Proposal ready for approval!','2018-11-13 19:15:54',76),(1058,'2oo2!!!!!!!!!!!!!!!','Your proposal has been approved by the Dean! It will now be taken to Sir James.','2018-11-13 19:15:54',110),(1059,'2oo2!!!!!!!!!!!!!!!','You have new FF Proposal ready for approval!','2018-11-13 19:16:09',77),(1060,'2oo2!!!!!!!!!!!!!!!','You have new FF Proposal ready for approval!','2018-11-13 19:16:09',79),(1061,'2oo2!!!!!!!!!!!!!!!','You have new FF Proposal ready for approval!','2018-11-13 19:16:09',78),(1062,'2oo2!!!!!!!!!!!!!!!','You have new FF Proposal ready for approval!','2018-11-13 19:16:09',74),(1063,'2oo2!!!!!!!!!!!!!!!','Your proposal has been approved by the LSPO! It will now be taken to the LMC Council.','2018-11-13 19:16:09',110),(1064,'EFEF','New FF Proposal ready for approval!','2018-11-13 19:56:03',219),(1065,'EFEF','New FF Proposal ready for approval!','2018-11-13 19:57:06',223),(1066,'EFEF','Your proposal has been approved by the Assistant Dean for Lasallian Mission! It will now be taken to the Chairperson of the Department.','2018-11-13 19:57:06',143),(1067,'EFEF','New FF Proposal ready for approval!','2018-11-13 19:57:40',151),(1068,'EFEF','Your proposal has been approved by the Chairperson of the Department! It will now be taken to the Dean.','2018-11-13 19:57:40',143),(1069,'EFEF','Your proposal has been rejected by the Dean. Reason: yoko hehe','2018-11-13 19:57:55',143),(1070,'2oo2!!!!!!!!!!!!!!!','Michael Broughton has voted to APPROVE your proposal. Vote Count: 1/4','2018-11-13 20:22:43',110),(1071,'2oo2!!!!!!!!!!!!!!!','Nelca Villarin has voted to APPROVE your proposal. Vote Count: 2/4','2018-11-13 20:24:51',110),(1072,'2oo2!!!!!!!!!!!!!!!','Fritzie De Vera has voted to APPROVE your proposal. Vote Count: 3/4','2018-11-13 20:25:23',110),(1073,'2oo2!!!!!!!!!!!!!!!','Margarita Perdido has voted to APPROVE your proposal. Vote Count: 4/4','2018-11-13 20:25:48',110),(1074,'2oo2!!!!!!!!!!!!!!!','Congratulations! Your FF Proposal has been approved!','2018-11-13 20:25:48',110),(1075,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:05:02',80),(1076,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:08:33',80),(1077,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:09:05',82),(1078,'Bilibid Prison Reachout','Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM.','2018-11-14 22:09:05',83),(1079,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:09:25',81),(1080,'Bilibid Prison Reachout','Your proposal has been approved by the ADEALM! It will now be taken to the Dean.','2018-11-14 22:09:25',83),(1081,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:10:24',75),(1082,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:10:24',75),(1083,'Bilibid Prison Reachout','Your proposal has been approved by the Dean! It will now be taken to COSCA.','2018-11-14 22:10:24',83),(1084,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',76),(1085,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',77),(1086,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',79),(1087,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',78),(1088,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:28:17',74),(1089,'Bilibid Prison Reachout','Your proposal has been approved by COSCA. It will now be taken to the LMC Council.','2018-11-14 22:28:17',83),(1090,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',76),(1091,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',77),(1092,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',79),(1093,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',78),(1094,'Bilibid Prison Reachout','New SE Proposal ready for approval!','2018-11-14 22:34:16',74),(1095,'Bilibid Prison Reachout','Your proposal has been approved by COSCA. It will now be taken to the LMC Council.','2018-11-14 22:34:16',83),(1101,'Suntukan 2018','URGENT SE Proposal ready for approval!!','2018-11-17 18:06:30',80),(1102,'Suntukan Ulit 2018','New SE Proposal ready for approval!','2018-11-17 18:13:16',80),(1103,'Suntukan Nanaman 2018!','URGENT SE Proposal ready for approval!!','2018-11-17 18:16:45',80),(1104,'SUNTUKAN',NULL,'2018-11-17 18:23:29',80),(1105,'TESTING',NULL,'2018-11-17 18:25:22',80),(1106,'dajkljdsakldjklas 2018',NULL,'2018-11-17 18:27:21',80),(1107,'dsjakdljsakldjaslkdjkalsjdlkasjklaj','URGENT SE Proposal ready for approval!!','2018-11-17 18:28:29',80),(1108,'DJSALKDJSAKL','URGENT SE Proposal ready for approval!!','2018-11-17 18:31:40',80),(1109,'Karl Madrid 2018 Program','URGENT SE Proposal ready for approval!','2018-11-17 18:57:50',80);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -771,7 +777,7 @@ CREATE TABLE `se_measures` (
   KEY `LA71_idx` (`measureID`),
   CONSTRAINT `LA70` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA71` FOREIGN KEY (`measureID`) REFERENCES `measure` (`measureID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -780,7 +786,7 @@ CREATE TABLE `se_measures` (
 
 LOCK TABLES `se_measures` WRITE;
 /*!40000 ALTER TABLE `se_measures` DISABLE KEYS */;
-INSERT INTO `se_measures` VALUES (139,53,1),(141,54,4),(142,55,7),(143,55,1),(144,55,2),(145,56,1),(146,56,2);
+INSERT INTO `se_measures` VALUES (139,53,1),(141,54,4),(142,55,7),(143,55,1),(144,55,2),(145,56,1),(146,56,2),(163,65,1),(164,66,1),(165,67,1);
 /*!40000 ALTER TABLE `se_measures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -949,10 +955,11 @@ CREATE TABLE `seproposal` (
   `reject2` int(1) DEFAULT NULL,
   `reject3` int(1) DEFAULT NULL,
   `reject4` int(1) DEFAULT NULL,
+  `studentorg` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA9_idx` (`userID`),
   CONSTRAINT `LA9` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -961,7 +968,7 @@ CREATE TABLE `seproposal` (
 
 LOCK TABLES `seproposal` WRITE;
 /*!40000 ALTER TABLE `seproposal` DISABLE KEYS */;
-INSERT INTO `seproposal` VALUES (53,'College of Computer Studies (CCS)','Computer Technology (CT)','2018-11-13','Kung di rin!!','unitrep ccsct','Socially Engaged Research',1,1,1,0,NULL,'2018-11-28',5000,'Kung di rin','Kung di rin','Kung di rin','Kung di rin','123','Kung di rin','Kung di rin','Kung di rin','Kung di rin','Others',100,1,55,1,1,1,1,1,8,'gegege!','2018-11-13 18:00:41','Ok na!!','2018-11-13 18:00:59','sige na!','2018-11-13 18:01:11',NULL,NULL,'ge na hihih','2018-11-13 18:01:57',1,1,1,1,1,NULL,NULL,NULL,1,1,1,1,1,NULL,NULL,NULL,5,NULL,NULL,0,83,'g','g','g','g','g',NULL,NULL,NULL,NULL,NULL,'L-Seed','Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-13 17:56:53','Kung di rin',1,1,1,1,NULL,1,1,1,NULL,NULL,NULL,NULL),(54,'College of Computer Studies (CCS)','Information Technology (IT)','2018-11-13','Smile!','unitrep ccsit','Socially Engaged Research',1,1,2,0,NULL,'2018-11-30',4000,'Smile','Smile','Smile','Smile','2','Smile','Smile','Smile','Smile','Others',80,1,44,1,1,1,1,1,-1,'ge','2018-11-13 18:25:59','gege','2018-11-13 18:26:11','Yoko eh','2018-11-13 18:26:33',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,85,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-13 18:25:43','Smile',1,1,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,1,NULL),(55,'College of Computer Studies (CCS)','Information Technology (IT)','2018-11-13','IDGAF','unitrep ccsit','Interdisciplinary Fora',1,1,3,NULL,NULL,'2018-11-29',599,'IDGAF','IDGAF','IDGAF','IDGAF','1','IDGAF','IDGAF','IDGAF','IDGAF','Others',80,1,44,1,1,1,1,1,0,'ge','2018-11-13 18:28:05',' gege','2018-11-13 18:28:18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,85,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-13 18:27:53','IDGAF',1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(56,'College of Computer Studies (CCS)','Computer Technology (CT)','2018-11-14','Bilibid Prison Reachout','unitrep ccsct','Public Engagement',1,1,1,NULL,NULL,'2018-11-23',5000,'dsadas','dsadsa','dsadsa','dsadsa','421321','dsadas','dsadsa','dsadasda','BLABLABLABLA','OVPLM',100,55,55,55,0,0,0,0,5,'nice','2018-11-14 22:09:05',' orayt','2018-11-14 22:09:25','ayt','2018-11-14 22:10:24',NULL,NULL,'ayt!','2018-11-14 22:34:15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,83,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'L-Aral','Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-14 22:08:32','ddsadsa',1,1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `seproposal` VALUES (53,'College of Computer Studies (CCS)','Computer Technology (CT)','2018-11-13','Kung di rin!!','unitrep ccsct','Socially Engaged Research',1,1,1,0,NULL,'2018-11-28',5000,'Kung di rin','Kung di rin','Kung di rin','Kung di rin','123','Kung di rin','Kung di rin','Kung di rin','Kung di rin','Others',100,1,55,1,1,1,1,1,8,'gegege!','2018-11-13 18:00:41','Ok na!!','2018-11-13 18:00:59','sige na!','2018-11-13 18:01:11',NULL,NULL,'ge na hihih','2018-11-13 18:01:57',1,1,1,1,1,NULL,NULL,NULL,1,1,1,1,1,NULL,NULL,NULL,5,NULL,NULL,0,83,'g','g','g','g','g',NULL,NULL,NULL,NULL,'TO1SIXCWJP','L-Seed','Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-13 17:56:53','Kung di rin',1,1,1,1,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL),(54,'College of Computer Studies (CCS)','Information Technology (IT)','2018-11-13','Smile!','unitrep ccsit','Socially Engaged Research',1,1,2,0,NULL,'2018-11-30',4000,'Smile','Smile','Smile','Smile','2','Smile','Smile','Smile','Smile','Others',80,1,44,1,1,1,1,1,-1,'ge','2018-11-13 18:25:59','gege','2018-11-13 18:26:11','Yoko eh','2018-11-13 18:26:33',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,85,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-13 18:25:43','Smile',1,1,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,1,NULL,NULL),(55,'College of Computer Studies (CCS)','Information Technology (IT)','2018-11-13','IDGAF','unitrep ccsit','Interdisciplinary Fora',1,1,3,NULL,NULL,'2018-11-29',599,'IDGAF','IDGAF','IDGAF','IDGAF','1','IDGAF','IDGAF','IDGAF','IDGAF','Others',80,1,44,1,1,1,1,1,0,'ge','2018-11-13 18:28:05',' gege','2018-11-13 18:28:18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,85,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-13 18:27:53','IDGAF',1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(56,'College of Computer Studies (CCS)','Computer Technology (CT)','2018-11-14','Bilibid Prison Reachout','unitrep ccsct','Public Engagement',1,1,1,NULL,NULL,'2018-11-23',5000,'dsadas','dsadsa','dsadsa','dsadsa','421321','dsadas','dsadsa','dsadasda','BLABLABLABLA','OVPLM',100,55,55,55,0,0,0,0,5,'nice','2018-11-14 22:09:05',' orayt','2018-11-14 22:09:25','ayt','2018-11-14 22:10:24',NULL,NULL,'ayt!','2018-11-14 22:34:15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,83,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'L-Aral','Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-14 22:08:32','ddsadsa',1,1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(65,'College of Computer Studies (CCS)','Computer Technology (CT)','2018-11-17','Karl Madrid 2018 Program','unitrep ccsct','Socially Engaged Research',1,1,1,NULL,NULL,'2018-11-22',4000,'dsadsa','dsa','dsa','dsada','4213190','djsalsdjsakl','dsjakldjaskl','djsaklj',NULL,'OVPLM',100,55,55,20,5,5,5,5,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,83,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-17 18:57:50','Quezon City',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(66,'College of Computer Studies (CCS) ','La Salle Computer Society (LSCS)','2018-11-17','Kalbuhan 2020','dsadsa','Socially Engaged Research',1,1,1,NULL,NULL,'2018-11-21',4000,'dsadas','dsadas','d','dsadsa','32131','dsadsa','dsadsa','dsadas',NULL,'OVPLM',20,5,21,5,5,5,5,5,8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,78,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'KSW23NLOZ4',NULL,'Non-Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-17 20:46:47','sdadsa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1),(67,'Br. Andrew Gonzales College of Education (BAGCED) ','Mathematics Circle (Math Circle)','2018-11-17','dsadsa','dsadsa','Socially Engaged Research',1,1,1,NULL,NULL,'2018-11-29',4000,'dsadas','dasdas','dsadsa','dsadas','23131','dsadsa','dsadsa','dsadas',NULL,'OVPLM',20,5,21,5,5,5,5,5,8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,78,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Non-Academic',NULL,NULL,NULL,NULL,NULL,NULL,'2018-11-17 22:05:20','dsadas',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `seproposal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -979,7 +986,7 @@ CREATE TABLE `seproposal_component` (
   PRIMARY KEY (`id`),
   KEY `LA10_idx` (`seproposalID`),
   CONSTRAINT `LA10` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -988,7 +995,7 @@ CREATE TABLE `seproposal_component` (
 
 LOCK TABLES `seproposal_component` WRITE;
 /*!40000 ALTER TABLE `seproposal_component` DISABLE KEYS */;
-INSERT INTO `seproposal_component` VALUES (126,56,'Training/Capacity Building for the Partner'),(127,56,'Policy Advocacy/Development related to the Social Problem being Addressed');
+INSERT INTO `seproposal_component` VALUES (126,56,'Training/Capacity Building for the Partner'),(127,56,'Policy Advocacy/Development related to the Social Problem being Addressed'),(128,66,'Training/Capacity Building for the Partner'),(129,67,'Training/Capacity Building for the Partner'),(130,67,'Policy Advocacy/Development related to the Social Problem being Addressed');
 /*!40000 ALTER TABLE `seproposal_component` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1010,7 +1017,7 @@ CREATE TABLE `seproposal_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA12_idx` (`seproposalID`),
   CONSTRAINT `LA12` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1019,7 +1026,7 @@ CREATE TABLE `seproposal_expenses` (
 
 LOCK TABLES `seproposal_expenses` WRITE;
 /*!40000 ALTER TABLE `seproposal_expenses` DISABLE KEYS */;
-INSERT INTO `seproposal_expenses` VALUES (114,'Kung di rin',1,1,NULL,53,1),(116,'Smile',1,1,NULL,54,1),(117,'IDGAF',1,1,NULL,55,1),(118,'dsa',5000,1,NULL,56,5000);
+INSERT INTO `seproposal_expenses` VALUES (116,'Smile',1,1,NULL,54,1),(117,'IDGAF',1,1,NULL,55,1),(118,'dsa',5000,1,NULL,56,5000),(122,'Kung di rin',1,1,1,53,1),(131,'djsakl',4000,1,NULL,65,4000),(132,'sada',4000,1,NULL,66,4000),(133,'dsa',4000,1,NULL,67,4000);
 /*!40000 ALTER TABLE `seproposal_expenses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1038,7 +1045,7 @@ CREATE TABLE `seproposal_personresponsible` (
   PRIMARY KEY (`id`),
   KEY `LA13_idx` (`seproposalID`),
   CONSTRAINT `LA13` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1047,7 +1054,7 @@ CREATE TABLE `seproposal_personresponsible` (
 
 LOCK TABLES `seproposal_personresponsible` WRITE;
 /*!40000 ALTER TABLE `seproposal_personresponsible` DISABLE KEYS */;
-INSERT INTO `seproposal_personresponsible` VALUES (110,'Kung di rin','Kung di rin',53),(112,'Smile','Smile',54),(113,'IDGAF','IDGAF',55),(114,'dsa','dsa',56);
+INSERT INTO `seproposal_personresponsible` VALUES (110,'Kung di rin','Kung di rin',53),(112,'Smile','Smile',54),(113,'IDGAF','IDGAF',55),(114,'dsa','dsa',56),(123,'dsadsad','dsadsadas',65),(124,'dasdas','dsadsasad',66),(125,'dasdasd','dsasadsa',67);
 /*!40000 ALTER TABLE `seproposal_personresponsible` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1327,7 +1334,7 @@ CREATE TABLE `seproposal_workplan` (
   PRIMARY KEY (`id`),
   KEY `LA11_idx` (`seproposalID`),
   CONSTRAINT `LA11` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1336,7 +1343,7 @@ CREATE TABLE `seproposal_workplan` (
 
 LOCK TABLES `seproposal_workplan` WRITE;
 /*!40000 ALTER TABLE `seproposal_workplan` DISABLE KEYS */;
-INSERT INTO `seproposal_workplan` VALUES (109,'2018-11-27','Kung di rin','Kung di rin','Kung di rin','Kung di rin',53),(111,'2018-11-27','Smile','Smile','Smile','Smile',54),(112,'2018-11-15','IDGAF','IDGAF','IDGAF','IDGAF',55),(113,'2018-11-23','dsad','dsa','dsa','dsa',56);
+INSERT INTO `seproposal_workplan` VALUES (109,'2018-11-27','Kung di rin','Kung di rin','Kung di rin','Kung di rin',53),(111,'2018-11-27','Smile','Smile','Smile','Smile',54),(112,'2018-11-15','IDGAF','IDGAF','IDGAF','IDGAF',55),(113,'2018-11-23','dsad','dsa','dsa','dsa',56),(122,'2018-11-22','dsadajkl','dsajkl','dsajkl','jkldsa',65),(123,'2018-11-21','dsada','dsa','dsa','dsa',66),(124,'2018-11-29','dsa','dsa','dsa','dsa',67);
 /*!40000 ALTER TABLE `seproposal_workplan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1382,10 +1389,14 @@ CREATE TABLE `sereport` (
   `external` int(11) DEFAULT NULL,
   `gsheets` varchar(100) DEFAULT NULL,
   `implementationdate` date DEFAULT NULL,
+  `graduate` int(11) DEFAULT NULL,
+  `undergraduate` int(11) DEFAULT NULL,
+  `alumni` int(11) DEFAULT NULL,
+  `parents` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA17_idx` (`seproposalID`),
   CONSTRAINT `LA17` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1394,6 +1405,7 @@ CREATE TABLE `sereport` (
 
 LOCK TABLES `sereport` WRITE;
 /*!40000 ALTER TABLE `sereport` DISABLE KEYS */;
+INSERT INTO `sereport` VALUES (1,'2018-11-17','Kung di rin!!','KRA3 - Formation for all sectors that is truly Lasallian','KRA3-G1 - Implement sustainable, holistic, and developmental Lasallian formation across all sectors based on the Lasallian guiding principles',NULL,'College of Computer Studies (CCS), Computer Technology (CT)',1,'dsadsa','sada','Kung di rin',5000,'dsad','dsada','sada','dsa','xcxzcxsa','dsa','sada','','','','',53,5,5,5,5,5,5,5,5,'dsadsa','2018-11-28',NULL,NULL,NULL,NULL),(2,'2018-11-17','Kalbuhan 2020','KRA3 - Formation for all sectors that is truly Lasallian','KRA3-G1 - Implement sustainable, holistic, and developmental Lasallian formation across all sectors based on the Lasallian guiding principles',NULL,'La Salle Computer Society (LSCS)',1,'dsaadsa','dsadsadsa','sdadsa',4000,'dsada','dsadsa','dsadsa','dsadsa','dsadsa','dsadsa','dsadsa','','','','',66,0,0,0,0,0,0,0,0,'dsadsa','2018-11-21',0,5,3,5);
 /*!40000 ALTER TABLE `sereport` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1408,6 +1420,7 @@ CREATE TABLE `sereport_attendees` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(500) DEFAULT NULL,
   `email` varchar(500) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
   `sereportID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LA21_idx` (`sereportID`),
@@ -1442,7 +1455,7 @@ CREATE TABLE `sereport_funds` (
   PRIMARY KEY (`id`),
   KEY `LA20_idx` (`sereportID`),
   CONSTRAINT `LA20` FOREIGN KEY (`sereportID`) REFERENCES `sereport` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1451,6 +1464,7 @@ CREATE TABLE `sereport_funds` (
 
 LOCK TABLES `sereport_funds` WRITE;
 /*!40000 ALTER TABLE `sereport_funds` DISABLE KEYS */;
+INSERT INTO `sereport_funds` VALUES (1,'Kung di rin',1,1,0,NULL,1),(2,'sada',4000,0,4000,'dsadsa',2);
 /*!40000 ALTER TABLE `sereport_funds` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1470,7 +1484,7 @@ CREATE TABLE `sereport_objectives` (
   PRIMARY KEY (`id`),
   KEY `LA18_idx` (`sereportID`),
   CONSTRAINT `LA18` FOREIGN KEY (`sereportID`) REFERENCES `sereport` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1479,34 +1493,8 @@ CREATE TABLE `sereport_objectives` (
 
 LOCK TABLES `sereport_objectives` WRITE;
 /*!40000 ALTER TABLE `sereport_objectives` DISABLE KEYS */;
+INSERT INTO `sereport_objectives` VALUES (1,'sda','sada','dsada',1),(2,'dsadsa','dsadsa','dsadsad',2);
 /*!40000 ALTER TABLE `sereport_objectives` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sereport_participants`
---
-
-DROP TABLE IF EXISTS `sereport_participants`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sereport_participants` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `classification` varchar(500) DEFAULT NULL,
-  `numberOfIndividuals` int(11) DEFAULT NULL,
-  `sereportID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `LA19_idx` (`sereportID`),
-  CONSTRAINT `LA19` FOREIGN KEY (`sereportID`) REFERENCES `sereport` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sereport_participants`
---
-
-LOCK TABLES `sereport_participants` WRITE;
-/*!40000 ALTER TABLE `sereport_participants` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sereport_participants` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1519,9 +1507,9 @@ DROP TABLE IF EXISTS `studentorgs`;
 CREATE TABLE `studentorgs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
-  `college` varchar(45) DEFAULT NULL,
+  `college` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1530,7 +1518,7 @@ CREATE TABLE `studentorgs` (
 
 LOCK TABLES `studentorgs` WRITE;
 /*!40000 ALTER TABLE `studentorgs` DISABLE KEYS */;
-INSERT INTO `studentorgs` VALUES (1,'Santugon',NULL),(2,'Tapat',NULL),(3,'La Salle Computer Society (LSCS)',NULL),(4,'Mathematics Circle (Math Circle)',NULL),(5,'Political Science Society (POLISCY)',NULL),(6,'Society of Proactive Role Models Inspiring Total Development (SPRINT)',NULL),(7,'Student Research and Development Program (SRDP)',NULL),(8,'Civil Engineering Society (CES)',NULL),(9,'Society of Manufacturing Engineering (SME)',NULL),(10,'Business Management Society (BMS)',NULL);
+INSERT INTO `studentorgs` VALUES (1,'Santugon','No College'),(2,'Tapat','No College'),(3,'La Salle Computer Society (LSCS)','College of Computer Studies (CCS)'),(4,'Mathematics Circle (Math Circle)','Br. Andrew Gonzales College of Education (BAGCED)'),(5,'Political Science Society (POLISCY)','No College'),(6,'Society of Proactive Role Models Inspiring Total Development (SPRINT)','No College'),(7,'Student Research and Development Program (SRDP)','No College'),(8,'Civil Engineering Society (CES)','Gokongwei College of Engineering (GCOE)'),(9,'Society of Manufacturing Engineering (SME)','No College'),(10,'Business Management Society (BMS)','Ramon V. Del Rosario College of Business (RVR-COB)');
 /*!40000 ALTER TABLE `studentorgs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1567,7 +1555,7 @@ CREATE TABLE `unit` (
 
 LOCK TABLES `unit` WRITE;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
-INSERT INTO `unit` VALUES (10,'Office of the Vice President for Lasallian Mission (OVPLM)','OVPLM Unit Head','Non-Academic',0,0,1,50,40,55,5,5,5,'OVPLM Unit',1),(11,'College of Computer Studies (CCS)','CCS Unit Head','Academic',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCS Unit ',1),(12,'College of Law (COL)','COL Unit Head','Academic',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COL Unit',71),(13,'Br. Andrew Gonzales College of Education (BAGCED)','CED Unit Head','Academic',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CED Unit',1),(14,'College of Liberal Arts (CLA)','CLA Unit Head','Academic',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CLA Unit',74),(15,'College of Science (COS)','COS Unit Head','Academic',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COS Unit',74),(16,'Gokongwei College of Engineering (GCOE)','GCOE Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'GCOE Unit',74),(17,'Ramon V. Del Rosario College of Business (RVR-COB)','RVR-COB Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'RVR-COB Unit',74),(18,'School of Economics (SOE)','SOE Unit HEad','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SOE Unit',74),(19,'Center for Social Concern and Action (COSCA)','COSCA Unit Head','Non-Academic',0,20,5,15,20,15,3,3,3,'COSCA Unit Description',71),(20,'Laguna Campus Lasallian Mission (LCLM)','LCLM Unit Head','Non-Academic',0,5,3,10,15,5,4,4,4,'LCLM Unit Description',71),(21,'Lasallian Pastoral Office (LSPO)','LSPO Unit Head','Non-Academic',0,0,3,10,10,10,2,2,2,'LSPO Unit Description',71),(22,'Lasallian Mission Council (LMC)','LMC Unit Head','Non-Academic',0,0,1,10,10,10,0,0,0,'LMC Unit Description',71),(23,'Dean of Student Affairs (DSA)','DSA Unit Head','Non-Academic',0,0,2,20,20,20,1,1,1,'DSA Unit Description',1),(24,'Office of Personnel Management (OPM)','OPM Program Head','Non-Academic',0,10,10,10,10,10,10,10,10,'OPM Unit Description',74);
+INSERT INTO `unit` VALUES (10,'Office of the Vice President for Lasallian Mission (OVPLM)','OVPLM Unit Head','Non-Academic',0,0,1,50,40,55,5,5,5,'OVPLM Unit',1),(11,'College of Computer Studies (CCS)','CCS Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCS Unit ',1),(12,'College of Law (COL)','COL Unit Head','Academic',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COL Unit',71),(13,'Br. Andrew Gonzales College of Education (BAGCED)','CED Unit Head','Academic',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CED Unit',1),(14,'College of Liberal Arts (CLA)','CLA Unit Head','Academic',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CLA Unit',74),(15,'College of Science (COS)','COS Unit Head','Academic',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COS Unit',74),(16,'Gokongwei College of Engineering (GCOE)','GCOE Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'GCOE Unit',74),(17,'Ramon V. Del Rosario College of Business (RVR-COB)','RVR-COB Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'RVR-COB Unit',74),(18,'School of Economics (SOE)','SOE Unit HEad','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SOE Unit',74),(19,'Center for Social Concern and Action (COSCA)','COSCA Unit Head','Non-Academic',0,20,5,15,20,15,3,3,3,'COSCA Unit Description',71),(20,'Laguna Campus Lasallian Mission (LCLM)','LCLM Unit Head','Non-Academic',0,5,3,10,15,5,4,4,4,'LCLM Unit Description',71),(21,'Lasallian Pastoral Office (LSPO)','LSPO Unit Head','Non-Academic',0,0,3,10,10,10,2,2,2,'LSPO Unit Description',71),(22,'Lasallian Mission Council (LMC)','LMC Unit Head','Non-Academic',0,0,1,10,10,10,0,0,0,'LMC Unit Description',71),(23,'Dean of Student Affairs (DSA)','DSA Unit Head','Non-Academic',0,0,2,20,20,20,1,1,1,'DSA Unit Description',1),(24,'Office of Personnel Management (OPM)','OPM Program Head','Non-Academic',0,10,10,10,10,10,10,10,10,'OPM Unit Description',74);
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1587,7 +1575,7 @@ CREATE TABLE `unit_department` (
   KEY `LA3_idx` (`departmentID`),
   CONSTRAINT `LA2` FOREIGN KEY (`unitID`) REFERENCES `unit` (`unitID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA3` FOREIGN KEY (`departmentID`) REFERENCES `department` (`departmentID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1609,4 +1597,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-16  0:38:31
+-- Dump completed on 2018-11-17 22:24:37

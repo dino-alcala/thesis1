@@ -5,13 +5,13 @@
  */
 package controller;
 
-import entity.FFparticipants;
+import dao.UserDAO;
 import entity.FFreport;
+import entity.Notification;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,12 +19,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class createFFreport2 extends HttpServlet {
+public class encodeFFReport3 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,40 +42,58 @@ public class createFFreport2 extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            
+            UserDAO UserDAO = new UserDAO();
+
             FFreport FFreport = new FFreport();
+            FFreport = (FFreport) session.getAttribute("FFreport");
+
+            FFreport.setMajorProblems(request.getParameter("problem"));
+            FFreport.setOtherRecommendations(request.getParameter("recommendation"));
+
+            InputStream inputStream1 = null;
+            Part filePart1 = request.getPart("uploadphoto");
+
+            InputStream inputStream3 = null;
+            Part filePart3 = request.getPart("uploadparticipants");
+
+            if (filePart1 != null) {
+                inputStream1 = filePart1.getInputStream();
+            }
+
+            if (filePart3 != null) {
+                inputStream3 = filePart3.getInputStream();
+            }
+
+            FFreport.setAnnexes(inputStream1);
+            FFreport.setAttendanceDLSU(inputStream3);
+
+            UserDAO.AddFFreport(FFreport);
             
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date javaDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+            String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            int length = 10;
+            Random rng = new Random();
+            char[] text = new char[length];
+            for (int i = 0; i < length; i++) {
+                text[i] = characters.charAt(rng.nextInt(characters.length()));
+            }
+            String code = new String(text);
             
-            FFreport.setProjectTitle(request.getParameter("name"));
-            FFreport.setProgramHead(request.getParameter("programhead"));
-            FFreport.setDate(sqlDate);
-            FFreport.setProjectProponent(request.getParameter("proponents"));
-            FFreport.setNameOfFacilitator(request.getParameter("facilitator"));
-            FFreport.setCap(Integer.parseInt(request.getParameter("number0")));
-            FFreport.setApsp(Integer.parseInt(request.getParameter("number1")));
-            FFreport.setAsf(Integer.parseInt(request.getParameter("number2")));
-            FFreport.setFaculty(Integer.parseInt(request.getParameter("number3")));
-            FFreport.setAdmin(Integer.parseInt(request.getParameter("number4")));
-            FFreport.setDirecthired(Integer.parseInt(request.getParameter("number5")));
-            FFreport.setIndependent(Integer.parseInt(request.getParameter("number6")));
-            FFreport.setExternal(Integer.parseInt(request.getParameter("number7")));
-            FFreport.setGraduate(Integer.parseInt(request.getParameter("number8")));
-            FFreport.setUndergraduate(Integer.parseInt(request.getParameter("number9")));
-            FFreport.setAlumni(Integer.parseInt(request.getParameter("number10")));
-            FFreport.setParents(Integer.parseInt(request.getParameter("number11")));
-            FFreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
-            FFreport.setFfproposalID(Integer.parseInt(request.getParameter("ffID")));
-            FFreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
-            FFreport.setVenue(request.getParameter("venue"));
-            FFreport.setGsheets(request.getParameter("gsheets"));
+            UserDAO.updateFFProposalCodeByFFID(code, FFreport.getFfproposalID());
             
-            session.setAttribute("FFreport", FFreport);
-            request.setAttribute("ffID", request.getParameter("ffID"));
+            Notification n = new Notification();
+            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
+            n.setBody("Accomplishment Report has been submitted!");
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            n.setDt(sdf.format(dt));
+            n.setUserID(17);
+            
+            UserDAO.AddNotification(n);
+
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport2.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFFReport4.jsp");
             dispatcher.forward(request, response);
         }
     }

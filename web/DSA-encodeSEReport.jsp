@@ -372,7 +372,7 @@
                 <div class="form-style-5">
 
 
-                    <form action="createSEreport2" method="post">
+                    <form action="encodeSEReport" method="post">
                         <%
                             SE SE = new SE();
                             SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
@@ -425,7 +425,7 @@
 
                         <fieldset>  
                             <legend><b>Student Organization:</b></legend>
-                            <center><input id="fname" name="proponents" size="50" type="text" readonly value="<%=UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>, <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>"></center>
+                            <center><input id="fname" name="proponents" size="50" type="text" readonly value="<%=SE.getDepartment()%>"></center>
                             <br>
                         </fieldset>
 
@@ -504,6 +504,22 @@
                                     <tr>
                                         <td style="padding:12px">External Service Personnel:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:12px">Graduate Students:</td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number8" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:12px">Undergraduate Students:</td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number9" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:12px">Alumni:</td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number10" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:12px">Parents:</td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number11" required></td>
                                     </tr>
                                 </table>
                             </center>

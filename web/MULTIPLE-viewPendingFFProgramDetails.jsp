@@ -399,17 +399,20 @@
                                     </tr>
                                 </table>
                                 <br/>
-                                
+
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Source of Funds: </h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><%=FF.getSourceOfFunds() %></p>
+                                        <p><%=FF.getSourceOfFunds()%></p>
                                     </div>
                                 </div>
                                 <br/>
 
+                                <%
+                                    if (FF.getStudentorg() != 1) {
+                                %>
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Remarks</h4>
@@ -454,13 +457,17 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <%
+                                    }
+                                %>
                                 <br/>
+                                <br>
 
                                 <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
                                 <br>
                                 <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>
                                 <br>
-                                    
+
                                 <%
                                     if (UserDAO.getStepFF(Integer.parseInt(request.getAttribute("ffID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>
@@ -468,9 +475,9 @@
                                 <br>
                                 <center><button class="btn-success" type="submit" name="ffID" value="<%=request.getAttribute("ffID")%>">Upload</button></center>
                                 <br>
-                                    <%
-                                        }
-                                    %>
+                                <%
+                                    }
+                                %>
 
                                 <%
                                     if (UserDAO.isFFRevise(Integer.parseInt(request.getAttribute("ffID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {

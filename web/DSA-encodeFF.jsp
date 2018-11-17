@@ -4,6 +4,8 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="dao.StudentOrgDAO"%>
+<%@page import="entity.StudentOrg"%>
 <%@page import="dao.OvplmDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
@@ -403,7 +405,7 @@
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
-                    <form action = "addFF" method="post">
+                    <form action = "encodeFF" method="post">
                         <%
                             UserDAO = new UserDAO();
                             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
@@ -413,33 +415,25 @@
 
                         <center>
                             <fieldset>
-                                <legend><b>Unit:</b> <%=session.getAttribute("unit")%></legend>
-                            </fieldset>
-
-                            <fieldset>
-                                <legend><b>Department:</b> <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
-                            </fieldset>
-
-                            <fieldset>
                                 <legend><b>Date:</b> <%=sqlDate%></legend>
                             </fieldset>
                         </center>
                             
+                        <%
+                                ArrayList<StudentOrg> student = new ArrayList();
+                                StudentOrgDAO StudentOrgDAO = new StudentOrgDAO();
+                                student = StudentOrgDAO.retrieveOrgList();
+                            %>
+                            
+                            
                         <fieldset>
                             <legend><b>Student Organization:</b></legend>
-                            <select id="classification" name="studentOrg">
-                                <option value=""></option>
-                                <option value="Santugon">Santugon</option>
-                                <option value="Tapat">Tapat</option>
-                                <option value="LSCS">La Salle Computer Society (LSCS)</option>
-                                <option value="Math Circle">Mathematics Circle (Math Circle)</option>
-                                <option value="POLISCY">Political Science Society (POLISCY)</option>
-                                <option value="SPRINT">Society of Proactive Role Models Inspiring Total Development (SPRINT)</option>
-                                <option value="SRDP">Student Research and Development Program (SRDP)</option>
-                                <option value="CES">Civil Engineering Society (CES)</option>
-                                <option value="SME">Society of Manufacturing Engineering (SME)</option>
-                                <option value="BMS">Business Management Society (BMS)</option>
-                                <option value="Others">Others</option>
+                            <select id="studentorg" name="studentorg">
+                                <% for(int x = 0 ; x < student.size() ; x++){ %>
+                                <option><%=student.get(x).getName()%></option>
+                                <% 
+                                    }
+                                %>
                             </select>
                             <br><br>
                         </fieldset>
@@ -447,7 +441,7 @@
                         <br>
                         <fieldset>
                             <legend><b>Program Head:</b></legend>
-                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" required>
+                            <input type = "text" name ="programhead" required>
                             <br><br>
                         </fieldset>
 

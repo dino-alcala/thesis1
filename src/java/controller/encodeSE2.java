@@ -84,6 +84,7 @@ public class encodeSE2 extends HttpServlet {
             SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
             SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
             SE.setUnittype(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+            SE.setStudentorg(1);
             SE.setStep(8);
 
             ArrayList<SEresponsible> seresponsible = new ArrayList();

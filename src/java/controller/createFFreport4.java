@@ -94,9 +94,9 @@ public class createFFreport4 extends HttpServlet {
             
             UserDAO.AddNotification(n);
 
-            request.setAttribute("FFreport", "You have successfully created the Accomplishment Report!");
+            session.setAttribute("FFreport", FFreport);
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-faithFormationProgramsList.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport4.jsp");
             dispatcher.forward(request, response);
         }
     }

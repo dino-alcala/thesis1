@@ -362,18 +362,18 @@
                                         <p><b>KRA:</b> <%=UserDAO.getKRAnameByID(SE.getTargetKRA())%></p><br>
                                         <p><b>Goal:</b> <%=UserDAO.getGoalnameByID(SE.getTargetGoal())%></p><br>
                                         <p><b>Measure/s:</b> 
-                                            <% 
+                                            <%
                                                 ArrayList<Integer> measures = new ArrayList();
                                                 measures = UserDAO.GetMeasures(SE.getId());
-                                                
-                                                for(int x = 0 ; x < measures.size() ; x++){
+
+                                                for (int x = 0; x < measures.size(); x++) {
                                             %>    
                                         <p><%=UserDAO.GetMeasureObject(measures.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measures.get(x)).getDescription()%></p>
-                                                
-                                            <%
-                                                }
-                                            %>
-                                            <br>
+
+                                        <%
+                                            }
+                                        %>
+                                        <br>
                                         <p><br><b>Community: </b> <%=UserDAO.getCommunitynameByID(SE.getTargetCommunity())%></p>
                                     </div>  
                                 </div>
@@ -555,17 +555,20 @@
                                     %>
                                 </table>
                                 <br/>
-                                
+
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Source of Funds: </h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><%=SE.getSourceOfFunds() %></p>
+                                        <p><%=SE.getSourceOfFunds()%></p>
                                     </div>
                                 </div>
                                 <br/>
 
+                                <%
+                                    if (SE.getStudentorg() != 1) {
+                                %>
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Remarks</h4>
@@ -612,11 +615,15 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <%
+                                    }
+                                %>
                                 <br/>
+                                <br>
 
                                 <center><button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button></center>  
                                 <br>
-                                
+
                                 <%
                                     if (UserDAO.getStep(Integer.parseInt(request.getAttribute("seID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
@@ -636,7 +643,7 @@
                                 <%
                                     }
                                 %>
-                                
+
 
                                 <%
                                     if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {

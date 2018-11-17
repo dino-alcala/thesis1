@@ -53,6 +53,10 @@ public class SEreport {
     protected int directhired;
     protected int independent;
     protected int external;
+    protected int graduate;
+    protected int undergraduate;
+    protected int alumni;
+    protected int parents;
     protected ArrayList<Measure> targetmeasures;
     protected String gsheets;
 
@@ -385,4 +389,38 @@ public class SEreport {
     public void setGsheets(String gsheets) {
         this.gsheets = gsheets;
     } 
+
+    public int getGraduate() {
+        return graduate;
+    }
+
+    public void setGraduate(int graduate) {
+        this.graduate = graduate;
+    }
+
+    public int getUndergraduate() {
+        return undergraduate;
+    }
+
+    public void setUndergraduate(int undergraduate) {
+        this.undergraduate = undergraduate;
+    }
+
+    public int getAlumni() {
+        return alumni;
+    }
+
+    public void setAlumni(int alumni) {
+        this.alumni = alumni;
+    }
+
+    public int getParents() {
+        return parents;
+    }
+
+    public void setParents(int parents) {
+        this.parents = parents;
+    }
+    
+    
 }

@@ -93,6 +93,7 @@ public class SE {
     protected int reject2;
     protected int reject3;
     protected int reject4;
+    protected int studentorg;
     
     public int getId() {
         return id;
@@ -727,4 +728,14 @@ public class SE {
     public void setReject4(int reject4) {
         this.reject4 = reject4;
     }
+
+    public int getStudentorg() {
+        return studentorg;
+    }
+
+    public void setStudentorg(int studentorg) {
+        this.studentorg = studentorg;
+    }
+    
+    
 }

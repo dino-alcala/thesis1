@@ -399,7 +399,7 @@
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
-                    <form action="createSEreport3" method="post">
+                    <form action="encodeSEReport2" method="post">
                         <%
                             SE SE = new SE();
                             SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));

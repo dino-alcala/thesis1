@@ -344,6 +344,22 @@
                                                 <td>External Service Personnel</td>
                                                 <td><%=FFreport.getExternal()%></td>
                                             </tr>
+                                            <tr>
+                                                <td>Graduate Students:</td>
+                                                <td><%=FFreport.getGraduate()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Undergraduate Students</td>
+                                                <td><%=FFreport.getUndergraduate()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alumni</td>
+                                                <td><%=FFreport.getAlumni()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Parents</td>
+                                                <td><%=FFreport.getParents()%></td>
+                                            </tr>
                                         </table>
                                         <br>
                                         <hr/>

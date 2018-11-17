@@ -42,8 +42,13 @@ public class FFreport {
     protected int admin;
     protected int directhired;
     protected int independent;
+    protected int graduate;
+    protected int undergraduate;
+    protected int alumni;
+    protected int parents;
     protected int external;
     protected String gsheets;
+    protected ArrayList<FFreportattendees> attendees = new ArrayList();
 
     public int getId() {
         return id;
@@ -277,5 +282,46 @@ public class FFreport {
     public void setGsheets(String gsheets) {
         this.gsheets = gsheets;
     }
+
+    public int getGraduate() {
+        return graduate;
+    }
+
+    public void setGraduate(int graduate) {
+        this.graduate = graduate;
+    }
+
+    public int getUndergraduate() {
+        return undergraduate;
+    }
+
+    public void setUndergraduate(int undergraduate) {
+        this.undergraduate = undergraduate;
+    }
+
+    public int getAlumni() {
+        return alumni;
+    }
+
+    public void setAlumni(int alumni) {
+        this.alumni = alumni;
+    }
+
+    public int getParents() {
+        return parents;
+    }
+
+    public void setParents(int parents) {
+        this.parents = parents;
+    }
+
+    public ArrayList<FFreportattendees> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(ArrayList<FFreportattendees> attendees) {
+        this.attendees = attendees;
+    }
+    
     
 }

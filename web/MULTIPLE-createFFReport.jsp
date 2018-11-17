@@ -458,6 +458,22 @@
                                         <td style="padding:12px">External Service Personnel:</td>
                                         <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
                                     </tr>
+                                    <tr>
+                                        <td style="padding:12px">Graduate Students:</td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number8" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:12px">Undergraduate Students:</td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number9" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:12px">Alumni:</td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number10" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:12px">Parents:</td>
+                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number11" required></td>
+                                    </tr>
                                 </table>
                             </center>
                             <br><br>

@@ -330,7 +330,7 @@
 
 
                 <div class="form-style-5">
-                    <form action="addFF2" method="post">
+                    <form action="encodeFF2" method="post">
                         <input type="hidden" value="1" id="countattendees" name="countattendees">
                         <fieldset>
                             <center><table style = "width:90%" id="attendeestable">

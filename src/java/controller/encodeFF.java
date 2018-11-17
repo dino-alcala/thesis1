@@ -5,11 +5,10 @@
  */
 package controller;
 
+import dao.StudentOrgDAO;
 import dao.UserDAO;
-import entity.Measure;
-import entity.SE;
-import entity.SEparticipants;
-import entity.SEreport;
+import entity.FF;
+import entity.FFexpenses;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -25,9 +24,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class createSEreport2 extends HttpServlet {
+public class encodeFF extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,60 +42,49 @@ public class createSEreport2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            UserDAO UserDAO = new UserDAO();
+            StudentOrgDAO StudentOrgDAO = new StudentOrgDAO();
             HttpSession session = request.getSession();
 
-            SEreport SEreport = new SEreport();
+            FF FF = new FF();
+
+            FF.setUnit(StudentOrgDAO.getCollegeByOrgName(request.getParameter("studentorg")));
+            FF.setDepartment(request.getParameter("studentorg"));
 
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
             java.util.Date javaDate = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
-            SEreport.setProjectTitle(request.getParameter("name"));
-            SEreport.setProgramHead(request.getParameter("programhead"));
-            SEreport.setDate(sqlDate);
-            SEreport.setTargetKRA(request.getParameter("kra"));
-            SEreport.setTargetGoal(request.getParameter("goal"));
-            SEreport.setProjectProponent(request.getParameter("proponents"));
-            SEreport.setNumberOfBeneficiaries(Integer.parseInt(request.getParameter("number")));
-            SEreport.setProjectBeneficiaries(request.getParameter("projben"));
-            SEreport.setAddressBeneficiaries(request.getParameter("addressben"));
-            SEreport.setImplementationdate(Date.valueOf(request.getParameter("implementationdate")));
-            SEreport.setAddressOfProject(request.getParameter("addressproj"));
-            SEreport.setCap(Integer.parseInt(request.getParameter("number0")));
-            SEreport.setApsp(Integer.parseInt(request.getParameter("number1")));
-            SEreport.setAsf(Integer.parseInt(request.getParameter("number2")));
-            SEreport.setFaculty(Integer.parseInt(request.getParameter("number3")));
-            SEreport.setAdmin(Integer.parseInt(request.getParameter("number4")));
-            SEreport.setDirecthired(Integer.parseInt(request.getParameter("number5")));
-            SEreport.setIndependent(Integer.parseInt(request.getParameter("number6")));
-            SEreport.setExternal(Integer.parseInt(request.getParameter("number7")));
-            SEreport.setGraduate(Integer.parseInt(request.getParameter("number8")));
-            SEreport.setUndergraduate(Integer.parseInt(request.getParameter("number9")));
-            SEreport.setAlumni(Integer.parseInt(request.getParameter("number10")));
-            SEreport.setParents(Integer.parseInt(request.getParameter("number11")));
-            SEreport.setAmountReceivedOVPLM(Double.parseDouble(request.getParameter("source")));
-            SEreport.setSeproposalID(Integer.parseInt(request.getParameter("seID")));
-            SEreport.setGsheets(request.getParameter("gsheets"));
-            
-            ArrayList<Measure> targetmeasures = new ArrayList();
-            UserDAO UserDAO = new UserDAO();
-            
-            ArrayList<Integer> measuresid = new ArrayList();
-            measuresid = UserDAO.GetMeasures(Integer.parseInt(request.getParameter("seID")));
-            
-            for(int x = 0 ; x < measuresid.size() ; x++){
-                targetmeasures.add(UserDAO.GetMeasureObject(x));
+            FF.setDatecreated(sqlDate);
+            FF.setProgramHead(request.getParameter("programhead"));
+            FF.setActivityClassification(request.getParameter("classification"));
+            FF.setProjectName(request.getParameter("pname"));
+            FF.setVenue(request.getParameter("pvenue"));
+            FF.setSpeaker(request.getParameter("pspeaker"));
+            FF.setObjectives(request.getParameter("objectives"));
+            FF.setActualDate(Date.valueOf(request.getParameter("actualdate")));
+            FF.setTotalAmount(Double.parseDouble(request.getParameter("pbudget")));
+            FF.setSourceOfFunds(request.getParameter("funds"));
+
+            ArrayList<FFexpenses> ffexpense = new ArrayList();
+
+            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                FFexpenses FFexpenses = new FFexpenses();
+                FFexpenses.setItem(request.getParameter("ffitem" + i));
+                FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
+                FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
+                FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
+                ffexpense.add(FFexpenses);
             }
+
+            FF.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+            FF.setExpenses(ffexpense);
             
-            SEreport.setTargetmeasures(targetmeasures);
+            session.setAttribute("FF", FF);
 
-            session.setAttribute("SEreport", SEreport);
-            request.setAttribute("seID", request.getParameter("seID"));
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEReport2.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFF2.jsp");
             dispatcher.forward(request, response);
-
         }
     }
 

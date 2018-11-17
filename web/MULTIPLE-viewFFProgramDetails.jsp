@@ -359,17 +359,20 @@
                                     </tr>
                                 </table>
                                 <br/>
-                                
+
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Source of Funds: </h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><%=FF.getSourceOfFunds() %></p>
+                                        <p><%=FF.getSourceOfFunds()%></p>
                                     </div>
                                 </div>
                                 <br/>
-                                
+
+                                <%
+                                    if (!FF.getUnit().contains("Student Organization")) {
+                                %>
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Remarks</h4>
@@ -414,35 +417,39 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <%
+                                    }
+                                %>
+                                <br>
                                 <br>
 
-                                
-                                <% if(FF.getStep() == 8){ %>
+
+                                <% if (FF.getStep() == 8) { %>
                                 <div>
                                     <center><h2>Project is now ready for implementation</h2></center>
                                 </div>
                                 <br>
                                 <% } %>
-                                
-                                <% if(FF.getStep() == 0){ %>
+
+                                <% if (FF.getStep() == 0) { %>
                                 <div>
                                     <center><h2>Project has been canceled</h2></center>
                                 </div>
                                 <br>
                                 <% } %>
-                                
-                                <% if(FF.getStep() == -1){ %>
+
+                                <% if (FF.getStep() == -1) { %>
                                 <div>
                                     <center><h2>Project has been rejected</h2></center>
                                 </div>
                                 <br>
-                                <% } %>
-                                
+                                <% }%>
+
                                 <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
                                 <br>
                                 <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>
                                 <br>
-                                
+
                                 <%
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>
@@ -459,11 +466,10 @@
                                 <br>
                                 <%
                                     }
-                                 %>
-                                 
-                                 
-                                 <%
+                                %>
 
+
+                                <%
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() > 0) {
                                 %>
                                 <div>
@@ -474,10 +480,10 @@
                                 <br>
                                 <%
                                     }
-                                 %>
-                                 
-                                 
-                                 <%
+                                %>
+
+
+                                <%
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() != 0 && FF.getStep() != -1) {
                                 %>
 

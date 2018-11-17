@@ -45,7 +45,7 @@ public class encodeSE extends HttpServlet {
             SE SE = new SE();
             StudentOrgDAO StudentOrgDAO = new StudentOrgDAO();
 
-            SE.setUnit(StudentOrgDAO.getCollegeByOrgName(request.getParameter("studentorg")) + " - Student Organization");
+            SE.setUnit(StudentOrgDAO.getCollegeByOrgName(request.getParameter("studentorg")));
             SE.setDepartment(request.getParameter("studentorg"));
 
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
