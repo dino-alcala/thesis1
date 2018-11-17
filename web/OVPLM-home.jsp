@@ -583,7 +583,31 @@
                                 <td></td>
                                 <td>All administrators have undergone the Lasallian formation activity<br><br>
                                     Basta may FF yung admin pasok na dito</td>
-                                <td></td>
+                                <%
+                                        double percent4 = UserDAO.fourthTarget();
+
+                                        if (percent4 < 33) {
+                                    %>
+                                <td class="accomplishmentRed"><%=percentage.format(percent4)%>%</td>
+                                <%
+                                    }
+
+                                    if (percent4 >= 33 && percent4 <= 66) {
+                                %>
+                                <td class="accomplishmentYellow"><%=percentage.format(percent4)%>%</td>
+
+                                <%
+                                    }
+
+                                    if (percent4 > 66) {
+
+                                %>
+
+                                <td class="accomplishmentGreen"><%=percentage.format(percent4)%>%</td>
+
+                                <%
+                                    }
+                                %>
                             </tr>
 
                             <!--- Goal 1 Measure 3-->
@@ -852,7 +876,7 @@
                                 <%
                                     }
 
-                                    if (percent12 > 66) {
+                                    if (percent13 > 66) {
 
                                 %>
 
