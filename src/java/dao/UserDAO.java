@@ -12822,6 +12822,43 @@ public class UserDAO {
         }
         return count;
     }
+    
+    public int countSEProposalByDepartment(String department, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        int count = 0;
+        try {
+            String query = "SELECT count(department) FROM seproposal WHERE step = 8 AND department = ? AND datecreated >= ? AND datecreated <= ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, department);
+            pstmt.setDate(2, startDate);
+            pstmt.setDate(3, endDate);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                count = rs2.getInt("count(department)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
 
     public int countFFProposalByUnit(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -12843,6 +12880,43 @@ public class UserDAO {
 
             while (rs2.next()) {
                 count = rs2.getInt("count(unit)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countFFProposalByDepartment(String department, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        int count = 0;
+        try {
+            String query = "SELECT count(department) FROM ffproposal WHERE step = 8 AND department = ? AND datecreated >= ? AND datecreated <= ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, department);
+            pstmt.setDate(2, startDate);
+            pstmt.setDate(3, endDate);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                count = rs2.getInt("count(department)");
             }
 
         } catch (SQLException ex) {
@@ -16049,5 +16123,44 @@ public class UserDAO {
                 /* ignored */ }
         }
         return percent;
+    }
+    
+    public ArrayList<Department> getDepartmentsByUnit(String unit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT d.department FROM unit_department ud JOIN department d ON ud.departmentID = d.departmentID JOIN unit u ON ud.unitID = u.unitID WHERE u.unitName = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Department> Departments = new ArrayList<Department>();
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, unit);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Department d = new Department();
+                d.setName(rs.getString("d.department"));
+                Departments.add(d);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return Departments;
     }
 }

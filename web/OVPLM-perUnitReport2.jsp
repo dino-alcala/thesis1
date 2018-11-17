@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Department"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.Community"%>
@@ -951,25 +952,25 @@
                         </div>
                         <script>
                             <%
-                                ArrayList<Unit> units = new ArrayList();
-                                units = UserDAO.retrieveUnits();
+                                ArrayList<Department> departments = new ArrayList();
+                                departments = UserDAO.getDepartmentsByUnit(request.getAttribute("unit").toString());
                             %>
                             Chart.defaults.global.legend.display = true;
                             var ctx = document.getElementById('chartU').getContext('2d');
                             var chartU = new Chart(ctx, {
                             type: 'horizontalBar',
                                     data: {
-                                    labels: [<%for (int i = 0; i < units.size(); i++) {%>"<%=units.get(i).getName()%>",<%}%>],
+                                    labels: [<%for (int i = 0; i < departments.size(); i++) {%>"<%=departments.get(i).getName()%>",<%}%>],
                                             datasets: [
                                             {
                                             label: "Social Engagement",
-                                                    backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA7A2D",<%}%>],
-                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.countSEProposalByUnit(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                    backgroundColor: [<%for (int i = 0; i < departments.size(); i++) {%>"#EA7A2D",<%}%>],
+                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countSEProposalByDepartment(departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }
                                             , {
                                             label: "Faith Formation",
-                                                    backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
-                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.countFFProposalByUnit(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                    backgroundColor: [<%for (int i = 0; i < departments.size(); i++) {%>"#2D36EA",<%}%>],
+                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countFFProposalByDepartment(departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }]
 
                                     },
