@@ -9608,6 +9608,7 @@ public class UserDAO {
                 SEfunds f = new SEfunds();
                 f.setLineItem(rs2.getString("lineItem"));
                 f.setApprovedAmount(rs2.getDouble("approvedAmount"));
+                f.setExpendedAmount(rs2.getDouble("expendedAmount"));
                 f.setVariance(rs2.getDouble("variance"));
                 f.setReasonVariance(rs2.getString("reasonVariance"));
                 funds.add(f);
@@ -9739,6 +9740,7 @@ public class UserDAO {
                 f.setLineItem(rs2.getString("lineItem"));
                 f.setApprovedAmount(rs2.getDouble("approvedAmount"));
                 f.setVariance(rs2.getDouble("variance"));
+                f.setExpendedAmount(rs2.getDouble("expendedAmount"));
                 f.setReasonVariance(rs2.getString("reasonVariance"));
                 funds.add(f);
             }

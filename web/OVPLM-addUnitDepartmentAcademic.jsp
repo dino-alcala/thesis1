@@ -439,11 +439,7 @@
                                                     <input type="text" name="unitname" class="field-long" />
                                                 </li>
                                                 <li>
-                                                    <label>Unit Name: <span class="required"></span></label>
-                                                    <input type="text" name="unitname" class="field-long" />
-                                                </li>
-                                                <li>
-                                                    <label>Unit Head: <span class="required"></span></label>
+                                                    <label>Department Head: <span class="required"></span></label>
                                                     <input type="text" name="unithead" class="field-long" />
                                                 </li>
                                                 <br>
@@ -480,7 +476,7 @@
                                                     <input type="text" name="external" class="field-long" />
                                                 </li>
                                                 <li>
-                                                    <label>Unit Description: <span class="required"></span></label>
+                                                    <label>Department Description: <span class="required"></span></label>
                                                     <textarea name="unitdescription" rows="4" class="field-long"></textarea>
                                                 </li>
                                                 <li>
