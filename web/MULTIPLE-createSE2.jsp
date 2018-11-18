@@ -37,6 +37,16 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
+            html{
+                font-size:14px;
+            }
+            .navbar{
+                height:8%;
+            }
+            .sidebar-expanded{
+                margin-top:0.1%;
+            }
+            
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
@@ -279,18 +289,16 @@
                 
                 if(rows > 0){
                     for (var x = 0; x < count; x++) {
-                        var a = x;
-                        var y = document.getElementById("sequantity" + a).value;
-                        var z = document.getElementById("seunitcost" + a).value;
-                        var subtotal = document.getElementById("sesubtotal" + a);
+                        var y = document.getElementById("sequantity" + x).value;
+                        var z = document.getElementById("seunitcost" + x).value;
+                        var subtotal = document.getElementById("sesubtotal" + x);
                         subtotal.setAttribute('value', y * z);
                     }
                 }
                 
                 for(var x = 0 ; x < count ; x++){
-                    var a = x;
-                    var b = document.getElementById("sesubtotal" + a).value;
-                    total = total + b;
+                    var b = document.getElementById("sesubtotal" + x).value;
+                    total = (total*1) + (b*1);
                 }
                 document.getElementById("total").setAttribute('value', total);
             }
@@ -492,7 +500,7 @@
                                         <td></td>
                                         <td></td>
                                         <td>Total: </td>
-                                        <td><input type="number" style="margin-bottom:1%; border-radius:0px" id="total" readonly value="0"></td>
+                                        <td><input type="number" style="margin-bottom:1%; border-radius:0px" name="total" id="total" readonly value="0"></td>
                                     </tr>
                                 </table></center>
                             <br>

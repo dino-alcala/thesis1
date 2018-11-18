@@ -55,6 +55,7 @@ public class addSE2 extends HttpServlet {
 
             SE = (SE) session.getAttribute("SE");
 
+            if(Double.parseDouble(request.getParameter("total")) == SE.getTotalAmount()){
             ArrayList<SEworkplan> sework = new ArrayList();
 
             for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
@@ -193,7 +194,14 @@ public class addSE2 extends HttpServlet {
                 dispatcher.forward(request, response);
 
             }
+            } else if (Double.parseDouble(request.getParameter("total")) != SE.getTotalAmount()){
+                request.setAttribute("successSE", "Amount is not equal!!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/#");
+                dispatcher.forward(request, response);
+            }
         }
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -35,15 +35,15 @@
                 try {
                     session.setAttribute("jspName", "DSA-home.jsp");
                 } catch (Exception e) {
-                    
+
                 }
             } else {
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/"+ session.getAttribute("jspName").toString());
-                    dispatcher.forward(request, response);
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/" + session.getAttribute("jspName").toString());
+                dispatcher.forward(request, response);
             }
         %>
-        
+
         <script>
             $(document).ready(function () {
                 $("#myInput").on("keyup", function () {
@@ -94,7 +94,7 @@
             }
 
         </script>
-        
+
         <script type="text/javascript">
             <%
                 if (request.getAttribute("successSE") != null) {
@@ -122,6 +122,16 @@
         </script>
 
         <style>
+            html{
+                font-size:14px;
+            }
+            .navbar{
+                height:8%;
+            }
+            .sidebar-expanded{
+                margin-top:0.1%;
+            }
+
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;
@@ -365,25 +375,25 @@
                     </a>
                     <div id="submenuReports" class="collapse sidebar-submenu">
                         <a href="MULTIPLE-seReportsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
-                    </a>
-                    <%
-                        if (session.getAttribute("position").toString().equals("DSA - Dean")) {
-                     %>
-                    <a href="OVPLM-budgetPerformanceReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
-                    </a>
-                    <a href="OVPLM-perCommunityReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                    <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Units</span>
-                    </a>
-                    <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
-                    </a>
-                    <%
-                        }
+                            <span class="menu-collapsed" id="subMenuCategory">Accomplishment</span>
+                        </a>
+                        <%
+                            if (session.getAttribute("position").toString().equals("DSA - Dean")) {
+                        %>
+                        <a href="OVPLM-budgetPerformanceReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Budgets</span>
+                        </a>
+                        <a href="OVPLM-perCommunityReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
+                        </a>
+                        <a href="OVPLM-perUnitReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
+                        </a>
+                        <a href="OVPLM-termEndReport.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
+                            <span class="menu-collapsed" id="subMenuCategory">Term-End</span>
+                        </a>
+                        <%
+                            }
                         %>
                     </div>
                 </ul>

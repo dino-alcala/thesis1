@@ -46,6 +46,16 @@ ProgramsForApproval
 
 
         <style>
+            html{
+                font-size:14px;
+            }
+            .navbar{
+                height:8%;
+            }
+            .sidebar-expanded{
+                margin-top:0.1%;
+            }
+            
             #notifsScroll {
                 overflow-y: auto; 
                 overflow-x: hidden;

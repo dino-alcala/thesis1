@@ -24,6 +24,7 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -204,7 +205,7 @@
                 color: white;
                 background-color: red;
             }
-            
+
             html{
                 font-size:14px;
             }
@@ -214,6 +215,17 @@
             .sidebar-expanded{
                 margin-top:0.1%;
             }
+
+            .button{
+                background-color: #333333;
+                border: 5px;
+                color: white;
+                font-size:18px;
+                text-align: center;
+                font-family: "Times New Roman", Times, serif;
+                width:100%;
+            }
+
         </style>
 
     </head>
@@ -447,9 +459,9 @@
             </div>
 
             <!-- MAIN -->
-<<<<<<< HEAD
-            <form action="viewKRATracing" method="post">
-                <div class="col py-3">
+
+            <div class="col py-3">
+                <form action="viewKRATracing">
                     <!---KRAs-->
                     <div class="container-fluid panels">
                         <h4>Key Result Areas</h4>
@@ -458,45 +470,14 @@
                         <table class="table table-bordered">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Goals</th>
-                                    <th scope="col">Measures</th>
-                                    <th scope="col">Targets</th>
-                                    <th scope="col">Accomplishment</th>
+                                    <th style='width:30%' scope="col">Goals</th>
+                                    <th style='width:30%' scope="col">Measures</th>
+                                    <th style='width:30%' scope="col">Targets</th>
+                                    <th style='width:5%' scope="col">Accomplishment</th>
+                                    <th style="width:5%"></th>
                                 </tr>
                             </thead>
                             <tbody>
-=======
-            <div class="col py-3">
-                <!---KRAs-->
-                <div class="container-fluid panels">
-                    <h4>Key Result Areas</h4>
-
-                    <h5>KRA 3. Formation for all sectors that is truly Lasallian </h5>
-                    <table class="table table-bordered">
-                        <thead class="thead-light">
-                            <tr>
-                                <th style='width:30%' scope="col">Goals</th>
-                                <th style='width:30%' scope="col">Measures</th>
-                                <th style='width:30%' scope="col">Targets</th>
-                                <th style='width:10%' scope="col">Accomplishment</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                DecimalFormat percentage = new DecimalFormat("0.00");
-
-                            %>
-                            <!--- Goal 1 Measure 1-->
-                            <tr>
-                                <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
-                                <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
-                                <td>50% of student organizations have implemented a Lasallian formation activity</td>
-                                    <%                                   
-                                        double percent1 = UserDAO.firstTarget();
-                                        if (percent1 < 17) {
-                                    %>
-                                <td class="accomplishmentRed"><%=percentage.format(percent1)%>%</td>
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
                                 <%
                                     DecimalFormat percentage = new DecimalFormat("0.00");
 
@@ -505,12 +486,10 @@
                                 <tr>
                                     <td><b>G1 </b> Implement sustainable, holistic and developmental Lasallian formation  across all sectors based on the Lasallian Guiding Principles </td>
                                     <td><b>M1</b> Integration in curricular and co-curricular programs of formation based on Lasallian spirituality and mission </td>
-                                    <td>50% of student organizations have implemented a Lasallian formation activity<br><br>
-                                        Basta may FF yung student org pasok na dito</td>
-                                        <%                                    double percent1 = UserDAO.firstTarget();
-
-                                            if (percent1 < 17) {
-                                        %>
+                                    <td>50% of student organizations have implemented a Lasallian formation activity</td>
+                                    <%                                        double percent1 = UserDAO.firstTarget();
+                                        if (percent1 < 17) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent1)%>%</td>
                                     <%
                                         }
@@ -526,45 +505,24 @@
 
                                     %>
 
-<<<<<<< HEAD
                                     <td class="accomplishmentGreen"><%=percentage.format(percent1)%>%</td>
-=======
-                                <%
-                                    }
-                                %>
-                            </tr>
-
-                            <!--- Goal 1 Measure 2-->
-                            <tr>
-                                <td></td>
-                                <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
-                                <td>50% of faculty departments have undergone Lasallian formation program</td>
-                                    <%
-                                        double percent2 = UserDAO.secondTarget();
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
 
                                     <%
                                         }
                                     %>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="first" value="1">View</button></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="first" value="1">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 2-->
                                 <tr>
                                     <td></td>
                                     <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
-                                    <td>50% of faculty departments have undergone Lasallian formation program<br><br>
-                                        Basta may FF yung department pasok na dito</td>
-                                        <%
-                                            double percent2 = UserDAO.secondTarget();
+                                    <td>50% of faculty departments have undergone Lasallian formation program</td>
+                                    <%
+                                        double percent2 = UserDAO.secondTarget();
 
-                                            if (percent2 < 17) {
-                                        %>
+                                        if (percent2 < 17) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent2)%>%</td>
                                     <%
                                         }
@@ -585,37 +543,20 @@
                                     <%
                                         }
                                     %>
-
-<<<<<<< HEAD
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="second" value="2">View</button></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="second" value="2">View</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>75% of staff have undergone Lasallian formation programs <br><br>
-                                        Basta may FF yung staff pasok na dito</td>
-                                        <%
-                                            double percent3 = UserDAO.thirdTarget();
+                                    <td>75% of staff have undergone Lasallian formation programs</td>
+                                    <%
+                                        double percent3 = UserDAO.thirdTarget();
 
-                                            if (percent3 < 25) {
-                                        %>
+                                        if (percent3 < 25) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent3)%>%</td>
                                     <%
                                         }
-=======
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>75% of staff have undergone Lasallian formation programs</td>
-                                <%
-                                        double percent3 = UserDAO.thirdTarget();
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
 
                                         if (percent3 >= 25 && percent3 <= 50) {
                                     %>
@@ -633,40 +574,20 @@
                                     <%
                                         }
                                     %>
-
-<<<<<<< HEAD
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="third" value="3">View</button></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="third" value="3">View</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>All administrators have undergone the Lasallian formation activity<br><br>
-                                        Basta may FF yung admin pasok na dito</td>
-                                        <%
-                                            double percent4 = UserDAO.fourthTarget();
+                                    <td>All administrators have undergone the Lasallian formation activity</td>
+                                    <%
+                                        double percent4 = UserDAO.fourthTarget();
 
-                                            if (percent4 < 33) {
-                                        %>
+                                        if (percent4 < 33) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent4)%>%</td>
                                     <%
                                         }
-=======
-                                <%
-                                    }
-                                %>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>All administrators have undergone the Lasallian formation activity</td>
-                                <%
-                                        double percent4 = UserDAO.fourthTarget();
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
 
                                         if (percent4 >= 33 && percent4 <= 66) {
                                     %>
@@ -681,59 +602,22 @@
 
                                     <td class="accomplishmentGreen"><%=percentage.format(percent4)%>%</td>
 
-<<<<<<< HEAD
-=======
-                                <%
-                                    }
-                                %>
-                            </tr>
-
-                            <!--- Goal 1 Measure 3-->
-                            <tr>
-                                <td></td>
-                                <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
-                                <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
                                     <%
                                         }
                                     %>
-
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="fourth" value="4">View</button></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="fourth" value="4">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 3-->
                                 <tr>
                                     <td></td>
                                     <td><b>M3</b> Number of Lasallian formation activities available for other sectors in the DLSU community  </td>
-                                    <td>At Least one formation activity engaging alumni, parents, and community partners. <br><br>
-                                        Basta may FF yung pasok na dito (di pa sure kung kaya to matrack)</td>
-                                        <%
-                                            if (!UserDAO.fifthTarget()) {
-                                        %>
+                                    <td>At Least one formation activity engaging alumni, parents, and community partners.</td>
+                                    <%
+                                        if (!UserDAO.fifthTarget()) {
+                                    %>
                                     <td class="accomplishmentRed"><%=0%>%</td>
 
-<<<<<<< HEAD
-=======
-                                %>
-
-                                <td class="accomplishmentGreen"><%=100%>%</td>
-
-                                <%
-                                    }
-                                %>
-                            </tr>
-
-                            <!--- Goal 2 Measure 1-->
-                            <tr>
-                                <td><b>G2 </b> Create a conducive environment that helps bridge faith and scholarship </td>
-                                <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
-                                <td>At least one interdisciplinary activity conducted each term</td>
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
                                     <%
                                         }
 
@@ -746,26 +630,19 @@
                                     <%
                                         }
                                     %>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="fifth" value="5">View</button></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="fifth" value="5">View</button></td>
                                 </tr>
 
                                 <!--- Goal 2 Measure 1-->
                                 <tr>
                                     <td><b>G2 </b> Create a conducive environment that helps bridge faith and scholarship </td>
                                     <td><b>M1</b> Number of fora and other interdisciplinary activities focused on bridging faith and scholarship (e.g. ethics, heritage, culture, science, theology, philosophy) </td>
-                                    <td>At least one interdisciplinary activity conducted each term<br><br>
-                                        Basta may SE type na fora pasok na dito</td>
-                                        <%
-                                            double percent6 = UserDAO.sixthTarget();
+                                    <td>At least one interdisciplinary activity conducted each term</td>
+                                    <%
+                                        double percent6 = UserDAO.sixthTarget();
 
-                                            if (percent6 < 1) {
-                                        %>
+                                        if (percent6 < 1) {
+                                    %>
                                     <td class="accomplishmentRed"><%=0%>%</td>
 
                                     <%
@@ -775,40 +652,25 @@
 
                                     %>
 
-<<<<<<< HEAD
                                     <td class="accomplishmentGreen"><%=100%>%</td>
-=======
-                            <!--- Goal 2 Measure 2-->
-                            <tr>
-                                <td> </td>
-                                <td><b>M2</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
-                                <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
-                                <%
-                                        double percent7 = UserDAO.seventhTarget();
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
 
                                     <%
                                         }
                                     %>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="sixth" value="6">View</button></td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="sixth" value="6">View</button></td>
-                                </tr>
+
 
                                 <!--- Goal 2 Measure 2-->
                                 <tr>
                                     <td> </td>
                                     <td><b>M2</b> Participation of international students in co-curricular activities promoting interfaith and multicultural diversity </td>
-                                    <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity<br><br>
-                                        Basta may SE type na fora pasok na dito</td>
-                                        <%
-                                            double percent7 = UserDAO.seventhTarget();
+                                    <td>50% of international students participate in co-curricular activities promoting interfaith and multicultural diversity</td>
+                                    <%
+                                        double percent7 = UserDAO.seventhTarget();
 
-                                            if (percent7 < 17) {
-                                        %>
+                                        if (percent7 < 17) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent7)%>%</td>
                                     <%
                                         }
@@ -826,60 +688,19 @@
 
                                     <td class="accomplishmentGreen"><%=percentage.format(percent7)%>%</td>
 
-<<<<<<< HEAD
-=======
-                                <%
-                                    }
-                                %>
-                            </tr>
-
-                            <!--- Goal 3 Measure 1-->
-                            <tr>
-                                <td><b>G3 </b> Create and nurture communities dedicated to promoting the Lasallian mission and spirituality  across all sectors based on the Lasallian Guiding Principles </td>
-                                <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
-                                <td>3 communities</td>
-                                <td></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                    <h5>KRA 5.  Community that is attuned to a sustainable Earth and socially engaged </h5>
-                    <table class="table table-bordered">
-                        <thead class="thead-light">
-                            <tr>
-                                <th style='width:30%' scope="col">Goals</th>
-                                <th style='width:50%' scope="col">Measures</th>
-                                <th style='width:10%' scope="col">Targets</th>
-                                <th style='width:10%' scope="col">Accomplishment</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--- Goal 1 Measure 1-->
-                            <tr>
-                                <td><b>G1 </b> Each unit of the University has at least one sustainable social engagement project </td>
-                                <td><b>M1</b> Number of sustainable social engagement project of units </td>
-                                <td>20%</td>
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
                                     <%
                                         }
                                     %>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="seventh" value="7">View</button></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="seventh" value="7">View</button></td>
                                 </tr>
 
                                 <!--- Goal 3 Measure 1-->
                                 <tr>
                                     <td><b>G3 </b> Create and nurture communities dedicated to promoting the Lasallian mission and spirituality  across all sectors based on the Lasallian Guiding Principles </td>
                                     <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
-                                    <td>3 communities <br><br>
-                                        Di pa sure pano to matrack</td>
+                                    <td>3 communities</td>
                                     <td></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="eighth" value="8">View</button></td>
                                 </tr>
 
                             </tbody>
@@ -889,10 +710,11 @@
                         <table class="table table-bordered">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Goals</th>
-                                    <th scope="col">Measures</th>
-                                    <th scope="col">Targets</th>
-                                    <th scope="col">Accomplishment</th>
+                                    <th style='width:30%' scope="col">Goals</th>
+                                    <th style='width:50%' scope="col">Measures</th>
+                                    <th style='width:10%' scope="col">Targets</th>
+                                    <th style='width:5%' scope="col">Accomplishment</th>
+                                    <th style="width:5%;"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -900,13 +722,12 @@
                                 <tr>
                                     <td><b>G1 </b> Each unit of the University has at least one sustainable social engagement project </td>
                                     <td><b>M1</b> Number of sustainable social engagement project of units </td>
-                                    <td>20%<br><br>
-                                        Pag yung isang SE proposal nakacheck yung Sustainability Component, sustainable na siya so pasok na dito</td>
-                                        <%
-                                            double percent9 = UserDAO.NinthTarget();
+                                    <td>20%</td>
+                                    <%
+                                        double percent9 = UserDAO.NinthTarget();
 
-                                            if (percent9 < 7) {
-                                        %>
+                                        if (percent9 < 7) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent9)%>%</td>
                                     <%
                                         }
@@ -927,26 +748,21 @@
                                     <%
                                         }
                                     %>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="ninth" value="9">View</button></td>
                                 </tr>
 
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="ninth" value="9">View</button></td>
-                                </tr>
 
                                 <!--- Goal 1 Measure 2A-->
                                 <tr>
                                     <td></td>
-                                    <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>A.</b> Percentage of student organizations involved in community engagement programs and activities</td>
-                                    <td>50% <br><br>
-                                        Basta may SE program pasok na dito</td>
-                                        <%
-                                            double percent10 = UserDAO.tenthTarget();
+                                    <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities<br><br>
+                                        A. Percentage of student organizations involved in community engagement programs and activities</td>
+                                    <td>50%</td>
+                                    <%
+                                        double percent10 = UserDAO.tenthTarget();
 
-                                            if (percent10 < 17) {
-                                        %>
+                                        if (percent10 < 17) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent10)%>%</td>
                                     <%
                                         }
@@ -955,15 +771,6 @@
                                     %>
                                     <td class="accomplishmentYellow"><%=percentage.format(percent10)%>%</td>
 
-<<<<<<< HEAD
-=======
-                            <!--- Goal 1 Measure 2A-->
-                            <tr>
-                                <td></td>
-                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities<br><br>
-                                    A. Percentage of student organizations involved in community engagement programs and activities</td>
-                                <td>50%</td>
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
                                     <%
                                         }
 
@@ -976,26 +783,20 @@
                                     <%
                                         }
                                     %>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="tenth" value="10">View</button></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="tenth" value="10">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 2B-->
                                 <tr>
                                     <td></td>
-                                    <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>B.</b> Percentage of staff engaged in community engagement programs and activities</td>
-                                    <td>50% <br><br>
-                                        Basta may SE program pasok na dito</td>
-                                        <%
-                                            double percent11 = UserDAO.eleventhTarget();
+                                    <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities<br><br>
+                                        B. Percentage of staff engaged in community engagement programs and activities</td>
+                                    <td>50%</td>
+                                    <%
+                                        double percent11 = UserDAO.eleventhTarget();
 
-                                            if (percent11 < 17) {
-                                        %>
+                                        if (percent11 < 17) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent11)%>%</td>
                                     <%
                                         }
@@ -1009,49 +810,27 @@
 
                                         if (percent11 > 35) {
 
-<<<<<<< HEAD
                                     %>
 
                                     <td class="accomplishmentGreen"><%=percentage.format(percent11)%>%</td>
-=======
-                                <%
-                                    }
-                                %>
-                            </tr>
-
-                            <!--- Goal 1 Measure 2B-->
-                            <tr>
-                                <td></td>
-                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities<br><br>
-                                   B. Percentage of staff engaged in community engagement programs and activities</td>
-                                <td>50%</td>
-                                <%
-                                        double percent11 = UserDAO.eleventhTarget();
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
 
                                     <%
                                         }
                                     %>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="eleventh" value="11">View</button></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="eleventh" value="11">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 2C-->
                                 <tr>
                                     <td></td>
-                                    <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities <b>C.</b> Percentage of departments with community engagement project  </td>
-                                    <td>20% <br><br>
-                                        Basta may SE program pasok na dito</td>
-                                        <%
-                                            double percent12 = UserDAO.twelfthTarget();
+                                    <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities<br><br>
+                                        C. Percentage of departments with community engagement project  </td>
+                                    <td>20%</td>
+                                    <%
+                                        double percent12 = UserDAO.twelfthTarget();
 
-                                            if (percent12 < 7) {
-                                        %>
+                                        if (percent12 < 7) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent12)%>%</td>
                                     <%
                                         }
@@ -1069,44 +848,25 @@
 
                                     <td class="accomplishmentGreen"><%=percentage.format(percent12)%>%</td>
 
-<<<<<<< HEAD
-=======
-                                <%
-                                    }
-                                %>
-                            </tr>
-
-                            <!--- Goal 1 Measure 2C-->
-                            <tr>
-                                <td></td>
-                                <td><b>M2</b> Involvement of faculty, student, and personnel in DLSU community engagement programs and activities<br><br>
-                                    C. Percentage of departments with community engagement project  </td>
-                                <td>20%</td>
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
                                     <%
                                         }
                                     %>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="twelfth" value="12">View</button></td>
                                 </tr>
 
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="twelfth" value="12">View</button></td>
-                                </tr>
                                 <!--- Goal 1 Measure 3-->
                                 <tr>
                                     <td></td>
-                                    <td><b>M3</b> Number of social engagement choices under the four components of the Sustainable Development Goals Localization Project
-                                         L-ARAL, (Education)  L-SEED (Social Enterprise)  L-Envisage (Environment / DRR)  L-HEARTS (Health and Wellness) 
+                                    <td><b>M3</b> Number of social engagement choices under the four components of the Sustainable Development Goals Localization Project<br><br>
+                                        - L-ARAL, (Education) - L-SEED (Social Enterprise) <br>
+                                        - L-Envisage (Environment / DRR) - L-HEARTS (Health and Wellness) <br>
                                     </td>
-                                    <td>16 <br><br>
-                                        Nasa seproposal yung classification sa db</td>
-                                        <%
-                                            double percent13 = UserDAO.thirteenthTarget();
+                                    <td>16</td>
+                                    <%
+                                        double percent13 = UserDAO.thirteenthTarget();
 
-                                            if (percent13 < 33) {
-                                        %>
+                                        if (percent13 < 33) {
+                                    %>
                                     <td class="accomplishmentRed"><%=percentage.format(percent13)%>%</td>
                                     <%
                                         }
@@ -1124,64 +884,42 @@
 
                                     <td class="accomplishmentGreen"><%=percentage.format(percent13)%>%</td>
 
-<<<<<<< HEAD
-=======
-                                <%
-                                    }
-                                %>
-                            </tr>
-
-                            <!--- Goal 1 Measure 3-->
-                            <tr>
-                                <td></td>
-                                <td><b>M3</b> Number of social engagement choices under the four components of the Sustainable Development Goals Localization Project
-                                     L-ARAL, (Education)  L-SEED (Social Enterprise)  L-Envisage (Environment / DRR)  L-HEARTS (Health and Wellness) 
-                                </td>
-                                <td>16</td>
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
                                     <%
                                         }
                                     %>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="thirteenth" value="13">View</button></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="thirteenth" value="13">View</button></td>
                                 </tr>
 
                                 <!--- Goal 2 Measure 1A-->
                                 <tr>
                                     <td><b>G2</b> Service Learning is institutionalized</td>
-                                    <td><b>M1</b> Service learning (SL) component of academic programs   
-                                        <b>A.</b> Percentage of undergraduate programs with SL component</td>
-                                    <td>50% <br><br>
-                                        Basta may service-learning na SE type pasok na dito</td>
+                                    <td><b>M1</b> Service learning (SL) component of academic programs<br><br>
+                                        A. Percentage of undergraduate programs with SL component</td>
+                                    <td>50%</td>
                                     <td></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="fourteenth" value="14">View</button></td>
                                 </tr>
 
                                 <!--- Goal 2 Measure 1B-->
                                 <tr>
                                     <td></td>
-                                    <td><b>M1</b> Service learning (SL) component of academic programs   
-                                        <b>B.</b> Percentage of graduate programs with SL component </td>
-                                    <td>10% <br><br>
-                                        Basta may service-learning na SE type pasok na dito</td>
+                                    <td><b>M1</b> Service learning (SL) component of academic programs<br><br>
+                                        B. Percentage of graduate programs with SL component </td>
+                                    <td>10%/td>
                                     <td></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="fifteenth" value="15">View</button></td>
                                 </tr>
 
                                 <!--- Goal 2 Measure 2-->
                                 <tr>
                                     <td></td>
                                     <td><b>M2</b> Number of international SL activities </td>
-                                    <td>1 <br><br>
-                                        Basta may service-learning na SE type pasok na dito</td>
-                                        <%
-                                            double percent16 = UserDAO.sixteenthTarget();
+                                    <td>1</td>
+                                    <%
+                                        double percent16 = UserDAO.sixteenthTarget();
 
-                                            if (percent16 < 1) {
-                                        %>
+                                        if (percent16 < 1) {
+                                    %>
                                     <td class="accomplishmentRed"><%=0%>%</td>
 
                                     <%
@@ -1193,127 +931,85 @@
 
                                     <td class="accomplishmentGreen"><%=100%>%</td>
 
-<<<<<<< HEAD
-=======
-                                <%
-                                    }
-                                %>
-                            </tr>
-
-                            <!--- Goal 2 Measure 1A-->
-                            <tr>
-                                <td><b>G2</b> Service Learning is institutionalized</td>
-                                <td><b>M1</b> Service learning (SL) component of academic programs   
-                                    <b>A.</b> Percentage of undergraduate programs with SL component</td>
-                                <td>50%</td>
-                                <td></td>
-                            </tr>
-
-                            <!--- Goal 2 Measure 1B-->
-                            <tr>
-                                <td></td>
-                                <td><b>M1</b> Service learning (SL) component of academic programs   
-                                    <b>B.</b> Percentage of graduate programs with SL component </td>
-                                <td>10%/td>
-                                <td></td>
-                            </tr>
-
-                            <!--- Goal 2 Measure 2-->
-                            <tr>
-                                <td></td>
-                                <td><b>M2</b> Number of international SL activities </td>
-                                <td>1</td>
->>>>>>> d622bfd16f55711cf38c219df88dc3ed3161ed0a
                                     <%
                                         }
                                     %>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" name="sixteenth" value="16">View</button></td>
+                                    <td style="background-color: #333333"><button class="button" type="submit" name="sixteenth" value="16">View</button></td>
                                 </tr>
 
                             </tbody>
                         </table>
 
                     </div>
+                </form>
 
-                    <!--- table -->
-                    <%
-                        ArrayList<SE> proposals = new ArrayList();
-                        if (Integer.parseInt(session.getAttribute("userID").toString()) == 16 || Integer.parseInt(session.getAttribute("userID").toString()) == 17) {
+                <!--- table -->
+                <%
+                    ArrayList<SE> proposals = new ArrayList();
+                    if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission")) {
+                        proposals = UserDAO.retrieveSEProposalByStep(5);
 
-                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 16) {
-                                proposals = UserDAO.retrieveSEProposalByStep(4);
-                            }
-                            if (Integer.parseInt(session.getAttribute("userID").toString()) == 17) {
-                                proposals = UserDAO.retrieveSEProposalByStep(5);
-                            }
-                    %>
-                    <div class="container-fluid panels">
+                %>
+                <div class="container-fluid panels">
 
 
-                        <h4>Proposals to assess (<%=proposals.size()%>)</h4>
+                    <h4>Proposals to assess (<%=proposals.size()%>)</h4>
 
-                        <input class="form-control" id="myInput" type="text" placeholder="Search table..">
+                    <input class="form-control" id="myInput" type="text" placeholder="Search table..">
 
-                        <table class="table ">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th onclick="sortTable(0)">Date</th>
-                                    <th onclick="sortTable(1)">Program Name</th>
-                                    <th onclick="sortTable(2)">Unit</th>
-                                    <th onclick="sortTable(3)">Program Head</th>
-                                    <th onclick="sortTable(4)">Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                                <%
-                                    for (int i = 0; i < proposals.size(); i++) {
-                                %>
-                                <tr>
-                                    <td><%=proposals.get(i).getDate()%></td>
-                                    <td><%=proposals.get(i).getName()%></td>
-                                    <td><%=proposals.get(i).getUnit()%></td>
-                                    <td><%=proposals.get(i).getProgramHead()%></td>
-                                    <td></td>
-                                    <td><button type="button" name="approve<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
+                    <table class="table ">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th onclick="sortTable(0)">Date</th>
+                                <th onclick="sortTable(1)">Program Name</th>
+                                <th onclick="sortTable(2)">Unit</th>
+                                <th onclick="sortTable(3)">Program Head</th>
+                                <th onclick="sortTable(4)">Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            <%
+                                for (int i = 0; i < proposals.size(); i++) {
+                            %>
+                            <tr>
+                                <td><%=proposals.get(i).getDate()%></td>
+                                <td><%=proposals.get(i).getName()%></td>
+                                <td><%=proposals.get(i).getUnit()%></td>
+                                <td><%=proposals.get(i).getProgramHead()%></td>
+                                <td></td>
+                                <td><button type="button" name="approve<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                            </tr>
 
-                                <%
-                                    }
-                                %>
+                            <%
+                                }
+                            %>
 
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <%
-                        }
-                    %>
-
-
-                    <%
-                        Budget b = new Budget();
-                        b = UserDAO.getLatestBudget();
-
-                        DecimalFormat formatter = new DecimalFormat("#,###.00");
-                    %>
-                    <!--- budget -->
-                    <div class="container-fluid panels">
-
-                        <h4>Current Budget</h4>
-
-                        <h1 class="budget">PHP <%=formatter.format(b.getRemainingBudget())%></h1>
-
-                    </div>
-                    <br/>    
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+
+                <%
+                    }
+                %>
+
+
+                <%
+                    Budget b = new Budget();
+                    b = UserDAO.getLatestBudget();
+
+                    DecimalFormat formatter = new DecimalFormat("#,###.00");
+                %>
+                <!--- budget -->
+                <div class="container-fluid panels">
+
+                    <h4>Current Budget</h4>
+
+                    <h1 class="budget">PHP <%=formatter.format(b.getRemainingBudget())%></h1>
+
+                </div>
+                <br/>    
+            </div>
 
         </div>
 
