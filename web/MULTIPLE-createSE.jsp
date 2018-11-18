@@ -183,9 +183,6 @@
                     filter: grayscale(0%);
                 }
             }
-
-
-
         </style>
 
         <script type="text/javascript">

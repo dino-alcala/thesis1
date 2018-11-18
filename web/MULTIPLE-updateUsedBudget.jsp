@@ -224,11 +224,11 @@
                                 total += expenses.get(i).getQuantity() * expenses.get(i).getUnitcost();
                         %>
                         <tr>
-                            <td><textarea rows = "2" cols = "25%" name ="seitem<%=i%>" readonly><%=expenses.get(i).getItem()%></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="seunitcost<%=i%>" readonly><%=expenses.get(i).getUnitcost()%></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="sequantity<%=i%>" readonly><%=expenses.get(i).getQuantity()%></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="sesubtotal<%=i%>" readonly><%=expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()%></textarea></td>
-                            <td><textarea rows = "2" cols = "25%" name ="seamountused<%=i%>"><%=expenses.get(i).getAmountUsed()%></textarea></td>
+                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="seitem<%=i%>" readonly><%=expenses.get(i).getItem()%></textarea></td>
+                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="seunitcost<%=i%>" readonly><%=expenses.get(i).getUnitcost()%></textarea></td>
+                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="sequantity<%=i%>" readonly><%=expenses.get(i).getQuantity()%></textarea></td>
+                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="sesubtotal<%=i%>" readonly><%=expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()%></textarea></td>
+                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="seamountused<%=i%>"><%=expenses.get(i).getAmountUsed()%></textarea></td>
                             <td></td>
                         </tr>
                         <input type="hidden" name="seID<%=i%>" value="<%=expenses.get(i).getSeproposalID()%>">
