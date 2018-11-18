@@ -584,6 +584,7 @@
                     
                             </select>
                             <br><br>
+                            <center><p>*please select carefully, page will not proceed if target measures are the same</p></center>
                             <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a></center>
                             <br><br><br>
                         </fieldset>

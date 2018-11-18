@@ -45,53 +45,162 @@ public class addSE extends HttpServlet {
             HttpSession session = request.getSession();
             SE SE = new SE();
 
-            SE.setUnit(session.getAttribute("unit").toString());
-            SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+            //if 3 measures selected
+            if(Integer.parseInt(request.getParameter("measure")) != Integer.parseInt(request.getParameter("measure2")) && Integer.parseInt(request.getParameter("measure")) != Integer.parseInt(request.getParameter("measure3"))
+                    && Integer.parseInt(request.getParameter("measure2")) != Integer.parseInt(request.getParameter("measure3")) && Integer.parseInt(request.getParameter("measure3")) != 0 
+                    && Integer.parseInt(request.getParameter("measure3")) != 0){
+                SE.setUnit(session.getAttribute("unit").toString());
+                SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
 
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date javaDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
-            SE.setDate(sqlDate);
-            SE.setName(request.getParameter("programname"));
-            SE.setProgramHead(request.getParameter("programhead"));
-            SE.setActivityClassification(request.getParameter("classification"));
-            SE.setTargetCommunity(Integer.parseInt(request.getParameter("community")));
-            SE.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
-            SE.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
-            SE.setActualDate(Date.valueOf(request.getParameter("actualdate")));
-            SE.setImplementationaddress(request.getParameter("implementationaddress"));
-            SE.setTotalAmount(Double.parseDouble(request.getParameter("totalamount")));
-            SE.setSocialCommunityProblem(request.getParameter("problemaddressed"));
-            SE.setNameSEbeneficiaries(request.getParameter("partnername"));
-            SE.setAddressSEbeneficiaries(request.getParameter("partneraddress"));
-            SE.setContactPersonSEbeneficiaries(request.getParameter("partnercontact"));
-            SE.setMobileSEbeneficiaries(request.getParameter("partnernumber"));
-            SE.setEmailSEbeneficiaries(request.getParameter("partneremail"));
-            SE.setDescriptionSEbeneficiaries(request.getParameter("partnerdescription"));
-            SE.setObjectives(request.getParameter("measureableoutcome"));
-            SE.setSourceOfFunds(request.getParameter("funds"));
+                SE.setDate(sqlDate);
+                SE.setName(request.getParameter("programname"));
+                SE.setProgramHead(request.getParameter("programhead"));
+                SE.setActivityClassification(request.getParameter("classification"));
+                SE.setTargetCommunity(Integer.parseInt(request.getParameter("community")));
+                SE.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
+                SE.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
+                SE.setActualDate(Date.valueOf(request.getParameter("actualdate")));
+                SE.setImplementationaddress(request.getParameter("implementationaddress"));
+                SE.setTotalAmount(Double.parseDouble(request.getParameter("totalamount")));
+                SE.setSocialCommunityProblem(request.getParameter("problemaddressed"));
+                SE.setNameSEbeneficiaries(request.getParameter("partnername"));
+                SE.setAddressSEbeneficiaries(request.getParameter("partneraddress"));
+                SE.setContactPersonSEbeneficiaries(request.getParameter("partnercontact"));
+                SE.setMobileSEbeneficiaries(request.getParameter("partnernumber"));
+                SE.setEmailSEbeneficiaries(request.getParameter("partneremail"));
+                SE.setDescriptionSEbeneficiaries(request.getParameter("partnerdescription"));
+                SE.setObjectives(request.getParameter("measureableoutcome"));
+                SE.setSourceOfFunds(request.getParameter("funds"));
 
-            ArrayList<Integer> measureID = new ArrayList();
+                ArrayList<Integer> measureID = new ArrayList();
 
-            measureID.add(Integer.parseInt(request.getParameter("measure")));
+                measureID.add(Integer.parseInt(request.getParameter("measure")));
 
-            if (Integer.parseInt(request.getParameter("measure2")) != 0) {
-                measureID.add(Integer.parseInt(request.getParameter("measure2")));
+                if (Integer.parseInt(request.getParameter("measure2")) != 0) {
+                    measureID.add(Integer.parseInt(request.getParameter("measure2")));
+                }
+
+                if (Integer.parseInt(request.getParameter("measure3")) != 0) {
+                    measureID.add(Integer.parseInt(request.getParameter("measure3")));
+                }
+                SE.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+
+                session.setAttribute("SE", SE);
+                session.setAttribute("measureID", measureID);
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE2.jsp");
+                dispatcher.forward(request, response);
+                
+                //if 2nd measure is none
+            } else if(Integer.parseInt(request.getParameter("measure2")) == 0 && Integer.parseInt(request.getParameter("measure")) != Integer.parseInt(request.getParameter("measure3"))){
+                
+                SE.setUnit(session.getAttribute("unit").toString());
+                SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+
+                SE.setDate(sqlDate);
+                SE.setName(request.getParameter("programname"));
+                SE.setProgramHead(request.getParameter("programhead"));
+                SE.setActivityClassification(request.getParameter("classification"));
+                SE.setTargetCommunity(Integer.parseInt(request.getParameter("community")));
+                SE.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
+                SE.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
+                SE.setActualDate(Date.valueOf(request.getParameter("actualdate")));
+                SE.setImplementationaddress(request.getParameter("implementationaddress"));
+                SE.setTotalAmount(Double.parseDouble(request.getParameter("totalamount")));
+                SE.setSocialCommunityProblem(request.getParameter("problemaddressed"));
+                SE.setNameSEbeneficiaries(request.getParameter("partnername"));
+                SE.setAddressSEbeneficiaries(request.getParameter("partneraddress"));
+                SE.setContactPersonSEbeneficiaries(request.getParameter("partnercontact"));
+                SE.setMobileSEbeneficiaries(request.getParameter("partnernumber"));
+                SE.setEmailSEbeneficiaries(request.getParameter("partneremail"));
+                SE.setDescriptionSEbeneficiaries(request.getParameter("partnerdescription"));
+                SE.setObjectives(request.getParameter("measureableoutcome"));
+                SE.setSourceOfFunds(request.getParameter("funds"));
+
+                ArrayList<Integer> measureID = new ArrayList();
+
+                measureID.add(Integer.parseInt(request.getParameter("measure")));
+
+                if (Integer.parseInt(request.getParameter("measure2")) != 0) {
+                    measureID.add(Integer.parseInt(request.getParameter("measure2")));
+                }
+
+                if (Integer.parseInt(request.getParameter("measure3")) != 0) {
+                    measureID.add(Integer.parseInt(request.getParameter("measure3")));
+                }
+                SE.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+
+                session.setAttribute("SE", SE);
+                session.setAttribute("measureID", measureID);
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE2.jsp");
+                dispatcher.forward(request, response);
+                
+                //if 3rd measure is none
+            } else if(Integer.parseInt(request.getParameter("measure3")) == 0 && Integer.parseInt(request.getParameter("measure")) != Integer.parseInt(request.getParameter("measure2"))){
+                
+                SE.setUnit(session.getAttribute("unit").toString());
+                SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+
+                SE.setDate(sqlDate);
+                SE.setName(request.getParameter("programname"));
+                SE.setProgramHead(request.getParameter("programhead"));
+                SE.setActivityClassification(request.getParameter("classification"));
+                SE.setTargetCommunity(Integer.parseInt(request.getParameter("community")));
+                SE.setTargetKRA(Integer.parseInt(request.getParameter("kra")));
+                SE.setTargetGoal(Integer.parseInt(request.getParameter("goal")));
+                SE.setActualDate(Date.valueOf(request.getParameter("actualdate")));
+                SE.setImplementationaddress(request.getParameter("implementationaddress"));
+                SE.setTotalAmount(Double.parseDouble(request.getParameter("totalamount")));
+                SE.setSocialCommunityProblem(request.getParameter("problemaddressed"));
+                SE.setNameSEbeneficiaries(request.getParameter("partnername"));
+                SE.setAddressSEbeneficiaries(request.getParameter("partneraddress"));
+                SE.setContactPersonSEbeneficiaries(request.getParameter("partnercontact"));
+                SE.setMobileSEbeneficiaries(request.getParameter("partnernumber"));
+                SE.setEmailSEbeneficiaries(request.getParameter("partneremail"));
+                SE.setDescriptionSEbeneficiaries(request.getParameter("partnerdescription"));
+                SE.setObjectives(request.getParameter("measureableoutcome"));
+                SE.setSourceOfFunds(request.getParameter("funds"));
+
+                ArrayList<Integer> measureID = new ArrayList();
+
+                measureID.add(Integer.parseInt(request.getParameter("measure")));
+
+                if (Integer.parseInt(request.getParameter("measure2")) != 0) {
+                    measureID.add(Integer.parseInt(request.getParameter("measure2")));
+                }
+
+                if (Integer.parseInt(request.getParameter("measure3")) != 0) {
+                    measureID.add(Integer.parseInt(request.getParameter("measure3")));
+                }
+                SE.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+
+                session.setAttribute("SE", SE);
+                session.setAttribute("measureID", measureID);
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE2.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                request.setAttribute("successSE", "Please do not repeat measures!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE.jsp");
+                dispatcher.forward(request, response);
             }
-
-            if (Integer.parseInt(request.getParameter("measure3")) != 0) {
-                measureID.add(Integer.parseInt(request.getParameter("measure3")));
-            }
-            SE.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
-            session.setAttribute("SE", SE);
-            session.setAttribute("measureID", measureID);
-
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE2.jsp");
-            dispatcher.forward(request, response);
-
         }
     }
 

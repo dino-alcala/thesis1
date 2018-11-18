@@ -66,21 +66,6 @@ public class editSE extends HttpServlet {
                 SE.setStep(1);
             }
 
-            String[] component;
-            ArrayList<String> components = new ArrayList();
-
-            component = request.getParameterValues("component");
-
-            if (component != null) {
-                for (int i = 0; i < component.length; i++) {
-                    if (component[i].equals("Others")) {
-                        components.add(request.getParameter("otherscomponent"));
-                    } else {
-                        components.add(component[i]);
-                    }
-                }
-            }
-
             ArrayList<Integer> measureID = new ArrayList();
             
             measureID.add(Integer.parseInt(request.getParameter("measure")));
@@ -92,9 +77,6 @@ public class editSE extends HttpServlet {
             if (Integer.parseInt(request.getParameter("measure3")) != 0) {
                 measureID.add(Integer.parseInt(request.getParameter("measure3")));
             }
-
-            SE.setExplanation(request.getParameter("sustainabilityexplanation"));
-            SE.setComponent(components);
 
             session.setAttribute("SE", SE);
             request.setAttribute("seID", request.getParameter("seID"));

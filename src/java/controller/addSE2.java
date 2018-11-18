@@ -55,153 +55,153 @@ public class addSE2 extends HttpServlet {
 
             SE = (SE) session.getAttribute("SE");
 
-            if(Double.parseDouble(request.getParameter("total")) == SE.getTotalAmount()){
-            ArrayList<SEworkplan> sework = new ArrayList();
+            if (Double.parseDouble(request.getParameter("total")) == SE.getTotalAmount()) {
+                ArrayList<SEworkplan> sework = new ArrayList();
 
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
-                SEworkplan SEworkplan = new SEworkplan();
-                SEworkplan.setDate(Date.valueOf(request.getParameter("date" + i)));
-                SEworkplan.setActivity(request.getParameter("activity" + i));
-                SEworkplan.setTimestarttimeend(request.getParameter("time" + i));
-                SEworkplan.setTimestarttimeend2(request.getParameter("timeend" + i));
-                SEworkplan.setVenue(request.getParameter("venue" + i));
-                sework.add(SEworkplan);
-            }
-
-            SE.setWorkplan(sework);
-
-            ArrayList<SEexpenses> seexpense = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                SEexpenses SEexpenses = new SEexpenses();
-                SEexpenses.setItem(request.getParameter("seitem" + i));
-                SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
-                SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
-                SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
-                seexpense.add(SEexpenses);
-            }
-
-            SE.setExpenses(seexpense);
-
-            SE.setTotalpopulationAcademicStaff(Integer.parseInt(request.getParameter("seacademictotal")));
-            SE.setExpectedAcademicStaff(Integer.parseInt(request.getParameter("seacademicexpected")));
-            SE.setTotalpopulationSupportStaff(Integer.parseInt(request.getParameter("sesupporttotal")));
-            SE.setExpectedSupportStaff(Integer.parseInt(request.getParameter("sesupportexpected")));
-            SE.setTotalpopulationUndergraduate(Integer.parseInt(request.getParameter("seundergraduatetotal")));
-            SE.setExpectedUndergraduate(Integer.parseInt(request.getParameter("seundergraduateexpected")));
-            SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
-            SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
-            SE.setUnittype(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-            SE.setStep(1);
-
-            ArrayList<SEresponsible> seresponsible = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countresponsible")); i++) {
-                SEresponsible SEresponsible = new SEresponsible();
-                SEresponsible.setName(request.getParameter("responsiblename" + i));
-                SEresponsible.setEmail(request.getParameter("responsibleemail" + i));
-                seresponsible.add(SEresponsible);
-            }
-
-            SE.setResponsible(seresponsible);
-
-            UserDAO.AddSE(SE);
-            
-            ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
-            
-            UserDAO.AddMeasures(measureID);
-            
-            Notification n = new Notification();
-            n.setTitle(SE.getName());
-            
-            SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date javaDate = new java.util.Date();
-            String input1 = new java.sql.Date(javaDate.getTime()).toString();
-            String input2 = SE.getActualDate().toString();
-            
-            try {
-                java.util.Date date1 = myFormat.parse(input1);
-                java.util.Date date2 = myFormat.parse(input2);
-                long diff = date2.getTime() - date1.getTime();
-                long days = (diff / (1000*60*60*24));
-                
-                if(days <= 14){
-                    n.setBody("URGENT SE Proposal ready for approval!");
-                } else if (days >= 15){
-                    n.setBody("New SE Proposal ready for approval!");
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
+                    SEworkplan SEworkplan = new SEworkplan();
+                    SEworkplan.setDate(Date.valueOf(request.getParameter("date" + i)));
+                    SEworkplan.setActivity(request.getParameter("activity" + i));
+                    SEworkplan.setTimestarttimeend(request.getParameter("time" + i));
+                    SEworkplan.setTimestarttimeend2(request.getParameter("timeend" + i));
+                    SEworkplan.setVenue(request.getParameter("venue" + i));
+                    sework.add(SEworkplan);
                 }
-            } catch (ParseException ex) {
-                Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("mm/dd/yyyy");
-            sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            java.util.Date dt = new java.util.Date();
-            n.setDt(sdf.format(dt));
-            
-            if(SE.getUnittype().equals("Academic")){
-                n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(SE.getUnit(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-            } else if(SE.getUnittype().equals("Non-Academic")) {
-                n.setUserID(UserDAO.getUserIDforNotifsUnitChair(SE.getUnit()));
-            }
-            
-            UserDAO.AddNotification(n);
 
-            if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
+                SE.setWorkplan(sework);
 
-                request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
-                dispatcher.forward(request, response);
-            } else if (session.getAttribute("unit").equals("Center for Social Concern and Action (COSCA)")) {
+                ArrayList<SEexpenses> seexpense = new ArrayList();
 
-                request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/COSCA-home.jsp");
-                dispatcher.forward(request, response);
-                
-            } else if (session.getAttribute("position").equals("Lasallian Pastoral Office (LSPO)")) {
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                    SEexpenses SEexpenses = new SEexpenses();
+                    SEexpenses.setItem(request.getParameter("seitem" + i));
+                    SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
+                    SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
+                    SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
+                    seexpense.add(SEexpenses);
+                }
 
-                request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/LSPO-home.jsp");
-                dispatcher.forward(request, response);
-                
-            } else if (session.getAttribute("position").equals("Dean of Student Affairs (DSA)")) {
+                SE.setExpenses(seexpense);
 
-                request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
-                dispatcher.forward(request, response);
-                
-            } else if (session.getAttribute("position").equals("Laguna Campus Lasallian Mission (LCLM)")) {
+                SE.setTotalpopulationAcademicStaff(Integer.parseInt(request.getParameter("seacademictotal")));
+                SE.setExpectedAcademicStaff(Integer.parseInt(request.getParameter("seacademicexpected")));
+                SE.setTotalpopulationSupportStaff(Integer.parseInt(request.getParameter("sesupporttotal")));
+                SE.setExpectedSupportStaff(Integer.parseInt(request.getParameter("sesupportexpected")));
+                SE.setTotalpopulationUndergraduate(Integer.parseInt(request.getParameter("seundergraduatetotal")));
+                SE.setExpectedUndergraduate(Integer.parseInt(request.getParameter("seundergraduateexpected")));
+                SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
+                SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
+                SE.setUnittype(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                SE.setStep(1);
 
-                request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/LCLM-home.jsp");
-                dispatcher.forward(request, response);
-                
-            } else if (session.getAttribute("position").toString().contains("ADEALM")) {
+                ArrayList<SEresponsible> seresponsible = new ArrayList();
 
-                request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
-                dispatcher.forward(request, response);
-            } else {
-                request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
-                dispatcher.forward(request, response);
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countresponsible")); i++) {
+                    SEresponsible SEresponsible = new SEresponsible();
+                    SEresponsible.setName(request.getParameter("responsiblename" + i));
+                    SEresponsible.setEmail(request.getParameter("responsibleemail" + i));
+                    seresponsible.add(SEresponsible);
+                }
 
-            }
-            } else if (Double.parseDouble(request.getParameter("total")) != SE.getTotalAmount()){
-                request.setAttribute("successSE", "Amount is not equal!!");
+                SE.setResponsible(seresponsible);
+
+                UserDAO.AddSE(SE);
+
+                ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
+
+                UserDAO.AddMeasures(measureID);
+
+                Notification n = new Notification();
+                n.setTitle(SE.getName());
+
+                SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                String input1 = new java.sql.Date(javaDate.getTime()).toString();
+                String input2 = SE.getActualDate().toString();
+
+                try {
+                    java.util.Date date1 = myFormat.parse(input1);
+                    java.util.Date date2 = myFormat.parse(input2);
+                    long diff = date2.getTime() - date1.getTime();
+                    long days = (diff / (1000 * 60 * 60 * 24));
+
+                    if (days <= 14) {
+                        n.setBody("URGENT SE Proposal ready for approval!");
+                    } else if (days >= 15) {
+                        n.setBody("New SE Proposal ready for approval!");
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("mm/dd/yyyy");
+                sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                java.util.Date dt = new java.util.Date();
+                n.setDt(sdf.format(dt));
+
+                if (SE.getUnittype().equals("Academic")) {
+                    n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(SE.getUnit(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                } else if (SE.getUnittype().equals("Non-Academic")) {
+                    n.setUserID(UserDAO.getUserIDforNotifsUnitChair(SE.getUnit()));
+                }
+
+                UserDAO.AddNotification(n);
+
+                if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
+
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
+                    dispatcher.forward(request, response);
+                } else if (session.getAttribute("unit").equals("Center for Social Concern and Action (COSCA)")) {
+
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/COSCA-home.jsp");
+                    dispatcher.forward(request, response);
+
+                } else if (session.getAttribute("position").equals("Lasallian Pastoral Office (LSPO)")) {
+
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/LSPO-home.jsp");
+                    dispatcher.forward(request, response);
+
+                } else if (session.getAttribute("position").equals("Dean of Student Affairs (DSA)")) {
+
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
+                    dispatcher.forward(request, response);
+
+                } else if (session.getAttribute("position").equals("Laguna Campus Lasallian Mission (LCLM)")) {
+
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/LCLM-home.jsp");
+                    dispatcher.forward(request, response);
+
+                } else if (session.getAttribute("position").toString().contains("ADEALM")) {
+
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
+                    dispatcher.forward(request, response);
+
+                }
+            } else if (Double.parseDouble(request.getParameter("total")) != SE.getTotalAmount()) {
+                request.setAttribute("successSE", "Amount is not equal!");
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/#");
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE2.jsp");
                 dispatcher.forward(request, response);
             }
         }
-            
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -2767,7 +2767,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "UPDATE seproposal SET programHead = ?, activityClassification = ?, targetCommunity = ?, targetKRA = ?, targetGoal = ?, targetMeasure = ?, titleOfActivity = ?, actualImplementation = ?, totalAmountRequested = ?, nameOfPartner = ?, address = ?, contactPerson = ?, mobileNumber = ?, email = ?, description = ?, objectives = ?, explanation = ?, academicStaffPopulation = ?, academicStaffExpected = ?, supportStaffPopulation = ?, supportStaffExpected = ?, undergraduatePopulation = ?, undergraduateExpected = ?, graduatePopulation = ?, graduateExpected = ?, step = ?, programName = ?, problemaddressed = ?, sourceOfFunds = ?, datetime = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET programHead = ?, activityClassification = ?, targetCommunity = ?, targetKRA = ?, targetGoal = ?, targetMeasure = ?, titleOfActivity = ?, actualImplementation = ?, totalAmountRequested = ?, nameOfPartner = ?, address = ?, contactPerson = ?, mobileNumber = ?, email = ?, description = ?, objectives = ?, academicStaffPopulation = ?, academicStaffExpected = ?, supportStaffPopulation = ?, supportStaffExpected = ?, undergraduatePopulation = ?, undergraduateExpected = ?, graduatePopulation = ?, graduateExpected = ?, step = ?, programName = ?, problemaddressed = ?, sourceOfFunds = ?, datetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -2789,39 +2789,22 @@ public class UserDAO {
             pstmt.setString(14, SE.getEmailSEbeneficiaries());
             pstmt.setString(15, SE.getDescriptionSEbeneficiaries());
             pstmt.setString(16, SE.getObjectives());
-            pstmt.setString(17, SE.getExplanation());
-            pstmt.setInt(18, SE.getTotalpopulationAcademicStaff());
-            pstmt.setInt(19, SE.getExpectedAcademicStaff());
-            pstmt.setInt(20, SE.getTotalpopulationSupportStaff());
-            pstmt.setInt(21, SE.getExpectedSupportStaff());
-            pstmt.setInt(22, SE.getTotalpopulationUndergraduate());
-            pstmt.setInt(23, SE.getExpectedUndergraduate());
-            pstmt.setInt(24, SE.getTotalPopulationGraduate());
-            pstmt.setInt(25, SE.getExpectedGraduate());
-            pstmt.setInt(26, SE.getStep());
-            pstmt.setString(27, SE.getName());
-            pstmt.setString(28, SE.getSocialCommunityProblem());
-            pstmt.setString(29, SE.getSourceOfFunds());
-            pstmt.setString(30, sdf.format(dt));
-            pstmt.setInt(31, SE.getId());
+            pstmt.setInt(17, SE.getTotalpopulationAcademicStaff());
+            pstmt.setInt(18, SE.getExpectedAcademicStaff());
+            pstmt.setInt(19, SE.getTotalpopulationSupportStaff());
+            pstmt.setInt(20, SE.getExpectedSupportStaff());
+            pstmt.setInt(21, SE.getTotalpopulationUndergraduate());
+            pstmt.setInt(22, SE.getExpectedUndergraduate());
+            pstmt.setInt(23, SE.getTotalPopulationGraduate());
+            pstmt.setInt(24, SE.getExpectedGraduate());
+            pstmt.setInt(25, SE.getStep());
+            pstmt.setString(26, SE.getName());
+            pstmt.setString(27, SE.getSocialCommunityProblem());
+            pstmt.setString(28, SE.getSourceOfFunds());
+            pstmt.setString(29, sdf.format(dt));
+            pstmt.setInt(30, SE.getId());
 
             int rs = pstmt.executeUpdate();
-
-            query = "DELETE FROM seproposal_component WHERE seproposalID = ?";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, SE.getId());
-
-            rs = pstmt.executeUpdate();
-
-            for (int i = 0; i < SE.getComponent().size(); i++) {
-                query = "INSERT INTO seproposal_component(seproposalID, component) VALUES(?,?)";
-
-                pstmt = conn.prepareStatement(query);
-                pstmt.setInt(1, SE.getId());
-                pstmt.setString(2, SE.getComponent().get(i));
-
-                rs = pstmt.executeUpdate();
-            }
 
             query = "DELETE FROM seproposal_workplan WHERE seproposalID = ?";
             pstmt = conn.prepareStatement(query);

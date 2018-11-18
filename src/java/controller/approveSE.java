@@ -142,7 +142,6 @@ public class approveSE extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n.setUserID(UserDAO.getUserIDforNotifsNeil());
-
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
@@ -202,14 +201,6 @@ public class approveSE extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n2.setBody("Your proposal has been approved by the Dean! It will now be taken to COSCA.");
-
-                    Notification n3 = new Notification();
-                    n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-                    n3.setBody("New SE Proposal ready for approval!");
-                    n3.setDt(sdf.format(dt));
-                    n3.setUserID(UserDAO.getUserIDforNotifsNeil());
-
-                    UserDAO.AddNotification(n3);
                 }
 
                 n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));

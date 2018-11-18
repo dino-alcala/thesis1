@@ -338,8 +338,8 @@
                                 </div>
                                 <table style="width:100%">
                                     <tr>
-                                        <th style="width:35%">Step</th>
-                                        <th style="width:65%">Remarks</th> 
+                                        <th style="width:45%">Step</th>
+                                        <th style="width:55%">Remarks</th> 
                                     </tr>
                                     <tr>
                                         <td>Assistant Dean for Lasallian Mission</td>

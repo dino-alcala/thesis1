@@ -561,25 +561,7 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">6</span><b> Sustainability Component (Check all that apply)</b>
-                                <br><br>
-                                       <input type='checkbox' name="component" value="Training/Capacity Building for the Partner" <% for (int i = 0; i < SE.getComponent().size(); i++) {
-                                               if (SE.getComponent().get(i).equals("Training/Capacity Building for the Partner")) {%> checked <%}
-                                                          }%>/>Training/Capacity Building for the Partner<br>
-                                       <input type='checkbox' name="component" value="Policy Advocacy/Development related to the Social Problem being Addressed" <% for (int i = 0; i < SE.getComponent().size(); i++) {
-                                               if (SE.getComponent().get(i).equals("Policy Advocacy/Development related to the Social Problem being Addressed")) {%> checked <%}
-                                                          }%>/>Policy Advocacy/Development related to the Social Problem being Addressed<br>
-                                       <input type='checkbox' name="component" value="Continuing and Developmental Partnership" <% for (int i = 0; i < SE.getComponent().size(); i++) {
-                                               if (SE.getComponent().get(i).equals("Continuing and Developmental Partnership")) {%> checked <%}
-                                                          }%>/>Continuing and Developmental Partnership<br>
-                                <input type='checkbox' name="component" value="Others"/>Others:</legend><textarea name='otherscomponent' rows='2'></textarea><br><br>
-                            <legend>Explanation:</legend>
-                            <textarea name='sustainabilityexplanation' rows='4'><%=SE.getExplanation()%></textarea>
-                            <br><br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><span class="number">7</span><b >Source of Funds:</b></legend>
+                            <legend><span class="number">6</span><b >Source of Funds:</b></legend>
                             <select style="width:50%" name="funds">
                                 <option value="OVPLM" <% if (SE.getSourceOfFunds().equals("OVPLM")) {%> selected="selected" <%}%> >Office of the Vice President for Lasallian Mission</option>
                                 <option value="Others" <% if (SE.getSourceOfFunds().equals("Others")) {%> selected="selected" <%}%> >Others</option>

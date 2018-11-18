@@ -272,10 +272,10 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
-                cell1.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='seitem" + count + "' required></textarea></td>";
-                cell2.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='seunitcost" + count + "' required></textarea></td>";
-                cell3.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='sequantity" + count + "' required></textarea></td>";
-                cell4.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='sesubtotal" + count + "' required></textarea></td>";
+                cell1.innerHTML = "<td><input type='text' style='border-radius: 0px; margin-bottom:1%'  name ='seitem" + count + "' required></td>";
+                cell2.innerHTML = "<td><input type='number' style='border-radius:0px; margin-bottom:1%' id='seunitcost" + count + "' name ='seunitcost" + count + "' required></td>";
+                cell3.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sequantity" + count + "' name ='sequantity" + count + "' required></td>";
+                cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sesubtotal" + count + "' name ='sesubtotal" + count + "' value='0' required></td>";
                 count++;
                 document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -289,6 +289,30 @@
                 } else {
                 }
             }
+        </script>
+        
+        <script>
+            function calculate() {
+                var count = document.getElementById("countexpenses").value;
+                var rows = document.getElementById("breakdowntable").rows.length;
+                var total = 0;
+                
+                if(rows > 0){
+                    for (var x = 0; x < count; x++) {
+                        var y = document.getElementById("sequantity" + x).value;
+                        var z = document.getElementById("seunitcost" + x).value;
+                        var subtotal = document.getElementById("sesubtotal" + x);
+                        subtotal.setAttribute('value', y * z);
+                    }
+                }
+                
+                for(var x = 0 ; x < count ; x++){
+                    var b = document.getElementById("sesubtotal" + x).value;
+                    total = (total*1) + (b*1);
+                }
+                document.getElementById("total").setAttribute('value', total);
+            }
+
         </script>
 
         <script type="text/javascript">
@@ -476,21 +500,24 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="seitem0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="seunitcost0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="sequantity0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="sesubtotal0" required></textarea></td>
+                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
+                                        <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" value="0" required></td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td>Grand Total: </td>
+                                        <td>Total: </td>
+                                        <td><input type="number" style="margin-bottom:1%; border-radius:0px" name="total" id="total" readonly value="0"></td>
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow3()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" style="background-color:darkgreen; border: green;" id="addRowButton"  onclick ="addRow3()">Add Row</button>
+                                <button type ="button" class="button" style="background-color:olive; border: sienna;" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:red; border: sienna;"  id="deleteRowButton" onclick ="deleteRow3()">Delete Row</button>
+                            </center>
                             <br><br>
                         </fieldset>
 

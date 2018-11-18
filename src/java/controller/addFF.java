@@ -46,44 +46,54 @@ public class addFF extends HttpServlet {
             HttpSession session = request.getSession();
 
             FF FF = new FF();
-
-            FF.setUnit(session.getAttribute("unit").toString());
-            FF.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
-
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date javaDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
-
-            FF.setDatecreated(sqlDate);
-            FF.setProgramHead(request.getParameter("programhead"));
-            FF.setActivityClassification(request.getParameter("classification"));
-            FF.setProjectName(request.getParameter("pname"));
-            FF.setVenue(request.getParameter("pvenue"));
-            FF.setSpeaker(request.getParameter("pspeaker"));
-            FF.setObjectives(request.getParameter("objectives"));
-            FF.setActualDate(Date.valueOf(request.getParameter("actualdate")));
-            FF.setTotalAmount(Double.parseDouble(request.getParameter("pbudget")));
-            FF.setSourceOfFunds(request.getParameter("funds"));
-
-            ArrayList<FFexpenses> ffexpense = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                FFexpenses FFexpenses = new FFexpenses();
-                FFexpenses.setItem(request.getParameter("ffitem" + i));
-                FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
-                FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
-                FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
-                ffexpense.add(FFexpenses);
-            }
-
-            FF.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-            FF.setExpenses(ffexpense);
             
-            session.setAttribute("FF", FF);
+            System.out.println("DSAJKDJSDKLSAJL " + Double.parseDouble(request.getParameter("total")));
+            System.out.println("DSAJKDJSDKLSAJL " + Double.parseDouble(request.getParameter("pbudget")));
+            
+            if (Double.parseDouble(request.getParameter("total")) == Double.parseDouble(request.getParameter("pbudget"))) {
+                FF.setUnit(session.getAttribute("unit").toString());
+                FF.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
 
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFF2.jsp");
-            dispatcher.forward(request, response);
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+
+                FF.setDatecreated(sqlDate);
+                FF.setProgramHead(request.getParameter("programhead"));
+                FF.setActivityClassification(request.getParameter("classification"));
+                FF.setProjectName(request.getParameter("pname"));
+                FF.setVenue(request.getParameter("pvenue"));
+                FF.setSpeaker(request.getParameter("pspeaker"));
+                FF.setObjectives(request.getParameter("objectives"));
+                FF.setActualDate(Date.valueOf(request.getParameter("actualdate")));
+                FF.setTotalAmount(Double.parseDouble(request.getParameter("pbudget")));
+                FF.setSourceOfFunds(request.getParameter("funds"));
+
+                ArrayList<FFexpenses> ffexpense = new ArrayList();
+
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                    FFexpenses FFexpenses = new FFexpenses();
+                    FFexpenses.setItem(request.getParameter("ffitem" + i));
+                    FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
+                    FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
+                    FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
+                    ffexpense.add(FFexpenses);
+                }
+
+                FF.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                FF.setExpenses(ffexpense);
+
+                session.setAttribute("FF", FF);
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFF2.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                request.setAttribute("successFF", "Amount is not equal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFF.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 

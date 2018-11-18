@@ -73,6 +73,20 @@ public class viewProposalsAssess extends HttpServlet {
                 }
             }
             
+            if(session.getAttribute("position").equals("COSCA - Director") || session.getAttribute("position").equals("DSA - Dean") || session.getAttribute("position").equals("LCLM - Executive Director")){
+                ArrayList<SE> s = new ArrayList();
+                s = UserDAO.retrieveSEProposalToAssessByStep(5);
+                for (int i = 0; i < s.size(); i++) {
+                    if (request.getParameter("viewSE" + i) != null) {
+                        request.setAttribute("seID", request.getParameter("viewSE" + i));
+
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                }
+            }
+                     
             if(session.getAttribute("position").equals("LSPO - Director")){
                 ArrayList<FF> f = new ArrayList();
                 f = UserDAO.retrieveFFProposalToAssessByStep(4);
@@ -85,6 +99,7 @@ public class viewProposalsAssess extends HttpServlet {
                         dispatcher.forward(request, response);
                     }
                 }
+                
             }
         }
     }
