@@ -6,11 +6,14 @@
 package controller;
 
 import dao.UserDAO;
+import entity.Budget;
 import entity.FF;
 import entity.FFattendees;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -61,6 +64,27 @@ public class encodeFF2 extends HttpServlet {
             FF.setStudentorg(1);
 
             UserDAO.AddFF(FF);
+            
+            if(FF.getSourceOfFunds().equals("OVPLM")){
+                
+                Budget current = new Budget();
+
+                current = UserDAO.getLatestBudget();
+
+                Budget b = new Budget();
+
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+
+                b.setDate(sqlDate);
+                b.setCurrentBudget(current.getRemainingBudget());
+                b.setBudgetRequested(FF.getTotalAmount());
+                b.setRemainingBudget(current.getRemainingBudget() - FF.getTotalAmount());
+                b.setSeID(FF.getId());
+
+                UserDAO.addLatestBudget(b);
+            }
             
             request.setAttribute("successSE", "You have successfully encoded a Student Org FF Proposal!");
             ServletContext context = getServletContext();

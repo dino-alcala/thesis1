@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import entity.Budget;
 import entity.SE;
 import entity.SEexpenses;
 import entity.SEresponsible;
@@ -103,6 +104,27 @@ public class encodeSE2 extends HttpServlet {
             ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
             
             UserDAO.AddMeasures(measureID);
+            
+            if(SE.getSourceOfFunds().equals("OVPLM")){
+                
+                Budget current = new Budget();
+
+                current = UserDAO.getLatestBudget();
+
+                Budget b = new Budget();
+
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+
+                b.setDate(sqlDate);
+                b.setCurrentBudget(current.getRemainingBudget());
+                b.setBudgetRequested(SE.getTotalAmount());
+                b.setRemainingBudget(current.getRemainingBudget() - SE.getTotalAmount());
+                b.setSeID(SE.getId());
+
+                UserDAO.addLatestBudget(b);
+            }
             
             request.setAttribute("successSE", "You have successfully encoded a Student Org SE Proposal!");
             ServletContext context = getServletContext();
