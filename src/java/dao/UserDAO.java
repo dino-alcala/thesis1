@@ -30,6 +30,7 @@ import entity.SEparticipants;
 import entity.SEreport;
 import entity.SEresponsible;
 import entity.SEworkplan;
+import entity.StudentOrg;
 import entity.Unit;
 import entity.User;
 import java.io.InputStream;
@@ -1158,6 +1159,48 @@ public class UserDAO {
         }
         return units;
     }
+    
+    public ArrayList<StudentOrg> retrieveStudentOrgs() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM studentorgs";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<StudentOrg> orgs = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                StudentOrg s = new StudentOrg();
+                s.setName(rs.getString("name"));
+                s.setCollege(rs.getString("college"));
+                orgs.add(s);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return orgs;
+    }
 
     public ArrayList<Unit> retrieveUnitsAcademic() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -1502,7 +1545,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void updateUnitNonAcademic(Unit u) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -1511,7 +1554,7 @@ public class UserDAO {
         try {
             String query = "UPDATE unit SET unitName = ?, unitHead = ?, numberOfCAP = ?, numberOfAPSP = ?, numberOfASF = ?, numberOfFaculty = ?, numberOfAdmin = ?, numberOfDirectHired = ?, numberofIndependent = ?, numberOfExternal = ?, unitDescription = ? WHERE unitID = ?";
             pstmt = conn.prepareStatement(query);
-            
+
             pstmt.setString(1, u.getName());
             pstmt.setString(2, u.getHead());
             pstmt.setInt(3, u.getCap());
@@ -1524,7 +1567,7 @@ public class UserDAO {
             pstmt.setInt(10, u.getExternal());
             pstmt.setString(11, u.getDescription());
             pstmt.setInt(12, u.getUnitID());
-             
+
             int rs = pstmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -12833,7 +12876,7 @@ public class UserDAO {
         ResultSet rs2 = null;
         int count = 0;
         try {
-            String query = "SELECT count(unit) FROM seproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT count(unit) FROM seproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ? AND studentorg != 1";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, unit);
@@ -12861,6 +12904,42 @@ public class UserDAO {
         return count;
     }
     
+    public int countSEProposalByStudentOrg(String department, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs2 = null;
+        int count = 0;
+        try {
+            String query = "SELECT count(department) FROM seproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, department);
+            pstmt.setDate(2, startDate);
+            pstmt.setDate(3, endDate);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                count = rs2.getInt("count(department)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
     public int countSEProposalByDepartment(String department, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -12907,7 +12986,7 @@ public class UserDAO {
         ResultSet rs2 = null;
         int count = 0;
         try {
-            String query = "SELECT count(unit) FROM ffproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT count(unit) FROM ffproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ? AND studentorg != 1";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, unit);
@@ -12935,6 +13014,43 @@ public class UserDAO {
         return count;
     }
     
+    public int countFFProposalByStudentOrg(String department, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        int count = 0;
+        try {
+            String query = "SELECT count(department) FROM ffproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, department);
+            pstmt.setDate(2, startDate);
+            pstmt.setDate(3, endDate);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                count = rs2.getInt("count(department)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
     public int countFFProposalByDepartment(String department, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -16119,7 +16235,7 @@ public class UserDAO {
         }
         return percent;
     }
-    
+
     public double fourthTarget() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -16162,7 +16278,7 @@ public class UserDAO {
         }
         return percent;
     }
-    
+
     public ArrayList<Department> getDepartmentsByUnit(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -16201,7 +16317,7 @@ public class UserDAO {
         }
         return Departments;
     }
-    
+
     public double getCollegeRating(String unit) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -16212,7 +16328,7 @@ public class UserDAO {
 
         double seaverage = 0;
         double ffaverage = 0;
-        
+
         double overall = 0;
         try {
             ps = conn.prepareStatement(query);
@@ -16222,24 +16338,24 @@ public class UserDAO {
             while (rs.next()) {
                 seaverage = rs.getDouble("AVG(or71)");
             }
-            
+
             query = "SELECT AVG(q9) FROM ffevaluation ff JOIN ffproposal f ON ff.ffproposalID = f.id WHERE unit = ? AND f.step = 8";
-            
+
             ps = conn.prepareStatement(query);
             ps.setString(1, unit);
             rs = ps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 ffaverage = rs.getDouble("AVG(q9)");
             }
-            
-            if(seaverage !=0 && ffaverage != 0){
+
+            if (seaverage != 0 && ffaverage != 0) {
                 overall = (seaverage + ffaverage) / 2;
             }
-            if(seaverage != 0 && ffaverage == 0){
+            if (seaverage != 0 && ffaverage == 0) {
                 overall = seaverage;
             }
-            if(seaverage == 0 && ffaverage !=0){
+            if (seaverage == 0 && ffaverage != 0) {
                 overall = ffaverage;
             }
 
@@ -16260,5 +16376,605 @@ public class UserDAO {
                 /* ignored */ }
         }
         return overall;
+    }
+
+    public ArrayList<FF> programsfirstTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        ArrayList<FF> FF = new ArrayList();
+
+        String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN studentorgs so ON f.department = so.name JOIN ffreport ff ON ff.ffproposalID = f.id WHERE f.step = 8 GROUP BY f.id";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                FF f = new FF();
+                f.setDatecreated(rs.getDate("f.datecreated"));
+                f.setProjectName(rs.getString("f.projectName"));
+                f.setUnit(rs.getString("f.unit"));
+                f.setDepartment(rs.getString("f.department"));
+                f.setProgramHead(rs.getString("f.programHead"));
+                f.setId(rs.getInt("f.id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+
+    public ArrayList<FF> programssecondTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 8 AND f.studentorg != 1 GROUP BY f.id";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<FF> FF = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                FF f = new FF();
+                f.setDatecreated(rs.getDate("f.datecreated"));
+                f.setProjectName(rs.getString("f.projectName"));
+                f.setUnit(rs.getString("f.unit"));
+                f.setDepartment(rs.getString("f.department"));
+                f.setProgramHead(rs.getString("f.programHead"));
+                f.setId(rs.getInt("f.id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+
+    public ArrayList<FF> programsthirdTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<FF> FF = new ArrayList();
+
+        try {
+
+            String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8 GROUP BY f.id";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                FF f = new FF();
+                f.setDatecreated(rs.getDate("f.datecreated"));
+                f.setProjectName(rs.getString("f.projectName"));
+                f.setUnit(rs.getString("f.unit"));
+                f.setDepartment(rs.getString("f.department"));
+                f.setProgramHead(rs.getString("f.programHead"));
+                f.setId(rs.getInt("f.id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+
+    public ArrayList<FF> programsfourthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<FF> FF = new ArrayList();
+
+        try {
+
+            String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8 AND a.type IN ('Admin') GROUP BY f.id";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                FF f = new FF();
+                f.setDatecreated(rs.getDate("f.datecreated"));
+                f.setProjectName(rs.getString("f.projectName"));
+                f.setUnit(rs.getString("f.unit"));
+                f.setDepartment(rs.getString("f.department"));
+                f.setProgramHead(rs.getString("f.programHead"));
+                f.setId(rs.getInt("f.id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+
+    public ArrayList<FF> programsfifthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<FF> FF = this.retrieveALLFFProposal();
+
+        int count;
+
+        boolean positive = false;
+
+        ArrayList<FF> returned = new ArrayList();
+
+        try {
+
+            for (int i = 0; i < FF.size(); i++) {
+                count = 0;
+
+                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 8 AND a.type IN ('Alumni', 'Parent')";
+
+                ps = conn.prepareStatement(query);
+                ps.setInt(1, FF.get(i).getId());
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    count += 1;
+                }
+
+                if (count >= 2) {
+                    FF f;
+                    f = this.retrieveFFByFFID(FF.get(i).getId());
+                    returned.add(f);
+                    positive = true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return returned;
+    }
+
+    public ArrayList<SE> programssixthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<SE> SE = new ArrayList();
+        try {
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.activityClassification = 'Interdisciplinary Fora'";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                SE s = new SE();
+                s.setDate(rs.getDate("s.datecreated"));
+                s.setName(rs.getString("s.programName"));
+                s.setUnit(rs.getString("s.unit"));
+                s.setDepartment(rs.getString("s.department"));
+                s.setProgramHead(rs.getString("s.programHead"));
+                s.setId(rs.getInt("s.id"));
+                SE.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+
+    public ArrayList<SE> programsseventhTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<SE> SE = new ArrayList();
+
+        try {
+
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Interdisciplinary Fora' AND s.step = 8 AND a.type IN ('International') GROUP BY s.id";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                SE s = new SE();
+                s.setDate(rs.getDate("s.datecreated"));
+                s.setName(rs.getString("s.programName"));
+                s.setUnit(rs.getString("s.unit"));
+                s.setDepartment(rs.getString("s.department"));
+                s.setProgramHead(rs.getString("s.programHead"));
+                s.setId(rs.getInt("s.id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+
+    public ArrayList<SE> programsNinthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<Unit> units = this.retrieveUnits();
+
+        ArrayList<SE> SE = new ArrayList();
+
+        try {
+            for (int i = 0; i < units.size(); i++) {
+
+                String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN seproposal_component sc ON s.id = sc.seproposalID JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.unit = ? AND studentorg != 1 GROUP BY s.id";
+
+                ps = conn.prepareStatement(query);
+                ps.setString(1, units.get(i).getName());
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    SE s = new SE();
+                    s.setDate(rs.getDate("s.datecreated"));
+                    s.setName(rs.getString("s.programName"));
+                    s.setUnit(rs.getString("s.unit"));
+                    s.setDepartment(rs.getString("s.department"));
+                    s.setProgramHead(rs.getString("s.programHead"));
+                    s.setId(rs.getInt("s.id"));
+                    SE.add(s);
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+
+    public ArrayList<SE> programstenthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.studentorg = 1";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                SE s = new SE();
+                s.setDate(rs.getDate("s.datecreated"));
+                s.setName(rs.getString("s.programName"));
+                s.setUnit(rs.getString("s.unit"));
+                s.setDepartment(rs.getString("s.department"));
+                s.setProgramHead(rs.getString("s.programHead"));
+                s.setId(rs.getInt("s.id"));
+                SE.add(s);
+            }
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
+    public ArrayList<SE> programseleventhTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<SE> SE = new ArrayList();
+
+        try {
+
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 8 GROUP BY s.id";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                SE s = new SE();
+                s.setDate(rs.getDate("s.datecreated"));
+                s.setName(rs.getString("s.programName"));
+                s.setUnit(rs.getString("s.unit"));
+                s.setDepartment(rs.getString("s.department"));
+                s.setProgramHead(rs.getString("s.programHead"));
+                s.setId(rs.getInt("s.id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
+    public ArrayList<SE> programstwelfthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.studentorg != 1";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                SE s = new SE();
+                s.setDate(rs.getDate("s.datecreated"));
+                s.setName(rs.getString("s.programName"));
+                s.setUnit(rs.getString("s.unit"));
+                s.setDepartment(rs.getString("s.department"));
+                s.setProgramHead(rs.getString("s.programHead"));
+                s.setId(rs.getInt("s.id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+
+    public ArrayList<SE> programsthirteenthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        try {
+
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.classificationforkra != 'None'";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+
+            while (rs.next()) {
+                SE s = new SE();
+                s.setDate(rs.getDate("s.datecreated"));
+                s.setName(rs.getString("s.programName"));
+                s.setUnit(rs.getString("s.unit"));
+                s.setDepartment(rs.getString("s.department"));
+                s.setProgramHead(rs.getString("s.programHead"));
+                s.setId(rs.getInt("s.id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
+    public ArrayList<SE> programssixteenthTarget() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ArrayList<SE> SE = new ArrayList();
+
+        try {
+
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 8 AND s.activityClassification = 'Service-Learning' AND c.international = 1";
+
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                SE s = new SE();
+                s.setDate(rs.getDate("s.datecreated"));
+                s.setName(rs.getString("s.programName"));
+                s.setUnit(rs.getString("s.unit"));
+                s.setDepartment(rs.getString("s.department"));
+                s.setProgramHead(rs.getString("s.programHead"));
+                s.setId(rs.getInt("s.id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
     }
 }
