@@ -3,6 +3,7 @@
     Created on : 06 18, 18, 7:59:10 PM
     Author     : Karl Madrid
 --%>
+<%@page import="entity.StudentOrg"%>
 <%@page import="entity.Unit"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -1227,6 +1228,77 @@
 
                 </div>
                 <!--- Units -->
+                
+                
+                                <div class="container-fluid panels">
+
+                    <h2>Number of Programs Implemented For Student Organizations (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+
+                    
+                    <div class="card-deck">
+                        <div class="card chartscards">
+                            <div id="canvas-holder" style="width:75%;">
+                                <canvas id="chartU1"  width="100" height="90" style="margin-left:115px"></canvas>
+                            </div>
+                        </div>
+                        <script>
+                            <%
+                                ArrayList<StudentOrg> student = new ArrayList();
+                                student = UserDAO.retrieveStudentOrgs();
+                            %>
+                            Chart.defaults.global.legend.display = true;
+                            var ctx = document.getElementById('chartU1').getContext('2d');
+                            var chartU1 = new Chart(ctx, {
+                            type: 'horizontalBar',
+                                    data: {
+                                    labels: [<%for (int i = 0; i < student.size(); i++) {%>"<%=student.get(i).getName()%>",<%}%>],
+                                            datasets: [
+                                            {
+                                            label: "Social Engagement",
+                                                    backgroundColor: [<%for (int i = 0; i < student.size(); i++) {%>"#EA7A2D",<%}%>],
+                                                    data: [<%for (int i = 0; i < student.size(); i++) {%> <%=UserDAO.countSEProposalByStudentOrg(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                            }
+                                            , {
+                                            label: "Faith Formation",
+                                                    backgroundColor: [<%for (int i = 0; i < student.size(); i++) {%>"#2D36EA",<%}%>],
+                                                    data: [<%for (int i = 0; i < student.size(); i++) {%> <%=UserDAO.countFFProposalByStudentOrg(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                            }]
+
+                                    },
+                                    options: {
+                                    legend: {
+                                    display: true,
+                                            position: 'top',
+                                            labels: {
+                                            fontSize: 16
+                                            }
+                                    },
+                                            title: {
+                                            display: true,
+                                            },
+                                            scales: {
+                                            yAxes: [{
+                                            ticks: {
+                                            fontSize: 16
+                                            }
+                                            }],
+                                                    xAxes: [{
+                                                    ticks: {
+                                                    beginAtZero: true,
+                                                            fontSize: 16
+                                                    }
+                                                    }]
+                                            },
+                                            tooltips: {
+                                            titleFontSize: 18,
+                                                    bodyFontSize: 18
+                                            }
+                                    }
+                            });
+                        </script>
+                    </div>
+
+                </div>
 
                 <!--- Communities -->
                 <div class="container-fluid quickview">

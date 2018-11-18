@@ -396,6 +396,10 @@
         <servlet-name>createFFReport5</servlet-name>
         <servlet-class>controller.createFFReport5</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewKRATracing</servlet-name>
+        <servlet-class>controller.viewKRATracing</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -791,6 +795,10 @@
     <servlet-mapping>
         <servlet-name>createFFReport5</servlet-name>
         <url-pattern>/createFFReport5</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewKRATracing</servlet-name>
+        <url-pattern>/viewKRATracing</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
