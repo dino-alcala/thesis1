@@ -354,8 +354,8 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>Grand Total: <%=count%></td>
-                                        <td>Grand Total: <%=total%></td>
+                                        <td>Total: <%=count%></td>
+                                        <td>Total: <%=total%></td>
                                     </tr>
                                 </table>
                                 <br/>

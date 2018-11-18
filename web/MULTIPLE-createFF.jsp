@@ -102,12 +102,6 @@
                 height: 250px;
             }
 
-            html {
-                background: #e6e9e9;
-                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-                -webkit-font-smoothing: antialiased;
-            }
-
             table,th,td{
                 border:.5px solid
                     black;
@@ -218,10 +212,10 @@
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
             var cell4 = row.insertCell(3);
-            cell1.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffitem" + count + "' required></textarea></td>";
-            cell2.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffunitcost" + count + "' required></textarea></td>";
-            cell3.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffquantity" + count + "' required></textarea></td>";
-            cell4.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffsubtotal" + count + "' required></textarea></td>";
+            cell1.innerHTML = "<td><input type='text' style='border-radius: 0px; margin-bottom:1%'  name ='ffitem" + count + "' required></td>";
+            cell2.innerHTML = "<td><input type='number' style='border-radius:0px; margin-bottom:1%' name ='ffunitcost"  + count + "' required></td>";
+            cell3.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' name ='ffquantity'" +count + "' required></td>";
+            cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' name ='ffsubtotal'" + count + "' required></td>";
             count++;
             document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -507,25 +501,27 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffitem0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffunitcost0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffquantity0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="ffsubtotal0" required></textarea></td>
+                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%"  name ="ffitem0" required></td>
+                                        <td><input type='number' style='border-radius:0px; margin-bottom:1%' name ="ffunitcost0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" name ="ffquantity0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" name ="ffsubtotal0" required></td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>Grand Total: </td>
+                                        <td>Total: </td>
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Click to Add Row">
-                                <input style= "background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Click to Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" id="addRowButton" style="background-color:darkgreen; border: green;" onclick ="addRow()" value="Add Row">Add Row</button>
+                                <button class="button" style="background-color:red; border: sienna;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                            </center>
                         </fieldset>
 
                         <br><br><br><br>
-                        <center><button type = "submit" class="button">Next</button></center>
+                        <center><button style="width:10%; background-color:darkgreen;" type = "submit" class="button">Next</button></center>
                     </form>
                 </div>
             </div>

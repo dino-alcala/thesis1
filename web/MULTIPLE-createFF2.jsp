@@ -344,11 +344,13 @@
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Click to Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Click to Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" id="addRowButton" style="background-color:darkgreen; border: green;" onclick ="addRow()" value="Add Row">Add Row</button>
+                                <button class="button" style="background-color:red; border: sienna;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                            </center>
                         </fieldset>    
                         <br><br><br><br>
-                        <center><button type = "submit" class="button">Submit</button></center>
+                        <center><button style="width:10%; background-color:darkgreen;" type = "submit" class="button">Next</button></center>
                     </form>
                 </div>
             </div>

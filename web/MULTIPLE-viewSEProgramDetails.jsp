@@ -381,8 +381,7 @@
                                             }
                                         %>
                                         <br>
-                                        <p>Explanation: <%=SE.getExplanation()%></p>
-                                        <br>
+                                        <p>Explanation:</p>
                                         <p><%if(SE.getExplanation() != null){%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
                                     </div>
                                 </div>
@@ -455,8 +454,8 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>Grand Total: <%=count%></td>
-                                        <td>Grand Total: <%=total%></td>
+                                        <td>Total: <%=count%></td>
+                                        <td>Total: <%=total%></td>
                                     </tr>
                                 </table>
                                 <br/>

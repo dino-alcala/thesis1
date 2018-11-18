@@ -101,11 +101,7 @@
                 height: 250px;
             }
 
-            html {
-                background: #e6e9e9;
-                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-                -webkit-font-smoothing: antialiased;
-            }
+
 
             table,th,td{
                 border:.5px solid
@@ -128,7 +124,7 @@
                 font-weight: 600;
                 font-size: 20px;
             }
-            
+
             h3{
                 font-family: "Times New Roman", Times, serif;
             }
@@ -168,7 +164,6 @@
             .button{
                 background-color: #009900;
                 border: none;
-                border-radius: 5px;
                 color: white;
                 padding: 15px 32px;
                 text-align: center;
@@ -177,7 +172,7 @@
                 font-size: 16px;
                 font-family: "Times New Roman", Times, serif;
             }
-            
+
             legend, th, td{
                 font-family: "Times New Roman", Times, serif;
                 font-size: 15px;
@@ -256,10 +251,10 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
-                cell1.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='seitem" + count + "' required></textarea></td>";
-                cell2.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='seunitcost" + count + "' required></textarea></td>";
-                cell3.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='sequantity" + count + "' required></textarea></td>";
-                cell4.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='sesubtotal" + count + "' required></textarea></td>";
+                cell1.innerHTML = "<td><input type='text' style='border-radius: 0px; margin-bottom:1%'  name ='seitem" + count + "' required></td>";
+                cell2.innerHTML = "<td><input type='number' style='border-radius:0px; margin-bottom:1%' id='seunitcost" + count + "' name ='seunitcost" + count + "' required></td>";
+                cell3.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sequantity" + count + "' name ='sequantity'" + count + "' required></td>";
+                cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sesubtotal" + count + "' name ='sesubtotal' value='0'" + count + "' required></td>";
                 count++;
                 document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -273,6 +268,33 @@
                 } else {
                 }
             }
+
+        </script>
+
+        <script>
+            function calculate() {
+                var count = document.getElementById("countexpenses").value;
+                var rows = document.getElementById("breakdowntable").rows.length;
+                var total = 0;
+                
+                if(rows > 0){
+                    for (var x = 0; x < count; x++) {
+                        var a = x;
+                        var y = document.getElementById("sequantity" + a).value;
+                        var z = document.getElementById("seunitcost" + a).value;
+                        var subtotal = document.getElementById("sesubtotal" + a);
+                        subtotal.setAttribute('value', y * z);
+                    }
+                }
+                
+                for(var x = 0 ; x < count ; x++){
+                    var a = x;
+                    var b = document.getElementById("sesubtotal" + a).value;
+                    total = total + b;
+                }
+                document.getElementById("total").setAttribute('value', total);
+            }
+
         </script>
 
         <script type="text/javascript">
@@ -430,14 +452,15 @@
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="time0" required></textarea></td>
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend0" required></textarea></td>
                                         <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="venue0" required></textarea></td>
-
                                     <input type="hidden" value="1" id="countproject" name="countproject">
                                     </tr>
                                 </table></center>
                             <br>
                             <div>
-                                <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
-                                    <input style="background-color:red; border: red;" type ="button" id="addRowButton" onclick ="deleteRow2()" value="Delete Row"></center>
+                                <center>
+                                    <button type ="button" class="button" id="addRowButton" style="background-color:darkgreen; border: green;" onclick ="addRow2()" value="Add Row">Add Row</button>
+                                    <button class="button" style="background-color:red; border: sienna;" type ="button" id="deleteRowButton" onclick ="deleteRow2()" value="Delete Row">Delete Row</button>
+                                </center>
                             </div>
                             <br><br>
                         </fieldset>
@@ -457,24 +480,27 @@
                                         <th>Item</th>
                                         <th>Unit Cost</th>
                                         <th>Quantity</th>
-                                        <th>Subtotal</th>
+                                        <th>Total</th>
                                     </tr>
                                     <tr>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="seitem0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="seunitcost0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="sequantity0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="sesubtotal0" required></textarea></td>
+                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
+                                        <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" value="0" required></td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td>Grand Total: </td>
+                                        <td>Total: </td>
+                                        <td><input type="number" style="margin-bottom:1%; border-radius:0px" id="total" readonly value="0"></td>
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow3()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" style="background-color:darkgreen; border: green;" id="addRowButton"  onclick ="addRow3()">Add Row</button>
+                                <button type ="button" class="button" style="background-color:olive; border: sienna;" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:red; border: sienna;"  id="deleteRowButton" onclick ="deleteRow3()">Delete Row</button>
+                            </center>
                             <br><br>
                         </fieldset>
 
@@ -539,8 +565,10 @@
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" id="addRowButton" style="background-color:darkgreen; border: green;" onclick ="addRow()" value="Add Row">Add Row</button>
+                                <button class="button" style="background-color:red; border: sienna;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                            </center>
                             <br>
                         </fieldset>
 
@@ -563,7 +591,7 @@
                             <br><br>
                         </fieldset>
                         <br><br>
-                        <center><button type="submit" class="button">Submit</button></center>
+                        <center><button style="width:10%; background-color:darkgreen;" type="submit" class="button">Submit</button></center>
                     </form>
                 </div>
             </div>

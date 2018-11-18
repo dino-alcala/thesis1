@@ -349,10 +349,12 @@
                                         %>
                                         <p><%=SE.getComponent().get(i)%></p>
                                         <br>
-                                        <p><%if(SE.getExplanation() != null){%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
                                         <%
                                             }
                                         %>
+                                        <br>
+                                        <p>Explanation:</p>
+                                        <p><%if(SE.getExplanation() != null){%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -416,7 +418,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>Grand Total: <%=count%></td>
+                                        <td>Total: <%=count%></td>
                                     </tr>
                                 </table>
                                 <br/>
