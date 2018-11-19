@@ -43,7 +43,7 @@ public class viewKRATracingFF extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
      
             FF f = new FF();
-            f = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("seID")));
+            f = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
 
             request.setAttribute("ffID", request.getParameter("ffID"));
 
