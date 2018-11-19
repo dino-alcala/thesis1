@@ -47,9 +47,6 @@ public class addFF extends HttpServlet {
 
             FF FF = new FF();
             
-            System.out.println("DSAJKDJSDKLSAJL " + Double.parseDouble(request.getParameter("total")));
-            System.out.println("DSAJKDJSDKLSAJL " + Double.parseDouble(request.getParameter("pbudget")));
-            
             if (Double.parseDouble(request.getParameter("total")) == Double.parseDouble(request.getParameter("pbudget"))) {
                 FF.setUnit(session.getAttribute("unit").toString());
                 FF.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));

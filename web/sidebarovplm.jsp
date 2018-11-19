@@ -125,9 +125,6 @@
                         <span class="menu-collapsed" id="subMenuCategory">Create KRA</span>
                     </a>
                     <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Edit KRA</span>
-                    </a>
-                    <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
                         <span class="menu-collapsed" id="subMenuCategory">KRAs List</span>
                     </a>
                 </div>

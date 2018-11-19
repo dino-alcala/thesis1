@@ -41,14 +41,6 @@
                 background-color: lightgreen;
             }
 
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                border-bottom: 2px solid lightgray;
-                padding-bottom: 20px;
-                font-family: 'Montserrat', sans-serif;
-            }
-
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
@@ -110,7 +102,7 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -118,7 +110,7 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             #addRowButton, #deleteRowButton {
@@ -299,11 +291,13 @@
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Click to Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Click to Delete Row"></center>
+                            <center>
+                                <button class="button" type ="button" id="addRowButton" onclick ="addRow()">Add Row</button>
+                                <button class="button" type ="button" id="deleteRowButton" style="background-color:red"  onclick ="deleteRow()">Delete Row</button>
+                            </center>
                         </fieldset>    
                         <br><br><br><br>
-                        <center><button type = "submit" class="button">Submit</button></center>
+                        <center><button style="width:10%" type = "submit" class="button">Submit</button></center>
                     </form>
                 </div>
             </div>

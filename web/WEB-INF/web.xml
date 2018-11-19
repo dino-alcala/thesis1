@@ -281,10 +281,6 @@
         <servlet-class>controller.viewCommunity</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>viewProposalsAssessLMC</servlet-name>
-        <servlet-class>controller.viewProposalsAssessLMC</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>addAcademicUnit</servlet-name>
         <servlet-class>controller.addAcademicUnit</servlet-class>
     </servlet>
@@ -399,6 +395,14 @@
     <servlet>
         <servlet-name>viewKRATracing</servlet-name>
         <servlet-class>controller.viewKRATracing</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewKRATracingSE</servlet-name>
+        <servlet-class>controller.viewKRATracingSE</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewKRATracingFF</servlet-name>
+        <servlet-class>controller.viewKRATracingFF</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
@@ -681,10 +685,6 @@
         <url-pattern>/viewCommunity</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>viewProposalsAssessLMC</servlet-name>
-        <url-pattern>/viewProposalsAssessLMC</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>addAcademicUnit</servlet-name>
         <url-pattern>/addAcademicUnit</url-pattern>
     </servlet-mapping>
@@ -799,6 +799,14 @@
     <servlet-mapping>
         <servlet-name>viewKRATracing</servlet-name>
         <url-pattern>/viewKRATracing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewKRATracingSE</servlet-name>
+        <url-pattern>/viewKRATracingSE</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewKRATracingFF</servlet-name>
+        <url-pattern>/viewKRATracingFF</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

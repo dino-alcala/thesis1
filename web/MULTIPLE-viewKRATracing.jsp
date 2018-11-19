@@ -1073,6 +1073,44 @@
                             FF = UserDAO.programsfifthTarget();
                         }
 
+                        if (request.getAttribute("first") != null || request.getAttribute("second") != null || request.getAttribute("third") != null
+                                || request.getAttribute("fourth") != null || request.getAttribute("fifth") != null) {
+
+
+                    %>
+                    <h2>Programs Contributed</h2>
+                    <form action="viewKRATracingFF" method="post">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">    
+                            <thead class="thead-dark" >
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Program Name</th>
+                                    <th>Unit</th>
+                                    <th>Department</th>
+                                    <th>Program Head</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%                                
+                                    for (int i = 0; i < FF.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=FF.get(i).getDatecreated()%></td>
+                                    <td><%=FF.get(i).getProjectName()%></td>
+                                    <td><%=FF.get(i).getUnit()%></td>
+                                    <td><%=FF.get(i).getDepartment()%></td>
+                                    <td><%=FF.get(i).getProgramHead()%></td>
+                                    <td><button type="submit" name="ffID" value="<%=FF.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                </tr>
+
+                                <% }
+                                } %>
+                            </tbody>
+                        </table>
+                    </form>
+
+                    <%
                         if (request.getAttribute("sixth") != null) {
                             SE = UserDAO.programssixthTarget();
                         }
@@ -1104,55 +1142,46 @@
                         if (request.getAttribute("sixteenth") != null) {
                             SE = UserDAO.programssixteenthTarget();
                         }
+
+                        if (request.getAttribute("sixth") != null || request.getAttribute("seventh") != null || request.getAttribute("eighth") != null
+                                || request.getAttribute("ninth") != null || request.getAttribute("tenth") != null || request.getAttribute("eleventh") != null
+                                || request.getAttribute("twelfth") != null || request.getAttribute("thirteenth") != null || request.getAttribute("fourteenth") != null
+                                || request.getAttribute("fifteenth") != null || request.getAttribute("sixteenth") != null) {
                     %>
                     <h2>Programs Contributed</h2>
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">    
-                        <thead class="thead-dark" >
-                            <tr>
-                                <th>Date</th>
-                                <th>Program Name</th>
-                                <th>Unit</th>
-                                <th>Department</th>
-                                <th>Program Head</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                if (request.getParameter("first") != null || request.getParameter("second") != null || request.getParameter("third") != null || request.getParameter("fourth") != null || request.getParameter("fifth") != null) {
-                                    for (int i = 0; i < FF.size(); i++) {
-                            %>
-                            <tr>
-                                <td><%=FF.get(i).getDatecreated()%></td>
-                                <td><%=FF.get(i).getProjectName()%></td>
-                                <td><%=FF.get(i).getUnit()%></td>
-                                <td><%=FF.get(i).getDepartment()%></td>
-                                <td><%=FF.get(i).getProgramHead()%></td>
-                                <td><button type="button" name="ffID<%=i%>" value="<%=FF.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                            </tr>
-                            <%
-                                    }
-                                }
 
-                                if (request.getParameter("sixth") != null || request.getParameter("seventh") != null || request.getParameter("ninth") != null || request.getParameter("tenth") != null || request.getParameter("eleventh") != null || request.getParameter("twelfth") != null || request.getParameter("thirteenth") != null || request.getParameter("sixteenth") != null) {
+                    <form action="viewKRATracingSE" method="post">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">    
+                            <thead class="thead-dark" >
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Program Name</th>
+                                    <th>Unit</th>
+                                    <th>Department</th>
+                                    <th>Program Head</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
                                     for (int i = 0; i < SE.size(); i++) {
-                            %>
-                            <tr>
-                                <td><%=SE.get(i).getDate()%></td>
-                                <td><%=SE.get(i).getName()%></td>
-                                <td><%=SE.get(i).getUnit()%></td>
-                                <td><%=SE.get(i).getDepartment()%></td>
-                                <td><%=SE.get(i).getProgramHead()%></td>
-                                <td><button type="button" name="seID<%=i%>" value="<%=SE.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                            </tr>
-                            <%
+                                %>
+                                <tr>
+                                    <td><%=SE.get(i).getDate()%></td>
+                                    <td><%=SE.get(i).getName()%></td>
+                                    <td><%=SE.get(i).getUnit()%></td>
+                                    <td><%=SE.get(i).getDepartment()%></td>
+                                    <td><%=SE.get(i).getProgramHead()%></td>
+                                    <td><button type="submit" name="seID" value="<%=SE.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                </tr>
+                                <%
+                                        }
                                     }
-                                }
-                            %>
+                                %>
 
-                        </tbody>
-                    </table>
-
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
                 <!--- end of table -->
 

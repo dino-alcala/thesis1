@@ -98,28 +98,49 @@
         </script>
 
         <style>
+            .accomplishmentGreen{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: green;
+            }
+
+            .accomplishmentYellow{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: #FFBF00;
+            }
+
+            .accomplishmentRed{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: #cc0000;
+            }
+
             .button{
                 background-color: #333333;
                 border: 5px;
                 color: white;
-                font-size:18px;
+                font-size:17px;
                 text-align: center;
                 font-family: "Times New Roman", Times, serif;
                 width:100%;
             }
-            
+
             #myInput{
                 margin-bottom: 20px;
             }
-            
+
             .card-text{
                 margin-bottom: 5px;
             }
-            
+
             tr:hover {
                 background-color: lightgreen;
             }
-            
+
             h4{
                 font-size: 25px;
                 text-align: left;
@@ -128,12 +149,12 @@
                 padding-bottom: 10px;
                 margin-bottom: 25px;
             }
- 
+
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
-        
+
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -142,27 +163,6 @@
                 border-color: lightgray;
                 border-width: 1px;
                 border-radius: 8px;
-            }
-
-            .accomplishmentGreen{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: green;
-            }
-            
-            .accomplishmentYellow{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: #FFBF00;
-            }
-            
-            .accomplishmentRed{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: red;
             }
         </style>
 
@@ -798,7 +798,7 @@
                 <%
                     }
                 %>
-                
+
                 <%
                     if (session.getAttribute("position").equals("COSCA - Director")) {
 

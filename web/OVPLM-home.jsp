@@ -189,33 +189,34 @@
 
             .accomplishmentGreen{
                 text-align: center;
-                font-size: 25px;
+                font-size: 17px;
                 color: white;
                 background-color: green;
             }
+            
             .accomplishmentYellow{
                 text-align: center;
-                font-size: 25px;
+                font-size: 17px;
                 color: white;
                 background-color: #FFBF00;
             }
+            
             .accomplishmentRed{
                 text-align: center;
-                font-size: 25px;
+                font-size: 17px;
                 color: white;
-                background-color: red;
+                background-color: #cc0000;
             }
 
             .button{
                 background-color: #333333;
                 border: 5px;
                 color: white;
-                font-size:18px;
+                font-size:17px;
                 text-align: center;
                 font-family: "Times New Roman", Times, serif;
                 width:100%;
             }
-
         </style>
 
     </head>
@@ -348,7 +349,7 @@
                             <tbody>
                                 <%
                                     DecimalFormat percentage = new DecimalFormat("0.00");
-
+                                    
                                 %>
                                 <!--- Goal 1 Measure 1-->
                                 <tr>

@@ -66,6 +66,18 @@
             th,tr,td{
                 padding:15px;
             }
+            
+            .button{
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
         </style>
 
     </head>

@@ -6,7 +6,6 @@
 package controller;
 
 import dao.UserDAO;
-import entity.FF;
 import entity.SE;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,12 +16,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author dang
+ * @author Dino Alcala
  */
-public class viewProposalsAssessLMC extends HttpServlet {
+public class viewKRATracingSE extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,32 +39,17 @@ public class viewProposalsAssessLMC extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
+            HttpSession session = request.getSession();
             UserDAO UserDAO = new UserDAO();
-            ArrayList<SE> proposals = new ArrayList();
-            proposals = UserDAO.retrieveSEProposalToAssessByStep(5);
+            
+            SE s = new SE();
+            s = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
 
-            for (int i = 0; i < proposals.size(); i++) {
-                if (request.getParameter("viewSE" + i) != null) {
+            request.setAttribute("seID", request.getParameter("seID"));
 
-                    request.setAttribute("seID", request.getParameter("viewSE" + i));
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
-                    dispatcher.forward(request, response);
-                }
-            }
-
-            ArrayList<FF> proposals2 = new ArrayList();
-            proposals2 = UserDAO.retrieveFFProposalToAssessByStep(6);
-
-            for (int i = 0; i < proposals2.size(); i++) {
-                if (request.getParameter("viewFF" + i) != null) {
-                    request.setAttribute("ffID", request.getParameter("viewFF" + i));
-
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal4.jsp");
-                    dispatcher.forward(request, response);
-                }
-            }
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEProgramDetails.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

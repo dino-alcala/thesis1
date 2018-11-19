@@ -96,16 +96,37 @@
         </script>
 
         <style>
+            .accomplishmentGreen{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: green;
+            }
+            
+            .accomplishmentYellow{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: #FFBF00;
+            }
+            
+            .accomplishmentRed{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: #cc0000;
+            }
+
             .button{
                 background-color: #333333;
                 border: 5px;
                 color: white;
-                font-size:18px;
+                font-size:17px;
                 text-align: center;
                 font-family: "Times New Roman", Times, serif;
                 width:100%;
             }
-
+            
             #myInput{
                 margin-bottom: 20px;
             }

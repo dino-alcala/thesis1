@@ -49,87 +49,95 @@ public class encodeSE2 extends HttpServlet {
 
             SE = (SE) session.getAttribute("SE");
 
-            ArrayList<SEworkplan> sework = new ArrayList();
+            if (Double.parseDouble(request.getParameter("total")) == SE.getTotalAmount()) {
+                ArrayList<SEworkplan> sework = new ArrayList();
 
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
-                SEworkplan SEworkplan = new SEworkplan();
-                SEworkplan.setDate(Date.valueOf(request.getParameter("date" + i)));
-                SEworkplan.setActivity(request.getParameter("activity" + i));
-                SEworkplan.setTimestarttimeend(request.getParameter("time" + i));
-                SEworkplan.setTimestarttimeend2(request.getParameter("timeend" + i));
-                SEworkplan.setVenue(request.getParameter("venue" + i));
-                sework.add(SEworkplan);
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
+                    SEworkplan SEworkplan = new SEworkplan();
+                    SEworkplan.setDate(Date.valueOf(request.getParameter("date" + i)));
+                    SEworkplan.setActivity(request.getParameter("activity" + i));
+                    SEworkplan.setTimestarttimeend(request.getParameter("time" + i));
+                    SEworkplan.setTimestarttimeend2(request.getParameter("timeend" + i));
+                    SEworkplan.setVenue(request.getParameter("venue" + i));
+                    sework.add(SEworkplan);
+                }
+
+                SE.setWorkplan(sework);
+
+                ArrayList<SEexpenses> seexpense = new ArrayList();
+
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                    SEexpenses SEexpenses = new SEexpenses();
+                    SEexpenses.setItem(request.getParameter("seitem" + i));
+                    SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
+                    SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
+                    SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
+                    seexpense.add(SEexpenses);
+                }
+
+                SE.setExpenses(seexpense);
+
+                SE.setTotalpopulationAcademicStaff(Integer.parseInt(request.getParameter("seacademictotal")));
+                SE.setExpectedAcademicStaff(Integer.parseInt(request.getParameter("seacademicexpected")));
+                SE.setTotalpopulationSupportStaff(Integer.parseInt(request.getParameter("sesupporttotal")));
+                SE.setExpectedSupportStaff(Integer.parseInt(request.getParameter("sesupportexpected")));
+                SE.setTotalpopulationUndergraduate(Integer.parseInt(request.getParameter("seundergraduatetotal")));
+                SE.setExpectedUndergraduate(Integer.parseInt(request.getParameter("seundergraduateexpected")));
+                SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
+                SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
+                SE.setUnittype(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                SE.setStudentorg(1);
+                SE.setStep(8);
+
+                ArrayList<SEresponsible> seresponsible = new ArrayList();
+
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countresponsible")); i++) {
+                    SEresponsible SEresponsible = new SEresponsible();
+                    SEresponsible.setName(request.getParameter("responsiblename" + i));
+                    SEresponsible.setEmail(request.getParameter("responsibleemail" + i));
+                    seresponsible.add(SEresponsible);
+                }
+
+                SE.setResponsible(seresponsible);
+
+                UserDAO.AddSE(SE);
+
+                ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
+
+                UserDAO.AddMeasures(measureID);
+
+                if (SE.getSourceOfFunds().equals("OVPLM")) {
+
+                    Budget current = new Budget();
+
+                    current = UserDAO.getLatestBudget();
+
+                    Budget b = new Budget();
+
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                    java.util.Date javaDate = new java.util.Date();
+                    java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+
+                    b.setDate(sqlDate);
+                    b.setCurrentBudget(current.getRemainingBudget());
+                    b.setBudgetRequested(SE.getTotalAmount());
+                    b.setRemainingBudget(current.getRemainingBudget() - SE.getTotalAmount());
+                    b.setSeID(SE.getId());
+
+                    UserDAO.addLatestBudget(b);
+                }
+
+                request.setAttribute("successSE", "You have successfully encoded a Student Org SE Proposal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
+                dispatcher.forward(request, response);
+
+            } else if (Double.parseDouble(request.getParameter("total")) != SE.getTotalAmount()) {
+                request.setAttribute("successSE", "Amount is not equal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSE2.jsp");
+                dispatcher.forward(request, response);
             }
-
-            SE.setWorkplan(sework);
-
-            ArrayList<SEexpenses> seexpense = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                SEexpenses SEexpenses = new SEexpenses();
-                SEexpenses.setItem(request.getParameter("seitem" + i));
-                SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
-                SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
-                SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
-                seexpense.add(SEexpenses);
-            }
-
-            SE.setExpenses(seexpense);
-
-            SE.setTotalpopulationAcademicStaff(Integer.parseInt(request.getParameter("seacademictotal")));
-            SE.setExpectedAcademicStaff(Integer.parseInt(request.getParameter("seacademicexpected")));
-            SE.setTotalpopulationSupportStaff(Integer.parseInt(request.getParameter("sesupporttotal")));
-            SE.setExpectedSupportStaff(Integer.parseInt(request.getParameter("sesupportexpected")));
-            SE.setTotalpopulationUndergraduate(Integer.parseInt(request.getParameter("seundergraduatetotal")));
-            SE.setExpectedUndergraduate(Integer.parseInt(request.getParameter("seundergraduateexpected")));
-            SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
-            SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
-            SE.setUnittype(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-            SE.setStudentorg(1);
-            SE.setStep(8);
-
-            ArrayList<SEresponsible> seresponsible = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countresponsible")); i++) {
-                SEresponsible SEresponsible = new SEresponsible();
-                SEresponsible.setName(request.getParameter("responsiblename" + i));
-                SEresponsible.setEmail(request.getParameter("responsibleemail" + i));
-                seresponsible.add(SEresponsible);
-            }
-
-            SE.setResponsible(seresponsible);
-
-            UserDAO.AddSE(SE);
-            
-            ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
-            
-            UserDAO.AddMeasures(measureID);
-            
-            if(SE.getSourceOfFunds().equals("OVPLM")){
-                
-                Budget current = new Budget();
-
-                current = UserDAO.getLatestBudget();
-
-                Budget b = new Budget();
-
-                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-                java.util.Date javaDate = new java.util.Date();
-                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
-
-                b.setDate(sqlDate);
-                b.setCurrentBudget(current.getRemainingBudget());
-                b.setBudgetRequested(SE.getTotalAmount());
-                b.setRemainingBudget(current.getRemainingBudget() - SE.getTotalAmount());
-                b.setSeID(SE.getId());
-
-                UserDAO.addLatestBudget(b);
-            }
-            
-            request.setAttribute("successSE", "You have successfully encoded a Student Org SE Proposal!");
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
-            dispatcher.forward(request, response);
         }
     }
 

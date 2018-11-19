@@ -211,11 +211,32 @@
         </script>
         
         <style>
+            .accomplishmentGreen{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: green;
+            }
+
+            .accomplishmentYellow{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: #FFBF00;
+            }
+
+            .accomplishmentRed{
+                text-align: center;
+                font-size: 17px;
+                color: white;
+                background-color: #cc0000;
+            }
+
             .button{
                 background-color: #333333;
                 border: 5px;
                 color: white;
-                font-size:18px;
+                font-size:17px;
                 text-align: center;
                 font-family: "Times New Roman", Times, serif;
                 width:100%;
@@ -242,14 +263,7 @@
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
- 
-            .accomplishmentGreen{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: green;
-            }
-            
+
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -258,20 +272,6 @@
                 border-color: lightgray;
                 border-width: 1px;
                 border-radius: 8px;
-            }
-            
-            .accomplishmentYellow{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: #FFBF00;
-            }
-            
-            .accomplishmentRed{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: red;
             }
         </style>
 

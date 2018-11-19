@@ -115,7 +115,7 @@
             }
 
             .button{
-                background-color: #009900;
+                background-color: #4CAF50;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -148,6 +148,18 @@
                     -webkit-filter: grayscale(0%);
                     filter: grayscale(0%);
                 }
+            }
+            
+            .button{
+                background-color: darkgreen;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 
@@ -214,7 +226,7 @@
                 cell1.innerHTML = "<td><input type='text' style='border-radius: 0px; margin-bottom:1%'  name ='seitem" + count + "' required></td>";
                 cell2.innerHTML = "<td><input type='number' style='border-radius:0px; margin-bottom:1%' id='seunitcost" + count + "' name ='seunitcost" + count + "' required></td>";
                 cell3.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sequantity" + count + "' name ='sequantity" + count + "' required></td>";
-                cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sesubtotal" + count + "' name ='sesubtotal" + count + "' value='0' required></td>";
+                cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sesubtotal" + count + "' name ='sesubtotal" + count + "' value='0' readonly required></td>";
                 count++;
                 document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -415,8 +427,10 @@
                                 </table></center>
                             <br>
                             <div>
-                                <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
-                                    <input style="background-color:red; border: red;" type ="button" id="addRowButton" onclick ="deleteRow2()" value="Delete Row"></center>
+                                <center>
+                                    <button type ="button" class="button" id="addRowButton" onclick ="addRow2()" value="Add Row">Add Row</button>
+                                    <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow2()" value="Delete Row">Delete Row</button>
+                                </center>
                             </div>
                             <br><br>
                         </fieldset>
@@ -442,7 +456,7 @@
                                         <td><input type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
                                         <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
-                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" value="0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" readonly value="0" readonly required></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -453,9 +467,9 @@
                                 </table></center>
                             <br>
                             <center>
-                                <button type ="button" class="button" style="background-color:darkgreen; border: green;" id="addRowButton"  onclick ="addRow3()">Add Row</button>
-                                <button type ="button" class="button" style="background-color:olive; border: sienna;" id="addRowButton" onclick="calculate()">Calculate</button>
-                                <button type ="button" class="button" style="background-color:red; border: sienna;"  id="deleteRowButton" onclick ="deleteRow3()">Delete Row</button>
+                                <button type ="button" class="button" id="addRowButton"  onclick ="addRow3()">Add Row</button>
+                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:red"  id="deleteRowButton" onclick ="deleteRow3()">Delete Row</button>
                             </center>
                             <br><br>
                         </fieldset>
@@ -521,8 +535,10 @@
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
+                                <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                            </center>
                             <br>
                         </fieldset>
 
@@ -545,7 +561,7 @@
                             <br><br>
                         </fieldset>
                         <br><br>
-                        <center><button type="submit" class="button">Submit</button></center>
+                        <center><button style="width:10%" type="submit" class="button">Submit</button></center>
                     </form>
                 </div>
             </div>

@@ -126,7 +126,7 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
             }
             
             td{

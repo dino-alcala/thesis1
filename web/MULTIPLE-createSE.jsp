@@ -65,7 +65,7 @@
             }
 
             .button{
-                background-color: #009900;
+                background-color: darkgreen;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -548,7 +548,7 @@
                         </fieldset>
                         <br><br>
                         <br>
-                        <center><button style="border-radius:0px; width:10%; background-color:darkgreen;" type="submit" class="button">Next</button></center>
+                        <center><button style="width:10%" type="submit" class="button">Next</button></center>
                     </form>
                 </div>
             </div>

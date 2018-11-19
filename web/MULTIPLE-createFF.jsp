@@ -96,7 +96,7 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -104,7 +104,7 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             #addRowButton, #deleteRowButton, legend, table, th, td {
@@ -157,7 +157,7 @@
             cell1.innerHTML = "<td><input type='text' style='border-radius: 0px; margin-bottom:1%' name ='ffitem" + count + "' required></td>";
             cell2.innerHTML = "<td><input type='number' style='border-radius:0px; margin-bottom:1%' id='ffunitcost" + count + "' name ='ffunitcost" + count + "' required></td>";
             cell3.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='ffquantity" + count + "' name ='ffquantity" + count + "' required></td>";
-            cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='ffsubtotal" + count + "' name ='ffsubtotal" + count + "' value='0' required></td>";
+            cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='ffsubtotal" + count + "' name ='ffsubtotal" + count + "' value='0' readonly required></td>";
             count++;
             document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -470,7 +470,7 @@
                                         <td><input type='text' style="border-radius: 0px; margin-bottom:1%" id="ffitem0"  name ="ffitem0" required></td>
                                         <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost0" name ="ffunitcost0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity0" name ="ffquantity0" required></td>
-                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" value="0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" value="0" readonly required></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -481,14 +481,14 @@
                                 </table></center>
                             <br>
                             <center>
-                                <button type ="button" class="button" id="addRowButton" style="background-color:darkgreen; border: green;" onclick ="addRow()" value="Add Row">Add Row</button>
-                                <button type ="button" class="button" style="background-color:olive; border: sienna;" id="addRowButton" onclick="calculate()">Calculate</button>
-                                <button class="button" style="background-color:red; border: sienna;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                                <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
+                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
                             </center>
                         </fieldset>
 
                         <br><br><br><br>
-                        <center><button style="width:10%; background-color:darkgreen;" type = "submit" class="button">Next</button></center>
+                        <center><button style="width:10%" type = "submit" class="button">Next</button></center>
                     </form>
                 </div>
             </div>
