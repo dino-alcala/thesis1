@@ -16,7 +16,7 @@
                 height:8%;
             }
             .sidebar-expanded{
-                margin-top: -1%;
+                margin-top: 0%
             }
         </style>
     </head>
