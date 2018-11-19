@@ -8,7 +8,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <style>
+            html{
+                font-size:14px;
+            }
+            .navbar{
+                height:8%;
+            }
+            .sidebar-expanded{
+                margin-top: -1%;
+            }
+        </style>
     </head>
     <body>
         <!--Sidebar for OVPLM.name pages-->

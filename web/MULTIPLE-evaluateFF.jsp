@@ -20,28 +20,6 @@
         <link rel="stylesheet" href="css/formstyle5.css">
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            html {
-                background: #e6e9e9;
-                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-                -webkit-font-smoothing: antialiased;
-            }
-
             table,th,td{
                 border:.5px solid
                     black;
@@ -81,7 +59,7 @@
                 color: #0083e8;
             }
 
-            b, strong {
+            b{
                 font-weight: 600;
             }
 

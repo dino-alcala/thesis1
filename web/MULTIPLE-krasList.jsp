@@ -31,38 +31,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>   
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
             #myInput{
                 margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid lightgray;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
             }
 
             tr:hover {
@@ -86,6 +56,7 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
+            
             .viewButton{
                 text-align: center;
                 margin-bottom: 0%;

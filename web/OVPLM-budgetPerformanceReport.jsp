@@ -84,36 +84,8 @@
         </script>
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            #myInput{
-                margin-bottom: 20px;
-            }
-
             .card-text{
                 margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
             }
 
             tr:hover {
@@ -141,30 +113,6 @@
                 margin-bottom: 30px;
             }
 
-            .quickhead{
-                border-bottom: 1px solid white;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-
-            }
-
-            .quickhead2{
-                border-bottom: 1px solid darkgreen;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-                color: black;
-            }
-
-            .quickview{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
-
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -177,15 +125,6 @@
 
             .card-text{
                 color: white;
-            }
-
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                font-family: 'Montserrat', sans-serif;
-                border-bottom: 1px solid darkgreen;
-                padding-bottom: 20px;
-                margin-bottom: 20px;
             }
 
             .daterange{
@@ -208,31 +147,6 @@
             .pbutton{
                 margin-top: 40px;
                 text-align: center;
-            }
-
-            .tableHead{
-                background-color: darkgreen;
-                color: white;
-            }
-            .tableHead2{
-                background-color: darkcyan;
-                color: white;
-            }
-            .card-text2{
-                color:  black;
-            }
-
-            .card-text3{
-                color:  black;
-                font-weight: 500;
-                margin-bottom: 50px;
-            }
-
-            .quickhead3{
-                border-bottom: 2px solid black;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-                color: black;
             }
 
             #buttonCED {
@@ -291,14 +205,6 @@
                 background-color: #2eb8b8;
             }
 
-            .tableHead{
-                background-color: darkgreen;
-                color: white;
-            }
-            .tableHead2{
-                background-color: darkcyan;
-                color: white;
-            }
             .total{
                 text-align: center;
                 margin-top: 20px;
@@ -334,22 +240,11 @@
                 background-color: #FFC300;
             }
 
-            .quickhead3{
-                border-bottom: 2px solid black;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-                color: black;
-            }
-
             .chartscards{
                 background-color: white;
                 color: black;
             }
 
-            #notifsScroll {
-                overflow: auto; 
-                height: 250px;
-            }
         </style>
 
     </head>
@@ -442,10 +337,10 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <ul class="list-group sticky-top sticky-offset">
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
                     <script>
-                        $("#sidebar-container").load("sidebarovplm.jsp");
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
                 </ul>
             </div>
@@ -456,11 +351,10 @@
                     <div class="container-fluid panels">
                         <p></p>
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
-                        <!--
-                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
-                        <button type="button" class="btn btn-success">Download Report</button>
-                        -->
-                        <button type="submit">Submit</button>
+                        
+                        <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <button type="button" class="btn btn-info">Download Report</button>
+                        <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>
 
@@ -512,15 +406,6 @@
                 <div class="container-fluid panels">
 
                     <h2>Unit's Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
-                                        
-                    <div class="form-group" style="width:100%">
-                        <label for="sel1">Choose classification:</label>
-                        <select class="form-control" id="ffprogram" name="unit">
-                                <option value="Academic">Academic</option>
-                                <option value="Non-Academic">Non-Academic</option>
-                                <option value="StudentOrgs">Student Organizations</option>
-                        </select>
-                    </div>
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">

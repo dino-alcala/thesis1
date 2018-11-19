@@ -52,22 +52,6 @@
         </script>
 
         <style>   
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
             h2{
                 font-size: 30px;
                 text-align: left;
@@ -76,16 +60,6 @@
                 font-family: 'Roboto', sans-serif;
             }
 
-            .btn-warning{
-                margin-right: 10px;
-                color: white;
-
-            }
-
-            .btn-danger{
-                margin-right: 10px;
-
-            }
             .table{
                 margin-top: 30px;
             }

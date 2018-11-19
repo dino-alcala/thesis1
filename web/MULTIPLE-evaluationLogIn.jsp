@@ -26,22 +26,6 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
             .loginWrapper {	
                 margin-top: 30px;
                 margin-bottom: 40px;

@@ -32,64 +32,17 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
             #myInput{
                 margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid lightgray;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
             }
 
             tr:hover {
                 background-color: lightgreen;
             }
 
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                border-bottom: 2px solid lightgray;
-                padding-bottom: 20px;
-                font-family: 'Montserrat', sans-serif;
-            }
-
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
-            }
-
-            .quickhead{
-                border-bottom: 1px solid gray;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-            }
-            .quickview{
-                margin-bottom: 50px;
             }
 
             .panels{
@@ -101,29 +54,6 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-            .viewButton{
-                text-align: center;
-                margin-bottom: 0%;
-            }
-
-            .accomplishmentGreen{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: green;
-            }
-            .accomplishmentYellow{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: #FFBF00;
-            }
-            .accomplishmentRed{
-                text-align: center;
-                font-size: 25px;
-                color: white;
-                background-color: red;
-            }
 
             a {
                 color: #0083e8;
@@ -131,10 +61,6 @@
 
             b, strong {
                 font-weight: 600;
-            }
-
-            samp {
-                display: none;
             }
 
             th {
@@ -146,6 +72,7 @@
                 border-collapse: collapse;
 
             }
+            
             th{
                 padding:15px;
             }

@@ -38,15 +38,15 @@
                 try {
                     session.setAttribute("jspName", "OPMD-home.jsp");
                 } catch (Exception e) {
-                    
+
                 }
             } else {
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/"+ session.getAttribute("jspName").toString());
-                    dispatcher.forward(request, response);
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/" + session.getAttribute("jspName").toString());
+                dispatcher.forward(request, response);
             }
         %>
-        
+
         <script type="text/javascript">
             $('#body-row .collapse').collapse('hide');
 
@@ -78,45 +78,13 @@
 
         <style>
             .button{
-                    background-color: #333333;
-                    border: 5px;
-                    color: white;
-                    font-size:18px;
-                    text-align: center;
-                    font-family: "Times New Roman", Times, serif;
-                    width:100%;
-                }
-            
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
+                background-color: #333333;
+                border: 5px;
+                color: white;
+                font-size:18px;
+                text-align: center;
+                font-family: "Times New Roman", Times, serif;
+                width:100%;
             }
 
             tr:hover {
@@ -132,26 +100,9 @@
                 margin-bottom: 25px;
             }
 
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                border-bottom: 2px solid lightgray;
-                padding-bottom: 20px;
-                font-family: 'Montserrat', sans-serif;
-            }
-
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
-            }
-
-            .quickhead{
-                border-bottom: 1px solid gray;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-            }
-            .quickview{
-                margin-bottom: 50px;
             }
 
             .panels{
@@ -162,11 +113,6 @@
                 border-color: lightgray;
                 border-width: 1px;
                 border-radius: 8px;
-            }
-
-            .viewButton{
-                text-align: center;
-                margin-bottom: 0%;
             }
         </style>
 
@@ -257,67 +203,11 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <ul class="list-group sticky-top sticky-offset">
-                    <!-- Menu with submenu -->
-                    <a href="OPMD-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-folder-open fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuProposals" class="collapse sidebar-submenu">
-                        <a href="MULTIPLE-createSE.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Create SE Program Proposal</span>
-                        </a>
-                        <a href="MULTIPLE-createFF.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Create FF Program Proposal</span>
-                        </a>
-                        <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
-                        </a>
-                        <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
-                        </a>
-                    </div>
-                    <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-building fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Communities</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuCommunity" class="collapse sidebar-submenu">
-                        <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
-                        </a>
-                        <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                        </a>
-                    </div>
-                    <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check-square-o fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Key Result Areas</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
-                    <a href="MULTIPLE-evaluationSEResponsesList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-pencil-square-o fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Evaluation Forms</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                            $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
                 </ul>
             </div>
 

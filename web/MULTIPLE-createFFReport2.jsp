@@ -40,58 +40,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
             #myInput{
                 margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
             }
 
             tr:hover {
                 background-color: lightgreen;
             }
 
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                border-bottom: 2px solid lightgray;
-                padding-bottom: 20px;
-                font-family: 'Montserrat', sans-serif;
-            }
-
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
-            }
-
-            .quickhead{
-                border-bottom: 1px solid gray;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-            }
-            .quickview{
-                margin-bottom: 50px;
             }
 
             .panels{
@@ -102,22 +61,6 @@
                 border-color: lightgray;
                 border-width: 1px;
                 border-radius: 8px;
-            }
-            .viewButton{
-                text-align: center;
-                margin-bottom: 0%;
-            }
-
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            html {
-                background: #e6e9e9;
-                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-                -webkit-font-smoothing: antialiased;
             }
 
             table,th,td{
@@ -133,18 +76,14 @@
                 resize: none;
             } 
 
-            a {
+            a{
                 color: #0083e8;
             }
 
-            b, strong {
+            b{
                 font-weight: 600;
                 font-family: "Times New Roman", Times, serif;
                 font-size: 20px;
-            }
-
-            samp {
-                display: none;
             }
 
             th {
@@ -156,6 +95,7 @@
                 border-collapse: collapse;
 
             }
+            
             th{
                 padding:15px;
             }

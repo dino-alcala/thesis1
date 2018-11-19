@@ -515,22 +515,6 @@
 
 
         <style>   
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
             #myInput, #myInput2, #myInput3{
                 margin-bottom: 20px;
             }
@@ -790,7 +774,7 @@
             <div class="sidebar-expanded d-none d-md-block">
                 <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
                     <script>
-                        $("#sidebar-container").load("sidebarovplm.jsp");
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
                 </ul>
             </div>
@@ -872,11 +856,10 @@
                             </select>
                             <% }%>
                         </div>
-                        <!--
-                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
-                        <button type="button" class="btn btn-success">Download Report</button>
-                        -->
-                        <button type="submit">Submit</button>
+                        
+                        <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <button type="button" class="btn btn-info">Download Report</button>
+                        <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>
 

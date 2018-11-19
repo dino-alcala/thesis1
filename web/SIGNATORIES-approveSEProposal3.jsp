@@ -33,64 +33,6 @@
 
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            textarea{
-                resize: none;
-            }
-            
-            #myInput {
-                background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-                background-position: 10px 12px; /* Position the search icon */
-                background-repeat: no-repeat; /* Do not repeat the icon image */
-                width: 100%; /* Full-width */
-                padding: 12px 20px 12px 40px; /* Add some padding */
-                border: 1px solid #ddd; /* Add a grey border */
-                margin-bottom: 12px; /* Add some space below the input */
-                margin-top: 20px; 
-            }
-
-            #myTable {
-                border-collapse: collapse; /* Collapse borders */
-                width: 100%; /* Full-width */
-                border: 1px solid #ddd; /* Add a grey border */
-
-            }
-
-            #myTable th, #myTable td {
-                text-align: left; /* Left-align text */
-                padding: 12px; /* Add padding */
-            }
-
-            #myTable tr {
-                border-bottom: 1px solid #ddd; 
-            }
-
-            #myTable tr.header, #myTable tr:hover {
-                background-color: #4CAF50;
-            }
-
-            .panel-title{
-                font-size: 40px;
-                text-align: left;
-                margin-top: 20px;
-                padding-bottom: 10px;
-            }
-
             p{
                 margin-bottom: 0;
                 font-size: 15px;
@@ -142,11 +84,6 @@
             th,tr,td{
                 padding:15px;
             }
-
-            .progress-title{
-                color: darkgreen;
-            }
-
         </style>
 
     </head>

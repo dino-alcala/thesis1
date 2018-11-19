@@ -55,38 +55,6 @@
         </script>
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
-            }
-
             tr:hover {
                 background-color: lightgreen;
             }
@@ -99,13 +67,6 @@
                 padding-bottom: 5px;
                 margin-bottom: 25px;
                 font-family: 'Roboto', sans-serif;
-            }
-
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                padding-bottom: 5px;
-                font-family: 'Montserrat', sans-serif;
             }
 
             .table{

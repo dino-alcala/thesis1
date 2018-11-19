@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -47,6 +48,46 @@
         <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
         <script type="text/javascript" class="init"></script>
 
+        <script>
+            function demoFromHTML() {
+            var pdf = new jsPDF('p', 'pt', 'letter');
+            // source can be HTML-formatted string, or a reference
+            // to an actual DOM element from which the text will be scraped.
+            source = $('#content')[0];
+            // we support special element handlers. Register them with jQuery-style 
+            // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+            // There is no support for any other type of selectors 
+            // (class, of compound) at this time.
+            specialElementHandlers = {
+            // element with id of "bypass" - jQuery style selector
+            '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"
+            return true
+            }
+            };
+            margins = {
+            top: 80,
+                    bottom: 60,
+                    left: 40,
+                    width: 522
+            };
+            // all coords and widths are in jsPDF instance's declared units
+            // 'inches' in this case
+            pdf.fromHTML(
+                    source, // HTML string or DOM elem ref.
+                    margins.left, // x coord
+                    margins.top, { // y coord
+                    'width': margins.width, // max width of content on PDF
+                            'elementHandlers': specialElementHandlers
+                    },
+                    function (dispose) {
+                    // dispose: object with X, Y of the last line add to the PDF 
+                    //          this allow the insertion of new lines after html
+                    pdf.save('Term End Report.pdf');
+                    }, margins
+                    );
+            }
+        </script>
 
         <script>
 
@@ -528,36 +569,8 @@
         --->
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            #myInput{
-                margin-bottom: 20px;
-            }
-
             .card-text{
                 margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
             }
 
             tr:hover {
@@ -814,18 +827,16 @@
             </div>
 
             <!-- MAIN -->
-            <div class="col py-3">
+            <div id="content" class="col py-3">
 
                 <form action="viewTermEndReport" method="post">
                     <div class="container-fluid panels">
                         <p></p>
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
 
-                        <!-- 
-                         <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
-                         <button type="button" class="btn btn-success">Download Report</button>
-                        -->
-                        <button type="submit">Submit</button>
+                        <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <button type="button" class="btn btn-info">Download Report</button>
+                        <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>
 
@@ -1163,16 +1174,6 @@
                 <div class="container-fluid panels">
 
                     <h2>Number of Programs Implemented (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
-                    
-                    <div class="form-group" style="width:100%">
-                        <label for="sel1">Choose classification:</label>
-                        <select class="form-control" id="ffprogram" name="unit">
-                                <option value="Academic">Academic</option>
-                                <option value="Non-Academic">Non-Academic</option>
-                                <option value="StudentOrgs">Student Organizations</option>
-                        </select>
-                    </div>
-                    
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
@@ -1238,13 +1239,13 @@
 
                 </div>
                 <!--- Units -->
-                
-                
-                                <div class="container-fluid panels">
+
+
+                <div class="container-fluid panels">
 
                     <h2>Number of Programs Implemented For Student Organizations (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
 
-                    
+
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">

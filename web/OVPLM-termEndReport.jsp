@@ -108,38 +108,6 @@
         </script>
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
-            }
-
             tr:hover {
                 background-color: lightgreen;
             }
@@ -158,30 +126,6 @@
                 margin-top: 20px;
             }
 
-            .quickhead{
-                border-bottom: 1px solid white;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-
-            }
-
-            .quickhead2{
-                border-bottom: 1px solid darkgreen;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-                color: black;
-            }
-
-            .quickview{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
-
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -190,19 +134,6 @@
                 border-color: lightgray;
                 border-width: 1px;
                 border-radius: 8px;
-            }
-
-            .card-text{
-                color: white;
-            }
-
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                font-family: 'Montserrat', sans-serif;
-                border-bottom: 1px solid darkgreen;
-                padding-bottom: 20px;
-                margin-bottom: 20px;
             }
 
             .daterange{
@@ -219,6 +150,7 @@
                 background-color: darkgreen;
                 color: white;
             }
+            
             .tableHead2{
                 background-color: darkcyan;
                 color: white;

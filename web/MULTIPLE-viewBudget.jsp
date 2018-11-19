@@ -66,22 +66,6 @@
         </script>
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
             #myInput {
                 background-image: url('/css/searchicon.png'); /* Add a search icon to input */
                 background-position: 10px 12px; /* Position the search icon */
@@ -119,6 +103,7 @@
                 font-family: 'Montserrat', sans-serif;
                 margin-top: 20px;
             }
+            
             .panels{
                 margin-top: 15px;
                 background-color: white;

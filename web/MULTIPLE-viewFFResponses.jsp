@@ -34,36 +34,10 @@
 
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
             .chartscardslong2{
                 background-color: white;
                 color: black;
                 padding: 10px;
-            }
-
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
             }
 
             tr:hover {
@@ -88,32 +62,6 @@
                 margin-bottom: 25px;
             }
 
-
-
-            .quickhead{
-                border-bottom: 1px solid white;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-
-            }
-
-            .quickhead2{
-                border-bottom: 1px solid darkgreen;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-                color: black;
-            }
-
-            .quickview{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
-
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -124,54 +72,13 @@
                 border-radius: 8px;
             }
 
-            .card-text{
-                color: white;
-            }
-
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                font-family: 'Montserrat', sans-serif;
-                border-bottom: 1px solid darkgreen;
-                padding-bottom: 20px;
-                margin-bottom: 20px;
-            }
-
             .daterange{
                 text-align: right;
             }
 
-
             .pbutton{
                 margin-top: 40px;
                 text-align: center;
-            }
-
-            .tableHead{
-                background-color: darkgreen;
-                color: white;
-            }
-            .tableHead2{
-                background-color: darkcyan;
-                color: white;
-            }
-
-            .card-text2{
-                color:  black;
-                font-size: 20px;
-            }
-
-            .card-text3{
-                color:  black;
-                font-weight: 500;
-                margin-bottom: 50px;
-            }
-
-            .quickhead3{
-                border-bottom: 2px solid black;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-                color: black;
             }
 
             .chartscards{

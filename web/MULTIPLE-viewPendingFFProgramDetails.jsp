@@ -31,60 +31,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            #myInput {
-                background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-                background-position: 10px 12px; /* Position the search icon */
-                background-repeat: no-repeat; /* Do not repeat the icon image */
-                width: 100%; /* Full-width */
-                padding: 12px 20px 12px 40px; /* Add some padding */
-                border: 1px solid #ddd; /* Add a grey border */
-                margin-bottom: 12px; /* Add some space below the input */
-                margin-top: 20px; 
-            }
-
-            #myTable {
-                border-collapse: collapse; /* Collapse borders */
-                width: 100%; /* Full-width */
-                border: 1px solid #ddd; /* Add a grey border */
-
-            }
-
-            #myTable th, #myTable td {
-                text-align: left; /* Left-align text */
-                padding: 12px; /* Add padding */
-            }
-
-            #myTable tr {
-                border-bottom: 1px solid #ddd; 
-            }
-
-            #myTable tr.header, #myTable tr:hover {
-                background-color: #4CAF50;
-            }
-
-            .panel-title{
-                font-size: 40px;
-                text-align: left;
-                margin-top: 20px;
-                padding-bottom: 10px;
-            }
-
             p{
                 margin-bottom: 0;
                 font-size: 15px;
@@ -98,55 +44,6 @@
 
             h4{
                 color: white;
-            }
-
-            .panel-success > .panel-heading {
-                background-color: #4CAF50;
-                border-color: #ddd;
-                border: 1px solid;
-            }
-
-            .panel-body{
-                border: 1px solid;
-            }
-
-            .panel-upper{
-                border: 3px solid #4CAF50;
-            }
-
-            @media (max-width: 399px) {
-                .progress-tracker-mobile {
-                    overflow-x: auto;
-                }
-                .progress-tracker-mobile .progress-tracker {
-                    min-width: 200%;
-                }
-            }
-
-            @-webkit-keyframes scale-up {
-                from {
-                    opacity: 1;
-                    -webkit-transform: translate(-50%, -50%) scale(0);
-                    transform: translate(-50%, -50%) scale(0);
-                }
-                to {
-                    opacity: 0;
-                    -webkit-transform: translate(-50%, -50%) scale(1);
-                    transform: translate(-50%, -50%) scale(1);
-                }
-            }
-
-            @keyframes scale-up {
-                from {
-                    opacity: 1;
-                    -webkit-transform: translate(-50%, -50%) scale(0);
-                    transform: translate(-50%, -50%) scale(0);
-                }
-                to {
-                    opacity: 0;
-                    -webkit-transform: translate(-50%, -50%) scale(1);
-                    transform: translate(-50%, -50%) scale(1);
-                }
             }
 
             h3{
@@ -167,19 +64,9 @@
                 border: 1px solid black;
             }
 
-
             th,tr,td{
                 padding:15px;
             }
-
-            .progress-title{
-                color: darkgreen;
-            }
-
-            textarea{
-                resize: none;
-            }
-
         </style>
 
     </head>
@@ -505,7 +392,7 @@
                                 %>
 
                                 <div>
-                                    <center><button type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="button">Cancel Program</button></center>
+                                    <center><button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="button">Cancel Program</button></center>
                                 </div>
                                 <%
                                     }

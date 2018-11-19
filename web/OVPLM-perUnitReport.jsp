@@ -63,36 +63,8 @@
         </script>
 
         <style>   
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
             #myInput, #myInput2, #myInput3{
                 margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
             }
 
             tr:hover {
@@ -145,12 +117,6 @@
                 font-size: 40px;
             }
 
-            .card-text{
-                color: white;
-                font-size: 20px;
-                font-family: 'Montserrat', sans-serif;
-            }
-
             .total{
                 color: white;
                 font-size: 40px;
@@ -173,10 +139,12 @@
                 border-radius: 8px;
                 margin-bottom: 20px;
             }
+            
             .daterange{
                 text-align: right;
                 margin-top: 30px;
             }
+            
             .button {
                 background-color: dodgerblue;
                 border: none;
@@ -200,11 +168,6 @@
                 padding-bottom: 10px; 
                 margin-bottom: 20px;
                 color: black;
-            }
-
-            #notifsScroll {
-                overflow: auto; 
-                height: 250px;
             }
 
             #buttonSE {

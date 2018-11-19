@@ -33,12 +33,6 @@
             html{
                 font-size:14px;
             }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
 
             body{
                 background-color: whitesmoke;

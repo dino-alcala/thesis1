@@ -101,9 +101,11 @@
             html{
                 font-size:14px;
             }
+            
             .navbar{
                 height:8%;
             }
+            
             .sidebar-expanded{
                 margin-top:0.1%;
             }
@@ -112,10 +114,6 @@
                 overflow-y: auto; 
                 overflow-x: hidden;
                 height: 250px;
-            }
-
-            #modules{
-                font-size: 18px;
             }
 
             .panel-primary{
@@ -198,9 +196,6 @@
                 background-color: #4CAF50;
                 color: white;
             }
-
-
-
         </style>
 
     </head>

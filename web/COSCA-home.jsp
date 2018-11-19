@@ -108,37 +108,18 @@
                 width:100%;
             }
             
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
-            }
             #myInput{
                 margin-bottom: 20px;
             }
+            
             .card-text{
                 margin-bottom: 5px;
             }
-            .progressnum{
-                font-size: 12px;
-                padding-bottom: 10px;
-                border-bottom: 1px solid lightgray;
-            }
-            .krascards:hover {
-                background-color: lightgreen;
-            }
+            
             tr:hover {
                 background-color: lightgreen;
             }
+            
             h4{
                 font-size: 25px;
                 text-align: left;
@@ -147,25 +128,12 @@
                 padding-bottom: 10px;
                 margin-bottom: 25px;
             }
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                border-bottom: 2px solid lightgray;
-                padding-bottom: 20px;
-                font-family: 'Montserrat', sans-serif;
-            }
+ 
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
-            .quickhead{
-                border-bottom: 1px solid gray;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-            }
-            .quickview{
-                margin-bottom: 50px;
-            }
+        
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -175,10 +143,6 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-            .viewButton{
-                text-align: center;
-                margin-bottom: 0%;
-            }
 
             .accomplishmentGreen{
                 text-align: center;
@@ -186,12 +150,14 @@
                 color: white;
                 background-color: green;
             }
+            
             .accomplishmentYellow{
                 text-align: center;
                 font-size: 25px;
                 color: white;
                 background-color: #FFBF00;
             }
+            
             .accomplishmentRed{
                 text-align: center;
                 font-size: 25px;
@@ -288,82 +254,11 @@
         <div class="row" id="body-row">
 
             <!--Sidebar-->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <ul class="list-group sticky-top sticky-offset">
-                    <!-- Menu with submenu -->
-                    <a href="COSCA-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="#submenuProposals" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-folder-open fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuProposals" class="collapse sidebar-submenu">
-                        <a href="MULTIPLE-createSE.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Create SE Program Proposal</span>
-                        </a>
-                        <a href="MULTIPLE-createFF.jsp"  class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Create FF Program Proposal</span>
-                        </a>
-                        <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">SE Programs</span>
-                        </a>
-                        <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
-                        </a>
-                        <%
-                            if (session.getAttribute("position").toString().equals("COSCA - Sir Neil Position") || session.getAttribute("position").toString().equals("COSCA - Director")) {
-                        %>
-                        <a href="MULTIPLE-seProgramsForApproval.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">For Approval</span>
-                        </a>                        
-                        <%
-                            }
-                        %>
-                    </div>
-                    <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-group fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Units</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-building fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Communities</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuCommunity" class="collapse sidebar-submenu">
-                        <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
-                        </a>
-                        <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                        </a>
-                    </div>
-                    <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check-square-o fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Key Result Areas</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="MULTIPLE-evaluationSEResponsesList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-pencil-square-o fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Evaluation Forms</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
                 </ul>
             </div>
 

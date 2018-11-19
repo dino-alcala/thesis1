@@ -99,38 +99,6 @@
         </script>
 
         <style>
-            html{
-                font-size:14px;
-            }
-            .navbar{
-                height:8%;
-            }
-            .sidebar-expanded{
-                margin-top:0.1%;
-            }
-            
-            #notifsScroll {
-                overflow-y: auto; 
-                overflow-x: hidden;
-                height: 250px;
-            }
-
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            .progressnum{
-                font-size: 12px;
-            }
-
-            .krascards:hover {
-                background-color: lightgreen;
-            }
-
             tr:hover {
                 background-color: lightgreen;
             }
@@ -144,26 +112,9 @@
                 margin-bottom: 25px;
             }
 
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                border-bottom: 2px solid lightgray;
-                padding-bottom: 20px;
-                font-family: 'Montserrat', sans-serif;
-            }
-
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
-            }
-
-            .quickhead{
-                border-bottom: 1px solid gray;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-            }
-            .quickview{
-                margin-bottom: 50px;
             }
 
             h1{
@@ -192,33 +143,6 @@
                 position: relative;
                 display: inline-block;
             }
-
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-
-            .dropdown-content a:hover {background-color: #f1f1f1}
-
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-
-            .dropdown:hover .dropbtn {
-                background-color: #3e8e41;
-            }
-
         </style>
 
     </head>

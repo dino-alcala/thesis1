@@ -9,6 +9,7 @@ import dao.UserDAO;
 import entity.Budget;
 import entity.Notification;
 import entity.SE;
+import java.awt.Window;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -75,7 +76,6 @@ public class createSEreport extends HttpServlet {
             }
 
             if (request.getParameter("cancelProgram") != null) {
-
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
