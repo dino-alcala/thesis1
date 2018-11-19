@@ -101,7 +101,7 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -302,8 +302,10 @@
                                     %>
                                 </table></center>
                             <br>
-                            <center><input type ="button" onclick ="addRow()" value="Click to Add Row">
-                                <input style="background-color:red; border: red;" type ="button" onclick ="deleteRow()" value="Click to Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
+                                    <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                            </center>
                         </fieldset>    
                         <br><br><br><br>
                         <center><button class="button" type = "submit" name="ffID" value="<%=FF.getId()%>">Submit</button></center>

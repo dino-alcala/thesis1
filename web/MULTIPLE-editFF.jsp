@@ -97,7 +97,7 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -143,10 +143,10 @@
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
             var cell4 = row.insertCell(3);
-            cell1.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffitem" + count + "' required></textarea></td>";
-            cell2.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffunitcost" + count + "' required></textarea></td>";
-            cell3.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffquantity" + count + "' required></textarea></td>";
-            cell4.innerHTML = "<td><textarea style='border-radius: 0px' rows = '2' cols = '25%' name ='ffsubtotal" + count + "' required></textarea></td>";
+            cell1.innerHTML = "<td><input type='text' style='border-radius: 0px; margin-bottom:1%' name ='ffitem" + count + "' required></td>";
+            cell2.innerHTML = "<td><input type='number' style='border-radius:0px; margin-bottom:1%' id='ffunitcost" + count + "' name ='ffunitcost" + count + "' required></td>";
+            cell3.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='ffquantity" + count + "' name ='ffquantity" + count + "' required></td>";
+            cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='ffsubtotal" + count + "' name ='ffsubtotal" + count + "' value='0' readonly required></td>";
             count++;
             document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -161,6 +161,30 @@
 
             }
             }
+        </script>
+        
+        <script>
+            function calculate() {
+                var count = document.getElementById("countexpenses").value;
+                var rows = document.getElementById("breakdowntable").rows.length;
+                var total = 0;
+                if (rows > 0){
+                    
+                for (var x = 0; x < count; x++) {
+                    var y = document.getElementById("ffquantity" + x).value;
+                    var z = document.getElementById("ffunitcost" + x).value;
+                    var subtotal = document.getElementById("ffsubtotal" + x);
+                    subtotal.setAttribute('value', y * z);
+                }
+            }
+
+                for (var x = 0; x < count; x++){
+                    var b = document.getElementById("ffsubtotal" + x).value;
+                    total = (total * 1) + (b * 1);
+                }
+                document.getElementById("total").setAttribute('value', total);
+            }
+
         </script>
 
         <script type="text/javascript">
@@ -432,10 +456,10 @@
                                         for (int i = 0; i < FF.getExpenses().size(); i++) {
                                     %>
                                     <tr>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffitem<%=i%>"><%=FF.getExpenses().get(i).getItem()%></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffunitcost<%=i%>"><%=FF.getExpenses().get(i).getUnitcost()%></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffquantity<%=i%>"><%=FF.getExpenses().get(i).getQuantity()%></textarea></td>
-                                        <td><textarea rows = "2" cols = "25%" name ="ffsubtotal<%=i%>"><%=FF.getExpenses().get(i).getSubtotal()%></textarea></td>
+                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%" id="ffitem0"  name ="ffitem0" required></td>
+                                        <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost0" name ="ffunitcost0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity0" name ="ffquantity0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" value="0" readonly required></td>
                                     </tr>
                                     <%
                                         }
@@ -443,13 +467,15 @@
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td>Grand Total: </td>
+                                        <td>Total: </td>
+                                        <td><input type="number" style="margin-bottom:1%; border-radius:0px" name="total" id="total" readonly value="0"></td>
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" onclick ="addRow()" value="Click to Add Row">
-                                <input style="background-color:red; border: red;" type ="button" onclick ="deleteRow()" value="Click to Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
+                                 <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                            </center>
                         </fieldset>
 
                         <br><br><br><br>

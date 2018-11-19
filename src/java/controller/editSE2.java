@@ -50,83 +50,90 @@ public class editSE2 extends HttpServlet {
 
             SE = (SE) session.getAttribute("SE");
 
-            ArrayList<SEworkplan> sework = new ArrayList();
+            if (Double.parseDouble(request.getParameter("total")) == SE.getTotalAmount()) {
+                ArrayList<SEworkplan> sework = new ArrayList();
 
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
-                SEworkplan SEworkplan = new SEworkplan();
-                SEworkplan.setDate(Date.valueOf(request.getParameter("date" + i)));
-                SEworkplan.setActivity(request.getParameter("activity" + i));
-                SEworkplan.setTimestarttimeend(request.getParameter("time" + i));
-                SEworkplan.setTimestarttimeend2(request.getParameter("timeend" + i));
-                SEworkplan.setVenue(request.getParameter("venue" + i));
-                sework.add(SEworkplan);
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
+                    SEworkplan SEworkplan = new SEworkplan();
+                    SEworkplan.setDate(Date.valueOf(request.getParameter("date" + i)));
+                    SEworkplan.setActivity(request.getParameter("activity" + i));
+                    SEworkplan.setTimestarttimeend(request.getParameter("time" + i));
+                    SEworkplan.setTimestarttimeend2(request.getParameter("timeend" + i));
+                    SEworkplan.setVenue(request.getParameter("venue" + i));
+                    sework.add(SEworkplan);
+                }
+
+                SE.setWorkplan(sework);
+
+                ArrayList<SEexpenses> seexpense = new ArrayList();
+
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                    SEexpenses SEexpenses = new SEexpenses();
+                    SEexpenses.setItem(request.getParameter("seitem" + i));
+                    SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
+                    SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
+                    SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
+                    seexpense.add(SEexpenses);
+                }
+
+                SE.setExpenses(seexpense);
+
+                SE.setTotalpopulationAcademicStaff(Integer.parseInt(request.getParameter("seacademictotal")));
+                SE.setExpectedAcademicStaff(Integer.parseInt(request.getParameter("seacademicexpected")));
+                SE.setTotalpopulationSupportStaff(Integer.parseInt(request.getParameter("sesupporttotal")));
+                SE.setExpectedSupportStaff(Integer.parseInt(request.getParameter("sesupportexpected")));
+                SE.setTotalpopulationUndergraduate(Integer.parseInt(request.getParameter("seundergraduatetotal")));
+                SE.setExpectedUndergraduate(Integer.parseInt(request.getParameter("seundergraduateexpected")));
+                SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
+                SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
+
+                ArrayList<SEresponsible> seresponsible = new ArrayList();
+
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countresponsible")); i++) {
+                    SEresponsible SEresponsible = new SEresponsible();
+                    SEresponsible.setName(request.getParameter("responsiblename" + i));
+                    SEresponsible.setEmail(request.getParameter("responsibleemail" + i));
+                    seresponsible.add(SEresponsible);
+                }
+
+                SE.setResponsible(seresponsible);
+
+                ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
+
+                UserDAO.editMeasures(measureID, SE.getId());
+                UserDAO.auditSE(SE.getId());
+                UserDAO.EditSE(SE);
+
+                UserDAO.completeReviseSE(SE.getId());
+
+                Notification n = new Notification();
+                n.setTitle(SE.getName());
+                n.setBody("Revised SE Proposal ready for approval!");
+
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                n.setDt(sdf.format(dt));
+
+                if (UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))).equals("Academic")) {
+                    n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(session.getAttribute("unit").toString(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                } else if (UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))).equals("Non-Academic")) {
+                    n.setUserID(UserDAO.getUserIDforNotifsUnitChair(session.getAttribute("unit").toString()));
+                }
+
+                UserDAO.AddNotification(n);
+
+                request.setAttribute("reviseSE1", "You have successfully revised the SE!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");
+                dispatcher.forward(request, response);
+                
+            } else if (Double.parseDouble(request.getParameter("total")) != SE.getTotalAmount()) {
+                request.setAttribute("successSE", "Amount is not equal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editSE2.jsp");
+                dispatcher.forward(request, response);
             }
-
-            SE.setWorkplan(sework);
-
-            ArrayList<SEexpenses> seexpense = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                SEexpenses SEexpenses = new SEexpenses();
-                SEexpenses.setItem(request.getParameter("seitem" + i));
-                SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
-                SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
-                SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
-                seexpense.add(SEexpenses);
-            }
-
-            SE.setExpenses(seexpense);
-
-            SE.setTotalpopulationAcademicStaff(Integer.parseInt(request.getParameter("seacademictotal")));
-            SE.setExpectedAcademicStaff(Integer.parseInt(request.getParameter("seacademicexpected")));
-            SE.setTotalpopulationSupportStaff(Integer.parseInt(request.getParameter("sesupporttotal")));
-            SE.setExpectedSupportStaff(Integer.parseInt(request.getParameter("sesupportexpected")));
-            SE.setTotalpopulationUndergraduate(Integer.parseInt(request.getParameter("seundergraduatetotal")));
-            SE.setExpectedUndergraduate(Integer.parseInt(request.getParameter("seundergraduateexpected")));
-            SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
-            SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
-
-            ArrayList<SEresponsible> seresponsible = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countresponsible")); i++) {
-                SEresponsible SEresponsible = new SEresponsible();
-                SEresponsible.setName(request.getParameter("responsiblename" + i));
-                SEresponsible.setEmail(request.getParameter("responsibleemail" + i));
-                seresponsible.add(SEresponsible);
-            }
-
-            SE.setResponsible(seresponsible);
-
-            ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
-
-            UserDAO.editMeasures(measureID, SE.getId());
-            UserDAO.auditSE(SE.getId());
-            UserDAO.EditSE(SE);
-
-            UserDAO.completeReviseSE(SE.getId());
-
-            Notification n = new Notification();
-            n.setTitle(SE.getName());
-            n.setBody("Revised SE Proposal ready for approval!");
-            
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            n.setDt(sdf.format(dt));
-            
-            if(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))).equals("Academic")){
-                n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(session.getAttribute("unit").toString(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-            } else if(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))).equals("Non-Academic")){
-                n.setUserID(UserDAO.getUserIDforNotifsUnitChair(session.getAttribute("unit").toString()));
-            } 
-            
-            UserDAO.AddNotification(n);
-            
-            request.setAttribute("reviseSE1", "You have successfully revised the SE!");
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");
-            dispatcher.forward(request, response);
-
         }
     }
 

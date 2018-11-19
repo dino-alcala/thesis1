@@ -40,7 +40,7 @@
             #myInput{
                 margin-bottom: 20px;
             }
-
+            
             tr:hover {
                 background-color: lightgreen;
             }
@@ -59,7 +59,7 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
- 
+  
             table,th,td{
                 border:.5px solid
                     black;
@@ -72,10 +72,6 @@
             textarea{
                 resize: none;
             } 
-
-            th{
-                padding:15px;
-            }
 
             a {
                 color: #0083e8;
@@ -94,6 +90,25 @@
                 border-collapse: collapse;
 
             }
+            
+            th{
+                padding:15px;
+            }
+
+            #addRowButton {
+                padding: 10px;
+                padding-right: 17px;
+                padding-left: 17px;
+            }
+
+            #deleteRowButton {
+                padding: 10px;
+            }
+
+            #addRowButton, #deleteRowButton {
+                display:inline-block;
+                font-family: "Times New Roman", Times, serif;
+            }
 
             .button{
                 background-color: darkgreen;
@@ -107,14 +122,21 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            #addRowButton, #deleteRowButton, legend, table, th, td {
-                display:inline-block;
+            legend, th, td{
                 font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
             }
 
-            table,th,td{
-                font-size: 15px;
 
+            @keyframes colorize {
+                0% {
+                    -webkit-filter: grayscale(100%);
+                    filter: grayscale(100%);
+                }
+                100% {
+                    -webkit-filter: grayscale(0%);
+                    filter: grayscale(0%);
+                }
             }
 
         </style>

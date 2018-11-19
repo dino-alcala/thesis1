@@ -90,7 +90,7 @@
                 border-collapse: collapse;
 
             }
-            
+
             th{
                 padding:15px;
             }
@@ -110,7 +110,7 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -295,10 +295,10 @@
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
             var cell4 = row.insertCell(3);
-            cell1.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='seitem" + count + "'></textarea></td>";
-            cell2.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='seunitcost" + count + "'></textarea></td>";
-            cell3.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='sequantity" + count + "'></textarea></td>";
-            cell4.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '2' cols = '20%' name ='sesubtotal" + count + "'></textarea></td>";
+            cell1.innerHTML = "<td><input type='text' style='border-radius: 0px; margin-bottom:1%'  name ='seitem" + count + "' required></td>";
+            cell2.innerHTML = "<td><input type='number' style='border-radius:0px; margin-bottom:1%' id='seunitcost" + count + "' name ='seunitcost" + count + "' required></td>";
+            cell3.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sequantity" + count + "' name ='sequantity" + count + "' required></td>";
+            cell4.innerHTML = "<td><input type='number' style='border-radius: 0px; margin-bottom:1%' id='sesubtotal" + count + "' name ='sesubtotal" + count + "' value='0' readonly required></td>";
             count++;
             document.getElementById("countexpenses").setAttribute('value', count);
             }
@@ -334,6 +334,30 @@
 
             }
 
+            }
+
+        </script>
+        
+        <script>
+            function calculate() {
+                var count = document.getElementById("countexpenses").value;
+                var rows = document.getElementById("breakdowntable").rows.length;
+                var total = 0;
+                
+                if(rows > 0){
+                    for (var x = 0; x < count; x++) {
+                        var y = document.getElementById("sequantity" + x).value;
+                        var z = document.getElementById("seunitcost" + x).value;
+                        var subtotal = document.getElementById("sesubtotal" + x);
+                        subtotal.setAttribute('value', y * z);
+                    }
+                }
+                
+                for(var x = 0 ; x < count ; x++){
+                    var b = document.getElementById("sesubtotal" + x).value;
+                    total = (total*1) + (b*1);
+                }
+                document.getElementById("total").setAttribute('value', total);
             }
 
         </script>
@@ -438,7 +462,7 @@
                 <center><h2>Social Engagement Proposal</h2></center>
                 <hr size="5" noshade>
                 <br>
-                
+
                 <%
                     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                     java.util.Date javaDate = new java.util.Date();
@@ -479,8 +503,10 @@
                                 </table></center>
                             <br>
                             <div>
-                                <center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add Row">
-                                    <input style="background-color:red; border: red;" type ="button" id="addRowButton" onclick ="deleteRow2()" value="Delete Row"></center>
+                                <center>
+                                    <button type ="button" class="button" id="addRowButton" onclick ="addRow2()" value="Add Row">Add Row</button>
+                                    <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow2()" value="Delete Row">Delete Row</button>
+                                </center>
                             </div>
                         </fieldset>
 
@@ -499,10 +525,10 @@
                                         for (int i = 0; i < SE.getExpenses().size(); i++) {
                                     %>
                                     <tr>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="seitem<%=i%>"><%=SE.getExpenses().get(i).getItem()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="seunitcost<%=i%>"><%=SE.getExpenses().get(i).getUnitcost()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="sequantity<%=i%>"><%=SE.getExpenses().get(i).getQuantity()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="sesubtotal<%=i%>"><%=SE.getExpenses().get(i).getSubtotal()%></textarea></td>
+                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
+                                        <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
+                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" value="0" readonly required></td>
                                     </tr>
                                     <%
                                         }
@@ -510,13 +536,15 @@
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td>Grand Total: </td>
+                                        <td>Total: </td>
+                                        <td><input type="number" style="margin-bottom:1%; border-radius:0px" name="total" id="total" readonly value="0"></td>
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow3()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" id="addRowButton" onclick ="addRow3()" value="Add Row">Add Row</button>
+                                <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete Row">Delete Row</button>
+                            </center>
                         </fieldset>
 
                         <legend><b>Expected Participants vs. Total Population of the Unit</b></legend>
@@ -572,10 +600,12 @@
                                     %>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"></center>
+                            <center>
+                                <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
+                                <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                            </center>
                         </fieldset>
-                                <br><br>
+                        <br><br>
                         <center><button class="button" type="submit">Submit</button></center>
                     </form>
                 </div>

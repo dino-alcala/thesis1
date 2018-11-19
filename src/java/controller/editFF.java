@@ -45,40 +45,48 @@ public class editFF extends HttpServlet {
             HttpSession session = request.getSession();
             FF FF = new FF();
 
-            FF.setId(Integer.parseInt(request.getParameter("ffID")));
-            FF.setProgramHead(request.getParameter("programhead"));
-            FF.setActivityClassification(request.getParameter("classification"));
-            FF.setProjectName(request.getParameter("pname"));
-            FF.setVenue(request.getParameter("pvenue"));
-            FF.setSpeaker(request.getParameter("pspeaker"));
-            FF.setObjectives(request.getParameter("objectives"));
-            FF.setActualDate(Date.valueOf(request.getParameter("actualdate")));
-            FF.setTotalAmount(Double.parseDouble(request.getParameter("pbudget")));
-            FF.setSourceOfFunds(request.getParameter("funds"));
+            if (Double.parseDouble(request.getParameter("total")) == Double.parseDouble(request.getParameter("pbudget"))) {
+                FF.setId(Integer.parseInt(request.getParameter("ffID")));
+                FF.setProgramHead(request.getParameter("programhead"));
+                FF.setActivityClassification(request.getParameter("classification"));
+                FF.setProjectName(request.getParameter("pname"));
+                FF.setVenue(request.getParameter("pvenue"));
+                FF.setSpeaker(request.getParameter("pspeaker"));
+                FF.setObjectives(request.getParameter("objectives"));
+                FF.setActualDate(Date.valueOf(request.getParameter("actualdate")));
+                FF.setTotalAmount(Double.parseDouble(request.getParameter("pbudget")));
+                FF.setSourceOfFunds(request.getParameter("funds"));
 
-            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 1 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 2 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 3 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 4) {
-                FF.setStep(1);
+                if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 1 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 2 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 3 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 4) {
+                    FF.setStep(1);
+                }
+
+                ArrayList<FFexpenses> ffexpense = new ArrayList();
+
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                    FFexpenses FFexpenses = new FFexpenses();
+                    FFexpenses.setItem(request.getParameter("ffitem" + i));
+                    FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
+                    FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
+                    FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
+                    ffexpense.add(FFexpenses);
+                }
+
+                FF.setExpenses(ffexpense);
+
+                session.setAttribute("FF", FF);
+                request.setAttribute("ffID", request.getParameter("ffID"));
+
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editFF2.jsp");
+                dispatcher.forward(request, response);
+                
+            } else {
+                request.setAttribute("successFF", "Amount is not equal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editFF.jsp");
+                dispatcher.forward(request, response);
             }
-
-            ArrayList<FFexpenses> ffexpense = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                FFexpenses FFexpenses = new FFexpenses();
-                FFexpenses.setItem(request.getParameter("ffitem" + i));
-                FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
-                FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
-                FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
-                ffexpense.add(FFexpenses);
-            }
-
-            FF.setExpenses(ffexpense);
-
-            session.setAttribute("FF", FF);
-            request.setAttribute("ffID", request.getParameter("ffID"));
-            
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editFF2.jsp");
-            dispatcher.forward(request, response);
         }
     }
 

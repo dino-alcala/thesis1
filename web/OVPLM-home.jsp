@@ -217,8 +217,6 @@
                 font-family: "Times New Roman", Times, serif;
                 width:100%;
             }
-            
-            
         </style>
 
     </head>

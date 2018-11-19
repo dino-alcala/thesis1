@@ -112,7 +112,7 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
                 color: white;
                 padding: 15px 32px;
@@ -312,8 +312,8 @@
                                 </table></center>
                             <br>
                             <center>
-                                <button class="button" type ="button" id="addRowButton" onclick ="addRow()" style="background-color:darkgreen">Add Row</button>
-                                <button class="button" type ="button" id="deleteRowButton" onclick ="deleteRow()" style="background-color:red; border: red;">Delete Row</button>
+                                <button class="button" type ="button" id="addRowButton" onclick ="addRow()">Add Row</button>
+                                <button class="button" type ="button" id="deleteRowButton" onclick ="deleteRow()" style="background-color:red">Delete Row</button>
                             </center>
                         </fieldset>    
                         <br><br><br><br>
