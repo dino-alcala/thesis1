@@ -390,7 +390,7 @@
     </servlet>
     <servlet>
         <servlet-name>createFFReport5</servlet-name>
-        <servlet-class>controller.createFFReport5</servlet-class>
+        <servlet-class>controller.createFFreport5</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>viewKRATracing</servlet-name>

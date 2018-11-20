@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Dino Alcala
  */
-public class createFFReport5 extends HttpServlet {
+public class createFFreport5 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
