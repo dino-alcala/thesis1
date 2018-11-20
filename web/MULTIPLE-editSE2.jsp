@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.Notification"%>
 <%@page import="entity.SE"%>
 <%@page import="entity.KRA"%>
@@ -337,27 +338,26 @@
             }
 
         </script>
-        
+
         <script>
             function calculate() {
-                var count = document.getElementById("countexpenses").value;
-                var rows = document.getElementById("breakdowntable").rows.length;
-                var total = 0;
-                
-                if(rows > 0){
-                    for (var x = 0; x < count; x++) {
-                        var y = document.getElementById("sequantity" + x).value;
-                        var z = document.getElementById("seunitcost" + x).value;
-                        var subtotal = document.getElementById("sesubtotal" + x);
-                        subtotal.setAttribute('value', y * z);
-                    }
-                }
-                
-                for(var x = 0 ; x < count ; x++){
-                    var b = document.getElementById("sesubtotal" + x).value;
-                    total = (total*1) + (b*1);
-                }
-                document.getElementById("total").setAttribute('value', total);
+            var count = document.getElementById("countexpenses").value;
+            var rows = document.getElementById("breakdowntable").rows.length;
+            var total = 0;
+            if (rows > 0){
+            for (var x = 0; x < count; x++) {
+            var y = document.getElementById("sequantity" + x).value;
+            var z = document.getElementById("seunitcost" + x).value;
+            var subtotal = document.getElementById("sesubtotal" + x);
+            subtotal.setAttribute('value', y * z);
+            }
+            }
+
+            for (var x = 0; x < count; x++){
+            var b = document.getElementById("sesubtotal" + x).value;
+            total = (total * 1) + (b * 1);
+            }
+            document.getElementById("total").setAttribute('value', total);
             }
 
         </script>
@@ -509,9 +509,17 @@
                                 </center>
                             </div>
                         </fieldset>
+                                <br><br>
 
 
-                        <legend><b>Breakdown of Expenses</b></legend>
+                        <%
+
+                            DecimalFormat df = new DecimalFormat("#,###,###,###.##");
+
+                            UserDAO = new UserDAO();
+                        %>
+
+                        <legend><b>Breakdown of Expenses - Amount Requested: PHP <%=df.format(SE.getTotalAmount())%></b></legend>
                         <input type="hidden" value="<%=SE.getExpenses().size()%>" id="countexpenses" name="countexpenses">
                         <fieldset>
                             <center><table style = "width:100%" id="breakdowntable">
@@ -525,10 +533,10 @@
                                         for (int i = 0; i < SE.getExpenses().size(); i++) {
                                     %>
                                     <tr>
-                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
-                                        <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
-                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
-                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" value="0" readonly required></td>
+                                        <td><input value="<%=SE.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
+                                        <td><input value="<%=SE.getExpenses().get(i).getUnitcost()%>" type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
+                                        <td><input value="<%=SE.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
+                                        <td><input value="<%=SE.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" readonly required></td>
                                     </tr>
                                     <%
                                         }
@@ -543,9 +551,11 @@
                             <br>
                             <center>
                                 <button type ="button" class="button" id="addRowButton" onclick ="addRow3()" value="Add Row">Add Row</button>
+                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
                                 <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete Row">Delete Row</button>
                             </center>
                         </fieldset>
+                                    <br><br>
 
                         <legend><b>Expected Participants vs. Total Population of the Unit</b></legend>
                         <fieldset>
@@ -577,7 +587,7 @@
                                     </tr>
 
                                 </table></center>
-                            <br>
+                                    <br><br>
                         </fieldset>
 
                         <fieldset>
@@ -606,7 +616,7 @@
                             </center>
                         </fieldset>
                         <br><br>
-                        <center><button class="button" type="submit">Submit</button></center>
+                        <center><button class="button" name="seID" value="<%=SE.getId()%>" type="submit">Submit</button></center>
                     </form>
                 </div>
             </div>

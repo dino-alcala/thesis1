@@ -2705,7 +2705,7 @@ public class UserDAO {
         int rs = 0;
         try {
 
-            String query = "INSERT INTO ffproposal_revisions(ffproposalID, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, chairdirectorRemarks, vplmRemarks, deanunitRemarks, lspoRemarks, unitheadremarks, directorremarks, chairdirectordatetime, vplmdatetime, deanunitdatetime, lspodatetime, unitheaddatetime, directordatetime, datetime) SELECT id, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, chairdirectorRemarks, vplmRemarks, deanunitRemarks, lspoRemarks, unitheadremarks, directorremarks, chairdirectordatetime, vplmdatetime, deanunitdatetime, lspodatetime, unitheaddatetime, directordatetime, datetime FROM ffproposal WHERE id = ?";
+            String query = "INSERT INTO ffproposal_revisions(ffproposalID, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, adlmremarks, chairpersonremarks, deanremarks, lspoRemarks, unitheadremarks, directorremarks, adlmdatetime, chairpersondatetime, deandatetime, lspodatetime, unitheaddatetime, directordatetime, datetime) SELECT id, unit, department, datecreated, programHead, activityClassification, projectName, venue, speaker, objectives, actualImplementation, totalAmount, sourceOfFunds, step, adlmremarks, chairpersonremarks, deanremarks, lspoRemarks, unitheadremarks, directorremarks, adlmdatetime, chairpersondatetime, deandatetime, lspodatetime, unitheaddatetime, directordatetime, datetime FROM ffproposal WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
 
@@ -4515,10 +4515,9 @@ public class UserDAO {
                 FF.setSpeaker(rs2.getString("speaker"));
                 FF.setObjectives(rs2.getString("objectives"));
                 FF.setUserID(rs2.getInt("userID"));
-                FF.setChairdirectorRemarks(rs2.getString("chairdirectorRemarks"));
-                FF.setVplmRemarks(rs2.getString("vplmRemarks"));
-                FF.setDeanunitRemarks(rs2.getString("deanunitRemarks"));
-                FF.setAssistantdeanRemarks(rs2.getString("assistantdeanRemarks"));
+                FF.setADLMRemarks(rs2.getString("adlmremarks"));
+                FF.setChairpersonRemarks(rs2.getString("chairpersonremarks"));
+                FF.setDeanRemarks(rs2.getString("deanremarks"));
                 FF.setJayRemarks(rs2.getString("ovplm1Remarks"));
                 FF.setCarmelRemarks(rs2.getString("ovplm2Remarks"));
                 FF.setLspoRemarks(rs2.getString("lspoRemarks"));
@@ -4530,9 +4529,9 @@ public class UserDAO {
                 FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
                 FF.setDirectorremarks(rs2.getString("directorremarks"));
                 FF.setRevisionTime(rs2.getString("datetime"));
-                FF.setChairdirectordatetime(rs2.getString("chairdirectordatetime"));
-                FF.setVplmdatetime(rs2.getString("vplmdatetime"));
-                FF.setDeanunitdatetime(rs2.getString("deanunitdatetime"));
+                FF.setADLMdatetime(rs2.getString("adlmdatetime"));
+                FF.setChairpersondatetime(rs2.getString("chairpersondatetime"));
+                FF.setDeandatetime(rs2.getString("deandatetime"));
                 FF.setLspodatetime(rs2.getString("lspodatetime"));
                 FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
                 FF.setDirectordatetime(rs2.getString("directordatetime"));
@@ -4636,10 +4635,9 @@ public class UserDAO {
                 FF.setSpeaker(rs2.getString("speaker"));
                 FF.setObjectives(rs2.getString("objectives"));
                 FF.setUserID(rs2.getInt("userID"));
-                FF.setChairdirectorRemarks(rs2.getString("chairdirectorRemarks"));
-                FF.setVplmRemarks(rs2.getString("vplmRemarks"));
-                FF.setDeanunitRemarks(rs2.getString("deanunitRemarks"));
-                FF.setAssistantdeanRemarks(rs2.getString("assistantdeanRemarks"));
+                FF.setADLMRemarks(rs2.getString("adlmremarks"));
+                FF.setChairpersonRemarks(rs2.getString("chairpersonremarks"));
+                FF.setDeanRemarks(rs2.getString("deanremarks"));
                 FF.setJayRemarks(rs2.getString("ovplm1Remarks"));
                 FF.setCarmelRemarks(rs2.getString("ovplm2Remarks"));
                 FF.setLspoRemarks(rs2.getString("lspoRemarks"));
@@ -4651,9 +4649,9 @@ public class UserDAO {
                 FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
                 FF.setDirectorremarks(rs2.getString("directorremarks"));
                 FF.setRevisionTime(rs2.getString("datetime"));
-                FF.setChairdirectordatetime(rs2.getString("chairdirectordatetime"));
-                FF.setVplmdatetime(rs2.getString("vplmdatetime"));
-                FF.setDeanunitdatetime(rs2.getString("deanunitdatetime"));
+                FF.setADLMdatetime(rs2.getString("adlmdatetime"));
+                FF.setChairpersondatetime(rs2.getString("chairpersondatetime"));
+                FF.setDeandatetime(rs2.getString("deandatetime"));
                 FF.setLspodatetime(rs2.getString("lspodatetime"));
                 FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
                 FF.setDirectordatetime(rs2.getString("directordatetime"));
@@ -6159,13 +6157,13 @@ public class UserDAO {
         }
     }
 
-    public void updateChairDirectorRemarks(String remarks, int ffID) {
+    public void updateADLMRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET chairdirectorRemarks = ?, chairdirectordatetime = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET adlmremarks = ?, adlmdatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -6197,7 +6195,7 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET unitheadremarks = ?, unitheaddatetim = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET unitheadremarks = ?, unitheaddatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -6255,13 +6253,13 @@ public class UserDAO {
         }
     }
 
-    public void updateVPLMRemarks(String remarks, int ffID) {
+    public void updateChairpersonRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET vplmRemarks = ?, vplmdatetime = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET chairpersonremarks = ?, chairpersondatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -6287,13 +6285,13 @@ public class UserDAO {
         }
     }
 
-    public void updateDeanunitRemarks(String remarks, int ffID) {
+    public void updateFFDeanRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET deanunitRemarks = ?, deanunitdatetime = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET deanremarks = ?, deandatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -6302,33 +6300,6 @@ public class UserDAO {
             pstmt.setString(1, remarks);
             pstmt.setString(2, sdf.format(dt));
             pstmt.setInt(3, ffID);
-
-            int rs = pstmt.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                pstmt.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-    }
-
-    public void updateAssistantdeanRemarks(String remarks, int ffID) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-        PreparedStatement pstmt = null;
-
-        try {
-            String query = "UPDATE ffproposal SET assistantdeanRemarks = ? WHERE id = ?";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -8706,6 +8677,33 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
+    
+    public void uploadReceipt(InputStream receipt, int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE seproposal_expenses SET receipt = ? WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setBlob(1, receipt);
+            pstmt.setInt(2, seID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
 
     public void uploadFFPRS(InputStream prs, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -8753,6 +8751,49 @@ public class UserDAO {
 
             while (rs.next()) {
                 image = rs.getBlob("prs");
+                imgData = image.getBytes(1, (int) image.length());
+            }
+
+            return imgData;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return null;
+    }
+    
+    public byte[] viewReceipt(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        byte[] imgData = null;
+        Blob image = null;
+
+        try {
+
+            String query = "SELECT receipt FROM seproposal_expenses WHERE id = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                image = rs.getBlob("receipt");
                 imgData = image.getBytes(1, (int) image.length());
             }
 

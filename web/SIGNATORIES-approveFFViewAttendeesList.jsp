@@ -18,57 +18,96 @@
         <link rel="stylesheet" href="css/formstyle5.css">
 
         <style>
-            p{
-                margin-bottom: 0;
-                font-size: 15px;
-            }
-
-            table, td, th {
-                border: 1px solid black;
-                border-collapse: collapse;
-                text-align: center;
-            }
-
-            h4{
-                color: white;
-            }
-
-            .panel-success > .panel-heading {
-                background-color: #4CAF50;
-                border-color: #ddd;
-                border: 1px solid;
-            }
-
-            .panel-body{
-                border: 1px solid;
-            }
-
-            .panel-upper{
-                border: 3px solid #4CAF50;
-            }
-
-            h3{
-                font-size: 40px;   
-                border-bottom: 2px solid #4CAF50;
-                padding-bottom: 5px;
-            }
-
-            .card-header{
-                background-color: #4CAF50;
-            }
-
-            .card-body{
-                background-color: whitesmoke;
-            }
-
-            .card{
-                border: 1px solid black;
-            }
-
-
-            th,tr,td{
-                padding:15px;
-            }
+             html {
+                 background: #e6e9e9;
+                 background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
+                 -webkit-font-smoothing: antialiased;
+             }
+ 
+             table,th,td{
+                 border:.5px solid
+                     black;
+             }
+ 
+             hr{
+                 background-color:green;
+             }
+ 
+             textarea{
+                 resize: none;
+             } 
+ 
+             body {
+                 background: #fff;
+                 box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+                 color: #545454;
+                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                 font-size: 16px;
+                 line-height: 1.5;
+                 margin: 0 auto;
+                 max-width: 800px;
+                 padding: 2em 2em 4em;
+             }
+ 
+             h1, h2, h3, h4, h5, h6 {
+                 color: #222;
+                 font-weight: 600;
+                 line-height: 1.3;
+             }
+ 
+             h2 {
+                 margin-top: 1.3em;
+             }
+ 
+             a {
+                 color: #0083e8;
+             }
+ 
+             b{
+                 font-weight: 600;
+             }
+ 
+             img {
+                 animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
+                 background: transparent;
+                 border: 10px solid rgba(0, 0, 0, 0.12);
+                 border-radius: 4px;
+                 display: block;
+                 margin: 1.3em auto;
+                 max-width: 95%;
+             }
+             
+             td{
+                 padding:15px;
+                 font-size: 15px;
+             }
+ 
+             th {
+                 background-color: green;
+                 color: white;
+                 font-size: 15px;
+             }
+ 
+             table {
+                 border-collapse: collapse;
+ 
+             }
+             
+             th{
+                 padding:15px;
+             }
+ 
+ 
+             @keyframes colorize {
+                 0% {
+                     -webkit-filter: grayscale(100%);
+                     filter: grayscale(100%);
+                 }
+                 100% {
+                     -webkit-filter: grayscale(0%);
+                     filter: grayscale(0%);
+                 }
+             }
         </style>
     </head>
 

@@ -24,7 +24,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create FF Completion Report</title>
+        <title>Create FF Completion Report - Student Org</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -358,7 +358,7 @@
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
-                    <form action="createFFreport3" method="post">
+                    <form action="encodeFFReport2" method="post">
                         <%
                             FF FF = new FF();
                             FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));

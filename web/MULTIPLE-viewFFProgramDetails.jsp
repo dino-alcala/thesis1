@@ -281,15 +281,15 @@
                                     </tr>
                                     <tr>
                                         <td>Assistant Dean for Lasallian Mission</td>
-                                        <td><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></td>
+                                        <td><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Chairperson/Unit Head</td>
-                                        <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
+                                        <td><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Dean</td>
-                                        <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></td>
+                                        <td><%if (FF.getDeanRemarks() != null) {%><%=FF.getDeanRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></td>
                                     </tr>
 
                                     <tr>

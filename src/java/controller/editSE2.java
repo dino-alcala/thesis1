@@ -129,6 +129,9 @@ public class editSE2 extends HttpServlet {
                 dispatcher.forward(request, response);
                 
             } else if (Double.parseDouble(request.getParameter("total")) != SE.getTotalAmount()) {
+                
+                request.setAttribute("seID", request.getParameter("seID"));
+                
                 request.setAttribute("successSE", "Amount is not equal!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editSE2.jsp");

@@ -63,13 +63,13 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     UserDAO.updateStepFF(2, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.approveADLM(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateChairDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updateADLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
                     UserDAO.updateStepFF(3, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.approveChairperson(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updateChairpersonRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
@@ -81,7 +81,7 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     UserDAO.updateStepFF(4, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.approveFFDean(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updateFFDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
@@ -174,7 +174,7 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseADLM(Integer.parseInt(request.getParameter("revise")));
-                    UserDAO.updateChairDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.updateADLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the Assistant Dean for Lasallian Mission.");
 
                     java.util.Date dt = new java.util.Date();
@@ -187,7 +187,7 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseChairperson(Integer.parseInt(request.getParameter("revise")));
-                    UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.updateChairpersonRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the Chairperson of the Department.");
 
                     java.util.Date dt = new java.util.Date();
@@ -213,7 +213,7 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseFFDean(Integer.parseInt(request.getParameter("revise")));
-                    UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
+                    UserDAO.updateFFDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     n3.setBody("Your proposal has some revisions before it is approved by the Dean.");
 
                     java.util.Date dt = new java.util.Date();
@@ -256,7 +256,7 @@ public class approveFF extends HttpServlet {
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
-                    UserDAO.updateChairDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    UserDAO.updateADLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectADLM(Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Assistant Dean for Lasallian Mission. Reason: " + request.getParameter("remarks1"));
 
@@ -268,7 +268,7 @@ public class approveFF extends HttpServlet {
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
-                    UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    UserDAO.updateChairpersonRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectChairperson(Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Chairperson of the Department. Reason: " + request.getParameter("remarks1"));
 
@@ -280,7 +280,7 @@ public class approveFF extends HttpServlet {
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
-                    UserDAO.updateVPLMRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    UserDAO.updateUnitHeadRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectUnitHead(Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Unit Head. Reason: " + request.getParameter("remarks1"));
 
@@ -292,7 +292,7 @@ public class approveFF extends HttpServlet {
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
-                    UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    UserDAO.updateFFDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectFFDean(Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Dean. Reason: " + request.getParameter("remarks1"));
 
@@ -304,7 +304,7 @@ public class approveFF extends HttpServlet {
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
-                    UserDAO.updateDeanunitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
+                    UserDAO.updateDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectDirector(Integer.parseInt(request.getParameter("reject")));
                     n3.setBody("Your proposal has been rejected by the Director. Reason: " + request.getParameter("remarks1"));
 

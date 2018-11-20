@@ -284,7 +284,7 @@
                                     </tr>
                                     <tr>
                                         <td>Assistant Dean for Lasallian Mission</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%}%></textarea></td>
                                     </tr>                                   
                                 </table>
                                 <br/>

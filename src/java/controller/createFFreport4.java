@@ -69,31 +69,6 @@ public class createFFreport4 extends HttpServlet {
             FFreport.setAnnexes(inputStream1);
             FFreport.setAttendanceDLSU(inputStream3);
 
-            UserDAO.AddFFreport(FFreport);
-            
-            String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            int length = 10;
-            Random rng = new Random();
-            char[] text = new char[length];
-            for (int i = 0; i < length; i++) {
-                text[i] = characters.charAt(rng.nextInt(characters.length()));
-            }
-            String code = new String(text);
-            
-            UserDAO.updateFFProposalCodeByFFID(code, FFreport.getFfproposalID());
-            
-            Notification n = new Notification();
-            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
-            n.setBody("Accomplishment Report has been submitted!");
-
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            n.setDt(sdf.format(dt));
-            n.setUserID(17);
-            
-            UserDAO.AddNotification(n);
-
             session.setAttribute("FFreport", FFreport);
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport4.jsp");

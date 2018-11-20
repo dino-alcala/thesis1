@@ -315,16 +315,16 @@
                                     </tr>
                                     <tr>
                                         <td>Assistant Dean for Lasallian Mission</td>
-                                        <td style="padding:0px"><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></td>
+                                        <td style="padding:0px"><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%}%></td>
                                     </tr>
 
                                     <tr>
                                         <td>Chairperson/Unit Head</td>
-                                        <td style="padding:0px"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%><%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
+                                        <td style="padding:0px"><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%}%><%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Dean/Director</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%><%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getDeanRemarks() != null) {%><%=FF.getDeanRemarks()%><%}%><%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

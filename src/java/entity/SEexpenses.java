@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.sql.Blob;
+
 /**
  *
  * @author LA
@@ -73,5 +75,4 @@ public class SEexpenses {
     public void setAmountUsed(double amountUsed) {
         this.amountUsed = amountUsed;
     }
-
 }

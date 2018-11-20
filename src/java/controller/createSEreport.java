@@ -9,8 +9,8 @@ import dao.UserDAO;
 import entity.Budget;
 import entity.Notification;
 import entity.SE;
-import java.awt.Window;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
@@ -50,38 +50,32 @@ public class createSEreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailSE.jsp");
                 dispatcher.forward(request, response);
-            }
-            
-            if (request.getParameter("seID") != null) {
+            } else if (request.getParameter("seID") != null) {
 
                 request.setAttribute("seID", request.getParameter("seID"));
                 ServletContext context = getServletContext();
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
-                
-                if(SE.getStudentorg() == 1){
+
+                if (SE.getStudentorg() == 1) {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSEReport.jsp");
                     dispatcher.forward(request, response);
                 } else {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEReport.jsp");
                     dispatcher.forward(request, response);
                 }
-            }
-
-            if (request.getParameter("viewReport") != null) {
+            } else if (request.getParameter("viewReport") != null) {
 
                 request.setAttribute("seID", Integer.parseInt(request.getParameter("viewReport")));
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEReport.jsp");
                 dispatcher.forward(request, response);
-            }
-
-            if (request.getParameter("cancelProgram") != null) {
+            } else if (request.getParameter("cancelProgram") != null) {
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("cancelProgram")));
-                if(SE.getStep() == 8 && SE.getSourceOfFunds().equals("OVPLM")){
+                if (SE.getStep() == 8 && SE.getSourceOfFunds().equals("OVPLM")) {
                     Budget b = new Budget();
                     b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
                     b.setBudgetRequested(SE.getTotalAmount() * -1);
@@ -93,7 +87,7 @@ public class createSEreport extends HttpServlet {
 
                     UserDAO.updateStep(0, Integer.parseInt(request.getParameter("cancelProgram")));
                 }
-                
+
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
                 n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned");
@@ -114,14 +108,22 @@ public class createSEreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-socialEngagementProgramsList.jsp");
                 dispatcher.forward(request, response);
-            }
-
-            if (request.getParameter("updateBudget") != null) {
+            } else if (request.getParameter("updateBudget") != null) {
 
                 request.setAttribute("seID", request.getParameter("updateBudget"));
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-updateUsedBudget.jsp");
                 dispatcher.forward(request, response);
+
+            } else {
+                SE SE = new SE();
+                SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("viewreceipt")));
+
+                OutputStream o = response.getOutputStream();
+                o.write(UserDAO.viewReceipt(Integer.parseInt(request.getParameter("viewreceipt"))));
+                o.flush();
+                o.close();
+
             }
         }
     }

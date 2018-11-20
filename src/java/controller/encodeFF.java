@@ -89,7 +89,7 @@ public class encodeFF extends HttpServlet {
             } else {
                 request.setAttribute("successFF", "Amount is not equal!");
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFF.jsp");
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFF.jsp");
                 dispatcher.forward(request, response);
             }
         }

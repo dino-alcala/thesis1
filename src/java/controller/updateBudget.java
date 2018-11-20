@@ -9,19 +9,23 @@ import dao.UserDAO;
 import entity.Notification;
 import entity.SEexpenses;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author dang
  */
+@MultipartConfig(maxFileSize = 16177215)
 public class updateBudget extends HttpServlet {
 
     /**
@@ -55,6 +59,15 @@ public class updateBudget extends HttpServlet {
 
             UserDAO.updateBudgetSE(expenses);
 
+            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                InputStream inputStream = null;
+                Part filePart = request.getPart("uploadreceipt0");
+                if (filePart != null) {
+                    inputStream = filePart.getInputStream();
+                    UserDAO.uploadReceipt(inputStream, Integer.parseInt(request.getParameter("seID0")));
+                }
+            }
+
             Notification n = new Notification();
             n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))));
             n.setBody("A portion of the budget has been used!");
@@ -64,8 +77,9 @@ public class updateBudget extends HttpServlet {
 
             n.setDt(sdf.format(dt));
 
-            n.setUserID(16);
-
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            UserDAO.AddNotification(n);
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
             UserDAO.AddNotification(n);
 
             request.setAttribute("updateBudget", "You have successfully updated the Budget!");

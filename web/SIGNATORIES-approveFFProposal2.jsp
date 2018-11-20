@@ -285,12 +285,12 @@
                                     </tr>
                                     <tr>
                                         <td>Assistant Dean for Lasallian Mission</td>
-                                        <td style="padding:0px"><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></td>
+                                        <td style="padding:0px"><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%}%></td>
                                     </tr>
 
                                     <tr>
                                         <td>Chairperson/Unit Head</td>
-                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
                                 <br/>

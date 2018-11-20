@@ -82,6 +82,8 @@ public class editFF extends HttpServlet {
                 dispatcher.forward(request, response);
                 
             } else {
+                request.setAttribute("ffID", request.getParameter("ffID"));
+                
                 request.setAttribute("successFF", "Amount is not equal!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editFF.jsp");
