@@ -327,7 +327,8 @@
                                         <th>Unit Cost</th> 
                                         <th>Quantity</th>
                                         <th>Subtotal</th>
-                                        <th>Amount Used: </th>
+                                        <th>Amount Used</th>
+                                        <th>Receipt</th>
                                     </tr>
                                     <%
                                         double count = 0;
@@ -340,6 +341,7 @@
                                         <td><%=SE.getExpenses().get(i).getQuantity()%></td>
                                         <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
                                         <td><%=SE.getExpenses().get(i).getAmountUsed()%></td>
+                                        <td><button type="submit" name="viewreceipt" value="<%=SE.getId()%>">View</button></td>
                                     </tr>
                                     <%
                                             count += SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity();

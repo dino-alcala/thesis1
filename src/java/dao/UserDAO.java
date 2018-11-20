@@ -6197,7 +6197,7 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET unitheadremarks = ?, unitheaddatetim = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET unitheadremarks = ?, unitheaddatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -8706,6 +8706,33 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
+    
+    public void uploadReceipt(InputStream receipt, int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE seproposal_expenses SET receipt = ? WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setBlob(1, receipt);
+            pstmt.setInt(2, seID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
 
     public void uploadFFPRS(InputStream prs, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -8753,6 +8780,49 @@ public class UserDAO {
 
             while (rs.next()) {
                 image = rs.getBlob("prs");
+                imgData = image.getBytes(1, (int) image.length());
+            }
+
+            return imgData;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return null;
+    }
+    
+    public byte[] viewReceipt(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        byte[] imgData = null;
+        Blob image = null;
+
+        try {
+
+            String query = "SELECT receipt FROM seproposal_expenses WHERE id = ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                image = rs.getBlob("receipt");
                 imgData = image.getBytes(1, (int) image.length());
             }
 

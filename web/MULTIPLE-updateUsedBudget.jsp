@@ -189,7 +189,7 @@
 
 
     <div class="form-style-5">
-        <form action="updateBudget" method="post">
+        <form action="updateBudget" method="post" enctype="multipart/form-data">
             <%
                 UserDAO UserDAO = new UserDAO();
             %>
@@ -208,6 +208,7 @@
                             <th>Quantity</th>
                             <th>Subtotal</th>
                             <th>Amount Used</th>
+                            <th>Receipt Picture</th>
                         </tr>
                         <%
                             double total = 0;
@@ -220,7 +221,7 @@
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="sequantity<%=i%>" readonly><%=expenses.get(i).getQuantity()%></textarea></td>
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="sesubtotal<%=i%>" readonly><%=expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()%></textarea></td>
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="seamountused<%=i%>"><%=expenses.get(i).getAmountUsed()%></textarea></td>
-                            <td></td>
+                            <td><center><input type ="file" name ="uploadreceipt0"></center></td>
                         </tr>
                         <input type="hidden" name="seID<%=i%>" value="<%=expenses.get(i).getSeproposalID()%>">
                         <%
@@ -231,6 +232,7 @@
                             <td></td>
                             <td></td>
                             <td>Grand Total: <%=total%></td>
+                            <td></td>
                             <td></td>
                         </tr>
                     </table></center>
