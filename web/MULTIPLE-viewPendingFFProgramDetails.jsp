@@ -334,15 +334,15 @@
                                     </tr>
                                     <tr>
                                         <td>Assistant Dean for Lasallian Mission</td>
-                                        <td><%if (FF.getChairdirectorRemarks() != null) {%><%=FF.getChairdirectorRemarks()%><%}%></td>
+                                        <td><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Chairperson/Unit Head</td>
-                                        <td><%if (FF.getVplmRemarks() != null) {%><%=FF.getVplmRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
+                                        <td><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Dean/Director</td>
-                                        <td><%if (FF.getDeanunitRemarks() != null) {%><%=FF.getDeanunitRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></td>
+                                        <td><%if (FF.getDeanRemarks() != null) {%><%=FF.getDeanRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></td>
                                     </tr>
 
                                     <tr>
@@ -392,7 +392,7 @@
                                     if (UserDAO.isFFRevise(Integer.parseInt(request.getAttribute("ffID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
 
                                 %>
-                                <center><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button></center>
+                                <center><button style="background-color:orange" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button></center>
                                 <br>
 
                                 <%

@@ -49,6 +49,8 @@ public class editSE2 extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
 
             SE = (SE) session.getAttribute("SE");
+            System.out.println("DSAJKDLJASDJKALSJDLAK " + SE.getTotalAmount());
+            System.out.println("JKJSDKLDAJDas " + Double.parseDouble(request.getParameter("total")));
 
             if (Double.parseDouble(request.getParameter("total")) == SE.getTotalAmount()) {
                 ArrayList<SEworkplan> sework = new ArrayList();

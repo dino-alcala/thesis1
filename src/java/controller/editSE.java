@@ -181,6 +181,9 @@ public class editSE extends HttpServlet {
                 dispatcher.forward(request, response);
                 
             } else {
+                session.setAttribute("SE", SE);
+                request.setAttribute("seID", request.getParameter("seID"));
+                
                 request.setAttribute("successSE", "Please do not repeat measures!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editSE.jsp");

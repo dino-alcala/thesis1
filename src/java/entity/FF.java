@@ -31,9 +31,9 @@ public class FF {
     protected ArrayList<FFattendees> attendees = new ArrayList();
     protected int step;
     protected int userID;
-    protected String chairdirectorRemarks;
-    protected String vplmRemarks;
-    protected String deanunitRemarks;
+    protected String adlmRemarks;
+    protected String chairpersonRemarks;
+    protected String deanRemarks;
     protected String assistantdeanRemarks;
     protected String unitheadremarks;
     protected String directorremarks;
@@ -47,9 +47,9 @@ public class FF {
     protected String lmc5Remarks;
     protected String unittype;
     protected String revisionTime;
-    protected String chairdirectordatetime;
-    protected String vplmdatetime;
-    protected String deanunitdatetime;
+    protected String adlmdatetime;
+    protected String chairpersondatetime;
+    protected String deandatetime;
     protected String lspodatetime;
     protected String unitheaddatetime;
     protected String directordatetime;
@@ -203,28 +203,28 @@ public class FF {
         this.userID = userID;
     }
 
-    public String getChairdirectorRemarks() {
-        return chairdirectorRemarks;
+    public String getADLMRemarks() {
+        return this.adlmRemarks;
     }
 
-    public void setChairdirectorRemarks(String chairdirectorRemarks) {
-        this.chairdirectorRemarks = chairdirectorRemarks;
+    public void setADLMRemarks(String adlmRemarks) {
+        this.adlmRemarks = adlmRemarks;
     }
 
-    public String getVplmRemarks() {
-        return vplmRemarks;
+    public String getChairpersonRemarks() {
+        return chairpersonRemarks;
     }
 
-    public void setVplmRemarks(String vplmRemarks) {
-        this.vplmRemarks = vplmRemarks;
+    public void setChairpersonRemarks(String chairpersonRemarks) {
+        this.chairpersonRemarks = chairpersonRemarks;
     }
 
-    public String getDeanunitRemarks() {
-        return deanunitRemarks;
+    public String getDeanRemarks() {
+        return deanRemarks;
     }
 
-    public void setDeanunitRemarks(String deanunitRemarks) {
-        this.deanunitRemarks = deanunitRemarks;
+    public void setDeanRemarks(String deanunitRemarks) {
+        this.deanRemarks = deanunitRemarks;
     }
 
     public String getAssistantdeanRemarks() {
@@ -331,28 +331,28 @@ public class FF {
         this.revisionTime = revisionTime;
     }
 
-    public String getChairdirectordatetime() {
-        return chairdirectordatetime;
+    public String getADLMdatetime() {
+        return adlmdatetime;
     }
 
-    public void setChairdirectordatetime(String chairdirectordatetime) {
-        this.chairdirectordatetime = chairdirectordatetime;
+    public void setADLMdatetime(String adlmdatetime) {
+        this.adlmdatetime = adlmdatetime;
     }
 
-    public String getVplmdatetime() {
-        return vplmdatetime;
+    public String getChairpersondatetime() {
+        return chairpersondatetime;
     }
 
-    public void setVplmdatetime(String vplmdatetime) {
-        this.vplmdatetime = vplmdatetime;
+    public void setChairpersondatetime(String chairpersondatetime) {
+        this.chairpersondatetime = chairpersondatetime;
     }
 
-    public String getDeanunitdatetime() {
-        return deanunitdatetime;
+    public String getDeandatetime() {
+        return deandatetime;
     }
 
-    public void setDeanunitdatetime(String deanunitdatetime) {
-        this.deanunitdatetime = deanunitdatetime;
+    public void setDeanunitdatetime(String deandatetime) {
+        this.deandatetime = deandatetime;
     }
 
     public String getLspodatetime() {

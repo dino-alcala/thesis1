@@ -550,7 +550,7 @@
                                 <%
                                     if (UserDAO.isRevise(Integer.parseInt(request.getAttribute("seID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <center><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button></center>
+                                <center><button class="button" style="background-color:orange" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button></center>
                                 <br>
                                 <%
                                     }

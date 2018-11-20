@@ -4515,9 +4515,9 @@ public class UserDAO {
                 FF.setSpeaker(rs2.getString("speaker"));
                 FF.setObjectives(rs2.getString("objectives"));
                 FF.setUserID(rs2.getInt("userID"));
-                FF.setChairdirectorRemarks(rs2.getString("chairdirectorRemarks"));
-                FF.setVplmRemarks(rs2.getString("vplmRemarks"));
-                FF.setDeanunitRemarks(rs2.getString("deanunitRemarks"));
+                FF.setADLMRemarks(rs2.getString("adlmremarks"));
+                FF.setChairpersonRemarks(rs2.getString("chairpersonremarks"));
+                FF.setDeanRemarks(rs2.getString("deanremarks"));
                 FF.setAssistantdeanRemarks(rs2.getString("assistantdeanRemarks"));
                 FF.setJayRemarks(rs2.getString("ovplm1Remarks"));
                 FF.setCarmelRemarks(rs2.getString("ovplm2Remarks"));
@@ -4530,8 +4530,8 @@ public class UserDAO {
                 FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
                 FF.setDirectorremarks(rs2.getString("directorremarks"));
                 FF.setRevisionTime(rs2.getString("datetime"));
-                FF.setChairdirectordatetime(rs2.getString("chairdirectordatetime"));
-                FF.setVplmdatetime(rs2.getString("vplmdatetime"));
+                FF.setADLMdatetime(rs2.getString("adlmdatetime"));
+                FF.setChairpersondatetime(rs2.getString("chairpersondatetime"));
                 FF.setDeanunitdatetime(rs2.getString("deanunitdatetime"));
                 FF.setLspodatetime(rs2.getString("lspodatetime"));
                 FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
@@ -4636,9 +4636,9 @@ public class UserDAO {
                 FF.setSpeaker(rs2.getString("speaker"));
                 FF.setObjectives(rs2.getString("objectives"));
                 FF.setUserID(rs2.getInt("userID"));
-                FF.setChairdirectorRemarks(rs2.getString("chairdirectorRemarks"));
-                FF.setVplmRemarks(rs2.getString("vplmRemarks"));
-                FF.setDeanunitRemarks(rs2.getString("deanunitRemarks"));
+                FF.setADLMRemarks(rs2.getString("adlmremarks"));
+                FF.setChairpersonRemarks(rs2.getString("chairpersonremarks"));
+                FF.setDeanRemarks(rs2.getString("deanremarks"));
                 FF.setAssistantdeanRemarks(rs2.getString("assistantdeanRemarks"));
                 FF.setJayRemarks(rs2.getString("ovplm1Remarks"));
                 FF.setCarmelRemarks(rs2.getString("ovplm2Remarks"));
@@ -4651,8 +4651,8 @@ public class UserDAO {
                 FF.setUnitheadremarks(rs2.getString("unitheadremarks"));
                 FF.setDirectorremarks(rs2.getString("directorremarks"));
                 FF.setRevisionTime(rs2.getString("datetime"));
-                FF.setChairdirectordatetime(rs2.getString("chairdirectordatetime"));
-                FF.setVplmdatetime(rs2.getString("vplmdatetime"));
+                FF.setADLMdatetime(rs2.getString("adlmdatetime"));
+                FF.setChairpersondatetime(rs2.getString("chairpersondatetime"));
                 FF.setDeanunitdatetime(rs2.getString("deanunitdatetime"));
                 FF.setLspodatetime(rs2.getString("lspodatetime"));
                 FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
@@ -6159,13 +6159,13 @@ public class UserDAO {
         }
     }
 
-    public void updateChairDirectorRemarks(String remarks, int ffID) {
+    public void updateADLMRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET chairdirectorRemarks = ?, chairdirectordatetime = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET adlmremarks = ?, adlmdatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -6255,13 +6255,13 @@ public class UserDAO {
         }
     }
 
-    public void updateVPLMRemarks(String remarks, int ffID) {
+    public void updateChairpersonRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET vplmRemarks = ?, vplmdatetime = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET chairpersonremarks = ?, chairpersondatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
@@ -6287,13 +6287,13 @@ public class UserDAO {
         }
     }
 
-    public void updateDeanunitRemarks(String remarks, int ffID) {
+    public void updateFFDeanRemarks(String remarks, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET deanunitRemarks = ?, deanunitdatetime = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET deanremarks = ?, deandatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
 
             java.util.Date dt = new java.util.Date();
