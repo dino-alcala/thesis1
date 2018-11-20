@@ -358,7 +358,7 @@
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
-                    <form action="createFFreport3" method="post">
+                    <form action="encodeFFReport2" method="post">
                         <%
                             FF FF = new FF();
                             FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
