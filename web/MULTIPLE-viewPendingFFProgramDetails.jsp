@@ -392,7 +392,7 @@
                                     if (UserDAO.isFFRevise(Integer.parseInt(request.getAttribute("ffID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
 
                                 %>
-                                <center><button style="background-color:orange" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button></center>
+                                <center><button class="button" style="background-color:orange" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button></center>
                                 <br>
 
                                 <%

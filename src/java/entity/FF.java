@@ -351,7 +351,7 @@ public class FF {
         return deandatetime;
     }
 
-    public void setDeanunitdatetime(String deandatetime) {
+    public void setDeandatetime(String deandatetime) {
         this.deandatetime = deandatetime;
     }
 

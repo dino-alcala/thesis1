@@ -4518,7 +4518,6 @@ public class UserDAO {
                 FF.setADLMRemarks(rs2.getString("adlmremarks"));
                 FF.setChairpersonRemarks(rs2.getString("chairpersonremarks"));
                 FF.setDeanRemarks(rs2.getString("deanremarks"));
-                FF.setAssistantdeanRemarks(rs2.getString("assistantdeanRemarks"));
                 FF.setJayRemarks(rs2.getString("ovplm1Remarks"));
                 FF.setCarmelRemarks(rs2.getString("ovplm2Remarks"));
                 FF.setLspoRemarks(rs2.getString("lspoRemarks"));
@@ -4532,7 +4531,7 @@ public class UserDAO {
                 FF.setRevisionTime(rs2.getString("datetime"));
                 FF.setADLMdatetime(rs2.getString("adlmdatetime"));
                 FF.setChairpersondatetime(rs2.getString("chairpersondatetime"));
-                FF.setDeanunitdatetime(rs2.getString("deanunitdatetime"));
+                FF.setDeandatetime(rs2.getString("deandatetime"));
                 FF.setLspodatetime(rs2.getString("lspodatetime"));
                 FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
                 FF.setDirectordatetime(rs2.getString("directordatetime"));
@@ -4639,7 +4638,6 @@ public class UserDAO {
                 FF.setADLMRemarks(rs2.getString("adlmremarks"));
                 FF.setChairpersonRemarks(rs2.getString("chairpersonremarks"));
                 FF.setDeanRemarks(rs2.getString("deanremarks"));
-                FF.setAssistantdeanRemarks(rs2.getString("assistantdeanRemarks"));
                 FF.setJayRemarks(rs2.getString("ovplm1Remarks"));
                 FF.setCarmelRemarks(rs2.getString("ovplm2Remarks"));
                 FF.setLspoRemarks(rs2.getString("lspoRemarks"));
@@ -4653,7 +4651,7 @@ public class UserDAO {
                 FF.setRevisionTime(rs2.getString("datetime"));
                 FF.setADLMdatetime(rs2.getString("adlmdatetime"));
                 FF.setChairpersondatetime(rs2.getString("chairpersondatetime"));
-                FF.setDeanunitdatetime(rs2.getString("deanunitdatetime"));
+                FF.setDeandatetime(rs2.getString("deandatetime"));
                 FF.setLspodatetime(rs2.getString("lspodatetime"));
                 FF.setUnitheaddatetime(rs2.getString("unitheaddatetime"));
                 FF.setDirectordatetime(rs2.getString("directordatetime"));
@@ -6302,33 +6300,6 @@ public class UserDAO {
             pstmt.setString(1, remarks);
             pstmt.setString(2, sdf.format(dt));
             pstmt.setInt(3, ffID);
-
-            int rs = pstmt.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                pstmt.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-    }
-
-    public void updateAssistantdeanRemarks(String remarks, int ffID) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-        PreparedStatement pstmt = null;
-
-        try {
-            String query = "UPDATE ffproposal SET assistantdeanRemarks = ? WHERE id = ?";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
 
             int rs = pstmt.executeUpdate();
 

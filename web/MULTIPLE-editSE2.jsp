@@ -616,7 +616,7 @@
                             </center>
                         </fieldset>
                         <br><br>
-                        <center><button class="button" type="submit">Submit</button></center>
+                        <center><button class="button" name="seID" value="<%=SE.getId()%>" type="submit">Submit</button></center>
                     </form>
                 </div>
             </div>
