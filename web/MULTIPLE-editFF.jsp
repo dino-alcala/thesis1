@@ -474,7 +474,8 @@
                             <br>
                             <center>
                                 <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
-                                 <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
                             </center>
                         </fieldset>
 

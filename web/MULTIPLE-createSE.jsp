@@ -375,9 +375,9 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
-                <center><h3>Social Engagement Proposal</h3></center>
                 <hr size="5" noshade>
+                <center>>Social Engagement Proposal</h3></center>
+                <hr size="5">
 
                 <div class="form-style-5">
                     <form action = "addSE" method="post"> 
