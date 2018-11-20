@@ -456,10 +456,10 @@
                                         for (int i = 0; i < FF.getExpenses().size(); i++) {
                                     %>
                                     <tr>
-                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%" id="ffitem0"  name ="ffitem0" required></td>
-                                        <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost0" name ="ffunitcost0" required></td>
-                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity0" name ="ffquantity0" required></td>
-                                        <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" value="0" readonly required></td>
+                                        <td><input value="<%=FF.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%" id="ffitem0"  name ="ffitem0" required></td>
+                                        <td><input value="<%=FF.getExpenses().get(i).getUnitcost()%>" type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost0" name ="ffunitcost0" required></td>
+                                        <td><input value="<%=FF.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity0" name ="ffquantity0" required></td>
+                                        <td><input value="<%=FF.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" readonly required></td>
                                     </tr>
                                     <%
                                         }
