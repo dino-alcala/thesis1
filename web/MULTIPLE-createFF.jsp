@@ -40,7 +40,7 @@
             #myInput{
                 margin-bottom: 20px;
             }
-            
+
             tr:hover {
                 background-color: lightgreen;
             }
@@ -59,7 +59,7 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-  
+
             table,th,td{
                 border:.5px solid
                     black;
@@ -78,7 +78,11 @@
             }
 
             h3{
-                font-family: "Times New Roman", Times, serif;
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             th {
@@ -90,7 +94,7 @@
                 border-collapse: collapse;
 
             }
-            
+
             th{
                 padding:15px;
             }
@@ -106,25 +110,27 @@
             }
 
             #addRowButton, #deleteRowButton {
-                display:inline-block;
-                font-family: "Times New Roman", Times, serif;
+                display: inline-block;
+                border-radius: 5px;
+                border:none;
+                font-size: 13px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .button{
                 background-color: darkgreen;
-                border: none;
+                border-radius: 5px;
+                border:none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
-                display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
-                font-size: 15px;
+            legend, h3, #inputText, #classification, option, select, value, td, th, #countexpenses, #ffunitcost0, #ffquantity0, #ffsubtotal0{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 
@@ -164,6 +170,30 @@
                 }
             %>
         </script>
+        
+        <script>
+            function calculate() {
+                var count = document.getElementById("countexpenses").value;
+                var rows = document.getElementById("breakdowntable").rows.length;
+                var total = 0;
+                
+                if(rows > 0){
+                    for (var x = 0; x < count; x++) {
+                        var y = document.getElementById("ffquantity" + x).value;
+                        var z = document.getElementById("ffunitcost" + x).value;
+                        var subtotal = document.getElementById("ffsubtotal" + x);
+                        subtotal.setAttribute('value', y * z);
+                    }
+                }
+                
+                for(var x = 0 ; x < count ; x++){
+                    var b = document.getElementById("ffsubtotal" + x).value;
+                    total = (total*1) + (b*1);
+                }
+                document.getElementById("total").setAttribute('value', total);
+            }
+
+        </script>
 
         <script>
             function addRow(){
@@ -194,30 +224,6 @@
 
             }
             }
-        </script>
-
-        <script>
-            function calculate() {
-                var count = document.getElementById("countexpenses").value;
-                var rows = document.getElementById("breakdowntable").rows.length;
-                var total = 0;
-                if (rows > 0){
-                    
-                for (var x = 0; x < count; x++) {
-                    var y = document.getElementById("ffquantity" + x).value;
-                    var z = document.getElementById("ffunitcost" + x).value;
-                    var subtotal = document.getElementById("ffsubtotal" + x);
-                    subtotal.setAttribute('value', y * z);
-                }
-            }
-
-                for (var x = 0; x < count; x++){
-                    var b = document.getElementById("ffsubtotal" + x).value;
-                    total = (total * 1) + (b * 1);
-                }
-                document.getElementById("total").setAttribute('value', total);
-            }
-
         </script>
 
         <script type="text/javascript">
@@ -380,9 +386,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Faith Formation Program Proposal</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
                     <form action = "addFF" method="post">
@@ -410,13 +414,13 @@
                         <br>
                         <fieldset>
                             <legend><b>Program Head:</b></legend>
-                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>" type = "text" name ="programhead" required>
+                            <input value="<%= UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%= UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%>"  id="inputText" type = "text" name ="programhead" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Type of Faith Formation:</b> </legend>
-                            <select name="classification">
+                            <select id="classification" name="classification">
                                 <option value="Retreat">Retreat</option>
                                 <option value="Recollection">Recollection</option>
                                 <option value="Prayer Service">Prayer Service</option>
@@ -429,19 +433,19 @@
 
                         <fieldset>
                             <legend><span class="number">1</span><b> Project Name:</b></legend>
-                            <center><input type = "text" name ="pname" required></center>
+                            <center><input id="inputText" type = "text" name ="pname" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">2</span><b> Venue:</b></legend>
-                            <center><input type = "text" name ="pvenue" required></center>
+                            <center><input id="inputText" type = "text" name ="pvenue" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">3</span><b> Speaker:</b></legend>
-                            <center><input type = "text" name ="pspeaker" required></center>
+                            <center><input id="inputText" type = "text" name ="pspeaker" required></center>
                             <br><br>
                         </fieldset>
 
@@ -459,13 +463,13 @@
 
                         <fieldset>
                             <legend><span class="number">6</span><b> Total Amount Requested:</b></legend>
-                            <input style ="width:30%" type = "number" name ="pbudget" required>
+                            <input id="inputText" style ="width:30%" type = "number" name ="pbudget" required>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">7</span><b>Source of Funds:</b></legend>
-                            <select style ="width:50%" name="funds">
+                            <select id="classification" style ="width:50%" name="funds">
                                 <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
                                 <option value="Others">Others</option>
                             </select>
@@ -489,7 +493,7 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%" id="ffitem0"  name ="ffitem0" required></td>
+                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%"  name ="ffitem0" required></td>
                                         <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost0" name ="ffunitcost0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity0" name ="ffquantity0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" value="0" readonly required></td>
@@ -504,7 +508,7 @@
                             <br>
                             <center>
                                 <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
-                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:dodgerblue" id="addRowButton" onclick="calculate()">Calculate</button>
                                 <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
                             </center>
                         </fieldset>

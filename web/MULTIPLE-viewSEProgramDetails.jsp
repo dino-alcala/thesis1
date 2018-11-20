@@ -31,8 +31,8 @@
 
         <style>
             p{
-                margin-bottom: 0;
                 font-size: 15px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table, td, th {
@@ -43,35 +43,79 @@
 
             h4{
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             h3{
-                font-size: 40px;   
+                font-size: 22px;   
                 border-bottom: 2px solid #4CAF50;
                 padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .card-header{
-                background-color: #4CAF50;
+                background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
                 background-color: whitesmoke;
-            }
-
-            .card{
                 border: 1px solid black;
             }
+
 
             th,tr,td{
                 padding:15px;
             }
             
-            .button{
-                background-color: #4CAF50;
+            .btn-success{
+                background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-warning{
+                background-color: darkyellow;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-danger{
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-audit{
+                background-color: gray;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -244,12 +288,12 @@
                                         <h4>Social Engagement Partner(s)/Beneficiaries</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p>Name of Partner: <%=SE.getNameSEbeneficiaries()%></p>
-                                        <p>Address: <%=SE.getAddressSEbeneficiaries()%></p>
-                                        <p>Contact Person: <%=SE.getContactPersonSEbeneficiaries()%></p>
-                                        <p>Mobile Number: <%=SE.getMobileSEbeneficiaries()%></p>
-                                        <p>Email: <%=SE.getEmailSEbeneficiaries()%></p><br>
-                                        <p>Brief Description of Partner: <%=SE.getDescriptionSEbeneficiaries()%></p>
+                                        <p><b>Name of Partner: </b><%=SE.getNameSEbeneficiaries()%></p>
+                                        <p><b>Address: </b><%=SE.getAddressSEbeneficiaries()%></p>
+                                        <p><b>Contact Person: </b><%=SE.getContactPersonSEbeneficiaries()%></p>
+                                        <p><b>Mobile Number: </b><%=SE.getMobileSEbeneficiaries()%></p>
+                                        <p><b>Email: </b><%=SE.getEmailSEbeneficiaries()%> </p><br>
+                                        <p><b>Brief Description of Partner: </b><%=SE.getDescriptionSEbeneficiaries()%></p>
                                     </div>
                                 </div>
                                 <br>
@@ -288,7 +332,7 @@
                                     <div class="card-header">
                                         <h4>Work Plan</h4>
                                     </div>
-                                </div>
+                                   <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Date</th>
@@ -313,6 +357,8 @@
                                     %>
 
                                 </table>
+                                </div>
+                                </div>
 
                                 <br/>
 
@@ -320,7 +366,7 @@
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses (Requested: ₱<%=SE.getTotalAmount()%>)</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Item</th>
@@ -357,13 +403,15 @@
                                         <td>Total: <%=total%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Expected Participants vs. Total Population of the Unit</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Sector</th>
@@ -391,13 +439,15 @@
                                         <td><%=SE.getExpectedGraduate()%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Persons Responsible</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Name</th>
@@ -415,11 +465,13 @@
                                         }
                                     %>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Source of Funds: </h4>
+                                        <h4>Source of Funds </h4>
                                     </div>
                                     <div class="card-body">   
                                         <p><%=SE.getSourceOfFunds()%></p>
@@ -434,7 +486,7 @@
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th style="width:35%">Step</th>
@@ -476,6 +528,9 @@
                                         </td>
                                     </tr>
                                 </table>
+                                            
+                                </div>
+                                </div>
                                 <%
                                     }
                                 %>
@@ -509,44 +564,37 @@
                                 <br>
                                 <% }%>
 
-                                <center><button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button></center>
-                                <br>
+                                        <center><button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
+                               
 
                                 <%
                                     if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() == 8) {
                                 %>
-                                <div>
-                                    <center><button type="submit" value="<%=SE.getId()%>" name="seID" class="button">Create Accomplishment Report</button></center>
-                                </div>
-                                <br>
+                                
+                                        <button type="submit" value="<%=SE.getId()%>" name="seID" class="btn-success">Create Accomplishment Report</button>
+                               
                                 <%
                                 } else if (UserDAO.hasSEReport(SE.getId())) {
                                 %>
-                                <div>
-                                    <center><button type="submit" value="<%=SE.getId()%>" name="viewReport" class="button">View Accomplishment Report</button></center>
-                                </div>
-                                <br>
+                                        <button type="submit" value="<%=SE.getId()%>" name="viewReport" class="btn-success">View Accomplishment Report</button>
+                                
 
                                 <%
                                     }
                                     if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() > 0) {
                                 %>
-                                <div>
-                                    <center>
-                                        <button type="submit" value="<%=SE.getId()%>" name="updateBudget" class="button">Update Budget</button>
-                                    </center>
-                                </div>
-                                <br>
+                                
+                                        <button type="submit" value="<%=SE.getId()%>" name="updateBudget" class="btn-warning">Update Budget
+                                    
+                                
                                 <%
                                     }
 
                                     if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 0 && SE.getStep() != -1) {
                                 %>
 
-                                <div>
-                                    <center><button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram" style="background-color:red;" class="button">Cancel Program</button></center>
-                                </div>
-                                <br>
+                                        <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram"  class="btn-danger">Cancel Program</button></center>
+                                
                                 <%
                                     }
                                 %>

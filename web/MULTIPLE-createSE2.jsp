@@ -46,7 +46,6 @@
             }
 
             .table{
-                border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
 
@@ -65,10 +64,6 @@
                     black;
             }
 
-            hr{
-                background-color:green;
-            }
-
             textarea{
                 resize: none;
             } 
@@ -78,7 +73,11 @@
             }
 
             h3{
-                font-family: "Times New Roman", Times, serif;
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             th {
@@ -106,25 +105,24 @@
             }
 
             #addRowButton, #deleteRowButton {
-                display:inline-block;
-                font-family: "Times New Roman", Times, serif;
+                 
             }
 
             .button{
                 background-color: darkgreen;
-                border: none;
+                border-radius: 5px;
+                border:none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
-                display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
-                font-size: 15px;
+            
+            
+            legend, h3, #inputText, #classification, option, select, value, td, th, #seunitcost0, #sequantity0, #sesubtotal0{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 
@@ -366,10 +364,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Social Engagement Proposal</h3></center>
-                <hr size="5" noshade>
-                <br>
 
                 <%
                     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
@@ -445,7 +440,7 @@
                             <br>
                             <center>
                                 <button type ="button" class="button" id="addRowButton"  onclick ="addRow3()">Add Row</button>
-                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:dodgerblue" id="addRowButton" onclick="calculate()">Calculate</button>
                                 <button type ="button" class="button" style="background-color:red"  id="deleteRowButton" onclick ="deleteRow3()">Delete Row</button>
                             </center>
                             <br><br>
@@ -513,8 +508,8 @@
                                 </table></center>
                             <br>
                             <center>
-                                <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
-                                <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
+                                <button type ="button" style="border:none" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
+                                <button class="button" style="background-color:red; border:none" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
                             </center>
                             <br>
                         </fieldset>

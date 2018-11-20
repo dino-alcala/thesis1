@@ -100,9 +100,10 @@
 
             .button{
                 background-color: darkgreen;
+                border-radius: 5px;
                 border: none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -110,11 +111,15 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            legend, h3{
+            h3{
                 font-family: "Arial", Helvetica, sans-serif;
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
             }
             
-            #inputText { 
+            legend, #inputText { 
                 font-family: "Arial", Helvetica, sans-serif; 
             }
             
@@ -411,9 +416,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Social Engagement Proposal</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
                     <form action = "encodeSE" method="post"> 

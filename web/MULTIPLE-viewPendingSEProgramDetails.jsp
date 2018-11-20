@@ -31,8 +31,8 @@
 
         <style>
             p{
-                margin-bottom: 0;
                 font-size: 15px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table, td, th {
@@ -43,35 +43,40 @@
 
             h4{
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             h3{
-                font-size: 40px;   
+                font-size: 22px;   
                 border-bottom: 2px solid #4CAF50;
                 padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .card-header{
-                background-color: #4CAF50;
+                background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
                 background-color: whitesmoke;
-            }
-
-            .card{
                 border: 1px solid black;
             }
+
 
             th,tr,td{
                 padding:15px;
             }
             
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 30px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -209,7 +214,7 @@
                                     <li class="progress-step <% if (UserDAO.getStep(SE.getId()) > 1) {%> is-complete<%} else if (UserDAO.getStep(SE.getId()) == 1) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 1</u></h4>
+                                            <h4 class="progress-title">Step 1</h4>
                                             Approval by Department/Unit Chair 
                                         </span>
                                     </li>
@@ -217,7 +222,7 @@
                                     <li class="progress-step  <% if (UserDAO.getStep(SE.getId()) > 2) {%> is-complete<%} else if (UserDAO.getStep(SE.getId()) == 2) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 2</u></h4>
+                                            <h4 class="progress-title">Step 2</h4>
                                             Approval by College ADEALM/SE Director
                                         </span>
                                     </li>
@@ -225,7 +230,7 @@
                                     <li class="progress-step  <% if (UserDAO.getStep(SE.getId()) > 3) {%> is-complete<%} else if (UserDAO.getStep(SE.getId()) == 3) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 3</u></h4>
+                                            <h4 class="progress-title">Step 3</h4>
                                             Approval by Dean/VP/VC
                                         </span>
                                     </li>
@@ -233,7 +238,7 @@
                                     <li class="progress-step <% if (UserDAO.getStep(SE.getId()) > 4) {%> is-complete<%} else if (UserDAO.getStep(SE.getId()) == 4) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 4</u></h4>
+                                            <h4 class="progress-title">Step 4</h4>
                                             Evaluation by COSCA
                                         </span>
                                     </li>
@@ -241,7 +246,7 @@
                                     <li class="progress-step <% if (UserDAO.getStep(SE.getId()) > 5) {%> is-complete<%} else if (UserDAO.getStep(SE.getId()) == 5) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 5</u></h4>
+                                            <h4 class="progress-title">Step 5</h4>
                                             Approval by the Council
                                         </span>
                                     </li>
@@ -249,7 +254,7 @@
                                     <li class="progress-step <% if (UserDAO.getStep(SE.getId()) > 6) {%> is-complete<%} else if (UserDAO.getStep(SE.getId()) == 6) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 6</u></h4>
+                                            <h4 class="progress-title">Step 6</h4>
                                             Accomplish and Upload PRS for Endorsement
                                         </span>
                                     </li>
@@ -257,7 +262,7 @@
                                     <li class="progress-step <% if (UserDAO.getStep(SE.getId()) > 8) {%> is-complete<%} else if (UserDAO.getStep(SE.getId()) == 8) {%> is-active <%}%>">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 7</u></h4>
+                                            <h4 class="progress-title">Step 7</h4>
                                             Ready to Implement
                                         </span>
                                     </li>
@@ -303,12 +308,12 @@
                                         <h4>Social Engagement Partner(s)/Beneficiaries</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p>Name of Partner: <%=SE.getNameSEbeneficiaries()%></p>
-                                        <p>Address: <%=SE.getAddressSEbeneficiaries()%></p>
-                                        <p>Contact Person: <%=SE.getContactPersonSEbeneficiaries()%></p>
-                                        <p>Mobile Number: <%=SE.getMobileSEbeneficiaries()%></p>
-                                        <p>Email: <%=SE.getEmailSEbeneficiaries()%></p><br>
-                                        <p>Brief Description of Partner: <%=SE.getDescriptionSEbeneficiaries()%></p>
+                                        <p><b>Name of Partner: </b><%=SE.getNameSEbeneficiaries()%></p>
+                                        <p><b>Address: </b> <%=SE.getAddressSEbeneficiaries()%></p>
+                                        <p><b>Contact Person: </b> <%=SE.getContactPersonSEbeneficiaries()%></p>
+                                        <p><b>Mobile Number: </b> <%=SE.getMobileSEbeneficiaries()%></p>
+                                        <p><b>Email: </b> <%=SE.getEmailSEbeneficiaries()%></p><br>
+                                        <p><b>Brief Description of Partner: </b> <%=SE.getDescriptionSEbeneficiaries()%></p>
                                     </div>
                                 </div>
                                 <br>
@@ -470,7 +475,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Source of Funds: </h4>
+                                        <h4>Source of Funds </h4>
                                     </div>
                                     <div class="card-body">   
                                         <p><%=SE.getSourceOfFunds()%></p>

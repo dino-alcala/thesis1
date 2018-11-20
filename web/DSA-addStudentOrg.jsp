@@ -173,7 +173,7 @@
 
             h1{
                 text-align: left;
-                font-size: 35px;
+                font-size: 25px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
             }   
@@ -299,7 +299,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="formBg">
-                                <h1>Add Unit</h1>
+                                <h1>Add Student Organization</h1>
 
                                 <div class="panel panel-success">
 

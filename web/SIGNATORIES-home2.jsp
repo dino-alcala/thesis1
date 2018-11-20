@@ -87,13 +87,12 @@
             }
             
             h4{
-                font-size: 25px;
+                font-size: 22px;
                 text-align: left;
-                margin-top: 20px;
+                margin-top: 10px;
                 border-bottom: 2px solid green;
-                padding-bottom: 10px;
+                padding-bottom: 7px;
                 margin-bottom: 25px;
-                font-family: 'Roboto', sans-serif;
             }
   
             .table{
