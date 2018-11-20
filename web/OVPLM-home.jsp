@@ -153,11 +153,11 @@
             }
 
             h4{
-                font-size: 25px;
+                font-size: 22px;
                 text-align: left;
-                margin-top: 20px;
+                margin-top: 10px;
                 border-bottom: 2px solid green;
-                padding-bottom: 10px;
+                padding-bottom: 7px;
                 margin-bottom: 25px;
             }
 
@@ -379,7 +379,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="first" value="1">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="first" value="1">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 2-->
@@ -412,7 +412,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="second" value="2">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="second" value="2">View</button></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -443,7 +443,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="third" value="3">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="third" value="3">View</button></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -474,7 +474,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="fourth" value="4">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="fourth" value="4">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 3-->
@@ -499,7 +499,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="fifth" value="5">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="fifth" value="5">View</button></td>
                                 </tr>
 
                                 <!--- Goal 2 Measure 1-->
@@ -526,7 +526,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="sixth" value="6">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="sixth" value="6">View</button></td>
                                 </tr>
 
 
@@ -560,7 +560,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="seventh" value="7">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="seventh" value="7">View</button></td>
                                 </tr>
 
                                 <!--- Goal 3 Measure 1-->
@@ -569,7 +569,7 @@
                                     <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
                                     <td>3 communities</td>
                                     <td></td>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="eighth" value="8">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="eighth" value="8">View</button></td>
                                 </tr>
 
                             </tbody>
@@ -617,7 +617,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="ninth" value="9">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="ninth" value="9">View</button></td>
                                 </tr>
 
 
@@ -652,7 +652,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="tenth" value="10">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="tenth" value="10">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 2B-->
@@ -686,7 +686,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="eleventh" value="11">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="eleventh" value="11">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 2C-->
@@ -720,7 +720,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="twelfth" value="12">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="twelfth" value="12">View</button></td>
                                 </tr>
 
                                 <!--- Goal 1 Measure 3-->
@@ -756,7 +756,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="thirteenth" value="13">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="thirteenth" value="13">View</button></td>
                                 </tr>
 
                                 <!--- Goal 2 Measure 1A-->
@@ -766,7 +766,7 @@
                                         A. Percentage of undergraduate programs with SL component</td>
                                     <td>50%</td>
                                     <td></td>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="fourteenth" value="14">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="fourteenth" value="14">View</button></td>
                                 </tr>
 
                                 <!--- Goal 2 Measure 1B-->
@@ -776,7 +776,7 @@
                                         B. Percentage of graduate programs with SL component </td>
                                     <td>10%/td>
                                     <td></td>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="fifteenth" value="15">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="fifteenth" value="15">View</button></td>
                                 </tr>
 
                                 <!--- Goal 2 Measure 2-->
@@ -803,7 +803,7 @@
                                     <%
                                         }
                                     %>
-                                    <td style="background-color: #333333"><button class="button" type="submit" name="sixteenth" value="16">View</button></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="sixteenth" value="16">View</button></td>
                                 </tr>
 
                             </tbody>

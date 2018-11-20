@@ -43,9 +43,6 @@
                     black;
             }
 
-            hr{
-                background-color:green;
-            }
 
             textarea{
                 resize: none;
@@ -63,12 +60,20 @@
             th{
                 padding:15px;
             }
+            
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
 
             .button{
                 background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -375,9 +380,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Social Engagement Proposal</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
                     <form action = "addSE" method="post"> 
@@ -522,7 +525,7 @@
 
                         <fieldset>
                             <legend><span class="number">5</span> <b>Social Engagement Partner/Beneficiary:</b><br></legend>
-                            <legend>Name of Partner (First name, Last name): <input type='text' name='partnername' required/><br><br>
+                            <legend>Name of Partner (First name, Last name): <input id="inputText" type='text' name='partnername' required/><br><br>
                                 Address: <input id="inputText" type='text' name='partneraddress' required/><br><br>
                                 Contact Person (First name, Last name): <input id="inputText" type='text' name='partnercontact' required/><br><br>
                                 Mobile Number: <br><input id="inputText" style="width:30%" style="width:30%" type='number' name='partnernumber' required/><br><br>

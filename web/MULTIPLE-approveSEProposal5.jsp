@@ -82,6 +82,8 @@
 
             h4{
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .panel-success > .panel-heading {
@@ -125,26 +127,69 @@
             }
 
             h3{
-                font-size: 40px;   
+                font-size: 22px;   
                 border-bottom: 2px solid #4CAF50;
                 padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .card-header{
-                background-color: #4CAF50;
+                background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
                 background-color: whitesmoke;
-            }
-
-            .card{
                 border: 1px solid black;
             }
-
-
+            
             th,tr,td{
                 padding:15px;
+            }
+
+            textarea{
+                resize: none;
+            }
+            
+            .button{
+                background-color: mediumseagreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-success{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-prs{
+                background-color: gray;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             textarea{
@@ -282,7 +327,7 @@
                                     <li class="progress-step is-complete">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 1</u></h4>
+                                            <h4 class="progress-title">Step 1</h4>
                                             Evaluation by COSCA
                                         </span>
                                     </li>
@@ -290,7 +335,7 @@
                                     <li class="progress-step is-complete">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 2</u></h4>
+                                            <h4 class="progress-title">Step 2</h4>
                                             Approval by the Council
                                         </span>
                                     </li>
@@ -298,7 +343,7 @@
                                     <li class="progress-step is-active">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 3</u></h4>
+                                            <h4 class="progress-title">Step 3</h4>
                                             Accomplish and Upload PRS for Endorsement
                                         </span>
                                     </li>
@@ -306,7 +351,7 @@
                                     <li class="progress-step">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 4</u></h4>
+                                            <h4 class="progress-title">Step 4</h4>
                                             Ready to Implement
                                         </span>
                                     </li>
@@ -352,12 +397,12 @@
                                         <h4>Social Engagement Partner(s)/Beneficiaries</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p>Name of Partner: <%=SE.getNameSEbeneficiaries()%></p>
-                                        <p>Address: <%=SE.getAddressSEbeneficiaries()%></p>
-                                        <p>Contact Person: <%=SE.getContactPersonSEbeneficiaries()%></p>
-                                        <p>Mobile Number: <%=SE.getMobileSEbeneficiaries()%></p>
-                                        <p>Email: <%=SE.getEmailSEbeneficiaries()%></p><br>
-                                        <p>Brief Description of Partner: <%=SE.getDescriptionSEbeneficiaries()%></p>
+                                        <p><b>Name of Partner: </b><%=SE.getNameSEbeneficiaries()%></p>
+                                        <p><b>Address: </b><%=SE.getAddressSEbeneficiaries()%></p>
+                                        <p><b>Contact Person: </b><%=SE.getContactPersonSEbeneficiaries()%></p>
+                                        <p><b>Mobile Number: </b><%=SE.getMobileSEbeneficiaries()%></p>
+                                        <p><b>Email: </b><%=SE.getEmailSEbeneficiaries()%></p><br>
+                                        <p><b>Brief Description of Partner: </b><%=SE.getDescriptionSEbeneficiaries()%></p>
                                     </div>
                                 </div>
                                 <br>
@@ -396,7 +441,7 @@
                                     <div class="card-header">
                                         <h4>Work Plan</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Date</th>
@@ -419,15 +464,17 @@
                                     <%
                                         }
                                     %>
-
+                                
                                 </table>
+                                    </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Item</th>
@@ -457,13 +504,15 @@
                                         <td>Total: <%=count%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Expected Participants vs. Total Population of the Unit</h4>
                                     </div>
-                                </div>
+                                 <div class="card-body">    
                                 <table style="width:100%">
                                     <tr>
                                         <th>Sector</th>
@@ -491,13 +540,15 @@
                                         <td><%=SE.getExpectedGraduate()%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Persons Responsible</h4>
                                     </div>
-                                </div>
+                                    <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Name</th>
@@ -515,48 +566,55 @@
                                         }
                                     %>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th style="width:45%">Step</th>
+                                                <th style="width:55%">Remarks</th> 
+                                            </tr>
+                                            <tr>
+                                                <td>Evaluation by COSCA</td>
+                                                <td><%=SE.getCoscaRemarks()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Remarks by the Council</td>
+                                                <td><b>Br. Michael Broughton: </b> <%=SE.getLmc1Remarks()%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Nelca Villarin: </b> <%=SE.getLmc2Remarks()%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Margarita Perdido: </b> <%=SE.getLmc3Remarks()%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Mr. James Laxa: </b> <%=SE.getLmc4Remarks()%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Fritzie De Vera: </b> <%=SE.getLmc5Remarks()%>
+                                                    <br>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th style="width:45%">Step</th>
-                                        <th style="width:55%">Remarks</th> 
-                                    </tr>
-                                    <tr>
-                                        <td>Evaluation by COSCA</td>
-                                        <td><%=SE.getCoscaRemarks()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Remarks by the Council</td>
-                                        <td><b>Br. Michael Broughton: </b> <%=SE.getLmc1Remarks()%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Nelca Villarin: </b> <%=SE.getLmc2Remarks()%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%=SE.getLmc3Remarks()%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%=SE.getLmc4Remarks()%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%=SE.getLmc5Remarks()%>
-                                            <br>
-                                            <br>
-                                        </td>
-                                    </tr>
-                                </table>
+                                
                                 <br/>
-                                <center><button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button></center>
-                                <br>
-                                <center><button type="submit" name="prs" value="<%=SE.getId()%>">View PRS</button></center>
-                                <br>
-                                <center><button class="btn-success" name="approve" value="<%=SE.getId()%>">Approve</button><br></center>                          
+                                
+                                <center><button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
+                                
+                                <button type="submit" class="btn-prs" name="prs" value="<%=SE.getId()%>">View PRS</button>
+                                
+                                <button class="btn-success" name="approve" value="<%=SE.getId()%>">Approve</button><br></center>                          
+                            
                             </div>
 
                         </div>

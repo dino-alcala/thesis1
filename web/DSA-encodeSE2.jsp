@@ -83,6 +83,10 @@
             }
             
             h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
@@ -115,18 +119,18 @@
             }
 
             .button{
-                background-color: #4CAF50;
-                border: none;
+                background-color: darkgreen;
+                border-radius: 5px;
+                border:none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
-                display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            legend, h3{
+            legend{
                 font-family: "Arial", Helvetica, sans-serif;
             }
             
@@ -388,9 +392,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Social Engagement Proposal</h3></center>
-                <hr size="5" noshade>
                 <br>
 
                 <%
@@ -468,7 +470,7 @@
                             <br>
                             <center>
                                 <button type ="button" class="button" id="addRowButton"  onclick ="addRow3()">Add Row</button>
-                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:dodgerblue" id="addRowButton" onclick="calculate()">Calculate</button>
                                 <button type ="button" class="button" style="background-color:red"  id="deleteRowButton" onclick ="deleteRow3()">Delete Row</button>
                             </center>
                             <br><br>

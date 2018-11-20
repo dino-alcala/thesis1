@@ -35,8 +35,7 @@
             body {
                 background: #fff;
                 box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-                color: #545454;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-family: "Arial", Helvetica, sans-serif;
                 font-size: 16px;
                 line-height: 1.5;
                 margin: 0 auto;
@@ -44,11 +43,15 @@
                 padding: 2em 2em 4em;
             }
 
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
+            h1{
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 20px;
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
             }
+            
 
             h2 {
                 margin-top: 1.3em;
@@ -84,10 +87,25 @@
             
             th{
                 padding:15px;
+                 font-family: "Arial", Helvetica, sans-serif;
             }
 
             p{
                 margin-left: 10px;
+                 font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-success{
+                background-color: dodgerblue;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 8px 10px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 12px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 
@@ -144,9 +162,8 @@
     </head>
 
     <body>
-        <hr size="5" noshade>    
+        
     <center><h1>List of Revisions:</h1></center>
-    <hr size="5" noshade>
 
     <%
         UserDAO UserDAO = new UserDAO();
@@ -168,7 +185,7 @@
                         <tr>
                             <td><p><%=revisions.get(i).getProjectName()%></p></td>
                             <td><p><b><%=revisions.get(i).getRevisionTime()%></b></p></td>
-                            <td><p><b><button type="submit" name="auditFF<%=i%>" value="<%=revisions.get(i).getId()%>">View</button></b></p></td>
+                            <td><p><b><button type="submit" class="btn-success" name="auditFF<%=i%>" value="<%=revisions.get(i).getId()%>">View</button></b></p></td>
                         </tr>
 
                         <%

@@ -59,13 +59,17 @@
             table,th,td{
                 border:.5px solid
                     black;
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
                 font-size: 15px;
 
             }
 
             h3{
-                font-family: "Times New Roman", Times, serif;
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             hr{
@@ -99,19 +103,22 @@
 
             .button{
                 background-color: darkgreen;
-                border: none;
+                border-radius: 5px;
+                border:none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
-                display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
             #addRowButton, #deleteRowButton {
-                display:inline-block;
-                font-family: "Times New Roman", Times, serif;
+                display: inline-block;
+                border-radius: 5px;
+                border:none;
+                font-size: 13px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 

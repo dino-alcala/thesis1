@@ -68,10 +68,6 @@
                     black;
             }
 
-            hr{
-                background-color:green;
-            }
-
             textarea{
                 resize: none;
             } 
@@ -87,11 +83,15 @@
 
             b{
                 font-weight: 600;
-                font-size: 20px;
+                font-size: 15px;
             }
 
             h3{
-                font-family: "Times New Roman", Times, serif;
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             th {
@@ -106,27 +106,31 @@
 
             .button{
                 background-color: darkgreen;
-                border: none;
+                border-radius: 5px;
+                border:none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
-                display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
             #addRowButton, #deleteRowButton {
-                display:inline-block;
-                font-family: "Times New Roman", Times, serif;
+                display: inline-block;
+                border-radius: 5px;
+                border:none;
+                font-size: 13px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
+            
 
-            legend{
-                font-family: "Times New Roman", Times, serif;
+            legend, #inputText, #classification, option, select, value, td, th, #countexpenses, #ffunitcost0, #ffquantity0, #ffsubtotal0{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table,th,td{
-                font-family: "Times New Roman", Times, serif;
+                font-family: "Arial", Helvetica, sans-serif;
                 font-size: 15px;
 
             }
@@ -372,9 +376,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Faith Formation Program Proposal</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
                     <form action = "encodeFF" method="post">
@@ -413,13 +415,13 @@
                         <br>
                         <fieldset>
                             <legend><b>Program Head:</b></legend>
-                            <input type = "text" name ="programhead" required>
+                            <input id="inputText" type = "text" name ="programhead" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Type of Faith Formation:</b> </legend>
-                            <select name="classification">
+                            <select id="classification" name="classification">
                                 <option value="Retreat">Retreat</option>
                                 <option value="Recollection">Recollection</option>
                                 <option value="Prayer Service">Prayer Service</option>
@@ -432,43 +434,43 @@
 
                         <fieldset>
                             <legend><span class="number">1</span><b> Project Name:</b></legend>
-                            <center><input type = "text" name ="pname" required></center>
+                            <center><input id="inputText" type = "text" name ="pname" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">2</span><b> Venue:</b></legend>
-                            <center><input type = "text" name ="pvenue" required></center>
+                            <center><input id="inputText" type = "text" name ="pvenue" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">3</span><b> Speaker:</b></legend>
-                            <center><input type = "text" name ="pspeaker" required></center>
+                            <center><input id="inputText" type = "text" name ="pspeaker" required></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">4</span><b> Objectives:</b></legend>
-                            <center><textarea rows="3" cols = "50%" name="objectives" required></textarea></center>
+                            <center><textarea id="inputText" rows="3" cols = "50%" name="objectives" required></textarea></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">5</span><b> Target Implementation Date:</b></legend>
-                            <input style ="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
+                            <input id="inputText" style ="width:30%" type = "date" name ="actualdate" min="<%=sqlDate%>" required>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">6</span><b> Total Amount Requested:</b></legend>
-                            <input style ="width:30%" type = "number" name ="pbudget" required>
+                            <input id="inputText" style ="width:30%" type = "number" name ="pbudget" required>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">7</span><b>Source of Funds:</b></legend>
-                            <select style ="width:50%" name="funds">
+                            <select id="classification" style ="width:50%" name="funds">
                                 <option value="OVPLM">Office of the Vice President for Lasallian Mission</option>
                                 <option value="Others">Others</option>
                             </select>
@@ -492,7 +494,7 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%" id="ffitem0"  name ="ffitem0" required></td>
+                                        <td><input id="inputText" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="ffitem0" required></td>
                                         <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost0" name ="ffunitcost0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity0" name ="ffquantity0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" value="0" readonly required></td>
@@ -507,7 +509,7 @@
                             <br>
                             <center>
                                 <button type ="button" class="button" id="addRowButton"  onclick ="addRow()">Add Row</button>
-                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:dodgerblue" id="addRowButton" onclick="calculate()">Calculate</button>
                                 <button type ="button" class="button" style="background-color:red"  id="deleteRowButton" onclick ="deleteRow()">Delete Row</button>
                             </center>
                         </fieldset>
