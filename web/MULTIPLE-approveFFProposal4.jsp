@@ -74,7 +74,7 @@
                 margin-bottom: 0;
                 font-size: 15px;
             }
-            
+
             table, td, th {
                 border: 1px solid black;
                 border-collapse: collapse;
@@ -153,6 +153,18 @@
             }
 
         </style>
+        
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("remarksFF") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("remarksFF")%>");
+            });
+            <% } %>
+        </script>
 
     </head>
 
@@ -192,9 +204,19 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
-                        <i class="fa fa-user-circle"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <div class="col-sm-12">
+                                <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
+                                <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                                <legend style="font-size:14px;"><b>Unit/Position:</b> <br><%=session.getAttribute("position").toString()%></legend>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
                 <div class="nav-button">
                     <div class="dropdown">
@@ -205,7 +227,6 @@
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
                                 <%
-                                    UserDAO UserDAO = new UserDAO();
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
@@ -375,10 +396,12 @@
                                     <tr>
                                         <th style="width:45%">Step</th>
                                         <th style="width:55%">Remarks</th> 
+                                        <th>Remark Type</th>
                                     </tr>
                                     <tr>
                                         <td>Evaluation by LSPO Director</td>
                                         <td><%=FF.getLspoRemarks()%></td>
+                                        <td><%if (FF.getRemarktype4() != null) {%><%=FF.getRemarktype4()%><%}%></td>
                                     </tr>
                                     <tr>
                                         <td>Enter Remarks:</td>
@@ -431,41 +454,137 @@
                                             <%  }%>
 
                                         </td>
+                                        <td>
+                                            <%
+                                                if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
+                                            %>
+                                            <%if (FF.getRemarktype2() != null) {%><%=FF.getRemarktype2()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype3() != null) {%><%=FF.getRemarktype3()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype5() != null) {%><%=FF.getRemarktype5()%><%}%>
+                                            <br>
+
+                                            <% } else if (session.getAttribute("position").toString().equals("COSCA - Director")) { %>
+
+                                            <%if (FF.getRemarktype1() != null) {%><%=FF.getRemarktype1()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype2() != null) {%><%=FF.getRemarktype2()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype3() != null) {%><%=FF.getRemarktype3()%><%}%>
+                                            <br>
+
+                                            <% } else if (session.getAttribute("position").toString().equals("LSPO - Director")) { %>
+
+                                            <%if (FF.getRemarktype1() != null) {%><%=FF.getRemarktype1()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype2() != null) {%><%=FF.getRemarktype2()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype3() != null) {%><%=FF.getRemarktype3()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype5() != null) {%><%=FF.getRemarktype5()%><%}%>
+                                            <br>
+
+                                            <% } else if (session.getAttribute("position").toString().equals("DSA - Dean")) { %>
+
+                                            <%if (FF.getRemarktype1() != null) {%><%=FF.getRemarktype1()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype3() != null) {%><%=FF.getRemarktype3()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype5() != null) {%><%=FF.getRemarktype5()%><%}%>
+                                            <br>
+
+                                            <% } else if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) { %>
+
+                                            <%if (FF.getRemarktype1() != null) {%><%=FF.getRemarktype1()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype2() != null) {%><%=FF.getRemarktype2()%><%}%>
+                                            <br>
+                                            <br>
+                                            <%if (FF.getRemarktype5() != null) {%><%=FF.getRemarktype5()%><%}%>
+                                            <br>
+                                            <% } %>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Remarks by the Council</td>
                                         <%
                                             if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
                                         %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                                if (session.getAttribute("position").toString().equals("DSA - Dean")) {
-                                            %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                                if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
-                                            %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                                if (session.getAttribute("position").toString().equals("LSPO - Director")) {
-                                            %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc4Remarks() != null) {%><%=FF.getLmc4Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                                if (session.getAttribute("position").toString().equals("COSCA - Director")) {
-                                            %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                            %>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%></textarea></td>
+                                        <td><center>
+                                        <select name="remarktype">
+                                            <option value="--">Select</option>
+                                            <option value="Comment">Comment</option>
+                                            <option value="Suggestion">Suggestion</option>
+                                        </select>
+                                    </center></td>
+                                    <%
+                                        }
+                                        if (session.getAttribute("position").toString().equals("DSA - Dean")) {
+                                    %>
+                                    <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%></textarea></td>
+                                    <td><center>
+                                        <select name="remarktype">
+                                            <option value="--">Select</option>
+                                            <option value="Comment">Comment</option>
+                                            <option value="Suggestion">Suggestion</option>
+                                        </select>
+                                    </center></td>
+                                    <%
+                                        }
+                                        if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
+                                    %>
+                                    <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%></textarea></td>
+                                    <td><center>
+                                        <select name="remarktype">
+                                            <option value="--">Select</option>
+                                            <option value="Comment">Comment</option>
+                                            <option value="Suggestion">Suggestion</option>
+                                        </select>
+                                    </center></td>
+                                    <%
+                                        }
+                                        if (session.getAttribute("position").toString().equals("LSPO - Director")) {
+                                    %>
+                                    <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (FF.getLmc4Remarks() != null) {%><%=FF.getLmc4Remarks()%><%}%></textarea></td>
+                                    <td><center>
+                                        <select name="remarktype">
+                                            <option value="--">Select</option>
+                                            <option value="Comment">Comment</option>
+                                            <option value="Suggestion">Suggestion</option>
+                                        </select>
+                                    </center></td>
+                                    <%
+                                        }
+                                        if (session.getAttribute("position").toString().equals("COSCA - Director")) {
+                                    %>
+                                    <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%></textarea></td>
+                                    <td><center>
+                                        <select name="remarktype">
+                                            <option value="--">Select</option>
+                                            <option value="Comment">Comment</option>
+                                            <option value="Suggestion">Suggestion</option>
+                                        </select>
+                                    </center></td>
+                                    <%
+                                        }
+                                    %>
                                     </tr>
                                 </table>
                                 <br/>
                                 <input type="hidden" name="ffID" value="<%=FF.getId()%>">
-                                
+
                                 <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>  
                                 <br>
                                 <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>

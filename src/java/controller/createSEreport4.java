@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import entity.SE;
 import entity.SEreport;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,6 +50,33 @@ public class createSEreport4 extends HttpServlet {
 
             SEreport.setMajorProblems(request.getParameter("problem"));
             SEreport.setOtherRecommendations(request.getParameter("recommendation"));
+            
+            SE SE = UserDAO.retrieveSEBySEID(SEreport.getSeproposalID());
+            if(request.getParameter("feedback1").equals("")){
+                SEreport.setFeedback1(request.getParameter("feedback1"));
+            } else {
+                SEreport.setFeedback1("No Suggestion");
+            }
+            if(request.getParameter("feedback2").equals("")){
+                SEreport.setFeedback2(request.getParameter("feedback2"));
+            } else {
+                SEreport.setFeedback2("No Suggestion");
+            }
+            if(request.getParameter("feedback3").equals("")){
+                SEreport.setFeedback3(request.getParameter("feedback3"));
+            } else {
+                SEreport.setFeedback3("No Suggestion");
+            }
+            if(request.getParameter("feedback4").equals("")){
+                SEreport.setFeedback4(request.getParameter("feedback4"));
+            } else {
+                SEreport.setFeedback4("No Suggestion");
+            }
+            if(request.getParameter("feedback5").equals("")){
+                SEreport.setFeedback5(request.getParameter("feedback5"));
+            } else {
+                SEreport.setFeedback5("No Suggestion");
+            }
 
             InputStream inputStream1 = null;
             Part filePart1 = request.getPart("uploadphoto");

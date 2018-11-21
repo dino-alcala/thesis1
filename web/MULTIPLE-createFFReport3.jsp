@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FFreport"%>
 <%@page import="entity.SEexpenses"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
@@ -290,9 +291,19 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
-                        <i class="fa fa-user-circle"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <div class="col-sm-12">
+                                <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
+                                <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                                <legend style="font-size:14px;"><b>Unit/Position:</b> <br><%=session.getAttribute("position").toString()%></legend>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
                 <div class="nav-button">
                     <div class="dropdown">
@@ -303,7 +314,6 @@
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
                                 <%
-                                    UserDAO UserDAO = new UserDAO();
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
@@ -370,7 +380,58 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">7</span><b>Annexes</b></legend>
+                            <legend><span class="number">7</span><b>LMC Suggestions</b></legend>
+
+                            <table style="width:100%">
+                                <thead>
+                                <th style="width: 20%">LMC</th>
+                                <th style="width: 40%"Suggestion</th>
+                                <th style="width: 30%">Feedback</th>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        FFreport FFreport = (FFreport) session.getAttribute("FFreport");
+                                        FF FF = UserDAO.retrieveFFByFFID(FFreport.getFfproposalID());
+                                    %>
+                                    <% if (FF.getRemarktype1().equals("Suggestion")) {%>
+                                    <tr>
+                                        <td style="padding:2%"><center>Br. Michael Broughton</center></td>
+                                <td><%=FF.getLmc1Remarks()%></td>
+                                <td><textarea name="feedback1" rows="3" style="border-radius:0px;"></textarea></td>
+                                </tr>
+                                <% } %>
+                                <% if (FF.getRemarktype2().equals("Suggestion")) {%>
+                                <tr>
+                                    <td style="padding:2%"><center>Nelca Villarin</center></td>
+                                <td><%=FF.getLmc2Remarks()%></td>
+                                <td><textarea name="feedback2" rows="3" style="border-radius:0px;"></textarea></td>
+                                </tr>
+                                <% } %>
+                                <% if (FF.getRemarktype3().equals("Suggestion")) {%>
+                                <tr><td style="padding:2%"><center>Margarita Perdido</center></td>
+                                <td><%=FF.getLmc3Remarks()%></td>
+                                <td><textarea name="feedback3" rows="3" style="border-radius:0px;"></textarea></td>
+                                </tr>
+                                <% } %>
+                                <% if (FF.getRemarktype4().equals("Suggestion")) {%>
+                                <tr><td style="padding:2%"><center>James Laxa</center></td>
+                                <td><%=FF.getLmc4Remarks()%></td>
+                                <td><textarea name="feedback4" rows="3" style="border-radius:0px;"></textarea></td>
+                                </tr>
+                                <% } %>
+                                <% if (FF.getRemarktype5().equals("Suggestion")) {%>
+                                <tr><td style="padding:2%"><center>Fritzie De Vera</center></td>
+                                <td><%=FF.getLmc5Remarks()%></td>
+                                <td><textarea name="feedback5" rows="3" style="border-radius:0px;"></textarea></td>
+                                </tr>
+                                <% }%>
+                                </tbody>
+                            </table>
+                            <br><br>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><span class="number">8</span><b>Annexes</b></legend>
                             <table>
                                 <tr>
                                     <td>Upload Photo</td>

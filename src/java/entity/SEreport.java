@@ -59,6 +59,11 @@ public class SEreport {
     protected int parents;
     protected ArrayList<Measure> targetmeasures;
     protected String gsheets;
+    protected String feedback1;
+    protected String feedback2;
+    protected String feedback3;
+    protected String feedback4;
+    protected String feedback5;
 
     public int getId() {
         return id;
@@ -420,6 +425,46 @@ public class SEreport {
 
     public void setParents(int parents) {
         this.parents = parents;
+    }
+
+    public String getFeedback1() {
+        return feedback1;
+    }
+
+    public void setFeedback1(String feedback1) {
+        this.feedback1 = feedback1;
+    }
+
+    public String getFeedback2() {
+        return feedback2;
+    }
+
+    public void setFeedback2(String feedback2) {
+        this.feedback2 = feedback2;
+    }
+
+    public String getFeedback3() {
+        return feedback3;
+    }
+
+    public void setFeedback3(String feedback3) {
+        this.feedback3 = feedback3;
+    }
+
+    public String getFeedback4() {
+        return feedback4;
+    }
+
+    public void setFeedback4(String feedback4) {
+        this.feedback4 = feedback4;
+    }
+
+    public String getFeedback5() {
+        return feedback5;
+    }
+
+    public void setFeedback5(String feedback5) {
+        this.feedback5 = feedback5;
     }
     
     

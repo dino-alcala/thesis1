@@ -94,6 +94,11 @@ public class SE {
     protected int reject3;
     protected int reject4;
     protected int studentorg;
+    protected String remarktype1;
+    protected String remarktype2;
+    protected String remarktype3;
+    protected String remarktype4;
+    protected String remarktype5;
     
     public int getId() {
         return id;
@@ -735,6 +740,46 @@ public class SE {
 
     public void setStudentorg(int studentorg) {
         this.studentorg = studentorg;
+    }
+
+    public String getRemarktype1() {
+        return remarktype1;
+    }
+
+    public void setRemarktype1(String remarktype1) {
+        this.remarktype1 = remarktype1;
+    }
+
+    public String getRemarktype2() {
+        return remarktype2;
+    }
+
+    public void setRemarktype2(String remarktype2) {
+        this.remarktype2 = remarktype2;
+    }
+
+    public String getRemarktype3() {
+        return remarktype3;
+    }
+
+    public void setRemarktype3(String remarktype3) {
+        this.remarktype3 = remarktype3;
+    }
+
+    public String getRemarktype4() {
+        return remarktype4;
+    }
+
+    public void setRemarktype4(String remarktype4) {
+        this.remarktype4 = remarktype4;
+    }
+
+    public String getRemarktype5() {
+        return remarktype5;
+    }
+
+    public void setRemarktype5(String remarktype5) {
+        this.remarktype5 = remarktype5;
     }
     
     

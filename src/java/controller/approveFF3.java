@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import entity.FF;
 import entity.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,6 +41,7 @@ public class approveFF3 extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
 
             HttpSession session = request.getSession();
+            FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
 
             if (request.getParameter("auditFF") != null) {
 
@@ -58,29 +60,64 @@ public class approveFF3 extends HttpServlet {
             }
 
             if (request.getParameter("approve") != null) {
-
-                if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission")) {
-                    UserDAO.voteFFMichael(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateFFlmc1Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
+                    if (request.getParameter("remarktype").equals("--")) {
+                        request.setAttribute("remarksFF", "Please select a remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteFFMichael(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updateFFlmc1Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        FF.setRemarktype1(request.getParameter("remarktype"));
+                    }
                 }
 
                 if (session.getAttribute("position").equals("DSA - Dean")) {
-                    UserDAO.voteFFNelca(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateFFlmc2Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if (request.getParameter("remarktype").equals("--")) {
+                        request.setAttribute("remarksFF", "Please select a remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteFFNelca(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updateFFlmc2Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        FF.setRemarktype1(request.getParameter("remarktype"));
+                    }
                 }
 
                 if (session.getAttribute("position").equals("LCLM - Executive Director")) {
-                    UserDAO.voteFFMargarita(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateFFlmc3Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if (request.getParameter("remarktype").equals("--")) {
+                        request.setAttribute("remarksFF", "Please select a remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteFFMargarita(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updateFFlmc3Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        FF.setRemarktype1(request.getParameter("remarktype"));
+                    }
                 }
 
                 if (session.getAttribute("position").equals("COSCA - Director")) {
-                    UserDAO.voteFFFritzie(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateFFlmc5Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if (request.getParameter("remarktype").equals("--")) {
+                        request.setAttribute("remarksFF", "Please select a remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteFFFritzie(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updateFFlmc5Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        FF.setRemarktype1(request.getParameter("remarktype"));
+                    }
                 }
 
                 Notification n = new Notification();

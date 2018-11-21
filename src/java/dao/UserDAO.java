@@ -4225,6 +4225,11 @@ public class UserDAO {
                 SE.setReject3(rs2.getInt("reject3"));
                 SE.setReject4(rs2.getInt("reject4"));
                 SE.setStudentorg(rs2.getInt("studentorg"));
+                SE.setRemarktype1(rs2.getString("remarktype1"));
+                SE.setRemarktype2(rs2.getString("remarktype2"));
+                SE.setRemarktype3(rs2.getString("remarktype3"));
+                SE.setRemarktype4(rs2.getString("remarktype4"));
+                SE.setRemarktype5(rs2.getString("remarktype5"));
             }
 
             ArrayList<String> component = new ArrayList();
@@ -4548,6 +4553,11 @@ public class UserDAO {
                 FF.setReject3(rs2.getInt("reject3"));
                 FF.setReject4(rs2.getInt("reject4"));
                 FF.setStudentorg(rs2.getInt("studentorg"));
+                FF.setRemarktype1(rs2.getString("remarktype1"));
+                FF.setRemarktype2(rs2.getString("remarktype2"));
+                FF.setRemarktype3(rs2.getString("remarktype3"));
+                FF.setRemarktype4(rs2.getString("remarktype4"));
+                FF.setRemarktype5(rs2.getString("remarktype5"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
@@ -6625,7 +6635,7 @@ public class UserDAO {
         }
     }
 
-    public void updatelsporemarks(String remarks, int ffID) {
+    public void updatelsporemarks(String remarks, String remarktype, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -6634,11 +6644,12 @@ public class UserDAO {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
-            String query = "UPDATE ffproposal SET lspoRemarks = ?, lspodatetime = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET lspoRemarks = ?, remarktype4 = ?, lspodatetime = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setString(2, sdf.format(dt));
-            pstmt.setInt(3, ffID);
+            pstmt.setString(2, remarktype);
+            pstmt.setString(3, sdf.format(dt));
+            pstmt.setInt(4, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7000,16 +7011,17 @@ public class UserDAO {
         }
     }
 
-    public void updatelmc1Remarks(String remarks, int seID) {
+    public void updatelmc1Remarks(String remarks, String remarktype, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET lmc1Remarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET lmc1Remarks = ?, remarktype1 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7027,16 +7039,17 @@ public class UserDAO {
         }
     }
 
-    public void updateFFlmc1Remarks(String remarks, int ffID) {
+    public void updateFFlmc1Remarks(String remarks, String remarktype, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET lmc1Remarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET lmc1Remarks = ?, remarktype1 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7454,16 +7467,17 @@ public class UserDAO {
         }
     }
 
-    public void updatelmc2Remarks(String remarks, int seID) {
+    public void updatelmc2Remarks(String remarks, String remarktype, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET lmc2Remarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET lmc2Remarks = ?, remarktype2 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7481,16 +7495,17 @@ public class UserDAO {
         }
     }
 
-    public void updateFFlmc2Remarks(String remarks, int ffID) {
+    public void updateFFlmc2Remarks(String remarks, String remarktype, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET lmc2Remarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET lmc2Remarks = ?, remarktype2 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7574,16 +7589,17 @@ public class UserDAO {
         }
     }
 
-    public void updatelmc3Remarks(String remarks, int seID) {
+    public void updatelmc3Remarks(String remarks, String remarktype, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET lmc3Remarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET lmc3Remarks = ?, remarktype3 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7601,16 +7617,17 @@ public class UserDAO {
         }
     }
 
-    public void updateFFlmc3Remarks(String remarks, int ffID) {
+    public void updateFFlmc3Remarks(String remarks, String remarktype, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET lmc3Remarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET lmc3Remarks = ?, remarktype3 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7694,16 +7711,17 @@ public class UserDAO {
         }
     }
 
-    public void updatelmc4Remarks(String remarks, int seID) {
+    public void updatelmc4Remarks(String remarks, String remarktype, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET lmc4Remarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET lmc4Remarks = ?, remarktype4 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7814,16 +7832,17 @@ public class UserDAO {
         }
     }
 
-    public void updatelmc5Remarks(String remarks, int seID) {
+    public void updatelmc5Remarks(String remarks, String remarktype, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET lmc5Remarks = ? WHERE id = ?";
+            String query = "UPDATE seproposal SET lmc5Remarks = ?, remarktype5 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, seID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, seID);
 
             int rs = pstmt.executeUpdate();
 
@@ -7841,16 +7860,17 @@ public class UserDAO {
         }
     }
 
-    public void updateFFlmc5Remarks(String remarks, int ffID) {
+    public void updateFFlmc5Remarks(String remarks, String remarktype, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET lmc5Remarks = ? WHERE id = ?";
+            String query = "UPDATE ffproposal SET lmc5Remarks = ?, remarktype5 = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, remarks);
-            pstmt.setInt(2, ffID);
+            pstmt.setString(2, remarktype);
+            pstmt.setInt(3, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -9517,7 +9537,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, projectProponent, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, implementationdate, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, gsheets, graduate, undergraduate, alumni, parents) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO sereport(projectTitle, targetKRA, targetGoal, projectProponent, numberOfBeneficiaries, projectBeneficiaries, addressBeneficiaries, implementationdate, addressOfProject, amountReceivedOVPLM, significanceProject, happenedImplementationProject, whenwhereProject, participantsProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceBeneficiaries, attendanceDLSU, beneficiariesLetters, date, seproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, gsheets, graduate, undergraduate, alumni, parents, feedback1, feedback2, feedback3, feedback4, feedback5) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, SEreport.getProjectTitle());
             pstmt.setString(2, SEreport.getTargetKRA());
@@ -9555,6 +9575,11 @@ public class UserDAO {
             pstmt.setInt(34, SEreport.getUndergraduate());
             pstmt.setInt(35, SEreport.getAlumni());
             pstmt.setInt(36, SEreport.getParents());
+            pstmt.setString(37, SEreport.getFeedback1());
+            pstmt.setString(38, SEreport.getFeedback2());
+            pstmt.setString(39, SEreport.getFeedback3());
+            pstmt.setString(40, SEreport.getFeedback4());
+            pstmt.setString(41, SEreport.getFeedback5());
 
             int rs = pstmt.executeUpdate();
 
@@ -9692,6 +9717,11 @@ public class UserDAO {
                 SEreport.setUndergraduate(rs2.getInt("undergraduate"));
                 SEreport.setAlumni(rs2.getInt("alumni"));
                 SEreport.setParents(rs2.getInt("parents"));
+                SEreport.setFeedback1(rs2.getString("feedback1"));
+                SEreport.setFeedback2(rs2.getString("feedback2"));
+                SEreport.setFeedback3(rs2.getString("feedback3"));
+                SEreport.setFeedback4(rs2.getString("feedback4"));
+                SEreport.setFeedback5(rs2.getString("feedback5"));
             }
 
             ArrayList<SEobjectives> objectives = new ArrayList();
@@ -9809,6 +9839,11 @@ public class UserDAO {
                 FFreport.setUndergraduate(rs2.getInt("undergraduate"));
                 FFreport.setAlumni(rs2.getInt("alumni"));
                 FFreport.setParents(rs2.getInt("parents"));
+                FFreport.setFeedback1(rs2.getString("feedback1"));
+                FFreport.setFeedback2(rs2.getString("feedback2"));
+                FFreport.setFeedback3(rs2.getString("feedback3"));
+                FFreport.setFeedback4(rs2.getString("feedback4"));
+                FFreport.setFeedback5(rs2.getString("feedback5"));
             }
 
             ArrayList<FFparticipants> participants = new ArrayList();
@@ -9891,7 +9926,7 @@ public class UserDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO ffreport(projectTitle, projectProponent, facilitatorName, amountReceivedOVPLM, significanceProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceDLSU, date, ffproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, implementationdate, venue, gsheets, graduate, undergraduate, alumni, parents) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO ffreport(projectTitle, projectProponent, facilitatorName, amountReceivedOVPLM, significanceProject, highlightsProject, majorProblems, otherRecommendations, annexes, attendanceDLSU, date, ffproposalID, cap, apsp, asf, faculty, admin, directhired, independent, external, implementationdate, venue, gsheets, graduate, undergraduate, alumni, parents, feedback1, feedback2, feedback3, feedback4, feedback5) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, FFreport.getProjectTitle());
             pstmt.setString(2, FFreport.getProjectProponent());
@@ -9920,6 +9955,11 @@ public class UserDAO {
             pstmt.setInt(25, FFreport.getUndergraduate());
             pstmt.setInt(26, FFreport.getAlumni());
             pstmt.setInt(27, FFreport.getParents());
+            pstmt.setString(28, FFreport.getFeedback1());
+            pstmt.setString(29, FFreport.getFeedback2());
+            pstmt.setString(30, FFreport.getFeedback3());
+            pstmt.setString(31, FFreport.getFeedback4());
+            pstmt.setString(32, FFreport.getFeedback5());
 
             int rs = pstmt.executeUpdate();
 

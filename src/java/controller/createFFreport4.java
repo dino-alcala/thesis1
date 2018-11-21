@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import entity.FF;
 import entity.FFreport;
 import entity.Notification;
 import java.io.IOException;
@@ -51,6 +52,33 @@ public class createFFreport4 extends HttpServlet {
 
             FFreport.setMajorProblems(request.getParameter("problem"));
             FFreport.setOtherRecommendations(request.getParameter("recommendation"));
+            
+            FF FF = UserDAO.retrieveFFByFFID(FFreport.getFfproposalID());
+            if(request.getParameter("feedback1").equals("")){
+                FFreport.setFeedback1(request.getParameter("feedback1"));
+            } else {
+                FFreport.setFeedback1("No Suggestion");
+            }
+            if(request.getParameter("feedback2").equals("")){
+                FFreport.setFeedback2(request.getParameter("feedback2"));
+            } else {
+                FFreport.setFeedback2("No Suggestion");
+            }
+            if(request.getParameter("feedback3").equals("")){
+                FFreport.setFeedback3(request.getParameter("feedback3"));
+            } else {
+                FFreport.setFeedback3("No Suggestion");
+            }
+            if(request.getParameter("feedback4").equals("")){
+                FFreport.setFeedback4(request.getParameter("feedback4"));
+            } else {
+                FFreport.setFeedback4("No Suggestion");
+            }
+            if(request.getParameter("feedback5").equals("")){
+                FFreport.setFeedback5(request.getParameter("feedback5"));
+            } else {
+                FFreport.setFeedback5("No Suggestion");
+            }
 
             InputStream inputStream1 = null;
             Part filePart1 = request.getPart("uploadphoto");

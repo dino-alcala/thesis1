@@ -108,8 +108,16 @@ public class approveSE5 extends HttpServlet {
             
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
             UserDAO.AddNotification(n3);
+            
+            n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+            n3.setBody("Php" + SE.getTotalAmount() + " has been deducted to the budget!");
+            n3.setDt(sdf.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
             UserDAO.AddNotification(n3);
+            
+            n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+            n3.setBody("Php" + SE.getTotalAmount() + " has been deducted to the budget!");
+            n3.setDt(sdf.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
             UserDAO.AddNotification(n3);
             
