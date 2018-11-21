@@ -240,7 +240,7 @@
             </fieldset>
 
             <br><br>
-            <button type="submit" name="SE" value="<%=request.getAttribute("seID")%>" class="button">Update</button></center>
+            <center><button type="submit" name="SE" value="<%=request.getAttribute("seID")%>" class="button">Update</button></center>
         </form>
     </div>
 </body>

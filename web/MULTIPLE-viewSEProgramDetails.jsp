@@ -602,7 +602,7 @@
                                     if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 0 && SE.getStep() != -1) {
                                 %>
 
-                                        <button class='button' style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram"  class="btn-danger">Cancel Program</button></center>
+                                        <button style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram"  class="btn-danger">Cancel Program</button></center>
                                 
                                 <%
                                     }
