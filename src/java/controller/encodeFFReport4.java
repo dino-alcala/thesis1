@@ -79,8 +79,19 @@ public class encodeFFReport4 extends HttpServlet {
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             n.setDt(sdf.format(dt));
-            n.setUserID(17);
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            UserDAO.AddNotification(n);
             
+            n.setTitle(UserDAO.getProgramName(FFreport.getFfproposalID()));
+            n.setBody("Accomplishment Report has been submitted!");
+            n.setDt(sdf.format(dt));
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            UserDAO.AddNotification(n);
+            
+            n.setTitle(UserDAO.getProgramName(FFreport.getFfproposalID()));
+            n.setBody("Accomplishment Report has been submitted!");
+            n.setDt(sdf.format(dt));
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
             UserDAO.AddNotification(n);
 
             request.setAttribute("successSE", "You have successfully encoded a Student Org FF Completion Report!");
