@@ -328,7 +328,6 @@
                 <div class="row">
                     <div class="col-lg-10">
                         <%
-                            UserDAO UserDAO = new UserDAO();
                             ArrayList<User> u = new ArrayList();
                             u = UserDAO.retrieveEmployees();
                         %>

@@ -152,13 +152,7 @@
                     </ul>
                 </div>
                 <ul class="navbar-nav mr auto">
-                    <div class="nav-button">
-                        <button type="button" class="btn btn-info navbar-btn-profile">
-                            <i class="fa fa-user-circle"></i>
-                        </button>
-                    </div>
-                    <div class="nav-button">
-                        <div class="nav-button">
+                <div class="nav-button">
                     <div class="dropdown">
                         <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
                             <i class="fa fa-user-circle"></i>
@@ -185,32 +179,32 @@
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                        for (int i = 0; i < n.size(); i++) {
-                                    %>
-                                    <li class="notification-box" href="#">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                                <div class="notificationBoxMessage">
-                                                    <%=n.get(i).getBody()%>
-                                                </div>
-                                            </div>    
-                                        </div>
-                                    </li>
+                                    for (int i = 0; i < n.size(); i++) {
+                                %>
+                                <li class="notification-box" href="#">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                            <div class="notificationBoxMessage">
+                                                <%=n.get(i).getBody()%>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </li>
 
-                                    <%
-                                        }
-                                    %>     
-                                </div>
-                            </ul>
-                        </div>
+                                <%
+                                    }
+                                %>
+                            </div>
+                        </ul>
                     </div>
-                    <div class="nav-button">
-                        <form action="logout">
-                            <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
-                        </form>
-                    </div>
-                </ul>
+                </div>
+                <div class="nav-button">
+                    <form action="logout">
+                        <button class="btn btn-info navbar-btn-logout"><i class="fa fa-sign-out"></i></button>
+                    </form>
+                </div>
+            </ul>
             </nav>
 
 

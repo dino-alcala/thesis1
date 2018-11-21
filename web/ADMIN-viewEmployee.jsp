@@ -211,7 +211,6 @@
                         <form action="passEmployee" method="post">
                             <div class="tableDiv">
                                 <%
-                                    UserDAO UserDAO = new UserDAO();
                                     User u = new User();
                                     u = UserDAO.getEmployee(Integer.parseInt(request.getAttribute("userID").toString()));
                                 %>

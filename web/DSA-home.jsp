@@ -229,12 +229,6 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
-                        <i class="fa fa-user-circle"></i>
-                    </button>
-                </div>
-                <div class="nav-button">
-                    <div class="nav-button">
                     <div class="dropdown">
                         <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
                             <i class="fa fa-user-circle"></i>
@@ -276,7 +270,7 @@
 
                                 <%
                                     }
-                                %>     
+                                %>
                             </div>
                         </ul>
                     </div>
