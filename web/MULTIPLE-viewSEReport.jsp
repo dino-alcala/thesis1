@@ -430,7 +430,7 @@
                                         <h4>LMC Suggestions</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <table>
+                                        <table style="width:100%">
                                             <thead>
                                             <th>LMC</th>
                                             <th>Suggestion</th>
