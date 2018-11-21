@@ -109,6 +109,18 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
+            
+            html{
+                font-size:14px;
+            }
+            
+            .navbar{
+                height:8%;
+            }
+            
+            .sidebar-expanded{
+                margin-top: 0%;
+            }
         </style>
 
     </head>
