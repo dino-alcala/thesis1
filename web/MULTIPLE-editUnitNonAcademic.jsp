@@ -4,6 +4,8 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Notification"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="entity.Unit"%>
 <%@page import="dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -192,7 +194,6 @@
                                     <h1>Edit Unit</h1>
 
                                     <%
-                                        UserDAO UserDAO = new UserDAO();
                                         Unit u = new Unit();
                                         u = UserDAO.getUnitbyID(Integer.parseInt(request.getAttribute("unitID").toString()));
                                         System.out.println("DSJAKDSALJKDLAS " + request.getAttribute("unitID"));
