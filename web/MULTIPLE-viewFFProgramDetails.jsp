@@ -339,7 +339,7 @@
                                 <br/>
 
                                 <%
-                                    if (!FF.getUnit().contains("Student Organization")) {
+                                    if (FF.getStudentorg() != 1) {
                                 %>
                                 <div class="card">
                                     <div class="card-header">

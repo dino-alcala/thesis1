@@ -59,6 +59,7 @@ public class encodeSEReport4 extends HttpServlet {
             SEreport.setAttendees(attendees);
 
             UserDAO.AddSEreport(SEreport);
+            UserDAO.updateStep(9, SEreport.getSeproposalID());
 
             String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             int length = 10;
@@ -83,7 +84,7 @@ public class encodeSEReport4 extends HttpServlet {
             
             UserDAO.AddNotification(n);
 
-            request.setAttribute("successSE", "You have successfully encoded a Student Org SE Completion Report!");
+            request.setAttribute("SEreport", "You have successfully encoded a Student Org SE Completion Report!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-socialEngagementProgramsList.jsp");
             dispatcher.forward(request, response);

@@ -9,6 +9,7 @@ import dao.UserDAO;
 import entity.Budget;
 import entity.FF;
 import entity.FFattendees;
+import entity.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -42,7 +43,7 @@ public class encodeFF2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
             HttpSession session = request.getSession();
             FF FF;
             UserDAO UserDAO = new UserDAO();
@@ -64,9 +65,9 @@ public class encodeFF2 extends HttpServlet {
             FF.setStudentorg(1);
 
             UserDAO.AddFF(FF);
-            
-            if(FF.getSourceOfFunds().equals("OVPLM")){
-                
+
+            if (FF.getSourceOfFunds().equals("OVPLM")) {
+
                 Budget current = new Budget();
 
                 current = UserDAO.getLatestBudget();
@@ -85,7 +86,30 @@ public class encodeFF2 extends HttpServlet {
 
                 UserDAO.addLatestBudget(b);
             }
-            
+
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            Notification n3 = new Notification();
+            n3.setTitle(UserDAO.getProjectName(FF.getId()));
+            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
+            n3.setDt(sdf.format(dt));
+
+            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            UserDAO.AddNotification(n3);
+
+            n3.setTitle(UserDAO.getProjectName(FF.getId()));
+            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
+            n3.setDt(sdf.format(dt));
+            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            UserDAO.AddNotification(n3);
+
+            n3.setTitle(UserDAO.getProjectName(FF.getId()));
+            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
+            n3.setDt(sdf.format(dt));
+            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+            UserDAO.AddNotification(n3);
+
             request.setAttribute("successSE", "You have successfully encoded a Student Org FF Proposal!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");

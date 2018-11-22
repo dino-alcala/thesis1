@@ -211,7 +211,7 @@
                                     </div>
                                     <div class="card-body">   
                                         <p><b>List of DLSU Participants:</b></p>
-                                        <br/>
+                                        <br>
                                         <table style="width:100%">
                                             <tr>
                                                 <th>Classification</th>
@@ -369,6 +369,7 @@
                                 <br/>
                                 
                                 <%
+                                    if(FF.getStudentorg() != 1){
                                     if (!FFreport.getFeedback1().equals("No Suggestion") || !FFreport.getFeedback2().equals("No Suggestion") || !FFreport.getFeedback3().equals("No Suggestion")
                                             || !FFreport.getFeedback4().equals("No Suggestion") || !FFreport.getFeedback5().equals("No Suggestion")) {
                                 %>
@@ -424,7 +425,7 @@
                                     </div>
                                 </div>
                                 <br/>
-                                <% }%>
+                                <% }}%>
 
                                 <div class="card">
                                     <div class="card-header">

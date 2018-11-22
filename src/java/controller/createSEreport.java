@@ -59,7 +59,7 @@ public class createSEreport extends HttpServlet {
                 if (SE.getStudentorg() == 1) {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeSEReport.jsp");
                     dispatcher.forward(request, response);
-                } else {
+                } else if(SE.getStudentorg() != 1) {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEReport.jsp");
                     dispatcher.forward(request, response);
                 }

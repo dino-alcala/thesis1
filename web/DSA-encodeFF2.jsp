@@ -293,7 +293,6 @@
             <div class="col py-3">
                 <center><h3>Faith Formation Program Attendees</h3></center>
 
-
                 <div class="form-style-5">
                     <form action="encodeFF2" method="post">
                         <input type="hidden" value="1" id="countattendees" name="countattendees">

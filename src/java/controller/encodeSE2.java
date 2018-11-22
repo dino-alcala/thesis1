@@ -7,6 +7,7 @@ package controller;
 
 import dao.UserDAO;
 import entity.Budget;
+import entity.Notification;
 import entity.SE;
 import entity.SEexpenses;
 import entity.SEresponsible;
@@ -126,6 +127,29 @@ public class encodeSE2 extends HttpServlet {
 
                     UserDAO.addLatestBudget(b);
                 }
+
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                Notification n3 = new Notification();
+                n3.setTitle(UserDAO.getProgramName(SE.getId()));
+                n3.setBody("Php" + SE.getTotalAmount() + " has been deducted to the budget!");
+                n3.setDt(sdf.format(dt));
+
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n3);
+
+                n3.setTitle(UserDAO.getProgramName(SE.getId()));
+                n3.setBody("Php" + SE.getTotalAmount() + " has been deducted to the budget!");
+                n3.setDt(sdf.format(dt));
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n3);
+
+                n3.setTitle(UserDAO.getProgramName(SE.getId()));
+                n3.setBody("Php" + SE.getTotalAmount() + " has been deducted to the budget!");
+                n3.setDt(sdf.format(dt));
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                UserDAO.AddNotification(n3);
 
                 request.setAttribute("successSE", "You have successfully encoded a Student Org SE Proposal!");
                 ServletContext context = getServletContext();
