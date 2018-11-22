@@ -45,7 +45,6 @@ public class approveFF2 extends HttpServlet {
             
             UserDAO UserDAO = new UserDAO();
             HttpSession session = request.getSession();
-            FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
 
             if (request.getParameter("auditFF") != null) {
 
@@ -64,7 +63,7 @@ public class approveFF2 extends HttpServlet {
             }
 
             if (request.getParameter("approve") != null) {
-
+                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion")){
                         UserDAO.updateStepFF(5, Integer.parseInt(request.getParameter("approve")));
@@ -150,6 +149,7 @@ public class approveFF2 extends HttpServlet {
             if (request.getParameter("revise") != null) {
                 Notification n3 = new Notification();
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("revise"))));
+                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion") || request.getParameter("remarktype").equals("Reject")){
@@ -189,6 +189,7 @@ public class approveFF2 extends HttpServlet {
             if (request.getParameter("reject") != null) {
                 Notification n3 = new Notification();
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))));
+                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion") || request.getParameter("remarktype").equals("Revise")){
