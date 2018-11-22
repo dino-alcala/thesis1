@@ -60,6 +60,7 @@ public class createFFreport5 extends HttpServlet {
             FFreport.setAttendees(attendees);
 
             UserDAO.AddFFreport(FFreport);
+            UserDAO.updateStepFF(9, FFreport.getFfproposalID());
 
             String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             int length = 10;
@@ -73,7 +74,7 @@ public class createFFreport5 extends HttpServlet {
             UserDAO.updateFFProposalCodeByFFID(code, FFreport.getFfproposalID());
 
             Notification n = new Notification();
-            n.setTitle(UserDAO.getProgramName(FFreport.getFfproposalID()));
+            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
             n.setBody("Accomplishment Report has been submitted!");
 
             java.util.Date dt = new java.util.Date();
@@ -83,13 +84,13 @@ public class createFFreport5 extends HttpServlet {
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
             UserDAO.AddNotification(n);
             
-            n.setTitle(UserDAO.getProgramName(FFreport.getFfproposalID()));
+            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
             n.setBody("Accomplishment Report has been submitted!");
             n.setDt(sdf.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
             UserDAO.AddNotification(n);
             
-            n.setTitle(UserDAO.getProgramName(FFreport.getFfproposalID()));
+            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
             n.setBody("Accomplishment Report has been submitted!");
             n.setDt(sdf.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));

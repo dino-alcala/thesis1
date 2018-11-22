@@ -287,10 +287,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Faith Formation Program Attendees</h3></center>
-                <hr size="5" noshade>
-
 
                 <div class="form-style-5">
                     <form action="encodeFF2" method="post">

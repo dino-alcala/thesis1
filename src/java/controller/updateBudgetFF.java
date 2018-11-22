@@ -63,9 +63,19 @@ public class updateBudgetFF extends HttpServlet {
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             n.setDt(sdf.format(dt));
-
-            n.setUserID(16);
-
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            UserDAO.AddNotification(n);
+            
+            n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
+            n.setBody("A portion of the budget has been used!");
+            n.setDt(sdf.format(dt));
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            UserDAO.AddNotification(n);
+            
+            n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
+            n.setBody("A portion of the budget has been used!");
+            n.setDt(sdf.format(dt));
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
             UserDAO.AddNotification(n);
 
             request.setAttribute("updateBudget", "You have successfully updated the Budget!");

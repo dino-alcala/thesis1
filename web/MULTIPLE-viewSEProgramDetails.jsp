@@ -489,7 +489,7 @@
                                 <br/>
 
                                 <%
-                                    if (!SE.getUnit().contains("Student Organization")) {
+                                    if (SE.getStudentorg() != 1) {
                                 %>
                                 <div class="card">
                                     <div class="card-header">

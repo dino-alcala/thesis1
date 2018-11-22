@@ -422,6 +422,7 @@
                                 <br/>
 
                                 <%
+                                    if(SE.getStudentorg() != 1){
                                     if (!SEreport.getFeedback1().equals("No Suggestion") || !SEreport.getFeedback2().equals("No Suggestion") || !SEreport.getFeedback3().equals("No Suggestion")
                                             || !SEreport.getFeedback4().equals("No Suggestion") || !SEreport.getFeedback5().equals("No Suggestion")) {
                                 %>
@@ -477,7 +478,7 @@
                                     </div>
                                 </div>
                                 <br/>
-                                <% }%>
+                                <% }}%>
 
                                 <div class="card">
                                     <div class="card-header">

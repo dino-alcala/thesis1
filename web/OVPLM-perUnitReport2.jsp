@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.StudentOrg"%>
 <%@page import="entity.Department"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -72,7 +73,7 @@
                     if (response == "Socially Engaged Research"){
 
             <%
-                s = UserDAO2.retrieveSEProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Socially Engaged Research", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                s = UserDAO2.retrieveSEImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Socially Engaged Research", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -95,7 +96,7 @@
                     else if (response == "Issue Awareness and Advocacy"){
 
             <%
-                s = UserDAO2.retrieveSEProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Issue Awareness and Advocacy", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                s = UserDAO2.retrieveSEImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Issue Awareness and Advocacy", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -117,7 +118,7 @@
                     } else if (response == "All"){
 
             <%
-                s = UserDAO2.retrieveALLSEProposalByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                s = UserDAO2.retrieveALLSEImplementedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -139,7 +140,7 @@
                     } else if (response == "Service-Learning"){
 
             <%
-                s = UserDAO2.retrieveSEProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Service-Learning", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                s = UserDAO2.retrieveSEImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Service-Learning", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -161,7 +162,7 @@
                     } else if (response == "Interdisciplinary Fora"){
 
             <%
-                s = UserDAO2.retrieveSEProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Interdisciplinary Fora", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                s = UserDAO2.retrieveSEImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Interdisciplinary Fora", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -183,7 +184,7 @@
                     } else if (response == "Direct Service to the Poor and Marginalized"){
 
             <%
-                s = UserDAO2.retrieveSEProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Direct Service to the Poor and Marginalized", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                s = UserDAO2.retrieveSEImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Direct Service to the Poor and Marginalized", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -205,7 +206,7 @@
                     } else if (response == "Public Engagement"){
 
             <%
-                s = UserDAO2.retrieveSEProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Public Engagement", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                s = UserDAO2.retrieveSEImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Public Engagement", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -227,7 +228,7 @@
                     } else if (response == "Others"){
 
             <%
-                s = UserDAO2.retrieveSEProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                s = UserDAO2.retrieveSEImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -272,7 +273,7 @@
                     if (response == "Recollection"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Recollection", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Recollection", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -293,7 +294,7 @@
                     } else if (response == "Retreat"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Retreat", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Retreat", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -314,7 +315,7 @@
                     } else if (response == "Spiritual Talk"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Spiritual Talk", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Spiritual Talk", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -335,7 +336,7 @@
                     } else if (response == "Prayer Service"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Prayer Service", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Prayer Service", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -356,7 +357,7 @@
                     } else if (response == "Talk on the life of the Founder"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Talk on the life of the Founder", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Talk on the life of the Founder", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -377,7 +378,7 @@
                     } else if (response == "Br. Gabriel Drolin Experience"){
 
             <%
-                f = UserDAO2.retrieveFFProposalByUnitClassificationDate(request.getAttribute("unit").toString(), "Br. Gabriel Drolin Experience", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveFFImplementedByUnitClassificationDate(request.getAttribute("unit").toString(), "Br. Gabriel Drolin Experience", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -400,7 +401,7 @@
                 else if (response == "All"){
 
             <%
-                f = UserDAO2.retrieveALLFFProposalByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                f = UserDAO2.retrieveALLFFImplementedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -874,7 +875,7 @@
 
                 <!--- Totals -->
                 <div class="container-fluid totalsdiv">
-                    <h2 class="totaltitle"><%=request.getAttribute("unit")%></h2>
+                    <h2 class="totaltitle">Programs Implemented by <%=request.getAttribute("unit")%><br>(student orgs included)</h2> 
                     <div class="card-deck">
                         <div class="card bg-white">
                             <div class="card-body text-center">
@@ -892,7 +893,7 @@
                                             labels: ['Social Engagement', 'Faith Formation'],
                                                     datasets:
                                             [{
-                                            data: [<%=UserDAO.countSEProposalByUnit(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFProposalByUnit(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>],
+                                            data: [<%=UserDAO.countSEImplementedByUnitStudentOrg(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countFFImplementedByUnitStudentOrg(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>],
                                                     backgroundColor: ['#cc0099', '#00e699']
                                             }],
                                             },
@@ -913,6 +914,7 @@
 
                                     });
                                 </script> 
+  
                             </div>
                         </div>
                     </div>
@@ -942,11 +944,11 @@
                     </div>
                     <p></p>
                 </div>
-
+    
                 <!--- Programs Completed -->
                 <div class="container-fluid panels">
 
-                    <h2>Programs Completed (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                    <h2>Programs Implemented (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
                      
                     <!--- etong chart yung departments ng unit dapat -->
                     <div class="card-deck">
@@ -970,12 +972,12 @@
                                             {
                                             label: "Social Engagement",
                                                     backgroundColor: [<%for (int i = 0; i < departments.size(); i++) {%>"#EA7A2D",<%}%>],
-                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countSEProposalByDepartment(departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countSEImplementedByDepartment(departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }
                                             , {
                                             label: "Faith Formation",
                                                     backgroundColor: [<%for (int i = 0; i < departments.size(); i++) {%>"#2D36EA",<%}%>],
-                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countFFProposalByDepartment(departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countFFImplementedByDepartment(departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }]
 
                                     },
@@ -1109,11 +1111,6 @@
                                                     backgroundColor: [<%for (int i = 0; i < kra.size(); i++) {%> "#3E95CD", <%}%>],
                                                     data: [<%for (int i = 0; i < kra.size(); i++) {%> <%=kra.get(i).getTotal()%>, <%}%>]
                                             },
-                                            {
-                                            label: "Overall Target",
-                                                    backgroundColor: [<%for (int i = 0; i < kra.size(); i++) {%>"#1A3A4F",<%}%>],
-                                                    data: [<%for (int i = 0; i < kra.size(); i++) {%> <%=kra.get(i).getTargetTotal()%>, <%}%>]
-                                            },
                                             ],
                                     },
                                     options: {
@@ -1233,19 +1230,19 @@
                     <div class="card-deck">
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Budget Requested (as of <%=request.getAttribute("endDate")%>)</b></p>
+                                <p class="card-text"><b>Budget Requested <br>(from <%=request.getAttribute("startDate")%> to <%=request.getAttribute("endDate")%>)</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Budget Utilized (as of <%=request.getAttribute("endDate")%>)</b></p>
+                                <p class="card-text"><b>Budget Utilized <br>(from <%=request.getAttribute("startDate")%> to <%=request.getAttribute("endDate")%>)</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div> 
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Budget Variance (as of <%=request.getAttribute("endDate")%>)</b></p>
+                                <p class="card-text"><b>Budget Variance <br>(from <%=request.getAttribute("startDate")%> to <%=request.getAttribute("endDate")%>)</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div> 

@@ -60,6 +60,7 @@ public class createSEreport5 extends HttpServlet {
             SEreport.setAttendees(attendees);
 
             UserDAO.AddSEreport(SEreport);
+            UserDAO.updateStep(9, SEreport.getSeproposalID());
 
             String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             int length = 10;
