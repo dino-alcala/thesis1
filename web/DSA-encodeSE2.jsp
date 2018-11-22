@@ -123,9 +123,8 @@
                 border-radius: 5px;
                 border:none;
                 color: white;
-                padding: 10px 20px;
+                padding: 10px;
                 text-align: center;
-                margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
@@ -138,7 +137,7 @@
                 font-family: "Arial", Helvetica, sans-serif; 
             }
             
-            option, select{
+            option, select, #seunitcost0, #sequantity0, #sesubtotal0{
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
@@ -418,11 +417,11 @@
                                         <th>Venue</th>
                                     </tr>
                                     <tr>
-                                        <td><input style="border-radius: 0px;" style="size:200%" type ="date" name="date0" min="<%=sqlDate%>" required/></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="activity0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="time0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="venue0" required></textarea></td>
+                                        <td><input id="inputText" style="border-radius: 0px;" style="size:200%" type ="date" name="date0" min="<%=sqlDate%>" required/></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="activity0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="time0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="venue0" required></textarea></td>
 
                                     <input type="hidden" value="1" id="countproject" name="countproject">
                                     </tr>
@@ -455,7 +454,7 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><input type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
+                                        <td><input id="inputText" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
                                         <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" readonly value="0" readonly required></td>
@@ -494,29 +493,29 @@
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Academic Staff from the Unit</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademictotal" readonly><%=u.getAsf() + u.getFaculty()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademicexpected" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademictotal" readonly><%=u.getAsf() + u.getFaculty()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademicexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Support Staff from the Unit</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupporttotal" readonly><%=u.getApsp() + u.getDirecthired()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupportexpected" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupporttotal" readonly><%=u.getApsp() + u.getDirecthired()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupportexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Undergraduate Students</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduatetotal" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduateexpected" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduatetotal" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduateexpected" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Graduate Students</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
                                     </tr>
 
                                     <tr>
                                         <td>&nbsp;&nbsp;Others</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduatetotal" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduateexpected" required></textarea></td>
                                     </tr>
 
                                 </table></center>
@@ -532,8 +531,8 @@
                                         <th>Email</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsiblename0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsibleemail0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsiblename0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsibleemail0" required></textarea></td>
                                     </tr>
                                 </table></center>
                             <br>
@@ -563,7 +562,7 @@
                             <br><br>
                         </fieldset>
                         <br><br>
-                        <center><button style="width:10%" type="submit" class="button">Submit</button></center>
+                        <center><button type="submit" class="button">Submit</button></center>
                     </form>
                 </div>
             </div>

@@ -120,6 +120,9 @@
                 font-size: 13px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
+            #inputText{
+                 font-family: "Arial", Helvetica, sans-serif;
+            }
         </style>
 
         <script type="text/javascript">
@@ -274,10 +277,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Faith Formation Program Attendees</h3></center>
-                <hr size="5" noshade>
-
 
                 <div class="form-style-5">
                     <form action="addFF2" method="post">
@@ -289,8 +289,8 @@
                                         <th style='width:45%'>Email</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "45%" name ="email0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "45%" name ="email0" required></textarea></td>
                                     </tr>
                                 </table></center>
                             <br>

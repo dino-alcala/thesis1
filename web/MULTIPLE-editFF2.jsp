@@ -102,13 +102,26 @@
 
             .button{
                 background-color: darkgreen;
-                border: none;
+                border-radius: 5px;
+                border:none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
-                display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            #inputText{
+                 font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 
@@ -273,9 +286,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
-                <center><h2>Faith Formation Program Proposal</h2></center>
-                <hr size="5" noshade>
+                <center><h3>Faith Formation Program Proposal</h3></center>
 
                 <div class="form-style-5">
                     <form action="editFF2" method="post">
@@ -293,8 +304,8 @@
                                         for (int i = 0; i < FF.getAttendees().size(); i++) {
                                     %>
                                     <tr>    
-                                        <td><textarea rows = "1" cols = "45%" name ="attendee<%=i%>"><%=FF.getAttendees().get(i).getName()%></textarea></td>
-                                        <td><textarea rows = "1" cols = "45%" name ="email<%=i%>"><%=FF.getAttendees().get(i).getEmail()%></textarea></td>
+                                        <td><textarea id="inputText" rows = "1" cols = "45%" name ="attendee<%=i%>"><%=FF.getAttendees().get(i).getName()%></textarea></td>
+                                        <td><textarea id="inputText" rows = "1" cols = "45%" name ="email<%=i%>"><%=FF.getAttendees().get(i).getEmail()%></textarea></td>
                                     </tr>
 
                                     <%

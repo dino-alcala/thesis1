@@ -105,7 +105,7 @@
                 <input type="text" class="Form-control" name="username" placeholder="Username" required="" autofocus="" />
                 <input type="password" class="Form-control" name="password" placeholder="Password" required=""/>      
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                <button class="btn btn-md btn-primary btn-block" type="submit">Login</button>
                 <br>
                 <p>Participant? <a href="MULTIPLE-evaluationLogIn.jsp"><b><i>Evaluate!</i></b></a></p>
 

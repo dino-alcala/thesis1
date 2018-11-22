@@ -96,6 +96,17 @@
              th{
                  padding:15px;
              }
+             
+              h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
+             h3, td, th{
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
  
  
              @keyframes colorize {
@@ -117,9 +128,8 @@
             FF FF = new FF();
             FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
         %>
-        <hr size="5" noshade>    
-    <center><h1><%=FF.getProjectName()%></h1></center>
-    <hr size="5" noshade>
+        
+    <center><h3><%=FF.getProjectName()%></h3></center>
 
 
     <div class="form-style-5">

@@ -41,13 +41,12 @@
             #myInput{
                 margin-bottom: 20px;
             }
-
+            
             tr:hover {
                 background-color: lightgreen;
             }
 
             .table{
-                border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
 
@@ -60,26 +59,26 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-
+  
             table,th,td{
                 border:.5px solid
                     black;
-            }
-
-            hr{
-                background-color:green;
             }
 
             textarea{
                 resize: none;
             } 
 
-            a{
+            a {
                 color: #0083e8;
             }
 
-            b{
-                font-weight: 600;
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             th {
@@ -91,7 +90,7 @@
                 border-collapse: collapse;
 
             }
-
+            
             th{
                 padding:15px;
             }
@@ -107,18 +106,24 @@
             }
 
             #addRowButton, #deleteRowButton {
-                display:inline-block;
+                 
             }
 
             .button{
                 background-color: darkgreen;
-                border: none;
+                border-radius: 5px;
+                border:none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
-                display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            
+            legend, h3, #inputText, #classification, option, select, value, td, th, #seunitcost0, #sequantity0, #sesubtotal0{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 
@@ -458,9 +463,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
-                <center><h2>Social Engagement Proposal</h2></center>
-                <hr size="5" noshade>
+                <center><h3>Social Engagement Proposal</h3></center>
                 <br>
 
                 <%
@@ -489,11 +492,11 @@
                                     %>
                                     <tr>
 
-                                        <td><input style="border-radius: 0px;" type ="date" name="date<%=i%>" value="<%=SE.getWorkplan().get(i).getDate()%>" min="<%=sqlDate%>"/></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="activity<%=i%>"><%=SE.getWorkplan().get(i).getActivity()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="time<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "2" cols = "25%" name ="venue<%=i%>"><%=SE.getWorkplan().get(i).getVenue()%></textarea></td>
+                                        <td><input id="inputText" style="border-radius: 0px;" type ="date" name="date<%=i%>" value="<%=SE.getWorkplan().get(i).getDate()%>" min="<%=sqlDate%>"/></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="activity<%=i%>"><%=SE.getWorkplan().get(i).getActivity()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="time<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="venue<%=i%>"><%=SE.getWorkplan().get(i).getVenue()%></textarea></td>
 
                                     </tr>
                                     <%
@@ -533,7 +536,7 @@
                                         for (int i = 0; i < SE.getExpenses().size(); i++) {
                                     %>
                                     <tr>
-                                        <td><input value="<%=SE.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
+                                        <td><input id="inputText" value="<%=SE.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
                                         <td><input value="<%=SE.getExpenses().get(i).getUnitcost()%>" type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
                                         <td><input value="<%=SE.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
                                         <td><input value="<%=SE.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" readonly required></td>
@@ -551,7 +554,7 @@
                             <br>
                             <center>
                                 <button type ="button" class="button" id="addRowButton" onclick ="addRow3()" value="Add Row">Add Row</button>
-                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:dodgerblue" id="addRowButton" onclick="calculate()">Calculate</button>
                                 <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete Row">Delete Row</button>
                             </center>
                         </fieldset>
@@ -567,23 +570,23 @@
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Academic Staff from the Unit</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademictotal"><%=SE.getTotalpopulationAcademicStaff()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademicexpected"><%=SE.getExpectedAcademicStaff()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademictotal"><%=SE.getTotalpopulationAcademicStaff()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="seacademicexpected"><%=SE.getExpectedAcademicStaff()%></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Support Staff from the Unit</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupporttotal"><%=SE.getTotalpopulationSupportStaff()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupportexpected"><%=SE.getExpectedSupportStaff()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupporttotal"><%=SE.getTotalpopulationSupportStaff()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="sesupportexpected"><%=SE.getExpectedSupportStaff()%></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Undergraduate Students</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduatetotal"><%=SE.getTotalpopulationUndergraduate()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduateexpected"><%=SE.getExpectedUndergraduate()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduatetotal"><%=SE.getTotalpopulationUndergraduate()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="seundergraduateexpected"><%=SE.getExpectedUndergraduate()%></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;&nbsp;Graduate Students</td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduatetotal"><%=SE.getTotalPopulationGraduate()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduateexpected"><%=SE.getExpectedGraduate()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduatetotal"><%=SE.getTotalPopulationGraduate()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "10%" name ="segraduateexpected"><%=SE.getExpectedGraduate()%></textarea></td>
                                     </tr>
 
                                 </table></center>
@@ -602,8 +605,8 @@
                                         for (int i = 0; i < SE.getResponsible().size(); i++) {
                                     %>
                                     <tr>    
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsiblename<%=i%>"><%=SE.getResponsible().get(i).getName()%></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsibleemail<%=i%>"><%=SE.getResponsible().get(i).getEmail()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsiblename<%=i%>"><%=SE.getResponsible().get(i).getName()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsibleemail<%=i%>"><%=SE.getResponsible().get(i).getEmail()%></textarea></td>
                                     </tr>
                                     <%
                                         }

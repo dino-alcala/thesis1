@@ -65,11 +65,16 @@
             
             
             h1{
-                font-size: 50px;
+                font-size: 25px;
                 text-align: left;
                 border-bottom: 2px solid green;
-                padding-bottom: 10px;
+                padding-bottom: 7px;
+                font-family: "Arial", Helvetica, sans-serif;
             }   
+            
+            label, .btn-warning, select, option, #inputText{
+               font-family: "Arial", Helvetica, sans-serif;
+            }
             
             .formBg{
                 width: 60%;
@@ -262,12 +267,12 @@
                                         <ul class="form-style-1">
 
                                             <li><label>Full Name <span class="required"></span></label>
-                                                <input type="text" value="<%=u.getFirstName()%>" name="firstName" class="field-divided" placeholder="First" />&nbsp;<input type="text" name="lastName" value="<%=u.getLastName()%>" class="field-divided" placeholder="Last" />
+                                                <input id= "inputText" type="text" value="<%=u.getFirstName()%>" name="firstName" class="field-divided" placeholder="First" />&nbsp;<input id= "inputText" type="text" name="lastName" value="<%=u.getLastName()%>" class="field-divided" placeholder="Last" />
                                             </li>
 
                                             <li>
                                                 <label>Email <span class="required"></span></label>
-                                                <input type="email" name="email" value="<%=u.getEmail()%>" class="field-long" />
+                                                <input id= "inputText" type="email" name="email" value="<%=u.getEmail()%>" class="field-long" />
                                             </li>
 
                                             <li>
@@ -303,17 +308,17 @@
 
                                             <li>
                                                 <label>Username <span class="required"></span></label>
-                                                <input type="text" name="username" class="field-long" value="<%=u.getUsername()%>" disabled="true" />
+                                                <input id= "inputText" type="text" name="username" class="field-long" value="<%=u.getUsername()%>" disabled="true" />
                                             </li>
 
                                             <li>
                                                 <label>Password <span class="required"></span></label>
-                                                <input type="password" name="password" class="field-long" />
+                                                <input id= "inputText" type="password" name="password" class="field-long" />
                                             </li>
 
                                             <li>
                                                 <label>Confirm Password <span class="required"></span></label>
-                                                <input type="password" name="field8" class="field-long" />
+                                                <input id= "inputText" type="password" name="field8" class="field-long" />
                                             </li>
 
                                             <li align="center">

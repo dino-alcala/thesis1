@@ -380,13 +380,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-<<<<<<< HEAD
                 <center><h3>Social Engagement Proposal</h3></center>
-=======
-                <hr size="5" noshade>
-                <center><h3>Social Engagement Proposal</h3></center>
-                <hr size="5">
->>>>>>> 725a3d091e891473fdd76c1aaee760c044db5c18
 
                 <div class="form-style-5">
                     <form action = "addSE" method="post"> 

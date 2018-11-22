@@ -44,7 +44,7 @@
             }
 
             h2{
-                font-size: 40px;
+                font-size: 25px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -80,11 +80,6 @@
                 resize: none;
             } 
 
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
-            }
 
             h2 {
                 margin-top: 1.3em;
@@ -112,16 +107,6 @@
                 padding:15px;
             }
 
-            .button{
-                background-color: #4CAF50;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                display: inline-block;
-                margin: 4px 2px;
-                font-size: 16px;
-            }
 
             .loginWrapper {	
                 margin-top: 20px;
@@ -152,10 +137,9 @@
             }
 
             .signUpHeading{
-                text-align: center; 
-                margin-top: 30px;
+                margin-top: 10px;
                 margin-bottom: 20px;    
-                font-size: 40px;    
+                font-size: 25px;    
                 font-family: 'Open Sans', sans-serif;
                 color: black;
             }    
@@ -394,11 +378,8 @@
             <!-- MAIN -->
             <div class="col py-3">
 
-                <center>
-                    <img style="height:100px" style="width:100px" id="logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c2/De_La_Salle_University_Seal.svg/1200px-De_La_Salle_University_Seal.svg.png" alt="HTML5 Icon" />   
-                    <h3 class="signUpHeading"><b>Sign Up</b></h3>
+                    <h2 class="signUpHeading">Create User</h2>
                     <p><i>Fields with "*" are required</i></p>
-                </center>
 
 
                 <form class="loginForm-signin" action="signUp" method="post">       
@@ -439,7 +420,7 @@
                     <input type="password" class="Form-control" name="password" placeholder="Password*" required=""/>
                     <input type="password" class="Form-control" name="password2" placeholder="Confirm Password*" required=""/>
 
-                    <button class="btn btn-lg btn-info btn-block" type="submit">Register</button>
+                    <button class="btn btn-md btn-primary btn-block" type="submit">Register</button>
 
                 </form>
             </div>

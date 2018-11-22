@@ -191,7 +191,10 @@
                 border: none;
                 cursor: pointer;
             }
-
+            
+            label, .btn-primary, select, option{
+               font-family: "Arial", Helvetica, sans-serif;
+            }
         </style>
 
     </head>
@@ -308,7 +311,8 @@
                                         <form action="addStudentOrg" method="post">
                                             <ul class="form-style-1">
                                                 <li>
-                                                    <label>Student Organization Name: <span class="required"></span></label>
+                                                    <label>Student Organization Name: <span class="required"></span></label> 
+                                                    <i>ex. La Salle Computer Society (LSCS)</i>
                                                     <input type="text" name="orgname" class="field-long" />
                                                 </li>
                                                 <li>
@@ -324,7 +328,7 @@
                                                     </select>
                                                 </li>
                                                 <li>
-                                                    <button type="submit" class="btn btn-info">Submit</button>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
                                                 </li>
                                                 <br><br>
                                             </ul>

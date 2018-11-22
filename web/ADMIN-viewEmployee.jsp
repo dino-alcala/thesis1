@@ -84,10 +84,10 @@
                 padding-top: 56px;
             }
             h1{
-                font-size: 40px;
+                font-size: 20px;
                 text-align: left;
                 border-bottom: 2px solid green;
-                padding-bottom: 10px;
+                padding-bottom: 7px;
             }
 
             .btn-warning{

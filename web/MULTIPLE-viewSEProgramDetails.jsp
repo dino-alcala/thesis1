@@ -40,6 +40,11 @@
                 border-collapse: collapse;
                 text-align: center;
             }
+            
+            h2{
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 20px;
+            }
 
             h4{
                 color: white;

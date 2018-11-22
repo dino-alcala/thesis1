@@ -31,8 +31,8 @@
 
         <style>
             p{
-                margin-bottom: 0;
                 font-size: 15px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table, td, th {
@@ -40,38 +40,100 @@
                 border-collapse: collapse;
                 text-align: center;
             }
+            
+            h2{
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 20px;
+            }
 
             h4{
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             h3{
-                font-size: 40px;   
+                font-size: 22px;   
                 border-bottom: 2px solid #4CAF50;
                 padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .card-header{
-                background-color: #4CAF50;
+                background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
                 background-color: whitesmoke;
-            }
-
-            .card{
                 border: 1px solid black;
             }
+
 
             th,tr,td{
                 padding:15px;
             }
             
-            .button{
-                background-color: #4CAF50;
+            .btn-list{
+                background-color: dodgerblue;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-success{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-warning{
+                background-color: darkyellow;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-danger{
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-audit{
+                background-color: gray;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -219,8 +281,7 @@
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses (Requested: ₱<%=FF.getTotalAmount()%>)</h4>
                                     </div>
-                                </div>
-
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Item</th>
@@ -254,6 +315,8 @@
                                         <td>Total: <%=total%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
@@ -341,25 +404,19 @@
                                 <br>
                                 <% }%>
 
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
-                                <br>
-                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>
-                                <br>
+                                <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
+                                <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button>
+                                
 
                                 <%
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
-                                %>
-                                <div>
-                                    <center><button type="submit" value="<%=FF.getId()%>" class="button" name="ffID">Create Accomplishment Report</button></center>
-                                </div>
-                                <br>
+                                %><button type="submit" value="<%=FF.getId()%>" class="btn-success" name="ffID">Create Accomplishment Report</button>
+                                
 
                                 <%    } else if (UserDAO.hasFFReport(FF.getId())) {
                                 %>
-                                <div>
-                                    <center><button type="submit" value="<%=FF.getId()%>" name="viewReport" class="button">View Accomplishment Report</button></center>
-                                </div>
-                                <br>
+                                    <button type="submit" value="<%=FF.getId()%>" name="viewReport" class="button">View Accomplishment Report</button>
+                                
                                 <%
                                     }
                                 %>
@@ -368,12 +425,9 @@
                                 <%
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() > 0) {
                                 %>
-                                <div>
-                                    <center>
-                                        <button type="submit" value="<%=FF.getId()%>" name="updateBudget" class="button">Update Budget</button>
-                                    </center>
-                                </div>
-                                <br>
+                                    
+                                        <button type="submit" value="<%=FF.getId()%>" name="updateBudget" class="btn-warning">Update Budget</button>
+                                   
                                 <%
                                     }
                                 %>
@@ -383,9 +437,8 @@
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() != 0 && FF.getStep() != -1) {
                                 %>
 
-                                <div>
-                                    <center><button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
-                                </div>
+                                   <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
+                                
                                 <%
                                     }
                                 %>

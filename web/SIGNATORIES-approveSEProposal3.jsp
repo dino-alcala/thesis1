@@ -46,6 +46,8 @@
 
             h4{
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .panel-success > .panel-heading {
@@ -63,21 +65,74 @@
             }
 
             h3{
-                font-size: 40px;   
+                font-size: 22px;   
                 border-bottom: 2px solid #4CAF50;
                 padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .card-header{
-                background-color: #4CAF50;
+                 background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
                 background-color: whitesmoke;
+                border: 1px solid black;
             }
 
-            .card{
-                border: 1px solid black;
+            .btn-success{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-warning{
+                background-color: darkyellow;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-danger{
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-audit{
+                background-color: gray;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 
@@ -282,12 +337,12 @@
                                         <h4>Social Engagement Partner(s)/Beneficiaries</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p>Name of Partner: <%=SE.getNameSEbeneficiaries()%></p>
-                                        <p>Address: <%=SE.getAddressSEbeneficiaries()%></p>
-                                        <p>Contact Person: <%=SE.getContactPersonSEbeneficiaries()%></p>
-                                        <p>Mobile Number: <%=SE.getMobileSEbeneficiaries()%></p>
-                                        <p>Email: <%=SE.getEmailSEbeneficiaries()%></p><br>
-                                        <p>Brief Description of Partner: <%=SE.getDescriptionSEbeneficiaries()%></p>
+                                        <p><b>Name of Partner: </b><%=SE.getNameSEbeneficiaries()%></p>
+                                        <p><b>Address: </b><%=SE.getAddressSEbeneficiaries()%></p>
+                                        <p><b>Contact Person: </b><%=SE.getContactPersonSEbeneficiaries()%></p>
+                                        <p><b>Mobile Number: </b><%=SE.getMobileSEbeneficiaries()%></p>
+                                        <p><b>Email: </b><%=SE.getEmailSEbeneficiaries()%></p><br>
+                                        <p><b>Brief Description of Partner: </b><%=SE.getDescriptionSEbeneficiaries()%></p>
                                     </div>
                                 </div>
                                 <br>
@@ -326,7 +381,7 @@
                                     <div class="card-header">
                                         <h4>Work Plan</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Date</th>
@@ -349,13 +404,15 @@
                                         }
                                     %>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Item</th>
@@ -384,13 +441,15 @@
                                         <td>Total: <%=count%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Expected Participants vs. Total Population of the Unit</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Sector</th>
@@ -418,13 +477,15 @@
                                         <td><%=SE.getExpectedGraduate()%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Persons Responsible</h4>
                                     </div>
-                                </div>
+                                 <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Name</th>
@@ -442,13 +503,15 @@
                                         }
                                     %>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th style="width:45%">Step</th>
@@ -467,15 +530,16 @@
                                         <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%><%if (SE.getVpVcRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
                                 
                                 <center>
+                                    <button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
                                     <button type ="submit" name="approve" value="<%=SE.getId()%>" class="btn-success">Approve</button>
                                     <button type = "submit" class="btn-warning" name="revise" value="<%=SE.getId()%>">Revise</button>
                                     <button type = "submit" class="btn-danger" style='background-color:red; border-color:red;' name="reject" value="<%=SE.getId()%>">Reject</button>
-                                </center>
-                                <br>
-                                <center><button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button></center> 
+                                </center> 
                             </div>
 
                         </div>
