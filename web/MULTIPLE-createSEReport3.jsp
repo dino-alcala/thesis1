@@ -318,6 +318,15 @@
                             <br><br>
                         </fieldset>
                         
+                        <% 
+                            SEreport SEreport = (SEreport) session.getAttribute("SEreport");
+                            SE SE = UserDAO.retrieveSEBySEID(SEreport.getSeproposalID());
+                            int number = 7;
+                            
+                            if(SE.getRemarktype1().equals("Suggestion") || SE.getRemarktype2().equals("Suggestion") || SE.getRemarktype3().equals("Suggestion") 
+                                    || SE.getRemarktype4().equals("Suggestion") || SE.getRemarktype5().equals("Suggestion")){ 
+                                number = 8;
+                        %>
                         <fieldset>
                             <legend><span class="number">7</span><b>LMC Suggestions</b></legend>
 
@@ -328,10 +337,6 @@
                                 <th style="width: 30%">Feedback</th>
                                 </thead>
                                 <tbody>
-                                    <%
-                                        SEreport SEreport = (SEreport) session.getAttribute("SEreport");
-                                        SE SE = UserDAO.retrieveSEBySEID(SEreport.getSeproposalID());
-                                    %>
                                     <% if (SE.getRemarktype1().equals("Suggestion")) {%>
                                     <tr>
                                         <td style="padding:2%"><center>Br. Michael Broughton</center></td>
@@ -369,9 +374,10 @@
 
                             <br><br>
                         </fieldset>
-
+                        <% } %>
+                                
                         <fieldset>
-                            <legend><span class="number">8</span><b>Annexes</b></legend>
+                            <legend><span class="number"><%=number%></span><b>Annexes</b></legend>
                             <table>
                                 <tr>
                                     <td>Upload Photo</td>

@@ -49,7 +49,7 @@
             textarea{
                 resize: none;
             } 
-            
+
             th {
                 background-color: green;
                 color: white;
@@ -62,7 +62,7 @@
             th{
                 padding:15px;
             }
-            
+
             h3{
                 border-bottom: 2px solid green;
                 border-top: 2px solid green;
@@ -86,8 +86,8 @@
             legend, h3, #inputText, #classification, option, select, value, th{
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
-            
+
+
             #addRowButton {
                 padding: 10px;
                 font-family: "Arial", Helvetica, sans-serif;
@@ -248,7 +248,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -329,6 +329,15 @@
                             <br><br>
                         </fieldset>
 
+                        <%
+                            FFreport FFreport = (FFreport) session.getAttribute("FFreport");
+                            FF FF = UserDAO.retrieveFFByFFID(FFreport.getFfproposalID());
+                            int number = 7;
+                            
+                            if(FF.getRemarktype1().equals("Suggestion") || FF.getRemarktype2().equals("Suggestion") || FF.getRemarktype3().equals("Suggestion")
+                                    || FF.getRemarktype4().equals("Suggestion") || FF.getRemarktype5().equals("Suggestion")){
+                                number = 8;
+                        %>
                         <fieldset>
                             <legend><span class="number">7</span><b>LMC Suggestions</b></legend>
 
@@ -339,10 +348,6 @@
                                 <th style="width: 30%">Feedback</th>
                                 </thead>
                                 <tbody>
-                                    <%
-                                        FFreport FFreport = (FFreport) session.getAttribute("FFreport");
-                                        FF FF = UserDAO.retrieveFFByFFID(FFreport.getFfproposalID());
-                                    %>
                                     <% if (FF.getRemarktype1().equals("Suggestion")) {%>
                                     <tr>
                                         <td style="padding:2%"><center>Br. Michael Broughton</center></td>
@@ -379,9 +384,10 @@
                             </table>
                             <br><br>
                         </fieldset>
+                        <% } %>
 
                         <fieldset>
-                            <legend><span class="number">8</span><b>Annexes</b></legend>
+                            <legend><span class="number"><%=number%></span><b>Annexes</b></legend>
                             <table>
                                 <tr>
                                     <td>Upload Photo</td>

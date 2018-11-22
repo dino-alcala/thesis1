@@ -323,8 +323,10 @@
                                     </tr>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"/></center>
+                            <center>
+                                <input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
+                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"/>
+                            </center>
                         </fieldset>    
                         <br><br><br><br>
                         <center><button class="button" type = "submit">Submit</button></center>
