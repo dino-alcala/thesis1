@@ -389,7 +389,7 @@
         <servlet-class>controller.encodeFFReport4</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>createFFReport5</servlet-name>
+        <servlet-name>createFFreport5</servlet-name>
         <servlet-class>controller.createFFreport5</servlet-class>
     </servlet>
     <servlet>
@@ -793,8 +793,8 @@
         <url-pattern>/encodeFFReport4</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>createFFReport5</servlet-name>
-        <url-pattern>/createFFReport5</url-pattern>
+        <servlet-name>createFFreport5</servlet-name>
+        <url-pattern>/createFFreport5</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>viewKRATracing</servlet-name>
