@@ -13569,7 +13569,7 @@ public class UserDAO {
         return budget;
     }
 
-    public double getBudgetRequestedByDate(Date startDate, Date endDate) {
+    public double getBudgetImplementedByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -13578,7 +13578,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(total.totalAmountRequested) as totalRequestedBudget FROM (SELECT totalAmountRequested FROM seproposal WHERE step = 9 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM' UNION ALL SELECT totalAmount as totalAmountRequested from ffproposal WHERE step = 9 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM') as total";
+            String query = "SELECT SUM(total.totalAmountRequested) as totalRequestedBudget FROM (SELECT totalAmountRequested FROM seproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ? AND sourceOfFunds = 'OVPLM' UNION ALL SELECT totalAmount as totalAmountRequested from ffproposal WHERE step = 9 AND actualImplementation >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM') as total";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
@@ -13606,7 +13606,7 @@ public class UserDAO {
         return budget;
     }
     
-    public double getBudgetUnused(Date startDate, Date endDate) {
+    public double getBudgetRequestedByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -13642,6 +13642,7 @@ public class UserDAO {
         }
         return budget;
     }
+    
 
     public double getSEUtilizedBudgetByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -13801,7 +13802,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(s.targetCommunity) as programsCompleted FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.datecreated >= ? AND s.datecreated <= ?";
+        String query = "SELECT count(s.targetCommunity) as programsCompleted FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -13839,11 +13840,11 @@ public class UserDAO {
         return count;
     }
 
-    public int countProgramsActivityClassificationCompletedByCommunityID(int communityID, String activityClassification, Date startDate, Date endDate) {
+    public int countProgramsActivityClassificationImplementedByCommunityID(int communityID, String activityClassification, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(s.activityClassification) as programsCompleted FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.activityClassification = ? AND s.datecreated >= ? AND s.datecreated <= ?";
+        String query = "SELECT count(s.activityClassification) as programsCompleted FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.activityClassification = ? AND s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -13890,7 +13891,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT s.datecreated, s.programName, s.programHead, s.unit, s.department, s.sourceOfFunds, s.Id, s.activityClassification FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.datecreated >= ? AND s.datecreated <= ?";
+            String query = "SELECT s.datecreated, s.programName, s.programHead, s.unit, s.department, s.sourceOfFunds, s.Id, s.activityClassification FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, communityID);
@@ -13927,11 +13928,11 @@ public class UserDAO {
         return SE;
     }
 
-    public int countProgramsUnitCompletedByCommunityID(int communityID, String unit, Date startDate, Date endDate) {
+    public int countProgramsUnitImplementedByCommunityID(int communityID, String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(s.unit) as programsCompleted FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.unit = ? AND s.datecreated >= ? AND s.datecreated <= ?";
+        String query = "SELECT count(s.unit) as programsCompleted FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.unit = ? AND s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -13974,7 +13975,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(DISTINCT s.unit) as programsCompleted FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.datecreated >= ? AND s.datecreated <= ?";
+        String query = "SELECT count(DISTINCT s.unit) as programsCompleted FROM seproposal s JOIN sereport se ON s.ID = se.seproposalID WHERE s.targetCommunity = ? AND s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -14095,7 +14096,7 @@ public class UserDAO {
         return kra;
     }
 
-    public double getUtilizedBudgetByDate(Date startDate, Date endDate) {
+    public double getImplementedUtilizedBudgetByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -14104,7 +14105,45 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(a.expendedAmount) FROM (SELECT sf.expendedAmount FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step >= 8 AND step <= 9 AND s.datecreated >= ? AND s.datecreated <= ? AND s.sourceOfFunds = 'OVPLM' UNION ALL SELECT ff.expendedAmount FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE f.step >= 8 OR step <= 9 AND f.datecreated >= ? AND f.datecreated <= ? AND f.sourceOfFunds = 'OVPLM') as a";
+            String query = "SELECT SUM(a.expendedAmount) FROM (SELECT sf.expendedAmount FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND s.sourceOfFunds = 'OVPLM' UNION ALL SELECT ff.expendedAmount FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE step = 9 AND f.actualImplementation >= ? AND f.actualImplementation <= ? AND f.sourceOfFunds = 'OVPLM') as a";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, startDate);
+            pstmt.setDate(2, endDate);
+            pstmt.setDate(3, startDate);
+            pstmt.setDate(4, endDate);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                budget = rs.getDouble("SUM(a.expendedAmount)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return budget;
+    }
+    
+    public double getRequestedUtilizedBudgetByDate(Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs = null;
+
+        double budget = 0;
+        try {
+            String query = "SELECT SUM(a.expendedAmount) FROM (SELECT sf.expendedAmount FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 8 AND s.datecreated >= ? AND s.datecreated <= ? AND s.sourceOfFunds = 'OVPLM' UNION ALL SELECT ff.expendedAmount FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE f.step = 8 AND f.datecreated >= ? AND f.datecreated <= ? AND f.sourceOfFunds = 'OVPLM') as a";
+                            
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
@@ -14555,6 +14594,45 @@ public class UserDAO {
         return communities;
     }
 
+    public double getBudgetImplementedByUnitDate(String unit, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs = null;
+
+        double budget = 0;
+        try {
+            String query = "SELECT SUM(total.totalAmountRequested) as totalRequestedBudget FROM (SELECT totalAmountRequested FROM seproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ? AND sourceOfFunds = 'OVPLM' UNION ALL SELECT totalAmount as totalAmountRequested from ffproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ? AND sourceOfFunds = 'OVPLM') as total";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, unit);
+            pstmt.setDate(2, startDate);
+            pstmt.setDate(3, endDate);
+            pstmt.setString(4, unit);
+            pstmt.setDate(5, startDate);
+            pstmt.setDate(6, endDate);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                budget = rs.getDouble("totalRequestedBudget");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return budget;
+    }
+    
     public double getBudgetRequestedByUnitDate(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -14564,7 +14642,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(total.totalAmountRequested) as totalRequestedBudget FROM (SELECT totalAmountRequested FROM seproposal WHERE step >= 8 AND step <= 9 AND unit = ? AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM' UNION ALL SELECT totalAmount as totalAmountRequested from ffproposal WHERE step >= 8 AND step <= 9 AND unit = ? AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM') as total";
+            String query = "SELECT SUM(total.totalAmountRequested) as totalRequestedBudget FROM (SELECT totalAmountRequested FROM seproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM' UNION ALL SELECT totalAmount as totalAmountRequested from ffproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM') as total";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
@@ -14594,7 +14672,7 @@ public class UserDAO {
         return budget;
     }
 
-    public double getUtilizedBudgetUnitByDate(String unit, Date startDate, Date endDate) {
+    public double getImplementedUtilizedBudgetUnitByDate(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -14603,7 +14681,46 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(a.expendedAmount) FROM (SELECT sf.expendedAmount FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step >= 8 AND s.step <= 9 AND s.unit = ? AND s.datecreated >= ? AND s.datecreated <= ? AND s.sourceOfFunds = 'OVPLM' UNION ALL SELECT ff.expendedAmount FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE f.step >= 8 AND s.step <=9 AND f.unit = ? AND f.datecreated >= ? AND f.datecreated <= ? AND f.sourceOfFunds = 'OVPLM') as a";
+            String query = "SELECT SUM(a.expendedAmount) FROM (SELECT sf.expendedAmount FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 9 AND s.unit = ? AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND s.sourceOfFunds = 'OVPLM' UNION ALL SELECT ff.expendedAmount FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE f.step = 9 AND f.unit = ? AND f.actualImplementation >= ? AND f.actualImplementation <= ? AND f.sourceOfFunds = 'OVPLM') as a";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, unit);
+            pstmt.setDate(2, startDate);
+            pstmt.setDate(3, endDate);
+            pstmt.setString(4, unit);
+            pstmt.setDate(5, startDate);
+            pstmt.setDate(6, endDate);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                budget = rs.getDouble("SUM(a.expendedAmount)");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return budget;
+    }
+    
+    public double getRequestedUtilizedBudgetUnitByDate(String unit, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs = null;
+
+        double budget = 0;
+        try {
+            String query = "SELECT SUM(a.expendedAmount) FROM (SELECT sf.expendedAmount FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 8 AND s.unit = ? AND s.datecreated >= ? AND s.datecreated <= ? AND s.sourceOfFunds = 'OVPLM' UNION ALL SELECT ff.expendedAmount FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE f.step = 8 AND f.unit = ? AND f.datecreated >= ? AND f.datecreated <= ? AND f.sourceOfFunds = 'OVPLM') as a";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
@@ -14641,7 +14758,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE step >= 8 AND step <= 9 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM seproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, unit);
@@ -14684,7 +14801,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE step >= 8 AND step <= 9 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM ffproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, unit);
@@ -14755,7 +14872,7 @@ public class UserDAO {
         return count;
     }
 
-    public double getIndividualSEBudgetRequestedByUnitDate(String unit, Date startDate, Date endDate) {
+    public double getIndividualSEBudgetImplementedByUnitDate(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -14764,7 +14881,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(totalAmountRequested) FROM seproposal WHERE step = 8 AND unit = ? AND sourceOfFunds = 'OVPLM' AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT SUM(totalAmountRequested) FROM seproposal WHERE step = 9 AND unit = ? AND sourceOfFunds = 'OVPLM' AND actualImplementation >= ? AND actualImplementation <= ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
@@ -14791,7 +14908,7 @@ public class UserDAO {
         return budget;
     }
 
-    public double getIndividualFFBudgetRequestedByUnitDate(String unit, Date startDate, Date endDate) {
+    public double getIndividualFFBudgetImplementedByUnitDate(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -14800,7 +14917,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(totalAmount) FROM ffproposal WHERE step = 8 AND unit = ? AND sourceOfFunds = 'OVPLM' AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT SUM(totalAmount) FROM ffproposal WHERE step = 9 AND unit = ? AND sourceOfFunds = 'OVPLM' AND actualImplementation >= ? AND actualImplementation <= ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
@@ -14831,7 +14948,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(a.sourceOfFunds) FROM (SELECT sourceOfFunds FROM seproposal WHERE step = 8 AND datecreated >= ? AND datecreated <= ? UNION ALL SELECT sourceOfFunds from ffproposal WHERE step = 8 AND datecreated >= ? AND datecreated <= ?) as a WHERE a.sourceOfFunds = 'OVPLM'";
+        String query = "SELECT count(a.sourceOfFunds) FROM (SELECT sourceOfFunds FROM seproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ? UNION ALL SELECT sourceOfFunds from ffproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ?) as a WHERE a.sourceOfFunds = 'OVPLM'";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -14873,7 +14990,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(a.sourceOfFunds) FROM (SELECT sourceOfFunds FROM seproposal WHERE step = 8 AND datecreated >= ? AND datecreated <= ? UNION ALL SELECT sourceOfFunds from ffproposal WHERE step = 8 AND datecreated >= ? AND datecreated <= ?) as a WHERE a.sourceOfFunds = 'Others'";
+        String query = "SELECT count(a.sourceOfFunds) FROM (SELECT sourceOfFunds FROM seproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ? UNION ALL SELECT sourceOfFunds from ffproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ?) as a WHERE a.sourceOfFunds = 'Others'";
         PreparedStatement ps = null;
         ResultSet rs = null;
 

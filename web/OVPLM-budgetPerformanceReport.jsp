@@ -413,7 +413,7 @@
                 <!--- Units -->
                 <div class="container-fluid panels">
 
-                    <h2>Unit's Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                    <h2>Unit's Budget Expenses for Programs Implemented (from <%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
@@ -435,12 +435,12 @@
                                             {
                                             label: "Social Engagement",
                                                     backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA7A2D",<%}%>],
-                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualSEBudgetRequestedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualSEBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }
                                             , {
                                             label: "Faith Formation",
                                                     backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
-                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetRequestedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }]
 
                                     },
@@ -483,7 +483,7 @@
                 <!--- budget -->
                 <div class="container-fluid panels">
 
-                    <h2>Program's Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                    <h2>Program Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
 
                     <div class="card-deck">
                         <div class="card bg-white">
@@ -532,27 +532,39 @@
                     <div class="card-deck">
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Programs Budget Requested (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                <p class="card-text"><b>Programs Budget Requested for <br>Programs Created from *</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Programs Budget Utilized (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="card-text"><b>Programs Budget Requested for <br>Programs Implemented from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                            </div>
+                        </div>
+                        <div class="card bg-success">
+                            <div class="card-body text-center">
+                                <p class="card-text"><b>Programs Budget Utilized for <br>Programs Implemented from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                
+                                <!--<p class="card-text"><b>Programs Budget Utilized for <br>Programs Created from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
                             </div>
                         </div> 
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Programs Budget Variance (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="card-text"><b>Programs Budget Variance for <br>Programs Implemented from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                
+                                <!--<p class="card-text"><b>Programs Budget Variance for <br>Programs Created from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
                             </div>
                         </div> 
                     </div>
 
                     <h2></h2>
 
-                    <h3>Social Engagement Programs</h3>
+                    <h3>Social Engagement Proposals</h3>
                     <%
                         ArrayList<SE> seproposal = new ArrayList();
                         seproposal = UserDAO.retrieveSEProposalAmountRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
@@ -589,7 +601,7 @@
 
                     <h2></h2>
 
-                    <h3>Faith Formation Programs</h3>
+                    <h3>Faith Formation Proposals</h3>
                     <%
                         ArrayList<FF> ffproposal = new ArrayList();
                         ffproposal = UserDAO.retrieveFFProposalAmountRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));

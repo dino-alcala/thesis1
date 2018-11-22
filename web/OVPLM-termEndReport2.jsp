@@ -569,14 +569,21 @@
         --->
 
         <style>
+            #myInput{
+                margin-bottom: 20px;
+            }
             .card-text{
                 margin-bottom: 5px;
             }
-
+            .progressnum{
+                font-size: 12px;
+            }
+            .krascards:hover {
+                background-color: lightgreen;
+            }
             tr:hover {
                 background-color: lightgreen;
             }
-
             h2{
                 font-size: 25px;
                 text-align: left;
@@ -585,27 +592,22 @@
                 padding-bottom: 10px;
                 margin-bottom: 25px;
             }
-
             h3{
                 font-size: 25px;
                 text-align: center;
                 margin-top: 20px;
             }
-
             .quickhead{
                 border-bottom: 1px solid white;
                 padding-bottom: 10px; 
                 margin-bottom: 20px;
-
             }
-
             .quickhead2{
                 border-bottom: 1px solid darkgreen;
                 padding-bottom: 10px; 
                 margin-bottom: 20px;
                 color: black;
             }
-
             .quickview{
                 margin-top: 20px;
                 background-color: white;
@@ -615,7 +617,6 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -625,11 +626,9 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-
             .card-text{
                 color: white;
             }
-
             .budget{
                 font-size: 70px; 
                 text-align: center; 
@@ -638,17 +637,13 @@
                 padding-bottom: 20px;
                 margin-bottom: 20px;
             }
-
             .daterange{
                 text-align: right;
             }
-
-
             .pbutton{
                 margin-top: 40px;
                 text-align: center;
             }
-
             .tableHead{
                 background-color: darkgreen;
                 color: white;
@@ -657,70 +652,58 @@
                 background-color: darkcyan;
                 color: white;
             }
-
             h3{
                 text-align: center;
             }
-
             .card-text2{
                 color:  black;
                 font-size: 20px;
             }
-
             .card-text3{
                 color:  black;
                 font-weight: 500;
                 margin-bottom: 50px;
             }
-
             .quickhead3{
                 border-bottom: 2px solid black;
                 padding-bottom: 10px; 
                 margin-bottom: 20px;
                 color: black;
             }
-
             #buttonSE {
                 margin: 5px 5px 5px 10px;
                 padding-left: 60px;
                 padding-bottom: 15px;
                 background-color: #cc0099;
             }
-
             #buttonFF {
                 margin: 5px 5px 5px 10px;
                 padding-left: 60px;
                 padding-bottom: 15px;
                 background-color: #00e699;
             }
-
             #buttonCB {
                 margin: 5px 5px 5px 10px;
                 padding-left: 60px;
                 padding-bottom: 15px;
                 background-color: #FFC300;
             }
-
             .dangerKra{
                 margin-bottom: 100px;
             }
-
             .chartscards{
                 background-color: white;
                 color: black;
             }
-
             .chartscardslong{
                 background-color: white;
                 color: black;
             }
-
             .total{
                 color: white;
                 font-size: 50px;
                 font-family: 'Montserrat', sans-serif;
             }
-
             .total2{
                 color: white;
                 font-size: 30px;
@@ -1356,7 +1339,7 @@
                         DecimalFormat df = new DecimalFormat("#,###,###,###.##");
                     %>
 
-                    <h2>Budget (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                    <h2>Budget *(<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
 
                     <div class="card-deck">
                         <div class="card bg-info">
@@ -1379,26 +1362,32 @@
                     <div class="card-deck">
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Programs Budget Requested <br>(from <%=Date.valueOf(request.getAttribute("endDate").toString())%> to <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                <p class="card-text"><b>Budget Requested for <br>Programs Created from *</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Programs Budget Utilized <br>(from <%=request.getAttribute("startDate")%> to <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
-                            </div>
-                        </div> 
-                        <div class="card bg-success">
-                            <div class="card-body text-center">
-                                <p class="card-text"><b>Programs Budget Variance <br>(from <%=request.getAttribute("startDate")%> to <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="card-text"><b>Budget Requested for <br>Programs Implemented from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-success">
                             <div class="card-body text-center">
-                                <p class="card-text"><b>Unused Budget <br>(from <%=request.getAttribute("startDate")%> to <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetUnused(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="card-text"><b>Budget Utilized for <br>Programs Implemented from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                
+                                <!--<p class="card-text"><b>Budget Utilized for <br>Programs Created from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p> -->
+                            </div>
+                        </div>
+                        <div class="card bg-success">
+                            <div class="card-body text-center">
+                                <p class="card-text"><b>Budget Variance for <br>Programs Implemented from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                
+                                <!--<p class="card-text"><b>Budget Variance for <br>Programs Created from *</b></p>
+                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p> -->
                             </div>
                         </div>
                     </div>
