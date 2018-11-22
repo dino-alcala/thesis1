@@ -75,7 +75,7 @@ public class createSEreport extends HttpServlet {
                 java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("cancelProgram")));
-                if (SE.getStep() == 8 && SE.getSourceOfFunds().equals("OVPLM")) {
+                if (SE.getStep() >= 8 && SE.getStep() <= 9 && SE.getSourceOfFunds().equals("OVPLM")) {
                     Budget b = new Budget();
                     b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
                     b.setBudgetRequested(SE.getTotalAmount() * -1);
@@ -94,7 +94,7 @@ public class createSEreport extends HttpServlet {
 
                     n.setDt(sdf.format(dt));
 
-                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                     UserDAO.AddNotification(n);
@@ -110,7 +110,7 @@ public class createSEreport extends HttpServlet {
 
                     n.setDt(sdf.format(dt));
 
-                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                     UserDAO.AddNotification(n);

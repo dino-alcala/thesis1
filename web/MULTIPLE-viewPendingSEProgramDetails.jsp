@@ -601,15 +601,15 @@
                                 <%
                                     if (UserDAO.getStep(Integer.parseInt(request.getAttribute("seID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                Upload PRS Photo/Scan:<input class="btn btn-basic btn-sm" type ="file" name ="uploadprs">
+                                <center>Upload PRS Photo/Scan:<input class="btn btn-basic btn-sm" type ="file" name ="uploadprs"></center><br>
                                                                 
-                                <button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button>
+                                <center><button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button>
                                 
                                 <%
                                     }
                                 %>
 
-                                <center><button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
+                                <button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
                                
 
                                 

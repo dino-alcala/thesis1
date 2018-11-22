@@ -16352,7 +16352,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE step = 8";
+            String query = "SELECT * FROM ffproposal WHERE step = 9";
             pstmt = conn.prepareStatement(query);
 
             rs2 = pstmt.executeQuery();

@@ -145,6 +145,10 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
+            
+            th,tr,td{
+                padding:15px;
+            }
 
         </style>
 

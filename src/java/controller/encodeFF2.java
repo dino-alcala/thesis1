@@ -85,35 +85,60 @@ public class encodeFF2 extends HttpServlet {
                 b.setSeID(FF.getId());
 
                 UserDAO.addLatestBudget(b);
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                Notification n3 = new Notification();
+                n3.setTitle(UserDAO.getProjectName(FF.getId()));
+                n3.setBody("New Student Org SE Proposal! Php" + FF.getTotalAmount() + " has been deducted to the budget!");
+                n3.setDt(sdf.format(dt));
+
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n3);
+
+                n3.setTitle(UserDAO.getProjectName(FF.getId()));
+                n3.setBody("New Student Org SE Proposal! Php" + FF.getTotalAmount() + " has been deducted to the budget!");
+                n3.setDt(sdf.format(dt));
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n3);
+
+                n3.setTitle(UserDAO.getProjectName(FF.getId()));
+                n3.setBody("New Student Org SE Proposal! Php" + FF.getTotalAmount() + " has been deducted to the budget!");
+                n3.setDt(sdf.format(dt));
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                UserDAO.AddNotification(n3);
+                
+            } else {
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                Notification n3 = new Notification();
+                n3.setTitle(UserDAO.getProjectName(FF.getId()));
+                n3.setBody("A New Student Org SE Proposal has been Encoded!");
+                n3.setDt(sdf.format(dt));
+
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n3);
+
+                n3.setTitle(UserDAO.getProjectName(FF.getId()));
+                n3.setBody("A New Student Org SE Proposal has been Encoded!");
+                n3.setDt(sdf.format(dt));
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n3);
+
+                n3.setTitle(UserDAO.getProjectName(FF.getId()));
+                n3.setBody("A New Student Org SE Proposal has been Encoded!");
+                n3.setDt(sdf.format(dt));
+                n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                UserDAO.AddNotification(n3);
             }
-
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            Notification n3 = new Notification();
-            n3.setTitle(UserDAO.getProjectName(FF.getId()));
-            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
-            n3.setDt(sdf.format(dt));
-
-            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
-            UserDAO.AddNotification(n3);
-
-            n3.setTitle(UserDAO.getProjectName(FF.getId()));
-            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
-            n3.setDt(sdf.format(dt));
-            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
-            UserDAO.AddNotification(n3);
-
-            n3.setTitle(UserDAO.getProjectName(FF.getId()));
-            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
-            n3.setDt(sdf.format(dt));
-            n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
-            UserDAO.AddNotification(n3);
-
-            request.setAttribute("successSE", "You have successfully encoded a Student Org FF Proposal!");
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
-            dispatcher.forward(request, response);
+            
+                request.setAttribute("successSE", "You have successfully encoded a Student Org FF Proposal!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
+                dispatcher.forward(request, response);
+            
         }
     }
 

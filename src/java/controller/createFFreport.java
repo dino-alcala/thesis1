@@ -49,17 +49,13 @@ public class createFFreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailFF.jsp");
                 dispatcher.forward(request, response);
-            }
-
-            if (request.getParameter("viewAttendees") != null) {
+            } else if (request.getParameter("viewAttendees") != null) {
                 request.setAttribute("ffID", request.getParameter("viewAttendees"));
 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-approveFFViewAttendeesList.jsp");
                 dispatcher.forward(request, response);
-            }
-
-            if (request.getParameter("ffID") != null) {
+            } else if (request.getParameter("ffID") != null) {
 
                 request.setAttribute("ffID", request.getParameter("ffID"));
                 ServletContext context = getServletContext();
@@ -72,24 +68,20 @@ public class createFFreport extends HttpServlet {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport.jsp");
                     dispatcher.forward(request, response);
                 }
-            }
-
-            if (request.getParameter("viewReport") != null) {
+            } else if (request.getParameter("viewReport") != null) {
 
                 request.setAttribute("ffID", request.getParameter("viewReport"));
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFReport.jsp");
                 dispatcher.forward(request, response);
-            }
-
-            if (request.getParameter("cancelProgram") != null) {
+            } else if (request.getParameter("cancelProgram") != null) {
 
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
                 FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("cancelProgram")));
-                if (FF.getStep() == 8 && FF.getSourceOfFunds().equals("OVPLM")) {
+                if (FF.getStep() <= 9 && FF.getStep() >= 8 && FF.getSourceOfFunds().equals("OVPLM")) {
                     Budget b = new Budget();
                     b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
                     b.setBudgetRequested(FF.getTotalAmount() * -1);
@@ -108,7 +100,7 @@ public class createFFreport extends HttpServlet {
 
                     n.setDt(sdf.format(dt));
 
-                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                     UserDAO.AddNotification(n);
@@ -124,7 +116,7 @@ public class createFFreport extends HttpServlet {
 
                     n.setDt(sdf.format(dt));
 
-                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
+                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                     UserDAO.AddNotification(n);
@@ -133,14 +125,11 @@ public class createFFreport extends HttpServlet {
                 }
 
                 UserDAO.updateStepFF(0, Integer.parseInt(request.getParameter("cancelProgram")));
-
                 request.setAttribute("cancelProgram", "You have successfully canceled the program!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-faithFormationProgramsList.jsp");
                 dispatcher.forward(request, response);
-            }
-
-            if (request.getParameter("updateBudget") != null) {
+            } else if (request.getParameter("updateBudget") != null) {
 
                 request.setAttribute("ffID", request.getParameter("updateBudget"));
                 ServletContext context = getServletContext();

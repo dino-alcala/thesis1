@@ -69,6 +69,7 @@ public class encodeFFReport3 extends HttpServlet {
             FFreport.setAnnexes(inputStream1);
             FFreport.setAttendanceDLSU(inputStream3);
 
+            session.setAttribute("FFreport", FFreport);
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFFReport4.jsp");
             dispatcher.forward(request, response);

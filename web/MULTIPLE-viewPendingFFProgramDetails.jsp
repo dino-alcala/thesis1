@@ -442,16 +442,17 @@
                                 <br>
 
                                 
-
+                                
                                 <%
                                     if (UserDAO.getStepFF(Integer.parseInt(request.getAttribute("ffID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
-                                %>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs">
-                                    <button class="btn-success" type="submit" name="ffID" value="<%=request.getAttribute("ffID")%>">Upload</button></center>
+                                %>
+                                    <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center><br>
+                                    <center><button class="btn-success" type="submit" name="ffID" value="<%=request.getAttribute("ffID")%>">Upload</button>
                                 <br>
                                 <%
                                     }
                                 %>
-                                <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
+                                <button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
                                 <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button>
                                 
                                 <%

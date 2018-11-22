@@ -135,9 +135,20 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-
             th,tr,td{
                 padding:15px;
+            }
+            
+            html{
+                font-size:14px;
+            }
+            
+            .navbar{
+                height:8%;
+            }
+            
+            .sidebar-expanded{
+                margin-top: 0%;
             }
         </style>
 
