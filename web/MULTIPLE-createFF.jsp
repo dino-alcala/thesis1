@@ -460,7 +460,7 @@
 
                         <fieldset>
                             <legend><span class="number">4</span><b> Objectives:</b></legend>
-                            <center><textarea rows="3" cols = "50%" name="objectives" required></textarea></center>
+                            <center><textarea id="inputText" rows="3" cols = "50%" name="objectives" required></textarea></center>
                             <br><br>
                         </fieldset>
 

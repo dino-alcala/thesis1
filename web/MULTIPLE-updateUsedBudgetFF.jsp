@@ -22,13 +22,6 @@
         <link rel="stylesheet" href="css/formstyle5.css">
 
         <style>
-            html {
-                background: #e6e9e9;
-                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-                -webkit-font-smoothing: antialiased;
-                font-size:14px;
-            }
-
             table,th,td{
                 border:.5px solid
                     black;
@@ -45,8 +38,7 @@
             body {
                 background: #fff;
                 box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-                color: #545454;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-family: "Arial", Helvetica, sans-serif;
                 font-size: 16px;
                 line-height: 1.5;
                 margin: 0 auto;
@@ -54,10 +46,13 @@
                 padding: 2em 2em 4em;
             }
 
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
+            h1{
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 20px;
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
             }
 
             h2 {
@@ -85,6 +80,7 @@
             th {
                 background-color: green;
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table {
@@ -96,33 +92,21 @@
                 padding:15px;
             }
 
-            .button{
-                background-color: #4CAF50;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                display: inline-block;
-                margin: 4px 2px;
-                font-size: 16px;
-            }
-            h3{
-                border-bottom: 2px solid green;
-                border-top: 2px solid green;
-                padding-bottom: 10px;
-                padding-top: 10px;
+            p{
+                margin-left: 10px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
+            
             .btn-success{
                 background-color: darkgreen;
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 20px;
+                padding: 8px 10px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
-                font-size: 16px;
+                font-size: 12px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
 

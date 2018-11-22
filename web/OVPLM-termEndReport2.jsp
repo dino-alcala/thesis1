@@ -585,15 +585,15 @@
                 background-color: lightgreen;
             }
             h2{
-                font-size: 25px;
+                font-size: 20px;
                 text-align: left;
                 margin-top: 10px;
                 border-bottom: 2px solid green;
-                padding-bottom: 10px;
+                padding-bottom: 7px;
                 margin-bottom: 25px;
             }
             h3{
-                font-size: 25px;
+                font-size: 20px;
                 text-align: center;
                 margin-top: 20px;
             }

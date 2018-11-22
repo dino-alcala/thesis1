@@ -93,7 +93,7 @@
             }
 
             h2{
-                font-size: 25px;
+                font-size: 20px;
                 text-align: left;
                 margin-top: 10px;
                 border-bottom: 2px solid green;
@@ -101,7 +101,7 @@
             }
 
             h3{
-                font-size: 25px;
+                font-size: 20px;
                 padding-top: 25px;
                 text-align: center;
                 margin-bottom: 25px;
@@ -361,7 +361,7 @@
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
                         
                         <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
-                        <button type="button" class="btn btn-info">Download Report</button>
+                        <button type="button" class="btn btn-default">Download Report</button>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>

@@ -478,7 +478,7 @@
                                     <div class="card-header">
                                         <h4>Persons Responsible</h4>
                                     </div>
-                                <div class="card-body">
+                                </div>
                                 <table style="width:100%">
                                     <tr>
                                         <th>Name</th>
@@ -496,15 +496,13 @@
                                         }
                                     %>
                                 </table>
-                                </div>
-                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
-                                <div class="card-body">
+                                </div>
                                 <table style="width:100%">
                                     <tr>
                                         <th style="width:45%">Step</th>
@@ -515,8 +513,6 @@
                                         <td style="padding:0px"><textarea id="remarks1" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
-                                </div>
-                                </div>
                                     
                                 <center>
                                     <br/>

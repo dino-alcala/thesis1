@@ -73,7 +73,7 @@
             }
 
             h2{
-                font-size: 25px;
+                font-size: 20px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -110,7 +110,7 @@
 
             .totaltitle{
                 text-align: center;
-                font-size: 25px;
+                font-size: 20px;
             }
 
             .card-text{
@@ -304,7 +304,7 @@
                         </div>
                         
                         <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
-                        <button type="button" class="btn btn-info">Download Report</button>
+                        <button type="button" class="btn btn-default">Download Report</button>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
 

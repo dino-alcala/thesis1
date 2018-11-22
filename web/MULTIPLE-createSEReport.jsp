@@ -328,7 +328,7 @@
                             
                         <fieldset>  
                             <legend><b>Program Head</b></legend>
-                            <center><input value="<%=SE.getProgramHead()%>" readonly name="programhead" size="50" type="text" required></center>
+                            <center><input id="inputText" value="<%=SE.getProgramHead()%>" readonly name="programhead" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 

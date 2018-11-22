@@ -537,7 +537,7 @@
             }
             
             h2{
-                font-size: 25px;
+                font-size: 20px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
@@ -572,19 +572,19 @@
             }
             
             h3{
-                font-size: 25px;
+                font-size: 20px;
                 text-align: center;
                 margin-top: 20px;
             }
             
             .totaltitle{
                 text-align: center;
-                font-size: 25px;
+                font-size: 20px;
             }
             
             .card-text{
                 color: white;
-                font-size: 20px;
+                font-size: 15px;
                 font-family: 'Montserrat', sans-serif;
             }
             
