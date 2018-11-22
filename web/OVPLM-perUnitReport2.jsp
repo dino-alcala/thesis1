@@ -1258,7 +1258,7 @@
 
                     <h2></h2>
 
-                    <h3>Social Engagement Programs</h3>
+                    <h3>Social Engagement Proposals</h3>
                     <%
                         ArrayList<SE> seproposal = new ArrayList();
                         seproposal = UserDAO.retrieveSEProposalAmountRequestedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
@@ -1294,7 +1294,7 @@
 
                     <h2></h2>
 
-                    <h3>Faith Formation Programs</h3>
+                    <h3>Faith Formation Proposals</h3>
                     <%
                         ArrayList<FF> ffproposal = new ArrayList();
                         ffproposal = UserDAO.retrieveFFProposalAmountRequestedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
