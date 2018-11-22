@@ -52,7 +52,7 @@ public class approveSE4 extends HttpServlet {
             Part filePart = request.getPart("uploadprs");
 
             UserDAO UserDAO = new UserDAO();
-            
+
             if (request.getParameter("auditSE") != null) {
 
                 session.setAttribute("auditSE", request.getParameter("auditSE"));
@@ -79,7 +79,7 @@ public class approveSE4 extends HttpServlet {
 
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
-                    
+
                     SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
                     SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
                     java.util.Date javaDate = new java.util.Date();
@@ -90,11 +90,11 @@ public class approveSE4 extends HttpServlet {
                         java.util.Date date1 = myFormat.parse(input1);
                         java.util.Date date2 = myFormat.parse(input2);
                         long diff = date2.getTime() - date1.getTime();
-                        long days = (diff / (1000*60*60*24));
+                        long days = (diff / (1000 * 60 * 60 * 24));
 
-                        if(days <= 14){
+                        if (days <= 14) {
                             n.setBody("URGENT SE PRS ready for approval!!");
-                        } else if (days >= 15){
+                        } else if (days >= 15) {
                             n.setBody("You have new SE PRS ready for approval!");
                         }
                     } catch (ParseException ex) {
@@ -118,20 +118,24 @@ public class approveSE4 extends HttpServlet {
             }
 
             if (request.getParameter("cancelProgram") != null) {
-
+                
+                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("cancelProgram")));
                 UserDAO.updateStep(0, Integer.parseInt(request.getParameter("cancelProgram")));
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled!");
+                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 n.setDt(sdf.format(dt));
 
-                n.setUserID(17);
-
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
+                UserDAO.AddNotification(n);
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n);
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("cancelProgram", "You have successfully canceled the program!");

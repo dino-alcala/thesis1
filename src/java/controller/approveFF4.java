@@ -106,19 +106,23 @@ public class approveFF4 extends HttpServlet {
 
             if (request.getParameter("cancelProgram") != null) {
 
+                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("cancelProgram")));
                 UserDAO.updateStepFF(0, Integer.parseInt(request.getParameter("cancelProgram")));
 
                 Notification n = new Notification();
-                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled!");
+                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                n.setBody("The program has been cancelled! Php" + FF.getTotalAmount() + " returned");
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 n.setDt(sdf.format(dt));
 
-                n.setUserID(17);
-
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
+                UserDAO.AddNotification(n);
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n);
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("cancelProgram", "You have successfully canceled the program!");
