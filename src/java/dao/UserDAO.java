@@ -15847,7 +15847,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 8 AND f.studentorg != 1";
+        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 9 AND f.studentorg != 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -15925,7 +15925,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN studentorgs so ON f.department = so.name JOIN ffreport ff ON ff.ffproposalID = f.id WHERE f.step = 8";
+        String query = "SELECT count(distinct(department)) as count FROM ffproposal f JOIN studentorgs so ON f.department = so.name JOIN ffreport ff ON ff.ffproposalID = f.id WHERE f.step = 9";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -16014,7 +16014,7 @@ public class UserDAO {
         try {
             for (int i = 0; i < units.size(); i++) {
 
-                String query = "SELECT count(unit) FROM seproposal s JOIN seproposal_component sc ON s.id = sc.seproposalID JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.unit = ? AND studentorg != 1";
+                String query = "SELECT count(unit) FROM seproposal s JOIN seproposal_component sc ON s.id = sc.seproposalID JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.unit = ? AND studentorg != 1";
 
                 ps = conn.prepareStatement(query);
                 ps.setString(1, units.get(i).getName());
@@ -16099,7 +16099,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(distinct(unit)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.studentorg = 1";
+        String query = "SELECT count(distinct(unit)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.studentorg = 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -16139,7 +16139,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT count(distinct(department)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.studentorg != 1";
+        String query = "SELECT count(distinct(department)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.studentorg != 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -16187,7 +16187,7 @@ public class UserDAO {
         double total = 0;
         try {
 
-            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.classificationforkra != 'None'";
+            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.classificationforkra != 'None'";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16232,7 +16232,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT count(c.international) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 8 AND s.activityClassification = 'Service-Learning' AND c.international = 1";
+            String query = "SELECT count(c.international) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16267,7 +16267,7 @@ public class UserDAO {
         ResultSet rs = null;
         int count = 0;
         try {
-            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.activityClassification = 'Interdisciplinary Fora'";
+            String query = "SELECT count(unit) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora'";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -16310,7 +16310,7 @@ public class UserDAO {
             for (int i = 0; i < FF.size(); i++) {
                 count = 0;
 
-                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 8 AND a.type IN ('Alumni', 'Parent')";
+                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9 AND a.type IN ('Alumni', 'Parent')";
 
                 ps = conn.prepareStatement(query);
                 ps.setInt(1, FF.get(i).getId());
@@ -16395,7 +16395,7 @@ public class UserDAO {
         double percent = 0;
         try {
 
-            String query = "SELECT s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Interdisciplinary Fora' AND s.step = 8 AND a.type IN ('International')";
+            String query = "SELECT s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9 AND a.type IN ('International')";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16437,7 +16437,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT a.type FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8";
+            String query = "SELECT a.type FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16480,7 +16480,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT a.type FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 8";
+            String query = "SELECT a.type FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16523,7 +16523,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT a.type FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8 AND a.type IN ('Admin')";
+            String query = "SELECT a.type FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('Admin')";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16658,7 +16658,7 @@ public class UserDAO {
 
         ArrayList<FF> FF = new ArrayList();
 
-        String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN studentorgs so ON f.department = so.name JOIN ffreport ff ON ff.ffproposalID = f.id WHERE f.step = 8 GROUP BY f.id";
+        String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN studentorgs so ON f.department = so.name JOIN ffreport ff ON ff.ffproposalID = f.id WHERE f.step = 9 GROUP BY f.id";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -16700,7 +16700,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 8 AND f.studentorg != 1 GROUP BY f.id";
+        String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 9 AND f.studentorg != 1 GROUP BY f.id";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -16751,7 +16751,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8 GROUP BY f.id";
+            String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 GROUP BY f.id";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16797,7 +16797,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 8 AND a.type IN ('Admin') GROUP BY f.id";
+            String query = "SELECT f.datecreated, f.projectName, f.unit, f.department, f.programHead, f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('Admin') GROUP BY f.id";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16852,7 +16852,7 @@ public class UserDAO {
             for (int i = 0; i < FF.size(); i++) {
                 count = 0;
 
-                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 8 AND a.type IN ('Alumni', 'Parent')";
+                String query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9 AND a.type IN ('Alumni', 'Parent')";
 
                 ps = conn.prepareStatement(query);
                 ps.setInt(1, FF.get(i).getId());
@@ -16896,7 +16896,7 @@ public class UserDAO {
         ResultSet rs = null;
         ArrayList<SE> SE = new ArrayList();
         try {
-            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.activityClassification = 'Interdisciplinary Fora'";
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora'";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -16939,7 +16939,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Interdisciplinary Fora' AND s.step = 8 AND a.type IN ('International') GROUP BY s.id";
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9 AND a.type IN ('International') GROUP BY s.id";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -16988,7 +16988,7 @@ public class UserDAO {
         try {
             for (int i = 0; i < units.size(); i++) {
 
-                String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN seproposal_component sc ON s.id = sc.seproposalID JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.unit = ? AND studentorg != 1 GROUP BY s.id";
+                String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN seproposal_component sc ON s.id = sc.seproposalID JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.unit = ? AND studentorg != 1 GROUP BY s.id";
 
                 ps = conn.prepareStatement(query);
                 ps.setString(1, units.get(i).getName());
@@ -17030,7 +17030,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.studentorg = 1";
+        String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.studentorg = 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -17081,7 +17081,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 8 GROUP BY s.id";
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 GROUP BY s.id";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -17120,7 +17120,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.studentorg != 1";
+        String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.studentorg != 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -17170,7 +17170,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         try {
 
-            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 8 AND s.classificationforkra != 'None'";
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.classificationforkra != 'None'";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -17217,7 +17217,7 @@ public class UserDAO {
 
         try {
 
-            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 8 AND s.activityClassification = 'Service-Learning' AND c.international = 1";
+            String query = "SELECT s.datecreated, s.programName, s.unit, s.department, s.programHead, s.id FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1";
 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();

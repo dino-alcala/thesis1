@@ -7,6 +7,7 @@ package controller;
 
 import dao.UserDAO;
 import entity.Notification;
+import entity.SE;
 import entity.SEattendees;
 import entity.SEreport;
 import java.io.IOException;
@@ -20,7 +21,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
 /**
  *
  * @author LA
@@ -36,6 +40,22 @@ public class createSEreport5 extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private class SMTPAuthenticator extends Authenticator
+    {
+          private PasswordAuthentication authentication;
+
+          public SMTPAuthenticator(String login, String password)
+          {
+               authentication = new PasswordAuthentication(login, password);
+          }
+
+          @Override
+          protected PasswordAuthentication getPasswordAuthentication()
+          {
+               return authentication;
+          }
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,6 +66,7 @@ public class createSEreport5 extends HttpServlet {
             HttpSession session = request.getSession();
             SEreport SEreport = new SEreport();
             SEreport = (SEreport) session.getAttribute("SEreport");
+            SE SE = UserDAO.retrieveSEBySEID(SEreport.getSeproposalID());
 
             ArrayList<SEattendees> attendees = new ArrayList();
 
@@ -72,6 +93,41 @@ public class createSEreport5 extends HttpServlet {
             String code = new String(text);
 
             UserDAO.updateSEProposalCodeBySEID(code, SEreport.getSeproposalID());
+                  
+            for(int x = 0 ; x < attendees.size() ; x++){
+                String from = "ovplmpms@gmail.com";
+                String to = attendees.get(x).getEmail();
+                String subject = "Evaluation Code";
+                String message = "SE Evaluation Code for " + SE.getName() + ": " + code;
+                String login = "ovplmpms@gmail.com";
+                String password = "11434643ovplmpms";
+
+                Properties props = new Properties();
+                props.setProperty("mail.host", "smtp.gmail.com");
+                props.setProperty("mail.smtp.port", "587");
+                props.setProperty("mail.smtp.auth", "true");
+                props.setProperty("mail.smtp.starttls.enable", "true");
+
+                Authenticator auth = new SMTPAuthenticator(login, password);
+
+                Session session2 = Session.getInstance(props, auth);
+
+                MimeMessage msg = new MimeMessage(session2);
+
+                    try
+                    {
+                         msg.setText(message);
+                         msg.setSubject(subject);
+                         msg.setFrom(new InternetAddress(from));
+                         msg.addRecipient(Message.RecipientType.TO, 
+                         new InternetAddress(to));
+                         Transport.send(msg);
+                    }
+                    catch (MessagingException ex)
+                    {
+                        
+                    } 
+            }
 
             Notification n = new Notification();
             n.setTitle(UserDAO.getProgramName(SEreport.getSeproposalID()));

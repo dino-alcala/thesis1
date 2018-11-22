@@ -715,7 +715,7 @@
                                     <td></td>
                                     <td><b>M1</b> Service learning (SL) component of academic programs<br><br>
                                         B. Percentage of graduate programs with SL component </td>
-                                    <td>10%/td>
+                                    <td>10%</td>
                                     <td></td>
                                     <td><button class="btn btn-primary" type="submit" name="fifteenth" value="15">View</button></td>
                                 </tr>
