@@ -143,6 +143,10 @@
                 position: relative;
                 display: inline-block;
             }
+            
+            label, .btn-primary, select, option{
+               font-family: "Arial", Helvetica, sans-serif;
+            }
         </style>
 
     </head>
@@ -281,7 +285,7 @@
                                                 </li>
 
                                                 <li>
-                                                    <button type="submit" class="btn btn-info">Proceed</button>
+                                                    <button type="submit" class="btn btn-primary">Proceed</button>
                                                 </li>
                                             </ul>
                                         </form>

@@ -81,8 +81,7 @@
 
             b{
                 font-weight: 600;
-                font-family: "Times New Roman", Times, serif;
-                font-size: 20px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             th {
@@ -113,10 +112,11 @@
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -129,13 +129,19 @@
             }
 
             h3{
-                font-family: "Times New Roman", Times, serif;
-            }
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-size: 22px;
+            }   
 
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
+            legend, th, td, #inputText{
+                font-family: "Arial", Helvetica, sans-serif;
                 font-size: 15px;
             }
+            
+            
 
             @keyframes colorize {
                 0% {
@@ -350,9 +356,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>
                 <center><h3>Program Accomplishment Report Form</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
 
@@ -360,13 +364,13 @@
                     <form action="encodeFFReport3" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend><span class="number">5</span><b>Major Problems Encountered</b></legend>
-                            <center><textarea rows="10" cols="90%" name="problem" required></textarea> </center>
+                            <center><textarea id="inputText" rows="10" cols="90%" name="problem" required></textarea> </center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">6</span><b>Other Recommendations (Comments / Feedbacks / Participation of Stakeholders)</b></legend>
-                            <center><textarea rows="10" cols="90%" name="recommendation" required></textarea> </center>
+                            <center><textarea id="inputText" rows="10" cols="90%" name="recommendation" required></textarea> </center>
                             <br><br>
                         </fieldset>
 

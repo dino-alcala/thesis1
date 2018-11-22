@@ -37,54 +37,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            .card-text{
-                margin-bottom: 5px;
-            }
-
-            tr:hover {
-                background-color: lightgreen;
-            }
-
-            .table{
-                border-bottom: 2px solid lightgray;
-                margin-bottom: 30px;
-            }
-
-            .panels{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
-
             table,th,td{
                 border:.5px solid
                     black;
             }
 
-            hr{
-                background-color:green;
-            }
 
             textarea{
                 resize: none;
             } 
-
-            a{
-                color: #0083e8;
-            }
-
-            b{
-                font-weight: 600;
-            }
-
+            
             th {
                 background-color: green;
                 color: white;
@@ -97,16 +59,29 @@
             th{
                 padding:15px;
             }
+            
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
 
             .button{
                 background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            legend, h3, #inputText, #classification, option, select, value{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 
@@ -360,10 +335,8 @@
             </div>
 
             <!-- MAIN -->
-            <div class="col py-3">
-                <hr size="5" noshade>    
-                <center><h2>Social Engagement Proposal</h2></center>
-                <hr size="5" noshade>
+            <div class="col py-3">   
+                <center><h3>Social Engagement Proposal</h3></center>
 
                 <div class="form-style-5">
                     <form action = "editSE" method="post">
@@ -389,19 +362,19 @@
 
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
-                            <input type = "text" name ="programname" value="<%=SE.getName()%>">
+                            <input id="inputText" type = "text" name ="programname" value="<%=SE.getName()%>">
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Program Head:</b></legend>
-                            <input type = "text" name ="programhead" value="<%=SE.getProgramHead()%>">
+                            <input id="inputText" type = "text" name ="programhead" value="<%=SE.getProgramHead()%>">
                             <br><br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Type of Social Engagement:</b></legend>
-                            <select value ="<%=SE.getActivityClassification()%>" name="classification" onchange="changeKRA(this.id, 'kra')">
+                            <select id="inputText" value ="<%=SE.getActivityClassification()%>" name="classification" onchange="changeKRA(this.id, 'kra')">
                                 <option value="Socially Engaged Research">Socially Engaged Research</option>
                                 <option value="Service-Learning">Service-Learning</option>
                                 <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
@@ -419,7 +392,7 @@
                                 ArrayList<Community> c = new ArrayList();
                                 c = UserDAO.retrieveCommunity();
                             %>
-                            <select name="community" >
+                            <select id="inputText" name="community" >
                                 <%
                                     for (int m = 0; m < c.size(); m++) {
                                 %>
@@ -478,42 +451,42 @@
 
                         <fieldset>
                             <legend><span class="number">1</span><b> Target Implementation Date:</b></legend>
-                            <input style="width:30%" type = "date" name ="actualdate" value="<%=SE.getActualDate()%>" min="<%=sqlDate%>">
+                            <input id="inputText" style="width:30%" type = "date" name ="actualdate" value="<%=SE.getActualDate()%>" min="<%=sqlDate%>">
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">2</span><b> Total Amount Requested:</b></legend>
-                            <input style="width:30%" type = "number" name ="totalamount" value="<%=SE.getTotalAmount()%>">
+                            <input id="inputText" style="width:30%" type = "number" name ="totalamount" value="<%=SE.getTotalAmount()%>">
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">3</span><b>Explain the Social/Community Problem being Addressed</b></legend>
-                            <textarea rows = "6" cols = "100%" name ="problemaddressed"><%=SE.getSocialCommunityProblem()%></textarea>
+                            <textarea id="inputText" rows = "6" cols = "100%" name ="problemaddressed"><%=SE.getSocialCommunityProblem()%></textarea>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">4</span> <b>Social Engagement Partner(s)/Beneficiaries</b><br></legend>
-                            <legend>Name of Partner: <input type='text' name='partnername' value="<%=SE.getNameSEbeneficiaries()%>"/><br><br>
-                                Address: <input type='text' name='partneraddress' value="<%=SE.getAddressSEbeneficiaries()%>"/><br><br>
-                                Contact Person: <input type='text' name='partnercontact' value="<%=SE.getContactPersonSEbeneficiaries()%>"/><br><br>
-                                Mobile Number: <br><input style="width:30%" type='text' name='partnernumber' value="<%=SE.getMobileSEbeneficiaries()%>"/><br><br>
-                                Email: <input type='text' name='partneremail' value="<%=SE.getEmailSEbeneficiaries()%>"/><br><br>
-                                Brief Description of Partner: <textarea name='partnerdescription' rows='5'><%=SE.getDescriptionSEbeneficiaries()%></textarea></legend>
+                            <legend>Name of Partner: <input id="inputText" type='text' name='partnername' value="<%=SE.getNameSEbeneficiaries()%>"/><br><br>
+                                Address: <input id="inputText" type='text' name='partneraddress' value="<%=SE.getAddressSEbeneficiaries()%>"/><br><br>
+                                Contact Person: <input id="inputText" type='text' name='partnercontact' value="<%=SE.getContactPersonSEbeneficiaries()%>"/><br><br>
+                                Mobile Number: <br><input id="inputText" style="width:30%" type='text' name='partnernumber' value="<%=SE.getMobileSEbeneficiaries()%>"/><br><br>
+                                Email: <input id="inputText" type='text' name='partneremail' value="<%=SE.getEmailSEbeneficiaries()%>"/><br><br>
+                                Brief Description of Partner: <textarea id="inputText" name='partnerdescription' rows='5'><%=SE.getDescriptionSEbeneficiaries()%></textarea></legend>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">5</span><b >Measurable Outcomes/Objectives of the Project:</b></legend>
-                            <textarea rows = "6" cols = "100%" name ="measureableoutcome"><%=SE.getObjectives()%></textarea>
+                            <textarea id="inputText" rows = "6" cols = "100%" name ="measureableoutcome"><%=SE.getObjectives()%></textarea>
                             <br><br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">6</span><b >Source of Funds:</b></legend>
-                            <select style="width:50%" name="funds">
+                            <select id="inputText" style="width:50%" name="funds">
                                 <option value="OVPLM" <% if (SE.getSourceOfFunds().equals("OVPLM")) {%> selected="selected" <%}%> >Office of the Vice President for Lasallian Mission</option>
                                 <option value="Others" <% if (SE.getSourceOfFunds().equals("Others")) {%> selected="selected" <%}%> >Others</option>
                             </select>

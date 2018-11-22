@@ -106,7 +106,25 @@
                 margin: 4px 2px;
                 font-size: 16px;
             }
-
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            .btn-success{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
 
             @keyframes colorize {
                 0% {
@@ -185,9 +203,7 @@
     </head>
 
     <body>
-        <hr size="5" noshade>    
-    <center><h1>Faith Formation Engagement Proposal</h1></center>
-    <hr size="5" noshade>
+    <center><h3>Faith Formation Engagement Proposal</h3></center>
 
 
     <div class="form-style-5">
@@ -243,7 +259,8 @@
             </fieldset>
 
             <br><br>
-            <center><button type="submit" name="FF" value="<%=request.getAttribute("ffID")%>" class="button">Update</button></center>
+            
+            <center><button type="submit" name="FF" value="<%=request.getAttribute("ffID")%>" class="btn-success">Update</button></center>
         </form>
     </div>
 </body>

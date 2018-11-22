@@ -125,7 +125,7 @@
             }
             
 
-            legend, #inputText, #classification, option, select, value, td, th, #countexpenses, #ffunitcost0, #ffquantity0, #ffsubtotal0{
+            legend, #studentorg, #inputText, #classification, option, select, value, td, th, #countexpenses, #ffunitcost0, #ffquantity0, #ffsubtotal0{
                 font-family: "Arial", Helvetica, sans-serif;
             }
 

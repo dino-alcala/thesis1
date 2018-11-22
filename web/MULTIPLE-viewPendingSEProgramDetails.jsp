@@ -71,7 +71,7 @@
                 padding:15px;
             }
             
-            .button{
+            .btn-success{
                 background-color: darkgreen;
                 border: none;
                 border-radius: 5px;
@@ -83,6 +83,46 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
+            
+            .btn-warning{
+                background-color: darkyellow;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-danger{
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-audit{
+                background-color: gray;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 30px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
         </style>
     </head>
 
@@ -462,7 +502,7 @@
                                     <div class="card-header">
                                         <h4>Persons Responsible</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Name</th>
@@ -480,6 +520,8 @@
                                         }
                                     %>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
@@ -489,6 +531,7 @@
                                     <div class="card-body">   
                                         <p><%=SE.getSourceOfFunds()%></p>
                                     </div>
+                                
                                 </div>
                                 <br/>
 
@@ -499,7 +542,7 @@
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th style="width:35%">Step</th>
@@ -541,31 +584,35 @@
                                         </td>
                                     </tr>
                                 </table>
+                                   </div>         
+                                </div>
                                 <%
                                     }
                                 %>
                                 <br/>
                                 <br>
-
-                                <center><button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button></center>  
-                                <br>
-
+                                
                                 <%
                                     if (UserDAO.getStep(Integer.parseInt(request.getAttribute("seID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <center>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"></center>
-                                <br>                                  
-                                <center><button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button></center>
-                                <br>
+                                Upload PRS Photo/Scan:<input class="btn btn-basic btn-sm" type ="file" name ="uploadprs">
+                                                                
+                                <button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button>
+                                
                                 <%
                                     }
                                 %>
 
+                                <center><button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
+                               
+
+                                
+
                                 <%
                                     if (UserDAO.isRevise(Integer.parseInt(request.getAttribute("seID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <center><button class="button" style="background-color:orange" type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button></center>
-                                <br>
+                                <button class="btn-warning"  type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button>
+                               
                                 <%
                                     }
                                 %>
@@ -574,9 +621,9 @@
                                 <%
                                     if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-                                <div>
-                                    <center><button class='button' style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram">Cancel Program</button></center>
-                                </div>
+                                
+                                    <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
+                               
                                 <%
                                     }
                                 %>

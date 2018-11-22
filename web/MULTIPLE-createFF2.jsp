@@ -120,6 +120,9 @@
                 font-size: 13px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
+            #inputText{
+                 font-family: "Arial", Helvetica, sans-serif;
+            }
         </style>
 
         <script type="text/javascript">
@@ -295,8 +298,8 @@
                                         <th style='width:45%'>Email</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
-                                        <td><textarea style="border-radius: 0px;" rows = "1" cols = "45%" name ="email0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "45%" name ="email0" required></textarea></td>
                                     </tr>
                                 </table></center>
                             <br>

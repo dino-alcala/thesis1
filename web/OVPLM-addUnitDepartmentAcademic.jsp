@@ -169,7 +169,7 @@
 
             h1{
                 text-align: left;
-                font-size: 35px;
+                font-size: 25px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
             }  
@@ -191,6 +191,10 @@
 
             hr{
                 background-color: black;
+            }
+            
+            label, .btn-primary, select, option{
+               font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 
@@ -408,7 +412,7 @@
                                                     <input type="number" name="external" class="field-long" />
                                                 </li>
                                                 <li>
-                                                    <button type="submit" class="btn btn-info">Add Department</button>
+                                                    <button type="submit" class="btn btn-primary">Add Department</button>
                                                 </li>
                                                 <br><br>
                                             </ul>

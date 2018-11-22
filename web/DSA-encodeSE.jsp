@@ -119,11 +119,11 @@
                 padding-top: 10px;
             }
             
-            legend, #inputText { 
+            legend, #inputText, #studentorg { 
                 font-family: "Arial", Helvetica, sans-serif; 
             }
             
-            option, select{
+            option, select, #classification, #kra, #goals, #measures{
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
@@ -482,7 +482,7 @@
                                 ArrayList<Community> c = new ArrayList();
                                 c = UserDAO.retrieveCommunity();
                             %>
-                            <select name="community">
+                            <select id="inputText" name="community">
                                 <%
                                     for (int m = 0; m < c.size(); m++) {
                                 %>

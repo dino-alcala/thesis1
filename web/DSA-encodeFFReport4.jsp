@@ -133,16 +133,33 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
+            .button{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
             td{
                 padding:15px
             }
 
             h3{
-                font-family: "Times New Roman", Times, serif;
-            }
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-size: 22px;
+            }   
 
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
+            legend, th, td, #inputText{
+                font-family: "Arial", Helvetica, sans-serif;
                 font-size: 15px;
             }
 
@@ -293,9 +310,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Program Accomplishment Report Form</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
 
@@ -303,7 +318,7 @@
                     <form action="encodeFFReport4" method="post">
                     <div class="form-style-5">
                         <fieldset>
-                            <input type="text" hidden name="countattendees" id="countattendees" value="1"/>
+                            <input id="inputText" type="text" hidden name="countattendees" id="countattendees" value="1"/>
                             <center><table style = "width:100%" id="attendeestable">
                                     <tr>
                                         <th>Name</th>
@@ -311,9 +326,9 @@
                                         <th>Type</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea style='border-radius:0px' rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
-                                        <td><textarea style='border-radius:0px' rows = "1" cols = "45%" name ="email0" required></textarea></td>
-                                        <td><select style='border-radius:0px;' name="type0">
+                                        <td><textarea id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
+                                        <td><textarea id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="email0" required></textarea></td>
+                                        <td><select id="inputText" style='border-radius:0px;' name="type0">
                                                 <option value="CAP">CAP</option>
                                                 <option value="APSP">APSP</option>
                                                 <option value="ASF">ASF</option>

@@ -37,7 +37,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
-            #myInput{
+           #myInput{
                 margin-bottom: 20px;
             }
 
@@ -59,7 +59,7 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
- 
+
             table,th,td{
                 border:.5px solid
                     black;
@@ -73,17 +73,16 @@
                 resize: none;
             } 
 
-
-            th{
-                padding:15px;
-            }
-
-            a{
+            a {
                 color: #0083e8;
             }
 
-            b{
-                font-weight: 600;
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             th {
@@ -96,15 +95,42 @@
 
             }
 
+            th{
+                padding:15px;
+            }
+
+            #addRowButton {
+                padding: 10px;
+                padding-right: 17px;
+                padding-left: 17px;
+            }
+
+            #deleteRowButton {
+                padding: 10px;
+            }
+
+            #addRowButton, #deleteRowButton {
+                display: inline-block;
+                border-radius: 5px;
+                border:none;
+                font-size: 13px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
             .button{
                 background-color: darkgreen;
-                border: none;
+                border-radius: 5px;
+                border:none;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
-                display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            legend, h3, .number, #inputText, #classification, option, select, value, td, th, #countexpenses, total, #ffitem0, #ffunitcost0, #ffquantity0, #ffsubtotal0{
+                font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 
@@ -360,9 +386,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
-                <center><h2>Faith Formation Program Proposal</h2></center>
-                <hr size="5" noshade>
+                <center><h3>Faith Formation Program Proposal</h3></center>
 
                 <div class="form-style-5">
                     <form action = "editFF" method="post">
@@ -387,13 +411,13 @@
 
                         <fieldset>
                             <legend><b>Program Head: </b></legend>
-                            <center><input type = "text" name ="programhead" value="<%=FF.getProgramHead()%>"></center>
+                            <center><input id="inputText" type = "text" name ="programhead" value="<%=FF.getProgramHead()%>"></center>
                             <br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Type of Faith Formation: </b></legend>
-                            <select value="<%=FF.getActivityClassification()%>" name="classification">
+                            <select id="inputText" value="<%=FF.getActivityClassification()%>" name="classification">
                                 <option value="Retreat">Retreat</option>
                                 <option value="Recollection">Recollection</option>
                                 <option value="Prayer Service">Prayer Service</option>
@@ -406,43 +430,43 @@
 
                         <fieldset>
                             <legend><span class="number">1</span><b>Project Name: </b></legend>
-                            <center><input type = "text" name ="pname" value="<%=FF.getProjectName()%>"></center>
+                            <center><input id="inputText" type = "text" name ="pname" value="<%=FF.getProjectName()%>"></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">2</span><b>Venue: </b></legend>
-                            <center><input type = "text" name ="pvenue" value="<%=FF.getVenue()%>"></center>
+                            <center><input id="inputText" type = "text" name ="pvenue" value="<%=FF.getVenue()%>"></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">3</span><b>Speaker: </b></legend>
-                            <center><input type = "text" name ="pspeaker" value="<%=FF.getSpeaker()%>"></center>
+                            <legend><span class="number">3</span><b>Speaker: </legend>
+                            <center><input id="inputText" type = "text" name ="pspeaker" value="<%=FF.getSpeaker()%>"></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">4</span><b>Objectives: </b></legend>
-                            <center><textarea rows="3" cols = "50%" name="objectives"><%=FF.getObjectives()%></textarea></center>
+                            <legend><span class="number">4</span>Objectives: </legend>
+                            <center><textarea id="inputText" rows="3" cols = "50%" name="objectives"><%=FF.getObjectives()%></textarea></center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">5</span><b><b>Target Implementation Date: </b></legend>
-                            <input style ="width:30%" type = "date" name ="actualdate" value="<%=FF.getActualDate()%>">
+                            <legend><span class="number">5</span>Target Implementation Date: </legend>
+                            <input id="inputText" style ="width:30%" type = "date" name ="actualdate" value="<%=FF.getActualDate()%>">
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">6</span><b>Total Amount Requested: </b></legend>
-                            <input style ="width:30%" type = "number" name ="pbudget" value="<%=FF.getTotalAmount()%>">
+                            <legend><span class="number">6</span>Total Amount Requested: </legend>
+                            <input id="inputText" style ="width:30%" type = "number" name ="pbudget" value="<%=FF.getTotalAmount()%>">
                             <br><br>
                         </fieldset>
 
                         <fieldset>
-                            <legend><span class="number">7</span><b>Source of Funds: </b></legend>
-                            <center><select name="funds">
+                            <legend><span class="number">7</span>Source of Funds: </legend>
+                            <center><select id="inputText" name="funds">
                                     <option value="OVPLM" <% if (FF.getSourceOfFunds().equals("OVPLM")) {%> selected="selected" <%}%> >Office of the Vice President for Lasallian Mission</option>
                                     <option value="Others" <% if (FF.getSourceOfFunds().equals("Others")) {%> selected="selected" <%}%> >Others</option>
                                 </select></center>
@@ -450,7 +474,7 @@
                         </fieldset>
 
 
-                        <legend><b>Breakdown of Expenses: </b></legend>
+                        <legend>Breakdown of Expenses: </legend>
                         <input type="hidden" value="<%=FF.getExpenses().size()%>" id="countexpenses" name="countexpenses">
                         <fieldset>
                             <center><table style = "width:100%" id="breakdowntable">
@@ -483,7 +507,7 @@
                             <br>
                             <center>
                                 <button type ="button" class="button" id="addRowButton" onclick ="addRow()" value="Add Row">Add Row</button>
-                                <button type ="button" class="button" style="background-color:olive" id="addRowButton" onclick="calculate()">Calculate</button>
+                                <button type ="button" class="button" style="background-color:dodgerblue" id="addRowButton" onclick="calculate()">Calculate</button>
                                 <button class="button" style="background-color:red" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row">Delete Row</button>
                             </center>
                         </fieldset>

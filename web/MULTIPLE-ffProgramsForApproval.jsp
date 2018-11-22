@@ -282,7 +282,6 @@
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-seProgramsForApproval.jsp">Social Engagement</a>
                             <a href="MULTIPLE-ffProgramsForApproval.jsp" type="button" class="btn btn-primary" id="buttonPending" >Faith Formation</a>
                         </div>
-                        <h3></h3>
 
                         <br>
                         <h4>Faith Formation Programs (<%=proposals.size()%>)</h4>

@@ -168,7 +168,7 @@
 
             h1{
                 text-align: left;
-                font-size: 35px;
+                font-size: 25px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
             }  
@@ -190,6 +190,10 @@
 
             hr{
                 background-color: black;
+            }
+            
+            label, .btn-primary, select, option{
+               font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 
@@ -337,7 +341,7 @@
                                                     <textarea name="unitdescription" rows="4" class="field-long"></textarea>
                                                 </li>
                                                 <li>
-                                                    <button type="submit" class="btn btn-info">Add Unit</button>
+                                                    <button type="submit" class="btn btn-primary">Add Unit</button>
                                                 </li>
                                                 <br><br>
                                             </ul>

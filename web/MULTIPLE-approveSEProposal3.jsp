@@ -350,7 +350,7 @@
                                     <li class="progress-step is-active">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 1</u></h4>
+                                            <h4 class="progress-title">Step 1</h4>
                                             Evaluation by COSCA
                                         </span>
                                     </li>
@@ -358,7 +358,7 @@
                                     <li class="progress-step">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 2</u></h4>
+                                            <h4 class="progress-title">Step 2</h4>
                                             Approval by the Council
                                         </span>
                                     </li>
@@ -366,7 +366,7 @@
                                     <li class="progress-step">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 3</u></h4>
+                                            <h4 class="progress-title">Step 3</h4>
                                             Accomplish and Upload PRS for Endorsement
                                         </span>
                                     </li>
@@ -374,7 +374,7 @@
                                     <li class="progress-step">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 4</u></h4>
+                                            <h4 class="progress-title">Step 4</h4>
                                             Ready to Implement
                                         </span>
                                     </li>
@@ -648,7 +648,7 @@
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th style="width:45%">Step</th>
@@ -659,11 +659,13 @@
                                         <td style="padding:0px"><textarea id="remarks3" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></textarea></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <center>
                                     <button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
-                                    <br><br>
+                                    
                                     <button class="btn-success" name="approve" value="<%=SE.getId()%>">Approve</button>
                                     <button type = "submit" class="btn-warning" name="revise" value="<%=SE.getId()%>">Revise</button>
                                     <button class="btn-danger" style='background-color:red; border-color:red' name="reject" value="<%=SE.getId()%>">Reject</button>

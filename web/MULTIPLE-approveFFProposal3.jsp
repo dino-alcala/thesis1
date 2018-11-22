@@ -31,44 +31,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
-            #myInput {
-                background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-                background-position: 10px 12px; /* Position the search icon */
-                background-repeat: no-repeat; /* Do not repeat the icon image */
-                width: 100%; /* Full-width */
-                padding: 12px 20px 12px 40px; /* Add some padding */
-                border: 1px solid #ddd; /* Add a grey border */
-                margin-bottom: 12px; /* Add some space below the input */
-                margin-top: 20px; 
-            }
-
-            #myTable {
-                border-collapse: collapse; /* Collapse borders */
-                width: 100%; /* Full-width */
-                border: 1px solid #ddd; /* Add a grey border */
-
-            }
-
-            #myTable th, #myTable td {
-                text-align: left; /* Left-align text */
-                padding: 12px; /* Add padding */
-            }
-
-            #myTable tr {
-                border-bottom: 1px solid #ddd; 
-            }
-
-            #myTable tr.header, #myTable tr:hover {
-                background-color: #4CAF50;
-            }
-
-            .panel-title{
-                font-size: 40px;
-                text-align: left;
-                margin-top: 20px;
-                padding-bottom: 10px;
-            }
-
             p{
                 margin-bottom: 0;
                 font-size: 15px;
@@ -82,6 +44,8 @@
 
             h4{
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .panel-success > .panel-heading {
@@ -98,57 +62,88 @@
                 border: 3px solid #4CAF50;
             }
 
-            @-webkit-keyframes scale-up {
-                from {
-                    opacity: 1;
-                    -webkit-transform: translate(-50%, -50%) scale(0);
-                    transform: translate(-50%, -50%) scale(0);
-                }
-                to {
-                    opacity: 0;
-                    -webkit-transform: translate(-50%, -50%) scale(1);
-                    transform: translate(-50%, -50%) scale(1);
-                }
-            }
-
-            @keyframes scale-up {
-                from {
-                    opacity: 1;
-                    -webkit-transform: translate(-50%, -50%) scale(0);
-                    transform: translate(-50%, -50%) scale(0);
-                }
-                to {
-                    opacity: 0;
-                    -webkit-transform: translate(-50%, -50%) scale(1);
-                    transform: translate(-50%, -50%) scale(1);
-                }
-            }
-
             h3{
-                font-size: 40px;   
+                font-size: 22px;   
                 border-bottom: 2px solid #4CAF50;
                 padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .card-header{
-                background-color: #4CAF50;
+                background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
                 background-color: whitesmoke;
-            }
-
-            .card{
                 border: 1px solid black;
             }
 
-
-            th,tr,td{
-                padding:15px;
+            .btn-success{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
-            textarea{
-                resize: none;
+            .btn-warning{
+                background-color: darkyellow;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            .btn-danger{
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            .btn-audit{
+                background-color: gray;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            .btn-list{
+                background-color: dodgerblue;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
         </style>
@@ -162,7 +157,7 @@
 
                 alert("<%=request.getAttribute("remarksFF")%>");
             });
-            <% } %>
+            <% }%>
         </script>
     </head>
 
@@ -207,7 +202,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -306,7 +301,7 @@
                                     <li class="progress-step is-active">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 1</u></h4>
+                                            <h4 class="progress-title">Step 1</h4>
                                             Evaluation by LSPO
                                         </span>
                                     </li>
@@ -314,7 +309,7 @@
                                     <li class="progress-step">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 2</u></h4>
+                                            <h4 class="progress-title">Step 2</h4>
                                             Approval by the Council
                                         </span>
                                     </li>
@@ -322,7 +317,7 @@
                                     <li class="progress-step">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 3</u></h4>
+                                            <h4 class="progress-title">Step 3</h4>
                                             Accomplish and Upload PRS for Endorsement
                                         </span>
                                     </li>
@@ -330,7 +325,7 @@
                                     <li class="progress-step">
                                         <span class="progress-marker"></span>
                                         <span class="progress-text">
-                                            <h4 class="progress-title"><u>Step 4</u></h4>
+                                            <h4 class="progress-title">Step 4</h4>
                                             Ready to Implement
                                         </span>
                                     </li>
@@ -351,36 +346,37 @@
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses</h4>
                                     </div>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Unit Cost</th> 
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                            <%
+                                                double count = 0;
+                                                for (int i = 0; i < FF.getExpenses().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=FF.getExpenses().get(i).getItem()%></td>
+                                                <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
+                                                <td><%=FF.getExpenses().get(i).getQuantity()%></td>
+                                                <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
+                                            </tr>
+                                            <%
+                                                    count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
+                                                }
+                                            %>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total: <%=count%></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
-
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Unit Cost</th> 
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                    <%
-                                        double count = 0;
-                                        for (int i = 0; i < FF.getExpenses().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=FF.getExpenses().get(i).getItem()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
-                                        <td><%=FF.getExpenses().get(i).getQuantity()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
-                                    </tr>
-                                    <%
-                                            count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
-                                        }
-                                    %>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total: <%=count%></td>
-                                    </tr>
-                                </table>
                                 <br/>
 
                                 <div class="card">
@@ -409,17 +405,11 @@
                                     </tr>
                                 </table>
                                 <br/>
-                                <input type="hidden" name="ffID" value="<%=FF.getId()%>">
-                                
-                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>  
-                                <br>
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
-                                <br>
-                                <center>
+                                <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
+                                    <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br>  
                                     <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
                                     <button class="btn-warning" type="submit" name="revise" value="<%=FF.getId()%>">Revise</button>
-                                    <button class="btn-danger" tyep="submit" name="reject" value="<%=FF.getId()%>" style='background-color:red; border-color:red'>Reject</button>
-                                </center>
+                                    <button class="btn-danger" type="submit" style='background-color:red; border-color:red;' name="reject" value="<%=FF.getId()%>">Reject</button></center>
                             </div>
 
                         </div>

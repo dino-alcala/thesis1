@@ -39,52 +39,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            tr:hover {
-                background-color: lightgreen;
-            }
-
-            .table{
-                border-bottom: 2px solid lightgray;
-                margin-bottom: 30px;
-            }
-
-            .panels{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
- 
             table,th,td{
                 border:.5px solid
                     black;
             }
 
-            hr{
-                background-color:green;
-            }
 
             textarea{
                 resize: none;
             } 
-
-            a{
-                color: #0083e8;
-            }
-
-            b{
-                font-weight: 600;
-                font-family: "Times New Roman", Times, serif;
-                font-size: 20px;
-            }
-
+            
             th {
                 background-color: green;
                 color: white;
@@ -92,46 +56,34 @@
 
             table {
                 border-collapse: collapse;
-
             }
-            
+
             th{
                 padding:15px;
             }
-
-            #addRowButton {
-                padding: 10px;
-                padding-right: 17px;
-                padding-left: 17px;
-            }
-
-            #deleteRowButton {
-                padding: 10px;
-            }
-
-            #addRowButton, #deleteRowButton {
-                display:inline-block;
+            
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
             }
 
             .button{
                 background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
-            h3{
-                font-family: "Times New Roman", Times, serif;
-            }
-            
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
-                font-size: 15px;
+
+            legend, h3, #inputText, #classification, option, select, value, td{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 
@@ -324,9 +276,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Program Accomplishment Report Form</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
 
@@ -342,13 +292,13 @@
 
                         <fieldset>
                             <legend><b>Target KRA:</b> </legend>
-                            <input name="kra" size="50" type="text" readonly value="<%=UserDAO.getKRAnameByID(SE.getTargetKRA())%>">
+                            <input id="inputText" name="kra" size="50" type="text" readonly value="<%=UserDAO.getKRAnameByID(SE.getTargetKRA())%>">
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Target Goal:</b> </legend>
-                            <input name="goal" size="50" type="text" readonly value="<%=UserDAO.getGoalnameByID(SE.getTargetGoal())%>">
+                            <input id="inputText" name="goal" size="50" type="text" readonly value="<%=UserDAO.getGoalnameByID(SE.getTargetGoal())%>">
                             <br><br>
                         </fieldset>
 
@@ -362,7 +312,7 @@
                         %>
                         <fieldset>
                             <legend><b>Target Measure:</b> </legend>
-                            <input name="measure<%=x%>" size="50" type="text" readonly value="<%=UserDAO.GetMeasureObject(measuresid.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measuresid.get(x)).getDescription()%>">
+                            <input id="inputText" name="measure<%=x%>" size="50" type="text" readonly value="<%=UserDAO.GetMeasureObject(measuresid.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measuresid.get(x)).getDescription()%>">
                             <br><br>
                         </fieldset>
                         <%
@@ -372,7 +322,7 @@
 
                         <fieldset>
                             <legend><b>Program Name:</b></legend>
-                            <center><input id="fname" name="name" size="50" type="text" readonly value="<%=SE.getName()%>"></center>
+                            <center><input id="inputText" name="name" size="50" type="text" readonly value="<%=SE.getName()%>"></center>
                             <br>
                         </fieldset>
                             
@@ -384,43 +334,43 @@
 
                         <fieldset>  
                             <legend><b>Project Proponents/s (College / Department / Unit)</b></legend>
-                            <center><input id="fname" name="proponents" size="50" type="text" readonly value="<%=UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>, <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>"></center>
+                            <center><input id="inputText" name="proponents" size="50" type="text" readonly value="<%=UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>, <%=UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString()))%>"></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Number of Beneficiaries</b></legend>
-                            <input id="fname" style="width:30%" type="number" name="number" size="50" type="text" required>
+                            <input id="inputText" style="width:30%" type="number" name="number" size="50" type="text" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Project Beneficiaries (Urban poor, women, youth, etc.)</b></legend>
-                            <input style="width:30%" id="fname" name="projben" size="50" type="text" required>
+                            <input style="width:30%" id="inputText" name="projben" size="50" type="text" required>
                             <br><br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Address of Beneficiaries</b></legend>
-                            <center><input id="fname" name="addressben" size="50" type="text" required></center>
+                            <center><input id="inputText" name="addressben" size="50" type="text" required></center>
                             <br>
                         </fieldset>
 
                         <fieldset>  
                             <legend><b>Date of Project Implementation</b></legend>
-                            <center><input value="<%=SE.getActualDate()%>" id="fname" name="implementationdate" readonly size="50" type="date" required></center>
+                            <center><input value="<%=SE.getActualDate()%>" id="inputText" name="implementationdate" readonly size="50" type="date" required></center>
                             <br><br>
                         </fieldset>
                             
                         <fieldset>  
                             <legend><b>Address of Project Implementation</b></legend>
-                            <center><input value="<%=SE.getImplementationaddress()%>" id="fname" name="addressproj" readonly size="50" type="text" required></center>
+                            <center><input value="<%=SE.getImplementationaddress()%>" id="inputText" name="addressproj" readonly size="50" type="text" required></center>
                             <br><br>
                         </fieldset>
                             
                         <fieldset>  
                             <legend><b>Link to Google Sheets:</b></legend>
-                            <input style="width:30%" id="fname" name="gsheets" size="50" type="text" required>
+                            <input style="width:30%" id="inputText" name="gsheets" size="50" type="text" required>
                             <br><br>
                         </fieldset>  
 
@@ -433,52 +383,52 @@
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">CAP:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required></td>
 
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">APSP:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">ASF:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Faculty:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Administrators:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Direct Hired Contractuals:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Independent Contractors:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">External Service Personnel:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Graduate Students:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number8" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number8" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Undergraduate Students:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number9" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number9" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Alumni:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number10" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number10" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Parents:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number11" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number11" required></td>
                                     </tr>
                                 </table>
                             </center>
@@ -487,7 +437,7 @@
 
                         <fieldset>  
                             <legend><b>Amount of Grants Received from OVPLM or Others:</b></legend>
-                            <center><input id="fname" name="source" size="50" readonly value="<%=SE.getTotalAmount()%>" type="text"></center>
+                            <center><input id="inputText" name="source" size="50" readonly value="<%=SE.getTotalAmount()%>" type="text"></center>
                             <br>
                         </fieldset>
 

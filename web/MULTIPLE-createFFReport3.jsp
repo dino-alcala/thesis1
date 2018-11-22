@@ -40,60 +40,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            tr:hover {
-                background-color: lightgreen;
-            }
-
-            .budget{
-                font-size: 70px; 
-                text-align: center; 
-                border-bottom: 2px solid lightgray;
-                padding-bottom: 20px;
-                font-family: 'Montserrat', sans-serif;
-            }
-
-            .table{
-                border-bottom: 2px solid lightgray;
-                margin-bottom: 30px;
-            }
-
-            .panels{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
-
             table,th,td{
                 border:.5px solid
                     black;
             }
 
-            hr{
-                background-color:green;
-            }
 
             textarea{
                 resize: none;
             } 
-
-            a{
-                color: #0083e8;
-            }
-
-            b{
-                font-weight: 600;
-                font-family: "Times New Roman", Times, serif;
-                font-size: 20px;
-            }
-
+            
             th {
                 background-color: green;
                 color: white;
@@ -101,31 +57,25 @@
 
             table {
                 border-collapse: collapse;
-
             }
+
             th{
                 padding:15px;
             }
-
-            #addRowButton {
-                padding: 10px;
-                padding-right: 17px;
-                padding-left: 17px;
-            }
-
-            #deleteRowButton {
-                padding: 10px;
-            }
-
-            #addRowButton, #deleteRowButton {
-                display:inline-block;
+            
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
             }
 
             .button{
-                background-color: #4CAF50;
+                background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -133,17 +83,19 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            td{
-                padding:15px
+            legend, h3, #inputText, #classification, option, select, value, th{
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            
+            #addRowButton {
+                padding: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
-            h3{
-                font-family: "Times New Roman", Times, serif;
-            }
-
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
-                font-size: 15px;
+            #deleteRowButton {
+                padding: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             @keyframes colorize {
@@ -359,9 +311,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
-                <center><h3>Program Accomplishment Report Form</h3></center>
-                <hr size="5" noshade>
+                <center><h3>Program Accomplishment Report</h3></center>
 
                 <div class="form-style-5">
 
