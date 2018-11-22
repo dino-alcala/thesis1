@@ -81,7 +81,7 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            legend, h3, #inputText, #classification, option, select, value{
+            legend, h3, #inputText, #classification, option, select, value, #kra, #goals, #measures, #measures2, #measures3{
                 font-family: "Arial", Helvetica, sans-serif;
             }
 

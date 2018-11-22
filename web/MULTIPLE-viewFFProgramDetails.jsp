@@ -129,7 +129,7 @@
             }
             
             .btn-audit{
-                background-color: gray;
+                background-color: mediumseagreen;
                 border: none;
                 border-radius: 5px;
                 color: white;
@@ -424,7 +424,7 @@
 
                                 <%    } else if (UserDAO.hasFFReport(FF.getId())) {
                                 %>
-                                    <button type="submit" value="<%=FF.getId()%>" name="viewReport" class="button">View Accomplishment Report</button>
+                                    <button type="submit" value="<%=FF.getId()%>" name="viewReport" class="btn-success">View Accomplishment Report</button>
                                 
                                 <%
                                     }
