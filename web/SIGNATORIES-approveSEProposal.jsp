@@ -88,7 +88,7 @@
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 30px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -101,7 +101,7 @@
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 30px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -114,7 +114,7 @@
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 30px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -127,7 +127,7 @@
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 30px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;

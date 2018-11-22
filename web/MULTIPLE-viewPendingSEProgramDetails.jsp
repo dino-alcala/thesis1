@@ -76,7 +76,7 @@
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 30px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -89,7 +89,7 @@
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 30px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -102,7 +102,7 @@
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 30px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -111,11 +111,11 @@
             }
             
             .btn-audit{
-                background-color: gray;
+                background-color: mediumseagreen;
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 10px 30px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
@@ -401,7 +401,7 @@
                                     <div class="card-header">
                                         <h4>Work Plan</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Date</th>
@@ -426,13 +426,15 @@
                                     %>
 
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses (Requested: ₱<%=SE.getTotalAmount()%>)</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Item</th>
@@ -462,13 +464,15 @@
                                         <td>Total: <%=count%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Expected Participants vs. Total Population of the Unit</h4>
                                     </div>
-                                </div>
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Sector</th>
@@ -496,6 +500,8 @@
                                         <td><%=SE.getExpectedGraduate()%></td>
                                     </tr>
                                 </table>
+                                </div>
+                                </div>
                                 <br/>
 
                                 <div class="card">

@@ -39,57 +39,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-            tr:hover {
-                background-color: lightgreen;
-            }
-
-            .table{
-                border-bottom: 2px solid lightgray;
-                margin-bottom: 30px;
-            }
-
-            .quickhead{
-                border-bottom: 1px solid gray;
-                padding-bottom: 10px; 
-                margin-bottom: 20px;
-            }
-            .quickview{
-                margin-bottom: 50px;
-            }
-
-            .panels{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
-
             table,th,td{
                 border:.5px solid
                     black;
             }
 
-            hr{
-                background-color:green;
-            }
 
             textarea{
                 resize: none;
             } 
-
-            a {
-                color: #0083e8;
-            }
-
-            b{
-                font-weight: 600;
-                font-family: "Times New Roman", Times, serif;
-                font-size: 20px;
-            }
-
+            
             th {
                 background-color: green;
                 color: white;
@@ -97,49 +56,34 @@
 
             table {
                 border-collapse: collapse;
-
             }
+
             th{
                 padding:15px;
             }
-
-            #addRowButton {
-                padding: 10px;
-                padding-right: 17px;
-                padding-left: 17px;
-            }
-
-            #deleteRowButton {
-                padding: 10px;
-            }
-
-            #addRowButton, #deleteRowButton {
-                display:inline-block;
+            
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
             }
 
             .button{
                 background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
-            td{
-                padding:15px
-            }
-            
-            h3{
-                font-family: "Times New Roman", Times, serif;
-            }
-            
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
-                font-size: 15px;
+
+            legend, h3, #inputText, #classification, option, select, value, td, #fname{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             @keyframes colorize {
@@ -355,9 +299,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Program Accomplishment Report Form</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
 
@@ -365,13 +307,13 @@
                     <form action="encodeSEReport3" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend><span class="number">5</span><b>Major Problems Encountered</b></legend>
-                            <center><textarea rows="10" cols="90%" name="problem" required></textarea> </center>
+                            <center><textarea id="inputText" rows="10" cols="90%" name="problem" required></textarea> </center>
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><span class="number">6</span><b>Other Recommendations (Comments / Feedbacks / Participation of Stakeholders)</b></legend>
-                            <center><textarea rows="10" cols="90%" name="recommendation" required></textarea> </center>
+                            <center><textarea id="inputText" rows="10" cols="90%" name="recommendation" required></textarea> </center>
                             <br><br>
                         </fieldset>
 

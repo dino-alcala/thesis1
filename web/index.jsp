@@ -35,8 +35,11 @@
             }
 
             body{
-                background-color: whitesmoke;
+                background-image: url("https://backgroundcheckall.com/wp-content/uploads/2017/12/green-white-background-4.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
             }
+            
 
             .loginWrapper {	
                 margin-top: 30px;

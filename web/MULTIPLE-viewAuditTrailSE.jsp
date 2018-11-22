@@ -30,47 +30,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
-            #myInput {
-                background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-                background-position: 10px 12px; /* Position the search icon */
-                background-repeat: no-repeat; /* Do not repeat the icon image */
-                width: 100%; /* Full-width */
-                padding: 12px 20px 12px 40px; /* Add some padding */
-                border: 1px solid #ddd; /* Add a grey border */
-                margin-bottom: 12px; /* Add some space below the input */
-                margin-top: 20px; 
-            }
-
-            #myTable {
-                border-collapse: collapse; /* Collapse borders */
-                width: 100%; /* Full-width */
-                border: 1px solid #ddd; /* Add a grey border */
-
-            }
-
-            #myTable th, #myTable td {
-                text-align: left; /* Left-align text */
-                padding: 12px; /* Add padding */
-            }
-
-            #myTable tr {
-                border-bottom: 1px solid #ddd; 
-            }
-
-            #myTable tr.header, #myTable tr:hover {
-                background-color: #4CAF50;
-            }
-
-            .panel-title{
-                font-size: 40px;
-                text-align: left;
-                margin-top: 20px;
-                padding-bottom: 10px;
-            }
-
-            p{
-                margin-bottom: 0;
+             p{
                 font-size: 15px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table, td, th {
@@ -78,75 +40,34 @@
                 border-collapse: collapse;
                 text-align: center;
             }
+            
+            h2{
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 20px;
+            }
 
             h4{
                 color: white;
-            }
-
-            .panel-success > .panel-heading {
-                background-color: #4CAF50;
-                border-color: #ddd;
-                border: 1px solid;
-            }
-
-            .panel-body{
-                border: 1px solid;
-            }
-
-            .panel-upper{
-                border: 3px solid #4CAF50;
-            }
-
-            @media (max-width: 399px) {
-                .progress-tracker-mobile {
-                    overflow-x: auto;
-                }
-                .progress-tracker-mobile .progress-tracker {
-                    min-width: 200%;
-                }
-            }
-
-            @-webkit-keyframes scale-up {
-                from {
-                    opacity: 1;
-                    -webkit-transform: translate(-50%, -50%) scale(0);
-                    transform: translate(-50%, -50%) scale(0);
-                }
-                to {
-                    opacity: 0;
-                    -webkit-transform: translate(-50%, -50%) scale(1);
-                    transform: translate(-50%, -50%) scale(1);
-                }
-            }
-
-            @keyframes scale-up {
-                from {
-                    opacity: 1;
-                    -webkit-transform: translate(-50%, -50%) scale(0);
-                    transform: translate(-50%, -50%) scale(0);
-                }
-                to {
-                    opacity: 0;
-                    -webkit-transform: translate(-50%, -50%) scale(1);
-                    transform: translate(-50%, -50%) scale(1);
-                }
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             h3{
-                font-size: 40px;   
+                font-size: 22px;   
                 border-bottom: 2px solid #4CAF50;
                 padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .card-header{
-                background-color: #4CAF50;
+                background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
                 background-color: whitesmoke;
-            }
-
-            .card{
                 border: 1px solid black;
             }
 
@@ -154,13 +75,70 @@
             th,tr,td{
                 padding:15px;
             }
-
-            .progress-title{
-                color: darkgreen;
+            
+            .btn-list{
+                background-color: dodgerblue;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
-
-            textarea{
-                resize: none;
+            
+            .btn-success{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-warning{
+                background-color: darkyellow;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-danger{
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-audit{
+                background-color: gray;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
         </style>

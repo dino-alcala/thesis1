@@ -33,8 +33,8 @@
 
         <style>
             p{
-                margin-bottom: 0;
                 font-size: 15px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table, td, th {
@@ -42,31 +42,105 @@
                 border-collapse: collapse;
                 text-align: center;
             }
+            
+            h2{
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 20px;
+            }
 
             h4{
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             h3{
-                font-size: 40px;   
+                font-size: 22px;   
                 border-bottom: 2px solid #4CAF50;
                 padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             .card-header{
-                background-color: #4CAF50;
+                background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
             }
 
             .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
                 background-color: whitesmoke;
-            }
-
-            .card{
                 border: 1px solid black;
             }
 
+
             th,tr,td{
                 padding:15px;
+            }
+            
+            .btn-success{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-list{
+                background-color: dodgerblue;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-warning{
+                background-color: darkyellow;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-danger{
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-audit{
+                background-color: mediumseagreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 
@@ -344,8 +418,7 @@
                                     <div class="card-header">
                                         <h4>Accomplishment of Objectives:</h4>
                                     </div>
-                                </div>
-
+                                <div class="card-body">
                                 <table style="width:100%">
                                     <tr>
                                         <th>Expected Outcomes</th>
@@ -364,6 +437,9 @@
                                         }
                                     %>
                                 </table>
+                                </div>
+                                </div>
+
 
                                 <br/>                       
                                 <div class="card">
@@ -485,14 +561,21 @@
                                         <h4>Annexes</h4>
                                     </div>
                                     <div class="card-body">   
-                                        <p><button type="submit" name="photo" value="<%=SEreport.getId()%>">View Photo</button></p>
-                                        <br>
-                                        <p><button type="submit" name="beneficiariesattendance" value="<%=SEreport.getId()%>">Beneficiaries Attendance Sheets</button></p>
-                                        <br>
-                                        <p><button type="submit" name="dlsuattendance" value="<%=SEreport.getId()%>">DLSU Participants Attendance Sheets</button></p>
-                                        <br>
-                                        <p><button type="submit" name="beneficiariesletters" value="<%=SEreport.getId()%>">Beneficiaries' Letters / Feedbacks</button></p>
-                                        <br>
+                                        
+                                        
+                                        
+                                        <button class="btn-list" type="submit" name="dlsuattendance" value="<%=SEreport.getId()%>">DLSU Participants Attendance Sheets</button>
+                                        
+                                        <button class="btn-audit" type="submit" name="photo" value="<%=SEreport.getId()%>">View Photo</button><br>
+                                        
+                                        <button class="btn-list" type="submit" name="beneficiariesattendance" value="<%=SEreport.getId()%>">Beneficiaries Attendance Sheets</button>
+                                        
+                                        <button class="btn-audit" type="submit" name="beneficiariesletters" value="<%=SEreport.getId()%>">Beneficiaries' Letters / Feedbacks</button>
+                                       
+                                        
+                                       
+                                       
+                                       
                                     </div>
                                 </div>
                                 <br/>
