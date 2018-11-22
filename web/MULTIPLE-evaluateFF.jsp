@@ -36,8 +36,7 @@
             body {
                 background: #fff;
                 box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-                color: #545454;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-family: "Arial", Helvetica, sans-serif;
                 font-size: 16px;
                 line-height: 1.5;
                 margin: 0 auto;
@@ -45,10 +44,13 @@
                 padding: 2em 2em 4em;
             }
 
-            h1, h2, h3, h4, h5, h6 {
-                color: #222;
-                font-weight: 600;
-                line-height: 1.3;
+            h1{
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 20px;
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
             }
 
             h2 {
@@ -61,10 +63,6 @@
 
             b{
                 font-weight: 600;
-            }
-
-            samp {
-                display: none;
             }
 
             img {
@@ -80,24 +78,38 @@
             th {
                 background-color: green;
                 color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            #inputText{
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table {
                 border-collapse: collapse;
 
             }
+            
             th{
                 padding:15px;
             }
 
-            td{
-                font-size: 15px;
-                margin-left: 10px;
-            }
-
             p{
                 margin-left: 10px;
-                font-size: 17px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            
+            .btn-success{
+                background-color: darkgreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 8px 15px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 12px;
+                font-family: "Arial", Helvetica, sans-serif;
             }
 
 
@@ -154,9 +166,7 @@
     </head>
 
     <body>
-        <hr size="5" noshade>    
     <center><h1>FAITH FORMATION - EVALUATION</h1></center>
-    <hr size="5" noshade>
 
     <form action = "addFFevaluation" method="post">
         <%
@@ -300,16 +310,16 @@
                     </table></center>
                 <br>
                 <p>One important learning I had was...</p>
-                <center><input type = "text" name ="learning"></center>
+                <center><input id="inputText" type = "text" name ="learning"></center>
                 <p>One memorable activity was...</p>
-                <center><input type = "text" name ="memorable"></center>
+                <center><input id="inputText" type = "text" name ="memorable"></center>
                 <p>Comments, suggestions, and recommendations</p>
-                <center><input type = "text" name ="feedback"></center>
+                <center><input id="inputText" type = "text" name ="feedback"></center>
                 <br>
                 <center><p>Thank you very much!</p></center>
             </fieldset>
 
-            <button type="submit" name="ffID" value="<%=FF.getId()%>">Submit</button>
+            <center><button class="btn-success" type="submit" name="ffID" value="<%=FF.getId()%>">Submit</button></center>
 
         </div>
     </form>
