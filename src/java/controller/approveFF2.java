@@ -6,9 +6,14 @@
 package controller;
 
 import dao.UserDAO;
+import entity.FF;
 import entity.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -37,9 +42,10 @@ public class approveFF2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
             UserDAO UserDAO = new UserDAO();
-
             HttpSession session = request.getSession();
+            FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
 
             if (request.getParameter("auditFF") != null) {
 
@@ -60,14 +66,47 @@ public class approveFF2 extends HttpServlet {
             if (request.getParameter("approve") != null) {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    UserDAO.updateStepFF(5, Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.approveLSPO(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion")){
+                        UserDAO.updateStepFF(5, Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.approveLSPO(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updatelsporemarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                    } else if(request.getParameter("remarktype").equals("--")) {
+                        request.setAttribute("remarksFF", "Please select a remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
+                        dispatcher.forward(request, response);
+                    } else if(request.getParameter("remarktype").equals("Revise") || request.getParameter("remarktype").equals("Reject")) {
+                        request.setAttribute("remarksFF", "Please select the correct remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
+                        dispatcher.forward(request, response);
+                    }
                 }
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody("You have new FF Proposal ready for approval!");
+                
+                SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+                java.util.Date javaDate = new java.util.Date();
+                String input1 = new java.sql.Date(javaDate.getTime()).toString();
+                String input2 = FF.getActualDate().toString();
+                
+                try {
+                    java.util.Date date1 = myFormat.parse(input1);
+                    java.util.Date date2 = myFormat.parse(input2);
+                    long diff = date2.getTime() - date1.getTime();
+                    long days = (diff / (1000*60*60*24));
+
+                    if(days <= 14){
+                        n.setBody("URGENT FF Proposal ready for approval!!");
+                    } else if (days >= 15){
+                        n.setBody("New FF Proposal ready for approval!");
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -113,16 +152,30 @@ public class approveFF2 extends HttpServlet {
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("revise"))));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
-                    UserDAO.reviseLSPO(Integer.parseInt(request.getParameter("revise")));
-                    UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by the LSPO.");
+                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion") || request.getParameter("remarktype").equals("Reject")){
+                        request.setAttribute("remarksFF", "Please select the correct remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
+                        dispatcher.forward(request, response);
+                    } else if(request.getParameter("remarktype").equals("--")) {
+                        request.setAttribute("remarksFF", "Please select a remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
+                        dispatcher.forward(request, response);
+                    } else if(request.getParameter("remarktype").equals("Revise")) {
+                        UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
+                        UserDAO.reviseLSPO(Integer.parseInt(request.getParameter("revise")));
+                        UserDAO.updatelsporemarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("revise")));
+                        n3.setBody("Your proposal has some revisions before it is approved by the LSPO.");
 
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        java.util.Date dt = new java.util.Date();
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                    n3.setDt(sdf.format(dt));
-                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
+                        n3.setDt(sdf.format(dt));
+                        n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
+                    }
                 }
 
                 UserDAO.AddNotification(n3);
@@ -138,15 +191,29 @@ public class approveFF2 extends HttpServlet {
                 n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    UserDAO.updatelsporemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                    UserDAO.rejectLSPO(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by the LSPO. Reason: " + request.getParameter("remarks1"));
+                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion") || request.getParameter("remarktype").equals("Revise")){
+                        request.setAttribute("remarksFF", "Please select the correct remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
+                        dispatcher.forward(request, response);
+                    } else if(request.getParameter("remarktype").equals("--")) {
+                        request.setAttribute("remarksFF", "Please select a remark type!");
+                        request.setAttribute("ffID", FF.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
+                        dispatcher.forward(request, response);
+                    } else if(request.getParameter("remarktype").equals("Reject")) {
+                        UserDAO.updatelsporemarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("reject")));
+                        UserDAO.rejectLSPO(Integer.parseInt(request.getParameter("reject")));
+                        n3.setBody("Your proposal has been rejected by the LSPO. Reason: " + request.getParameter("remarks1"));
 
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        java.util.Date dt = new java.util.Date();
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                    n3.setDt(sdf.format(dt));
-                    n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
+                        n3.setDt(sdf.format(dt));
+                        n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
+                    }
                 }
 
                 UserDAO.rejectFF(Integer.parseInt(request.getParameter("reject")));

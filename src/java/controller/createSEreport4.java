@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import entity.SE;
 import entity.SEreport;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,6 +50,39 @@ public class createSEreport4 extends HttpServlet {
 
             SEreport.setMajorProblems(request.getParameter("problem"));
             SEreport.setOtherRecommendations(request.getParameter("recommendation"));
+            
+            SE SE = UserDAO.retrieveSEBySEID(SEreport.getSeproposalID());
+            
+            if(SE.getRemarktype1().equals("Suggestion")){
+                SEreport.setFeedback1(request.getParameter("feedback1"));
+            } else if(SE.getRemarktype1().equals("Comment")) {
+                SEreport.setFeedback1("No Suggestion");
+            }
+            
+            if(SE.getRemarktype2().equals("Suggestion")){
+                SEreport.setFeedback2(request.getParameter("feedback2"));
+            } else if(SE.getRemarktype2().equals("Comment")) {
+                SEreport.setFeedback2("No Suggestion");
+            }
+            
+            if(SE.getRemarktype3().equals("Suggestion")){
+                SEreport.setFeedback3(request.getParameter("feedback3"));
+            } else if(SE.getRemarktype3().equals("Comment")) {
+                SEreport.setFeedback3("No Suggestion");
+            }
+            
+            if(SE.getRemarktype4().equals("Suggestion")){
+                SEreport.setFeedback4(request.getParameter("feedback4"));
+            } else if(SE.getRemarktype4().equals("Comment")) {
+                SEreport.setFeedback4("No Suggestion");
+            }
+            
+            if(SE.getRemarktype5().equals("Suggestion")){
+                SEreport.setFeedback5(request.getParameter("feedback5"));
+            } else if(SE.getRemarktype5().equals("Comment")) {
+                SEreport.setFeedback5("No Suggestion");
+            }
+           
 
             InputStream inputStream1 = null;
             Part filePart1 = request.getPart("uploadphoto");

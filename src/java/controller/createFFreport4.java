@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import entity.FF;
 import entity.FFreport;
 import entity.Notification;
 import java.io.IOException;
@@ -51,6 +52,38 @@ public class createFFreport4 extends HttpServlet {
 
             FFreport.setMajorProblems(request.getParameter("problem"));
             FFreport.setOtherRecommendations(request.getParameter("recommendation"));
+            
+            FF FF = UserDAO.retrieveFFByFFID(FFreport.getFfproposalID());
+            
+            if(FF.getRemarktype1().equals("Suggestion")){
+                FFreport.setFeedback1(request.getParameter("feedback1"));
+            } else if(FF.getRemarktype1().equals("Comment")) {
+                FFreport.setFeedback1("No Suggestion");
+            }
+            
+            if(FF.getRemarktype2().equals("Suggestion")){
+                FFreport.setFeedback2(request.getParameter("feedback2"));
+            } else if(FF.getRemarktype2().equals("Comment")) {
+                FFreport.setFeedback2("No Suggestion");
+            }
+            
+            if(FF.getRemarktype3().equals("Suggestion")){
+                FFreport.setFeedback3(request.getParameter("feedback3"));
+            } else if(FF.getRemarktype3().equals("Comment")) {
+                FFreport.setFeedback3("No Suggestion");
+            }
+            
+            if(FF.getRemarktype4().equals("Suggestion")){
+                FFreport.setFeedback4(request.getParameter("feedback4"));
+            } else if(FF.getRemarktype4().equals("Comment")) {
+                FFreport.setFeedback4("No Suggestion");
+            }
+            
+            if(FF.getRemarktype5().equals("Suggestion")){
+                FFreport.setFeedback5(request.getParameter("feedback5"));
+            } else if(FF.getRemarktype5().equals("Comment")) {
+                FFreport.setFeedback5("No Suggestion");
+            }
 
             InputStream inputStream1 = null;
             Part filePart1 = request.getPart("uploadphoto");

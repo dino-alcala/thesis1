@@ -319,9 +319,18 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
-                        <i class="fa fa-user-circle"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <div class="col-sm-12">
+                                <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
+                                <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                                <legend style="font-size:14px;"><b>Unit/Position:</b> <br><%=session.getAttribute("position").toString()%></legend>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
                 <div class="nav-button">
                     <div class="dropdown">
@@ -480,10 +489,10 @@
                                         for (int i = 0; i < FF.getExpenses().size(); i++) {
                                     %>
                                     <tr>
-                                        <td><input value="<%=FF.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%" id="ffitem0"  name ="ffitem0" required></td>
-                                        <td><input value="<%=FF.getExpenses().get(i).getUnitcost()%>" type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost0" name ="ffunitcost0" required></td>
-                                        <td><input value="<%=FF.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity0" name ="ffquantity0" required></td>
-                                        <td><input value="<%=FF.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" readonly required></td>
+                                        <td><input value="<%=FF.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%" id="ffitem<%=i%>"  name ="ffitem<%=i%>" required></td>
+                                        <td><input value="<%=FF.getExpenses().get(i).getUnitcost()%>" type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost<%=i%>" name ="ffunitcost<%=i%>" required></td>
+                                        <td><input value="<%=FF.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity<%=i%>" name ="ffquantity<%=i%>" required></td>
+                                        <td><input value="<%=FF.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal<%=i%>" name ="ffsubtotal<%=i%>" readonly required></td>
                                     </tr>
                                     <%
                                         }

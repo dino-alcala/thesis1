@@ -144,7 +144,7 @@
                 background-color: whitesmoke;
                 border: 1px solid black;
             }
-            
+
             th,tr,td{
                 padding:15px;
             }
@@ -152,7 +152,7 @@
             textarea{
                 resize: none;
             }
-            
+
             .button{
                 background-color: mediumseagreen;
                 border: none;
@@ -165,7 +165,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-success{
                 background-color: darkgreen;
                 border: none;
@@ -178,8 +178,8 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
-             .btn-danger{
+
+            .btn-danger{
                 background-color: red;
                 border: none;
                 border-radius: 5px;
@@ -191,7 +191,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-warning{
                 background-color: darkyellow;
                 border: none;
@@ -204,12 +204,24 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-               
+
             legend, h3, #inputText, #classification, option, select, value{
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
         </style>
+        
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("remarksSE") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("remarksSE")%>");
+            });
+            <% } %>
+        </script>
 
     </head>
 
@@ -249,9 +261,19 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
-                        <i class="fa fa-user-circle"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <div class="col-sm-12">
+                                <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
+                                <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                                <legend style="font-size:14px;"><b>Unit/Position:</b> <br><%=session.getAttribute("position").toString()%></legend>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
                 <div class="nav-button">
                     <div class="dropdown">
@@ -262,7 +284,6 @@
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
                                 <%
-                                    UserDAO UserDAO = new UserDAO();
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
@@ -380,18 +401,18 @@
                                         <p><b>KRA:</b> <%=UserDAO.getKRAnameByID(SE.getTargetKRA())%></p><br>
                                         <p><b>Goal:</b> <%=UserDAO.getGoalnameByID(SE.getTargetGoal())%></p><br>
                                         <p><b>Measure/s:</b> 
-                                            <% 
+                                            <%
                                                 ArrayList<Integer> measures = new ArrayList();
                                                 measures = UserDAO.GetMeasures(SE.getId());
-                                                
-                                                for(int x = 0 ; x < measures.size() ; x++){
+
+                                                for (int x = 0; x < measures.size(); x++) {
                                             %>    
                                         <p><%=UserDAO.GetMeasureObject(measures.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measures.get(x)).getDescription()%></p>
-                                                
-                                            <%
-                                                }
-                                            %>
-                                            <br>
+
+                                        <%
+                                            }
+                                        %>
+                                        <br>
                                         <p><br><b>Community: </b> <%=UserDAO.getCommunitynameByID(SE.getTargetCommunity())%></p>
                                     </div>  
                                 </div>
@@ -447,7 +468,7 @@
                                         %>
                                         <br>
                                         <p>Explanation:</p>
-                                        <p><%if(SE.getExplanation() != null){%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
+                                        <p><%if (SE.getExplanation() != null) {%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -456,32 +477,32 @@
                                     <div class="card-header">
                                         <h4>Work Plan</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Activity</th> 
-                                        <th>Time Start</th>
-                                        <th>Time End</th>
-                                        <th>Venue</th>
-                                    </tr>
-                                    <%
-                                        for (int i = 0; i < SE.getWorkplan().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=SE.getWorkplan().get(i).getDate()%></td>
-                                        <td><%=SE.getWorkplan().get(i).getActivity()%></td>
-                                        <td><%=SE.getWorkplan().get(i).getTimestarttimeend()%></td>
-                                        <td><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></td>
-                                        <td><%=SE.getWorkplan().get(i).getVenue()%></td>
-                                    </tr>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Activity</th> 
+                                                <th>Time Start</th>
+                                                <th>Time End</th>
+                                                <th>Venue</th>
+                                            </tr>
+                                            <%
+                                                for (int i = 0; i < SE.getWorkplan().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=SE.getWorkplan().get(i).getDate()%></td>
+                                                <td><%=SE.getWorkplan().get(i).getActivity()%></td>
+                                                <td><%=SE.getWorkplan().get(i).getTimestarttimeend()%></td>
+                                                <td><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></td>
+                                                <td><%=SE.getWorkplan().get(i).getVenue()%></td>
+                                            </tr>
 
-                                    <%
-                                        }
-                                    %>
+                                            <%
+                                                }
+                                            %>
 
-                                </table>
-                                </div>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -490,36 +511,36 @@
                                         <h4>Breakdown of Expenses</h4>
                                     </div>
                                     <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Unit Cost</th> 
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                    <%
-                                        double count = 0;
-                                        for (int i = 0; i < SE.getExpenses().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=SE.getExpenses().get(i).getItem()%></td>
-                                        <td><%=SE.getExpenses().get(i).getUnitcost()%></td>
-                                        <td><%=SE.getExpenses().get(i).getQuantity()%></td>
-                                        <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
-                                    </tr>
-                                    <%
-                                            count += SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity();
-                                        }
-                                    %>
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Unit Cost</th> 
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                            <%
+                                                double count = 0;
+                                                for (int i = 0; i < SE.getExpenses().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=SE.getExpenses().get(i).getItem()%></td>
+                                                <td><%=SE.getExpenses().get(i).getUnitcost()%></td>
+                                                <td><%=SE.getExpenses().get(i).getQuantity()%></td>
+                                                <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
+                                            </tr>
+                                            <%
+                                                    count += SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity();
+                                                }
+                                            %>
 
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total: <%=count%></td>
-                                    </tr>
-                                </table>
-                                </div>    
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total: <%=count%></td>
+                                            </tr>
+                                        </table>
+                                    </div>    
                                 </div>
                                 <br/>
 
@@ -527,35 +548,35 @@
                                     <div class="card-header">
                                         <h4>Expected Participants vs. Total Population of the Unit</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Sector</th>
-                                        <th>Total Population</th>
-                                        <th>Expected Number of Participants</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Academic Staff from Unit</td>
-                                        <td><%=SE.getTotalpopulationAcademicStaff()%></td>
-                                        <td><%=SE.getExpectedAcademicStaff()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Support Staff from Unit</td>
-                                        <td><%=SE.getTotalpopulationSupportStaff()%></td>
-                                        <td><%=SE.getExpectedSupportStaff()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Undergraduate Students</td>
-                                        <td><%=SE.getTotalpopulationUndergraduate()%></td>
-                                        <td><%=SE.getExpectedUndergraduate()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Graduate Students</td>
-                                        <td><%=SE.getTotalPopulationGraduate()%></td>
-                                        <td><%=SE.getExpectedGraduate()%></td>
-                                    </tr>
-                                </table>
-                                </div>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Sector</th>
+                                                <th>Total Population</th>
+                                                <th>Expected Number of Participants</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Academic Staff from Unit</td>
+                                                <td><%=SE.getTotalpopulationAcademicStaff()%></td>
+                                                <td><%=SE.getExpectedAcademicStaff()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Support Staff from Unit</td>
+                                                <td><%=SE.getTotalpopulationSupportStaff()%></td>
+                                                <td><%=SE.getExpectedSupportStaff()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Undergraduate Students</td>
+                                                <td><%=SE.getTotalpopulationUndergraduate()%></td>
+                                                <td><%=SE.getExpectedUndergraduate()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Graduate Students</td>
+                                                <td><%=SE.getTotalPopulationGraduate()%></td>
+                                                <td><%=SE.getExpectedGraduate()%></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -563,25 +584,25 @@
                                     <div class="card-header">
                                         <h4>Persons Responsible</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                    </tr>
-                                    <%
-                                        for (int i = 0; i < SE.getResponsible().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=SE.getResponsible().get(i).getName()%></td>
-                                        <td><%=SE.getResponsible().get(i).getEmail()%></td>
-                                    </tr>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                            </tr>
+                                            <%
+                                                for (int i = 0; i < SE.getResponsible().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=SE.getResponsible().get(i).getName()%></td>
+                                                <td><%=SE.getResponsible().get(i).getEmail()%></td>
+                                            </tr>
 
-                                    <%
-                                        }
-                                    %>
-                                </table>
-                                </div>
+                                            <%
+                                                }
+                                            %>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -589,130 +610,238 @@
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th style="width:45%">Step</th>
-                                        <th style="width:55%">Remarks</th> 
-                                    </tr>
-                                    <tr>
-                                        <td>Evaluation by COSCA</td>
-                                        <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Enter Remarks:</td>
-                                        <td>
-                                            <%if (session.getAttribute("position").toString().equals("COSCA - Director")) {
-                                            %>
-                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <%  } else if (session.getAttribute("position").toString().equals("LSPO - Director")) {
-                                            %>
-                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
-                                            <br>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th style="width:45%">Step</th>
+                                                <th style="width:55%">Remarks</th> 
+                                                <th>Remark Type</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Evaluation by COSCA</td>
+                                                <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Remarks by the Council</td>
+                                                <td>
+                                                    <%if (session.getAttribute("position").toString().equals("COSCA - Director")) {
+                                                    %>
+                                                    <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%  } else if (session.getAttribute("position").toString().equals("LSPO - Director")) {
+                                                    %>
+                                                    <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                                    <br>
 
-                                            <%  } else if (session.getAttribute("position").toString().equals("DSA - Dean")) {
-                                            %>
-                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
-                                            <br>
+                                                    <%  } else if (session.getAttribute("position").toString().equals("DSA - Dean")) {
+                                                    %>
+                                                    <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                                    <br>
 
-                                            <%  } else if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
-                                            %>
-                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
-                                            <br>
+                                                    <%  } else if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
+                                                    %>
+                                                    <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                                    <br>
 
-                                            <%  } else if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
-                                            %>
-                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
-                                            <br>
+                                                    <%  } else if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
+                                                    %>
+                                                    <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                                    <br>
 
-                                            <%  } %>
+                                                    <%  } %>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Remarks by the Council</td>
-                                        <%
-                                            if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
-                                        %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%></textarea></td>
+                                                </td>
+                                                <td>
+                                                    <%  
+                                                        if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
+                                                    %>
+                                                    <%if (SE.getRemarktype2()!= null) {%><%=SE.getRemarktype2()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype3()!= null) {%><%=SE.getRemarktype3()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype4()!= null) {%><%=SE.getRemarktype4()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype5()!= null) {%><%=SE.getRemarktype5()%><%}%>
+                                                    <br>
+                                                    
+                                                    <% } else if (session.getAttribute("position").toString().equals("COSCA - Director")) { %>
+                                                    
+                                                    <%if (SE.getRemarktype1()!= null) {%><%=SE.getRemarktype1()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype2()!= null) {%><%=SE.getRemarktype2()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype3()!= null) {%><%=SE.getRemarktype3()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype4()!= null) {%><%=SE.getRemarktype4()%><%}%>
+                                                    <br>
+                                                    
+                                                    <% } else if (session.getAttribute("position").toString().equals("LSPO - Director")) { %>
+                                                    
+                                                    <%if (SE.getRemarktype1()!= null) {%><%=SE.getRemarktype1()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype2()!= null) {%><%=SE.getRemarktype2()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype3()!= null) {%><%=SE.getRemarktype3()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype5()!= null) {%><%=SE.getRemarktype5()%><%}%>
+                                                    <br>
+                                                    
+                                                    <% } else if (session.getAttribute("position").toString().equals("DSA - Dean")) { %>
+                                                    
+                                                    <%if (SE.getRemarktype1()!= null) {%><%=SE.getRemarktype1()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype3()!= null) {%><%=SE.getRemarktype3()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype4()!= null) {%><%=SE.getRemarktype4()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype5()!= null) {%><%=SE.getRemarktype5()%><%}%>
+                                                    <br>
+                                                    
+                                                    <% } else if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) { %>
+                                                    
+                                                    <%if (SE.getRemarktype1()!= null) {%><%=SE.getRemarktype1()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype2()!= null) {%><%=SE.getRemarktype2()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype4()!= null) {%><%=SE.getRemarktype4()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <%if (SE.getRemarktype5()!= null) {%><%=SE.getRemarktype5()%><%}%>
+                                                    <br>
+                                                    <% } %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Enter Remarks:</td>
+                                                <%
+                                                    if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
+                                                %>
+                                                <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%></textarea></td>
+                                                <td><center>
+                                                    <select name="remarktype">
+                                                        <option value="--">--</option>
+                                                        <option value="Comment">Comment</option>
+                                                        <option value="Suggestion">Suggestion</option>
+                                                    </select>
+                                                </center></td>
                                             <%
                                                 }
                                                 if (session.getAttribute("position").toString().equals("DSA - Dean")) {
                                             %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                                if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
-                                            %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                                if (session.getAttribute("position").toString().equals("LSPO - Director")) {
-                                            %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                                if (session.getAttribute("position").toString().equals("COSCA - Director")) {
-                                            %>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%></textarea></td>
-                                            <%
-                                                }
-                                            %>
-                                    </tr>
-                                </table>
-                                </div>
+                                            <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%></textarea></td>
+                                            <td><center>
+                                                    <select name="remarktype">
+                                                        <option value="--">Select</option>
+                                                        <option value="Comment">Comment</option>
+                                                        <option value="Suggestion">Suggestion</option>
+                                                    </select>
+                                                </center></td>
+                                                <%
+                                                    }
+                                                    if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
+                                                %>
+                                            <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%></textarea></td>
+                                            <td><center>
+                                                    <select name="remarktype">
+                                                        <option value="--">Select</option>
+                                                        <option value="Comment">Comment</option>
+                                                        <option value="Suggestion">Suggestion</option>
+                                                    </select>
+                                                </center></td>
+                                                <%
+                                                    }
+                                                    if (session.getAttribute("position").toString().equals("LSPO - Director")) {
+                                                %>
+                                            <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%></textarea></td>
+                                            <td><center>
+                                                    <select name="remarktype">
+                                                        <option value="--">Select</option>
+                                                        <option value="Comment">Comment</option>
+                                                        <option value="Suggestion">Suggestion</option>
+                                                    </select>
+                                                </center></td>
+                                                <%
+                                                    }
+                                                    if (session.getAttribute("position").toString().equals("COSCA - Director")) {
+                                                %>
+                                            <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%></textarea></td>
+                                            <td><center>
+                                                    <select name="remarktype">
+                                                        <option value="--">Select</option>
+                                                        <option value="Comment">Comment</option>
+                                                        <option value="Suggestion">Suggestion</option>
+                                                    </select>
+                                                </center></td>
+                                                <%
+                                                    }
+                                                %>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
                                 <input type="hidden" name="seID" value="<%=SE.getId()%>">
-                                
-
                                 <center>
                                     <button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
                                     <button class="btn-success" name="approve" value="<%=SE.getId()%>">Proceed</button>

@@ -184,7 +184,7 @@
                         <tr>
                             <td><p><%=revisions.get(i).getName()%></p></td>
                             <td><p><b><%=revisions.get(i).getRevisionTime()%></b></p></td>
-                            <td><button  type="submit" class="btn-success" name="auditSE<%=i%>" value="<%=revisions.get(i).getId()%>">View</button></td>
+                            <td><center><button  type="submit" class="btn-success" name="auditSE<%=i%>" value="<%=revisions.get(i).getId()%>">View</button></center></td>
                         </tr>
 
                         <%

@@ -68,7 +68,6 @@ public class addSEevaluation2 extends HttpServlet {
             SEevaluation.setFeedbacks(request.getParameter("feedback"));
             
             UserDAO.AddSEevaluation(SEevaluation);
-            System.out.println("ADJASKDJSKLDJSKLJDKASLJDASDKL " + UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 + "%");
             
             if(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 >= 50 && UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 <= 60){
                 Notification n2 = new Notification();
@@ -81,8 +80,16 @@ public class addSEevaluation2 extends HttpServlet {
                 n2.setDt(sdf.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                 UserDAO.AddNotification(n2);
+                
+                n2.setTitle(SEevaluation.getName() + " Evaluators: " + UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 + "%");
+                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated!");
+                n2.setDt(sdf.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                 UserDAO.AddNotification(n2);
+                
+                n2.setTitle(SEevaluation.getName() + " Evaluators: 50%");
+                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.retrieveSEreportBySEID(SEevaluation.getSeproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated!");
+                n2.setDt(sdf.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n2);                
             }

@@ -148,6 +148,17 @@
 
         </style>
 
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("remarksFF") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("remarksFF")%>");
+            });
+            <% } %>
+        </script>
     </head>
 
     <body>
@@ -186,9 +197,19 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
-                        <i class="fa fa-user-circle"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <div class="col-sm-12">
+                                <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
+                                <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                                <legend style="font-size:14px;"><b>Unit/Position:</b> <br><%=session.getAttribute("position").toString()%></legend>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
                 <div class="nav-button">
                     <div class="dropdown">
@@ -199,7 +220,6 @@
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
                                 <%
-                                    UserDAO UserDAO = new UserDAO();
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
@@ -218,7 +238,7 @@
 
                                 <%
                                     }
-                                %>
+                                %>   
                             </div>
                         </ul>
                     </div>
@@ -368,17 +388,38 @@
                                     <tr>
                                         <th style="width:45%">Step</th>
                                         <th style="width:55%">Remarks</th> 
+                                        <th>Remark Type</th>
                                     </tr>
                                     <tr>
                                         <td>Evaluation by LSPO</td>
-                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-5px;" name="remarks1"><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%}%></textarea></td>
+                                        <td style="padding:0px"><textarea id="remarks4" rows="3" cols="110" style="margin-bottom:-0.5%" name="remarks1"><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%}%></textarea></td>
+                                        <td><center>
+                                        <select name="remarktype">
+                                            <option value="--">Select</option>
+                                            <option value="Comment">Comment (for Approve button)</option>
+                                            <option value="Suggestion">Suggestion (for Approve button)</option>
+                                            <option value="Revise">Revise</option>
+                                            <option value="Reject">Reject</option>
+                                        </select>
+                                    </center></td>
                                     </tr>
                                 </table>
                                 <br/>
+<<<<<<< HEAD
 
                                  <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
                                  <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br>  
                                 <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
+=======
+                                <input type="hidden" name="ffID" value="<%=FF.getId()%>">
+                                
+                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>  
+                                <br>
+                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
+                                <br>
+                                <center>
+                                    <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
+>>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
                                     <button class="btn-warning" type="submit" name="revise" value="<%=FF.getId()%>">Revise</button>
                                     <button class="btn-danger" type="submit" style='background-color:red; border-color:red;' name="reject" value="<%=FF.getId()%>">Reject</button></center>
                             </div>

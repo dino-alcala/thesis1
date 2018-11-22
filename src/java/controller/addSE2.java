@@ -148,47 +148,139 @@ public class addSE2 extends HttpServlet {
                 UserDAO.AddNotification(n);
 
                 if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
+                    try {
+                        java.util.Date date1 = myFormat.parse(input1);
+                        java.util.Date date2 = myFormat.parse(input2);
+                        long diff = date2.getTime() - date1.getTime();
+                        long days = (diff / (1000 * 60 * 60 * 24));
 
-                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        if (days <= 14) {
+                            request.setAttribute("successSE", "You have successfully submitted an URGENT SE Proposal! Target implementation date is less than 14 days from now.");
+                        } else if (days >= 15) {
+                            request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
                     dispatcher.forward(request, response);
                 } else if (session.getAttribute("unit").equals("Center for Social Concern and Action (COSCA)")) {
+                    try {
+                        java.util.Date date1 = myFormat.parse(input1);
+                        java.util.Date date2 = myFormat.parse(input2);
+                        long diff = date2.getTime() - date1.getTime();
+                        long days = (diff / (1000 * 60 * 60 * 24));
 
-                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        if (days <= 14) {
+                            request.setAttribute("successSE", "You have successfully submitted an URGENT SE Proposal! Target implementation date is less than 14 days from now.");
+                        } else if (days >= 15) {
+                            request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/COSCA-home.jsp");
                     dispatcher.forward(request, response);
 
                 } else if (session.getAttribute("position").equals("Lasallian Pastoral Office (LSPO)")) {
+                    try {
+                        java.util.Date date1 = myFormat.parse(input1);
+                        java.util.Date date2 = myFormat.parse(input2);
+                        long diff = date2.getTime() - date1.getTime();
+                        long days = (diff / (1000 * 60 * 60 * 24));
 
-                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        if (days <= 14) {
+                            request.setAttribute("successSE", "You have successfully submitted an URGENT SE Proposal! Target implementation date is less than 14 days from now.");
+                        } else if (days >= 15) {
+                            request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/LSPO-home.jsp");
                     dispatcher.forward(request, response);
 
                 } else if (session.getAttribute("position").equals("Dean of Student Affairs (DSA)")) {
+                    try {
+                        java.util.Date date1 = myFormat.parse(input1);
+                        java.util.Date date2 = myFormat.parse(input2);
+                        long diff = date2.getTime() - date1.getTime();
+                        long days = (diff / (1000 * 60 * 60 * 24));
 
-                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        if (days <= 14) {
+                            request.setAttribute("successSE", "You have successfully submitted an URGENT SE Proposal! Target implementation date is less than 14 days from now.");
+                        } else if (days >= 15) {
+                            request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-home.jsp");
                     dispatcher.forward(request, response);
 
                 } else if (session.getAttribute("position").equals("Laguna Campus Lasallian Mission (LCLM)")) {
+                    try {
+                        java.util.Date date1 = myFormat.parse(input1);
+                        java.util.Date date2 = myFormat.parse(input2);
+                        long diff = date2.getTime() - date1.getTime();
+                        long days = (diff / (1000 * 60 * 60 * 24));
 
-                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        if (days <= 14) {
+                            request.setAttribute("successSE", "You have successfully submitted an URGENT SE Proposal! Target implementation date is less than 14 days from now.");
+                        } else if (days >= 15) {
+                            request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/LCLM-home.jsp");
                     dispatcher.forward(request, response);
 
                 } else if (session.getAttribute("position").toString().contains("ADEALM")) {
+                    try {
+                        java.util.Date date1 = myFormat.parse(input1);
+                        java.util.Date date2 = myFormat.parse(input2);
+                        long diff = date2.getTime() - date1.getTime();
+                        long days = (diff / (1000 * 60 * 60 * 24));
 
-                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        if (days <= 14) {
+                            request.setAttribute("successSE", "You have successfully submitted an URGENT SE Proposal! Target implementation date is less than 14 days from now.");
+                        } else if (days >= 15) {
+                            request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
                     dispatcher.forward(request, response);
                 } else {
-                    request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                    try {
+                        java.util.Date date1 = myFormat.parse(input1);
+                        java.util.Date date2 = myFormat.parse(input2);
+                        long diff = date2.getTime() - date1.getTime();
+                        long days = (diff / (1000 * 60 * 60 * 24));
+
+                        if (days <= 14) {
+                            request.setAttribute("successSE", "You have successfully submitted an URGENT SE Proposal! Target implementation date is less than 14 days from now.");
+                        } else if (days >= 15) {
+                            request.setAttribute("successSE", "You have successfully submitted your SE Proposal!");
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
                     dispatcher.forward(request, response);

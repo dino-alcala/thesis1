@@ -111,9 +111,19 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
-                        <i class="fa fa-user-circle"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <div class="col-sm-12">
+                                <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
+                                <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                                <legend style="font-size:14px;"><b>Unit/Position:</b> <br><%=session.getAttribute("position").toString()%></legend>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
                 <div class="nav-button">
                     <div class="dropdown">
@@ -124,7 +134,6 @@
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
                                 <%
-                                    UserDAO UserDAO = new UserDAO();
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
@@ -269,8 +278,10 @@
                                         <h4>Executive Summary</h4>
                                     </div>
                                     <div class="card-body">   
+                                        <b>What is the significance of the project?</b>
                                         <p><%=FFreport.getSignificanceProject()%></p>
                                         <br>
+                                        <b>What are the highlights of the project?</b>
                                         <p><%=FFreport.getHighlightsProject()%></p>
                                     </div>
                                 </div>
@@ -356,6 +367,64 @@
                                     </div>
                                 </div>
                                 <br/>
+                                
+                                <%
+                                    if (!FFreport.getFeedback1().equals("No Suggestion") || !FFreport.getFeedback2().equals("No Suggestion") || !FFreport.getFeedback3().equals("No Suggestion")
+                                            || !FFreport.getFeedback4().equals("No Suggestion") || !FFreport.getFeedback5().equals("No Suggestion")) {
+                                %>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>LMC Suggestions</h4>
+                                    </div>
+                                    <div class="card-body">   
+                                        <table style="width:100%">
+                                            <thead>
+                                            <th>LMC</th>
+                                            <th>Suggestion</th>
+                                            <th>Feedback</th>
+                                            </thead>
+                                            <tbody>
+                                                <% if (!FFreport.getFeedback1().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>Br. Michael Broughton</center></td>
+                                                    <td><%=FF.getLmc1Remarks()%></td>
+                                                    <td><%=FFreport.getFeedback1()%></td>
+                                                </tr>
+                                                <% } %>
+                                                <% if (!FFreport.getFeedback2().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>Nelca Villarin</center></td>
+                                                    <td><%=FF.getLmc2Remarks()%></td>
+                                                    <td><%=FFreport.getFeedback2()%></td>
+                                                </tr>
+                                                <% } %>
+                                                <% if (!FFreport.getFeedback3().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>Margarita Perdido</center></td>
+                                                    <td><%=FF.getLmc3Remarks()%></td>
+                                                    <td><%=FFreport.getFeedback3()%></td>
+                                                </tr>
+                                                <% } %>
+                                                <% if (!FFreport.getFeedback4().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>James Laxa</center></td>
+                                                    <td><%=FF.getLmc4Remarks()%></td>
+                                                    <td><%=FFreport.getFeedback4()%></td>
+                                                </tr>
+                                                <% } %>
+                                                <% if (!FFreport.getFeedback5().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>Fritzie De Vera</center></td>
+                                                    <td><%=FF.getLmc5Remarks()%></td>
+                                                    <td><%=FFreport.getFeedback5()%></td>
+                                                </tr>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br/>
+                                <% }%>
 
                                 <div class="card">
                                     <div class="card-header">

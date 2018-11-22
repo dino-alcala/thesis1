@@ -67,7 +67,6 @@ public class addFFevaluation extends HttpServlet {
             FFevaluation.setFeedback(request.getParameter("feedback"));
 
             UserDAO.AddFFevaluation(FFevaluation);
-            System.out.println("ADJASKDJSKLDJSKLJDKASLJDASDKL " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "%");
             
             if(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 >= 50 && UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 <= 60){
                 Notification n2 = new Notification();
@@ -80,10 +79,18 @@ public class addFFevaluation extends HttpServlet {
                 n2.setDt(sdf.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                 UserDAO.AddNotification(n2);
+                
+                n2.setTitle(FFevaluation.getName() + " Evaluators: " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "%");
+                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated!");
+                n2.setDt(sdf.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                 UserDAO.AddNotification(n2);
+                
+                n2.setTitle(FFevaluation.getName() + " Evaluators: 50%");
+                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated!");
+                n2.setDt(sdf.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
-                UserDAO.AddNotification(n2);                
+                UserDAO.AddNotification(n2);             
             }
 
             request.setAttribute("successEvaluation", "You have successfully submitted the evaluation!");

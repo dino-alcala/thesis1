@@ -111,9 +111,19 @@
             </div>
             <ul class="navbar-nav mr auto">
                 <div class="nav-button">
-                    <button type="button" class="btn btn-info navbar-btn-profile">
-                        <i class="fa fa-user-circle"></i>
-                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info navbar-btn-profile" href="#" data-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <div class="col-sm-12">
+                                <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
+                                <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
+                                <legend style="font-size:14px;"><b>Unit/Position:</b> <br><%=session.getAttribute("position").toString()%></legend>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
                 <div class="nav-button">
                     <div class="dropdown">
@@ -124,7 +134,6 @@
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
                                 <%
-                                    UserDAO UserDAO = new UserDAO();
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
@@ -175,7 +184,7 @@
                     <%
                         SEreport SEreport = new SEreport();
                         SEreport = UserDAO.retrieveSEreportBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
-                        
+
                         SE SE = new SE();
                         SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
                     %>
@@ -187,22 +196,22 @@
                                     <div class="card-body">
                                         <h3><%=SEreport.getProjectTitle()%></h3>
                                         <p><b>Date of Implementation: </b> <%=SEreport.getImplementationdate()%></p>
-                                        <p><b>Address of Implementation: </b> <%=SEreport.getAddressOfProject() %></p>
+                                        <p><b>Address of Implementation: </b> <%=SEreport.getAddressOfProject()%></p>
                                         <br>
                                         <p><b>Targeted KRA:</b> <%=SEreport.getTargetKRA()%></p>
                                         <p><b>Targeted Goal:</b> <%=SEreport.getTargetGoal()%></p>
                                         <p><b>Targeted Measure/s:</b> 
-                                            <% 
+                                            <%
                                                 ArrayList<Integer> measures = new ArrayList();
                                                 measures = UserDAO.GetMeasures(Integer.parseInt(request.getAttribute("seID").toString()));
-                                                
-                                                for(int x = 0 ; x < measures.size() ; x++){
+
+                                                for (int x = 0; x < measures.size(); x++) {
                                             %>    
                                         <p><%=UserDAO.GetMeasureObject(measures.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measures.get(x)).getDescription()%></p>
-                                                
-                                            <%
-                                                }
-                                            %>
+
+                                        <%
+                                            }
+                                        %>
                                         <br>
                                         <p><b>Project Proponents/s:</b> <%=SEreport.getProjectProponent()%></p>
                                         <p><b>Program Head: </b> <%=SE.getProgramHead()%></p>
@@ -216,22 +225,22 @@
                                         <h4>Persons Responsible</h4>
                                     </div>
                                     <div class="card-body">
-                                    <%
-                                        SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
-                                        
-                                        ArrayList<SEresponsible> responsible = SE.getResponsible();
-                                        
-                                        for (int i = 0; i < responsible.size(); i++) {
-                                    %>
-                                    <p><%=SE.getResponsible().get(i).getName()%> - <%=SE.getResponsible().get(i).getEmail()%></p>
-                                    <%
-                                        }
-                                    %>
-                                        
+                                        <%
+                                            SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
+
+                                            ArrayList<SEresponsible> responsible = SE.getResponsible();
+
+                                            for (int i = 0; i < responsible.size(); i++) {
+                                        %>
+                                        <p><%=SE.getResponsible().get(i).getName()%> - <%=SE.getResponsible().get(i).getEmail()%></p>
+                                        <%
+                                            }
+                                        %>
+
                                     </div>
                                 </div>
                                 <br/>
-                                
+
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Information Identification</h4>
@@ -313,14 +322,19 @@
                                         <h4>Executive Summary</h4>
                                     </div>
                                     <div class="card-body">   
+                                        <b>What is the significance of the project?</b>
                                         <p><%=SEreport.getSignificanceProject()%></p>
                                         <br>
+                                        <b>What happened in the implementation of the project?</b>
                                         <p><%=SEreport.getHappenedImplementationProject()%></p>
                                         <br>
+                                        <b>When and where was the project implemented?</b>
                                         <p><%=SEreport.getWhenwhereProject()%></p>
                                         <br>
+                                        <b>Who were the participants?</b>
                                         <p><%=SEreport.getParticipantsProject()%></p>
                                         <br>
+                                        <b>What are the highlights of the project?</b>
                                         <p><%=SEreport.getHighlightsProject()%></p>
                                     </div>
                                 </div>
@@ -406,6 +420,64 @@
                                     </div>
                                 </div>
                                 <br/>
+
+                                <%
+                                    if (!SEreport.getFeedback1().equals("No Suggestion") || !SEreport.getFeedback2().equals("No Suggestion") || !SEreport.getFeedback3().equals("No Suggestion")
+                                            || !SEreport.getFeedback4().equals("No Suggestion") || !SEreport.getFeedback5().equals("No Suggestion")) {
+                                %>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>LMC Suggestions</h4>
+                                    </div>
+                                    <div class="card-body">   
+                                        <table style="width:100%">
+                                            <thead>
+                                            <th>LMC</th>
+                                            <th>Suggestion</th>
+                                            <th>Feedback</th>
+                                            </thead>
+                                            <tbody>
+                                                <% if (!SEreport.getFeedback1().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>Br. Michael Broughton</center></td>
+                                                    <td><%=SE.getLmc1Remarks()%></td>
+                                                    <td><%=SEreport.getFeedback1()%></td>
+                                                </tr>
+                                                <% } %>
+                                                <% if (!SEreport.getFeedback2().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>Nelca Villarin</center></td>
+                                                    <td><%=SE.getLmc2Remarks()%></td>
+                                                    <td><%=SEreport.getFeedback2()%></td>
+                                                </tr>
+                                                <% } %>
+                                                <% if (!SEreport.getFeedback3().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>Margarita Perdido</center></td>
+                                                    <td><%=SE.getLmc3Remarks()%></td>
+                                                    <td><%=SEreport.getFeedback3()%></td>
+                                                </tr>
+                                                <% } %>
+                                                <% if (!SEreport.getFeedback4().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>James Laxa</center></td>
+                                                    <td><%=SE.getLmc4Remarks()%></td>
+                                                    <td><%=SEreport.getFeedback4()%></td>
+                                                </tr>
+                                                <% } %>
+                                                <% if (!SEreport.getFeedback5().equals("No Suggestion")) { %>
+                                                <tr>
+                                                    <td><center>Fritzie De Vera</center></td>
+                                                    <td><%=SE.getLmc5Remarks()%></td>
+                                                    <td><%=SEreport.getFeedback5()%></td>
+                                                </tr>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br/>
+                                <% }%>
 
                                 <div class="card">
                                     <div class="card-header">

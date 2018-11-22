@@ -44,8 +44,8 @@ public class approveSE3 extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
 
             UserDAO UserDAO = new UserDAO();
-
             HttpSession session = request.getSession();
+            SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
 
             if (request.getParameter("auditSE") != null) {
 
@@ -58,33 +58,78 @@ public class approveSE3 extends HttpServlet {
             if (request.getParameter("approve") != null) {
 
                 if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission")) {
-                    UserDAO.voteMichael(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updatelmc1Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if(request.getParameter("remarktype").equals("--")){
+                        request.setAttribute("remarksSE", "Please select a remark type!");
+                        request.setAttribute("seID", SE.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteMichael(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updatelmc1Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        SE.setRemarktype1(request.getParameter("remarktype"));
+                    }
                 }
 
                 if (session.getAttribute("position").toString().equals("DSA - Dean")) {
-                    UserDAO.voteNelca(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updatelmc2Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if(request.getParameter("remarktype").equals("--")){
+                        request.setAttribute("remarksSE", "Please select a remark type!");
+                        request.setAttribute("seID", SE.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteNelca(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updatelmc2Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        SE.setRemarktype2(request.getParameter("remarktype"));
+                    }
                 }
 
                 if (session.getAttribute("position").toString().equals("LCLM - Executive Director")) {
-                    UserDAO.voteMargarita(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updatelmc3Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if(request.getParameter("remarktype").equals("--")){
+                        request.setAttribute("remarksSE", "Please select a remark type!");
+                        request.setAttribute("seID", SE.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteMargarita(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updatelmc3Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        SE.setRemarktype3(request.getParameter("remarktype"));
+                    }
                 }
 
                 if (session.getAttribute("position").toString().equals("LSPO - Director")) {
-                    UserDAO.voteJames(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updatelmc4Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if(request.getParameter("remarktype").equals("--")){
+                        request.setAttribute("remarksSE", "Please select a remark type!");
+                        request.setAttribute("seID", SE.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteJames(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updatelmc4Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        SE.setRemarktype4(request.getParameter("remarktype"));
+                    }
                 }
 
                 if (session.getAttribute("position").toString().equals("COSCA - Director")) {
-                    UserDAO.voteFritzie(Integer.parseInt(request.getParameter("approve")), 1);
-                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updatelmc5Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    if(request.getParameter("remarktype").equals("--")){
+                        request.setAttribute("remarksSE", "Please select a remark type!");
+                        request.setAttribute("seID", SE.getId());
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        UserDAO.voteFritzie(Integer.parseInt(request.getParameter("approve")), 1);
+                        UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updatelmc5Remarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        SE.setRemarktype5(request.getParameter("remarktype"));
+                    }
                 }
 
                 Notification n = new Notification();
@@ -115,7 +160,7 @@ public class approveSE3 extends HttpServlet {
                         n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
                         n2.setBody("Your proposal has been approved by the Council. You may now upload the PRS for endorsement.");
                         
-                        SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+                        SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
                         SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
                         java.util.Date javaDate = new java.util.Date();
                         String input1 = new java.sql.Date(javaDate.getTime()).toString();
