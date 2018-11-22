@@ -68,7 +68,7 @@ public class createFFreport extends HttpServlet {
                 if(FF.getStudentorg() == 1){
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/DSA-encodeFFReport.jsp");
                     dispatcher.forward(request, response);
-                } else {
+                } else if(FF.getStudentorg() != 1) {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFFReport.jsp");
                     dispatcher.forward(request, response);
                 }
