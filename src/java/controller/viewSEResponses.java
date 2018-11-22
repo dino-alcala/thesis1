@@ -40,7 +40,7 @@ public class viewSEResponses extends HttpServlet {
 
             UserDAO UserDAO = new UserDAO();
             ArrayList<SE> s = new ArrayList();
-            s = UserDAO.retrieveSEProposalByStep(8);
+            s = UserDAO.retrieveSEProposalByStep(9);
 
             for (int i = 0; i < s.size(); i++) {
                 if (UserDAO.hasSEEvaluation(s.get(i).getId())) {
