@@ -621,15 +621,9 @@
                                 <%
                                     if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
                                 %>
-<<<<<<< HEAD
                                 
                                     <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
                                
-=======
-                                <div>
-                                    <center><button class='button' style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram">Cancel Program</button></center>
-                                </div>
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
                                 <%
                                     }
                                 %>

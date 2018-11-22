@@ -440,16 +440,12 @@
                                 %>
                                 <br/>
                                 <br>
-<<<<<<< HEAD
-                                
-=======
 
                                 <center><button class='button' style="background-color:dodgerblue" type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
                                 <br>
                                 <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>
                                 <br>
 
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
                                 <%
                                     if (UserDAO.getStepFF(Integer.parseInt(request.getAttribute("ffID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>Upload PRS Photo/Scan: <input type ="file" name ="uploadprs">
@@ -474,15 +470,8 @@
                                 <%
                                     if (Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                 %>
-<<<<<<< HEAD
                                 <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
-                               
-=======
 
-                                <div>
-                                    <center><button class='button' style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="button">Cancel Program</button></center>
-                                </div>
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
                                 <%
                                     }
                                 %>

@@ -580,23 +580,12 @@
                                 </table>
                                 <br/>
                                 <input type="hidden" name="ffID" value="<%=FF.getId()%>">
-<<<<<<< HEAD
                                 
                                 <center><button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button> 
                                
                                 <button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
                                 
                                 <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center> 
-                               
-=======
-
-                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>  
-                                <br>
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
-                                <br>
-                                <center><button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center>
-                                <br/>
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
                             </div>
 
                         </div>

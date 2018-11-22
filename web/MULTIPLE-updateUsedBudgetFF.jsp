@@ -259,11 +259,8 @@
             </fieldset>
 
             <br><br>
-<<<<<<< HEAD
+            
             <center><button type="submit" name="FF" value="<%=request.getAttribute("ffID")%>" class="btn-success">Update</button></center>
-=======
-            <center><button type="submit" name="FF" value="<%=request.getAttribute("ffID")%>" class="button">Update</button></center>
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
         </form>
     </div>
 </body>

@@ -31,7 +31,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
-             p{
+            p{
                 margin-bottom: 0;
                 font-size: 15px;
             }
@@ -70,7 +70,7 @@
             }
 
             .card-header{
-                 background-color: darkgreen;
+                background-color: darkgreen;
                 font-family: "Arial", Helvetica, sans-serif;
                 font-size: 15px;
             }
@@ -93,7 +93,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-warning{
                 background-color: darkyellow;
                 border: none;
@@ -106,7 +106,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-danger{
                 background-color: red;
                 border: none;
@@ -119,7 +119,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-audit{
                 background-color: gray;
                 border: none;
@@ -132,7 +132,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-list{
                 background-color: dodgerblue;
                 border: none;
@@ -157,7 +157,7 @@
 
                 alert("<%=request.getAttribute("remarksFF")%>");
             });
-            <% } %>
+            <% }%>
         </script>
     </head>
 
@@ -202,7 +202,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -346,36 +346,36 @@
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Unit Cost</th> 
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                    <%
-                                        double count = 0;
-                                        for (int i = 0; i < FF.getExpenses().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=FF.getExpenses().get(i).getItem()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
-                                        <td><%=FF.getExpenses().get(i).getQuantity()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
-                                    </tr>
-                                    <%
-                                            count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
-                                        }
-                                    %>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total: <%=count%></td>
-                                    </tr>
-                                </table>
-                                </div>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Unit Cost</th> 
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                            <%
+                                                double count = 0;
+                                                for (int i = 0; i < FF.getExpenses().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=FF.getExpenses().get(i).getItem()%></td>
+                                                <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
+                                                <td><%=FF.getExpenses().get(i).getQuantity()%></td>
+                                                <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
+                                            </tr>
+                                            <%
+                                                    count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
+                                                }
+                                            %>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total: <%=count%></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -405,21 +405,9 @@
                                     </tr>
                                 </table>
                                 <br/>
-<<<<<<< HEAD
-
-                                 <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
-                                 <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br>  
-                                <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
-=======
-                                <input type="hidden" name="ffID" value="<%=FF.getId()%>">
-                                
-                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>  
-                                <br>
-                                <center><button class='btn-info' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
-                                <br>
-                                <center>
+                                <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
+                                    <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br>  
                                     <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
                                     <button class="btn-warning" type="submit" name="revise" value="<%=FF.getId()%>">Revise</button>
                                     <button class="btn-danger" type="submit" style='background-color:red; border-color:red;' name="reject" value="<%=FF.getId()%>">Reject</button></center>
                             </div>

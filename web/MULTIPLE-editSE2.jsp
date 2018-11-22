@@ -543,17 +543,10 @@
                                         for (int i = 0; i < SE.getExpenses().size(); i++) {
                                     %>
                                     <tr>
-<<<<<<< HEAD
                                         <td><input id="inputText" value="<%=SE.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
                                         <td><input value="<%=SE.getExpenses().get(i).getUnitcost()%>" type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
                                         <td><input value="<%=SE.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
                                         <td><input value="<%=SE.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" readonly required></td>
-=======
-                                        <td><input value="<%=SE.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem<%=i%>" required></td>
-                                        <td><input value="<%=SE.getExpenses().get(i).getUnitcost()%>" type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost<%=i%>" name ="seunitcost<%=i%>" required></td>
-                                        <td><input value="<%=SE.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity<%=i%>" name ="sequantity<%=i%>" required></td>
-                                        <td><input value="<%=SE.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal<%=i%>" name ="sesubtotal<%=i%>" readonly required></td>
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
                                     </tr>
                                     <%
                                         }

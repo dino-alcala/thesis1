@@ -453,14 +453,8 @@
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() != 0 && FF.getStep() != -1) {
                                 %>
 
-<<<<<<< HEAD
                                    <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
                                 
-=======
-                                <div>
-                                    <center><button class='button' style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
-                                </div>
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
                                 <%
                                     }
                                 %>
