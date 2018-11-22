@@ -413,16 +413,9 @@
                                 <br>
                                 <% }%>
 
-<<<<<<< HEAD
                                 <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
                                 <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button>
                                 
-=======
-                                <center><button class='button' style="background-color:dodgerblue" type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button></center>
-                                <br>
-                                <center><button class="button" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button></center>
-                                <br>
->>>>>>> 9de034a9b40d79d1e4c9cbeffa3a608a5ff91e09
 
                                 <%
                                     if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {

@@ -39,52 +39,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            tr:hover {
-                background-color: lightgreen;
-            }
-
-            .table{
-                border-bottom: 2px solid lightgray;
-                margin-bottom: 30px;
-            }
-
-            .panels{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
-
             table,th,td{
                 border:.5px solid
                     black;
             }
 
-            hr{
-                background-color:green;
-            }
 
             textarea{
                 resize: none;
             } 
-
-            a {
-                color: #0083e8;
-            }
-
-            b{
-                font-weight: 600;
-                font-family: "Times New Roman", Times, serif;
-                font-size: 20px;
-            }
-
+            
             th {
                 background-color: green;
                 color: white;
@@ -92,47 +56,36 @@
 
             table {
                 border-collapse: collapse;
-
             }
-            
+
             th{
                 padding:15px;
             }
-
-            #addRowButton {
-                padding: 10px;
-                padding-right: 17px;
-                padding-left: 17px;
-            }
-
-            #deleteRowButton {
-                padding: 10px;
-            }
-
-            #addRowButton, #deleteRowButton {
-                display:inline-block;
+            
+            h3{
+                border-bottom: 2px solid green;
+                border-top: 2px solid green;
+                padding-bottom: 10px;
+                padding-top: 10px;
             }
 
             .button{
                 background-color: darkgreen;
                 border: none;
+                border-radius: 5px;
                 color: white;
-                padding: 15px 32px;
+                padding: 10px 20px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
-            h3{
-                font-family: "Times New Roman", Times, serif;
+
+            legend, h3, #inputText, #classification, option, select, value, td, #fname{
+                font-family: "Arial", Helvetica, sans-serif;
             }
-            
-            legend, th, td{
-                font-family: "Times New Roman", Times, serif;
-                font-size: 15px;
-            }
+
 
 
             @keyframes colorize {
@@ -324,9 +277,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <hr size="5" noshade>    
                 <center><h3>Program Accomplishment Report Form</h3></center>
-                <hr size="5" noshade>
 
                 <div class="form-style-5">
 
@@ -342,13 +293,13 @@
 
                         <fieldset>
                             <legend><b>Target KRA:</b> </legend>
-                            <input name="kra" size="50" type="text" readonly value="<%=UserDAO.getKRAnameByID(SE.getTargetKRA())%>">
+                            <input id="inputText" name="kra" size="50" type="text" readonly value="<%=UserDAO.getKRAnameByID(SE.getTargetKRA())%>">
                             <br><br>
                         </fieldset>
 
                         <fieldset>
                             <legend><b>Target Goal:</b> </legend>
-                            <input name="goal" size="50" type="text" readonly value="<%=UserDAO.getGoalnameByID(SE.getTargetGoal())%>">
+                            <input id="inputText" name="goal" size="50" type="text" readonly value="<%=UserDAO.getGoalnameByID(SE.getTargetGoal())%>">
                             <br><br>
                         </fieldset>
 
@@ -362,7 +313,7 @@
                         %>
                         <fieldset>
                             <legend><b>Target Measure:</b> </legend>
-                            <input name="measure<%=x%>" size="50" type="text" readonly value="<%=UserDAO.GetMeasureObject(measuresid.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measuresid.get(x)).getDescription()%>">
+                            <input id="inputText" name="measure<%=x%>" size="50" type="text" readonly value="<%=UserDAO.GetMeasureObject(measuresid.get(x)).getMeasure()%> - <%=UserDAO.GetMeasureObject(measuresid.get(x)).getDescription()%>">
                             <br><br>
                         </fieldset>
                         <%
@@ -433,52 +384,52 @@
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">CAP:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required></td>
 
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">APSP:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">ASF:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Faculty:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Administrators:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Direct Hired Contractuals:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Independent Contractors:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">External Service Personnel:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Graduate Students:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number8" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number8" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Undergraduate Students:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number9" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number9" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Alumni:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number10" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number10" required></td>
                                     </tr>
                                     <tr>
                                         <td style="padding:12px">Parents:</td>
-                                        <td><input style="border-radius:0px; margin-top:-5px;" type="number" name ="number11" required></td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number11" required></td>
                                     </tr>
                                 </table>
                             </center>
