@@ -16596,7 +16596,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT AVG(or71) FROM seevaluation se JOIN seproposal s ON se.seproposalID = s.id WHERE unit = ? AND s.step = 8";
+        String query = "SELECT AVG(or71) FROM seevaluation se JOIN seproposal s ON se.seproposalID = s.id WHERE unit = ? AND s.step = 9";
         PreparedStatement ps = null;
         ResultSet rs = null;
 
