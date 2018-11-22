@@ -234,7 +234,7 @@
 
                         <%
                             ArrayList<SE> s = new ArrayList();
-                            s = UserDAO.retrieveSEProposalByStep(8);
+                            s = UserDAO.retrieveSEProposalByStep(9);
                         %>
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >

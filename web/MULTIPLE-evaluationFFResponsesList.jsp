@@ -233,7 +233,7 @@
 
                         <%
                             ArrayList<FF> f = new ArrayList();
-                            f = UserDAO.retrieveFFProposalByStep(8);
+                            f = UserDAO.retrieveFFProposalByStep(9);
                         %>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : UR-home
-    Created on : 06 27, 18, 1:25:59 PM
-    Author     : Karl Madrid
---%>
-
 <%@page import="entity.SEexpenses"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
@@ -39,64 +33,86 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-           table,th,td{
+            #myInput{
+                margin-bottom: 20px;
+            }
+            tr:hover {
+                background-color: lightgreen;
+            }
+            .table{
+                border-bottom: 2px solid lightgray;
+                margin-bottom: 30px;
+            }
+            .panels{
+                margin-top: 20px;
+                background-color: white;
+                padding-bottom: 15px;
+                border-style: solid;
+                border-color: lightgray;
+                border-width: 1px;
+                border-radius: 8px;
+            }
+            table,th,td{
                 border:.5px solid
                     black;
             }
-
-
+            hr{
+                background-color:green;
+            }
             textarea{
                 resize: none;
             } 
-            
+            a{
+                color: #0083e8;
+            }
+            b{
+                font-weight: 600;
+                font-family: "Times New Roman", Times, serif;
+                font-size: 20px;
+            }
             th {
                 background-color: green;
                 color: white;
             }
-
             table {
                 border-collapse: collapse;
             }
-
+            
             th{
                 padding:15px;
             }
-            
-            h3{
-                border-bottom: 2px solid green;
-                border-top: 2px solid green;
-                padding-bottom: 10px;
-                padding-top: 10px;
+            #addRowButton {
+                padding: 10px;
+                padding-right: 17px;
+                padding-left: 17px;
             }
-
+            #deleteRowButton {
+                padding: 10px;
+            }
+            #addRowButton, #deleteRowButton {
+                display:inline-block;
+            }
             .button{
-                background-color: darkgreen;
+                background-color: #4CAF50;
                 border: none;
-                border-radius: 5px;
                 color: white;
-                padding: 10px 20px;
+                padding: 15px 32px;
                 text-align: center;
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
-            legend, h3, #inputText, #classification, option, select, value, th{
-                font-family: "Arial", Helvetica, sans-serif;
+            td{
+                padding:15px
             }
-            
-            
-            #addRowButton {
-                padding: 10px;
-                font-family: "Arial", Helvetica, sans-serif;
+            h3{
+                font-family: "Times New Roman", Times, serif;
             }
-
-            #deleteRowButton {
-                padding: 10px;
-                font-family: "Arial", Helvetica, sans-serif;
+            legend, th, td{
+                font-family: "Times New Roman", Times, serif;
+                font-size: 15px;
             }
-
             @keyframes colorize {
                 0% {
                     -webkit-filter: grayscale(100%);
@@ -124,7 +140,6 @@
                 count++;
                 document.getElementById("countattendees").setAttribute('value', count);
             }
-
             function deleteRow() {
                 var count = document.getElementById("countattendees").value;
                 var rows = document.getElementById("attendeestable").rows.length;
@@ -133,10 +148,8 @@
                     count--;
                     document.getElementById("countattendees").setAttribute('value', count);
                 } else {
-
                 }
             }
-
         </script>
     </head>
 
@@ -201,7 +214,6 @@
                                 <%
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
                                     for (int i = 0; i < n.size(); i++) {
                                 %>
                                 <li class="notification-box" href="#">
@@ -244,7 +256,9 @@
 
             <!-- MAIN -->
             <div class="col py-3">
+                <hr size="5" noshade>    
                 <center><h3>Program Accomplishment Report Form</h3></center>
+                <hr size="5" noshade>
 
                 <div class="form-style-5">
 
@@ -280,10 +294,8 @@
                                     </tr>
                                 </table></center>
                             <br>
-                            <center>
-                                <input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"/>
-                            </center>
+                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
+                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"/></center>
                         </fieldset>    
                         <br><br><br><br>
                         <center><button class="button" type = "submit">Submit</button></center>
@@ -309,7 +321,6 @@
                     window.open = function () {/*disable open*/
                     };
                 }
-
                 // prevent href=# click jump
                 document.addEventListener("DOMContentLoaded", function () {
                     var links = document.getElementsByTagName("A");
@@ -357,7 +368,6 @@
                     } else {
                         SeparatorTitle.addClass('d-flex');
                     }
-
                     // Collapse/Expand icon
                     $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
                 }
