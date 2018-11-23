@@ -477,15 +477,6 @@
                                     <td><button class="btn btn-primary" type="submit" name="seventh" value="7">View</button></td>
                                 </tr>
 
-                                <!--- Goal 3 Measure 1-->
-                                <tr>
-                                    <td><b>G3 </b> Create and nurture communities dedicated to promoting the Lasallian mission and spirituality  across all sectors based on the Lasallian Guiding Principles </td>
-                                    <td><b>M1</b> Number of Lasallian communities committed to the Lasallian mission  </td>
-                                    <td>3 communities</td>
-                                    <td></td>
-                                    <td><button class="btn btn-primary" type="submit" name="eighth" value="8">View</button></td>
-                                </tr>
-
                             </tbody>
                         </table>
 
@@ -673,30 +664,10 @@
                                     <td><button class="btn btn-primary" type="submit" name="thirteenth" value="13">View</button></td>
                                 </tr>
 
-                                <!--- Goal 2 Measure 1A-->
-                                <tr>
-                                    <td><b>G2</b> Service Learning is institutionalized</td>
-                                    <td><b>M1</b> Service learning (SL) component of academic programs<br><br>
-                                        A. Percentage of undergraduate programs with SL component</td>
-                                    <td>50%</td>
-                                    <td></td>
-                                    <td><button class="btn btn-primary" type="submit" name="fourteenth" value="14">View</button></td>
-                                </tr>
-
-                                <!--- Goal 2 Measure 1B-->
-                                <tr>
-                                    <td></td>
-                                    <td><b>M1</b> Service learning (SL) component of academic programs<br><br>
-                                        B. Percentage of graduate programs with SL component </td>
-                                    <td>10%</td>
-                                    <td></td>
-                                    <td><button class="btn btn-primary" type="submit" name="fifteenth" value="15">View</button></td>
-                                </tr>
-
                                 <!--- Goal 2 Measure 2-->
                                 <tr>
-                                    <td></td>
-                                    <td><b>M2</b> Number of international SL activities </td>
+                                    <td><b>G2</b> Service Learning is institutionalized</td>
+                                    <td><b>M1</b> Number of international SL activities </td>
                                     <td>1</td>
                                     <%
                                         double percent16 = UserDAO.sixteenthTarget();
