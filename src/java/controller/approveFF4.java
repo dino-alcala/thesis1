@@ -81,19 +81,18 @@ public class approveFF4 extends HttpServlet {
 
                 } else if (!(request.getPart("uploadprs").getSize() == 0)) {
 
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    
                     UserDAO.uploadFFPRS(inputStream, Integer.parseInt(request.getParameter("ffID")));
                     UserDAO.updateStepFF(7, Integer.parseInt(request.getParameter("ffID")));
 
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
-                    n.setBody("You have new FF PRS ready for approval!");
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n.setDt(sdf.format(dt));
+                    n.setBody("You have new FF PRS ready for approval! \n " + sdf.format(dt));
+                    n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("Vice President for Lasallian Mission"));
-
                     UserDAO.AddNotification(n);
 
                     request.setAttribute("successFF1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");
@@ -108,20 +107,27 @@ public class approveFF4 extends HttpServlet {
 
                 FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("cancelProgram")));
                 UserDAO.updateStepFF(0, Integer.parseInt(request.getParameter("cancelProgram")));
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled! Php" + FF.getTotalAmount() + " returned");
-
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                n.setDt(sdf.format(dt));
-
+                n.setBody("The program has been cancelled! Php" + FF.getTotalAmount() + " returned \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
                 UserDAO.AddNotification(n);
+                
+                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                n.setBody("The program has been cancelled! Php" + FF.getTotalAmount() + " returned \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                 UserDAO.AddNotification(n);
+                
+                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                n.setBody("The program has been cancelled! Php" + FF.getTotalAmount() + " returned \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 

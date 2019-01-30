@@ -589,7 +589,7 @@
                                
                                 <button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
                                 
-                                <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center> 
+                                <button onclick="return window.confirm('Proceed?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center> 
                             </div>
 
                         </div>

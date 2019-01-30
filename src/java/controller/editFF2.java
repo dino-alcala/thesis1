@@ -64,35 +64,20 @@ public class editFF2 extends HttpServlet {
             UserDAO.EditFF(FF);
 
             UserDAO.completeReviseFF(FF.getId());
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+            java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Notification n = new Notification();
             n.setTitle(FF.getProjectName());
-            n.setBody("You have a Revised FF Proposal ready for approval!");
-
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            n.setDt(sdf.format(dt));
+            n.setBody("You have a Revised FF Proposal ready for approval! \n " + sdf.format(dt));
+            n.setDt(sdf2.format(dt));
 
             if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 1 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 2 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 3 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 4) {
                 n.setUserID(UserDAO.getUserIDforNotifsAssistantDean(session.getAttribute("unit").toString()));
             }
 
-            /*
-            if (UserDAO.getStepFF(FF.getId()) == 2) {
-                n.setUserID(29);
-            }
-            
-            if (UserDAO.getStepFF(FF.getId()) == 3) {
-                n.setUserID(30);
-            }
-            if (UserDAO.getStepFF(FF.getId()) == 4) {
-                n.setUserID(31);
-            }
-            if (UserDAO.getStepFF(FF.getId()) == 5) {
-                n.setUserID(32);
-            }
-             */
             UserDAO.AddNotification(n);
 
             request.setAttribute("reviseFF1", "You have successfully revised the FF!");

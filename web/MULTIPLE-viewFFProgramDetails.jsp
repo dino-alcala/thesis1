@@ -298,6 +298,7 @@
                                         <th>Quantity</th>
                                         <th>Subtotal</th>
                                         <th>Amount Expended</th>
+                                        <th>Date</th>
                                     </tr>
                                     <%
                                         double total = 0;
@@ -310,6 +311,7 @@
                                         <td><%=FF.getExpenses().get(i).getQuantity()%></td>
                                         <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
                                         <td><%=FF.getExpenses().get(i).getAmountUsed()%></td>
+                                        <td><%if(FF.getExpenses().get(i).getDatetime() != null){%> <%=FF.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
                                     </tr>
                                     <%
                                             count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
@@ -322,6 +324,7 @@
                                         <td></td>
                                         <td>Total: <%=count%></td>
                                         <td>Total: <%=total%></td>
+                                        <td></td>
                                     </tr>
                                 </table>
                                 </div>
@@ -418,11 +421,17 @@
                                 
 
                                 <%
-                                    if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
-                                %><button type="submit" value="<%=FF.getId()%>" class="btn-success" name="ffID">Create Accomplishment Report</button>
+                                    if (!UserDAO.canCreateAccomplishmentReportFF(FF.getId()) && !UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
+                                %>
                                 
+                                <button type="submit" value="<%=FF.getId()%>" name="attendance" class="btn-success">Create FF Attendance Sheet</button>
 
-                                <%    } else if (UserDAO.hasFFReport(FF.getId())) {
+                                <% } else if(UserDAO.hasUpdatedBudgetFF(FF.getId()) && UserDAO.canCreateAccomplishmentReportFF(FF.getId()) && !UserDAO.hasFFReport(FF.getId())){ 
+                                %> 
+                                
+                                <button type="submit" value="<%=FF.getId()%>" class="btn-success" name="ffID">Create Accomplishment Report</button>
+                                
+                                <% } else if (UserDAO.hasFFReport(FF.getId())) {
                                 %>
                                     <button type="submit" value="<%=FF.getId()%>" name="viewReport" class="btn-success">View Accomplishment Report</button>
                                 

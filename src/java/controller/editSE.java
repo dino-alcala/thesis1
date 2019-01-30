@@ -84,6 +84,7 @@ public class editSE extends HttpServlet {
 
                 session.setAttribute("SE", SE);
                 request.setAttribute("seID", request.getParameter("seID"));
+                request.setAttribute("totalamount", request.getParameter("totalamount"));
                 session.setAttribute("measureID", measureID);
 
                 ServletContext context = getServletContext();
@@ -129,6 +130,7 @@ public class editSE extends HttpServlet {
 
                 session.setAttribute("SE", SE);
                 request.setAttribute("seID", request.getParameter("seID"));
+                request.setAttribute("totalamount", request.getParameter("totalamount"));
                 session.setAttribute("measureID", measureID);
 
                 ServletContext context = getServletContext();
@@ -174,6 +176,7 @@ public class editSE extends HttpServlet {
 
                 session.setAttribute("SE", SE);
                 request.setAttribute("seID", request.getParameter("seID"));
+                request.setAttribute("totalamount", request.getParameter("totalamount"));
                 session.setAttribute("measureID", measureID);
 
                 ServletContext context = getServletContext();

@@ -64,36 +64,36 @@ public class approveFF5 extends HttpServlet {
             FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
 
             UserDAO.updateStepFF(8, Integer.parseInt(request.getParameter("approve")));
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+            java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Notification n2 = new Notification();
             n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-            n2.setBody("Congratulations! Your FF Proposal has been approved!");
-
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            n2.setDt(sdf.format(dt));
+            n2.setBody("Congratulations! Your FF Proposal has been approved! \n " + sdf.format(dt));
+            n2.setDt(sdf2.format(dt));
             n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
 
             UserDAO.AddNotification(n2);
 
             Notification n3 = new Notification();
             n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
-            n3.setDt(sdf.format(dt));
+            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+            n3.setDt(sdf2.format(dt));
             
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
             UserDAO.AddNotification(n3);
             
             n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
-            n3.setDt(sdf.format(dt));
+            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+            n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
             UserDAO.AddNotification(n3);
             
             n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget!");
-            n3.setDt(sdf.format(dt));
+            n3.setBody("Php" + FF.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+            n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
             UserDAO.AddNotification(n3);
 

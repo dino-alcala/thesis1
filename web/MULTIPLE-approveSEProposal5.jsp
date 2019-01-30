@@ -622,7 +622,7 @@
                                 
                                 <button type="submit" class="btn-prs" name="prs" value="<%=SE.getId()%>">View PRS</button>
                                 
-                                <button class="btn-success" name="approve" value="<%=SE.getId()%>">Approve</button><br></center>                          
+                                <button onclick="return window.confirm('Proceed?')" class="btn-success" name="approve" value="<%=SE.getId()%>">Approve</button><br></center>                          
                             
                             </div>
 

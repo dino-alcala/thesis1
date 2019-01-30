@@ -119,101 +119,51 @@ public class approveFF3 extends HttpServlet {
                         FF.setRemarktype1(request.getParameter("remarktype"));
                     }
                 }
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has voted to APPROVE your proposal. Vote Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4");
-
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                n.setDt(sdf.format(dt));
-
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has voted to APPROVE your proposal. Vote Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4 \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
-
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("successFF2", "You have successfully voted APPROVE for the FF Proposal!");
             }
 
-            /*
-            if (request.getParameter("reject") != null) {
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 19) {
-                    UserDAO.voteFFMichael(Integer.parseInt(request.getParameter("reject")), 0);
-                    UserDAO.addFFRejectVote(Integer.parseInt(request.getParameter("reject")));
-                    UserDAO.updateFFlmc1Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 20) {
-                    UserDAO.voteFFNelca(Integer.parseInt(request.getParameter("reject")), 0);
-                    UserDAO.addFFRejectVote(Integer.parseInt(request.getParameter("reject")));
-                    UserDAO.updateFFlmc2Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 21) {
-                    UserDAO.voteFFMargarita(Integer.parseInt(request.getParameter("reject")), 0);
-                    UserDAO.addFFRejectVote(Integer.parseInt(request.getParameter("reject")));
-                    UserDAO.updateFFlmc3Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 22) {
-                    UserDAO.voteFFJames(Integer.parseInt(request.getParameter("reject")), 0);
-                    UserDAO.addFFRejectVote(Integer.parseInt(request.getParameter("reject")));
-                    UserDAO.updateFFlmc4Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                }
-
-                if (Integer.parseInt(session.getAttribute("userID").toString()) == 23) {
-                    UserDAO.voteFFFritzie(Integer.parseInt(request.getParameter("reject")), 0);
-                    UserDAO.addFFRejectVote(Integer.parseInt(request.getParameter("reject")));
-                    UserDAO.updateFFlmc5Remarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
-                }
-
-                Notification n = new Notification();
-                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))));
-                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has voted to REJECT your proposal. Vote Count: " + UserDAO.getFFRejectVoteCount(Integer.parseInt(request.getParameter("reject"))) + "/5");
-
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                n.setDt(sdf.format(dt));
-
-                n.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
-
-                UserDAO.AddNotification(n);
-
-                request.setAttribute("rejectFF1", "You have successfully voted REJECT for the FF Proposal!");
-            }
-             */
             if (UserDAO.hasFFEveryoneVoted(Integer.parseInt(request.getParameter("ffID")))) {
 
                 if (UserDAO.FFtallyVote(Integer.parseInt(request.getParameter("ffID"))).equals("approve")) {
 
                     if (UserDAO.isOVPLMSourceFF(Integer.parseInt(request.getParameter("ffID")))) {
+                        
+                        java.util.Date dt = new java.util.Date();
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                         UserDAO.updateStepFF(6, Integer.parseInt(request.getParameter("ffID")));
 
                         Notification n2 = new Notification();
                         n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
-                        n2.setBody("Your proposal has been approved by the Council. You may now upload the PRS for endorsement.");
-
-                        java.util.Date dt = new java.util.Date();
-                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                        n2.setDt((sdf.format(dt)));
+                        n2.setBody("Your proposal has been approved by the Council. You may now upload the PRS for endorsement. \n " + sdf.format(dt));
+                        n2.setDt((sdf2.format(dt)));
                         n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
                         UserDAO.AddNotification(n2);
+                        
                     } else {
                         UserDAO.updateStepFF(8, Integer.parseInt(request.getParameter("ffID")));
+                        
+                        java.util.Date dt = new java.util.Date();
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                         Notification n2 = new Notification();
                         n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
-                        n2.setBody("Congratulations! Your FF Proposal has been approved!");
-
-                        java.util.Date dt = new java.util.Date();
-                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                        n2.setDt((sdf.format(dt)));
+                        n2.setBody("Congratulations! Your FF Proposal has been approved! \n " + sdf.format(dt));
+                        n2.setDt((sdf2.format(dt)));
                         n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
                         UserDAO.AddNotification(n2);
                     }

@@ -7,9 +7,7 @@ package controller;
 
 import dao.UserDAO;
 import entity.FF;
-import entity.FFreport;
-import entity.FFreportattendees;
-import entity.Notification;
+import entity.FFattendees;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Dino Alcala
  */
-public class createFFreport5 extends HttpServlet {
+public class createFFAttendanceSheet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,58 +44,83 @@ public class createFFreport5 extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
+    private class SMTPAuthenticator extends Authenticator {
+
+        private PasswordAuthentication authentication;
+
+        public SMTPAuthenticator(String login, String password) {
+            authentication = new PasswordAuthentication(login, password);
+        }
+
+        @Override
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return authentication;
+        }
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+
             HttpSession session = request.getSession();
             UserDAO UserDAO = new UserDAO();
-
-            FFreport FFreport = new FFreport();
-            FFreport = (FFreport) session.getAttribute("FFreport");
-            FF FF = UserDAO.retrieveFFByFFID(FFreport.getFfproposalID());
-            
-            ArrayList<FFreportattendees> attendees = new ArrayList();
+            ArrayList<FFattendees> attendees = new ArrayList();
+            FF FF = (FF) session.getAttribute("FF");
 
             for (int i = 0; i < Integer.parseInt(request.getParameter("countattendees")); i++) {
-                FFreportattendees a = new FFreportattendees();
+                FFattendees a = new FFattendees();
                 a.setName(request.getParameter("attendee" + i));
                 a.setEmail(request.getParameter("email" + i));
                 a.setType(request.getParameter("type" + i));
                 attendees.add(a);
             }
+            UserDAO.AddFFAttendanceSheet(attendees, Integer.parseInt(request.getParameter("ffID").toString()));
 
-            FFreport.setAttendees(attendees);
+            String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            int length = 10;
+            Random rng = new Random();
+            char[] text = new char[length];
+            for (int i = 0; i < length; i++) {
+                text[i] = characters.charAt(rng.nextInt(characters.length()));
+            }
+            String code = new String(text);
 
-            UserDAO.AddFFreport(FFreport);
-            UserDAO.updateStepFF(9, FFreport.getFfproposalID());
+            UserDAO.updateFFProposalCodeByFFID(code, FF.getId());
 
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-            java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            for (int x = 0; x < attendees.size(); x++) {
+                String from = "ovplmpms@gmail.com";
+                String to = attendees.get(x).getEmail();
+                String subject = "Evaluation Code";
+                String message = "FF Evaluation Code for " + FF.getProjectName() + ": " + code;
+                String login = "ovplmpms@gmail.com";
+                String password = "11434643ovplmpms";
 
-            Notification n = new Notification();
-            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
-            n.setBody("Accomplishment Report has been submitted! \n " + sdf.format(dt));
-            n.setDt(sdf2.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
-            UserDAO.AddNotification(n);
+                Properties props = new Properties();
+                props.setProperty("mail.host", "smtp.gmail.com");
+                props.setProperty("mail.smtp.port", "587");
+                props.setProperty("mail.smtp.auth", "true");
+                props.setProperty("mail.smtp.starttls.enable", "true");
+
+                Authenticator auth = new createFFAttendanceSheet.SMTPAuthenticator(login, password);
+
+                Session session2 = Session.getInstance(props, auth);
+
+                MimeMessage msg = new MimeMessage(session2);
+
+                try {
+                    msg.setText(message);
+                    msg.setSubject(subject);
+                    msg.setFrom(new InternetAddress(from));
+                    msg.addRecipient(Message.RecipientType.TO,
+                            new InternetAddress(to));
+                    Transport.send(msg);
+                } catch (MessagingException ex) {
+                    System.out.println("DJSAKJKASJKLSA ERROR");
+                }
+            }
             
-            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
-            n.setBody("Accomplishment Report has been submitted! \n " + sdf.format(dt));
-            n.setDt(sdf2.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
-            UserDAO.AddNotification(n);
-            
-            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
-            n.setBody("Accomplishment Report has been submitted! \n " + sdf.format(dt));
-            n.setDt(sdf2.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
-            UserDAO.AddNotification(n);
-            
-            request.setAttribute("FFreport", "You have successfully created the Accomplishment Report!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-faithFormationProgramsList.jsp");
             dispatcher.forward(request, response);

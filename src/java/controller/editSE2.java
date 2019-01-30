@@ -105,15 +105,15 @@ public class editSE2 extends HttpServlet {
                 UserDAO.EditSE(SE);
 
                 UserDAO.completeReviseSE(SE.getId());
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
                 n.setTitle(SE.getName());
-                n.setBody("Revised SE Proposal ready for approval!");
-
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                n.setDt(sdf.format(dt));
+                n.setBody("Revised SE Proposal ready for approval! \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
 
                 if (UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))).equals("Academic")) {
                     n.setUserID(UserDAO.getUserIDforNotifsDepartmentChair(session.getAttribute("unit").toString(), UserDAO.getDepartmentIDByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));

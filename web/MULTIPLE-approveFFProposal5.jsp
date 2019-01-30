@@ -430,7 +430,7 @@
                                 
                                 <button class="btn-audit" type="submit" name="prs" value="<%=FF.getId()%>">View PRS</button>
                                
-                                <button class="btn-success" name="approve" value="<%=FF.getId()%>">Approve</button><br></center>
+                                <button onclick="return window.confirm('Proceed?')" class="btn-success" name="approve" value="<%=FF.getId()%>">Approve</button><br></center>
                                 <br/>
                             </div>
                         </div>

@@ -528,9 +528,9 @@
                                 <center>
                                     <br/>
                                     <button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
-                                    <button type ="submit" name="approve" value="<%=SE.getId()%>" class="btn-success">Approve</button>
-                                    <button type = "submit" class="btn-warning" name="revise" value="<%=SE.getId()%>">Revise</button>
-                                    <button type = "submit" class="btn-danger" name="reject" value="<%=SE.getId()%>">Reject</button>
+                                    <button onclick="return window.confirm('Approve Program?')" type ="submit" name="approve" value="<%=SE.getId()%>" class="btn-success">Approve</button>
+                                    <button onclick="return window.confirm('Mark Proposal for Revision?')" type = "submit" class="btn-warning" name="revise" value="<%=SE.getId()%>">Revise</button>
+                                    <button onclick="return window.confirm('Reject Program?')" type = "submit" class="btn-danger" name="reject" value="<%=SE.getId()%>">Reject</button>
                                 </center>
                                  
                             </div>

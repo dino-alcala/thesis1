@@ -68,27 +68,32 @@ public class addFFevaluation extends HttpServlet {
 
             UserDAO.AddFFevaluation(FFevaluation);
             
-            if(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 >= 50 && UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 <= 60){
-                Notification n2 = new Notification();
-                n2.setTitle(FFevaluation.getName() + " Evaluators: 50%");
-                n2.setBody("Evaluation received, 50% of Attendees have now Evaluated!");
-
+            if(FFevaluation.isEvaluationnotified() == false && UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 >= 50 && UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 <= 60){
+                
+                FFevaluation.setEvaluationnotified(true);
+                
                 java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                
+                Notification n2 = new Notification();
+                n2.setTitle(FFevaluation.getName() + " Evaluators: " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "%");
+                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated! \n " + sdf.format(dt));
 
-                n2.setDt(sdf.format(dt));
+                sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                 UserDAO.AddNotification(n2);
                 
                 n2.setTitle(FFevaluation.getName() + " Evaluators: " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "%");
-                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated!");
-                n2.setDt(sdf.format(dt));
+                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated! \n " + sdf.format(dt));
+                n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                 UserDAO.AddNotification(n2);
                 
                 n2.setTitle(FFevaluation.getName() + " Evaluators: 50%");
-                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated!");
-                n2.setDt(sdf.format(dt));
+                n2.setBody("Evaluation received, " + UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.retrieveFFreportByFFID(FFevaluation.getFfproposalID()).getAttendees().size() * 100 + "% of Attendees have now Evaluated! \n " + sdf.format(dt));
+                n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n2);             
             }

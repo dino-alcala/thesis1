@@ -128,48 +128,49 @@ public class encodeSE2 extends HttpServlet {
                     UserDAO.addLatestBudget(b);
                     
                     java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                     Notification n3 = new Notification();
                     n3.setTitle(UserDAO.getProgramName(SE.getId()));
-                    n3.setBody("New Student Org FF Proposal! Php" + SE.getTotalAmount() + " has been deducted to the budget!");
-                    n3.setDt(sdf.format(dt));
-
+                    n3.setBody("New Student Org FF Proposal! Php" + SE.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+                    n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n3);
 
                     n3.setTitle(UserDAO.getProgramName(SE.getId()));
-                    n3.setBody("New Student Org FF Proposal! Php" + SE.getTotalAmount() + " has been deducted to the budget!");
-                    n3.setDt(sdf.format(dt));
+                    n3.setBody("New Student Org FF Proposal! Php" + SE.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+                    n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                     UserDAO.AddNotification(n3);
 
                     n3.setTitle(UserDAO.getProgramName(SE.getId()));
-                    n3.setBody("New Student Org FF Proposal! Php" + SE.getTotalAmount() + " has been deducted to the budget!");
-                    n3.setDt(sdf.format(dt));
+                    n3.setBody("New Student Org FF Proposal! Php" + SE.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+                    n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                     UserDAO.AddNotification(n3);
                 } else {
                     java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                     Notification n3 = new Notification();
                     n3.setTitle(UserDAO.getProgramName(SE.getId()));
-                    n3.setBody("A New Student Org FF Proposal has been Encoded!");
-                    n3.setDt(sdf.format(dt));
+                    n3.setBody("A New Student Org FF Proposal has been Encoded! \n " + sdf.format(dt));
+                    n3.setDt(sdf2.format(dt));
 
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n3);
 
                     n3.setTitle(UserDAO.getProgramName(SE.getId()));
-                    n3.setBody("A New Student Org FF Proposal has been Encoded!");
-                    n3.setDt(sdf.format(dt));
+                    n3.setBody("A New Student Org FF Proposal has been Encoded! \n " + sdf.format(dt));
+                    n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                     UserDAO.AddNotification(n3);
 
                     n3.setTitle(UserDAO.getProgramName(SE.getId()));
-                    n3.setBody("A New Student Org FF Proposal has been Encoded!");
-                    n3.setDt(sdf.format(dt));
+                    n3.setBody("A New Student Org FF Proposal has been Encoded! \n " + sdf.format(dt));
+                    n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                     UserDAO.AddNotification(n3);
                 }

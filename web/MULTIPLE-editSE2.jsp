@@ -529,7 +529,7 @@
                             UserDAO = new UserDAO();
                         %>
 
-                        <legend><b>Breakdown of Expenses - Amount Requested: PHP <%=df.format(SE.getTotalAmount())%></b></legend>
+                        <legend><b>Breakdown of Expenses - Amount Requested: PHP <%=df.format(Double.parseDouble(request.getAttribute("totalamount").toString()))%></b></legend>
                         <input type="hidden" value="<%=SE.getExpenses().size()%>" id="countexpenses" name="countexpenses">
                         <fieldset>
                             <center><table style = "width:100%" id="breakdowntable">

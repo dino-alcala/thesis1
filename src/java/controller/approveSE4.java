@@ -85,6 +85,10 @@ public class approveSE4 extends HttpServlet {
                     java.util.Date javaDate = new java.util.Date();
                     String input1 = new java.sql.Date(javaDate.getTime()).toString();
                     String input2 = SE.getActualDate().toString();
+                    
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                     try {
                         java.util.Date date1 = myFormat.parse(input1);
@@ -93,20 +97,16 @@ public class approveSE4 extends HttpServlet {
                         long days = (diff / (1000 * 60 * 60 * 24));
 
                         if (days <= 14) {
-                            n.setBody("URGENT SE PRS ready for approval!!");
+                            n.setBody("URGENT SE PRS ready for approval! \n " + sdf.format(dt));
                         } else if (days >= 15) {
-                            n.setBody("You have new SE PRS ready for approval!");
+                            n.setBody("You have new SE PRS ready for approval! \n " + sdf.format(dt));
                         }
                     } catch (ParseException ex) {
                         Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n.setDt(sdf.format(dt));
+                    n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
-
                     UserDAO.AddNotification(n);
 
                     request.setAttribute("successSE1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");
@@ -121,20 +121,27 @@ public class approveSE4 extends HttpServlet {
                 
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("cancelProgram")));
                 UserDAO.updateStep(0, Integer.parseInt(request.getParameter("cancelProgram")));
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
                 n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned");
-
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                n.setDt(sdf.format(dt));
-
+                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
                 UserDAO.AddNotification(n);
+                
+                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                 UserDAO.AddNotification(n);
+                
+                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 

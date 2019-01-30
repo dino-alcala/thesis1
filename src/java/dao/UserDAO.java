@@ -2876,6 +2876,14 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
+    
+    public void updateSETotalAmount(int seID){
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        
+        
+    }
 
     public void AddFF(FF FF) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -3776,7 +3784,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE userID != ? AND step != 8 AND STEP != 0 AND step != -1";
+            String query = "SELECT * FROM seproposal WHERE userID != ? AND step != 8 AND STEP != 0 AND step != -1 AND STEP != 9";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
@@ -4263,6 +4271,7 @@ public class UserDAO {
                 se.setQuantity(rs2.getInt("quantity"));
                 se.setSubtotal(rs2.getDouble("subtotal"));
                 se.setAmountUsed(rs2.getDouble("amountUsed"));
+                se.setDatetime(rs2.getString("datetime"));
                 expenses.add(se);
             }
 
@@ -4576,6 +4585,7 @@ public class UserDAO {
                 ff.setQuantity(rs2.getInt("quantity"));
                 ff.setSubtotal(rs2.getDouble("subtotal"));
                 ff.setAmountUsed(rs2.getDouble("amountUsed"));
+                ff.setDatetime(rs2.getString("datetime"));
                 expenses.add(ff);
             }
 
@@ -9497,6 +9507,209 @@ public class UserDAO {
         }
         return false;
     }
+    
+    public boolean canCreateAccomplishmentReport(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        double percent = 0;
+
+        try {
+            String query = "SELECT evaluationpercent FROM seproposal WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            rs2.next();
+            percent = rs2.getDouble("evaluationpercent");
+
+            if(percent >= 50) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+    
+    public boolean canCreateAccomplishmentReportFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        double percent = 0;
+
+        try {
+            String query = "SELECT evaluationpercent FROM ffproposal WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            rs2.next();
+            percent = rs2.getDouble("evaluationpercent");
+
+            if(percent >= 50) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+    
+    public boolean hasUpdatedBudget(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        String datetime = null;
+
+        try {
+            String query = "SELECT datetime FROM seproposal_expenses WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                if(!rs2.getString("datetime").equals("")){
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+    
+    public boolean hasUpdatedBudgetFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        String datetime = null;
+
+        try {
+            String query = "SELECT datetime FROM ffproposal_expenses WHERE ffproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                if(!rs2.getString("datetime").equals("")){
+                    return true;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+    
+    public boolean updateSEEvaluationPercent(int seID, double percent) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE seproposal SET evaluationpercent = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDouble(1, percent);
+            pstmt.setInt(2, seID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+    
+    public ArrayList<SEattendees> retrieveSEParticipants(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ArrayList<SEattendees> attendees = new ArrayList();
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDouble(1, seID);
+
+            ResultSet rs = pstmt.executeQuery();
+ 
+            while(rs.next()){
+            
+                SEattendees a = new SEattendees();
+                a.setName(rs.getString("name"));
+                a.setEmail(rs.getString("email"));
+                a.setType(rs.getString("type"));
+                attendees.add(a);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return attendees;
+    }
 
     public boolean hasFFReport(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -9505,7 +9718,7 @@ public class UserDAO {
         ResultSet rs2 = null;
 
         try {
-            String query = "SELECT * FROM ffreport WHERE ffproposalID = ?";
+            String query = "SELECT * FROM sereport_attendees_temp WHERE ffproposalID = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
 
@@ -9528,6 +9741,390 @@ public class UserDAO {
                 /* ignored */ }
         }
         return false;
+    }
+    
+    public int countCAP(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'CAP'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countAPSP(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'APSP'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countASF(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'ASF'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countFaculty(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Faculty'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countAdmin(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Admin'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countDirecthired(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Directhired'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countIndependent(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Independent'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countExternal(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'External'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countGrad(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Grad'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countUndergrad(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Undergrad'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countAlumni(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Alumni'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+    
+    public int countParent(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Parent'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while(rs2.next()){
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
     }
 
     public void AddSEreport(SEreport SEreport) {
@@ -9652,6 +10249,74 @@ public class UserDAO {
                 pstmt.setInt(4, sereportID);
 
                 rs = pstmt.executeUpdate();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void AddSEAttendanceSheet(ArrayList<SEattendees> attendees, int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = null;
+
+            for (int i = 0; i < attendees.size(); i++) {
+                query = "INSERT INTO sereport_attendees_temp(name, email, type, seproposalID) VALUES(?,?,?,?)";
+
+                pstmt = conn.prepareCall(query);
+                pstmt.setString(1, attendees.get(i).getName());
+                pstmt.setString(2, attendees.get(i).getEmail());
+                pstmt.setString(3, attendees.get(i).getType());
+                pstmt.setInt(4, seID);
+
+                int rs = pstmt.executeUpdate();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void AddFFAttendanceSheet(ArrayList<FFattendees> attendees, int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = null;
+
+            for (int i = 0; i < attendees.size(); i++) {
+                query = "INSERT INTO ffreport_attendees_temp(name, email, type, seproposalID) VALUES(?,?,?,?)";
+
+                pstmt = conn.prepareCall(query);
+                pstmt.setString(1, attendees.get(i).getName());
+                pstmt.setString(2, attendees.get(i).getEmail());
+                pstmt.setString(3, attendees.get(i).getType());
+                pstmt.setInt(4, ffID);
+
+                int rs = pstmt.executeUpdate();
             }
 
         } catch (SQLException ex) {
@@ -12151,6 +12816,80 @@ public class UserDAO {
         }
         return number;
     }
+    
+    public String getSENameBySEID(int seID) {
+
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT programName FROM seproposal WHERE id = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String name = null;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            rs = ps.executeQuery();
+            rs.next();
+            name = rs.getString("programName");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return name;
+    }
+    
+    public double getNumberParticipants(int seID) {
+
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        double number = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                number++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return number;
+    }
 
     public double getNumberEvaluatorsFF(int ffID) {
 
@@ -13653,7 +14392,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(sf.expendedAmount) as total FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step >= 8 OR step <= 9 AND s.datecreated >= ? AND s.datecreated <= ? AND s.sourceOfFunds = 'OVPLM'";
+            String query = "SELECT SUM(sf.expendedAmount) as total FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND s.sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
@@ -13688,7 +14427,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(ff.expendedAmount) as total FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE f.step >= 8 OR step <= 9 AND f.datecreated >= ? AND f.datecreated <= ? AND f.sourceOfFunds = 'OVPLM'";
+            String query = "SELECT SUM(ff.expendedAmount) as total FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE f.step = 9 AND f.actualImplementation >= ? AND f.actualImplementation <= ? AND f.sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
@@ -15043,8 +15782,11 @@ public class UserDAO {
             int rs = pstmt.executeUpdate();
 
             for (int i = 0; i < expenses.size(); i++) {
-                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, seproposalID) VALUES(?,?,?,?,?,?)";
+                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, seproposalID, datetime) VALUES(?,?,?,?,?,?,?)";
 
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, expenses.get(i).getItem());
                 pstmt.setDouble(2, expenses.get(i).getUnitcost());
@@ -15052,7 +15794,8 @@ public class UserDAO {
                 pstmt.setDouble(4, expenses.get(i).getSubtotal());
                 pstmt.setDouble(5, expenses.get(i).getAmountUsed());
                 pstmt.setInt(6, expenses.get(i).getSeproposalID());
-
+                pstmt.setString(7, sdf.format(dt));
+  
                 rs = pstmt.executeUpdate();
             }
 
@@ -15093,6 +15836,7 @@ public class UserDAO {
                 e.setSubtotal(rs.getDouble("subtotal"));
                 e.setSeproposalID(rs.getInt("seproposalID"));
                 e.setAmountUsed(rs.getDouble("amountUsed"));
+                e.setDatetime(rs.getString("datetime"));
                 expenses.add(e);
             }
 
@@ -15130,7 +15874,10 @@ public class UserDAO {
             int rs = pstmt.executeUpdate();
 
             for (int i = 0; i < expenses.size(); i++) {
-                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, ffproposalID) VALUES(?,?,?,?,?,?)";
+                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, ffproposalID, datetime) VALUES(?,?,?,?,?,?,?)";
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, expenses.get(i).getItem());
@@ -15139,6 +15886,7 @@ public class UserDAO {
                 pstmt.setDouble(4, expenses.get(i).getSubtotal());
                 pstmt.setDouble(5, expenses.get(i).getAmountUsed());
                 pstmt.setInt(6, expenses.get(i).getFfproposalID());
+                pstmt.setString(7, sdf.format(dt));
 
                 rs = pstmt.executeUpdate();
             }
@@ -15180,6 +15928,7 @@ public class UserDAO {
                 f.setSubtotal(rs.getDouble("subtotal"));
                 f.setFfproposalID(rs.getInt("ffproposalID"));
                 f.setAmountUsed(rs.getDouble("amountUsed"));
+                f.setDatetime(rs.getString("datetime"));
                 expenses.add(f);
             }
 
@@ -16613,7 +17362,7 @@ public class UserDAO {
                 seaverage = rs.getDouble("AVG(or71)");
             }
 
-            query = "SELECT AVG(q9) FROM ffevaluation ff JOIN ffproposal f ON ff.ffproposalID = f.id WHERE unit = ? AND f.step = 8";
+            query = "SELECT AVG(q9) FROM ffevaluation ff JOIN ffproposal f ON ff.ffproposalID = f.id WHERE unit = ? AND f.step = 9";
 
             ps = conn.prepareStatement(query);
             ps.setString(1, unit);

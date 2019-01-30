@@ -43,58 +43,62 @@ public class updateBudget extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
-            UserDAO UserDAO = new UserDAO();
-            ArrayList<SEexpenses> expenses = new ArrayList();
+            if (request.getParameter("SE") != null) {
+                UserDAO UserDAO = new UserDAO();
+                ArrayList<SEexpenses> expenses = new ArrayList();
 
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                SEexpenses SEexpenses = new SEexpenses();
-                SEexpenses.setItem(request.getParameter("seitem" + i));
-                SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
-                SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
-                SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
-                SEexpenses.setAmountUsed(Double.parseDouble(request.getParameter("seamountused" + i)));
-                SEexpenses.setSeproposalID(Integer.parseInt(request.getParameter("seID" + i)));
-                expenses.add(SEexpenses);
-            }
-
-            UserDAO.updateBudgetSE(expenses);
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                InputStream inputStream = null;
-                Part filePart = request.getPart("uploadreceipt0");
-                if (filePart != null) {
-                    inputStream = filePart.getInputStream();
-                    UserDAO.uploadReceipt(inputStream, Integer.parseInt(request.getParameter("seID0")));
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    
+                    SEexpenses SEexpenses = new SEexpenses();
+                    SEexpenses.setItem(request.getParameter("seitem" + i));
+                    SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
+                    SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
+                    SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
+                    SEexpenses.setAmountUsed(Double.parseDouble(request.getParameter("seamountused" + i)));
+                    SEexpenses.setSeproposalID(Integer.parseInt(request.getParameter("seID" + i)));
+                    SEexpenses.setDatetime(sdf.format(dt));
+                    expenses.add(SEexpenses);
                 }
+
+                UserDAO.updateBudgetSE(expenses);
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                Notification n = new Notification();
+                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))));
+                n.setBody("A portion of the budget has been used! \n " + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n);
+
+                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))));
+                n.setBody("A portion of the budget has been used!");
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n);
+
+                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))));
+                n.setBody("A portion of the budget has been used!");
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                UserDAO.AddNotification(n);
+
+                request.setAttribute("updateBudget", "You have successfully updated the Budget!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-socialEngagementProgramsList.jsp");
+                dispatcher.forward(request, response);
+                
+            } else if(request.getParameter("back") != null){
+                request.setAttribute("seID", request.getParameter("back"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEProgramDetails.jsp");
+                dispatcher.forward(request, response);
             }
 
-            Notification n = new Notification();
-            n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))));
-            n.setBody("A portion of the budget has been used!");
-
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            n.setDt(sdf.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
-            UserDAO.AddNotification(n);
-            
-            n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))));
-            n.setBody("A portion of the budget has been used!");
-            n.setDt(sdf.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
-            UserDAO.AddNotification(n);
-            
-            n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))));
-            n.setBody("A portion of the budget has been used!");
-            n.setDt(sdf.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
-            UserDAO.AddNotification(n);
-
-            request.setAttribute("updateBudget", "You have successfully updated the Budget!");
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-socialEngagementProgramsList.jsp");
-            dispatcher.forward(request, response);
         }
     }
 

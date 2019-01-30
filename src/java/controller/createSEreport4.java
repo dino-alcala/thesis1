@@ -7,10 +7,12 @@ package controller;
 
 import dao.UserDAO;
 import entity.SE;
+import entity.SEattendees;
 import entity.SEreport;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -116,9 +118,8 @@ public class createSEreport4 extends HttpServlet {
             SEreport.setAttendanceBeneficiaries(inputStream2);
             SEreport.setAttendanceDLSU(inputStream3);
             SEreport.setBeneficiariesLetters(inputStream4);
-
+            
             session.setAttribute("SEreport", SEreport);
-
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEReport4.jsp");
             dispatcher.forward(request, response);

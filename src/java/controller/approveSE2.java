@@ -93,6 +93,10 @@ public class approveSE2 extends HttpServlet {
                 String input1 = new java.sql.Date(javaDate.getTime()).toString();
                 String input2 = SE.getActualDate().toString();
                 
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                
                 try {
                     java.util.Date date1 = myFormat.parse(input1);
                     java.util.Date date2 = myFormat.parse(input2);
@@ -100,7 +104,7 @@ public class approveSE2 extends HttpServlet {
                     long days = (diff / (1000*60*60*24));
 
                     if(days <= 14){
-                        n.setBody("URGENT SE Proposal ready for approval!!");
+                        n.setBody("URGENT SE Proposal ready for approval! \n " + sdf.format(dt));
                     } else if (days >= 15){
                         n.setBody("New SE Proposal ready for approval!");
                     }
@@ -108,10 +112,7 @@ public class approveSE2 extends HttpServlet {
                     Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                n.setDt(sdf.format(dt));
+                n.setDt(sdf2.format(dt));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("LSPO - Director"));
@@ -130,10 +131,10 @@ public class approveSE2 extends HttpServlet {
                 n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n2.setBody("Your proposal has been approved by COSCA. It will now be taken to the LMC Council.");
+                    n2.setBody("Your proposal has been approved by COSCA. It will now be taken to the LMC Council. \n " + sdf2.format(dt));
                 }
 
-                n2.setDt(sdf.format(dt));
+                n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));
 
                 UserDAO.AddNotification(n2);
@@ -148,17 +149,17 @@ public class approveSE2 extends HttpServlet {
             if (request.getParameter("revise") != null) {
                 Notification n3 = new Notification();
                 n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))));
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseCOSCA(Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by COSCA.");
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n3.setDt(sdf.format(dt));
+                    n3.setBody("Your proposal has some revisions before it is approved by COSCA. \n " + sdf.format(dt));
+                    n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
 
@@ -172,16 +173,16 @@ public class approveSE2 extends HttpServlet {
             if (request.getParameter("reject") != null) {
                 Notification n3 = new Notification();
                 n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))));
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectCOSCA(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by COSCA. Reason: " + request.getParameter("remarks1"));
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n3.setDt(sdf.format(dt));
+                    n3.setBody("Your proposal has been rejected by COSCA. Reason: " + request.getParameter("remarks1") + "\n " + sdf.format(dt));
+                    n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                 }
 

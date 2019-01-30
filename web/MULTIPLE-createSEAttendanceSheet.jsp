@@ -4,8 +4,6 @@
     Author     : Karl Madrid
 --%>
 
-<%@page import="entity.SEreport"%>
-<%@page import="entity.SEattendees"%>
 <%@page import="entity.SEexpenses"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
@@ -50,7 +48,7 @@
             textarea{
                 resize: none;
             } 
-
+            
             th {
                 background-color: green;
                 color: white;
@@ -63,7 +61,7 @@
             th{
                 padding:15px;
             }
-
+            
             h3{
                 border-bottom: 2px solid green;
                 border-top: 2px solid green;
@@ -112,7 +110,7 @@
                 var cell3 = row.insertCell(2);
                 cell1.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='attendee" + count + "' required></textarea>";
                 cell2.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='email" + count + "' required></textarea>";
-                cell3.innerHTML = "<td><select style='border-radius:0px;' name='type" + count + "'><option value='CAP'>CAP</option><option value='APSP'>APSP</option><option value='ASF'>ASF</option><option value='Faculty'>Faculty</option><option value='Admin'>Administrator</option><option value='Directhired'>Direct Hired Contractual</option><option value='Independent'>Independent Contractor</option><option value='External'>External Service Personnel</option><option value='Undergrad'>Undergraduate Student</option><option value='Grad'>Graduate Student</option><option value='International'>International Student</option><option value='Alumni'>Alumni</option><option value='Parent'>Parent</option></select></td>"
+                cell3.innerHTML = "<td><select style='border-radius:0px;' name='type"+count+"'><option value='CAP'>CAP</option><option value='APSP'>APSP</option><option value='ASF'>ASF</option><option value='Faculty'>Faculty</option><option value='Admin'>Administrator</option><option value='Directhired'>Direct Hired Contractual</option><option value='Independent'>Independent Contractor</option><option value='External'>External Service Personnel</option><option value='Undergrad'>Undergraduate Student</option><option value='Grad'>Graduate Student</option><option value='International'>International Student</option><option value='Alumni'>Alumni</option><option value='Parent'>Parent</option></select></td>"
                 count++;
                 document.getElementById("countattendees").setAttribute('value', count);
             }
@@ -172,7 +170,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO();%>
+                            <% UserDAO UserDAO = new UserDAO(); %>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -238,44 +236,35 @@
                 <center><h3>Social Engagement Program Attendees</h3></center>
 
 
-                <form action="createSEreport5" method="post">
+                <form action="createSEAttendanceSheet" method="post">
                     <div class="form-style-5">
                         <fieldset>
-                            <%
-                                SEreport SEreport = (SEreport) session.getAttribute("SEreport");
-                                ArrayList<SEattendees> attendees = UserDAO.retrieveSEParticipants(SEreport.getSeproposalID());
-                            %>
-                            <input type="text" hidden name="countattendees" id="countattendees" value="<%=attendees.size()%>"/>
+                            <input type="text" hidden name="countattendees" id="countattendees" value="1"/>
                             <center><table style = "width:100%" id="attendeestable">
                                     <tr>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Type</th>
                                     </tr>
-
-                                    <%
-                                        for (int x = 0; x < attendees.size(); x++) {
-                                    %>
                                     <tr>    
-                                        <td><textarea readonly id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="attendee<%=x%>" required><%=attendees.get(x).getName()%></textarea></td>
-                                        <td><textarea readonly id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="email<%=x%>" required><%=attendees.get(x).getEmail()%></textarea></td>
-                                        <td><select readonly id="inputText" style='border-radius:0px;' name="type<%=x%>">
-                                                <option <%if (attendees.get(x).getType().equals("CAP")) { %> selected <%}%> value="CAP">CAP</option>
-                                                <option <%if (attendees.get(x).getType().equals("APSP")) { %> selected <%}%> value="APSP">APSP</option>
-                                                <option <%if (attendees.get(x).getType().equals("ASF")) { %> selected <%}%> value="ASF">ASF</option>
-                                                <option <%if (attendees.get(x).getType().equals("Faculty")) { %> selected <%}%> value="Faculty">Faculty</option>
-                                                <option <%if (attendees.get(x).getType().equals("Admin")) { %> selected <%}%> value="Admin">Administrator</option>
-                                                <option <%if (attendees.get(x).getType().equals("Directhired")) { %> selected <%}%> value="Directhired">Direct Hired Contractual</option>
-                                                <option <%if (attendees.get(x).getType().equals("Independent")) { %> selected <%}%> value="Independent">Independent Contractor</option>
-                                                <option <%if (attendees.get(x).getType().equals("External")) { %> selected <%}%> value="External">External Service Personnel</option>
-                                                <option <%if (attendees.get(x).getType().equals("Undergrad")) { %> selected <%}%> value="Undergrad">Undergraduate Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("Grad")) { %> selected <%}%> value="Grad">Graduate Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("International")) { %> selected <%}%> value="International">International Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("Alumni")) { %> selected <%}%> value="Alumni">Alumni</option>
-                                                <option <%if (attendees.get(x).getType().equals("Parent")) { %> selected <%}%> value="Parent">Parent</option>
+                                        <td><textarea id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
+                                        <td><textarea id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="email0" required></textarea></td>
+                                        <td><select id="inputText" style='border-radius:0px;' name="type0">
+                                                <option value="CAP">CAP</option>
+                                                <option value="APSP">APSP</option>
+                                                <option value="ASF">ASF</option>
+                                                <option value="Faculty">Faculty</option>
+                                                <option value="Admin">Administrator</option>
+                                                <option value="Directhired">Direct Hired Contractual</option>
+                                                <option value="Independent">Independent Contractor</option>
+                                                <option value="External">External Service Personnel</option>
+                                                <option value="Undergrad">Undergraduate Student</option>
+                                                <option value="Grad">Graduate Student</option>
+                                                <option value="International">International Student</option>
+                                                <option value="Alumni">Alumni</option>
+                                                <option value="Parent">Parent</option>
                                             </select></td>
                                     </tr>
-                                    <% }%>
                                 </table></center>
                             <br>
                             <center>
@@ -284,7 +273,7 @@
                             </center>
                         </fieldset>    
                         <br><br><br><br>
-                        <center><button class="button" type = "submit">Submit</button></center>
+                        <center><button class="button" name="seID" type = "submit" value="<%=request.getAttribute("seID")%>">Submit</button></center>
                     </div>
                 </form>
 

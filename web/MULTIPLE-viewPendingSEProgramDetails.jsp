@@ -70,7 +70,7 @@
             th,tr,td{
                 padding:15px;
             }
-            
+
             .btn-success{
                 background-color: darkgreen;
                 border: none;
@@ -83,7 +83,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-warning{
                 background-color: darkyellow;
                 border: none;
@@ -96,7 +96,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-danger{
                 background-color: red;
                 border: none;
@@ -109,7 +109,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-audit{
                 background-color: mediumseagreen;
                 border: none;
@@ -122,7 +122,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
         </style>
     </head>
 
@@ -167,7 +167,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -392,7 +392,7 @@
                                         %>
                                         <br>
                                         <p>Explanation:</p>
-                                        <p><%if(SE.getExplanation() != null){%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
+                                        <p><%if (SE.getExplanation() != null) {%> <%=SE.getExplanation()%><% } else { %> None <% } %></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -401,32 +401,32 @@
                                     <div class="card-header">
                                         <h4>Work Plan</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Activity</th> 
-                                        <th>Time Start</th>
-                                        <th>Time End</th>
-                                        <th>Venue</th>
-                                    </tr>
-                                    <%
-                                        for (int i = 0; i < SE.getWorkplan().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=SE.getWorkplan().get(i).getDate()%></td>
-                                        <td><%=SE.getWorkplan().get(i).getActivity()%></td>
-                                        <td><%=SE.getWorkplan().get(i).getTimestarttimeend()%></td>
-                                        <td><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></td>
-                                        <td><%=SE.getWorkplan().get(i).getVenue()%></td>
-                                    </tr>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Activity</th> 
+                                                <th>Time Start</th>
+                                                <th>Time End</th>
+                                                <th>Venue</th>
+                                            </tr>
+                                            <%
+                                                for (int i = 0; i < SE.getWorkplan().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=SE.getWorkplan().get(i).getDate()%></td>
+                                                <td><%=SE.getWorkplan().get(i).getActivity()%></td>
+                                                <td><%=SE.getWorkplan().get(i).getTimestarttimeend()%></td>
+                                                <td><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></td>
+                                                <td><%=SE.getWorkplan().get(i).getVenue()%></td>
+                                            </tr>
 
-                                    <%
-                                        }
-                                    %>
+                                            <%
+                                                }
+                                            %>
 
-                                </table>
-                                </div>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -434,37 +434,37 @@
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses (Requested: ₱<%=SE.getTotalAmount()%>)</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Unit Cost</th> 
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                    <%
-                                        double count = 0;
-                                        for (int i = 0; i < SE.getExpenses().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=SE.getExpenses().get(i).getItem()%></td>
-                                        <td><%=SE.getExpenses().get(i).getUnitcost()%></td>
-                                        <td><%=SE.getExpenses().get(i).getQuantity()%></td>
-                                        <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
-                                    </tr>
-                                    <%
-                                            count += SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity();
-                                        }
-                                    %>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Unit Cost</th> 
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                            <%
+                                                double count = 0;
+                                                for (int i = 0; i < SE.getExpenses().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=SE.getExpenses().get(i).getItem()%></td>
+                                                <td><%=SE.getExpenses().get(i).getUnitcost()%></td>
+                                                <td><%=SE.getExpenses().get(i).getQuantity()%></td>
+                                                <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
+                                            </tr>
+                                            <%
+                                                    count += SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity();
+                                                }
+                                            %>
 
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total: <%=count%></td>
-                                    </tr>
-                                </table>
-                                </div>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total: <%=count%></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -472,35 +472,35 @@
                                     <div class="card-header">
                                         <h4>Expected Participants vs. Total Population of the Unit</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Sector</th>
-                                        <th>Total Population</th>
-                                        <th>Expected Number of Participants</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Academic Staff from Unit</td>
-                                        <td><%=SE.getTotalpopulationAcademicStaff()%></td>
-                                        <td><%=SE.getExpectedAcademicStaff()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Support Staff from Unit</td>
-                                        <td><%=SE.getTotalpopulationSupportStaff()%></td>
-                                        <td><%=SE.getExpectedSupportStaff()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Undergraduate Students</td>
-                                        <td><%=SE.getTotalpopulationUndergraduate()%></td>
-                                        <td><%=SE.getExpectedUndergraduate()%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Graduate Students</td>
-                                        <td><%=SE.getTotalPopulationGraduate()%></td>
-                                        <td><%=SE.getExpectedGraduate()%></td>
-                                    </tr>
-                                </table>
-                                </div>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Sector</th>
+                                                <th>Total Population</th>
+                                                <th>Expected Number of Participants</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Academic Staff from Unit</td>
+                                                <td><%=SE.getTotalpopulationAcademicStaff()%></td>
+                                                <td><%=SE.getExpectedAcademicStaff()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Support Staff from Unit</td>
+                                                <td><%=SE.getTotalpopulationSupportStaff()%></td>
+                                                <td><%=SE.getExpectedSupportStaff()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Undergraduate Students</td>
+                                                <td><%=SE.getTotalpopulationUndergraduate()%></td>
+                                                <td><%=SE.getExpectedUndergraduate()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Graduate Students</td>
+                                                <td><%=SE.getTotalPopulationGraduate()%></td>
+                                                <td><%=SE.getExpectedGraduate()%></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -508,25 +508,25 @@
                                     <div class="card-header">
                                         <h4>Persons Responsible</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                    </tr>
-                                    <%
-                                        for (int i = 0; i < SE.getResponsible().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=SE.getResponsible().get(i).getName()%></td>
-                                        <td><%=SE.getResponsible().get(i).getEmail()%></td>
-                                    </tr>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                            </tr>
+                                            <%
+                                                for (int i = 0; i < SE.getResponsible().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=SE.getResponsible().get(i).getName()%></td>
+                                                <td><%=SE.getResponsible().get(i).getEmail()%></td>
+                                            </tr>
 
-                                    <%
-                                        }
-                                    %>
-                                </table>
-                                </div>
+                                            <%
+                                                }
+                                            %>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -537,7 +537,7 @@
                                     <div class="card-body">   
                                         <p><%=SE.getSourceOfFunds()%></p>
                                     </div>
-                                
+
                                 </div>
                                 <br/>
 
@@ -548,91 +548,93 @@
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th style="width:35%">Step</th>
-                                        <th style="width:65%">Remarks</th> 
-                                    </tr>
-                                    <tr>
-                                        <td>Department/Unit Chair</td>
-                                        <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%}%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>College ADEALM/SE Director</td>
-                                        <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%><%if (SE.getSeDirectorRemarks() != null) {%><%=SE.getSeDirectorRemarks()%><%}%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>College Dean/VP/VC</td>
-                                        <td><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%><%if (SE.getVpVcRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Evaluation by COSCA</td>
-                                        <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Approval by the Council</td>
-                                        <td>
-                                            <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
-                                            <br>
-                                        </td>
-                                    </tr>
-                                </table>
-                                   </div>         
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th style="width:35%">Step</th>
+                                                <th style="width:65%">Remarks</th> 
+                                            </tr>
+                                            <tr>
+                                                <td>Department/Unit Chair</td>
+                                                <td><%if (SE.getDeptunitRemarks() != null) {%><%=SE.getDeptunitRemarks()%><%}%><%if (SE.getUnitChairRemarks() != null) {%><%=SE.getUnitChairRemarks()%><%}%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>College ADEALM/SE Director</td>
+                                                <td><%if (SE.getExternaldirectorRemarks() != null) {%><%=SE.getExternaldirectorRemarks()%><%}%><%if (SE.getSeDirectorRemarks() != null) {%><%=SE.getSeDirectorRemarks()%><%}%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>College Dean/VP/VC</td>
+                                                <td><%if (SE.getDeanRemarks() != null) {%><%=SE.getDeanRemarks()%><%}%><%if (SE.getVpVcRemarks() != null) {%><%=SE.getVpVcRemarks()%><%}%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Evaluation by COSCA</td>
+                                                <td><%if (SE.getCoscaRemarks() != null) {%><%=SE.getCoscaRemarks()%><%}%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Approval by the Council</td>
+                                                <td>
+                                                    <b>Br. Michael Broughton: </b> <%if (SE.getLmc1Remarks() != null) {%><%=SE.getLmc1Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Nelca Villarin: </b> <%if (SE.getLmc2Remarks() != null) {%><%=SE.getLmc2Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Margarita Perdido: </b> <%if (SE.getLmc3Remarks() != null) {%><%=SE.getLmc3Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Mr. James Laxa: </b> <%if (SE.getLmc4Remarks() != null) {%><%=SE.getLmc4Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Fritzie De Vera: </b> <%if (SE.getLmc5Remarks() != null) {%><%=SE.getLmc5Remarks()%><%}%>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>         
                                 </div>
                                 <%
                                     }
                                 %>
                                 <br/>
                                 <br>
-                                
-                                <%
-                                    if (UserDAO.getStep(Integer.parseInt(request.getAttribute("seID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
-                                %>
-                                <center>Upload PRS Photo/Scan:<input class="btn btn-basic btn-sm" type ="file" name ="uploadprs"></center><br>
-                                                                
-                                <center><button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button>
-                                
-                                <%
-                                    }
-                                %>
 
-                                <button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
-                               
+                                <center>
+                                    <%
+                                        if (UserDAO.getStep(Integer.parseInt(request.getAttribute("seID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
+                                    %>
+                                    Upload PRS Photo/Scan:<input class="btn btn-basic btn-sm" type ="file" name ="uploadprs"><br>
 
-                                
+                                    <button class="btn-success" type="submit" name="seID" value="<%=request.getAttribute("seID")%>">Upload</button>
 
-                                <%
-                                    if (UserDAO.isRevise(Integer.parseInt(request.getAttribute("seID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
-                                %>
-                                <button class="btn-warning"  type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button>
-                               
-                                <%
-                                    }
-                                %>
+                                    <%
+                                        }
+                                    %>
+
+                                    <button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
 
 
-                                <%
-                                    if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
-                                %>
-                                
-                                    <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
-                               
-                                <%
-                                    }
-                                %>
+
+
+                                    <%
+                                        if (UserDAO.isRevise(Integer.parseInt(request.getAttribute("seID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
+                                    %>
+                                    <button class="btn-warning"  type="submit" name="revise" value="<%=request.getAttribute("seID")%>">Revise</button>
+
+                                    <%
+                                        }
+                                    %>
+
+
+                                    <%
+                                        if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
+                                    %>
+
+                                    <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button>
+
+                                    <%
+                                        }
+                                    %>
+                                </center>
                             </div>
 
                         </div>

@@ -185,6 +185,12 @@
 
                     }
         </script>
+        
+        <script>
+            function goBack() {
+                window.history.back()
+              }
+        </script>
     </head>
 
     <body>
@@ -211,7 +217,7 @@
                             <th>Quantity</th>
                             <th>Subtotal</th>
                             <th>Amount Used</th>
-                            <th>Receipt Picture</th>
+                            <th>Date</th>
                         </tr>
                         <%
                             double total = 0;
@@ -224,7 +230,7 @@
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="sequantity<%=i%>" readonly><%=expenses.get(i).getQuantity()%></textarea></td>
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="sesubtotal<%=i%>" readonly><%=expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()%></textarea></td>
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="seamountused<%=i%>"><%=expenses.get(i).getAmountUsed()%></textarea></td>
-                            <td><center><input type ="file" name ="uploadreceipt0"></center></td>
+                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" readonly><%=expenses.get(i).getDatetime()%></textarea></td>
                         </tr>
                         <input type="hidden" name="seID<%=i%>" value="<%=expenses.get(i).getSeproposalID()%>">
                         <%
@@ -243,7 +249,9 @@
             </fieldset>
 
             <br><br>
-            <center><button type="submit" name="SE" value="<%=request.getAttribute("seID")%>" class="btn-success">Update</button></center>
+            <center><button type="submit" name="SE" value="<%=request.getAttribute("seID")%>" class="btn-success">Update</button>
+                <button type="submit" name="back" value="<%=request.getAttribute("seID")%>" class="btn-success" style="background-color:red">Back</button></center>
+            
         </form>
     </div>
 </body>

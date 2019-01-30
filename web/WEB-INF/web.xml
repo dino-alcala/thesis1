@@ -404,6 +404,14 @@
         <servlet-name>viewKRATracingFF</servlet-name>
         <servlet-class>controller.viewKRATracingFF</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createSEAttendanceSheet</servlet-name>
+        <servlet-class>controller.createSEAttendanceSheet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>createFFAttendanceSheet</servlet-name>
+        <servlet-class>controller.createFFAttendanceSheet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -807,6 +815,14 @@
     <servlet-mapping>
         <servlet-name>viewKRATracingFF</servlet-name>
         <url-pattern>/viewKRATracingFF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createSEAttendanceSheet</servlet-name>
+        <url-pattern>/createSEAttendanceSheet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createFFAttendanceSheet</servlet-name>
+        <url-pattern>/createFFAttendanceSheet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

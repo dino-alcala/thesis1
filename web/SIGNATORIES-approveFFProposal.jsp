@@ -383,9 +383,9 @@
 
                                 <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
                                  <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br>  
-                                <button class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
-                                    <button class="btn-warning" type="submit" name="revise" value="<%=FF.getId()%>">Revise</button>
-                                    <button class="btn-danger" type="submit" style='background-color:red; border-color:red;' name="reject" value="<%=FF.getId()%>">Reject</button></center>
+                                <button onclick="return window.confirm('Approve Program?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
+                                    <button onclick="return window.confirm('Mark Proposal for Revision?')" class="btn-warning" type="submit" name="revise" value="<%=FF.getId()%>">Revise</button>
+                                    <button onclick="return window.confirm('Reject Program?')" class="btn-danger" type="submit" style='background-color:red; border-color:red;' name="reject" value="<%=FF.getId()%>">Reject</button></center>
                                    
                             </div>
 

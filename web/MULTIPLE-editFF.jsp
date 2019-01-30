@@ -474,7 +474,7 @@
                         </fieldset>
 
 
-                        <legend>Breakdown of Expenses: </legend>
+                        <legend><b>Breakdown of Expenses (Budget of 2000 per head)</b></legend>
                         <input type="hidden" value="<%=FF.getExpenses().size()%>" id="countexpenses" name="countexpenses">
                         <fieldset>
                             <center><table style = "width:100%" id="breakdowntable">

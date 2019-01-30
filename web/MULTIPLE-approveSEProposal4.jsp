@@ -844,7 +844,7 @@
                                 <input type="hidden" name="seID" value="<%=SE.getId()%>">
                                 <center>
                                     <button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
-                                    <button class="btn-success" name="approve" value="<%=SE.getId()%>">Proceed</button>
+                                    <button onclick="return window.confirm('Proceed?')" class="btn-success" name="approve" value="<%=SE.getId()%>">Proceed</button>
                                 </center>    
                             </div>
 

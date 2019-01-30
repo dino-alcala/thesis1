@@ -39,49 +39,64 @@ public class updateBudgetFF extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
-            UserDAO UserDAO = new UserDAO();
-            ArrayList<FFexpenses> expenses = new ArrayList();
+            if(request.getParameter("FF") != null){
+                UserDAO UserDAO = new UserDAO();
+                ArrayList<FFexpenses> expenses = new ArrayList();
 
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                FFexpenses FFexpenses = new FFexpenses();
-                FFexpenses.setItem(request.getParameter("ffitem" + i));
-                FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
-                FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
-                FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
-                FFexpenses.setAmountUsed(Double.parseDouble(request.getParameter("ffamountused" + i)));
-                FFexpenses.setFfproposalID(Integer.parseInt(request.getParameter("ffID" + i)));
-                expenses.add(FFexpenses);
+                for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    
+                    FFexpenses FFexpenses = new FFexpenses();
+                    FFexpenses.setItem(request.getParameter("ffitem" + i));
+                    FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
+                    FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
+                    FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
+                    FFexpenses.setAmountUsed(Double.parseDouble(request.getParameter("ffamountused" + i)));
+                    FFexpenses.setFfproposalID(Integer.parseInt(request.getParameter("ffID" + i)));
+                    FFexpenses.setDatetime(sdf.format(dt));
+                    expenses.add(FFexpenses);
+                }
+
+                UserDAO.updateBudgetFF(expenses);
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+                Notification n = new Notification();
+                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
+                n.setBody("A portion of the budget has been used! \n" + sdf.format(dt));
+                
+                sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                n.setDt(sdf.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n);
+
+                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
+                n.setBody("A portion of the budget has been used!");
+                n.setDt(sdf.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n);
+
+                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
+                n.setBody("A portion of the budget has been used!");
+                n.setDt(sdf.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                UserDAO.AddNotification(n);
+
+                request.setAttribute("updateBudget", "You have successfully updated the Budget!");
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-faithFormationProgramsList.jsp");
+                dispatcher.forward(request, response);
+                
+            } else if(request.getParameter("back") != null){
+                request.setAttribute("ffID", request.getParameter("back"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFProgramDetails.jsp");
+                dispatcher.forward(request, response);
             }
-
-            UserDAO.updateBudgetFF(expenses);
-
-            Notification n = new Notification();
-            n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
-            n.setBody("A portion of the budget has been used!");
-
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            n.setDt(sdf.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
-            UserDAO.AddNotification(n);
             
-            n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
-            n.setBody("A portion of the budget has been used!");
-            n.setDt(sdf.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
-            UserDAO.AddNotification(n);
-            
-            n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
-            n.setBody("A portion of the budget has been used!");
-            n.setDt(sdf.format(dt));
-            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
-            UserDAO.AddNotification(n);
-
-            request.setAttribute("updateBudget", "You have successfully updated the Budget!");
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-faithFormationProgramsList.jsp");
-            dispatcher.forward(request, response);
         }
     }
 

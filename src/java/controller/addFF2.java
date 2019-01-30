@@ -73,6 +73,10 @@ public class addFF2 extends HttpServlet {
             java.util.Date javaDate = new java.util.Date();
             String input1 = new java.sql.Date(javaDate.getTime()).toString();
             String input2 = FF.getActualDate().toString();
+            
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+            java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             try {
                 java.util.Date date1 = myFormat.parse(input1);
@@ -81,19 +85,15 @@ public class addFF2 extends HttpServlet {
                 long days = (diff / (1000 * 60 * 60 * 24));
 
                 if (days <= 14) {
-                    n.setBody("URGENT FF Proposal ready for approval!");
+                    n.setBody("URGENT FF Proposal ready for approval! \n " + sdf.format(dt));
                 } else if (days >= 15) {
-                    n.setBody("New FF Proposal ready for approval!");
+                    n.setBody("New FF Proposal ready for approval! \n " + sdf.format(dt));
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            n.setDt(sdf.format(dt));
-
+            n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsAssistantDean(FF.getUnit()));
 
             UserDAO.AddNotification(n);

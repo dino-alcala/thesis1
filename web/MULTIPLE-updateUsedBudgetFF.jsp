@@ -210,6 +210,7 @@
                             <th>Quantity</th>
                             <th>Subtotal</th>
                             <th>Amount Used</th>
+                            <th>Date</th>
                         </tr>
 
                         <%
@@ -225,6 +226,7 @@
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="ffquantity<%=i%>" readonly><%=expenses.get(i).getQuantity()%></textarea></td>
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="ffsubtotal<%=i%>" readonly><%=expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()%></textarea></td>
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="ffamountused<%=i%>"><%=expenses.get(i).getAmountUsed()%></textarea></td>
+                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" readonly><%=expenses.get(i).getDatetime()%></textarea></td>
                             <td></td>
                         </tr>
                         <input type="hidden" name="ffID<%=i%>" value="<%=expenses.get(i).getFfproposalID()%>">
@@ -237,6 +239,7 @@
                             <td></td>
                             <td>Grand Total: <%=total%></td>
                             <td></td>
+                            <td></td>
                         </tr>
                     </table></center>
                 <br>
@@ -244,7 +247,8 @@
 
             <br><br>
             
-            <center><button type="submit" name="FF" value="<%=request.getAttribute("ffID")%>" class="btn-success">Update</button></center>
+            <center><button type="submit" name="FF" value="<%=request.getAttribute("ffID")%>" class="btn-success">Update</button>
+                <button type="submit" name="back" value="<%=request.getAttribute("ffID")%>" class="btn-success" style="background-color:red">Back</button></center>
         </form>
     </div>
 </body>

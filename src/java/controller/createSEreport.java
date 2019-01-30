@@ -63,6 +63,15 @@ public class createSEreport extends HttpServlet {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEReport.jsp");
                     dispatcher.forward(request, response);
                 }
+            } else if (request.getParameter("attendance") != null){
+                request.setAttribute("seID", request.getParameter("attendance"));
+                ServletContext context = getServletContext();
+                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("attendance")));
+                session.setAttribute("SE", SE);
+                
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSEAttendanceSheet.jsp");
+                dispatcher.forward(request, response);
+                
             } else if (request.getParameter("viewReport") != null) {
 
                 request.setAttribute("seID", Integer.parseInt(request.getParameter("viewReport")));
@@ -84,36 +93,51 @@ public class createSEreport extends HttpServlet {
                     b.setDate(sqlDate);
 
                     UserDAO.addLatestBudget(b);
+                    
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                    n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned");
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n.setDt(sdf.format(dt));
-
+                    n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
+                    n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
+                    
+                    n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                    n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
+                    n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                     UserDAO.AddNotification(n);
+                    
+                    n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                    n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
+                    n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                     UserDAO.AddNotification(n);
                 } else {
+                    
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    
                     Notification n = new Notification();
                     n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                    n.setBody("The program has been cancelled!");
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    n.setDt(sdf.format(dt));
-
+                    n.setBody("The program has been cancelled! \n " + sdf.format(dt));
+                    n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
+                    
+                    n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                    n.setBody("The program has been cancelled! \n " + sdf.format(dt));
+                    n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                     UserDAO.AddNotification(n);
+                    
+                    n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
+                    n.setBody("The program has been cancelled! \n " + sdf.format(dt));
+                    n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                     UserDAO.AddNotification(n);
                 }
@@ -130,16 +154,6 @@ public class createSEreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-updateUsedBudget.jsp");
                 dispatcher.forward(request, response);
-
-            } else {
-                SE SE = new SE();
-                SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("viewreceipt")));
-
-                OutputStream o = response.getOutputStream();
-                o.write(UserDAO.viewReceipt(Integer.parseInt(request.getParameter("viewreceipt"))));
-                o.flush();
-                o.close();
-
             }
         }
     }

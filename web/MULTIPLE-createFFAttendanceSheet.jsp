@@ -4,8 +4,6 @@
     Author     : Karl Madrid
 --%>
 
-<%@page import="entity.SEreport"%>
-<%@page import="entity.SEattendees"%>
 <%@page import="entity.SEexpenses"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
@@ -25,7 +23,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create SE Completion Report</title>
+        <title>Create FF Completion Report</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -41,36 +39,31 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-            table,th,td{
+           table,th,td{
                 border:.5px solid
                     black;
             }
-
-
             textarea{
                 resize: none;
             } 
-
+            
             th {
                 background-color: green;
                 color: white;
             }
-
             table {
                 border-collapse: collapse;
             }
-
             th{
                 padding:15px;
             }
-
+            
             h3{
                 border-bottom: 2px solid green;
                 border-top: 2px solid green;
                 padding-bottom: 10px;
                 padding-top: 10px;
             }
-
             .button{
                 background-color: darkgreen;
                 border: none;
@@ -83,11 +76,19 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
             legend, h3, #inputText, #classification, option, select, value, th{
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
+            
+            
+            #addRowButton {
+                padding: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+            #deleteRowButton {
+                padding: 10px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
             @keyframes colorize {
                 0% {
                     -webkit-filter: grayscale(100%);
@@ -100,8 +101,7 @@
             }
         </style>
 
-        <script>
-
+        <script type='text/javascript'>
             function addRow() {
                 var count = document.getElementById("countattendees").value;
                 var table = document.getElementById("attendeestable");
@@ -112,11 +112,10 @@
                 var cell3 = row.insertCell(2);
                 cell1.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='attendee" + count + "' required></textarea>";
                 cell2.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='email" + count + "' required></textarea>";
-                cell3.innerHTML = "<td><select style='border-radius:0px;' name='type" + count + "'><option value='CAP'>CAP</option><option value='APSP'>APSP</option><option value='ASF'>ASF</option><option value='Faculty'>Faculty</option><option value='Admin'>Administrator</option><option value='Directhired'>Direct Hired Contractual</option><option value='Independent'>Independent Contractor</option><option value='External'>External Service Personnel</option><option value='Undergrad'>Undergraduate Student</option><option value='Grad'>Graduate Student</option><option value='International'>International Student</option><option value='Alumni'>Alumni</option><option value='Parent'>Parent</option></select></td>"
+                cell3.innerHTML = "<td><select style='border-radius:0px;' name='type"+count+"'><option value='CAP'>CAP</option><option value='APSP'>APSP</option><option value='ASF'>ASF</option><option value='Faculty'>Faculty</option><option value='Admin'>Administrator</option><option value='Directhired'>Direct Hired Contractual</option><option value='Independent'>Independent Contractor</option><option value='External'>External Service Personnel</option><option value='Undergrad'>Undergraduate Student</option><option value='Grad'>Graduate Student</option><option value='International'>International Student</option><option value='Alumni'>Alumni</option><option value='Parent'>Parent</option></select></td>"
                 count++;
                 document.getElementById("countattendees").setAttribute('value', count);
             }
-
             function deleteRow() {
                 var count = document.getElementById("countattendees").value;
                 var rows = document.getElementById("attendeestable").rows.length;
@@ -125,7 +124,6 @@
                     count--;
                     document.getElementById("countattendees").setAttribute('value', count);
                 } else {
-
                 }
             }
         </script>
@@ -172,7 +170,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO();%>
+                            <% UserDAO UserDAO = new UserDAO(); %>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -192,7 +190,6 @@
                                 <%
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
                                     for (int i = 0; i < n.size(); i++) {
                                 %>
                                 <li class="notification-box" href="#">
@@ -235,58 +232,50 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <center><h3>Social Engagement Program Attendees</h3></center>
+                <center><h3>Program Accomplishment Report Form</h3></center>
+
+                <div class="form-style-5">
 
 
-                <form action="createSEreport5" method="post">
+                    <form action="createFFAttendanceSheet" method="post">
                     <div class="form-style-5">
                         <fieldset>
-                            <%
-                                SEreport SEreport = (SEreport) session.getAttribute("SEreport");
-                                ArrayList<SEattendees> attendees = UserDAO.retrieveSEParticipants(SEreport.getSeproposalID());
-                            %>
-                            <input type="text" hidden name="countattendees" id="countattendees" value="<%=attendees.size()%>"/>
+                            <input type="text" hidden name="countattendees" id="countattendees" value="1"/>
                             <center><table style = "width:100%" id="attendeestable">
                                     <tr>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Type</th>
                                     </tr>
-
-                                    <%
-                                        for (int x = 0; x < attendees.size(); x++) {
-                                    %>
                                     <tr>    
-                                        <td><textarea readonly id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="attendee<%=x%>" required><%=attendees.get(x).getName()%></textarea></td>
-                                        <td><textarea readonly id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="email<%=x%>" required><%=attendees.get(x).getEmail()%></textarea></td>
-                                        <td><select readonly id="inputText" style='border-radius:0px;' name="type<%=x%>">
-                                                <option <%if (attendees.get(x).getType().equals("CAP")) { %> selected <%}%> value="CAP">CAP</option>
-                                                <option <%if (attendees.get(x).getType().equals("APSP")) { %> selected <%}%> value="APSP">APSP</option>
-                                                <option <%if (attendees.get(x).getType().equals("ASF")) { %> selected <%}%> value="ASF">ASF</option>
-                                                <option <%if (attendees.get(x).getType().equals("Faculty")) { %> selected <%}%> value="Faculty">Faculty</option>
-                                                <option <%if (attendees.get(x).getType().equals("Admin")) { %> selected <%}%> value="Admin">Administrator</option>
-                                                <option <%if (attendees.get(x).getType().equals("Directhired")) { %> selected <%}%> value="Directhired">Direct Hired Contractual</option>
-                                                <option <%if (attendees.get(x).getType().equals("Independent")) { %> selected <%}%> value="Independent">Independent Contractor</option>
-                                                <option <%if (attendees.get(x).getType().equals("External")) { %> selected <%}%> value="External">External Service Personnel</option>
-                                                <option <%if (attendees.get(x).getType().equals("Undergrad")) { %> selected <%}%> value="Undergrad">Undergraduate Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("Grad")) { %> selected <%}%> value="Grad">Graduate Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("International")) { %> selected <%}%> value="International">International Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("Alumni")) { %> selected <%}%> value="Alumni">Alumni</option>
-                                                <option <%if (attendees.get(x).getType().equals("Parent")) { %> selected <%}%> value="Parent">Parent</option>
+                                        <td><textarea style='border-radius:0px' rows = "1" cols = "45%" name ="attendee0" required></textarea></td>
+                                        <td><textarea style='border-radius:0px' rows = "1" cols = "45%" name ="email0" required></textarea></td>
+                                        <td><select style='border-radius:0px;' name="type0">
+                                                <option value="CAP">CAP</option>
+                                                <option value="APSP">APSP</option>
+                                                <option value="ASF">ASF</option>
+                                                <option value="Faculty">Faculty</option>
+                                                <option value="Admin">Administrator</option>
+                                                <option value="Directhired">Direct Hired Contractual</option>
+                                                <option value="Independent">Independent Contractor</option>
+                                                <option value="External">External Service Personnel</option>
+                                                <option value="Undergrad">Undergraduate Student</option>
+                                                <option value="Graduate">Graduate Student</option>
+                                                <option value="International">International Student</option>
+                                                <option value="Alumni">Alumni</option>
+                                                <option value="Parent">Parent</option>
                                             </select></td>
                                     </tr>
-                                    <% }%>
                                 </table></center>
                             <br>
-                            <center>
-                                <button class="button" type ="button" id="addRowButton" onclick ="addRow()">Add Row</button>
-                                <button class="button" type ="button" id="deleteRowButton" onclick ="deleteRow()" style="background-color:red">Delete Row</button>
-                            </center>
+                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
+                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"/></center>
                         </fieldset>    
                         <br><br><br><br>
                         <center><button class="button" type = "submit">Submit</button></center>
                     </div>
                 </form>
+                </div>
 
             </div>
 
@@ -306,7 +295,6 @@
                     window.open = function () {/*disable open*/
                     };
                 }
-
                 // prevent href=# click jump
                 document.addEventListener("DOMContentLoaded", function () {
                     var links = document.getElementsByTagName("A");
@@ -354,7 +342,6 @@
                     } else {
                         SeparatorTitle.addClass('d-flex');
                     }
-
                     // Collapse/Expand icon
                     $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
                 }
