@@ -1159,7 +1159,7 @@ public class UserDAO {
         }
         return units;
     }
-    
+
     public ArrayList<StudentOrg> retrieveStudentOrgs() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -2876,13 +2876,12 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
-    public void updateSETotalAmount(int seID){
+
+    public void updateSETotalAmount(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
-        
-        
+
     }
 
     public void AddFF(FF FF) {
@@ -3155,6 +3154,85 @@ public class UserDAO {
                 /* ignored */ }
         }
         return SE;
+    }
+    
+    public ArrayList<SE> retrieveSEProposalsForCancellation() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE step = 10";
+            pstmt = conn.prepareStatement(query);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setActualDate(rs2.getDate("actualImplementation"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setActivityClassification(rs2.getString("activityClassification"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
+    public ArrayList<FF> retrieveFFProposalsForCancellation() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE step = 10";
+            pstmt = conn.prepareStatement(query);
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF s = new FF();
+                s.setActualDate(rs2.getDate("actualImplementation"));
+                s.setProjectName(rs2.getString("projectName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setActivityClassification(rs2.getString("activityClassification"));
+                s.setId(rs2.getInt("id"));
+                FF.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
     }
 
     public ArrayList<SE> retrieveSEProposalByStepUnit(int step, String unit) {
@@ -4238,6 +4316,7 @@ public class UserDAO {
                 SE.setRemarktype3(rs2.getString("remarktype3"));
                 SE.setRemarktype4(rs2.getString("remarktype4"));
                 SE.setRemarktype5(rs2.getString("remarktype5"));
+                SE.setReasonforcancel(rs2.getString("reasonforcancel"));
             }
 
             ArrayList<String> component = new ArrayList();
@@ -4567,6 +4646,7 @@ public class UserDAO {
                 FF.setRemarktype3(rs2.getString("remarktype3"));
                 FF.setRemarktype4(rs2.getString("remarktype4"));
                 FF.setRemarktype5(rs2.getString("remarktype5"));
+                FF.setReasonforcancel(rs2.getString("reasonforcancel"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
@@ -4741,6 +4821,60 @@ public class UserDAO {
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, step);
             pstmt.setInt(2, seID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void requestCancel(int seID, String cancel) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE seproposal SET reasonforcancel = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, cancel);
+            pstmt.setInt(2, seID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void requestCancelFF(int ffID, String cancel) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE ffproposal SET reasonforcancel = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, cancel);
+            pstmt.setInt(2, ffID);
 
             int rs = pstmt.executeUpdate();
 
@@ -8707,7 +8841,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void uploadReceipt(InputStream receipt, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -8804,7 +8938,7 @@ public class UserDAO {
         }
         return null;
     }
-    
+
     public byte[] viewReceipt(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9507,7 +9641,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean canCreateAccomplishmentReport(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9524,7 +9658,7 @@ public class UserDAO {
             rs2.next();
             percent = rs2.getDouble("evaluationpercent");
 
-            if(percent >= 50) {
+            if (percent >= 50) {
                 return true;
             }
 
@@ -9542,7 +9676,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean canCreateAccomplishmentReportFF(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9559,7 +9693,7 @@ public class UserDAO {
             rs2.next();
             percent = rs2.getDouble("evaluationpercent");
 
-            if(percent >= 50) {
+            if (percent >= 50) {
                 return true;
             }
 
@@ -9577,7 +9711,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean hasUpdatedBudget(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9591,8 +9725,9 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
-                if(!rs2.getString("datetime").equals("")){
+            while (rs2.next()) {
+                String date = rs2.getString("datetime");
+                if (!date.equals("2001-01-01 00:00:00.0")) {
                     return true;
                 }
             }
@@ -9611,7 +9746,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean hasUpdatedBudgetFF(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9626,11 +9761,12 @@ public class UserDAO {
 
             rs2 = pstmt.executeQuery();
             while(rs2.next()){
-                if(!rs2.getString("datetime").equals("")){
+                String date = rs2.getString("datetime");
+                if (!date.equals("2001-01-01 00:00:00.0")) {
                     return true;
                 }
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -9645,7 +9781,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public boolean updateSEEvaluationPercent(int seID, double percent) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9674,6 +9810,34 @@ public class UserDAO {
         return false;
     }
     
+    public boolean updateFFEvaluationPercent(int ffID, double percent) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE ffproposal SET evaluationpercent = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDouble(1, percent);
+            pstmt.setInt(2, ffID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return false;
+    }
+
     public ArrayList<SEattendees> retrieveSEParticipants(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9686,10 +9850,47 @@ public class UserDAO {
             pstmt.setDouble(1, seID);
 
             ResultSet rs = pstmt.executeQuery();
- 
-            while(rs.next()){
-            
+
+            while (rs.next()) {
+
                 SEattendees a = new SEattendees();
+                a.setName(rs.getString("name"));
+                a.setEmail(rs.getString("email"));
+                a.setType(rs.getString("type"));
+                attendees.add(a);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return attendees;
+    }
+
+    public ArrayList<FFattendees> retrieveFFParticipants(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ArrayList<FFattendees> attendees = new ArrayList();
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDouble(1, ffID);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+                FFattendees a = new FFattendees();
                 a.setName(rs.getString("name"));
                 a.setEmail(rs.getString("email"));
                 a.setType(rs.getString("type"));
@@ -9718,7 +9919,7 @@ public class UserDAO {
         ResultSet rs2 = null;
 
         try {
-            String query = "SELECT * FROM sereport_attendees_temp WHERE ffproposalID = ?";
+            String query = "SELECT * FROM ffreport WHERE ffproposalID = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
 
@@ -9742,7 +9943,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     public int countCAP(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9756,7 +9957,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -9774,7 +9975,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countAPSP(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9788,7 +9989,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -9806,7 +10007,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countASF(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9820,7 +10021,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -9838,7 +10039,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countFaculty(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9852,7 +10053,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -9870,7 +10071,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countAdmin(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9884,7 +10085,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -9902,7 +10103,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countDirecthired(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9916,7 +10117,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -9934,7 +10135,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countIndependent(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9948,7 +10149,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -9966,7 +10167,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countExternal(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -9980,7 +10181,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -9998,7 +10199,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countGrad(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -10012,7 +10213,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -10030,7 +10231,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countUndergrad(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -10044,7 +10245,7 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 count++;
             }
 
@@ -10062,7 +10263,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countAlumni(int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -10076,7 +10277,39 @@ public class UserDAO {
             pstmt.setInt(1, seID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countParent(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Parent'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
                 count++;
             }
 
@@ -10095,7 +10328,7 @@ public class UserDAO {
         return count;
     }
     
-    public int countParent(int seID) {
+    public int countCAPFF(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -10103,12 +10336,364 @@ public class UserDAO {
         int count = 0;
 
         try {
-            String query = "SELECT * FROM sereport_attendees_temp WHERE seproposalID = ? AND type = 'Parent'";
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'CAP'";
             pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, seID);
+            pstmt.setInt(1, ffID);
 
             rs2 = pstmt.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countAPSPFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'APSP'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countASFFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'ASF'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countFacultyFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'Faculty'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countAdminFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'Admin'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countDirecthiredFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'Directhired'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countIndependentFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'Independent'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countExternalFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'External'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countGradFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'Grad'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countUndergradFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'Undergrad'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countAlumniFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'Alumni'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return count;
+    }
+
+    public int countParentFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs2 = null;
+        int count = 0;
+
+        try {
+            String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ? AND type = 'Parent'";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            rs2 = pstmt.executeQuery();
+            while (rs2.next()) {
                 count++;
             }
 
@@ -10264,7 +10849,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void AddSEAttendanceSheet(ArrayList<SEattendees> attendees, int seID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -10298,7 +10883,7 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
-    
+
     public void AddFFAttendanceSheet(ArrayList<FFattendees> attendees, int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -10308,7 +10893,7 @@ public class UserDAO {
             String query = null;
 
             for (int i = 0; i < attendees.size(); i++) {
-                query = "INSERT INTO ffreport_attendees_temp(name, email, type, seproposalID) VALUES(?,?,?,?)";
+                query = "INSERT INTO ffreport_attendees_temp(name, email, type, ffproposalID) VALUES(?,?,?,?)";
 
                 pstmt = conn.prepareCall(query);
                 pstmt.setString(1, attendees.get(i).getName());
@@ -12817,6 +13402,7 @@ public class UserDAO {
         return number;
     }
     
+
     public String getSENameBySEID(int seID) {
 
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -12853,6 +13439,42 @@ public class UserDAO {
         return name;
     }
     
+    public String getFFNameByFFID(int ffID) {
+
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT projectName FROM ffproposal WHERE id = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String name = null;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            rs = ps.executeQuery();
+            rs.next();
+            name = rs.getString("projectName");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return name;
+    }
+
     public double getNumberParticipants(int seID) {
 
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -12866,6 +13488,44 @@ public class UserDAO {
         try {
             ps = conn.prepareStatement(query);
             ps.setInt(1, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                number++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return number;
+    }
+    
+    public double getNumberParticipantsFF(int ffID) {
+
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM ffreport_attendees_temp WHERE ffproposalID = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        double number = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -13688,7 +14348,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countSEImplementedByUnitStudentOrg(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13725,7 +14385,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countSEImplementedByStudentOrg(String studentorg, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13835,7 +14495,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countFFImplementedByUnitStudentOrg(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -13872,7 +14532,7 @@ public class UserDAO {
         }
         return count;
     }
-    
+
     public int countFFImplementedByStudentOrg(String studentorg, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -14344,7 +15004,7 @@ public class UserDAO {
         }
         return budget;
     }
-    
+
     public double getBudgetRequestedByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -14381,7 +15041,6 @@ public class UserDAO {
         }
         return budget;
     }
-    
 
     public double getSEUtilizedBudgetByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -14871,7 +15530,7 @@ public class UserDAO {
         }
         return budget;
     }
-    
+
     public double getRequestedUtilizedBudgetByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -14882,7 +15541,7 @@ public class UserDAO {
         double budget = 0;
         try {
             String query = "SELECT SUM(a.expendedAmount) FROM (SELECT sf.expendedAmount FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 8 AND s.datecreated >= ? AND s.datecreated <= ? AND s.sourceOfFunds = 'OVPLM' UNION ALL SELECT ff.expendedAmount FROM ffreport_funds ff JOIN ffreport fr ON ff.ffreportID = fr.id JOIN ffproposal f ON f.id = fr.ffproposalID WHERE f.step = 8 AND f.datecreated >= ? AND f.datecreated <= ? AND f.sourceOfFunds = 'OVPLM') as a";
-                            
+
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
@@ -15371,7 +16030,7 @@ public class UserDAO {
         }
         return budget;
     }
-    
+
     public double getBudgetRequestedByUnitDate(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -15449,7 +16108,7 @@ public class UserDAO {
         }
         return budget;
     }
-    
+
     public double getRequestedUtilizedBudgetUnitByDate(String unit, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -15786,7 +16445,7 @@ public class UserDAO {
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                
+
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, expenses.get(i).getItem());
                 pstmt.setDouble(2, expenses.get(i).getUnitcost());
@@ -15795,7 +16454,7 @@ public class UserDAO {
                 pstmt.setDouble(5, expenses.get(i).getAmountUsed());
                 pstmt.setInt(6, expenses.get(i).getSeproposalID());
                 pstmt.setString(7, sdf.format(dt));
-  
+
                 rs = pstmt.executeUpdate();
             }
 
@@ -15875,7 +16534,7 @@ public class UserDAO {
 
             for (int i = 0; i < expenses.size(); i++) {
                 query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, ffproposalID, datetime) VALUES(?,?,?,?,?,?,?)";
-                
+
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -17799,7 +18458,6 @@ public class UserDAO {
                 SE.add(s);
             }
 
-
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -17818,7 +18476,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<SE> programseleventhTarget() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -17864,7 +18522,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<SE> programstwelfthTarget() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -17874,7 +18532,7 @@ public class UserDAO {
         ResultSet rs = null;
 
         ArrayList<SE> SE = new ArrayList();
-        
+
         try {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -17924,7 +18582,6 @@ public class UserDAO {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
 
-
             while (rs.next()) {
                 SE s = new SE();
                 s.setDate(rs.getDate("s.datecreated"));
@@ -17954,7 +18611,7 @@ public class UserDAO {
         }
         return SE;
     }
-    
+
     public ArrayList<SE> programssixteenthTarget() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
