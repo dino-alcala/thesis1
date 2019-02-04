@@ -412,6 +412,18 @@
         <servlet-name>createFFAttendanceSheet</servlet-name>
         <servlet-class>controller.createFFAttendanceSheet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>requestSECancel</servlet-name>
+        <servlet-class>controller.requestSECancel</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>approveSECancellation</servlet-name>
+        <servlet-class>controller.approveSECancellation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>approveFFCancellation</servlet-name>
+        <servlet-class>controller.approveFFCancellation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -823,6 +835,18 @@
     <servlet-mapping>
         <servlet-name>createFFAttendanceSheet</servlet-name>
         <url-pattern>/createFFAttendanceSheet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>requestSECancel</servlet-name>
+        <url-pattern>/requestSECancel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>approveSECancellation</servlet-name>
+        <url-pattern>/approveSECancellation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>approveFFCancellation</servlet-name>
+        <url-pattern>/approveFFCancellation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

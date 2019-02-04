@@ -7,25 +7,21 @@ package controller;
 
 import dao.UserDAO;
 import entity.FF;
-import entity.FFattendees;
 import entity.Notification;
-import entity.SE;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class editFF2 extends HttpServlet {
+public class requestFFCancel extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,47 +38,25 @@ public class editFF2 extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
-            HttpSession session = request.getSession();
-            FF FF;
             UserDAO UserDAO = new UserDAO();
+            UserDAO.requestCancel(Integer.parseInt(request.getParameter("cancel")), request.getParameter("reason"));
+            FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("cancel")));
+            FF.setReasonforcancel(request.getParameter("reason"));
 
-            FF = (FF) session.getAttribute("FF");
-
-            ArrayList<FFattendees> attendees = new ArrayList();
-
-            for (int i = 0; i < Integer.parseInt(request.getParameter("countattendees")); i++) {
-                FFattendees FFattendees = new FFattendees();
-                FFattendees.setName(request.getParameter("attendee" + i));
-                FFattendees.setEmail(request.getParameter("email" + i));
-                attendees.add(FFattendees);
-            }
-
-            FF.setAttendees(attendees);
-
-            UserDAO.auditFF(FF.getId());
-
-            UserDAO.EditFF(FF);
-
-            UserDAO.completeReviseFF(FF.getId());
-            
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
             java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Notification n = new Notification();
-            n.setBody("Program: " + FF.getProjectName() + "\n"  + sdf.format(dt));
-            n.setTitle("Revised FF Proposal ready for Approval");
+            n.setBody("Program: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("cancel")))  + "\n" + sdf.format(dt));
+            n.setTitle("Request for Cancellation Submitted");
             n.setDt(sdf2.format(dt));
-
-            if (UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 1 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 2 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 3 || UserDAO.getStepFF(Integer.parseInt(request.getParameter("ffID"))) == 4) {
-                n.setUserID(UserDAO.getUserIDforNotifsAssistantDean(session.getAttribute("unit").toString()));
-            }
-
+            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
             UserDAO.AddNotification(n);
 
-            request.setAttribute("reviseFF1", "You have successfully revised the FF!");
+            request.setAttribute("cancelProgram", "Request for Cancellation has been Submitted!");
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingFFList.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-faithFormationProgramsList.jsp");
             dispatcher.forward(request, response);
         }
     }

@@ -99,19 +99,19 @@ public class approveSE extends HttpServlet {
                     UserDAO.approveVPVC(Integer.parseInt(request.getParameter("approve")));
                 }
 
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                
                 Notification n = new Notification();
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + "\n" + sdf.format(dt));
                 
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
                 SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
                 String input1 = new java.sql.Date(javaDate.getTime()).toString();
                 String input2 = SE.getActualDate().toString();
-                
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                
+
                 try {
                     java.util.Date date1 = myFormat.parse(input1);
                     java.util.Date date2 = myFormat.parse(input2);
@@ -119,9 +119,9 @@ public class approveSE extends HttpServlet {
                     long days = (diff / (1000*60*60*24));
 
                     if(days <= 14){
-                        n.setBody("URGENT SE Proposal ready for approval!!");
+                        n.setTitle("Urgent SE Proposal ready for Approval");
                     } else if (days >= 15){
-                        n.setBody("New SE Proposal ready for approval!");
+                        n.setTitle("SE Proposal ready for Approval");
                     }
                 } catch (ParseException ex) {
                     Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
@@ -156,29 +156,29 @@ public class approveSE extends HttpServlet {
                 UserDAO.AddNotification(n);
 
                 Notification n2 = new Notification();
-                n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+                n2.setTitle("SE Proposal Approved");
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
-                    n2.setBody("Your proposal has been approved by the Department Chair! It will now be taken to the ADEALM. \n " + sdf.format(dt));
+                    n2.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + " approved the Department Chair! It will now be taken to the ADEALM." + "\n"  + sdf.format(dt));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
-                    n2.setBody("Your proposal has been approved by the Unit Chair! It will now be taken to the SE Director. \n " + sdf.format(dt));
+                    n2.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + " approved by the Unit Chair! It will now be taken to the SE Director." + "\n"  + sdf.format(dt));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
-                    n2.setBody("Your proposal has been approved by the ADEALM! It will now be taken to the Dean. \n " + sdf.format(dt));
+                    n2.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + " approved by the ADEALM! It will now be taken to the Dean." + "\n"  + sdf.format(dt));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
-                    n2.setBody("Your proposal has been approved by the SE Director! It will now be taken to the VP/VC. \n " + sdf.format(dt));
+                    n2.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + " approved by the SE Director! It will now be taken to the VP/VC." + "\n"  + sdf.format(dt));
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
-                    n2.setBody("Your proposal has been approved by the VP/VC! It will now be taken to COSCA. \n " + sdf.format(dt));
+                    n2.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + " approved by the VP/VC! It will now be taken to COSCA." + "\n"  + sdf.format(dt));
 
                     Notification n3 = new Notification();
-                    n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+                    n3.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + "\n" + sdf.format(dt));
 
                     try {
                         java.util.Date date1 = myFormat.parse(input1);
@@ -187,9 +187,9 @@ public class approveSE extends HttpServlet {
                         long days = (diff / (1000*60*60*24));
 
                         if(days <= 14){
-                            n.setBody("URGENT SE Proposal ready for approval! \n " + sdf.format(dt));
+                            n3.setTitle("Urgent SE Proposal ready for Approval");
                         } else if (days >= 15){
-                            n.setBody("New SE Proposal ready for approval! \n " + sdf.format(dt));
+                            n3.setTitle("SE Proposal ready for Approval");
                         }
                     } catch (ParseException ex) {
                         Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,7 +201,7 @@ public class approveSE extends HttpServlet {
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
-                    n2.setBody("Your proposal has been approved by the Dean! It will now be taken to COSCA. \n " + sdf.format(dt));
+                    n2.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + " has been approved by the Dean! It will now be taken to COSCA." + "\n"  + sdf.format(dt));
                 }
 
                 n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));
@@ -231,12 +231,12 @@ public class approveSE extends HttpServlet {
                 java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 
                 Notification n3 = new Notification();
-                n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))));
+                n3.setTitle("SE Proposal for Revision");
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateDeptUnitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseDeptChair(Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by the Department Chair. \n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the Department Chair." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
@@ -245,7 +245,7 @@ public class approveSE extends HttpServlet {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateExternalRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseADEALM(Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by the ADEALM. \n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the ADEALM." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
@@ -254,7 +254,7 @@ public class approveSE extends HttpServlet {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseDean(Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by the Dean. \n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the Dean." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
@@ -263,7 +263,7 @@ public class approveSE extends HttpServlet {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateUnitChairRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseUnitChair(Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by the Unit Chair. \n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the Unit Chair." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
@@ -272,7 +272,7 @@ public class approveSE extends HttpServlet {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateSEDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseSEDirector(Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by the SE Director. \n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the SE Director." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
@@ -281,7 +281,7 @@ public class approveSE extends HttpServlet {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updateVPVCRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseVPVC(Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody("Your proposal has some revisions before it is approved by the VP/VC. \n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the VP/VC." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
                 }
@@ -305,7 +305,7 @@ public class approveSE extends HttpServlet {
 
             if (request.getParameter("reject") != null) {
                 Notification n3 = new Notification();
-                n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))));
+                n3.setTitle("SE Proposal Rejected");
                 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -314,7 +314,7 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
                     UserDAO.updateDeptUnitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectDeptChair(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by the Department Chair. Reason: " + request.getParameter("remarks1") + "\n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the Department Chair. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                     
@@ -324,7 +324,7 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
                     UserDAO.updateDeptUnitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectUnitChair(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by the Unit Chair. Reason: " + request.getParameter("remarks1") + "\n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the Unit Chair. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
@@ -333,7 +333,7 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
                     UserDAO.updateExternalRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectADEALM(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by the ADEALM. Reason: " + request.getParameter("remarks1") + "\n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the ADEALM. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
@@ -342,7 +342,7 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
                     UserDAO.updateExternalRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectSEDirector(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by the SE Director. Reason: " + request.getParameter("remarks1") + "\n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the SE Director. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
@@ -351,7 +351,7 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     UserDAO.updateDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectDean(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by the Dean. Reason: " + request.getParameter("remarks1") + "\n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the Dean. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
@@ -360,7 +360,7 @@ public class approveSE extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
                     UserDAO.updateDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectVPVC(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody("Your proposal has been rejected by the VP/VC. Reason: " + request.getParameter("remarks1") + "\n " + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the VP/VC. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));

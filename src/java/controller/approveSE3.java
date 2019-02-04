@@ -137,10 +137,28 @@ public class approveSE3 extends HttpServlet {
                 java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has voted to APPROVE your proposal. Vote Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5 \n " + sdf.format(dt));
+                n.setTitle("Proposal Approval Count: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5" + "\n" + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));
+                UserDAO.AddNotification(n);
+                
+                n.setTitle("Proposal Approval Count: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5" + "\n" + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n);
+                
+                n.setTitle("Proposal Approval Count: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5" + "\n" + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n);
+                
+                n.setTitle("Proposal Approval Count: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5" + "\n" + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("successSE2", "You have successfully voted APPROVE for the SE Proposal!");
@@ -158,8 +176,7 @@ public class approveSE3 extends HttpServlet {
                         UserDAO.updateStep(6, Integer.parseInt(request.getParameter("seID")));
 
                         Notification n2 = new Notification();
-                        n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
-                        n2.setBody("Your proposal has been approved by the Council. You may now upload the PRS for endorsement. \n " + sdf.format(dt));
+                        n2.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))) + ": You may now upload the PRS for endorsement." + "\n"  + sdf.format(dt));
                         
                         SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
                         SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -174,9 +191,9 @@ public class approveSE3 extends HttpServlet {
                             long days = (diff / (1000*60*60*24));
 
                             if(days <= 14){
-                                n2.setBody("Your URGENT proposal has been approved by the Council. You may now upload the PRS for endorsement! \n " + sdf.format(dt));
+                                n2.setTitle("Urgent SE Proposal Approved by Council");
                             } else if (days >= 15){
-                                n2.setBody("Your proposal has been approved by the Council. You may now upload the PRS for endorsement. \n " + sdf.format(dt));
+                                n2.setTitle("SE Proposal Approved by Council");
                             }
                         } catch (ParseException ex) {
                             Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
@@ -186,7 +203,6 @@ public class approveSE3 extends HttpServlet {
                         n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
                         UserDAO.AddNotification(n2);
                     } else {
-
                         java.util.Date dt = new java.util.Date();
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
                         java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -194,30 +210,34 @@ public class approveSE3 extends HttpServlet {
                         UserDAO.updateStep(8, Integer.parseInt(request.getParameter("seID")));
 
                         Notification n2 = new Notification();
-                        n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
-                        n2.setBody("Congratulations! Your SE Proposal has been approved! \n " + sdf.format(dt));
+                        n2.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))) + "\n"  + sdf.format(dt));
+                        
+                        SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+                        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+                        java.util.Date javaDate = new java.util.Date();
+                        String input1 = new java.sql.Date(javaDate.getTime()).toString();
+                        String input2 = SE.getActualDate().toString();
+
+                        try {
+                            java.util.Date date1 = myFormat.parse(input1);
+                            java.util.Date date2 = myFormat.parse(input2);
+                            long diff = date2.getTime() - date1.getTime();
+                            long days = (diff / (1000*60*60*24));
+
+                            if(days <= 14){
+                                n2.setTitle("Urgent SE Proposal Approved by Council");
+                            } else if (days >= 15){
+                                n2.setTitle("SE Proposal Approved by Council");
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                         n2.setDt((sdf2.format(dt)));
                         n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
                         UserDAO.AddNotification(n2);
                     }
                 }
-
-                if (UserDAO.tallyVote(Integer.parseInt(request.getParameter("seID"))).equals("revise")) {
-                    UserDAO.reviseSE(Integer.parseInt(request.getParameter("seID")));
-
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    
-                    Notification n2 = new Notification();
-                    n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
-                    n2.setBody("Your proposal has some revisions before it is approved by the Council. \n " + sdf.format(dt));
-                    n2.setDt(sdf2.format(dt));
-                    n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
-                    UserDAO.AddNotification(n2);
-                    UserDAO.resetVoteSE(Integer.parseInt(request.getParameter("seID")));
-                }
-
             }
 
             ServletContext context = getServletContext();

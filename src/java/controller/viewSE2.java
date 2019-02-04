@@ -42,7 +42,11 @@ public class viewSE2 extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
             HttpSession session = request.getSession();
             ArrayList<SE> proposals = new ArrayList();
-
+            
+            if (session.getAttribute("position").toString().equals("OVPLM - Executive Officer")) {
+                proposals = UserDAO.retrieveSEProposalsForCancellation();
+            }
+            
             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
                 proposals = UserDAO.retrieveSEProposalByStep(2);
             }
@@ -56,13 +60,13 @@ public class viewSE2 extends HttpServlet {
                                 || session.getAttribute("position").toString().equals("DSA - Dean")) {
                proposals = UserDAO.retrieveSEProposalByStep(5);
             }
-
+            
             for (int i = 0; i < proposals.size(); i++) {
                 if (request.getParameter("viewSE" + i) != null) {
                     request.setAttribute("seID", request.getParameter("viewSE" + i));
                 }
             }
-            
+
             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
                 
                 ServletContext context = getServletContext();
@@ -83,6 +87,12 @@ public class viewSE2 extends HttpServlet {
                 
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                dispatcher.forward(request, response);
+            }
+            
+            if (session.getAttribute("position").toString().equals("OVPLM - Executive Officer")) {
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSECancellation.jsp");
                 dispatcher.forward(request, response);
             }
             

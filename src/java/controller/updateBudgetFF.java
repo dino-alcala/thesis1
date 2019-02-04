@@ -62,26 +62,24 @@ public class updateBudgetFF extends HttpServlet {
                 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
-                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
-                n.setBody("A portion of the budget has been used! \n" + sdf.format(dt));
-                
-                sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                n.setDt(sdf.format(dt));
+                n.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))) + ": A portion of the budget has been used" + "\n" + sdf.format(dt));
+                n.setTitle("Budget Updated");
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                 UserDAO.AddNotification(n);
 
-                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
-                n.setBody("A portion of the budget has been used!");
-                n.setDt(sdf.format(dt));
+                n.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))) + ": A portion of the budget has been used" + "\n" + sdf.format(dt));
+                n.setTitle("Budget Updated");
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                 UserDAO.AddNotification(n);
 
-                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))));
-                n.setBody("A portion of the budget has been used!");
-                n.setDt(sdf.format(dt));
+                n.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))) + ": A portion of the budget has been used" + "\n" + sdf.format(dt));
+                n.setTitle("Budget Updated");
+                n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 

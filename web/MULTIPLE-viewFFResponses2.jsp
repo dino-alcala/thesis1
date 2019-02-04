@@ -101,78 +101,78 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-
-                <button href="" type="button btn-primary" class="btn btn-primary" style="padding-left: 20px; padding-right: 20px;">
-                    <i class="fa fa-angle-double-left"></i>
-                </button>
-
-                <br>
-                <%
-                    UserDAO UserDAO = new UserDAO();
-                    FF FF = new FF();
-                    FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
-
-                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-                    java.util.Date javaDate = new java.util.Date();
-                    java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
-                %>
-
-                <div class="container-fluid panels">
-                    <h2><%=FF.getProjectName()%> Evaluation Responses - <%=sqlDate%></h2>
-                </div>
-
-                <!--Memorable Activities-->
-                <div class="container-fluid panels">
-
-                    <h2>Memorable Activities</h2>
-
-                    <p></p>
-
+                <form action="viewFFResponses2">
                     <%
-                        ArrayList<String> memorable = new ArrayList();
-                        memorable = UserDAO.getMemorableEvaluation(FF.getId());
-                    %>
-                    <div class="card-deck">
-                        <%
-                            for (int i = 0; i < memorable.size(); i++) {
-                        %>
-                        <div class="card chartscardslong2">
-                            <%=memorable.get(i)%>
-                        </div>
-                        <%
-                            }
-                        %>
-                    </div>
-                    <p></p>
+                        UserDAO UserDAO = new UserDAO();
+                        FF FF = new FF();
+                        FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
 
-                </div>
-
-                <!--Feedbacks and Suggestions-->
-                <div class="container-fluid panels">
-
-                    <%
-                        ArrayList<String> feedbacks = new ArrayList();
-                        feedbacks = UserDAO.getFeedbackFFEvaluation(FF.getId());
+                        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                        java.util.Date javaDate = new java.util.Date();
+                        java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
                     %>
 
-                    <h2>Feedbacks and Suggestions</h2>
-
-                    <p></p>
-
-                    <div class="card-deck">
-                        <%
-                            for (int i = 0; i < feedbacks.size(); i++) {
-                        %>
-                        <div class="card chartscardslong2">
-                            <%=feedbacks.get(i)%>
-                        </div>
-                        <%
-                            }
-                        %>
+                    <div class="container-fluid panels">
+                        <h2><%=FF.getProjectName()%> Evaluation Responses - <%=sqlDate%></h2>
                     </div>
-                    <p></p>
-                </div>
-                <br>
+
+                    <!--Memorable Activities-->
+                    <div class="container-fluid panels">
+
+                        <h2>Memorable Activities</h2>
+
+                        <p></p>
+
+                        <%
+                            ArrayList<String> memorable = new ArrayList();
+                            memorable = UserDAO.getMemorableEvaluation(FF.getId());
+                        %>
+                        <div class="card-deck">
+                            <%
+                                for (int i = 0; i < memorable.size(); i++) {
+                            %>
+                            <div class="card chartscardslong2">
+                                <%=memorable.get(i)%>
+                            </div>
+                            <%
+                                }
+                            %>
+                        </div>
+                        <p></p>
+
+                    </div>
+
+                    <!--Feedbacks and Suggestions-->
+                    <div class="container-fluid panels">
+
+                        <%
+                            ArrayList<String> feedbacks = new ArrayList();
+                            feedbacks = UserDAO.getFeedbackFFEvaluation(FF.getId());
+                        %>
+
+                        <h2>Feedbacks and Suggestions</h2>
+
+                        <p></p>
+
+                        <div class="card-deck">
+                            <%
+                                for (int i = 0; i < feedbacks.size(); i++) {
+                            %>
+                            <div class="card chartscardslong2">
+                                <%=feedbacks.get(i)%>
+                            </div>
+                            <%
+                                }
+                            %>
+                        </div>
+                    </div>
+                    <br>
+                    <center>
+                        <button name="back2" value="<%=FF.getId()%>" type="button btn-primary" class="btn btn-primary" style="padding-left: 20px; padding-right: 20px;">
+                            <i class="fa fa-angle-double-left"></i>
+                        </button>
+                    </center>
+                </form>
             </div>
         </div>
     </body>

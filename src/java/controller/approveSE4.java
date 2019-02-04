@@ -77,8 +77,12 @@ public class approveSE4 extends HttpServlet {
                     UserDAO.uploadPRS(inputStream, Integer.parseInt(request.getParameter("seID")));
                     UserDAO.updateStep(7, Integer.parseInt(request.getParameter("seID")));
 
+                    java.util.Date dt = new java.util.Date();
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    
                     Notification n = new Notification();
-                    n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID"))));
+                    n.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("seID")))  + "\n"  + sdf.format(dt));
 
                     SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID")));
                     SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -86,10 +90,6 @@ public class approveSE4 extends HttpServlet {
                     String input1 = new java.sql.Date(javaDate.getTime()).toString();
                     String input2 = SE.getActualDate().toString();
                     
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-                    java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
                     try {
                         java.util.Date date1 = myFormat.parse(input1);
                         java.util.Date date2 = myFormat.parse(input2);
@@ -97,9 +97,9 @@ public class approveSE4 extends HttpServlet {
                         long days = (diff / (1000 * 60 * 60 * 24));
 
                         if (days <= 14) {
-                            n.setBody("URGENT SE PRS ready for approval! \n " + sdf.format(dt));
+                            n.setTitle("Urgent SE PRS ready for Approval");
                         } else if (days >= 15) {
-                            n.setBody("You have new SE PRS ready for approval! \n " + sdf.format(dt));
+                            n.setTitle("SE PRS ready for Approval");
                         }
                     } catch (ParseException ex) {
                         Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,36 +118,9 @@ public class approveSE4 extends HttpServlet {
             }
 
             if (request.getParameter("cancelProgram") != null) {
-                
-                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("cancelProgram")));
-                UserDAO.updateStep(0, Integer.parseInt(request.getParameter("cancelProgram")));
-                
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                Notification n = new Notification();
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
-                n.setDt(sdf2.format(dt));
-                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
-                UserDAO.AddNotification(n);
-                
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
-                n.setDt(sdf2.format(dt));
-                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
-                UserDAO.AddNotification(n);
-                
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled! Php" + SE.getTotalAmount() + " returned \n " + sdf.format(dt));
-                n.setDt(sdf2.format(dt));
-                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
-                UserDAO.AddNotification(n);
-
-                request.setAttribute("cancelProgram", "You have successfully canceled the program!");
+                request.setAttribute("seID", Integer.parseInt(request.getParameter("cancelProgram")));
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingSEList.jsp");
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-requestSECancel.jsp");
                 dispatcher.forward(request, response);
             }
 

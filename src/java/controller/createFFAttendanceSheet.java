@@ -76,7 +76,7 @@ public class createFFAttendanceSheet extends HttpServlet {
                 a.setType(request.getParameter("type" + i));
                 attendees.add(a);
             }
-            UserDAO.AddFFAttendanceSheet(attendees, Integer.parseInt(request.getParameter("ffID").toString()));
+            UserDAO.AddFFAttendanceSheet(attendees, FF.getId());
 
             String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             int length = 10;
@@ -93,7 +93,7 @@ public class createFFAttendanceSheet extends HttpServlet {
                 String from = "ovplmpms@gmail.com";
                 String to = attendees.get(x).getEmail();
                 String subject = "Evaluation Code";
-                String message = "FF Evaluation Code for " + FF.getProjectName() + ": " + code;
+                String message = "FF Evaluation Code for '" + FF.getProjectName() + "': " + code + "\n" + "\n" + "Please proceed to the OVPLM PMS Website, click the 'Evaluate' button at the bottom of the 'Login' button, and input this code, and evaluate the program." + "\n" + "\n" + "Thank You!";
                 String login = "ovplmpms@gmail.com";
                 String password = "11434643ovplmpms";
 

@@ -83,18 +83,18 @@ public class approveFF2 extends HttpServlet {
                         dispatcher.forward(request, response);
                     }
                 }
+                
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
-                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody("Progam: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + "\n" + sdf.format(dt));
                 
                 SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
                 String input1 = new java.sql.Date(javaDate.getTime()).toString();
                 String input2 = FF.getActualDate().toString();
-                
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 
                 try {
                     java.util.Date date1 = myFormat.parse(input1);
@@ -103,9 +103,9 @@ public class approveFF2 extends HttpServlet {
                     long days = (diff / (1000*60*60*24));
 
                     if(days <= 14){
-                        n.setBody("URGENT FF Proposal ready for approval! \n " + sdf.format(dt));
+                        n.setTitle("Urgent FF Proposal ready for Approval");
                     } else if (days >= 15){
-                        n.setBody("New FF Proposal ready for approval! \n " + sdf.format(dt));
+                        n.setTitle("FF Proposal ready for Approval");
                     }
                 } catch (ParseException ex) {
                     Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
@@ -128,10 +128,10 @@ public class approveFF2 extends HttpServlet {
                 }
 
                 Notification n2 = new Notification();
-                n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
+                n2.setTitle("FF Proposal Approved");
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n2.setBody("Your proposal has been approved by the LSPO! It will now be taken to the LMC Council. \n " + sdf.format(dt));
+                    n2.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + " has been approved by the LSPO! It will now be taken to the LMC Council." + "\n"  + sdf.format(dt));
                 }
 
                 n2.setDt(sdf2.format(dt));
@@ -148,7 +148,7 @@ public class approveFF2 extends HttpServlet {
 
             if (request.getParameter("revise") != null) {
                 Notification n3 = new Notification();
-                n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("revise"))));
+                n3.setTitle("FF Proposal for Revision");
                 FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
@@ -172,7 +172,7 @@ public class approveFF2 extends HttpServlet {
                         UserDAO.reviseFF(Integer.parseInt(request.getParameter("revise")));
                         UserDAO.reviseLSPO(Integer.parseInt(request.getParameter("revise")));
                         UserDAO.updatelsporemarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("revise")));
-                        n3.setBody("Your proposal has some revisions before it is approved by the LSPO. \n " + sdf.format(dt));
+                        n3.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the LSPO. \n " + sdf.format(dt));
                         n3.setDt(sdf2.format(dt));
                         n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
                     }
@@ -188,7 +188,7 @@ public class approveFF2 extends HttpServlet {
 
             if (request.getParameter("reject") != null) {
                 Notification n3 = new Notification();
-                n3.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))));
+                n3.setTitle("FF Proposal Rejected");
                 FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
@@ -211,7 +211,7 @@ public class approveFF2 extends HttpServlet {
                         
                         UserDAO.updatelsporemarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("reject")));
                         UserDAO.rejectLSPO(Integer.parseInt(request.getParameter("reject")));
-                        n3.setBody("Your proposal has been rejected by the LSPO. Reason: " + request.getParameter("remarks1") + " \n " + sdf.format(dt));
+                        n3.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the LSPO. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                         n3.setDt(sdf2.format(dt));
                         n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
                     }

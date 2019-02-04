@@ -485,7 +485,7 @@
                                                 <% if (!FFreport.getFeedback4().equals("No Suggestion")) { %>
                                                 <tr>
                                                     <td><center>James Laxa</center></td>
-                                                    <td><%=FF.getLmc4Remarks()%></td>
+                                                    <td><%=FF.getLspoRemarks()%></td>
                                                     <td><%=FFreport.getFeedback4()%></td>
                                                 </tr>
                                                 <% } %>
@@ -509,13 +509,12 @@
                                     </div>
                                     <div class="card-body">   
                                         <button class="btn-audit" type="submit" name="photo" value="<%=FFreport.getId()%>">View Photo</button>
-                                        
                                         <button class="btn-list" type="submit" name="dlsuattendance" value="<%=FFreport.getId()%>">DLSU Participants Attendance Sheets</button>
-                                       
                                     </div>
                                 </div>
                                 <br/>
 
+                                <center><button type="submit" value="<%=FF.getId()%>" name="vieweval" class="btn-success">View Evaluation Results</button></center>
                             </div>
 
                         </div>

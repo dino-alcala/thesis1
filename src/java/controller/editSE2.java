@@ -111,8 +111,8 @@ public class editSE2 extends HttpServlet {
                 java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
-                n.setTitle(SE.getName());
-                n.setBody("Revised SE Proposal ready for approval! \n " + sdf.format(dt));
+                n.setBody("Program: " + SE.getName()+ "\n"  + sdf.format(dt));
+                n.setTitle("Revised SE Proposal ready for Approval");
                 n.setDt(sdf2.format(dt));
 
                 if (UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))).equals("Academic")) {

@@ -1022,6 +1022,9 @@
                     <br>
 
                     <center>
+                        <button name="back" value="<%=SE.getId()%>" type="button btn-primary" class="btn btn-primary" style="padding-left: 20px; padding-right: 20px;">
+                            <i class="fa fa-angle-double-left"></i>
+                        </button>
                         <button name="seID" value="<%=SE.getId()%>" type="submit" class="btn btn-primary" style="padding-left: 20px; padding-right: 20px;">
                             <i class="fa fa-angle-double-right"></i>
                         </button>

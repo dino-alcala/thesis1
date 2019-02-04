@@ -1,13 +1,13 @@
 <%-- 
-    Document   : MULTIPLE-viewSEProgramDetails
-    Created on : 06 12, 18, 1:31:47 PM
+    Document   : MULTIPLE-approveCoscaSE
+    Created on : 06 18, 18, 7:21:12 PM
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.SE"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
-<%@page import="entity.SE"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,13 +16,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>SE Program Details</title>
+        <title>SE Proposal Cancellation</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" type="text/css" href="css/homepagestyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/homepagestyle.css">
+        <link rel="stylesheet" href="css/progressbar.css">
+        <link rel="stylesheet" href="css/formstyle5.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,9 +32,47 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
+            #myInput {
+                background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+                background-position: 10px 12px; /* Position the search icon */
+                background-repeat: no-repeat; /* Do not repeat the icon image */
+                width: 100%; /* Full-width */
+                padding: 12px 20px 12px 40px; /* Add some padding */
+                border: 1px solid #ddd; /* Add a grey border */
+                margin-bottom: 12px; /* Add some space below the input */
+                margin-top: 20px; 
+            }
+
+            #myTable {
+                border-collapse: collapse; /* Collapse borders */
+                width: 100%; /* Full-width */
+                border: 1px solid #ddd; /* Add a grey border */
+
+            }
+
+            #myTable th, #myTable td {
+                text-align: left; /* Left-align text */
+                padding: 12px; /* Add padding */
+            }
+
+            #myTable tr {
+                border-bottom: 1px solid #ddd; 
+            }
+
+            #myTable tr.header, #myTable tr:hover {
+                background-color: #4CAF50;
+            }
+
+            .panel-title{
+                font-size: 40px;
+                text-align: left;
+                margin-top: 20px;
+                padding-bottom: 10px;
+            }
+
             p{
+                margin-bottom: 0;
                 font-size: 15px;
-                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table, td, th {
@@ -41,15 +81,50 @@
                 text-align: center;
             }
 
-            h2{
-                font-family: "Arial", Helvetica, sans-serif;
-                font-size: 20px;
-            }
-
             h4{
                 color: white;
                 font-family: "Arial", Helvetica, sans-serif;
                 font-size: 15px;
+            }
+
+            .panel-success > .panel-heading {
+                background-color: #4CAF50;
+                border-color: #ddd;
+                border: 1px solid;
+            }
+
+            .panel-body{
+                border: 1px solid;
+            }
+
+            .panel-upper{
+                border: 1px solid #4CAF50;
+            }
+
+            @-webkit-keyframes scale-up {
+                from {
+                    opacity: 1;
+                    -webkit-transform: translate(-50%, -50%) scale(0);
+                    transform: translate(-50%, -50%) scale(0);
+                }
+                to {
+                    opacity: 0;
+                    -webkit-transform: translate(-50%, -50%) scale(1);
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+
+            @keyframes scale-up {
+                from {
+                    opacity: 1;
+                    -webkit-transform: translate(-50%, -50%) scale(0);
+                    transform: translate(-50%, -50%) scale(0);
+                }
+                to {
+                    opacity: 0;
+                    -webkit-transform: translate(-50%, -50%) scale(1);
+                    transform: translate(-50%, -50%) scale(1);
+                }
             }
 
             h3{
@@ -71,13 +146,16 @@
                 border: 1px solid black;
             }
 
-
             th,tr,td{
                 padding:15px;
             }
 
-            .btn-success{
-                background-color: darkgreen;
+            textarea{
+                resize: none;
+            }
+
+            .button{
+                background-color: mediumseagreen;
                 border: none;
                 border-radius: 5px;
                 color: white;
@@ -89,8 +167,8 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            .btn-warning{
-                background-color: darkyellow;
+            .btn-success{
+                background-color: darkgreen;
                 border: none;
                 border-radius: 5px;
                 color: white;
@@ -115,8 +193,8 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            .btn-audit{
-                background-color: mediumseagreen;
+            .btn-warning{
+                background-color: darkyellow;
                 border: none;
                 border-radius: 5px;
                 color: white;
@@ -125,6 +203,10 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            legend, h3, #inputText, #classification, option, select, value{
                 font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
@@ -152,9 +234,6 @@
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Units
-                        </a>
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
-                            Communities
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Key Result Areas
@@ -208,9 +287,10 @@
                                         </div>    
                                     </div>
                                 </li>
+
                                 <%
                                     }
-                                %>   
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -222,6 +302,7 @@
                 </div>
             </ul>
         </nav>
+
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -235,18 +316,17 @@
                 </ul>
             </div>
 
-            <!-- MAIN -->
+
             <%
                 SE SE = new SE();
                 SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
-
             %>
+            <!-- MAIN -->
             <div class="col py-3">
-                <form action="createSEreport" method="post">
+                <form action="approveSECancellation" method="post">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-
                                 <div class="card">
                                     <div class="card-body">
                                         <h3><%=SE.getName()%></h3>
@@ -543,82 +623,27 @@
                                                 </td>
                                             </tr>
                                         </table>
-
                                     </div>
                                 </div>
-                                <%
-                                    }
-                                %>
-                                <br/>
-                                <br/>         
-
-                                <%
-                                    if (SE.getStep() == 8) {
-                                %>
-                                <div>
-                                    <center><h2>Project is now ready for implementation</h2></center>
-                                </div>
-                                <br>
-                                <% } %>
-
-                                <%
-                                    if (SE.getStep() == 0) {
-                                %>
-                                <div>
-                                    <center><h2>Project has been canceled</h2></center>
-                                </div>
-                                <br>
-                                <% } %>
-
-                                <%
-                                    if (SE.getStep() == -1) {
-                                %>
-                                <div>
-                                    <center><h2>Project has been rejected</h2></center>
-                                </div>
-                                <br>
                                 <% }%>
+                                <br>
 
-                                <center><button class="btn-audit" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Cancel SE Program</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <center>
+                                            <b>Reason for Cancellation of SE Program:</b><br>
+                                            <%=SE.getReasonforcancel()%>
+                                        </center>
+                                    </div>
+                                </div>
+                                <br/>
 
-
-                                    <%
-                                        if (UserDAO.hasUpdatedBudget(SE.getId()) && !UserDAO.canCreateAccomplishmentReport(SE.getId()) && !UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() == 8) {
-                                    %>
-
-                                    <button type="submit" value="<%=SE.getId()%>" name="attendance" class="btn-success">Create SE Attendance Sheet</button>
-
-                                    <%
-                                } else if (UserDAO.hasUpdatedBudget(SE.getId()) && UserDAO.canCreateAccomplishmentReport(SE.getId()) && !UserDAO.hasSEReport(SE.getId()) && SE.getStep() == 8) {%> 
-
-                                    <button type="submit" value="<%=SE.getId()%>" name="seID" class="btn-success">Create Accomplishment Report</button>
-
-                                    <% } else if (UserDAO.hasSEReport(SE.getId())) {
-                                    %>
-                                    
-                                    <button type="submit" value="<%=SE.getId()%>" name="viewReport" class="btn-success">View Accomplishment Report</button>
-
-
-                                    <%
-                                        }
-                                        if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() > 0) {
-                                    %>
-
-                                    <button type="submit" value="<%=SE.getId()%>" name="updateBudget" class="btn-warning">Update Budget</button>
-
-
-                                        <%
-                                            }
-
-                                            if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 0 && SE.getStep() != -1 && SE.getStep() != 10) {
-                                        %>
-
-                                        <button style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram"  class="btn-danger">Cancel Program</button></center>
-
-                                <%
-                                    }
-                                %>
-
+                                <center>
+                                    <button onclick="return window.confirm('Cancel Program?')" class="btn-success" name="cancel" value="<%=SE.getId()%>">Cancel Program</button>
+                                </center>
                             </div>
 
                         </div>
@@ -627,77 +652,75 @@
                 </form>
             </div>
 
-        </div>
+            <script>
+                // sandbox disable popups
+                if (window.self !== window.top && window.name != "view1") {
+                    ;
+                    window.alert = function () {/*disable alert*/
+                    };
+                    window.confirm = function () {/*disable confirm*/
+                    };
+                    window.prompt = function () {/*disable prompt*/
+                    };
+                    window.open = function () {/*disable open*/
+                    };
+                }
 
-        <script>
-            // sandbox disable popups
-            if (window.self !== window.top && window.name != "view1") {
-                ;
-                window.alert = function () {/*disable alert*/
-                };
-                window.confirm = function () {/*disable confirm*/
-                };
-                window.prompt = function () {/*disable prompt*/
-                };
-                window.open = function () {/*disable open*/
-                };
-            }
-
-            // prevent href=# click jump
-            document.addEventListener("DOMContentLoaded", function () {
-                var links = document.getElementsByTagName("A");
-                for (var i = 0; i < links.length; i++) {
-                    if (links[i].href.indexOf('#') != -1) {
-                        links[i].addEventListener("click", function (e) {
-                            console.debug("prevent href=# click");
-                            if (this.hash) {
-                                if (this.hash == "#") {
-                                    e.preventDefault();
-                                    return false;
-                                } else {
-                                    /*
-                                     var el = document.getElementById(this.hash.replace(/#/, ""));
-                                     if (el) {
-                                     el.scrollIntoView(true);
-                                     }
-                                     */
+                // prevent href=# click jump
+                document.addEventListener("DOMContentLoaded", function () {
+                    var links = document.getElementsByTagName("A");
+                    for (var i = 0; i < links.length; i++) {
+                        if (links[i].href.indexOf('#') != -1) {
+                            links[i].addEventListener("click", function (e) {
+                                console.debug("prevent href=# click");
+                                if (this.hash) {
+                                    if (this.hash == "#") {
+                                        e.preventDefault();
+                                        return false;
+                                    } else {
+                                        /*
+                                         var el = document.getElementById(this.hash.replace(/#/, ""));
+                                         if (el) {
+                                         el.scrollIntoView(true);
+                                         }
+                                         */
+                                    }
                                 }
-                            }
-                            return false;
-                        })
+                                return false;
+                            })
+                        }
                     }
-                }
-            }, false);
-        </script>
-        <script>
-            // Hide submenus
-            $('#body-row .collapse').collapse('hide');
-
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
-            });
-
-            function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
+                }, false);
+            </script>
+            <script>
+                // Hide submenus
+                $('#body-row .collapse').collapse('hide');
 
                 // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
-        </script>
+                $('#collapse-icon').addClass('fa-angle-double-left');
+
+                // Collapse click
+                $('[data-toggle=sidebar-colapse]').click(function () {
+                    SidebarCollapse();
+                });
+
+                function SidebarCollapse() {
+                    $('.menu-collapsed').toggleClass('d-none');
+                    $('.sidebar-submenu').toggleClass('d-none');
+                    $('.submenu-icon').toggleClass('d-none');
+                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                    // Treating d-flex/d-none on separators with title
+                    var SeparatorTitle = $('.sidebar-separator-title');
+                    if (SeparatorTitle.hasClass('d-flex')) {
+                        SeparatorTitle.removeClass('d-flex');
+                    } else {
+                        SeparatorTitle.addClass('d-flex');
+                    }
+
+                    // Collapse/Expand icon
+                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                }
+            </script>
     </body>
 </html>

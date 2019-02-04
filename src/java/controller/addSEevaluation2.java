@@ -80,20 +80,20 @@ public class addSEevaluation2 extends HttpServlet {
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
                 java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 
-                n2.setTitle(UserDAO.getSENameBySEID(SEevaluation.getSeproposalID()) + " Evaluators: " + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "%");
-                n2.setBody("Evaluation received, " + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "% of Attendees have now Evaluated! \n " + sdf.format(dt));
+                n2.setTitle("Evaluation Received");
+                n2.setBody(UserDAO.getSENameBySEID(SEevaluation.getSeproposalID()) + ":" + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
                 n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                 UserDAO.AddNotification(n2);
                 
-                n2.setTitle(UserDAO.getSENameBySEID(SEevaluation.getSeproposalID()) + " Evaluators: " + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "%");
-                n2.setBody("Evaluation received, " + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "% of Attendees have now Evaluated! \n " + sdf.format(dt));
+                n2.setTitle("Evaluation Received");
+                n2.setBody(UserDAO.getSENameBySEID(SEevaluation.getSeproposalID()) + ":" + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
                 n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                 UserDAO.AddNotification(n2);
                 
-                n2.setTitle(UserDAO.getSENameBySEID(SEevaluation.getSeproposalID()) + " Evaluators: " + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "%");
-                n2.setBody("Evaluation received, " + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "% of Attendees have now Evaluated! \n " + sdf.format(dt));
+                n2.setTitle("Evaluation Received");
+                n2.setBody(UserDAO.getSENameBySEID(SEevaluation.getSeproposalID()) + ":" + df.format(UserDAO.getNumberEvaluators(SEevaluation.getSeproposalID()) / UserDAO.getNumberParticipants(SEevaluation.getSeproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
                 n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n2);   

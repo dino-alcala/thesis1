@@ -50,6 +50,7 @@ public class SEevaluation {
     protected int or71;
     protected String feedbacks;
     protected int seproposalID;
+    protected boolean evaluationnotified = false;
 
     public Date getDate() {
         return Date;
@@ -346,5 +347,15 @@ public class SEevaluation {
     public void setSeproposalID(int seproposalID) {
         this.seproposalID = seproposalID;
     }
+
+    public boolean isEvaluationnotified() {
+        return evaluationnotified;
+    }
+
+    public void setEvaluationnotified(boolean evaluationnotified) {
+        this.evaluationnotified = evaluationnotified;
+    }
+    
+    
 
 }

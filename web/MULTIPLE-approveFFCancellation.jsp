@@ -16,14 +16,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Pending FF Program Details</title>
+        <title>FF Proposal Cancellation</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="css/sidebar.css">
         <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="css/progressbar.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="css/formstyle5.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -31,9 +32,47 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
+            #myInput {
+                background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+                background-position: 10px 12px; /* Position the search icon */
+                background-repeat: no-repeat; /* Do not repeat the icon image */
+                width: 100%; /* Full-width */
+                padding: 12px 20px 12px 40px; /* Add some padding */
+                border: 1px solid #ddd; /* Add a grey border */
+                margin-bottom: 12px; /* Add some space below the input */
+                margin-top: 20px; 
+            }
+
+            #myTable {
+                border-collapse: collapse; /* Collapse borders */
+                width: 100%; /* Full-width */
+                border: 1px solid #ddd; /* Add a grey border */
+
+            }
+
+            #myTable th, #myTable td {
+                text-align: left; /* Left-align text */
+                padding: 12px; /* Add padding */
+            }
+
+            #myTable tr {
+                border-bottom: 1px solid #ddd; 
+            }
+
+            #myTable tr.header, #myTable tr:hover {
+                background-color: #4CAF50;
+            }
+
+            .panel-title{
+                font-size: 40px;
+                text-align: left;
+                margin-top: 20px;
+                padding-bottom: 10px;
+            }
+
             p{
+                margin-bottom: 0;
                 font-size: 15px;
-                font-family: "Arial", Helvetica, sans-serif;
             }
 
             table, td, th {
@@ -46,6 +85,46 @@
                 color: white;
                 font-family: "Arial", Helvetica, sans-serif;
                 font-size: 15px;
+            }
+
+            .panel-success > .panel-heading {
+                background-color: #4CAF50;
+                border-color: #ddd;
+                border: 1px solid;
+            }
+
+            .panel-body{
+                border: 1px solid;
+            }
+
+            .panel-upper{
+                border: 1px solid #4CAF50;
+            }
+
+            @-webkit-keyframes scale-up {
+                from {
+                    opacity: 1;
+                    -webkit-transform: translate(-50%, -50%) scale(0);
+                    transform: translate(-50%, -50%) scale(0);
+                }
+                to {
+                    opacity: 0;
+                    -webkit-transform: translate(-50%, -50%) scale(1);
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+
+            @keyframes scale-up {
+                from {
+                    opacity: 1;
+                    -webkit-transform: translate(-50%, -50%) scale(0);
+                    transform: translate(-50%, -50%) scale(0);
+                }
+                to {
+                    opacity: 0;
+                    -webkit-transform: translate(-50%, -50%) scale(1);
+                    transform: translate(-50%, -50%) scale(1);
+                }
             }
 
             h3{
@@ -67,13 +146,16 @@
                 border: 1px solid black;
             }
 
-
             th,tr,td{
                 padding:15px;
             }
 
-            .btn-list{
-                background-color: dodgerblue;
+            textarea{
+                resize: none;
+            }
+
+            .button{
+                background-color: mediumseagreen;
                 border: none;
                 border-radius: 5px;
                 color: white;
@@ -98,19 +180,6 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            .btn-warning{
-                background-color: darkyellow;
-                border: none;
-                border-radius: 5px;
-                color: white;
-                padding: 10px 20px;
-                text-align: center;
-                display: inline-block;
-                margin: 4px 2px;
-                font-size: 16px;
-                font-family: "Arial", Helvetica, sans-serif;
-            }
-
             .btn-danger{
                 background-color: red;
                 border: none;
@@ -124,8 +193,8 @@
                 font-family: "Arial", Helvetica, sans-serif;
             }
 
-            .btn-audit{
-                background-color: gray;
+            .btn-warning{
+                background-color: darkyellow;
                 border: none;
                 border-radius: 5px;
                 color: white;
@@ -134,6 +203,10 @@
                 display: inline-block;
                 margin: 4px 2px;
                 font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            legend, h3, #inputText, #classification, option, select, value{
                 font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
@@ -217,7 +290,7 @@
 
                                 <%
                                     }
-                                %>
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -229,6 +302,7 @@
                 </div>
             </ul>
         </nav>
+
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -242,92 +316,32 @@
                 </ul>
             </div>
 
+
             <%
                 FF FF = new FF();
                 FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
-
             %>
             <!-- MAIN -->
             <div class="col py-3">
-                <form action="approveFF4" method="post" enctype="multipart/form-data">
+                <form action="approveFFCancellation" method="post">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-
-                                <div class="panel panel-success ">
-
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3><%=FF.getProjectName()%></h3>
-                                            <p><b>Unit: </b> <%=FF.getUnit()%></p>
-                                            <p><b>Department: </b> <%=FF.getDepartment()%></p>
-                                            <p><b>Target Date of Implementation: </b> <%=FF.getActualDate()%></p>
-                                            <br>
-                                            <p><b>Program Head: </b> <%=FF.getProgramHead()%></p>
-                                            <p><b>Program Classification: </b> <%=FF.getActivityClassification()%></p>
-                                            <p><b>Total Amount Requested:</b> ₱<%=FF.getTotalAmount()%></p>
-                                            <br>
-                                            <p><b>Venue: </b> <%=FF.getVenue()%></p>
-                                            <p><b>Speaker: </b> <%=FF.getSpeaker()%></p>
-                                        </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3><%=FF.getProjectName()%></h3>
+                                        <p><b>Unit: </b> <%=FF.getUnit()%></p>
+                                        <p><b>Department: </b> <%=FF.getDepartment()%></p>
+                                        <p><b>Target Date of Implementation: </b> <%=FF.getActualDate()%></p>
+                                        <br>
+                                        <p><b>Program Head: </b> <%=FF.getProgramHead()%></p>
+                                        <p><b>Program Classification: </b> <%=FF.getActivityClassification()%></p>
+                                        <p><b>Total Amount Requested:</b> ₱<%=FF.getTotalAmount()%></p>
+                                        <br>
+                                        <p><b>Venue: </b> <%=FF.getVenue()%></p>
+                                        <p><b>Speaker: </b> <%=FF.getSpeaker()%></p>
                                     </div>
-
-                                </div>
-
-                                <ul class="progress-tracker progress-tracker--center">
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 1) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 1) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title">Step 1</h4>
-                                            Approval by Assistant Dean for Lasallian Mission
-                                        </span>
-                                    </li>
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 2) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 2) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title">Step 2</h4>
-                                            Approval by Chairperson/Unit Head
-                                        </span>
-                                    </li>
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 3) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 3) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title">Step 3</h4>
-                                            Approval by Dean/Director
-                                        </span>
-                                    </li>
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 4) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 4) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title">Step 4</h4>
-                                            Evaluation by LSPO
-                                        </span>
-                                    </li>
-
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 5) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 5) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title">Step 5</h4>
-                                            Approval by the Council
-                                        </span>
-                                    </li>
-
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 6) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 6) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title">Step 6</h4>
-                                            Accomplish and Upload PRS for Endorsement
-                                        </span>
-                                    </li>
-
-                                    <li class="progress-step <% if (UserDAO.getStepFF(FF.getId()) > 8) {%> is-complete<%} else if (UserDAO.getStepFF(FF.getId()) == 8) {%> is-active <%}%>">
-                                        <span class="progress-marker"></span>
-                                        <span class="progress-text">
-                                            <h4 class="progress-title">Step 7</h4>
-                                            Ready to Implement
-                                        </span>
-                                    </li>
-                                </ul>
+                                </div><br>
 
                                 <div class="card">
                                     <div class="card-header">
@@ -350,8 +364,11 @@
                                                 <th>Unit Cost</th> 
                                                 <th>Quantity</th>
                                                 <th>Subtotal</th>
+                                                <th>Amount Expended</th>
+                                                <th>Date</th>
                                             </tr>
                                             <%
+                                                double total = 0;
                                                 double count = 0;
                                                 for (int i = 0; i < FF.getExpenses().size(); i++) {
                                             %>
@@ -360,9 +377,12 @@
                                                 <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
                                                 <td><%=FF.getExpenses().get(i).getQuantity()%></td>
                                                 <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
+                                                <td><%=FF.getExpenses().get(i).getAmountUsed()%></td>
+                                                <td><%if (FF.getExpenses().get(i).getDatetime() != null) {%> <%=FF.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
                                             </tr>
                                             <%
                                                     count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
+                                                    total += FF.getExpenses().get(i).getAmountUsed();
                                                 }
                                             %>
                                             <tr>
@@ -370,6 +390,8 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Total: <%=count%></td>
+                                                <td>Total: <%=total%></td>
+                                                <td></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -408,7 +430,7 @@
                                                 <td><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
                                             </tr>
                                             <tr>
-                                                <td>Dean/Director</td>
+                                                <td>Dean</td>
                                                 <td><%if (FF.getDeanRemarks() != null) {%><%=FF.getDeanRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></td>
                                             </tr>
 
@@ -438,41 +460,23 @@
                                 <%
                                     }
                                 %>
-                                <br/>
                                 <br>
 
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Cancel FF Program</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <center>
+                                            <b>Reason for Cancellation of FF Program:</b><br>
+                                            <%=FF.getReasonforcancel()%>
+                                        </center>
+                                    </div>
+                                </div>
+                                <br/>
 
                                 <center>
-                                    <%
-                                        if (UserDAO.getStepFF(Integer.parseInt(request.getAttribute("ffID").toString())) == 6 && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
-                                    %>
-                                    Upload PRS Photo/Scan: <input type ="file" name ="uploadprs"><br>
-                                    <button class="btn-success" type="submit" name="ffID" value="<%=request.getAttribute("ffID")%>">Upload</button>
-                                    <br>
-                                    <%
-                                        }
-                                    %>
-                                    <button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
-                                    <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button>
-
-                                    <%
-                                        if (UserDAO.isFFRevise(Integer.parseInt(request.getAttribute("ffID").toString())) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
-
-                                    %><button class="btn-warning" type="submit" name="revise" value="<%=request.getAttribute("ffID")%>">Revise</button>
-
-
-                                    <%
-                                        }
-                                    %>
-
-                                    <%
-                                        if (Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() != 10) {
-                                    %>
-                                    <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button>
-
-                                    <%
-                                        }
-                                    %>
+                                    <button onclick="return window.confirm('Cancel Program?')" class="btn-success" name="cancel" value="<%=FF.getId()%>">Cancel Program</button>
                                 </center>
                             </div>
 

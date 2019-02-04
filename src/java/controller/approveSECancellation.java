@@ -6,27 +6,24 @@
 package controller;
 
 import dao.UserDAO;
+import entity.Budget;
 import entity.Notification;
-import entity.SEexpenses;
+import entity.SE;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 /**
  *
- * @author dang
+ * @author Dino Alcala
  */
-@MultipartConfig(maxFileSize = 16177215)
-public class updateBudget extends HttpServlet {
+public class approveSECancellation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,64 +38,67 @@ public class updateBudget extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+            java.util.Date javaDate = new java.util.Date();
+            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+            UserDAO UserDAO = new UserDAO();
 
-            if (request.getParameter("SE") != null) {
-                UserDAO UserDAO = new UserDAO();
-                ArrayList<SEexpenses> expenses = new ArrayList();
+            SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("cancel")));
+            if (SE.getSourceOfFunds().equals("OVPLM")) {
+                Budget b = new Budget();
+                b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
+                b.setBudgetRequested(SE.getTotalAmount() * -1);
+                b.setRemainingBudget(b.getCurrentBudget() - b.getBudgetRequested());
+                b.setSeID(Integer.parseInt(request.getParameter("cancel")));
+                b.setDate(sqlDate);
 
-                for (int i = 0; i < Integer.parseInt(request.getParameter("countexpenses")); i++) {
-                    java.util.Date dt = new java.util.Date();
-                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    
-                    SEexpenses SEexpenses = new SEexpenses();
-                    SEexpenses.setItem(request.getParameter("seitem" + i));
-                    SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
-                    SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
-                    SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
-                    SEexpenses.setAmountUsed(Double.parseDouble(request.getParameter("seamountused" + i)));
-                    SEexpenses.setSeproposalID(Integer.parseInt(request.getParameter("seID" + i)));
-                    SEexpenses.setDatetime(sdf.format(dt));
-                    expenses.add(SEexpenses);
-                }
+                UserDAO.addLatestBudget(b);
 
-                UserDAO.updateBudgetSE(expenses);
-                
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
                 java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
-                n.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))) + ": A portion of the budget has been used" + "\n" + sdf.format(dt));
-                n.setTitle("Budget Updated");
+                n.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancel"))) + ": " + SE.getTotalAmount() + " returned" + "\n" + sdf.format(dt));
+                n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                 UserDAO.AddNotification(n);
 
-                n.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))) + ": A portion of the budget has been used" + "\n" + sdf.format(dt));
-                n.setTitle("Budget Updated");
-                n.setDt(sdf2.format(dt));
-                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
-                UserDAO.AddNotification(n);
-
-                n.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("SE"))) + ": A portion of the budget has been used" + "\n" + sdf.format(dt));
-                n.setTitle("Budget Updated");
+                n.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancel"))) + ": " + SE.getTotalAmount() + " returned" + "\n" + sdf.format(dt));
+                n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 
-                request.setAttribute("updateBudget", "You have successfully updated the Budget!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-socialEngagementProgramsList.jsp");
-                dispatcher.forward(request, response);
-                
-            } else if(request.getParameter("back") != null){
-                request.setAttribute("seID", request.getParameter("back"));
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEProgramDetails.jsp");
-                dispatcher.forward(request, response);
+                request.setAttribute("cancelProgram", "The program has been cancelled! Php" + SE.getTotalAmount() + " returned");
+            } else {
+
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                Notification n = new Notification();
+                n.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancel"))) + "\n" + sdf.format(dt));
+                n.setTitle("Program Cancelled");
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n);
+
+                n.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancel"))) + "\n" + sdf.format(dt));
+                n.setTitle("Program Cancelled");
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                UserDAO.AddNotification(n);
+
+                request.setAttribute("cancelProgram", "The Program has been Cancelled!");
             }
 
+            UserDAO.updateStep(0, Integer.parseInt(request.getParameter("cancel")));
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-socialEngagementProgramsList.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

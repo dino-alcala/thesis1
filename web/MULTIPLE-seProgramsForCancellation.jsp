@@ -1,13 +1,14 @@
 <%-- 
-    Document   : MULTIPLE-pendingSEList
-    Created on : 06 18, 18, 7:50:22 PM
+    Document   : MULTIPLE-se
+ProgramsForApproval
+    Created on : 06 18, 18, 7:49:19 PM
     Author     : Karl Madrid
 --%>
 
-<%@page import="entity.FF"%>
 <%@page import="entity.Notification"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
+<%@page import="entity.SE"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Pending FF Programs List</title>
+        <title>SE Programs for Cancellation List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -27,7 +28,7 @@
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <style type="text/css" class="init"></style>
@@ -41,47 +42,8 @@
             $(document).ready(function () {
                 $('#example').DataTable();
             });
-            $(document).ready(function () {
-                $('#example2').DataTable();
-            });
         </script>
 
-        <script type="text/javascript">
-            <%
-                if (request.getAttribute("successFF1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("successFF1")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("reviseFF1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("reviseFF1")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("cancelProgram") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("cancelProgram")%>");
-            });
-
-            <%
-                }
-
-            %>
-
-        </script>
 
         <style>
             #myInput{
@@ -101,7 +63,7 @@
                 margin-bottom: 25px;
                 font-family: 'Roboto', sans-serif;
             }
-
+            
             .table{
                 margin-bottom: 20px;
             }
@@ -120,58 +82,80 @@
                 border-bottom: 2px solid green;
             }
 
-            #buttonCompleted{
+            #buttonFF{
                 color: green;
                 background-color: white;
                 border-color: green;
                 margin-top:25px;
             }
 
-            #buttonPending{
+            #buttonSE{
                 color: white;
                 background-color: green;
                 border-color: green;
                 margin-top:25px;
             }
 
-            #buttonCancel{
-                color: green;
-                background-color: white;
-                border-color: green;
-                margin-top:25px;
-            }
-            
-            #buttonRejected{
-                color: green;
-                background-color: white;
-                border-color: green;
-                margin-top:25px;
-            }
-
-            #buttonCompleted:hover{
+            #buttonFF:hover{
                 color: white;
                 background-color: green;
                 border-color: green;
             }
 
-            #buttonPending:hover{
+            #buttonSE:hover{
                 color: white;
                 background-color: green;
                 border-color: green;
             }
 
-            #buttonCancel:hover{
-                color: white;
-                background-color: green;
-                border-color: green;
-            }
-            
-            #buttonRejected:hover{
-                color: white;
-                background-color: green;
-                border-color: green;
-            }
         </style>
+
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successSE1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successSE1")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("successSE2") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successSE2")%>");
+            });
+
+            <%
+                }
+                if (request.getAttribute("reviseSE1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("reviseSE1")%>");
+            });
+
+            <%
+                }
+                if (request.getAttribute("rejectSE1") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("rejectSE1")%>");
+            });
+
+            <%
+                }
+            %>
+
+        </script>
 
     </head>
 
@@ -237,22 +221,23 @@
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                    for (int i = 0; i < n.size(); i++) {
-                                %>
-                                <li class="notification-box" href="#">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                            <div class="notificationBoxMessage">
-                                                <%=n.get(i).getBody()%>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                </li>
+                                        for (int i = 0; i < n.size(); i++) {
+                                    %>
+                                    <li class="notification-box" href="#">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
+                                                <div class="notificationBoxMessage">
+                                                    <%=n.get(i).getBody()%>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </li>
 
-                                <%
-                                    }
-                                %>    
+                                    <%
+                                        }
+                                    %>
+                                </div>
                             </div>
                         </ul>
                     </div>
@@ -269,8 +254,8 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div class="sidebar-expanded d-none d-md-block">
-                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+            <div  id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group sticky-top sticky-offset">
                     <script>
                         $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
@@ -278,23 +263,23 @@
             </div>
 
             <!-- MAIN -->
+
             <div class="col py-3">
-                <form action="viewFF3" method="post">
+                <form action="viewSE2" method="post">
+
                     <%
-                        ArrayList<FF> my = new ArrayList();
-                        my = UserDAO.retrievePendingFFProposalByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                        ArrayList<SE> proposals = new ArrayList();
+                        proposals = UserDAO.retrieveSEProposalsForCancellation();
                     %>
                     <!--- table -->
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
-                            <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-faithFormationProgramsList.jsp">Completed</a>
-                            <a href="MULTIPLE-pendingFFList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
-                            <a href="MULTIPLE-cancelledFFList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
-                            <a href="MULTIPLE-rejectedFFList.jsp" type="button" class="btn btn-primary" id="buttonRejected" >Rejected</a>
+                            <a type="button" class="btn btn-primary" id="buttonSE" href="MULTIPLE-seProgramsForCancellation.jsp">Social Engagement</a>
+                            <a href="MULTIPLE-ffProgramsForCancellation.jsp" type="button" class="btn btn-primary" id="buttonFF" >Faith Formation</a>
                         </div>
 
                         <br>
-                        <h4>My Faith Formation Programs (<%=my.size()%>)</h4>
+                        <h4>Social Engagement Programs (<%=proposals.size()%>)</h4>
 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
@@ -304,66 +289,26 @@
                                     <th>Unit</th>
                                     <th>Department</th>
                                     <th>Program Head</th>
-                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
+
                             <tbody id="myTable">
                                 <%
-                                    for (int i = 0; i < my.size(); i++) {
+                                    for (int i = 0; i < proposals.size(); i++) {
                                 %>
                                 <tr>
-                                    <td><%=my.get(i).getActualDate()%></td>
-                                    <td><%=my.get(i).getProjectName()%></td>
-                                    <td><%=my.get(i).getUnit()%></td>
-                                    <td><%=my.get(i).getDepartment()%></td>
-                                    <td><%=my.get(i).getProgramHead()%></td>
-                                    <td><% if(UserDAO.getStep(my.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStep(my.get(i).getId())%> <%}%></td>
-                                    <td><button type="submit" name="viewFF<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
+                                    <td><%=proposals.get(i).getName()%></td>
+                                    <td><%=proposals.get(i).getUnit()%></td>
+                                    <td><%=proposals.get(i).getDepartment()%></td>
+                                    <td><%=proposals.get(i).getProgramHead()%></td>
+                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
-                                <%
-
-                                    }
-                                %>
-                            </tbody>
-                        </table>
-
-                        <br><br>
-                        <%
-                            ArrayList<FF> others = new ArrayList();
-                            others = UserDAO.retrievePendingFFProposalByOthers(Integer.parseInt(session.getAttribute("userID").toString()));
-                        %>
-                        <h4>All Faith Formation Programs (<%=others.size()%>)</h4>
-
-                        <table id="example2" class="table table-striped table-bordered" style="width:100%">    
-                            <thead class="thead-dark" >
-                                <tr>
-                                    <th>Implementation</th> 
-                                    <th>Program Name</th>
-                                    <th>Unit</th>
-                                    <th>Department</th>
-                                    <th>Program Head</th>
-                                    <th>Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                                <%
-                                    for (int i = 0; i < others.size(); i++) {
-                                %>
-                                <tr>
-                                    <td><%=others.get(i).getActualDate()%></td>
-                                    <td><%=others.get(i).getProjectName()%></td>
-                                    <td><%=others.get(i).getUnit()%></td>
-                                    <td><%=others.get(i).getDepartment()%></td>
-                                    <td><%=others.get(i).getProgramHead()%></td>
-                                    <td><% if(UserDAO.getStep(others.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStep(others.get(i).getId())%> <%}%></td>
-                                    <td><button type="submit" name="viewOthers<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                                </tr>
-                                <%
-                                    }
-                                %>
-                            </tbody>
+                            <%
+                                    
+                                }
+                            %>
                         </table>
                     </div>
                 </form>
@@ -371,6 +316,7 @@
 
 
         </div>
+
 
         <script>
             // sandbox disable popups

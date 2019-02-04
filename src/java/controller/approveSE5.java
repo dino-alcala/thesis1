@@ -45,15 +45,15 @@ public class approveSE5 extends HttpServlet {
 
         UserDAO UserDAO = new UserDAO();
         HttpSession session = request.getSession();
-        
+
         if (request.getParameter("auditSE") != null) {
 
-                session.setAttribute("auditSE", request.getParameter("auditSE"));
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailSE.jsp");
-                dispatcher.forward(request, response);
-            }
-        
+            session.setAttribute("auditSE", request.getParameter("auditSE"));
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-auditTrailSE.jsp");
+            dispatcher.forward(request, response);
+        }
+
         if (request.getParameter("prs") != null) {
             OutputStream o = response.getOutputStream();
             o.write(UserDAO.viewPRS(Integer.parseInt(request.getParameter("prs"))));
@@ -63,63 +63,59 @@ public class approveSE5 extends HttpServlet {
 
         if (request.getParameter("approve") != null) {
 
-            SE SE = new SE();
-            SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+            SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
 
             UserDAO.updateStep(8, Integer.parseInt(request.getParameter("approve")));
-            
+
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
             java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Notification n2 = new Notification();
-            n2.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-            n2.setBody("Congratulations! Your SE Proposal has been approved! \n " + sdf.format(dt));
-            
-            SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
-                    SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
-                    java.util.Date javaDate = new java.util.Date();
-                    String input1 = new java.sql.Date(javaDate.getTime()).toString();
-                    String input2 = SE.getActualDate().toString();
+            n2.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + "\n" + sdf.format(dt));
 
-                    try {
-                        java.util.Date date1 = myFormat.parse(input1);
-                        java.util.Date date2 = myFormat.parse(input2);
-                        long diff = date2.getTime() - date1.getTime();
-                        long days = (diff / (1000*60*60*24));
+            SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+            java.util.Date javaDate = new java.util.Date();
+            String input1 = new java.sql.Date(javaDate.getTime()).toString();
+            String input2 = SE.getActualDate().toString();
 
-                        if(days <= 14){
-                            n2.setBody("Congratulations! Your URGENT SE Proposal has been approved! \n " + sdf.format(dt));
-                        } else if (days >= 15){
-                            n2.setBody("Congratulations! Your SE Proposal has been approved! \n " + sdf.format(dt));
-                        }
-                    } catch (ParseException ex) {
-                        Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            try {
+                java.util.Date date1 = myFormat.parse(input1);
+                java.util.Date date2 = myFormat.parse(input2);
+                long diff = date2.getTime() - date1.getTime();
+                long days = (diff / (1000 * 60 * 60 * 24));
+
+                if (days <= 14) {
+                    n2.setTitle("Urguent SE Proposal Approved");
+                } else if (days >= 15) {
+                    n2.setTitle("SE Proposal Approved");
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             n2.setDt(sdf2.format(dt));
             n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));
             UserDAO.AddNotification(n2);
 
             Notification n3 = new Notification();
-            n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-            n3.setBody("Php" + SE.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+            n3.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + ": Php" + SE.getTotalAmount() + " has been deducted to the budget" + "\n" + sdf.format(dt));
+            n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
             UserDAO.AddNotification(n3);
-            
-            n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-            n3.setBody("Php" + SE.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+
+            n3.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + ": Php" + SE.getTotalAmount() + " has been deducted to the budget" + "\n" + sdf.format(dt));
+            n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
             UserDAO.AddNotification(n3);
-            
-            n3.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
-            n3.setBody("Php" + SE.getTotalAmount() + " has been deducted to the budget! \n " + sdf.format(dt));
+
+            n3.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + ": Php" + SE.getTotalAmount() + " has been deducted to the budget" + "\n" + sdf.format(dt));
+            n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
             UserDAO.AddNotification(n3);
-            
 
             Budget current = new Budget();
 
@@ -136,7 +132,7 @@ public class approveSE5 extends HttpServlet {
             b.setBudgetRequested(SE.getTotalAmount());
             b.setRemainingBudget(current.getRemainingBudget() - SE.getTotalAmount());
             b.setSeID(SE.getId());
-            
+
             UserDAO.addLatestBudget(b);
 
             request.setAttribute("successSE1", "You have successfully approved the SE Proposal!");

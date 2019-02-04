@@ -9,6 +9,8 @@ import dao.UserDAO;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +63,13 @@ public class viewSEreportphoto extends HttpServlet {
             o.write(UserDAO.viewSEBeneficiariesLetters(Integer.parseInt(request.getParameter("beneficiariesletters"))));
             o.flush();
             o.close();
+        }
+        
+        if (request.getParameter("vieweval") != null) {
+            request.setAttribute("seID", request.getParameter("vieweval"));
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEResponses.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

@@ -1,20 +1,10 @@
 <%-- 
-    Document   : UR-home
-    Created on : 06 27, 18, 1:25:59 PM
+    Document   : MULTIPLE-approveCoscaSE
+    Created on : 06 18, 18, 7:21:12 PM
     Author     : Karl Madrid
 --%>
 
-<%@page import="entity.FFattendees"%>
-<%@page import="entity.FFattendees"%>
-<%@page import="entity.FFreport"%>
-<%@page import="entity.SEexpenses"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="entity.Community"%>
-<%@page import="dao.OvplmDAO"%>
-<%@page import="entity.FF"%>
 <%@page import="entity.SE"%>
-<%@page import="java.util.Collections"%>
-<%@page import="entity.KRA"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
@@ -26,48 +16,158 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create FF Completion Report</title>
+        <title>SE Proposal Cancellation</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/formstyle5.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/homepagestyle.css">
+        <link rel="stylesheet" href="css/progressbar.css">
+        <link rel="stylesheet" href="css/formstyle5.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <style>
-           table,th,td{
-                border:.5px solid
-                    black;
+            #myInput {
+                background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+                background-position: 10px 12px; /* Position the search icon */
+                background-repeat: no-repeat; /* Do not repeat the icon image */
+                width: 100%; /* Full-width */
+                padding: 12px 20px 12px 40px; /* Add some padding */
+                border: 1px solid #ddd; /* Add a grey border */
+                margin-bottom: 12px; /* Add some space below the input */
+                margin-top: 20px; 
             }
-            textarea{
-                resize: none;
-            } 
-            
-            th {
-                background-color: green;
-                color: white;
+
+            #myTable {
+                border-collapse: collapse; /* Collapse borders */
+                width: 100%; /* Full-width */
+                border: 1px solid #ddd; /* Add a grey border */
+
             }
-            table {
+
+            #myTable th, #myTable td {
+                text-align: left; /* Left-align text */
+                padding: 12px; /* Add padding */
+            }
+
+            #myTable tr {
+                border-bottom: 1px solid #ddd; 
+            }
+
+            #myTable tr.header, #myTable tr:hover {
+                background-color: #4CAF50;
+            }
+
+            .panel-title{
+                font-size: 40px;
+                text-align: left;
+                margin-top: 20px;
+                padding-bottom: 10px;
+            }
+
+            p{
+                margin-bottom: 0;
+                font-size: 15px;
+            }
+
+            table, td, th {
+                border: 1px solid black;
                 border-collapse: collapse;
+                text-align: center;
             }
-            th{
+
+            h4{
+                color: white;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
+            }
+
+            .panel-success > .panel-heading {
+                background-color: #4CAF50;
+                border-color: #ddd;
+                border: 1px solid;
+            }
+
+            .panel-body{
+                border: 1px solid;
+            }
+
+            .panel-upper{
+                border: 1px solid #4CAF50;
+            }
+
+            @-webkit-keyframes scale-up {
+                from {
+                    opacity: 1;
+                    -webkit-transform: translate(-50%, -50%) scale(0);
+                    transform: translate(-50%, -50%) scale(0);
+                }
+                to {
+                    opacity: 0;
+                    -webkit-transform: translate(-50%, -50%) scale(1);
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+
+            @keyframes scale-up {
+                from {
+                    opacity: 1;
+                    -webkit-transform: translate(-50%, -50%) scale(0);
+                    transform: translate(-50%, -50%) scale(0);
+                }
+                to {
+                    opacity: 0;
+                    -webkit-transform: translate(-50%, -50%) scale(1);
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+
+            h3{
+                font-size: 22px;   
+                border-bottom: 2px solid #4CAF50;
+                padding-bottom: 5px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            .card-header{
+                background-color: darkgreen;
+                font-family: "Arial", Helvetica, sans-serif;
+                font-size: 15px;
+            }
+
+            .card-body{
+                font-family: "Arial", Helvetica, sans-serif;
+                background-color: whitesmoke;
+                border: 1px solid black;
+            }
+
+            th,tr,td{
                 padding:15px;
             }
-            
-            h3{
-                border-bottom: 2px solid green;
-                border-top: 2px solid green;
-                padding-bottom: 10px;
-                padding-top: 10px;
+
+            textarea{
+                resize: none;
             }
+
             .button{
+                background-color: mediumseagreen;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
+                font-family: "Arial", Helvetica, sans-serif;
+            }
+
+            .btn-success{
                 background-color: darkgreen;
                 border: none;
                 border-radius: 5px;
@@ -79,57 +179,38 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            legend, h3, #inputText, #classification, option, select, value, th{
+
+            .btn-danger{
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
-            
-            #addRowButton {
-                padding: 10px;
+
+            .btn-warning{
+                background-color: darkyellow;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            #deleteRowButton {
-                padding: 10px;
+
+            legend, h3, #inputText, #classification, option, select, value{
                 font-family: "Arial", Helvetica, sans-serif;
-            }
-            @keyframes colorize {
-                0% {
-                    -webkit-filter: grayscale(100%);
-                    filter: grayscale(100%);
-                }
-                100% {
-                    -webkit-filter: grayscale(0%);
-                    filter: grayscale(0%);
-                }
             }
         </style>
 
-        <script type='text/javascript'>
-            function addRow() {
-                var count = document.getElementById("countattendees").value;
-                var table = document.getElementById("attendeestable");
-                var rows = document.getElementById("attendeestable").rows.length;
-                var row = table.insertRow(rows);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                cell1.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='attendee" + count + "' required></textarea>";
-                cell2.innerHTML = "<textarea style='border-radius:0px' rows = '1' cols = '45%' name ='email" + count + "' required></textarea>";
-                cell3.innerHTML = "<td><select style='border-radius:0px;' name='type"+count+"'><option value='CAP'>CAP</option><option value='APSP'>APSP</option><option value='ASF'>ASF</option><option value='Faculty'>Faculty</option><option value='Admin'>Administrator</option><option value='Directhired'>Direct Hired Contractual</option><option value='Independent'>Independent Contractor</option><option value='External'>External Service Personnel</option><option value='Undergrad'>Undergraduate Student</option><option value='Grad'>Graduate Student</option><option value='International'>International Student</option><option value='Alumni'>Alumni</option><option value='Parent'>Parent</option></select></td>"
-                count++;
-                document.getElementById("countattendees").setAttribute('value', count);
-            }
-            function deleteRow() {
-                var count = document.getElementById("countattendees").value;
-                var rows = document.getElementById("attendeestable").rows.length;
-                if (rows - 1 > 0) {
-                    document.getElementById("attendeestable").deleteRow(rows - 1);
-                    count--;
-                    document.getElementById("countattendees").setAttribute('value', count);
-                } else {
-                }
-            }
-        </script>
     </head>
 
     <body>
@@ -145,22 +226,22 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown d-sm-block d-md-none">
-                        <a class="nav-link" href="UR-home.jsp" id="smallerscreenmenu">
-                            Home
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
+                            Dashboard
                         </a>
-                        <a class="nav-link" href="MULTIPLE-faithFormationProgramsList.jsp" id="smallerscreenmenu">
-                            Programs
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
+                            Proposals
                         </a>
-                        <a class="nav-link" href="MULTIPLE-unitsList.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
                             Units
                         </a>
-                        <a class="nav-link" href="MULTIPLE-communityList.jsp" id="smallerscreenmenu">
-                            Communities
-                        </a>
-                        <a class="nav-link" href="MULTIPLE-krasList.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
                             Key Result Areas
                         </a>
-                        <a class="nav-link" href="MULTIPLE-evaluationSEResponsesList.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
+                            Reports
+                        </a>
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
                             Evaluation Forms
                         </a>
                     </li>
@@ -173,7 +254,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -193,6 +274,7 @@
                                 <%
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+
                                     for (int i = 0; i < n.size(); i++) {
                                 %>
                                 <li class="notification-box" href="#">
@@ -208,7 +290,7 @@
 
                                 <%
                                     }
-                                %> 
+                                %>    
                             </div>
                         </ul>
                     </div>
@@ -220,6 +302,7 @@
                 </div>
             </ul>
         </nav>
+
 
         <!-- Bootstrap row -->
         <div class="row" id="body-row">
@@ -233,68 +316,42 @@
                 </ul>
             </div>
 
+
+            <%
+                SE SE = new SE();
+                SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
+            %>
             <!-- MAIN -->
             <div class="col py-3">
-                <center><h3>Program Accomplishment Report Form</h3></center>
+                <form action="requestSECancel" method="post">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Cancel SE Program</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <center>
+                                            <b>Reason for Cancellation of SE Program</b><br>
+                                            <textarea id="remarks3" rows="3" cols="110" style="margin-bottom:-0.5%" name="reason"></textarea>
+                                        </center>
+                                    </div>
+                                </div>
+                                <br/>
 
-                <div class="form-style-5">
+                                <center>
+                                    <button onclick="return window.confirm('Cancel Program?')" class="btn-success" name="cancel" value="<%=SE.getId()%>">Submit</button>
+                                </center>
+                            </div>
 
+                        </div>
 
-                    <form action="createFFreport5" method="post">
-                    <div class="form-style-5">
-                        <fieldset>
-                            <%
-                                FFreport FFreport = (FFreport) session.getAttribute("FFreport");
-                                ArrayList<FFattendees> attendees = UserDAO.retrieveFFParticipants(FFreport.getFfproposalID());
-                            %>
-                            <input type="text" hidden name="countattendees" id="countattendees" value="1"/>
-                            <center><table style = "width:100%" id="attendeestable">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Type</th>
-                                    </tr>
-
-                                    <%
-                                        for (int x = 0; x < attendees.size(); x++) {
-                                    %>
-                                    <tr>    
-                                        <td><textarea readonly id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="attendee<%=x%>" required><%=attendees.get(x).getName()%></textarea></td>
-                                        <td><textarea readonly id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="email<%=x%>" required><%=attendees.get(x).getEmail()%></textarea></td>
-                                        <td><select readonly id="inputText" style='border-radius:0px;' name="type<%=x%>">
-                                                <option <%if (attendees.get(x).getType().equals("CAP")) { %> selected <%}%> value="CAP">CAP</option>
-                                                <option <%if (attendees.get(x).getType().equals("APSP")) { %> selected <%}%> value="APSP">APSP</option>
-                                                <option <%if (attendees.get(x).getType().equals("ASF")) { %> selected <%}%> value="ASF">ASF</option>
-                                                <option <%if (attendees.get(x).getType().equals("Faculty")) { %> selected <%}%> value="Faculty">Faculty</option>
-                                                <option <%if (attendees.get(x).getType().equals("Admin")) { %> selected <%}%> value="Admin">Administrator</option>
-                                                <option <%if (attendees.get(x).getType().equals("Directhired")) { %> selected <%}%> value="Directhired">Direct Hired Contractual</option>
-                                                <option <%if (attendees.get(x).getType().equals("Independent")) { %> selected <%}%> value="Independent">Independent Contractor</option>
-                                                <option <%if (attendees.get(x).getType().equals("External")) { %> selected <%}%> value="External">External Service Personnel</option>
-                                                <option <%if (attendees.get(x).getType().equals("Undergrad")) { %> selected <%}%> value="Undergrad">Undergraduate Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("Grad")) { %> selected <%}%> value="Grad">Graduate Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("International")) { %> selected <%}%> value="International">International Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("Alumni")) { %> selected <%}%> value="Alumni">Alumni</option>
-                                                <option <%if (attendees.get(x).getType().equals("Parent")) { %> selected <%}%> value="Parent">Parent</option>
-                                            </select></td>
-                                    </tr>
-                                    <% }%>
-                                </table></center>
-                            <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"/></center>
-                        </fieldset>    
-                        <br><br><br><br>
-                        <center><button class="button" type = "submit">Submit</button></center>
                     </div>
                 </form>
-                </div>
-
             </div>
 
             <script>
-                $('#date').datepicker({
-                    startDate: new Date()
-                });
                 // sandbox disable popups
                 if (window.self !== window.top && window.name != "view1") {
                     ;
@@ -307,6 +364,7 @@
                     window.open = function () {/*disable open*/
                     };
                 }
+
                 // prevent href=# click jump
                 document.addEventListener("DOMContentLoaded", function () {
                     var links = document.getElementsByTagName("A");
@@ -336,17 +394,21 @@
             <script>
                 // Hide submenus
                 $('#body-row .collapse').collapse('hide');
+
                 // Collapse/Expand icon
                 $('#collapse-icon').addClass('fa-angle-double-left');
+
                 // Collapse click
                 $('[data-toggle=sidebar-colapse]').click(function () {
                     SidebarCollapse();
                 });
+
                 function SidebarCollapse() {
                     $('.menu-collapsed').toggleClass('d-none');
                     $('.sidebar-submenu').toggleClass('d-none');
                     $('.submenu-icon').toggleClass('d-none');
                     $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
                     // Treating d-flex/d-none on separators with title
                     var SeparatorTitle = $('.sidebar-separator-title');
                     if (SeparatorTitle.hasClass('d-flex')) {
@@ -354,6 +416,7 @@
                     } else {
                         SeparatorTitle.addClass('d-flex');
                     }
+
                     // Collapse/Expand icon
                     $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
                 }

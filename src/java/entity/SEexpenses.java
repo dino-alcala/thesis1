@@ -6,6 +6,7 @@
 package entity;
 
 import java.sql.Blob;
+import java.util.Date;
 
 /**
  *
@@ -19,6 +20,7 @@ public class SEexpenses {
     protected double subtotal;
     protected int seproposalID;
     protected double amountUsed;
+    protected String datetime;
 
     public int getId() {
         return id;
@@ -75,4 +77,14 @@ public class SEexpenses {
     public void setAmountUsed(double amountUsed) {
         this.amountUsed = amountUsed;
     }
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+    
+    
 }

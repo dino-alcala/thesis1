@@ -6,9 +6,13 @@
 package controller;
 
 import dao.UserDAO;
+import entity.FF;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +51,13 @@ public class viewFFreportphoto extends HttpServlet {
             o.write(UserDAO.viewFFDLSUAttendance(Integer.parseInt(request.getParameter("dlsuattendance"))));
             o.flush();
             o.close();
+        }
+
+        if (request.getParameter("vieweval") != null) {
+            request.setAttribute("ffID", request.getParameter("vieweval"));
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFResponses.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

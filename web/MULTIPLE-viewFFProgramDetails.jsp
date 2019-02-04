@@ -40,7 +40,7 @@
                 border-collapse: collapse;
                 text-align: center;
             }
-            
+
             h2{
                 font-family: "Arial", Helvetica, sans-serif;
                 font-size: 20px;
@@ -75,7 +75,7 @@
             th,tr,td{
                 padding:15px;
             }
-            
+
             .btn-list{
                 background-color: dodgerblue;
                 border: none;
@@ -88,7 +88,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-success{
                 background-color: darkgreen;
                 border: none;
@@ -101,7 +101,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-warning{
                 background-color: darkyellow;
                 border: none;
@@ -114,7 +114,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-danger{
                 background-color: red;
                 border: none;
@@ -127,7 +127,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-audit{
                 background-color: mediumseagreen;
                 border: none;
@@ -188,7 +188,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -290,44 +290,44 @@
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses (Requested: ₱<%=FF.getTotalAmount()%>)</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Unit Cost</th> 
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                        <th>Amount Expended</th>
-                                        <th>Date</th>
-                                    </tr>
-                                    <%
-                                        double total = 0;
-                                        double count = 0;
-                                        for (int i = 0; i < FF.getExpenses().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=FF.getExpenses().get(i).getItem()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
-                                        <td><%=FF.getExpenses().get(i).getQuantity()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
-                                        <td><%=FF.getExpenses().get(i).getAmountUsed()%></td>
-                                        <td><%if(FF.getExpenses().get(i).getDatetime() != null){%> <%=FF.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
-                                    </tr>
-                                    <%
-                                            count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
-                                            total += FF.getExpenses().get(i).getAmountUsed();
-                                        }
-                                    %>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total: <%=count%></td>
-                                        <td>Total: <%=total%></td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                                </div>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Unit Cost</th> 
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                                <th>Amount Expended</th>
+                                                <th>Date</th>
+                                            </tr>
+                                            <%
+                                                double total = 0;
+                                                double count = 0;
+                                                for (int i = 0; i < FF.getExpenses().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=FF.getExpenses().get(i).getItem()%></td>
+                                                <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
+                                                <td><%=FF.getExpenses().get(i).getQuantity()%></td>
+                                                <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
+                                                <td><%=FF.getExpenses().get(i).getAmountUsed()%></td>
+                                                <td><%if (FF.getExpenses().get(i).getDatetime() != null) {%> <%=FF.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
+                                            </tr>
+                                            <%
+                                                    count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
+                                                    total += FF.getExpenses().get(i).getAmountUsed();
+                                                }
+                                            %>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total: <%=count%></td>
+                                                <td>Total: <%=total%></td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -348,46 +348,48 @@
                                     <div class="card-header">
                                         <h4>Remarks</h4>
                                     </div>
-                                </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <th style="width:35%">Step</th>
-                                        <th style="width:65%">Remarks</th> 
-                                    </tr>
-                                    <tr>
-                                        <td>Assistant Dean for Lasallian Mission</td>
-                                        <td><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%}%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Chairperson/Unit Head</td>
-                                        <td><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dean</td>
-                                        <td><%if (FF.getDeanRemarks() != null) {%><%=FF.getDeanRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></td>
-                                    </tr>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th style="width:35%">Step</th>
+                                                <th style="width:65%">Remarks</th> 
+                                            </tr>
+                                            <tr>
+                                                <td>Assistant Dean for Lasallian Mission</td>
+                                                <td><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%}%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chairperson/Unit Head</td>
+                                                <td><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%}%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dean</td>
+                                                <td><%if (FF.getDeanRemarks() != null) {%><%=FF.getDeanRemarks()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%}%></td>
+                                            </tr>
 
-                                    <tr>
-                                        <td>Evaluation by LSPO</td>
-                                        <td><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%}%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Approval by the Council</td>
-                                        <td>
-                                            <b>Br. Michael Broughton: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Nelca Villarin: </b> <%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
-                                            <br>
-                                            <br>
-                                            <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
-                                            <br>
-                                        </td>
-                                    </tr>
-                                </table>
+                                            <tr>
+                                                <td>Evaluation by LSPO</td>
+                                                <td><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%}%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Approval by the Council</td>
+                                                <td>
+                                                    <b>Br. Michael Broughton: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Nelca Villarin: </b> <%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
+                                                    <br>
+                                                    <br>
+                                                    <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                                 <%
                                     }
                                 %>
@@ -417,46 +419,46 @@
                                 <% }%>
 
                                 <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
-                                <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button>
-                                
+                                    <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button>
 
-                                <%
-                                    if (!UserDAO.canCreateAccomplishmentReportFF(FF.getId()) && !UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
-                                %>
-                                
-                                <button type="submit" value="<%=FF.getId()%>" name="attendance" class="btn-success">Create FF Attendance Sheet</button>
 
-                                <% } else if(UserDAO.hasUpdatedBudgetFF(FF.getId()) && UserDAO.canCreateAccomplishmentReportFF(FF.getId()) && !UserDAO.hasFFReport(FF.getId())){ 
-                                %> 
-                                
-                                <button type="submit" value="<%=FF.getId()%>" class="btn-success" name="ffID">Create Accomplishment Report</button>
-                                
-                                <% } else if (UserDAO.hasFFReport(FF.getId())) {
-                                %>
+                                    <%
+                                        if (UserDAO.hasUpdatedBudgetFF(FF.getId()) && !UserDAO.canCreateAccomplishmentReportFF(FF.getId()) && !UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
+                                    %>
+
+                                    <button type="submit" value="<%=FF.getId()%>" name="attendance" class="btn-success">Create FF Attendance Sheet</button>
+
+                                    <% } else if (UserDAO.hasUpdatedBudgetFF(FF.getId()) && UserDAO.canCreateAccomplishmentReportFF(FF.getId()) && !UserDAO.hasFFReport(FF.getId()) && FF.getStep() == 8) {
+                                    %> 
+
+                                    <button type="submit" value="<%=FF.getId()%>" class="btn-success" name="ffID">Create Accomplishment Report</button>
+
+                                    <% } else if (UserDAO.hasFFReport(FF.getId())) {
+                                    %>
                                     <button type="submit" value="<%=FF.getId()%>" name="viewReport" class="btn-success">View Accomplishment Report</button>
-                                
-                                <%
-                                    }
-                                %>
+
+                                    <%
+                                        }
+                                    %>
 
 
-                                <%
-                                    if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() > 0) {
-                                %>
-                                    
-                                        <button type="submit" value="<%=FF.getId()%>" name="updateBudget" class="btn-warning">Update Budget</button>
-                                   
-                                <%
-                                    }
-                                %>
+                                    <%
+                                        if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() > 0) {
+                                    %>
+
+                                    <button type="submit" value="<%=FF.getId()%>" name="updateBudget" class="btn-warning">Update Budget</button>
+
+                                    <%
+                                        }
+                                    %>
 
 
-                                <%
-                                    if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() != 0 && FF.getStep() != -1) {
-                                %>
+                                    <%
+                                        if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() != 0 && FF.getStep() != -1 && FF.getStep() != 10) {
+                                    %>
 
-                                   <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
-                                
+                                    <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
+
                                 <%
                                     }
                                 %>

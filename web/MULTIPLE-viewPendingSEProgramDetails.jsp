@@ -626,7 +626,7 @@
 
 
                                     <%
-                                        if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID()) {
+                                        if (Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 10) {
                                     %>
 
                                     <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button>

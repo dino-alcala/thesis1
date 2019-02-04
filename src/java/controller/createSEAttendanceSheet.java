@@ -76,7 +76,7 @@ public class createSEAttendanceSheet extends HttpServlet {
                 a.setType(request.getParameter("type" + i));
                 attendees.add(a);
             }
-            UserDAO.AddSEAttendanceSheet(attendees, Integer.parseInt(request.getParameter("seID").toString()));
+            UserDAO.AddSEAttendanceSheet(attendees, SE.getId());
 
             String characters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             int length = 10;
@@ -87,13 +87,13 @@ public class createSEAttendanceSheet extends HttpServlet {
             }
             String code = new String(text);
 
-            UserDAO.updateSEProposalCodeBySEID(code, Integer.parseInt(request.getParameter("seID").toString()));
+            UserDAO.updateSEProposalCodeBySEID(code, SE.getId());
 
             for (int x = 0; x < attendees.size(); x++) {
                 String from = "ovplmpms@gmail.com";
                 String to = attendees.get(x).getEmail();
                 String subject = "Evaluation Code";
-                String message = "SE Evaluation Code for " + SE.getName() + ": " + code;
+                String message = "FF Evaluation Code for '" + SE.getName() + "': " + code + "\n" + "\n" + "Please proceed to the OVPLM PMS Website, click the 'Evaluate' button at the bottom of the 'Login' button, and input this code, and evaluate the program." + "\n" + "\n" + "Thank You!";
                 String login = "ovplmpms@gmail.com";
                 String password = "11434643ovplmpms";
 

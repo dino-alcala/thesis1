@@ -89,8 +89,8 @@ public class approveFF4 extends HttpServlet {
                     UserDAO.updateStepFF(7, Integer.parseInt(request.getParameter("ffID")));
 
                     Notification n = new Notification();
-                    n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
-                    n.setBody("You have new FF PRS ready for approval! \n " + sdf.format(dt));
+                    n.setBody("Program: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))) + "\n"  + sdf.format(dt));
+                    n.setTitle("FF PRS ready for Approval");
                     n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("Vice President for Lasallian Mission"));
                     UserDAO.AddNotification(n);
@@ -104,36 +104,9 @@ public class approveFF4 extends HttpServlet {
             }
 
             if (request.getParameter("cancelProgram") != null) {
-
-                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("cancelProgram")));
-                UserDAO.updateStepFF(0, Integer.parseInt(request.getParameter("cancelProgram")));
-                
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                Notification n = new Notification();
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled! Php" + FF.getTotalAmount() + " returned \n " + sdf.format(dt));
-                n.setDt(sdf2.format(dt));
-                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission (OVPLM)"));
-                UserDAO.AddNotification(n);
-                
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled! Php" + FF.getTotalAmount() + " returned \n " + sdf.format(dt));
-                n.setDt(sdf2.format(dt));
-                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
-                UserDAO.AddNotification(n);
-                
-                n.setTitle(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancelProgram"))));
-                n.setBody("The program has been cancelled! Php" + FF.getTotalAmount() + " returned \n " + sdf.format(dt));
-                n.setDt(sdf2.format(dt));
-                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
-                UserDAO.AddNotification(n);
-
-                request.setAttribute("cancelProgram", "You have successfully canceled the program!");
+                request.setAttribute("ffID", Integer.parseInt(request.getParameter("cancelProgram")));
                 ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-pendingFFList.jsp");
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-requestFFCancel.jsp");
                 dispatcher.forward(request, response);
             }
 

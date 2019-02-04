@@ -13,6 +13,7 @@ public class FFattendees {
     protected int id;
     protected String name;
     protected String email;
+    protected String type;
 
     public int getId() {
         return id;
@@ -37,4 +38,14 @@ public class FFattendees {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
 }

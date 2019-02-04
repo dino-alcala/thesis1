@@ -99,6 +99,7 @@ public class SE {
     protected String remarktype3;
     protected String remarktype4;
     protected String remarktype5;
+    protected String reasonforcancel;
     
     public int getId() {
         return id;
@@ -780,6 +781,14 @@ public class SE {
 
     public void setRemarktype5(String remarktype5) {
         this.remarktype5 = remarktype5;
+    }
+
+    public String getReasonforcancel() {
+        return reasonforcancel;
+    }
+
+    public void setReasonforcancel(String reasonforcancel) {
+        this.reasonforcancel = reasonforcancel;
     }
     
     

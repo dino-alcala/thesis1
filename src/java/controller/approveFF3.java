@@ -10,6 +10,10 @@ import entity.FF;
 import entity.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -125,10 +129,28 @@ public class approveFF3 extends HttpServlet {
                 java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                 Notification n = new Notification();
-                n.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has voted to APPROVE your proposal. Vote Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4 \n " + sdf.format(dt));
+                n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
+                UserDAO.AddNotification(n);
+                
+                n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                UserDAO.AddNotification(n);
+                
+                n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                UserDAO.AddNotification(n);
+                
+                n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
+                n.setDt(sdf2.format(dt));
+                n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("successFF2", "You have successfully voted APPROVE for the FF Proposal!");
@@ -144,13 +166,34 @@ public class approveFF3 extends HttpServlet {
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
                         java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                        UserDAO.updateStepFF(6, Integer.parseInt(request.getParameter("ffID")));
+                        UserDAO.updateStep(6, Integer.parseInt(request.getParameter("ffID")));
 
                         Notification n2 = new Notification();
-                        n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
-                        n2.setBody("Your proposal has been approved by the Council. You may now upload the PRS for endorsement. \n " + sdf.format(dt));
+                        n2.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("seID"))) + ": You may now upload the PRS for endorsement." + "\n"  + sdf.format(dt));
+                        
+                        FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
+                        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+                        java.util.Date javaDate = new java.util.Date();
+                        String input1 = new java.sql.Date(javaDate.getTime()).toString();
+                        String input2 = FF.getActualDate().toString();
+
+                        try {
+                            java.util.Date date1 = myFormat.parse(input1);
+                            java.util.Date date2 = myFormat.parse(input2);
+                            long diff = date2.getTime() - date1.getTime();
+                            long days = (diff / (1000*60*60*24));
+
+                            if(days <= 14){
+                                n2.setTitle("Urgent FF Proposal Approved by Council");
+                            } else if (days >= 15){
+                                n2.setTitle("FF Proposal Approved by Council");
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                         n2.setDt((sdf2.format(dt)));
-                        n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
+                        n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
                         UserDAO.AddNotification(n2);
                         
                     } else {
@@ -159,12 +202,35 @@ public class approveFF3 extends HttpServlet {
                         java.util.Date dt = new java.util.Date();
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
                         java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        
+                        UserDAO.updateStep(8, Integer.parseInt(request.getParameter("seID")));
 
                         Notification n2 = new Notification();
-                        n2.setTitle(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))));
-                        n2.setBody("Congratulations! Your FF Proposal has been approved! \n " + sdf.format(dt));
+                        n2.setBody("Program: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("seID"))) + "\n"  + sdf.format(dt));
+                        
+                        FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
+                        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+                        java.util.Date javaDate = new java.util.Date();
+                        String input1 = new java.sql.Date(javaDate.getTime()).toString();
+                        String input2 = FF.getActualDate().toString();
+
+                        try {
+                            java.util.Date date1 = myFormat.parse(input1);
+                            java.util.Date date2 = myFormat.parse(input2);
+                            long diff = date2.getTime() - date1.getTime();
+                            long days = (diff / (1000*60*60*24));
+
+                            if(days <= 14){
+                                n2.setTitle("Urgent FF Proposal Approved by Council");
+                            } else if (days >= 15){
+                                n2.setTitle("FF Proposal Approved by Council");
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                         n2.setDt((sdf2.format(dt)));
-                        n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
+                        n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
                         UserDAO.AddNotification(n2);
                     }
                 }

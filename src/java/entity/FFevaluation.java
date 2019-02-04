@@ -27,6 +27,7 @@ public class FFevaluation {
     protected String memorable;
     protected String feedback;
     protected int ffproposalID;
+    protected boolean evaluationnotified = false;
 
     public Date getDate() {
         return date;
@@ -147,5 +148,15 @@ public class FFevaluation {
     public void setFfproposalID(int ffproposalID) {
         this.ffproposalID = ffproposalID;
     } 
+
+    public boolean isEvaluationnotified() {
+        return evaluationnotified;
+    }
+
+    public void setEvaluationnotified(boolean evaluationnotified) {
+        this.evaluationnotified = evaluationnotified;
+    }
+    
+    
     
 }

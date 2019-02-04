@@ -17,6 +17,7 @@ public class FFexpenses {
     protected double subtotal;
     protected int ffproposalID;
     protected double amountUsed;
+    protected String datetime;
 
     public int getId() {
         return id;
@@ -73,5 +74,12 @@ public class FFexpenses {
     public void setAmountUsed(double amountUsed) {
         this.amountUsed = amountUsed;
     }
-    
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
 }

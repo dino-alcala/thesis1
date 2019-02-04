@@ -35,10 +35,26 @@ public class viewSEResponses2 extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
-            request.setAttribute("seID", request.getParameter("seID"));
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEResponses2.jsp");
-            dispatcher.forward(request, response);
+            if (request.getParameter("seID") != null) {
+                request.setAttribute("seID", request.getParameter("seID"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEResponses2.jsp");
+                dispatcher.forward(request, response);
+            }
+
+            if (request.getParameter("back") != null) {
+                request.setAttribute("seID", request.getParameter("back"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEReport.jsp");
+                dispatcher.forward(request, response);
+            }
+
+            if (request.getParameter("back2") != null) {
+                request.setAttribute("seID", request.getParameter("back2"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewSEResponses.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 

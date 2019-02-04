@@ -561,25 +561,15 @@
                                         <h4>Annexes</h4>
                                     </div>
                                     <div class="card-body">   
-                                        
-                                        
-                                        
                                         <button class="btn-list" type="submit" name="dlsuattendance" value="<%=SEreport.getId()%>">DLSU Participants Attendance Sheets</button>
-                                        
                                         <button class="btn-audit" type="submit" name="photo" value="<%=SEreport.getId()%>">View Photo</button><br>
-                                        
                                         <button class="btn-list" type="submit" name="beneficiariesattendance" value="<%=SEreport.getId()%>">Beneficiaries Attendance Sheets</button>
-                                        
                                         <button class="btn-audit" type="submit" name="beneficiariesletters" value="<%=SEreport.getId()%>">Beneficiaries' Letters / Feedbacks</button>
-                                       
-                                        
-                                       
-                                       
-                                       
                                     </div>
                                 </div>
                                 <br/>
-
+                                
+                                <center><button type="submit" value="<%=SE.getId()%>" name="vieweval" class="btn-success">View Evaluation Results</button></center>
                             </div>
 
                         </div>

@@ -104,7 +104,7 @@
                 border-color: green;
                 margin-top:25px;
             }
-            
+
             #buttonRejected{
                 color: green;
                 background-color: white;
@@ -129,7 +129,7 @@
                 background-color: green;
                 border-color: green;
             }
-            
+
             #buttonRejected:hover{
                 color: white;
                 background-color: green;
@@ -218,7 +218,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -321,7 +321,7 @@
                                     <td><%=my.get(i).getUnit()%></td>
                                     <td><%=my.get(i).getDepartment()%></td>
                                     <td><%=my.get(i).getProgramHead()%></td>
-                                    <td>Step <%=UserDAO.getStep(my.get(i).getId())%></td>
+                                    <td><% if(UserDAO.getStep(my.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStep(my.get(i).getId())%> <%}%></td>
                                     <td><button type="submit" name="viewSE<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
 
@@ -360,7 +360,7 @@
                                     <td><%=others.get(i).getUnit()%></td>
                                     <td><%=others.get(i).getDepartment()%></td>
                                     <td><%=others.get(i).getProgramHead()%></td>
-                                    <td>Step <%=UserDAO.getStep(others.get(i).getId())%></td>
+                                    <td><% if(UserDAO.getStep(others.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStep(others.get(i).getId())%> <%}%></td>
                                     <td><button type="submit" name="viewOthers<%=i%>" value="<%=others.get(i).getId()%>" type="button" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%

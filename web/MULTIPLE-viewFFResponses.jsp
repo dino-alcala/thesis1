@@ -112,8 +112,8 @@
                         java.util.Date javaDate = new java.util.Date();
                         java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
                     %>
-                    
-                                        <div class="container-fluid panels">
+
+                    <div class="container-fluid panels">
                         <%
                             double overall = ((double) UserDAO.countq9(FF.getId(), 5) * 5 + UserDAO.countq9(FF.getId(), 4) * 4 + UserDAO.countq9(FF.getId(), 3) * 3 + UserDAO.countq9(FF.getId(), 2) * 2 + UserDAO.countq9(FF.getId(), 1) * 1) / (UserDAO.countq9(FF.getId(), 5) + UserDAO.countq9(FF.getId(), 4) + UserDAO.countq9(FF.getId(), 3) + UserDAO.countq9(FF.getId(), 2) + UserDAO.countq9(FF.getId(), 1));
                         %>
@@ -162,7 +162,7 @@
                             </div>
                         </div>
                     </div>
-                                                                
+
                     <div class="container-fluid panels">
                         <h2><%=FF.getProjectName()%> Evaluation Responses - <%=sqlDate%></h2>
                     </div>
@@ -585,6 +585,9 @@
                     <br>
 
                     <center>
+                        <button name="back" value="<%=FF.getId()%>" type="button btn-primary" class="btn btn-primary" style="padding-left: 20px; padding-right: 20px;">
+                            <i class="fa fa-angle-double-left"></i>
+                        </button>
                         <button name="ffID" value="<%=FF.getId()%>" type="submit" class="btn btn-primary" style="padding-left: 20px; padding-right: 20px;">
                             <i class="fa fa-angle-double-right"></i>
                         </button>

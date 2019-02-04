@@ -226,7 +226,7 @@
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="ffquantity<%=i%>" readonly><%=expenses.get(i).getQuantity()%></textarea></td>
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="ffsubtotal<%=i%>" readonly><%=expenses.get(i).getQuantity() * expenses.get(i).getUnitcost()%></textarea></td>
                             <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" name ="ffamountused<%=i%>"><%=expenses.get(i).getAmountUsed()%></textarea></td>
-                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" readonly><%=expenses.get(i).getDatetime()%></textarea></td>
+                            <td><textarea style='border-radius:0px;' rows = "2" cols = "25%" readonly><%if(expenses.get(i).getDatetime().equals("2001-01-01 00:00:00.0")){ %>Not Updated<% } else { %><%=expenses.get(i).getDatetime()%><% } %></textarea></td>
                             <td></td>
                         </tr>
                         <input type="hidden" name="ffID<%=i%>" value="<%=expenses.get(i).getFfproposalID()%>">

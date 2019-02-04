@@ -79,20 +79,20 @@ public class createFFreport5 extends HttpServlet {
             java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Notification n = new Notification();
-            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
-            n.setBody("Accomplishment Report has been submitted! \n " + sdf.format(dt));
+            n.setBody("Program: " + UserDAO.getProjectName(FFreport.getFfproposalID()) + "\n" + sdf.format(dt));
+            n.setTitle("Accomplishment Report Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
             UserDAO.AddNotification(n);
             
-            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
-            n.setBody("Accomplishment Report has been submitted! \n " + sdf.format(dt));
+            n.setBody("Program: " + UserDAO.getProjectName(FFreport.getFfproposalID()) + "\n" + sdf.format(dt));
+            n.setTitle("Accomplishment Report Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
             UserDAO.AddNotification(n);
             
-            n.setTitle(UserDAO.getProjectName(FFreport.getFfproposalID()));
-            n.setBody("Accomplishment Report has been submitted! \n " + sdf.format(dt));
+            n.setBody("Program: " + UserDAO.getProjectName(FFreport.getFfproposalID()) + "\n" + sdf.format(dt));
+            n.setTitle("Accomplishment Report Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
             UserDAO.AddNotification(n);

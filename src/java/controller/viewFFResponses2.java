@@ -35,10 +35,26 @@ public class viewFFResponses2 extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
-            request.setAttribute("ffID", request.getParameter("ffID"));
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFResponses2.jsp");
-            dispatcher.forward(request, response);
+            if(request.getParameter("ffID") != null){
+                request.setAttribute("ffID", request.getParameter("ffID"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFResponses2.jsp");
+                dispatcher.forward(request, response);
+            }
+            
+            if(request.getParameter("back") != null){
+                request.setAttribute("ffID", request.getParameter("back"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFReport.jsp");
+                dispatcher.forward(request, response);
+            }
+            
+            if(request.getParameter("back2") != null){
+                request.setAttribute("ffID", request.getParameter("back2"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewFFResponses.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 
