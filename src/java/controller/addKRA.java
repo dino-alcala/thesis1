@@ -49,15 +49,18 @@ public class addKRA extends HttpServlet {
             KRA.setDate(Date.valueOf(request.getParameter("date")));
             KRA.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-            for (int i = 1; i < 4; i++) {
+            int countgoals = Integer.parseInt(request.getParameter("countgoals"));
+            for (int i = 1; i <= countgoals ; i++) {
                 Goal g = new Goal();
                 g.setName(request.getParameter("goalname" + i));
                 g.setGoal(i);
 
-                for (int j = 1; j < Integer.parseInt(request.getParameter("countmeasuregoal" + i)); j++) {
-                    System.out.print("Measure size: "+ request.getParameter("countmeasuregoal" + i));
+                int countmeasures = Integer.parseInt(request.getParameter("countmeasuregoal" + i));
+                for (int j = 1; j < countmeasures ; j++) {
+                    System.out.print("Measure size: "+ request.getParameter("countmeasuregoal"));
                     Measure m = new Measure();
                     m.setMeasure(request.getParameter("goal" + i + "measure" + j));
+                    m.setDescription(request.getParameter("goal" + i + "description" + j));
                     m.setTarget(request.getParameter("goal" + i + "target" + j));
                     g.addMeasure(m);
                 }
