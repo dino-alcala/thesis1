@@ -42,8 +42,6 @@
                 border:.5px solid
                     black;
             }
-
-
             textarea{
                 resize: none;
             } 
@@ -52,11 +50,9 @@
                 background-color: green;
                 color: white;
             }
-
             table {
                 border-collapse: collapse;
             }
-
             th{
                 padding:15px;
             }
@@ -67,7 +63,6 @@
                 padding-bottom: 10px;
                 padding-top: 10px;
             }
-
             .button{
                 background-color: darkgreen;
                 border: none;
@@ -80,11 +75,9 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
             legend, h3, #inputText, #classification, option, select, value, #kra, #goals, #measures, #measures2, #measures3{
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
             @keyframes colorize {
                 0% {
                     -webkit-filter: grayscale(100%);
@@ -100,20 +93,15 @@
         <script type="text/javascript">
             <%
                 if (request.getAttribute("successSE") != null) {
-
             %>
             $("document").ready(function () {
-
             alert("<%=request.getAttribute("successSE")%>");
             });
             <%
                 }
-
                 if (request.getAttribute("successFF") != null) {
-
             %>
             $("document").ready(function () {
-
             alert("<%=request.getAttribute("successFF")%>");
             });
             <%
@@ -193,7 +181,6 @@
                 }
         
         function changegoal(c1, c2) {
-
                 var c1 = document.getElementById(c1);
                 var c2 = document.getElementById(c2);
                 c2.innerHTML = "";
@@ -202,11 +189,9 @@
                 if (c1.value == "<%=k.get(i).getId()%>") {
                 var optionArray = ["|",<%for (int j = 0; j < k.get(i).getGoals().size(); j++) {%>"<%=k.get(i).getGoals().get(j).getGoalID()%>|<%=k.get(i).getGoals().get(j).getName()%>",<%}%>];
                     }
-
             <%
                 }
             %>
-
                     for (var option in optionArray) {
                     var pair = optionArray[option].split("|");
                     var newOption = document.createElement("option");
@@ -214,11 +199,8 @@
                     newOption.innerHTML = pair[1];
                     c2.options.add(newOption);
                     }
-
                     }
-
                     function changemeasure(c1, c2, c3, c4) {
-
                     var c1 = document.getElementById(c1);
                     var c2 = document.getElementById(c2);
                     var c3 = document.getElementById(c3);
@@ -230,20 +212,16 @@
                 for (int i = 0; i < k.size(); i++) {
                     for (int j = 0; j < k.get(i).getGoals().size(); j++) {
             %>
-
                     if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
                     var optionArray = [<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
                         }
-
                         if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
                         var optionArray2 = ["0|None",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
                             }
-
             <%
                     }
                 }
             %>
-
                             for (var option in optionArray) {
                             var pair = optionArray[option].split("|");
                             var newOption = document.createElement("option");
@@ -251,7 +229,6 @@
                             newOption.innerHTML = pair[1];
                             c2.options.add(newOption);
                             }
-
                             for (var option in optionArray2) {
                             var pair = optionArray2[option].split("|");
                             var newOption = document.createElement("option");
@@ -259,7 +236,6 @@
                             newOption.innerHTML = pair[1];
                             c3.options.add(newOption);
                             }
-
                             for (var option in optionArray2) {
                             var pair = optionArray2[option].split("|");
                             var newOption = document.createElement("option");
@@ -267,10 +243,7 @@
                             newOption.innerHTML = pair[1];
                             c4.options.add(newOption);
                             }
-
-
                             }
-
         </script>
         
         
@@ -337,7 +310,6 @@
                                 <%
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
                                     for (int i = 0; i < n.size(); i++) {
                                 %>
                                 <li class="notification-box" href="#">
@@ -387,7 +359,6 @@
 
                         <%
                             UserDAO = new UserDAO();
-
                             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                             java.util.Date javaDate = new java.util.Date();
                             java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
@@ -574,7 +545,6 @@
             window.open = function () {/*disable open*/
             };
             }
-
             // prevent href=# click jump
             document.addEventListener("DOMContentLoaded", function () {
             var links = document.getElementsByTagName("A");
@@ -622,7 +592,6 @@
             } else {
             SeparatorTitle.addClass('d-flex');
             }
-
             // Collapse/Expand icon
             $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }

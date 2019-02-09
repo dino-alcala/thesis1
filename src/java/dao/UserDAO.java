@@ -3156,6 +3156,40 @@ public class UserDAO {
         return SE;
     }
     
+    public String retrieveGoalNamebyGoalID(int x) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        String name = null;
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM goal WHERE goalID = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, x);
+
+            rs2 = pstmt.executeQuery();
+            
+            while(rs2.next()){
+                name = rs2.getString("name");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return name;
+    }
+    
     public ArrayList<SE> retrieveSEProposalsForCancellation() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();

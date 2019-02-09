@@ -344,12 +344,13 @@ public class OvplmDAO {
                 }
 
                 for (int j = 0; j < KRA.getGoals().get(i).getMeasures().size(); j++) {
-                    query = "INSERT into measure(measure, target, kraID, goalID) VALUES(?,?,?,?)";
+                    query = "INSERT into measure(measure, description, target, kraID, goalID) VALUES(?,?,?,?,?)";
                     pstmt = conn.prepareStatement(query);
                     pstmt.setString(1, KRA.getGoals().get(i).getMeasures().get(j).getMeasure());
-                    pstmt.setString(2, KRA.getGoals().get(i).getMeasures().get(j).getTarget());
-                    pstmt.setInt(3, kraid);
-                    pstmt.setInt(4, goalid);
+                    pstmt.setString(2, KRA.getGoals().get(i).getMeasures().get(j).getDescription());
+                    pstmt.setString(3, KRA.getGoals().get(i).getMeasures().get(j).getTarget());
+                    pstmt.setInt(4, kraid);
+                    pstmt.setInt(5, goalid);
 
                     rs = pstmt.executeUpdate();
 
@@ -448,6 +449,47 @@ public class OvplmDAO {
                 /* ignored */ }
         }
         return kra;
+    }
+    
+    public ArrayList<Goal> retrieveKRAGoals(int x) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM goal WHERE kraID = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Goal> goals = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, x);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Goal g = new Goal();
+                g.setName(rs.getString("name"));
+                g.setGoalID(rs.getInt("goalID"));
+                g.setGoal(rs.getInt("goalNumber"));
+                goals.add(g);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return goals;
     }
 
     public KRA retrieveKRAByID(int kraID) {

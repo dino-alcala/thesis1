@@ -41,7 +41,6 @@
             tr:hover {
                 background-color: lightgreen;
             }
-
             h2{
                 font-size: 40px;
                 text-align: left;
@@ -50,12 +49,11 @@
                 padding-bottom: 10px;
                 margin-bottom: 25px;
             }
-            
+
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
-
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -65,52 +63,41 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-
             table,th,td{
                 border:.5px solid
                     black;
             }
-
             hr{
                 background-color:green;
             }
-
             textarea{
                 resize: none;
             } 
-
             h1, h2, h3, h4, h5, h6 {
                 color: #222;
                 font-weight: 600;
                 line-height: 1.3;
             }
-
             h2 {
                 margin-top: 1.3em;
             }
-
             a {
                 color: #0083e8;
             }
-
             b{
                 font-weight: 600;
             }
-
             th {
                 background-color: green;
                 color: white;
             }
-
             table {
                 border-collapse: collapse;
-
             }
-            
+
             th{
                 padding:15px;
             }
-
             .button{
                 background-color: #4CAF50;
                 border: none;
@@ -121,8 +108,6 @@
                 margin: 4px 2px;
                 font-size: 16px;
             }
-
-
             @keyframes colorize {
                 0% {
                     -webkit-filter: grayscale(100%);
@@ -133,30 +118,40 @@
                     filter: grayscale(0%);
                 }
             }
-
         </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <script type='text/javascript'>
-
-
-            function addRow2() {
+            
+            function addTotalGoal(){
+                var count = document.getElementById("countgoals").value;
+                count++;
+                document.getElementById("countgoals").setAttribute('value',count);
+            }
+            
+            function subtractTotalGoal(){
+                var count = document.getElementById("countgoals").value;
+                count--;
+                document.getElementById("countgoals").setAttribute('value',count);
+            }
+            
+            function addRow() {
                 var count = document.getElementById("countmeasuregoal1").value;
                 var table = document.getElementById("goaltable");
                 var rows = document.getElementById("goaltable").rows.length;
                 var row = table.insertRow(rows);
-
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-
+                var cell3 = row.insertCell(2);
                 cell1.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal1measure" + count + "'></textarea>";
-                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal1target" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal1description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal1target" + count + "'></textarea>";
                 count++;
                 document.getElementById("countmeasuregoal1").setAttribute('value', count);
             }
-
-            function deleteRow2() {
+            
+            function deleteRow() {
                 var count = document.getElementById("countmeasuregoal1").value;
                 var rows = document.getElementById("goaltable").rows.length;
                 if (rows - 1 > 0) {
@@ -164,27 +159,25 @@
                     count--;
                     document.getElementById("countmeasuregoal1").setAttribute('value', count);
                 } else {
-
                 }
             }
-
-            function addRow3() {
+            
+            function addRow2() {
                 var count = document.getElementById("countmeasuregoal2").value;
                 var table = document.getElementById("goaltable2");
                 var rows = document.getElementById("goaltable2").rows.length;
                 var row = table.insertRow(rows);
-
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-
+                var cell3 = row.insertCell(2);
                 cell1.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal2measure" + count + "'></textarea>";
-                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal2target" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal2description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal2target" + count + "'></textarea>";
                 count++;
                 document.getElementById("countmeasuregoal2").setAttribute('value', count);
-
             }
-
-            function deleteRow3() {
+            
+            function deleteRow2() {
                 var count = document.getElementById("countmeasuregoal2").value;
                 var rows = document.getElementById("goaltable2").rows.length;
                 if (rows - 1 > 0) {
@@ -192,27 +185,25 @@
                     count--;
                     document.getElementById("countmeasuregoal2").setAttribute('value', count);
                 } else {
-
                 }
             }
-
-            function addRow4() {
+            
+            function addRow3() {
                 var count = document.getElementById("countmeasuregoal3").value;
                 var table = document.getElementById("goaltable3");
                 var rows = document.getElementById("goaltable3").rows.length;
                 var row = table.insertRow(rows);
-
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-
+                var cell3 = row.insertCell(2);
                 cell1.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal3measure" + count + "'></textarea>";
-                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal3target" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal3description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal3target" + count + "'></textarea>";
                 count++;
                 document.getElementById("countmeasuregoal3").setAttribute('value', count);
-
             }
-
-            function deleteRow4() {
+            
+            function deleteRow3() {
                 var count = document.getElementById("countmeasuregoal3").value;
                 var rows = document.getElementById("goaltable3").rows.length;
                 if (rows - 1 > 0) {
@@ -220,18 +211,117 @@
                     count--;
                     document.getElementById("countmeasuregoal3").setAttribute('value', count);
                 } else {
-
                 }
             }
-
+            
+            function addRow4() {
+                var count = document.getElementById("countmeasuregoal4").value;
+                var table = document.getElementById("goaltable4");
+                var rows = document.getElementById("goaltable4").rows.length;
+                var row = table.insertRow(rows);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                cell1.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal4measure" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal4description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal4target" + count + "'></textarea>";
+                count++;
+                document.getElementById("countmeasuregoal4").setAttribute('value', count);
+            }
+            
+            function deleteRow4() {
+                var count = document.getElementById("countmeasuregoal4").value;
+                var rows = document.getElementById("goaltable4").rows.length;
+                if (rows - 1 > 0) {
+                    document.getElementById("goaltable4").deleteRow(rows - 1);
+                    count--;
+                    document.getElementById("countmeasuregoal4").setAttribute('value', count);
+                } else {
+                }
+            }
+            
+            function addRow5() {
+                var count = document.getElementById("countmeasuregoal5").value;
+                var table = document.getElementById("goaltable5");
+                var rows = document.getElementById("goaltable5").rows.length;
+                var row = table.insertRow(rows);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                cell1.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal5measure" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal5description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal5target" + count + "'></textarea>";
+                count++;
+                document.getElementById("countmeasuregoal5").setAttribute('value', count);
+            }
+            
+            function deleteRow5() {
+                var count = document.getElementById("countmeasuregoal5").value;
+                var rows = document.getElementById("goaltable5").rows.length;
+                if (rows - 1 > 0) {
+                    document.getElementById("goaltable5").deleteRow(rows - 1);
+                    count--;
+                    document.getElementById("countmeasuregoal5").setAttribute('value', count);
+                } else {
+                }
+            }
+            
+            function addRow6() {
+                var count = document.getElementById("countmeasuregoal6").value;
+                var table = document.getElementById("goaltable6");
+                var rows = document.getElementById("goaltable6").rows.length;
+                var row = table.insertRow(rows);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                cell1.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal6measure" + count + "'></textarea>";
+                cell2.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal6description" + count + "'></textarea>";
+                cell3.innerHTML = "<textarea style='border-radius:0px;' rows = '2' cols = '10%' name ='goal6target" + count + "'></textarea>";
+                count++;
+                document.getElementById("countmeasuregoal6").setAttribute('value', count);
+            }
+            
+            function deleteRow6() {
+                var count = document.getElementById("countmeasuregoal6").value;
+                var rows = document.getElementById("goaltable6").rows.length;
+                if (rows - 1 > 0) {
+                    document.getElementById("goaltable6").deleteRow(rows - 1);
+                    count--;
+                    document.getElementById("countmeasuregoal6").setAttribute('value', count);
+                } else {
+                }
+            }
+            
             $(document).ready(function () {
+                var goal = 2;
+                var count = document.getElementById("countgoals").value;
                 $("#addgoal").click(function () {
-                    $("#container").append('<h2>Goal 1: </h2><textarea rows = "1" cols = "1%" name ="goalnumber"></textarea><center><table style = "width:100%" id="goaltable"><tr><th>Measure</th><th>Description</th><th>Target</th></tr><tr><td><textarea rows = "2" cols = "1%" name ="measure"></textarea></td><td><textarea rows = "2" cols = "10%" name ="description"></textarea></td><td><textarea rows = "2" cols = "1%" name ="target"></textarea></td></tr><tr><td><textarea rows = "2" cols = "1%" name ="measure"></textarea></td><td><textarea rows = "2" cols = "10%" name ="description"></textarea></td><td><textarea rows = "2" cols = "1%" name ="target"></textarea></td></tr><tr><td><textarea rows = "2" cols = "1%" name ="measure"></textarea></td><td><textarea rows = "2" cols = "10%" name ="description"></textarea></td><td><textarea rows = "2" cols = "1%" name ="target"></textarea></td></tr></table></center><br><center><input type ="button" id="addRowButton" onclick ="addRow2()" value="Add row">&nbsp;<input type ="button" id="deleteRowButton" onclick ="deleteRow2()" value="Delete row"></center>');
-
+                    if(goal != 7){
+                        $("#container").append('<div id="add-goal'+goal+'"><h4>Goal '+goal+': </h4><textarea style="border-radius:0px;" rows = "1" cols = "1%" name ="goalname'+goal+'"></textarea><center><table style = "width:100%" id="goaltable'+goal+'"><tr><th style="width:15%">Measure</th><th style="width:40%">Description</th><th style="width:40%">Target</th></tr><tr><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'measure1"></textarea></td><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'description1"></textarea></td><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'target1"></textarea></td></tr><tr><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'measure2"></textarea></td><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'description2"></textarea></td><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'target2"></textarea></td></tr><tr><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'measure3"></textarea></td><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'description3"></textarea></td><td><textarea style="border-radius:0px;" rows = "2" cols = "50%" name ="goal'+goal+'target3"></textarea></td></tr></table><br><center><input type ="button" id="addRowButton" onclick ="addRow'+goal+'()" value="Add row"></center><center><input type ="button" id="deleteRowButton" onclick ="deleteRow'+goal+'()" value="Delete row"></center><input type="hidden" value="4" id="countmeasuregoal'+goal+'" name="countmeasuregoal'+goal+'"><br>');
+                        goal++;
+                    } 
+                });
+                
+                $("#deletegoal").click(function () {
+                    if(goal == 3){
+                        $("#add-goal2").remove();
+                        goal--;
+                    } else if(goal == 4){
+                        $("#add-goal3").remove();
+                        goal--;
+                    } else if(goal == 5){
+                        $("#add-goal4").remove();
+                        goal--;
+                    } else if(goal == 6){
+                        $("#add-goal5").remove();
+                        goal--;
+                    } else if(goal == 7){
+                        $("#add-goal6").remove();
+                        goal--;
+                    }
                 });
             });
-
-
+            
         </script>
 
     </head>
@@ -277,7 +367,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -297,7 +387,6 @@
                                 <%
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
                                     for (int i = 0; i < n.size(); i++) {
                                 %>
                                 <li class="notification-box" href="#">
@@ -357,101 +446,49 @@
 
                         <fieldset>
                             <legend>KRA Name: <textarea  rows = "1" cols = "1%" name ="kraname"></textarea></legend>
+                            <br><br>
                         </fieldset>
 
-                        <div class="add-goal">
+                        <div id="add-goal">
                             <h4>Goal 1: </h4><textarea style='border-radius:0px;' rows = "1" cols = "1%" name ="goalname1"></textarea>
                             <center><table style = "width:100%" id="goaltable">
                                     <tr>
-                                        <th>Measure</th>
-                                        <th>Target</th>
+                                        <th style="width:15%">Measure</th>
+                                        <th style="width:40%">Description</th>
+                                        <th style="width:40%">Target</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1measure1"></textarea></td>
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1target1"></textarea></td>
+                                        <td><textarea placeholder="KRA3-G1-M1" style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1measure1"></textarea></td>
+                                        <td><textarea placeholder="Description" style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1description1"></textarea></td>
+                                        <td><textarea placeholder="50% of...." style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1target1"></textarea></td>
                                     </tr>
                                     <tr>    
                                         <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1measure2"></textarea></td>
+                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1description2"></textarea></td>
                                         <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1target2"></textarea></td>
                                     </tr>
                                     <tr>    
                                         <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1measure3"></textarea></td>
+                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1description3"></textarea></td>
                                         <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1target3"></textarea></td>
                                     </tr>
-
                                     <input type="hidden" value="4" id="countmeasuregoal1" name="countmeasuregoal1">
                                 </table></center>
                             <br>
                             <center>
-                                <input type ="button" id="addRowButton" onclick ="addRow2()" value="Add row">  
-                                <input type ="button" id="deleteRowButton" onclick ="deleteRow2()" value="Delete row">
+                                <input type ="button" id="addRowButton" onclick ="addRow()" value="Add row">
+                                <input type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete row">
                             </center>
                             <br>
                         </div>
-
-                        <div class="add-goal">
-                            <h4>Goal 2: </h4><textarea style='border-radius:0px;' rows = "1" cols = "1%" name ="goalname2"></textarea>
-                            <center><table style = "width:100%" id="goaltable2">
-                                    <tr>
-                                        <th>Measure</th>
-                                        <th>Target</th>
-                                    </tr>
-                                    <tr>    
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal2measure1"></textarea></td>
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal2target1"></textarea></td>
-                                    </tr>
-                                    <tr>    
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal2measure2"></textarea></td>
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal2target2"></textarea></td>
-                                    </tr>
-                                    <tr>    
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal2measure3"></textarea></td>
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal2target3"></textarea></td>
-                                    </tr>
-
-                                    <input type="hidden" value="4" id="countmeasuregoal2" name="countmeasuregoal2">
-                                </table></center>
-                            <br>
-                            <center>
-                                <input type ="button" id="addRowButton" onclick ="addRow3()" value="Add row">  
-                                <input type ="button" id="deleteRowButton" onclick ="deleteRow3()" value="Delete row">
-                            </center>
-                            <br>
-                        </div>
-
-                        <div class="add-goal">
-                            <h4>Goal 3: </h4><textarea style='border-radius:0px;' rows = "1" cols = "1%" name ="goalname3"></textarea>
-                            <center><table style = "width:100%" id="goaltable3">
-                                    <tr>
-                                        <th>Measure</th>
-                                        <th>Target</th>
-                                    </tr>
-                                    <tr>    
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal3measure1"></textarea></td>
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal3target1"></textarea></td>
-                                    </tr>
-                                    <tr>    
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal3measure2"></textarea></td>
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal3target2"></textarea></td>
-                                    </tr>
-                                    <tr>    
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal3measure3"></textarea></td>
-                                        <td><textarea style='border-radius:0px;' rows = "2" cols = "50%" name ="goal3target3"></textarea></td>
-                                    </tr>
-
-                                    <input type="hidden" value="4" id="countmeasuregoal3" name="countmeasuregoal3">
-                                </table></center>
-                            <br>
-                            <center>
-                                <input type ="button" id="addRowButton" onclick ="addRow4()" value="Add row">  
-                                <input type ="button" id="deleteRowButton" onclick ="deleteRow4()" value="Delete row">
-                            </center>
-                            <br>
-
-                            <div id="container"></div>
-                        </div>
+                        
+                        <div id="container"></div>
+                        
+                        <input type="hidden" value="1" id="countgoals" name="countgoals">
+                        <center><button class="button" type ="button" id="addgoal" onclick="addTotalGoal()">Add Goal</button>
+                        <button class="button" style="background-color:red" type ="button" id="deletegoal" onclick="subtractTotalGoal()">Delete Goal</button></center>                        
                         <br>
-                        <center><button class="button" type="submit" value="Submit" >Create KRA</button></center>
+                        <center><button class="button" type="submit" value="Submit">Create KRA</button></center>
                     </form>
                 </div>
             </div>
@@ -480,7 +517,6 @@
                 } else {
                     SeparatorTitle.addClass('d-flex');
                 }
-
                 // Collapse/Expand icon
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }

@@ -41,32 +41,27 @@
                 border:.5px solid
                     black;
             }
-
-
             textarea{
                 resize: none;
             } 
-            
+
             th {
                 background-color: green;
                 color: white;
             }
-
             table {
                 border-collapse: collapse;
             }
-
             th{
                 padding:15px;
             }
-            
+
             h3{
                 border-bottom: 2px solid green;
                 border-top: 2px solid green;
                 padding-bottom: 10px;
                 padding-top: 10px;
             }
-
             .button{
                 background-color: darkgreen;
                 border: none;
@@ -79,12 +74,9 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
             legend, h3, #inputText, #classification, option, select, value{
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
-
             @keyframes colorize {
                 0% {
                     -webkit-filter: grayscale(100%);
@@ -95,78 +87,44 @@
                     filter: grayscale(0%);
                 }
             }
-
         </style>
 
         <script type="text/javascript">
             <%
                 if (request.getAttribute("successSE") != null) {
-
             %>
             $("document").ready(function () {
-
             alert("<%=request.getAttribute("successSE")%>");
             });
             <%
                 }
-
                 if (request.getAttribute("successFF") != null) {
-
             %>
             $("document").ready(function () {
-
             alert("<%=request.getAttribute("successFF")%>");
             });
             <%
                 }
             %>
         </script>
-        
+
         <script type="text/javascript">
             <%
                 UserDAO UserDAO = new UserDAO();
-                
+
                 SE SE = new SE();
                 SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
-                
+
                 OvplmDAO OvplmDAO = new OvplmDAO();
                 ArrayList<KRA> k = new ArrayList();
                 k = OvplmDAO.retrieveKRA();
-
             %>
-                
-                function changeKRA(c1, c2){
-                    var c1 = document.getElementById(c1);
-                    var c2 = document.getElementById(c2);
-                    c2.innerHTML = "";
-                    
-                    var optionArray = ["|",<%for(int m = 0; m < k.size(); m++){%>"<%=k.get(m).getId()%>|<%=k.get(m).getName()%>",<%}%>];
-                    
-                    for (var option in optionArray) {
-                    var pair = optionArray[option].split("|");
-                    var newOption = document.createElement("option");
-                    newOption.value = pair[0];
-                    newOption.innerHTML = pair[1];
-                    
-                    c2.options.add(newOption);
-                }
-                }
 
-            function changegoal(c1, c2) {
-
+            function changeKRA(c1, c2){
             var c1 = document.getElementById(c1);
             var c2 = document.getElementById(c2);
             c2.innerHTML = "";
-            <%                    for (int i = 0; i < k.size(); i++) {
-            %>
-            if (c1.value == "<%=k.get(i).getId()%>") {
-            var optionArray = ["|",<%for (int j = 0; j < k.get(i).getGoals().size(); j++) {%>"<%=k.get(i).getGoals().get(j).getGoalID()%>|<%=k.get(i).getGoals().get(j).getName()%>",<%}%>];
-                }
-
-            <%
-                }
-            %>
-
+            var optionArray = ["|",<%for (int m = 0; m < k.size(); m++) {%>"<%=k.get(m).getId()%>|<%=k.get(m).getName()%>",<%}%>];
                 for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
                 var newOption = document.createElement("option");
@@ -174,62 +132,112 @@
                 newOption.innerHTML = pair[1];
                 c2.options.add(newOption);
                 }
-
                 }
 
-                function changemeasure(c1, c2, c3, c4) {
-
+                function changegoal(c1, c2) {
                 var c1 = document.getElementById(c1);
                 var c2 = document.getElementById(c2);
-                var c3 = document.getElementById(c3);
-                var c4 = document.getElementById(c4);
                 c2.innerHTML = "";
-                c3.innerHTML = "";
-                c4.innerHTML = "";
-            <%
-                for (int i = 0; i < k.size(); i++) {
-                    for (int j = 0; j < k.get(i).getGoals().size(); j++) {
+            <%                    for (int i = 0; i < k.size(); i++) {
             %>
-
-                if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                var optionArray = [<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                if (c1.value == "<%=k.get(i).getId()%>") {
+                var optionArray = ["|",<%for (int j = 0; j < k.get(i).getGoals().size(); j++) {%>"<%=k.get(i).getGoals().get(j).getGoalID()%>|<%=k.get(i).getGoals().get(j).getName()%>",<%}%>];
                     }
-                    
-                                    if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
-                var optionArray2 = ["0|None",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
-                    }
-
             <%
-                    }
                 }
             %>
-
                     for (var option in optionArray) {
                     var pair = optionArray[option].split("|");
                     var newOption = document.createElement("option");
                     newOption.value = pair[0];
                     newOption.innerHTML = pair[1];
                     c2.options.add(newOption);
-                }
-                
-                 for (var option in optionArray2) {
-                    var pair = optionArray2[option].split("|");
-                    var newOption = document.createElement("option");
-                    newOption.value = pair[0];
-                    newOption.innerHTML = pair[1];
-                    c3.options.add(newOption);
-                }
-                
-                 for (var option in optionArray2) {
-                    var pair = optionArray2[option].split("|");
-                    var newOption = document.createElement("option");
-                    newOption.value = pair[0];
-                    newOption.innerHTML = pair[1];
-                    c4.options.add(newOption);
-                }
-                    
-
                     }
+                    }
+                    function changemeasure(c1, c2, c3, c4) {
+                    var c1 = document.getElementById(c1);
+                    var c2 = document.getElementById(c2);
+                    var c3 = document.getElementById(c3);
+                    var c4 = document.getElementById(c4);
+                    c2.innerHTML = "";
+                    c3.innerHTML = "";
+                    c4.innerHTML = "";
+            <%
+                for (int i = 0; i < k.size(); i++) {
+                    for (int j = 0; j < k.get(i).getGoals().size(); j++) {
+            %>
+                    if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
+                    var optionArray = [<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                        }
+
+                        if (c1.value == "<%=k.get(i).getGoals().get(j).getGoalID()%>") {
+                        var optionArray2 = ["0|None",<%for (int l = 0; l < k.get(i).getGoals().get(j).getMeasures().size(); l++) {%>"<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasureID()%>|<%=k.get(i).getGoals().get(j).getMeasures().get(l).getMeasure()%>",<%}%>];
+                            }
+            <%
+                    }
+                }
+            %>
+                            for (var option in optionArray) {
+                            var pair = optionArray[option].split("|");
+                            var newOption = document.createElement("option");
+                            newOption.value = pair[0];
+                            newOption.innerHTML = pair[1];
+                            c2.options.add(newOption);
+                            }
+
+                            for (var option in optionArray2) {
+                            var pair = optionArray2[option].split("|");
+                            var newOption = document.createElement("option");
+                            newOption.value = pair[0];
+                            newOption.innerHTML = pair[1];
+                            c3.options.add(newOption);
+                            }
+
+                            for (var option in optionArray2) {
+                            var pair = optionArray2[option].split("|");
+                            var newOption = document.createElement("option");
+                            newOption.value = pair[0];
+                            newOption.innerHTML = pair[1];
+                            c4.options.add(newOption);
+                            }
+
+                            }
+        </script>
+
+        <script>
+            $(document).ready(function(){
+            $("#editkra").hide();
+            $("#editgoal").hide();
+            $("#editmeasure1").hide();
+            $("#editmeasure2").hide();
+            $("#editmeasure3").hide();
+            $("#cancelbuttonedit").hide();
+            });
+            function editTargets(){
+            $("#editkra").show();
+            $("#editgoal").show();
+            $("#editmeasure1").show();
+            $("#editmeasure2").show();
+            $("#editmeasure3").show();
+            $("#cancelbuttonedit").show();
+            $("#buttonedit").hide();
+            var x = document.getElementById("isedited").value;
+            x++;
+            document.getElementById("isedited").setAttribute('value', x);
+            }
+
+            function cancelEditTargets(){
+            $("#editkra").hide();
+            $("#editgoal").hide();
+            $("#editmeasure1").hide();
+            $("#editmeasure2").hide();
+            $("#editmeasure3").hide();
+            $("#cancelbuttonedit").hide();
+            $("#buttonedit").show();
+            var x = document.getElementById("isedited").value;
+            x--;
+            document.getElementById("isedited").setAttribute('value', x);
+            }
         </script>
     </head>
 
@@ -293,7 +301,6 @@
                                 <%
                                     ArrayList<Notification> n = new ArrayList();
                                     n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
                                     for (int i = 0; i < n.size(); i++) {
                                 %>
                                 <li class="notification-box" href="#">
@@ -373,20 +380,6 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Type of Social Engagement:</b></legend>
-                            <select id="inputText" value ="<%=SE.getActivityClassification()%>" name="classification" onchange="changeKRA(this.id, 'kra')">
-                                <option value="Socially Engaged Research">Socially Engaged Research</option>
-                                <option value="Service-Learning">Service-Learning</option>
-                                <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
-                                <option value="Direct Service to the Poor and Marginalized">Direct Service to the Poor and Marginalized</option>
-                                <option value="Issue Awareness and Advocacy">Issue Awareness and Advocacy</option>
-                                <option value="Public Engagement">Public Engagement</option>
-                                <option value="Others">Others</option>
-                            </select>
-                            <br><br>
-                        </fieldset>
-
-                        <fieldset>
                             <legend><b>Target Community:</b></legend>
                             <%
                                 ArrayList<Community> c = new ArrayList();
@@ -396,7 +389,7 @@
                                 <%
                                     for (int m = 0; m < c.size(); m++) {
                                 %>
-                                <option value="<%=c.get(m).getId()%>"<% if (c.get(m).getName().equals(SE.getTargetCommunity())) {%> selected="selected" <%}%> ><%=c.get(m).getName()%></option>
+                                <option value="<%=c.get(m).getId()%>"<% if (c.get(m).getName().equals(SE.getTargetCommunity())) {%> selected="<%=c.get(m).getName()%>" <%}%> ><%=c.get(m).getName()%></option>
                                 <%
                                     }
                                 %>
@@ -405,47 +398,169 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><b>Target KRA:</b></legend>
-                            <select name="kra" id="kra" onchange="changegoal(this.id, 'goals')">
-                                <option></option>
-                                <%
-                                    for (int m = 0; m < k.size(); m++) {
-                                %>
-                                <option value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
-                                <%
-                                    }
-                                %>
-                            </select>
-                            <br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><b>Target Goal:</b></legend>
-                            <select value ="<%=SE.getTargetGoal()%>" name="goal" id="goals" onchange="changemeasure(this.id, 'measures', 'measures2', 'measures3')">
-                            </select>
-                            <br><br>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend><b>Target Measure:</b></legend>
-                            <select  name="measure" id="measures" required>
-                            </select>
-                            <br><br><br>
-                        </fieldset> 
-                            
-                            <fieldset>
-                            <legend><b>Target Measure 2:</b></legend>
-                            <select name="measure2" id="measures2">
+                            <legend><b>Type of Social Engagement:</b></legend>
+                            <select id="inputText" name="classification">
+                                <option <% if (SE.getActivityClassification().equals("Socially Engaged Research")) { %> selected <% } %> value="Socially Engaged Research">Socially Engaged Research</option>
+                                <option <% if (SE.getActivityClassification().equals("Service-Learning")) { %> selected <% } %> value="Service-Learning">Service-Learning</option>
+                                <option <% if (SE.getActivityClassification().equals("Interdisciplinary Fora")) { %> selected <% } %> value="Interdisciplinary Fora">Interdisciplinary Fora</option>
+                                <option <% if (SE.getActivityClassification().equals("Direct Service to the Poor and Marginazlized")) { %> selected <% } %> value="Direct Service to the Poor and Marginalized">Direct Service to the Poor and Marginalized</option>
+                                <option <% if (SE.getActivityClassification().equals("Issue Awareness and Advocacy")) { %> selected <% } %> value="Issue Awareness and Advocacy">Issue Awareness and Advocacy</option>
+                                <option <% if (SE.getActivityClassification().equals("Public Engagement")) { %> selected <% } %> value="Public Engagement">Public Engagement</option>
+                                <option <% if (SE.getActivityClassification().equals("Others")) { %> selected <% } %> value="Others">Others</option>
                             </select>
                             <br><br><br>
                         </fieldset>
-                            
-                            <fieldset>
-                            <legend><b>Target Measure 3:</b></legend>
-                            <select name="measure3" id="measures3">
-                            </select>
-                            <br><br>
-                            <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a></center>
+
+                        <fieldset>
+                            <table>
+                                <tr>
+                                    <th style="width:50%">Selected</th>
+                                    <th style="width:50%">Edited</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px">
+                                        <fieldset>
+                                            <legend><b>Target KRA:</b></legend>
+                                            <select disabled>
+                                                <%
+                                                    for (int m = 0; m < k.size(); m++) {
+                                                %>
+                                                <option <% if (SE.getTargetKRA() == k.get(m).getId()) { %> selected <% }%> value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
+                                                <%
+                                                    }
+                                                %>
+                                            </select>
+                                            <input type="hidden" name="kra" value="<%=SE.getTargetKRA()%>"/>
+                                                   <br><br>
+                                        </fieldset>
+                                    </td>
+                                    <td style="padding:5px">
+                                <center><button style="background-color:orange" class="button" type="button" id="buttonedit" onclick="editTargets()">Edit Targets</button></center>
+                                <fieldset id="editkra">
+                                    <legend><b>Target KRA:</b></legend>
+                                    <select name="kra" id="newkra" onchange="changegoal(this.id, 'goals')">
+                                        <option></option>
+                                        <%
+                                            for (int m = 0; m < k.size(); m++) {
+                                        %>
+                                        <option value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+                                    <br><br>
+                                </fieldset>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px">
+                                        <fieldset>
+                                            <legend><b>Target Goal:</b></legend>
+                                            <select disabled>
+                                                <option value="<%=SE.getTargetGoal()%>"><%=UserDAO.retrieveGoalNamebyGoalID(SE.getTargetGoal())%></option>
+                                            </select>
+                                            <input type="hidden" name="goal" value="<%=SE.getTargetGoal()%>"/>
+                                            <br><br>
+                                        </fieldset>
+                                    </td>
+                                    <td style="padding:5px" id="editgoal">
+                                        <fieldset>
+                                            <legend><b>Target Goal:</b></legend>
+                                            <select value ="<%=SE.getTargetGoal()%>" name="newgoal" id="goals" onchange="changemeasure(this.id, 'measures', 'measures2', 'measures3')">
+                                            </select>
+                                            <br><br>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <%
+                                        ArrayList<Integer> measures = new ArrayList();
+                                        measures = UserDAO.GetMeasures(SE.getId());
+                                        ArrayList<String> measurenames = new ArrayList();
+
+                                        for (int x = 0; x < measures.size(); x++) {
+                                            String s = UserDAO.GetMeasureObject(measures.get(x)).getMeasure();
+                                            measurenames.add(s);
+                                        }
+                                    %>
+                                    <td style="padding:5px">
+                                        <fieldset>
+                                            <legend><b>Target Measure:</b></legend>
+                                            <select disabled>
+                                                <option value="<%=measures.get(0)%>"><%=measurenames.get(0)%></option>
+                                            </select>
+                                            <input type="hidden" name="measure" value="<%=measures.get(0)%>"/>
+                                            <br><br><br>
+                                        </fieldset> 
+                                    </td>
+                                    <td style="padding:5px" id="editmeasure1">
+                                        <fieldset>
+                                            <legend><b>Target Measure:</b></legend>
+                                            <select  name="newmeasure" id="measures">
+                                            </select>
+                                            <br><br><br>
+                                        </fieldset> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px">
+                                        <fieldset>
+                                            <legend><b>Target Measure 2:</b></legend>
+                                            <select disabled>
+                                                <% if (measures.size() >= 2) {%> 
+                                                <option value="<%=measures.get(1)%>"><%=measurenames.get(1)%></option>
+                                                <% } else { %>
+                                                <option value="0">None</option>
+                                                <% } %>
+                                            </select>
+                                            <% if (measures.size() >= 2) {%> 
+                                            <input type="hidden" name="measure2" value="<%=measures.get(1)%>"/>
+                                            <% } %>
+                                            <br><br><br>
+                                        </fieldset>
+                                    </td>
+                                    <td style="padding:5px" id="editmeasure2">
+                                        <fieldset>
+                                            <legend><b>Target Measure 2:</b></legend>
+                                            <select name="newmeasure2" id="measures2">
+                                            </select>
+                                            <br><br><br>
+                                        </fieldset> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px">
+                                        <fieldset>
+                                            <legend><b>Target Measure 3:</b></legend>
+                                            <select disabled>
+                                                <% if (measures.size() >= 3) {%> 
+                                                <option value="<%=measures.get(2)%>"><%=measurenames.get(2)%></option>
+                                                <% } else { %>
+                                                <option value="0">None</option>
+                                                <% } %>
+                                            </select>
+
+                                            <% if (measures.size() >= 3) {%> 
+                                            <input type="hidden" name="measure3" value="<%=measures.get(2)%>"/>
+                                            <% }%>
+
+                                            <br><br>
+                                        </fieldset>
+                                    </td>
+                                    <td style="padding:5px" id="editmeasure3">
+                                        <fieldset>
+                                            <legend><b>Target Measure 3:</b></legend>
+                                            <select name="newmeasure3" id="measures3">
+                                            </select>
+                                            <br><br>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br>
+                            <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a>
+                                <button style="background-color:red" class="button" type="button" id="cancelbuttonedit" onclick="cancelEditTargets()">Cancel Edit</button></center>
+                            <input type="hidden" name="isedited" id="isedited" value="0"/>
                             <br><br><br>
                         </fieldset>
 
@@ -514,7 +629,6 @@
                 window.open = function () {/*disable open*/
                 };
                 }
-
                 // prevent href=# click jump
                 document.addEventListener("DOMContentLoaded", function () {
                 var links = document.getElementsByTagName("A");
@@ -562,10 +676,11 @@
                 } else {
                 SeparatorTitle.addClass('d-flex');
                 }
-
                 // Collapse/Expand icon
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
                 }
             </script>
     </body>
 </html>
+
+
