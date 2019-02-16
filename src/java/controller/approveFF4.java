@@ -93,6 +93,8 @@ public class approveFF4 extends HttpServlet {
                     n.setTitle("FF PRS ready for Approval");
                     n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("Vice President for Lasallian Mission"));
+                    n.setRedirect("/MULTIPLE-approveFFProposal5.jsp");
+                    n.setAttribute(Integer.parseInt(request.getParameter("ffID")));
                     UserDAO.AddNotification(n);
 
                     request.setAttribute("successFF1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");

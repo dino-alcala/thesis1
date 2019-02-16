@@ -31,7 +31,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
         <style>
-             p{
+            p{
                 font-size: 15px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
@@ -41,7 +41,7 @@
                 border-collapse: collapse;
                 text-align: center;
             }
-            
+
             h2{
                 font-family: "Arial", Helvetica, sans-serif;
                 font-size: 20px;
@@ -76,7 +76,7 @@
             th,tr,td{
                 padding:15px;
             }
-            
+
             .btn-list{
                 background-color: dodgerblue;
                 border: none;
@@ -89,7 +89,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-success{
                 background-color: darkgreen;
                 border: none;
@@ -102,7 +102,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-warning{
                 background-color: darkyellow;
                 border: none;
@@ -115,7 +115,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-danger{
                 background-color: red;
                 border: none;
@@ -128,7 +128,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-audit{
                 background-color: gray;
                 border: none;
@@ -246,11 +246,13 @@
                             </div>
                             <br/>
 
-                            <fieldset>
 
-                                <center><p><b>Attendees List</b></p></center>
-                                <br/>
-                                <center><table style = "width:100%" id = "SEchecklist">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Attendees List</h4>
+                                </div>
+                                <div class="card-body">
+                                <center><table style = "width:100%">
                                         <tr>
                                             <th style="width:50%">Name</th>
                                             <th>Email</th>
@@ -268,8 +270,10 @@
                                         %>
                                     </table></center>
                                 <br>
-                            </fieldset>
+                                </div>
+                            </div>
                             <br>
+
                             <div class="card">
                                 <div class="card-header">
                                     <h4>Remarks: </h4>
@@ -278,19 +282,19 @@
                             <table style="width:100%">
                                 <tr>
                                     <td>Assistant Dean for Lasallian Mission</td>
-                                    <td><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%if (FF.getApprove1()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise1()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(FF.getReject1()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getADLMdatetime()%><%}%></td>
+                                    <td><%if (FF.getADLMRemarks() != null) {%><%=FF.getADLMRemarks()%><%if (FF.getApprove1() == 1) {%><br><b><font color = "green"> Approved:</font></b> <%} else if (FF.getRevise1() == 1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if (FF.getReject1() == 1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getADLMdatetime()%><%}%></td>
                                 </tr>
                                 <tr>
                                     <td>Chairperson/Unit Head</td>
-                                    <td><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%if (FF.getApprove2()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise2()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(FF.getReject2()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getChairpersondatetime()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%if (FF.getApprove2()==1){%><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise2()==1) {%><br><b><font color = "orange">Marked for Revision:</font></b><%} else if(FF.getReject2()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getUnitheaddatetime()%><%}%></td>
+                                    <td><%if (FF.getChairpersonRemarks() != null) {%><%=FF.getChairpersonRemarks()%><%if (FF.getApprove2() == 1) {%><br><b><font color = "green"> Approved:</font></b> <%} else if (FF.getRevise2() == 1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if (FF.getReject2() == 1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getChairpersondatetime()%><%}%> <%if (FF.getUnitheadremarks() != null) {%><%=FF.getUnitheadremarks()%><%if (FF.getApprove2() == 1) {%><b><font color = "green"> Approved:</font></b> <%} else if (FF.getRevise2() == 1) {%><br><b><font color = "orange">Marked for Revision:</font></b><%} else if (FF.getReject2() == 1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getUnitheaddatetime()%><%}%></td>
                                 </tr>
                                 <tr>
                                     <td>Dean/Director</td>
-                                    <td><%if (FF.getDeanRemarks() != null) {%><%=FF.getDeanRemarks()%><%if (FF.getApprove3()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise3()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(FF.getReject3()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getDeandatetime()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%if (FF.getLspoRemarks() !=null){%><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise3()==1) {%><br><b><font color = "orange">Marked for Revision:</font></b><%} else if(FF.getReject3()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getDirectordatetime()%><%}%></td>
+                                    <td><%if (FF.getDeanRemarks() != null) {%><%=FF.getDeanRemarks()%><%if (FF.getApprove3() == 1) {%><br><b><font color = "green"> Approved:</font></b> <%} else if (FF.getRevise3() == 1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if (FF.getReject3() == 1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getDeandatetime()%><%}%> <%if (FF.getDirectorremarks() != null) {%><%=FF.getDirectorremarks()%><%if (FF.getLspoRemarks() != null) {%><b><font color = "green"> Approved:</font></b> <%} else if (FF.getRevise3() == 1) {%><br><b><font color = "orange">Marked for Revision:</font></b><%} else if (FF.getReject3() == 1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getDirectordatetime()%><%}%></td>
                                 </tr>
                                 <tr>
                                     <td>Evaluation by LSPO</td>
-                                    <td><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%if (FF.getApprove4()==1){%><br><b><font color = "green"> Approved:</font></b> <%} else if(FF.getRevise4()==1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if(FF.getReject4()==1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getLspodatetime()%><%}%></td>
+                                    <td><%if (FF.getLspoRemarks() != null) {%><%=FF.getLspoRemarks()%><%if (FF.getApprove4() == 1) {%><br><b><font color = "green"> Approved:</font></b> <%} else if (FF.getRevise4() == 1) {%><br><b><font color = "orange">Marked for revision:</font></b><%} else if (FF.getReject4() == 1) {%><br><b><font color = "red">Rejected:</font></b><%}%> <%=FF.getLspodatetime()%><%}%></td>
                                 </tr>
                             </table>
                         </div>

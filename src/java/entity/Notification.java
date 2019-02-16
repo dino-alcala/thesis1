@@ -14,6 +14,8 @@ public class Notification {
     protected String dt;
     protected String title;
     protected String body;
+    protected String redirect;
+    protected int attribute;
     protected int userID;
 
     public int getId() {
@@ -48,6 +50,22 @@ public class Notification {
         this.body = body;
     }
 
+    public String getRedirect() {
+        return redirect;
+    }
+
+    public void setRedirect(String redirect) {
+        this.redirect = redirect;
+    }
+
+    public int getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(int attribute) {
+        this.attribute = attribute;
+    }
+    
     public int getUserID() {
         return userID;
     }

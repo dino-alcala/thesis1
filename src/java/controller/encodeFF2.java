@@ -92,21 +92,27 @@ public class encodeFF2 extends HttpServlet {
 
                 Notification n3 = new Notification();
                 n3.setBody(UserDAO.getProjectName(FF.getId()) + ": " + FF.getTotalAmount() + " has been deducted to the budget!" + "\n"  + sdf.format(dt));
-                n3.setTitle("Student Org SE Proposal Submitted");
+                n3.setTitle("Student Org FF Proposal Submitted");
                 n3.setDt(sdf2.format(dt));
                 n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n3.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n3.setAttribute(FF.getId());
                 UserDAO.AddNotification(n3);
 
                 n3.setBody(UserDAO.getProjectName(FF.getId()) + ": " + FF.getTotalAmount() + " has been deducted to the budget!" + "\n"  + sdf.format(dt));
-                n3.setTitle("Student Org SE Proposal Submitted");
+                n3.setTitle("Student Org FF Proposal Submitted");
                 n3.setDt(sdf2.format(dt));
                 n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                n3.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n3.setAttribute(FF.getId());
                 UserDAO.AddNotification(n3);
 
                 n3.setBody(UserDAO.getProjectName(FF.getId()) + ": " + FF.getTotalAmount() + " has been deducted to the budget!" + "\n"  + sdf.format(dt));
-                n3.setTitle("Student Org SE Proposal Submitted");
+                n3.setTitle("Student Org FF Proposal Submitted");
                 n3.setDt(sdf2.format(dt));
                 n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n3.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n3.setAttribute(FF.getId());
                 UserDAO.AddNotification(n3);
                 
             } else {
@@ -118,20 +124,25 @@ public class encodeFF2 extends HttpServlet {
                 n3.setBody("Program: " + UserDAO.getProjectName(FF.getId())  + "\n"  + sdf.format(dt));
                 n3.setTitle("Student Org SE Proposal Submitted");
                 n3.setDt(sdf2.format(dt));
-
                 n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n3.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n3.setAttribute(FF.getId());
                 UserDAO.AddNotification(n3);
 
                 n3.setBody("Program: " + UserDAO.getProjectName(FF.getId())  + "\n"  + sdf.format(dt));
                 n3.setTitle("Student Org SE Proposal Submitted");
                 n3.setDt(sdf2.format(dt));
                 n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                n3.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n3.setAttribute(FF.getId());
                 UserDAO.AddNotification(n3);
 
                 n3.setBody("Program: " + UserDAO.getProjectName(FF.getId())  + "\n"  + sdf.format(dt));
                 n3.setTitle("Student Org SE Proposal Submitted");
                 n3.setDt(sdf2.format(dt));
                 n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n3.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n3.setAttribute(FF.getId());
                 UserDAO.AddNotification(n3);
             }
             

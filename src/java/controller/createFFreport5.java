@@ -83,12 +83,16 @@ public class createFFreport5 extends HttpServlet {
             n.setTitle("Accomplishment Report Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            n.setRedirect("/MULTIPLE-viewFFReport.jsp");
+            n.setAttribute(FF.getId());
             UserDAO.AddNotification(n);
             
             n.setBody("Program: " + UserDAO.getProjectName(FFreport.getFfproposalID()) + "\n" + sdf.format(dt));
             n.setTitle("Accomplishment Report Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            n.setRedirect("/MULTIPLE-viewFFReport.jsp");
+            n.setAttribute(FF.getId());
             UserDAO.AddNotification(n);
             
             n.setBody("Program: " + UserDAO.getProjectName(FFreport.getFfproposalID()) + "\n" + sdf.format(dt));

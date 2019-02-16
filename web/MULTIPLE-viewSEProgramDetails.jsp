@@ -192,25 +192,26 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                                <%
-                                    ArrayList<Notification> n = new ArrayList();
-                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <form action="notifClick">
+                                    <%
+                                        ArrayList<Notification> n = new ArrayList();
+                                        n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                    for (int i = 0; i < n.size(); i++) {
-                                %>
-                                <li class="notification-box" href="#">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                            <div class="notificationBoxMessage">
-                                                <%=n.get(i).getBody()%>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                </li>
-                                <%
-                                    }
-                                %>   
+                                        for (int i = 0; i < n.size(); i++) {
+                                    %>
+                                    <button type="submit" value="<%=n.get(i).getRedirect()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
+                                        <li class="notification-box">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong><br>
+                                            <%=n.get(i).getBody()%>
+                                        </li>
+                                    </button>
+
+                                    <input type="hidden" name="ID" value="<%=n.get(i).getAttribute()%>"/>
+
+                                    <%
+                                        }
+                                    %>
+                                </form>
                             </div>
                         </ul>
                     </div>
@@ -401,7 +402,7 @@
                                                 <td><%=SE.getExpenses().get(i).getQuantity()%></td>
                                                 <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
                                                 <td><%=SE.getExpenses().get(i).getAmountUsed()%></td>
-                                                <td><%if (SE.getExpenses().get(i).getDatetime() != null) {%> <%=SE.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
+                                                <td><%if (!SE.getExpenses().get(i).getDatetime().equals("2001-01-01 00:00:00.0")) {%> <%=SE.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
                                             </tr>
                                             <%
                                                     count += SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity();
@@ -610,7 +611,7 @@
                                         <%
                                             }
 
-                                            if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 0 && SE.getStep() != -1 && SE.getStep() != 10) {
+                                            if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 0 && SE.getStep() != -1 && SE.getStep() != 10 && !UserDAO.hasUpdatedBudget(SE.getId())) {
                                         %>
 
                                         <button style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram"  class="btn-danger">Cancel Program</button></center>

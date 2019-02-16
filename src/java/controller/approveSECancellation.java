@@ -64,12 +64,16 @@ public class approveSECancellation extends HttpServlet {
                 n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
 
                 n.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancel"))) + ": " + SE.getTotalAmount() + " returned" + "\n" + sdf.format(dt));
                 n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("cancelProgram", "The program has been cancelled! Php" + SE.getTotalAmount() + " returned");
@@ -84,12 +88,16 @@ public class approveSECancellation extends HttpServlet {
                 n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
 
                 n.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancel"))) + "\n" + sdf.format(dt));
                 n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("cancelProgram", "The Program has been Cancelled!");

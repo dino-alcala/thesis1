@@ -101,6 +101,7 @@ public class editSE2 extends HttpServlet {
                 ArrayList<Integer> measureID = (ArrayList) session.getAttribute("measureID");
 
                 UserDAO.editMeasures(measureID, SE.getId());
+                //UserDAO.checkEditedSE(SE);
                 UserDAO.auditSE(SE.getId());
                 UserDAO.EditSE(SE);
 
@@ -121,6 +122,8 @@ public class editSE2 extends HttpServlet {
                     n.setUserID(UserDAO.getUserIDforNotifsUnitChair(session.getAttribute("unit").toString()));
                 }
 
+                n.setRedirect("/SIGNATORIES-approveSEProposal.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("reviseSE1", "You have successfully revised the SE!");

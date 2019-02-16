@@ -101,6 +101,33 @@ public class SE {
     protected String remarktype5;
     protected String reasonforcancel;
     
+    //for checking if edited
+    protected int edited1;
+    protected int edited2;
+    protected int edited3;
+    protected int edited4;
+    protected int edited5;
+    protected int edited6;
+    protected int edited7;
+    protected int edited8;
+    protected int edited9;
+    protected int edited10;
+    protected int edited11;
+    protected int edited12;
+    protected int edited13;
+    protected int edited14;
+    protected int edited15;
+    protected int edited16;
+    protected int edited17;
+    protected int edited18;
+    protected int edited19;
+    protected int edited20;
+    protected int edited21;
+    protected int edited22;
+    protected int edited23;
+    protected int edited24;
+    protected int edited25;
+    
     public int getId() {
         return id;
     }
@@ -789,6 +816,206 @@ public class SE {
 
     public void setReasonforcancel(String reasonforcancel) {
         this.reasonforcancel = reasonforcancel;
+    }
+
+    public int getEdited1() {
+        return edited1;
+    }
+
+    public void setEdited1(int edited1) {
+        this.edited1 = edited1;
+    }
+
+    public int getEdited2() {
+        return edited2;
+    }
+
+    public void setEdited2(int edited2) {
+        this.edited2 = edited2;
+    }
+
+    public int getEdited3() {
+        return edited3;
+    }
+
+    public void setEdited3(int edited3) {
+        this.edited3 = edited3;
+    }
+
+    public int getEdited4() {
+        return edited4;
+    }
+
+    public void setEdited4(int edited4) {
+        this.edited4 = edited4;
+    }
+
+    public int getEdited5() {
+        return edited5;
+    }
+
+    public void setEdited5(int edited5) {
+        this.edited5 = edited5;
+    }
+
+    public int getEdited6() {
+        return edited6;
+    }
+
+    public void setEdited6(int edited6) {
+        this.edited6 = edited6;
+    }
+
+    public int getEdited7() {
+        return edited7;
+    }
+
+    public void setEdited7(int edited7) {
+        this.edited7 = edited7;
+    }
+
+    public int getEdited8() {
+        return edited8;
+    }
+
+    public void setEdited8(int edited8) {
+        this.edited8 = edited8;
+    }
+
+    public int getEdited9() {
+        return edited9;
+    }
+
+    public void setEdited9(int edited9) {
+        this.edited9 = edited9;
+    }
+
+    public int getEdited10() {
+        return edited10;
+    }
+
+    public void setEdited10(int edited10) {
+        this.edited10 = edited10;
+    }
+
+    public int getEdited11() {
+        return edited11;
+    }
+
+    public void setEdited11(int edited11) {
+        this.edited11 = edited11;
+    }
+
+    public int getEdited12() {
+        return edited12;
+    }
+
+    public void setEdited12(int edited12) {
+        this.edited12 = edited12;
+    }
+
+    public int getEdited13() {
+        return edited13;
+    }
+
+    public void setEdited13(int edited13) {
+        this.edited13 = edited13;
+    }
+
+    public int getEdited14() {
+        return edited14;
+    }
+
+    public void setEdited14(int edited14) {
+        this.edited14 = edited14;
+    }
+
+    public int getEdited15() {
+        return edited15;
+    }
+
+    public void setEdited15(int edited15) {
+        this.edited15 = edited15;
+    }
+
+    public int getEdited16() {
+        return edited16;
+    }
+
+    public void setEdited16(int edited16) {
+        this.edited16 = edited16;
+    }
+
+    public int getEdited17() {
+        return edited17;
+    }
+
+    public void setEdited17(int edited17) {
+        this.edited17 = edited17;
+    }
+
+    public int getEdited18() {
+        return edited18;
+    }
+
+    public void setEdited18(int edited18) {
+        this.edited18 = edited18;
+    }
+
+    public int getEdited19() {
+        return edited19;
+    }
+
+    public void setEdited19(int edited19) {
+        this.edited19 = edited19;
+    }
+
+    public int getEdited20() {
+        return edited20;
+    }
+
+    public void setEdited20(int edited20) {
+        this.edited20 = edited20;
+    }
+
+    public int getEdited21() {
+        return edited21;
+    }
+
+    public void setEdited21(int edited21) {
+        this.edited21 = edited21;
+    }
+
+    public int getEdited22() {
+        return edited22;
+    }
+
+    public void setEdited22(int edited22) {
+        this.edited22 = edited22;
+    }
+
+    public int getEdited23() {
+        return edited23;
+    }
+
+    public void setEdited23(int edited23) {
+        this.edited23 = edited23;
+    }
+
+    public int getEdited24() {
+        return edited24;
+    }
+
+    public void setEdited24(int edited24) {
+        this.edited24 = edited24;
+    }
+
+    public int getEdited25() {
+        return edited25;
+    }
+
+    public void setEdited25(int edited25) {
+        this.edited25 = edited25;
     }
     
     

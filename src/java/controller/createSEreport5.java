@@ -71,18 +71,24 @@ public class createSEreport5 extends HttpServlet {
             n.setTitle("Accomplishment Report Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            n.setRedirect("/MULTIPLE-viewSEReport.jsp");
+            n.setAttribute(SE.getId());
             UserDAO.AddNotification(n);
             
             n.setBody("Program: " + UserDAO.getProgramName(SEreport.getSeproposalID()) + "\n" + sdf.format(dt));
             n.setTitle("Accomplishment Report Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            n.setRedirect("/MULTIPLE-viewSEReport.jsp");
+            n.setAttribute(SE.getId());
             UserDAO.AddNotification(n);
             
             n.setBody("Program: " + UserDAO.getProgramName(SEreport.getSeproposalID()) + "\n" + sdf.format(dt));
             n.setTitle("Accomplishment Report Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+            n.setRedirect("/MULTIPLE-viewSEReport.jsp");
+            n.setAttribute(SE.getId());
             UserDAO.AddNotification(n);
 
             request.setAttribute("SEreport", "You have successfully created the Accomplishment Report!");

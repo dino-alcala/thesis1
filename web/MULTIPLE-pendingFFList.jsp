@@ -233,26 +233,26 @@
                         </button>
                         <ul class="dropdown-menu">
                             <div id="notifsScroll">
-                                <%
-                                    ArrayList<Notification> n = new ArrayList();
-                                    n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+                                <form action="notifClick">
+                                    <%
+                                        ArrayList<Notification> n = new ArrayList();
+                                        n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-                                    for (int i = 0; i < n.size(); i++) {
-                                %>
-                                <li class="notification-box" href="#">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong>
-                                            <div class="notificationBoxMessage">
-                                                <%=n.get(i).getBody()%>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                </li>
+                                        for (int i = 0; i < n.size(); i++) {
+                                    %>
+                                    <button type="submit" value="<%=n.get(i).getRedirect()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
+                                        <li class="notification-box">
+                                            <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong><br>
+                                            <%=n.get(i).getBody()%>
+                                        </li>
+                                    </button>
 
-                                <%
-                                    }
-                                %>    
+                                    <input type="hidden" name="ID" value="<%=n.get(i).getAttribute()%>"/>
+
+                                    <%
+                                        }
+                                    %>
+                                </form>
                             </div>
                         </ul>
                     </div>
@@ -318,7 +318,7 @@
                                     <td><%=my.get(i).getUnit()%></td>
                                     <td><%=my.get(i).getDepartment()%></td>
                                     <td><%=my.get(i).getProgramHead()%></td>
-                                    <td><% if(UserDAO.getStep(my.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStep(my.get(i).getId())%> <%}%></td>
+                                    <td><% if(UserDAO.getStepFF(my.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStepFF(my.get(i).getId())%> <%}%></td>
                                     <td><button type="submit" name="viewFF<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
@@ -357,7 +357,7 @@
                                     <td><%=others.get(i).getUnit()%></td>
                                     <td><%=others.get(i).getDepartment()%></td>
                                     <td><%=others.get(i).getProgramHead()%></td>
-                                    <td><% if(UserDAO.getStep(others.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStep(others.get(i).getId())%> <%}%></td>
+                                    <td><% if(UserDAO.getStepFF(others.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStepFF(others.get(i).getId())%> <%}%></td>
                                     <td><button type="submit" name="viewOthers<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%

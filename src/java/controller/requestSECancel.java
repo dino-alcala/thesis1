@@ -52,6 +52,8 @@ public class requestSECancel extends HttpServlet {
             n.setTitle("Request for Cancellation Submitted");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            n.setRedirect("/MULTIPLE-approveSECancellation.jsp");
+            n.setAttribute(SE.getId());
             UserDAO.AddNotification(n);
 
             request.setAttribute("cancelProgram", "Request for Cancellation has been Submitted!");

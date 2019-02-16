@@ -141,24 +141,32 @@ public class approveSE3 extends HttpServlet {
                 n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5" + "\n" + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));
+                n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
                 n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5" + "\n" + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
                 n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5" + "\n" + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))));
                 n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/5" + "\n" + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                n.setAttribute(SE.getId());
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("successSE2", "You have successfully voted APPROVE for the SE Proposal!");
@@ -201,6 +209,8 @@ public class approveSE3 extends HttpServlet {
 
                         n2.setDt((sdf2.format(dt)));
                         n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
+                        n2.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                        n2.setAttribute(SE.getId());
                         UserDAO.AddNotification(n2);
                     } else {
                         java.util.Date dt = new java.util.Date();
@@ -235,6 +245,8 @@ public class approveSE3 extends HttpServlet {
 
                         n2.setDt((sdf2.format(dt)));
                         n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
+                        n2.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                        n2.setAttribute(SE.getId());
                         UserDAO.AddNotification(n2);
                     }
                 }

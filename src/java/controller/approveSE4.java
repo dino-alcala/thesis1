@@ -107,6 +107,8 @@ public class approveSE4 extends HttpServlet {
 
                     n.setDt(sdf2.format(dt));
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                    n.setRedirect("/MULTIPLE-approveSEProposal5.jsp");
+                    n.setAttribute(SE.getId());
                     UserDAO.AddNotification(n);
 
                     request.setAttribute("successSE1", "You have successfully uploaded the PRS!. It will now be taken to Br. Michael Broughton for approval.");

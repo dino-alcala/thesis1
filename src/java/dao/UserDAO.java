@@ -3052,13 +3052,15 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "INSERT INTO notification(title, body, datetime, userID) VALUES(?,?,?,?)";
+            String query = "INSERT INTO notification(title, body, datetime, userID, redirect, attribute) VALUES(?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, n.getTitle());
             pstmt.setString(2, n.getBody());
             pstmt.setString(3, n.getDt());
             pstmt.setInt(4, n.getUserID());
+            pstmt.setString(5, n.getRedirect());
+            pstmt.setInt(6, n.getAttribute());
 
             int rs = pstmt.executeUpdate();
 
@@ -3096,6 +3098,8 @@ public class UserDAO {
                 n.setTitle(rs2.getString("title"));
                 n.setBody(rs2.getString("body"));
                 n.setDt(rs2.getString("datetime"));
+                n.setRedirect(rs2.getString("redirect"));
+                n.setAttribute(rs2.getInt("attribute"));
                 Notification.add(n);
             }
 
@@ -3154,6 +3158,80 @@ public class UserDAO {
                 /* ignored */ }
         }
         return SE;
+    }
+    
+    public int retrieveLatestSEID() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM seproposal";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int x = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                x = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return x;
+    }
+    
+    public int retrieveLatestFFID() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM ffproposal";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int x = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                x = rs.getInt("id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return x;
     }
     
     public String retrieveGoalNamebyGoalID(int x) {

@@ -114,16 +114,23 @@ public class approveFF2 extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("LCLM - Executive Director"));
-                }
+                    n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                    n.setAttribute(FF.getId());
+                    UserDAO.AddNotification(n);
 
-                UserDAO.AddNotification(n);
-
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("COSCA - Director"));
+                    n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                    n.setAttribute(FF.getId());
                     UserDAO.AddNotification(n);
+                    
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("DSA - Dean"));
+                    n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                    n.setAttribute(FF.getId());
                     UserDAO.AddNotification(n);
+                    
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                    n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                    n.setAttribute(FF.getId());
                     UserDAO.AddNotification(n);
                 }
 
@@ -136,6 +143,8 @@ public class approveFF2 extends HttpServlet {
 
                 n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
+                n2.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n2.setAttribute(FF.getId());
 
                 UserDAO.AddNotification(n2);
 
@@ -175,6 +184,8 @@ public class approveFF2 extends HttpServlet {
                         n3.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the LSPO. \n " + sdf.format(dt));
                         n3.setDt(sdf2.format(dt));
                         n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("revise"))));
+                        n3.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                        n3.setAttribute(FF.getId());
                     }
                 }
 
@@ -214,6 +225,8 @@ public class approveFF2 extends HttpServlet {
                         n3.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the LSPO. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                         n3.setDt(sdf2.format(dt));
                         n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
+                        n3.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                        n3.setAttribute(FF.getId());
                     }
                 }
 

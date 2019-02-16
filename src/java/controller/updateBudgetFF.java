@@ -69,18 +69,24 @@ public class updateBudgetFF extends HttpServlet {
                 n.setTitle("Budget Updated");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                n.setAttribute(Integer.parseInt(request.getParameter("FF")));
                 UserDAO.AddNotification(n);
 
                 n.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))) + ": A portion of the budget has been used" + "\n" + sdf.format(dt));
                 n.setTitle("Budget Updated");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                n.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                n.setAttribute(Integer.parseInt(request.getParameter("FF")));
                 UserDAO.AddNotification(n);
 
                 n.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("FF"))) + ": A portion of the budget has been used" + "\n" + sdf.format(dt));
                 n.setTitle("Budget Updated");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                n.setAttribute(Integer.parseInt(request.getParameter("FF")));
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("updateBudget", "You have successfully updated the Budget!");

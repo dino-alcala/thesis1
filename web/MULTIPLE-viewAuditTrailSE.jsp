@@ -172,13 +172,13 @@
 
                                 <div class="card">
                                     <div class="card-body">
-                                        <h3><%=SE.getName()%></h3>
+                                        <% if(SE.getEdited1() == 1){ %> EDITED TO!!! <% } %><h3><%=SE.getName()%></h3>
                                         <p><b>Unit: </b><%=SE.getUnit()%></p>
                                         <p><b>Department: </b><%=SE.getDepartment()%></p>
                                         <p><b>Actual Date of Implementation: </b><%=SE.getActualDate()%></p>
                                         <br>
-                                        <p><b>Program Head: </b><%=SE.getProgramHead()%></p>
-                                        <p><b>Program Classification: </b><%=SE.getActivityClassification()%></p>
+                                        <% if(SE.getEdited2() == 1){ %> EDITED TO!!! <% } %><p><b>Program Head: </b><%=SE.getProgramHead()%></p>
+                                        <% if(SE.getEdited3() == 1){ %> EDITED TO!!! <% } %><p><b>Program Classification: </b><%=SE.getActivityClassification()%></p>
                                         <p><b>Total Amount Requested:</b> ₱<%=SE.getTotalAmount()%></p>
                                     </div>
                                 </div>

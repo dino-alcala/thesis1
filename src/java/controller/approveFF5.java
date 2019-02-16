@@ -104,18 +104,24 @@ public class approveFF5 extends HttpServlet {
             n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            n3.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+            n3.setAttribute(FF.getId());
             UserDAO.AddNotification(n3);
 
             n3.setBody("Program: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + ": Php" + FF.getTotalAmount() + " has been deducted to the budget" + "\n" + sdf.format(dt));
             n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            n3.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+            n3.setAttribute(FF.getId());
             UserDAO.AddNotification(n3);
 
             n3.setBody("Program: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + ": Php" + FF.getTotalAmount() + " has been deducted to the budget" + "\n" + sdf.format(dt));
             n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+            n3.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+            n3.setAttribute(FF.getId());
             UserDAO.AddNotification(n3);
 
             Budget current = new Budget();

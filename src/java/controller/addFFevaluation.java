@@ -80,21 +80,35 @@ public class addFFevaluation extends HttpServlet {
                 
                 Notification n2 = new Notification();
                 n2.setTitle("Evaluation Received");
-                n2.setBody(UserDAO.getFFNameByFFID(FFevaluation.getFfproposalID()) + ":" + df.format(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.getNumberParticipantsFF(FFevaluation.getFfproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
+                n2.setBody(UserDAO.getFFNameByFFID(FFevaluation.getFfproposalID()) + ": " + df.format(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.getNumberParticipantsFF(FFevaluation.getFfproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
                 n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n2.setRedirect("/MULTIPLE-viewFFResponses.jsp");
+                n2.setAttribute(FFevaluation.getFfproposalID());
                 UserDAO.AddNotification(n2);
                 
                 n2.setTitle("Evaluation Received");
-                n2.setBody(UserDAO.getFFNameByFFID(FFevaluation.getFfproposalID()) + ":" + df.format(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.getNumberParticipantsFF(FFevaluation.getFfproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
+                n2.setBody(UserDAO.getFFNameByFFID(FFevaluation.getFfproposalID()) + ": " + df.format(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.getNumberParticipantsFF(FFevaluation.getFfproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
                 n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                n2.setRedirect("/MULTIPLE-viewFFResponses.jsp");
+                n2.setAttribute(FFevaluation.getFfproposalID());
                 UserDAO.AddNotification(n2);
                 
                 n2.setTitle("Evaluation Received");
-                n2.setBody(UserDAO.getFFNameByFFID(FFevaluation.getFfproposalID()) + ":" + df.format(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.getNumberParticipantsFF(FFevaluation.getFfproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
+                n2.setBody(UserDAO.getFFNameByFFID(FFevaluation.getFfproposalID()) + ": " + df.format(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.getNumberParticipantsFF(FFevaluation.getFfproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
                 n2.setDt(sdf2.format(dt));
                 n2.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n2.setRedirect("/MULTIPLE-viewFFResponses.jsp");
+                n2.setAttribute(FFevaluation.getFfproposalID());
+                UserDAO.AddNotification(n2);   
+                
+                n2.setTitle("Evaluation Received");
+                n2.setBody(UserDAO.getFFNameByFFID(FFevaluation.getFfproposalID()) + ": " + df.format(UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.getNumberParticipantsFF(FFevaluation.getFfproposalID()) * 100) + "% of Attendees have now Evaluated!" + "\n"  + sdf.format(dt));
+                n2.setDt(sdf2.format(dt));
+                n2.setUserID(UserDAO.getFFOwner(FFevaluation.getFfproposalID()));
+                n2.setRedirect("/MULTIPLE-viewFFResponses.jsp");
+                n2.setAttribute(FFevaluation.getFfproposalID());
                 UserDAO.AddNotification(n2);   
                 
                 UserDAO.updateFFEvaluationPercent(FFevaluation.getFfproposalID(), UserDAO.getNumberEvaluatorsFF(FFevaluation.getFfproposalID()) / UserDAO.getNumberParticipantsFF(FFevaluation.getFfproposalID()) * 100);

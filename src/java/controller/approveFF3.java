@@ -133,24 +133,32 @@ public class approveFF3 extends HttpServlet {
                 n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
+                n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
                 n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
                 n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
                 n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("successFF2", "You have successfully voted APPROVE for the FF Proposal!");
@@ -166,10 +174,10 @@ public class approveFF3 extends HttpServlet {
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
                         java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                        UserDAO.updateStep(6, Integer.parseInt(request.getParameter("ffID")));
+                        UserDAO.updateStepFF(6, Integer.parseInt(request.getParameter("ffID")));
 
                         Notification n2 = new Notification();
-                        n2.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("seID"))) + ": You may now upload the PRS for endorsement." + "\n"  + sdf.format(dt));
+                        n2.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))) + ": You may now upload the PRS for endorsement." + "\n"  + sdf.format(dt));
                         
                         FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
                         SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -193,7 +201,9 @@ public class approveFF3 extends HttpServlet {
                         }
 
                         n2.setDt((sdf2.format(dt)));
-                        n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
+                        n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
+                        n2.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                        n2.setAttribute(FF.getId());
                         UserDAO.AddNotification(n2);
                         
                     } else {
@@ -203,10 +213,10 @@ public class approveFF3 extends HttpServlet {
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
                         java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         
-                        UserDAO.updateStep(8, Integer.parseInt(request.getParameter("seID")));
+                        UserDAO.updateStep(8, Integer.parseInt(request.getParameter("ffID")));
 
                         Notification n2 = new Notification();
-                        n2.setBody("Program: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("seID"))) + "\n"  + sdf.format(dt));
+                        n2.setBody("Program: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("ffID"))) + "\n"  + sdf.format(dt));
                         
                         FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
                         SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -230,7 +240,9 @@ public class approveFF3 extends HttpServlet {
                         }
 
                         n2.setDt((sdf2.format(dt)));
-                        n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
+                        n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
+                        n2.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                        n2.setAttribute(FF.getId());
                         UserDAO.AddNotification(n2);
                     }
                 }

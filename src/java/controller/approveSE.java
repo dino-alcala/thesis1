@@ -131,26 +131,38 @@ public class approveSE extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
                     n.setUserID(UserDAO.getUserIDforNotifsADEALM(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setRedirect("/SIGNATORIES-approveSEProposal2.jsp");
+                    n.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
                     n.setUserID(UserDAO.getUserIDforNotifsDean(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setRedirect("/SIGNATORIES-approveSEProposal3.jsp");
+                    n.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
                     n.setUserID(UserDAO.getUserIDforNotifsVPVC(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setRedirect("/SIGNATORIES-approveSEProposal2.jsp");
+                    n.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n.setUserID(UserDAO.getUserIDforNotifsNeil());
+                    n.setRedirect("/SIGNATORIES-approveSEProposal3.jsp");
+                    n.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
                     n.setUserID(UserDAO.getUserIDforNotifsSEDirector(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
+                    n.setRedirect("/SIGNATORIES-approveSEProposal2.jsp");
+                    n.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
                     n.setUserID(UserDAO.getUserIDforNotifsNeil());
+                    n.setRedirect("/SIGNATORIES-approveSEProposal3.jsp");
+                    n.setAttribute(SE.getId());
                 }
 
                 UserDAO.AddNotification(n);
@@ -196,7 +208,8 @@ public class approveSE extends HttpServlet {
                     }
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsNeil());
-
+                    n3.setRedirect("/MULTIPLE-approveSEProposal3.jsp");
+                    n3.setAttribute(SE.getId());
                     UserDAO.AddNotification(n3);
                 }
 
@@ -206,7 +219,8 @@ public class approveSE extends HttpServlet {
 
                 n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));
                 n2.setDt(sdf2.format(dt));
-
+                n2.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                n2.setAttribute(SE.getId());
                 UserDAO.AddNotification(n2);
 
                 request.setAttribute("successSE1", "You have successfully approved the SE Proposal!");
@@ -225,7 +239,8 @@ public class approveSE extends HttpServlet {
             }
 
             if (request.getParameter("revise") != null) {
-
+                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("revise")));
+                
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
                 java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -239,6 +254,8 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the Department Chair." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADEALM")) {
@@ -248,6 +265,8 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the ADEALM." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
@@ -257,6 +276,8 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the Dean." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
@@ -266,6 +287,8 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the Unit Chair." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
@@ -275,6 +298,8 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the SE Director." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
@@ -284,6 +309,8 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by the VP/VC." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                 }
 
                 UserDAO.AddNotification(n3);
@@ -304,6 +331,8 @@ public class approveSE extends HttpServlet {
             }
 
             if (request.getParameter("reject") != null) {
+                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("reject")));
+                
                 Notification n3 = new Notification();
                 n3.setTitle("SE Proposal Rejected");
                 
@@ -317,6 +346,8 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the Department Chair. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                    n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                     
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
                 }
@@ -327,6 +358,9 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the Unit Chair. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                    n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
+                    
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
                 }
 
@@ -336,6 +370,9 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the ADEALM. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                    n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
+                    
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
                 }
 
@@ -345,6 +382,9 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the SE Director. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                    n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
+                    
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
                 }
 
@@ -354,6 +394,9 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the Dean. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                    n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
+                    
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
                 }
 
@@ -363,6 +406,9 @@ public class approveSE extends HttpServlet {
                     n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the VP/VC. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
+                    n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
+                    
                     UserDAO.rejectSE(Integer.parseInt(request.getParameter("reject")));
                 }
 

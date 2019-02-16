@@ -95,6 +95,8 @@ public class addFF2 extends HttpServlet {
 
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsAssistantDean(FF.getUnit()));
+            n.setRedirect("/SIGNATORIES-approveFFProposal.jsp");
+            n.setAttribute(UserDAO.retrieveLatestFFID());
 
             UserDAO.AddNotification(n);
 

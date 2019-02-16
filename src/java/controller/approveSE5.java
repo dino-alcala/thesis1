@@ -96,6 +96,8 @@ public class approveSE5 extends HttpServlet {
 
             n2.setDt(sdf2.format(dt));
             n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));
+            n2.setRedirect("/MULTIPLE-viewPendigSEProgramDetails.jsp");
+            n2.setAttribute(SE.getId());
             UserDAO.AddNotification(n2);
 
             Notification n3 = new Notification();
@@ -103,18 +105,24 @@ public class approveSE5 extends HttpServlet {
             n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+            n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+            n3.setAttribute(SE.getId());
             UserDAO.AddNotification(n3);
 
             n3.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + ": Php" + SE.getTotalAmount() + " has been deducted to the budget" + "\n" + sdf.format(dt));
             n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+            n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+            n3.setAttribute(SE.getId());
             UserDAO.AddNotification(n3);
 
             n3.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + ": Php" + SE.getTotalAmount() + " has been deducted to the budget" + "\n" + sdf.format(dt));
             n3.setTitle("Program Approved");
             n3.setDt(sdf2.format(dt));
             n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+            n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+            n3.setAttribute(SE.getId());
             UserDAO.AddNotification(n3);
 
             Budget current = new Budget();

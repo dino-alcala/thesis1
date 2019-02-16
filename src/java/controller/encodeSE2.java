@@ -136,18 +136,24 @@ public class encodeSE2 extends HttpServlet {
                     n3.setTitle("Student Org SE Proposal Submitted");
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                    n3.setRedirect("/MULTIPLE-viewBudget.jsp");
+                    n3.setAttribute(SE.getId());
                     UserDAO.AddNotification(n3);
 
                     n3.setBody(UserDAO.getProgramName(SE.getId()) + ": " + SE.getTotalAmount() + " has been deducted to the budget!" + "\n"  + sdf.format(dt));
                     n3.setTitle("Student Org SE Proposal Submitted");
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                    n3.setRedirect("/MULTIPLE-viewBudget.jsp");
+                    n3.setAttribute(SE.getId());
                     UserDAO.AddNotification(n3);
 
                     n3.setBody(UserDAO.getProgramName(SE.getId()) + ": " + SE.getTotalAmount() + " has been deducted to the budget!" + "\n"  + sdf.format(dt));
                     n3.setTitle("Student Org SE Proposal Submitted");
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                    n3.setRedirect("/MULTIPLE-viewBudget.jsp");
+                    n3.setAttribute(SE.getId());
                     UserDAO.AddNotification(n3);
                 } else {
                     java.util.Date dt = new java.util.Date();
@@ -158,20 +164,25 @@ public class encodeSE2 extends HttpServlet {
                     n3.setBody("Program: " + UserDAO.getProgramName(SE.getId()) + "\n"  + sdf.format(dt));
                     n3.setTitle("Student Org SE Proposal Submitted");
                     n3.setDt(sdf2.format(dt));
-
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                     UserDAO.AddNotification(n3);
 
                     n3.setBody("Program: " + UserDAO.getProgramName(SE.getId()) + "\n"  + sdf.format(dt));
                     n3.setTitle("Student Org SE Proposal Submitted");
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                     UserDAO.AddNotification(n3);
 
                     n3.setBody("Program: " + UserDAO.getProgramName(SE.getId()) + "\n"  + sdf.format(dt));
                     n3.setTitle("Student Org SE Proposal Submitted");
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    n3.setAttribute(SE.getId());
                     UserDAO.AddNotification(n3);
                 }
 

@@ -65,12 +65,16 @@ public class approveFFCancellation extends HttpServlet {
                 n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
 
                 n.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("cancel"))) + ": " + FF.getTotalAmount() + " returned" + "\n" + sdf.format(dt));
                 n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
             } else {
 
@@ -83,12 +87,16 @@ public class approveFFCancellation extends HttpServlet {
                 n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                n.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
 
                 n.setBody("Program: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("cancel"))) + "\n" + sdf.format(dt));
                 n.setTitle("Program Cancelled");
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                n.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
 
                 request.setAttribute("cancelProgram", "The Program has been Cancelled!");
