@@ -2516,7 +2516,7 @@ public class UserDAO {
             }
 
             for (int i = 0; i < SE.getExpenses().size(); i++) {
-                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, seproposalID) VALUES(?,?,?,?,?)";
+                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, seproposalID, datetime) VALUES(?,?,?,?,?,?)";
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, SE.getExpenses().get(i).getItem());
@@ -2524,6 +2524,7 @@ public class UserDAO {
                 pstmt.setInt(3, SE.getExpenses().get(i).getQuantity());
                 pstmt.setDouble(4, SE.getExpenses().get(i).getSubtotal());
                 pstmt.setInt(5, seID);
+                pstmt.setString(6, SE.getExpenses().get(i).getDatetime());
 
                 rs = pstmt.executeUpdate();
             }
@@ -2939,6 +2940,7 @@ public class UserDAO {
                 pstmt.setInt(3, FF.getExpenses().get(i).getQuantity());
                 pstmt.setDouble(4, FF.getExpenses().get(i).getSubtotal());
                 pstmt.setInt(5, ffID);
+                pstmt.setString(6, FF.getExpenses().get(i).getDatetime());
 
                 rs = pstmt.executeUpdate();
             }
