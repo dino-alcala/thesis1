@@ -43,7 +43,7 @@ public class notifClick extends HttpServlet {
             request.setAttribute("SE", request.getParameter("ID"));
             request.setAttribute("FF", request.getParameter("ID"));
 
-            System.out.println("DSADJSAKLDJAKLSJDKLAS " + request.getAttribute("ID"));
+            System.out.println("DSADJSAKLDJAKLSJDKLAS " + request.getParameter("ID"));
             
             RequestDispatcher dispatcher = context.getRequestDispatcher(request.getParameter("redirect"));
             dispatcher.forward(request, response);

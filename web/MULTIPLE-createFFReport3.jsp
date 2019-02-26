@@ -333,8 +333,8 @@
                             FF FF = UserDAO.retrieveFFByFFID(FFreport.getFfproposalID());
                             int number = 7;
                             
-                            if(FF.getRemarktype1().equals("Suggestion") || FF.getRemarktype2().equals("Suggestion") || FF.getRemarktype3().equals("Suggestion")
-                                    || FF.getRemarktype4().equals("Suggestion") || FF.getRemarktype5().equals("Suggestion")){
+                            if(FF.getRemarktype1().equals("For Action") || FF.getRemarktype2().equals("For Action") || FF.getRemarktype3().equals("For Action")
+                                    || FF.getRemarktype4().equals("For Action") || FF.getRemarktype5().equals("For Action")){
                                 number = 8;
                         %>
                         <fieldset>
@@ -347,33 +347,33 @@
                                 <th style="width: 30%">Feedback</th>
                                 </thead>
                                 <tbody>
-                                    <% if (FF.getRemarktype1().equals("Suggestion")) {%>
+                                    <% if (FF.getRemarktype1().equals("For Action")) {%>
                                     <tr>
                                         <td style="padding:2%"><center>Br. Michael Broughton</center></td>
                                 <td style="padding:10px"><%=FF.getLmc1Remarks()%></td>
                                 <td><textarea name="feedback1" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
-                                <% if (FF.getRemarktype2().equals("Suggestion")) {%>
+                                <% if (FF.getRemarktype2().equals("For Action")) {%>
                                 <tr>
                                     <td style="padding:2%"><center>Nelca Villarin</center></td>
                                 <td style="padding:10px"><%=FF.getLmc2Remarks()%></td>
                                 <td><textarea name="feedback2" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
-                                <% if (FF.getRemarktype3().equals("Suggestion")) {%>
+                                <% if (FF.getRemarktype3().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>Margarita Perdido</center></td>
                                 <td style="padding:10px"><%=FF.getLmc3Remarks()%></td>
                                 <td><textarea name="feedback3" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
-                                <% if (FF.getRemarktype4().equals("Suggestion")) {%>
+                                <% if (FF.getRemarktype4().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>James Laxa</center></td>
                                 <td style="padding:10px"><%=FF.getLmc4Remarks()%></td>
                                 <td><textarea name="feedback4" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
-                                <% if (FF.getRemarktype5().equals("Suggestion")) {%>
+                                <% if (FF.getRemarktype5().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>Fritzie De Vera</center></td>
                                 <td style="padding:10px"><%=FF.getLmc5Remarks()%></td>
                                 <td><textarea name="feedback5" rows="3" style="border-radius:0px;"></textarea></td>

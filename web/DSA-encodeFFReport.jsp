@@ -335,53 +335,53 @@
                                         <th>Number of Individuals</th>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">CAP:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required></td>
+                                        <td style="padding:12px">CAP</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number0" required value="<%=UserDAO.countCAPFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
 
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">APSP:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required></td>
+                                        <td style="padding:12px">APSP</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number1" required value="<%=UserDAO.countAPSPFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">ASF:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required></td>
+                                        <td style="padding:12px">ASF</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number2" required value="<%=UserDAO.countASFFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">Faculty:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required></td>
+                                        <td style="padding:12px">Faculty</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number3" required value="<%=UserDAO.countFacultyFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">Administrators:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required></td>
+                                        <td style="padding:12px">Administrators</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number4" required value="<%=UserDAO.countAdminFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">Direct Hired Contractuals:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required></td>
+                                        <td style="padding:12px">Direct Hired Contractuals</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number5" required value="<%=UserDAO.countDirecthiredFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">Independent Contractors:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required></td>
+                                        <td style="padding:12px">Independent Contractors</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number6" required value="<%=UserDAO.countIndependentFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">External Service Personnel:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required></td>
+                                        <td style="padding:12px">External Service Personnel</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number7" required value="<%=UserDAO.countExternalFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">Graduate Students:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number8" required></td>
+                                        <td style="padding:12px">Graduate Students</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number8" required value="<%=UserDAO.countGradFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">Undergraduate Students:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number9" required></td>
+                                        <td style="padding:12px">Undergraduate Students</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number9" required value="<%=UserDAO.countUndergradFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">Alumni:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number10" required></td>
+                                        <td style="padding:12px">Alumni</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number10" required value="<%=UserDAO.countAlumniFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:12px">Parents:</td>
-                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number11" required></td>
+                                        <td style="padding:12px">Parents</td>
+                                        <td><input id="inputText" style="border-radius:0px; margin-top:-5px;" type="number" name ="number11" required value="<%=UserDAO.countParentFF(Integer.parseInt(request.getAttribute("ffID").toString()))%>" readonly></td>
                                     </tr>
                                 </table>
                             </center>

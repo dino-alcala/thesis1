@@ -6,6 +6,7 @@
 package controller;
 
 import dao.OvplmDAO;
+import dao.TargetDAO;
 import entity.Goal;
 import entity.KRA;
 import entity.Measure;
@@ -44,6 +45,7 @@ public class addKRA extends HttpServlet {
             HttpSession session = request.getSession();
             KRA KRA = new KRA();
             OvplmDAO OvplmDAO = new OvplmDAO();
+            TargetDAO TargetDAO = new TargetDAO();
 
             KRA.setName(request.getParameter("kraname"));
             KRA.setDate(Date.valueOf(request.getParameter("date")));
@@ -61,7 +63,36 @@ public class addKRA extends HttpServlet {
                     Measure m = new Measure();
                     m.setMeasure(request.getParameter("goal" + i + "measure" + j));
                     m.setDescription(request.getParameter("goal" + i + "description" + j));
-                    m.setTarget(request.getParameter("goal" + i + "target" + j));
+                    
+                    String untrackable[] = request.getParameterValues("goal" + i + "untrackable" + j);
+                    if(untrackable != null){
+                        m.setNumtarget(0);
+                        m.setNumtypetarget("untrackable");
+                        m.setUnittarget("untrackable");
+                        m.setTypetarget("untrackable");
+                        m.setEngagingtarget("untrackable");
+                    } else if (untrackable == null) {
+                        Measure temp = new Measure();
+                        temp.setNumtarget(Integer.parseInt(request.getParameter("goal" + i + "numtarget" + j)));
+                        temp.setNumtypetarget(request.getParameter("goal" + i + "numtypetarget" + j));
+                        temp.setUnittarget(request.getParameter("goal" + i + "unittarget" + j));
+                        temp.setTypetarget(request.getParameter("goal" + i + "typetarget" + j));
+                        temp.setEngagingtarget(request.getParameter("goal" + i + "engaging" + j));
+
+                        if (TargetDAO.calculateTarget(temp, TargetDAO.getTotals()) == -1) {
+                            m.setNumtarget(0);
+                            m.setNumtypetarget("untrackable");
+                            m.setUnittarget("untrackable");
+                            m.setTypetarget("untrackable");
+                            m.setEngagingtarget("untrackable");
+                        } else if (TargetDAO.calculateTarget(temp, TargetDAO.getTotals()) != -1) {
+                            m.setNumtarget(Integer.parseInt(request.getParameter("goal" + i + "numtarget" + j)));
+                            m.setNumtypetarget(request.getParameter("goal" + i + "numtypetarget" + j));
+                            m.setUnittarget(request.getParameter("goal" + i + "unittarget" + j));
+                            m.setTypetarget(request.getParameter("goal" + i + "typetarget" + j));
+                            m.setEngagingtarget(request.getParameter("goal" + i + "engaging" + j));
+                        }
+                    }
                     g.addMeasure(m);
                 }
 

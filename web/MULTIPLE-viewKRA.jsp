@@ -254,9 +254,9 @@
                     <table class="table table-striped table-bordered" style="width:100%">    
                         <thead class="thead-light">
                             <tr>
-                                <th>Measure</th>
-                                <th>Description</th>
-                                <th >Target</th>
+                                <th style="width:10%">Measure</th>
+                                <th style="width:30%">Description</th>
+                                <th style="width:30%">Target</th>
                             </tr>
                         </thead>
                         <%
@@ -266,7 +266,7 @@
                             <tr>
                                 <td><%=kra.getGoals().get(i).getMeasures().get(j).getMeasure()%></td>
                                 <td><%=kra.getGoals().get(i).getMeasures().get(j).getDescription()%></td>
-                                <td><%=kra.getGoals().get(i).getMeasures().get(j).getTarget()%></td>
+                                <td><%=kra.getGoals().get(i).getMeasures().get(j).getNumtarget()%><%=kra.getGoals().get(i).getMeasures().get(j).getNumtypetarget()%> of <%=kra.getGoals().get(i).getMeasures().get(j).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(i).getMeasures().get(j).getTypetarget()%> program/component engaging <%=kra.getGoals().get(i).getMeasures().get(j).getEngagingtarget()%></td>
                             </tr>
                         </tbody>
                         <%

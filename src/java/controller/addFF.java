@@ -87,7 +87,7 @@ public class addFF extends HttpServlet {
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFF2.jsp");
                 dispatcher.forward(request, response);
             } else {
-                request.setAttribute("successFF", "Amount is not equal!");
+                request.setAttribute("successFF", "Total Amount of Expenses Breakdown is not equal to Requested Amount!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createFF.jsp");
                 dispatcher.forward(request, response);

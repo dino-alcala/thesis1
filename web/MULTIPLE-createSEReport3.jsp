@@ -323,8 +323,8 @@
                             SE SE = UserDAO.retrieveSEBySEID(SEreport.getSeproposalID());
                             int number = 7;
                             
-                            if(SE.getRemarktype1().equals("Suggestion") || SE.getRemarktype2().equals("Suggestion") || SE.getRemarktype3().equals("Suggestion") 
-                                    || SE.getRemarktype4().equals("Suggestion") || SE.getRemarktype5().equals("Suggestion")){ 
+                            if(SE.getRemarktype1().equals("For Action") || SE.getRemarktype2().equals("For Action") || SE.getRemarktype3().equals("For Action") 
+                                    || SE.getRemarktype4().equals("For Action") || SE.getRemarktype5().equals("For Action")){ 
                                 number = 8;
                         %>
                         <fieldset>
@@ -337,33 +337,33 @@
                                 <th style="width: 30%">Feedback</th>
                                 </thead>
                                 <tbody>
-                                    <% if (SE.getRemarktype1().equals("Suggestion")) {%>
+                                    <% if (SE.getRemarktype1().equals("For Action")) {%>
                                     <tr>
                                         <td style="padding:2%"><center>Br. Michael Broughton</center></td>
                                 <td style="padding:10px"><%=SE.getLmc1Remarks()%></td>
                                 <td><textarea name="feedback1" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
-                                <% if (SE.getRemarktype2().equals("Suggestion")) {%>
+                                <% if (SE.getRemarktype2().equals("For Action")) {%>
                                 <tr>
                                     <td style="padding:2%"><center>Nelca Villarin</center></td>
                                 <td style="padding:10px"><%=SE.getLmc2Remarks()%></td>
                                 <td><textarea name="feedback2" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
-                                <% if (SE.getRemarktype3().equals("Suggestion")) {%>
+                                <% if (SE.getRemarktype3().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>Margarita Perdido</center></td>
                                 <td style="padding:10px"><%=SE.getLmc3Remarks()%></td>
                                 <td><textarea name="feedback3" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
-                                <% if (SE.getRemarktype4().equals("Suggestion")) {%>
+                                <% if (SE.getRemarktype4().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>James Laxa</center></td>
                                 <td style="padding:10px"><%=SE.getLmc4Remarks()%></td>
                                 <td><textarea name="feedback4" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
-                                <% if (SE.getRemarktype5().equals("Suggestion")) {%>
+                                <% if (SE.getRemarktype5().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>Fritzie De Vera</center></td>
                                 <td style="padding:10px"><%=SE.getLmc5Remarks()%></td>
                                 <td><textarea name="feedback5" rows="3" style="border-radius:0px;"></textarea></td>

@@ -291,7 +291,7 @@ public class addSE2 extends HttpServlet {
 
                 }
             } else if (Double.parseDouble(request.getParameter("total")) != SE.getTotalAmount()) {
-                request.setAttribute("successSE", "Amount is not equal!");
+                request.setAttribute("successSE", "Total Amount of Expenses Breakdown is not equal to Requested Amount!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-createSE2.jsp");
                 dispatcher.forward(request, response);

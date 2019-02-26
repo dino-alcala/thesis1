@@ -483,7 +483,7 @@
                 <div class="form-style-5">
                     <form action = "editSE2" method="post">
                         <%
-                            SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("seID").toString()));
+                            SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
                         %>
                         <legend><b>Work Plan - Implementation Date: <%=SE.getActualDate()%></b></legend>
                         <fieldset>
@@ -627,6 +627,7 @@
                             </center>
                         </fieldset>
                         <br><br>
+                        <input type="hidden" name="totalamount" value="<%=Double.parseDouble(request.getAttribute("totalamount").toString())%>"/>
                         <center><button class="button" name="seID" value="<%=SE.getId()%>" type="submit">Submit</button></center>
                     </form>
                 </div>

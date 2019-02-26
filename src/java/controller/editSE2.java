@@ -50,7 +50,7 @@ public class editSE2 extends HttpServlet {
 
             SE = (SE) session.getAttribute("SE");
 
-            if (Double.parseDouble(request.getParameter("total")) == SE.getTotalAmount()) {
+            if (Double.parseDouble(request.getParameter("total")) == Double.parseDouble(request.getParameter("totalamount"))) {
                 ArrayList<SEworkplan> sework = new ArrayList();
 
                 for (int i = 0; i < Integer.parseInt(request.getParameter("countproject")); i++) {
@@ -133,9 +133,9 @@ public class editSE2 extends HttpServlet {
                 
             } else if (Double.parseDouble(request.getParameter("total")) != SE.getTotalAmount()) {
                 
-                request.setAttribute("seID", request.getParameter("seID"));
-                
-                request.setAttribute("successSE", "Amount is not equal!");
+                request.setAttribute("seID", SE.getId());
+                request.setAttribute("totalamount", Double.parseDouble(request.getParameter("totalamount")));
+                request.setAttribute("successSE", "Total Amount of Expenses Breakdown is not equal to Requested Amount!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editSE2.jsp");
                 dispatcher.forward(request, response);

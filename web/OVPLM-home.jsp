@@ -4,6 +4,10 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="dao.TargetDAO"%>
+<%@page import="entity.Measure"%>
+<%@page import="entity.Goal"%>
+<%@page import="dao.OvplmDAO"%>
 <%@page import="java.util.Collections"%>
 <%@page import="entity.KRA"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -388,7 +392,8 @@
                                     <td><b>M2</b> Participation of administrators, faculty and personnel in Lasallian formation activity </td>
                                     <td>50% of faculty departments have undergone Lasallian formation program</td>
                                     <%
-                                        double percent2 = UserDAO.secondTarget();
+                                        TargetDAO TargetDAO = new TargetDAO();
+                                        double percent2 =  TargetDAO.calculateTarget(UserDAO.GetMeasureObject(24), TargetDAO.getTotals());
 
                                         if (percent2 < 17) {
                                     %>
@@ -419,7 +424,7 @@
                                     <td></td>
                                     <td>75% of staff have undergone Lasallian formation programs</td>
                                     <%
-                                        double percent3 = UserDAO.thirdTarget();
+                                        double percent3 = TargetDAO.calculateTarget(UserDAO.GetMeasureObject(25), TargetDAO.getTotals());
 
                                         if (percent3 < 25) {
                                     %>
@@ -783,8 +788,71 @@
                     </div>
                 </form>
 
+                <div class="container-fluid panels">
+                    <h4>Key Result Areas</h4>
+                    <% 
+                        percentage = new DecimalFormat("0.00");
+                        OvplmDAO OvplmDAO = new OvplmDAO();
+                        ArrayList<KRA> kralist =  OvplmDAO.retrieveKRA();
+                        for(int x = 2 ; x < kralist.size() ; x++){ 
+                    %>
+                    <h5><%=kralist.get(x).getName()%></h5>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="width:30%">Goal</th>
+                                <th style="width:30%">Measure</th>
+                                <th style="width:30%">Target</th>
+                                <th style="width:5%">Accomplishment</th>
+                                <th style="width:5%"></th>
+                            </tr>
+                        </thead>
+                        <% 
+                            KRA kra = OvplmDAO.retrieveKRAByID(kralist.get(x).getId());
+                            for(int y = 0 ; y < kra.getGoals().size() ; y++){        
+                        %> 
+                        <tr>
+                            <td><%=kra.getGoals().get(y).getName()%></td>
+                            
+                        <% 
+                            for(int z = 0 ; z < kra.getGoals().get(y).getMeasures().size(); z++){ 
+                        %>
+                            <%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("untrackable")) {%>
+                                <td><%if(z==0){%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
+                        
+                                <td><%if(z!=0){%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
+
+                                    <%if(z==0){%>Not Trackable</td><%}%>
+                                    <%if(z!=0){%><td>Not Trackable</td><%}%>
+
+                                    
+                                    <%if(z!=0){%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                                    <%if(z==0){%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                                    
+                                    <%if(z==0){%><td><button class="btn btn-primary btn-sm" type="button" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>                                    
+                                    <%if(z!=0){%><td><button class="btn btn-primary btn-sm" type="button" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                                </tr>
+                        <%} else {%>
+                        <td><%if(z==0){%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
+                        <td><%if(z!=0){%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
+                            
+                            <%if(z==0){%><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if(kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")){%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if(!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")){%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
+                            <%if(z!=0){%><td><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if(kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")){%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if(!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")){%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
+                            
+                            <% double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals()); %>
+                            <%if(z==0){%><% if(percent <= 33){ %><td class="accomplishmentRed"><%} else if( percent <= 66){%><td class="accomplishmentYellow"><%} else if(percent <= 100){%><td class="accomplishmentGreen"><%}%><%=percentage.format(percent)%>%</td><%}%>
+                            <%if(z!=0){%><% if(percent <= 33){ %><td class="accomplishmentRed"><%} else if( percent <= 66){%><td class="accomplishmentYellow"><%} else if(percent <= 100){%><td class="accomplishmentGreen"><%}%><%=percentage.format(percent)%>%</td><%}%>
+                            
+                            <%if(z==0){%><td><button class="btn btn-primary btn-sm" type="button" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            <%if(z!=0){%><td><button class="btn btn-primary btn-sm" type="button" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                        </tr>    
+                        <% }}} %>
+                    </table>
+                    <% } %>
+                </div>
+
                 <!--- table -->
-                <%
+                <%                    
                     ArrayList<SE> proposals = new ArrayList();
                     if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission")) {
                         proposals = UserDAO.retrieveSEProposalByStep(5);
@@ -813,12 +881,12 @@
                                 for (int i = 0; i < proposals.size(); i++) {
                             %>
                             <tr>
-                                <td><%=proposals.get(i).getDate()%></td>
+                                <td><%=proposals.get(i).getActualDate()%></td>
                                 <td><%=proposals.get(i).getName()%></td>
                                 <td><%=proposals.get(i).getUnit()%></td>
                                 <td><%=proposals.get(i).getProgramHead()%></td>
                                 <td></td>
-                                <td><button type="button" name="approve<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                <td><button type="submit" name="approve<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                             </tr>
 
                             <%

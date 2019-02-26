@@ -584,7 +584,7 @@
 
 
                                     <%
-                                        if (UserDAO.hasUpdatedBudget(SE.getId()) && !UserDAO.canCreateAccomplishmentReport(SE.getId()) && !UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() == 8) {
+                                        if (!UserDAO.hasSentEvaluation(SE.getId()) && UserDAO.hasUpdatedBudget(SE.getId()) && !UserDAO.canCreateAccomplishmentReport(SE.getId()) && !UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() == 8) {
                                     %>
 
                                     <button type="submit" value="<%=SE.getId()%>" name="attendance" class="btn-success">Create SE Attendance Sheet</button>

@@ -65,6 +65,7 @@ public class approveSE2 extends HttpServlet {
                     
                     String[] component;
                     ArrayList<String> components = new ArrayList();
+                    SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
 
                     component = request.getParameterValues("component");
 
@@ -76,11 +77,14 @@ public class approveSE2 extends HttpServlet {
                                 components.add(component[i]);
                             }
                         }
+                        SE.setSustainable(1);
+                    } else {
+                        SE.setSustainable(0);
                     }
-                    SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+                    
                     SE.setExplanation(request.getParameter("sustainabilityexplanation"));
                     SE.setComponent(components);
-                    UserDAO.AddSEComponent(components, Integer.parseInt(request.getParameter("approve")), request.getParameter("sustainabilityexplanation"));
+                    UserDAO.AddSEComponent(components, Integer.parseInt(request.getParameter("approve")), SE.getSustainable(), request.getParameter("sustainabilityexplanation"));
                     
                 }
 

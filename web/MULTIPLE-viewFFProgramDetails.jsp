@@ -423,7 +423,7 @@
 
 
                                     <%
-                                        if (UserDAO.hasUpdatedBudgetFF(FF.getId()) && !UserDAO.canCreateAccomplishmentReportFF(FF.getId()) && !UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
+                                        if (!UserDAO.hasSentEvaluationFF(FF.getId()) && UserDAO.hasUpdatedBudgetFF(FF.getId()) && !UserDAO.canCreateAccomplishmentReportFF(FF.getId()) && !UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID()) {
                                     %>
 
                                     <button type="submit" value="<%=FF.getId()%>" name="attendance" class="btn-success">Create FF Attendance Sheet</button>

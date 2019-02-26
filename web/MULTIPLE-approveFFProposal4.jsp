@@ -526,7 +526,7 @@
                                         <select name="remarktype">
                                             <option value="--">Select</option>
                                             <option value="Comment">Comment</option>
-                                            <option value="Suggestion">Suggestion</option>
+                                            <option value="For Action">For Action</option>
                                         </select>
                                     </center></td>
                                     <%
@@ -538,7 +538,7 @@
                                         <select name="remarktype">
                                             <option value="--">Select</option>
                                             <option value="Comment">Comment</option>
-                                            <option value="Suggestion">Suggestion</option>
+                                            <option value="For Action">For Action</option>
                                         </select>
                                     </center></td>
                                     <%
@@ -550,7 +550,7 @@
                                         <select name="remarktype">
                                             <option value="--">Select</option>
                                             <option value="Comment">Comment</option>
-                                            <option value="Suggestion">Suggestion</option>
+                                            <option value="For Action">For Action</option>
                                         </select>
                                     </center></td>
                                     <%
@@ -562,7 +562,7 @@
                                         <select name="remarktype">
                                             <option value="--">Select</option>
                                             <option value="Comment">Comment</option>
-                                            <option value="Suggestion">Suggestion</option>
+                                            <option value="For Action">For Action</option>
                                         </select>
                                     </center></td>
                                     <%
@@ -574,7 +574,7 @@
                                         <select name="remarktype">
                                             <option value="--">Select</option>
                                             <option value="Comment">Comment</option>
-                                            <option value="Suggestion">Suggestion</option>
+                                            <option value="For Action">For Action</option>
                                         </select>
                                     </center></td>
                                     <%

@@ -191,10 +191,11 @@
                                         <li class="notification-box">
                                             <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong><br>
                                             <%=n.get(i).getBody()%>
+                                            <input type="hidden" name="ID" value="<%=n.get(i).getAttribute()%>"/>
                                         </li>
                                     </button>
 
-                                    <input type="hidden" name="ID" value="<%=n.get(i).getAttribute()%>"/>
+                                    
 
                                     <%
                                         }

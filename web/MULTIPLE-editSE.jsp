@@ -413,157 +413,107 @@
                         </fieldset>
 
                         <fieldset>
-                            <table>
-                                <tr>
-                                    <th style="width:50%">Selected</th>
-                                    <th style="width:50%">Edited</th>
-                                </tr>
-                                <tr>
-                                    <td style="padding:5px">
-                                        <fieldset>
-                                            <legend><b>Target KRA:</b></legend>
-                                            <select disabled>
-                                                <%
-                                                    for (int m = 0; m < k.size(); m++) {
-                                                %>
-                                                <option <% if (SE.getTargetKRA() == k.get(m).getId()) { %> selected <% }%> value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
-                                                <%
-                                                    }
-                                                %>
-                                            </select>
-                                            <input type="hidden" name="kra" value="<%=SE.getTargetKRA()%>"/>
-                                                   <br><br>
-                                        </fieldset>
-                                    </td>
-                                    <td style="padding:5px">
-                                <center><button style="background-color:orange" class="button" type="button" id="buttonedit" onclick="editTargets()">Edit Targets</button></center>
-                                <fieldset id="editkra">
-                                    <legend><b>Target KRA:</b></legend>
-                                    <select name="newkra" id="newkra" onchange="changegoal(this.id, 'goals')">
-                                        <option></option>
-                                        <%
-                                            for (int m = 0; m < k.size(); m++) {
-                                        %>
-                                        <option value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
-                                        <%
-                                            }
-                                        %>
-                                    </select>
-                                    <br><br>
-                                </fieldset>
-                                </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:5px">
-                                        <fieldset>
-                                            <legend><b>Target Goal:</b></legend>
-                                            <select disabled>
-                                                <option value="<%=SE.getTargetGoal()%>"><%=UserDAO.retrieveGoalNamebyGoalID(SE.getTargetGoal())%></option>
-                                            </select>
-                                            <input type="hidden" name="goal" value="<%=SE.getTargetGoal()%>"/>
-                                            <br><br>
-                                        </fieldset>
-                                    </td>
-                                    <td style="padding:5px" id="editgoal">
-                                        <fieldset>
-                                            <legend><b>Target Goal:</b></legend>
-                                            <select value ="<%=SE.getTargetGoal()%>" name="newgoal" id="goals" onchange="changemeasure(this.id, 'measures', 'measures2', 'measures3')">
-                                            </select>
-                                            <br><br>
-                                        </fieldset>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <%
-                                        ArrayList<Integer> measures = new ArrayList();
-                                        measures = UserDAO.GetMeasures(SE.getId());
-                                        ArrayList<String> measurenames = new ArrayList();
+                            <legend><b>Target KRA: </b></legend>
+                            <%
+                                for (int m = 0; m < k.size(); m++) {
+                            %>
+                            <% if (SE.getTargetKRA() == k.get(m).getId()) {%> <legend><%=k.get(m).getName()%></legend> <% }%>
+                            <%
+                                }
+                            %>
+                            <input type="hidden" name="kra" value="<%=SE.getTargetKRA()%>"/>
 
-                                        for (int x = 0; x < measures.size(); x++) {
-                                            String s = UserDAO.GetMeasureObject(measures.get(x)).getMeasure();
-                                            measurenames.add(s);
+                            <fieldset id="editkra">
+                                <legend><b>Edit Target KRA:</b></legend>
+                                <select name="newkra" id="newkra" onchange="changegoal(this.id, 'goals')">
+                                    <option></option>
+                                    <%
+                                        for (int m = 0; m < k.size(); m++) {
+                                    %>
+                                    <option value="<%=k.get(m).getId()%>"><%=k.get(m).getName()%></option>
+                                    <%
                                         }
                                     %>
-                                    <td style="padding:5px">
-                                        <fieldset>
-                                            <legend><b>Target Measure:</b></legend>
-                                            <select disabled>
-                                                <option value="<%=measures.get(0)%>"><%=measurenames.get(0)%></option>
-                                            </select>
-                                            <input type="hidden" name="measure" value="<%=measures.get(0)%>"/>
-                                            <br><br><br>
-                                        </fieldset> 
-                                    </td>
-                                    <td style="padding:5px" id="editmeasure1">
-                                        <fieldset>
-                                            <legend><b>Target Measure:</b></legend>
-                                            <select  name="newmeasure" id="measures">
-                                            </select>
-                                            <br><br><br>
-                                        </fieldset> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:5px">
-                                        <fieldset>
-                                            <legend><b>Target Measure 2:</b></legend>
-                                            <select disabled>
-                                                <% if (measures.size() >= 2) {%> 
-                                                <option value="<%=measures.get(1)%>"><%=measurenames.get(1)%></option>
-                                                <% } else { %>
-                                                <option value="0">None</option>
-                                                <% } %>
-                                            </select>
-                                            <% if (measures.size() >= 2) {%> 
-                                            <input type="hidden" name="measure2" value="<%=measures.get(1)%>"/>
-                                            <% } else { %>
-                                            <input name="measure2" type="hidden" value="0"/>
-                                            <% }%>
-                                            <br><br><br>
-                                        </fieldset>
-                                    </td>
-                                    <td style="padding:5px" id="editmeasure2">
-                                        <fieldset>
-                                            <legend><b>Target Measure 2:</b></legend>
-                                            <select name="newmeasure2" id="measures2">
-                                            </select>
-                                            <br><br><br>
-                                        </fieldset> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:5px">
-                                        <fieldset>
-                                            <legend><b>Target Measure 3:</b></legend>
-                                            <select disabled>
-                                                <% if (measures.size() >= 3) {%> 
-                                                <option value="<%=measures.get(2)%>"><%=measurenames.get(2)%></option>
-                                                <% } else { %>
-                                                <option value="0">None</option>
-                                                <% } %>
-                                            </select>
+                                </select>
+                                <br><br>
+                            </fieldset>
 
-                                            <% if (measures.size() >= 3) {%> 
-                                            <input type="hidden" name="measure3" value="<%=measures.get(2)%>"/>
-                                            <% } else { %>
-                                            <input name="measure3" type="hidden" value="0"/>
-                                            <% }%>
 
-                                            <br><br>
-                                        </fieldset>
-                                    </td>
-                                    <td style="padding:5px" id="editmeasure3">
-                                        <fieldset>
-                                            <legend><b>Target Measure 3:</b></legend>
-                                            <select name="newmeasure3" id="measures3">
-                                            </select>
-                                            <br><br>
-                                        </fieldset>
-                                    </td>
-                                </tr>
-                            </table>
                             <br>
-                            <center><a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a>
+                            <legend><b>Target Goal: </b></legend>
+                            <legend><%=UserDAO.retrieveGoalNamebyGoalID(SE.getTargetGoal())%></legend>
+                            <input type="hidden" name="goal" value="<%=SE.getTargetGoal()%>"/>
+
+                            <fieldset id="editgoal">
+                                <legend><b>Edit Target Goal:</b></legend>
+                                <select name="newgoal" id="goals" onchange="changemeasure(this.id, 'measures', 'measures2', 'measures3')">
+                                </select>
+                                <br><br>
+                            </fieldset>
+
+
+                            <%
+                                ArrayList<Integer> measures = new ArrayList();
+                                measures = UserDAO.GetMeasures(SE.getId());
+                                ArrayList<String> measurenames = new ArrayList();
+
+                                for (int x = 0; x < measures.size(); x++) {
+                                    String s = UserDAO.GetMeasureObject(measures.get(x)).getMeasure();
+                                    measurenames.add(s);
+                                }
+                            %>
+
+                            <br>
+                            <legend><b>Target Measure: </b></legend>
+                            <legend><%=measurenames.get(0)%></legend>
+                            <input type="hidden" name="measure" value="<%=measures.get(0)%>"/>
+                            <fieldset id="editmeasure1">
+                                <legend><b>Edit Target Measure:</b></legend>
+                                <select  name="newmeasure" id="measures">
+                                </select>
+                                <br><br>
+                            </fieldset> 
+
+                            <%if (measures.size() >= 2) {%> 
+                            <br>
+                            <legend><b>Target Measure 2: </b></legend>
+                            <legend><%=measurenames.get(1)%></legend>
+                            <input type="hidden" name="measure2" value="<%=measures.get(1)%>"/>
+                            <%} else {%>
+                            <br>
+                            <legend><b>Target Measure 2: </b></legend>
+                            <legend>None</legend>
+                            <input type="hidden" name="measure2" value="0"/>
+                            <%}%>
+                            <fieldset id="editmeasure2">
+                                <legend><b>Edit Target Measure 2:</b></legend>
+                                <select name="newmeasure2" id="measures2">
+                                </select>
+                                <br><br>
+                            </fieldset>
+
+                            <%if (measures.size() >= 3) {%>
+                            <br>
+                            <legend><b>Target Measure 3: </b></legend>
+                            <legend><%=measurenames.get(2)%></legend>
+                            <input type="hidden" name="measure3" value="<%=measures.get(2)%>"/>
+                            <%} else {%>
+                            <br>
+                            <legend><b>Target Measure 3: </b></legend>
+                            <legend>None</legend>
+                            <input type="hidden" name="measure3" value="0"/>
+                            <%}%>
+                            <fieldset id="editmeasure3">
+                                <legend><b>Edit Target Measure 3:</b></legend>
+                                <select name="newmeasure3" id="measures3">
+                                </select>
+                                <br><br>
+                            </fieldset>
+                            <br><br><br>
+
+                            <center>
+                                <button style="background-color:orange" class="button" type="button" id="buttonedit" onclick="editTargets()">Edit Targets</button>
+                                <a href="MULTIPLE-viewMeasureDetails.jsp" target="_blank"><button type="button" class="button">View Measure Details</button></a>
                                 <button style="background-color:red" class="button" type="button" id="cancelbuttonedit" onclick="cancelEditTargets()">Cancel Edit</button></center>
                             <input type="hidden" name="isedited" id="isedited" value="0"/>
                             <br><br><br>

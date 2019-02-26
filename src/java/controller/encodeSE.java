@@ -101,6 +101,9 @@ public class encodeSE extends HttpServlet {
                             components.add(component[i]);
                         }
                     }
+                    SE.setSustainable(0);
+                } else {
+                    SE.setSustainable(1);
                 }
 
                 SE.setExplanation(request.getParameter("sustainabilityexplanation"));
@@ -168,6 +171,9 @@ public class encodeSE extends HttpServlet {
                             components.add(component[i]);
                         }
                     }
+                    SE.setSustainable(0);
+                } else {
+                    SE.setSustainable(1);
                 }
 
                 SE.setExplanation(request.getParameter("sustainabilityexplanation"));
@@ -236,6 +242,9 @@ public class encodeSE extends HttpServlet {
                             components.add(component[i]);
                         }
                     }
+                    SE.setSustainable(0);
+                } else {
+                    SE.setSustainable(1);
                 }
 
                 SE.setExplanation(request.getParameter("sustainabilityexplanation"));

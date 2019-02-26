@@ -13,7 +13,11 @@ public class Measure {
     protected int measureID;
     protected String measure;
     protected String description;
-    protected String target;
+    protected int numtarget;
+    protected String numtypetarget;
+    protected String unittarget;
+    protected String typetarget;
+    protected String engagingtarget;
     protected int kraID;
     protected int goalID;
     protected int numOfPrograms;
@@ -41,16 +45,7 @@ public class Measure {
     public void setDescription(String description) {
         this.description = description;
     }
-
     
-    
-    public String getTarget() {
-        return target;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
-    }
 
     public int getKraID() {
         return kraID;
@@ -74,6 +69,46 @@ public class Measure {
 
     public void setNumOfPrograms(int numOfPrograms) {
         this.numOfPrograms = numOfPrograms;
+    }
+
+    public int getNumtarget() {
+        return numtarget;
+    }
+
+    public void setNumtarget(int numtarget) {
+        this.numtarget = numtarget;
+    }
+
+    public String getNumtypetarget() {
+        return numtypetarget;
+    }
+
+    public void setNumtypetarget(String numtypetarget) {
+        this.numtypetarget = numtypetarget;
+    }
+
+    public String getUnittarget() {
+        return unittarget;
+    }
+
+    public void setUnittarget(String unittarget) {
+        this.unittarget = unittarget;
+    }
+
+    public String getTypetarget() {
+        return typetarget;
+    }
+
+    public void setTypetarget(String typetarget) {
+        this.typetarget = typetarget;
+    }
+
+    public String getEngagingtarget() {
+        return engagingtarget;
+    }
+
+    public void setEngagingtarget(String engagingtarget) {
+        this.engagingtarget = engagingtarget;
     }
     
     
