@@ -344,14 +344,17 @@ public class OvplmDAO {
                 }
 
                 for (int j = 0; j < KRA.getGoals().get(i).getMeasures().size(); j++) {
-                    query = "INSERT into measure(measure, description, target, kraID, goalID) VALUES(?,?,?,?,?)";
+                    query = "INSERT into measure(measure, description, kraID, goalID, numtarget, numtypetarget, unittarget, typetarget, engagingtarget) VALUES(?,?,?,?,?,?,?,?,?)";
                     pstmt = conn.prepareStatement(query);
                     pstmt.setString(1, KRA.getGoals().get(i).getMeasures().get(j).getMeasure());
                     pstmt.setString(2, KRA.getGoals().get(i).getMeasures().get(j).getDescription());
-                    pstmt.setString(3, KRA.getGoals().get(i).getMeasures().get(j).getTarget());
-                    pstmt.setInt(4, kraid);
-                    pstmt.setInt(5, goalid);
-
+                    pstmt.setInt(3, kraid);
+                    pstmt.setInt(4, goalid);
+                    pstmt.setInt(5, KRA.getGoals().get(i).getMeasures().get(j).getNumtarget());
+                    pstmt.setString(6, KRA.getGoals().get(i).getMeasures().get(j).getNumtypetarget());
+                    pstmt.setString(7, KRA.getGoals().get(i).getMeasures().get(j).getUnittarget());
+                    pstmt.setString(8, KRA.getGoals().get(i).getMeasures().get(j).getTypetarget());
+                    pstmt.setString(9, KRA.getGoals().get(i).getMeasures().get(j).getEngagingtarget());
                     rs = pstmt.executeUpdate();
 
                 }
@@ -423,7 +426,11 @@ public class OvplmDAO {
                         m.setMeasureID(rs.getInt("measureID"));
                         m.setMeasure(rs.getString("measure"));
                         m.setDescription(rs.getString("description"));
-                        m.setTarget(rs.getString("target"));
+                        m.setNumtarget(rs.getInt("numtarget"));
+                        m.setNumtypetarget(rs.getString("numtypetarget"));
+                        m.setUnittarget(rs.getString("unittarget"));
+                        m.setTypetarget(rs.getString("typetarget"));
+                        m.setEngagingtarget(rs.getString("engagingtarget"));
                         measures.add(m);
                     }
 
@@ -544,7 +551,11 @@ public class OvplmDAO {
                     m.setMeasureID(rs.getInt("measureID"));
                     m.setMeasure(rs.getString("measure"));
                     m.setDescription(rs.getString("description"));
-                    m.setTarget(rs.getString("target"));
+                    m.setNumtarget(rs.getInt("numtarget"));;
+                    m.setNumtypetarget(rs.getString("numtypetarget"));
+                    m.setUnittarget(rs.getString("unittarget"));
+                    m.setTypetarget(rs.getString("typetarget"));
+                    m.setEngagingtarget(rs.getString("engagingtarget"));
                     measures.add(m);
                 }
                 goals.get(i).setMeasures(measures);

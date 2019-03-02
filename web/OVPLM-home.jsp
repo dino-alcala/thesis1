@@ -789,7 +789,9 @@
                 </form>
 
                 <div class="container-fluid panels">
-                    <h4>Key Result Areas</h4>
+                    <h4>Key Result Areas </h4>
+                    <form action="calculateTargets">
+                    <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center>
                     <% 
                         percentage = new DecimalFormat("0.00");
                         OvplmDAO OvplmDAO = new OvplmDAO();
@@ -849,6 +851,7 @@
                         <% }}} %>
                     </table>
                     <% } %>
+                    </form>
                 </div>
 
                 <!--- table -->

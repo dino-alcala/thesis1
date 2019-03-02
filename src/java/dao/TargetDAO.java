@@ -87,16 +87,17 @@ public class TargetDAO {
                     if(query.equals("")){
                         return -1;
                     }
+                    
                     for(int x = 0 ; x < FF.size() ; x++){
                         pstmt = conn.prepareStatement(query);
                         pstmt.setInt(1, FF.get(x).getId());
                         rs = pstmt.executeQuery();
+                        
+                        while (rs.next()) {
+                            count = rs.getInt("count");
+                        }
                     }
-
-                    while (rs.next()) {
-                        count = rs.getInt("count");
-                    }
-
+                    
                     return percent = count * 100 / m.getNumtarget();
                 } catch (SQLException ex) {
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -3604,5 +3605,50 @@ public class TargetDAO {
                 /* ignored */ }
         }
         return totals;
-    } 
+    }
+    
+    public void editTotals(ArrayList<Integer> totals){
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        
+        String query = "UPDATE totals SET totalunits = ?, totalstudentorgs = ?, totalfacultydept = ?, totalstaff = ?, totalcap = ?, totalapsp = ?, totalasf = ?, totalfaculty = ?, totaladmin = ?, totalgrad = ?, totalundergrad = ?, totalinternationalstudents = ?, totaldepts = ?, totalalumni = ? WHERE id = 1";
+
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, totals.get(0));
+            pstmt.setInt(2, totals.get(1));
+            pstmt.setInt(3, totals.get(2));
+            pstmt.setInt(4, totals.get(3));
+            pstmt.setInt(5, totals.get(4));
+            pstmt.setInt(6, totals.get(5));
+            pstmt.setInt(7, totals.get(6));
+            pstmt.setInt(8, totals.get(7));
+            pstmt.setInt(9, totals.get(8));
+            pstmt.setInt(10, totals.get(9));
+            pstmt.setInt(11, totals.get(10));
+            pstmt.setInt(12, totals.get(11));
+            pstmt.setInt(13, totals.get(12));
+            pstmt.setInt(14, totals.get(13));
+            int rs = pstmt.executeUpdate();
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
 }

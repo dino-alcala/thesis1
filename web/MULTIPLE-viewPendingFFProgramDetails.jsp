@@ -419,16 +419,16 @@
                                             <tr>
                                                 <td>Approval by the Council</td>
                                                 <td>
-                                                    <b>Br. Michael Broughton: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
+                                                    <b>Vice President for Lasallian Mission: </b> <%if (FF.getLmc1Remarks() != null) {%><%=FF.getLmc1Remarks()%><%}%>
                                                     <br>
                                                     <br>
-                                                    <b>Ms. Nelca Villarin: </b> <%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%>
+                                                    <b>Dean of Student Affairs: </b> <%if (FF.getLmc2Remarks() != null) {%><%=FF.getLmc2Remarks()%><%}%>
                                                     <br>
                                                     <br>
-                                                    <b>Ms. Margarita Perdido: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
+                                                    <b>Laguna Campus Executive Director: </b> <%if (FF.getLmc3Remarks() != null) {%><%=FF.getLmc3Remarks()%><%}%>
                                                     <br>
                                                     <br>
-                                                    <b>Ms. Fritzie De Vera: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
+                                                    <b>COSCA Director: </b> <%if (FF.getLmc5Remarks() != null) {%><%=FF.getLmc5Remarks()%><%}%>
                                                     <br>
                                                 </td>
                                             </tr>

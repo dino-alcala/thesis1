@@ -463,35 +463,35 @@
                                             <tbody>
                                                 <% if (!FFreport.getFeedback1().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>Br. Michael Broughton</center></td>
+                                                    <td><center>Vice President for Lasallian Mission</center></td>
                                                     <td><%=FF.getLmc1Remarks()%></td>
                                                     <td><%=FFreport.getFeedback1()%></td>
                                                 </tr>
                                                 <% } %>
                                                 <% if (!FFreport.getFeedback2().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>Nelca Villarin</center></td>
+                                                    <td><center>Dean of Student Affairs</center></td>
                                                     <td><%=FF.getLmc2Remarks()%></td>
                                                     <td><%=FFreport.getFeedback2()%></td>
                                                 </tr>
                                                 <% } %>
                                                 <% if (!FFreport.getFeedback3().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>Margarita Perdido</center></td>
+                                                    <td><center>Laguna Campus Executive Director</center></td>
                                                     <td><%=FF.getLmc3Remarks()%></td>
                                                     <td><%=FFreport.getFeedback3()%></td>
                                                 </tr>
                                                 <% } %>
                                                 <% if (!FFreport.getFeedback4().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>James Laxa</center></td>
+                                                    <td><center>LSPO Director</center></td>
                                                     <td><%=FF.getLspoRemarks()%></td>
                                                     <td><%=FFreport.getFeedback4()%></td>
                                                 </tr>
                                                 <% } %>
                                                 <% if (!FFreport.getFeedback5().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>Fritzie De Vera</center></td>
+                                                    <td><center>COSCA Director</center></td>
                                                     <td><%=FF.getLmc5Remarks()%></td>
                                                     <td><%=FFreport.getFeedback5()%></td>
                                                 </tr>

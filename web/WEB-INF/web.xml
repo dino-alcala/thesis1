@@ -428,6 +428,14 @@
         <servlet-name>notifClick</servlet-name>
         <servlet-class>controller.notifClick</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editTotals</servlet-name>
+        <servlet-class>controller.editTotals</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>calculateTargets</servlet-name>
+        <servlet-class>controller.calculateTargets</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -855,6 +863,14 @@
     <servlet-mapping>
         <servlet-name>notifClick</servlet-name>
         <url-pattern>/notifClick</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editTotals</servlet-name>
+        <url-pattern>/editTotals</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>calculateTargets</servlet-name>
+        <url-pattern>/calculateTargets</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

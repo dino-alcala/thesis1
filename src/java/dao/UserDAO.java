@@ -15304,7 +15304,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE step = 8 AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM seproposal WHERE step >= 1 && step <= 8 AND datecreated >= ? AND datecreated <= ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setDate(1, startDate);
@@ -15346,7 +15346,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE step = 8 AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM ffproposal WHERE step >= 1 && step <= 8 AND datecreated >= ? AND datecreated <= ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setDate(1, startDate);
@@ -16340,7 +16340,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM seproposal WHERE step >= 1 && step <= 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, unit);
@@ -16383,7 +16383,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE step = 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM ffproposal WHERE step >= 1 && step <= 8 AND unit = ? AND datecreated >= ? AND datecreated <= ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, unit);
@@ -16802,7 +16802,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE step = 8";
+            String query = "SELECT * FROM seproposal WHERE step = 9";
             pstmt = conn.prepareStatement(query);
 
             rs2 = pstmt.executeQuery();

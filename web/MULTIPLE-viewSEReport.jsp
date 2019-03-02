@@ -448,7 +448,7 @@
                                     </div>
                                     <div class="card-body">
                                         <br>
-                                        <center><p><b>Grant from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("seID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund</b></p></center>
+                                        <center><p><b>Grant from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("seID").toString()))) {%> OVPLM Fund <%} else {%> Others<%}%> </b></p></center>
                                         <br>
                                         <table style="width:100%">
                                             <tr>
@@ -516,35 +516,35 @@
                                             <tbody>
                                                 <% if (!SEreport.getFeedback1().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>Br. Michael Broughton</center></td>
+                                                    <td><center>Vice President for Lasallian Mission:</center></td>
                                                     <td><%=SE.getLmc1Remarks()%></td>
                                                     <td><%=SEreport.getFeedback1()%></td>
                                                 </tr>
                                                 <% } %>
                                                 <% if (!SEreport.getFeedback2().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>Nelca Villarin</center></td>
+                                                    <td><center>Dean of Student Affairs:</center></td>
                                                     <td><%=SE.getLmc2Remarks()%></td>
                                                     <td><%=SEreport.getFeedback2()%></td>
                                                 </tr>
                                                 <% } %>
                                                 <% if (!SEreport.getFeedback3().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>Margarita Perdido</center></td>
+                                                    <td><center>Laguna Campus Executive Director</center></td>
                                                     <td><%=SE.getLmc3Remarks()%></td>
                                                     <td><%=SEreport.getFeedback3()%></td>
                                                 </tr>
                                                 <% } %>
                                                 <% if (!SEreport.getFeedback4().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>James Laxa</center></td>
+                                                    <td><center>LSPO Director</center></td>
                                                     <td><%=SE.getLmc4Remarks()%></td>
                                                     <td><%=SEreport.getFeedback4()%></td>
                                                 </tr>
                                                 <% } %>
                                                 <% if (!SEreport.getFeedback5().equals("No Suggestion")) { %>
                                                 <tr>
-                                                    <td><center>Fritzie De Vera</center></td>
+                                                    <td><center>COSCA Director</center></td>
                                                     <td><%=SE.getLmc5Remarks()%></td>
                                                     <td><%=SEreport.getFeedback5()%></td>
                                                 </tr>
