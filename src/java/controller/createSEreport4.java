@@ -55,31 +55,31 @@ public class createSEreport4 extends HttpServlet {
             
             SE SE = UserDAO.retrieveSEBySEID(SEreport.getSeproposalID());
             
-            if(SE.getRemarktype1().equals("Suggestion")){
+            if(SE.getRemarktype1().equals("For Action")){
                 SEreport.setFeedback1(request.getParameter("feedback1"));
             } else if(SE.getRemarktype1().equals("Comment")) {
                 SEreport.setFeedback1("No Suggestion");
             }
             
-            if(SE.getRemarktype2().equals("Suggestion")){
+            if(SE.getRemarktype2().equals("For Action")){
                 SEreport.setFeedback2(request.getParameter("feedback2"));
             } else if(SE.getRemarktype2().equals("Comment")) {
                 SEreport.setFeedback2("No Suggestion");
             }
             
-            if(SE.getRemarktype3().equals("Suggestion")){
+            if(SE.getRemarktype3().equals("For Action")){
                 SEreport.setFeedback3(request.getParameter("feedback3"));
             } else if(SE.getRemarktype3().equals("Comment")) {
                 SEreport.setFeedback3("No Suggestion");
             }
             
-            if(SE.getRemarktype4().equals("Suggestion")){
+            if(SE.getRemarktype4().equals("For Action")){
                 SEreport.setFeedback4(request.getParameter("feedback4"));
             } else if(SE.getRemarktype4().equals("Comment")) {
                 SEreport.setFeedback4("No Suggestion");
             }
             
-            if(SE.getRemarktype5().equals("Suggestion")){
+            if(SE.getRemarktype5().equals("For Action")){
                 SEreport.setFeedback5(request.getParameter("feedback5"));
             } else if(SE.getRemarktype5().equals("Comment")) {
                 SEreport.setFeedback5("No Suggestion");

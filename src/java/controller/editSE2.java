@@ -73,6 +73,7 @@ public class editSE2 extends HttpServlet {
                     SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
                     SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
                     SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
+                    SEexpenses.setDatetime("2001-01-01 00:00:00.0");
                     seexpense.add(SEexpenses);
                 }
 

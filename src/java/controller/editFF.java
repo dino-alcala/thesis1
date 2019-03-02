@@ -69,6 +69,7 @@ public class editFF extends HttpServlet {
                     FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
                     FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
                     FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
+                    FFexpenses.setDatetime("2001-01-01 00:00:00.0");
                     ffexpense.add(FFexpenses);
                 }
 
