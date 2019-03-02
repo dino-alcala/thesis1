@@ -255,7 +255,7 @@
 
                         <div class="container-fluid panels">
                             <h4>Total Budget Available</h4>
-                            <h1 class="budget">PHP <%=formatter.format(b.getRemainingBudget())%></h1>
+                            <h1 class="budget">₱ <%=formatter.format(b.getRemainingBudget())%></h1>
 
                             <%
                                 if (Integer.parseInt(session.getAttribute("userID").toString()) == 16) {

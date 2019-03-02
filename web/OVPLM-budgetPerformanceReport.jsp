@@ -383,13 +383,13 @@
                         <div class="card bg-primary">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Initial Budget (as of <%=Date.valueOf(request.getAttribute("startDate").toString())%>)</b></p>
-                                <p class="total">PHP <%=df.format(UserDAO.getInitialBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="total">₱ <%=df.format(UserDAO.getInitialBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-primary">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget Remaining (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total">PHP <%=df.format(UserDAO.getRemainingBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="total">₱ <%=df.format(UserDAO.getRemainingBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div> 
                     </div>
@@ -398,13 +398,13 @@
                         <div class="card bg-success">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget used for SE programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getSEUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="total2">₱ <%=df.format(UserDAO.getSEUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-success">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget used for FF programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getFFUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="total2">₱ <%=df.format(UserDAO.getFFUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div> 
                     </div>           
@@ -535,19 +535,19 @@
                         <div class="card bg-success">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Programs Budget Requested for <br>Programs Created from *</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="total2">₱ <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-success">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Programs Budget Requested for <br>Programs Implemented from *</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                             </div>
                         </div>
                         <div class="card bg-success">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Programs Budget Utilized for <br>Programs Implemented from *</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="total2">₱ <%=df.format(UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                                 
                                 <!--<p class="card-text"><b>Programs Budget Utilized for <br>Programs Created from *</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
@@ -556,7 +556,7 @@
                         <div class="card bg-success">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Programs Budget Variance for <br>Programs Implemented from *</b></p>
-                                <p class="total2">PHP <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
                                 
                                 <!--<p class="card-text"><b>Programs Budget Variance for <br>Programs Created from *</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
@@ -567,77 +567,81 @@
                     <h2></h2>
 
                     <h3>Social Engagement Proposals</h3>
-                    <%
-                        ArrayList<SE> seproposal = new ArrayList();
-                        seproposal = UserDAO.retrieveSEProposalAmountRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
-                    %>
+                    <form action="viewProposalsProgress">
+                        <%
+                            ArrayList<SE> seproposal = new ArrayList();
+                            seproposal = UserDAO.retrieveSEProposalAmountRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                        %>
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead  class="thead-dark">
+                                    <tr>
+                                        <th>Program</th>
+                                        <th>Unit</th>
+                                        <th>Department</th>
+                                        <th>Amount Requested</th>
+                                        <th>Amount Utilized</th>
+                                        <th>Variance</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        for (int i = 0; i < seproposal.size(); i++) {
+                                    %>
+                                    <tr>
+                                        <td><%=seproposal.get(i).getName()%></td>
+                                        <td><%=seproposal.get(i).getUnit()%></td>
+                                        <td><%=seproposal.get(i).getDepartment()%></td>
+                                        <td>₱<%=seproposal.get(i).getTotalAmount()%></td>
+                                        <td>₱<%=UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                        <td>₱<%=seproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                        <td><button class="btn btn-primary btn-sm" type="submit" name="viewSE<%=i%>" value="<%=seproposal.get(i).getId()%>">View</button></td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </tbody>
+                            </table>
 
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead  class="thead-dark">
-                            <tr>
-                                <th>Program</th>
-                                <th>Unit</th>
-                                <th>Department</th>
-                                <th>Amount Requested</th>
-                                <th>Amount Utilized</th>
-                                <th>Variance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                for (int i = 0; i < seproposal.size(); i++) {
-                            %>
-                            <tr>
-                                <td><%=seproposal.get(i).getName()%></td>
-                                <td><%=seproposal.get(i).getUnit()%></td>
-                                <td><%=seproposal.get(i).getDepartment()%></td>
-                                <td>₱<%=seproposal.get(i).getTotalAmount()%></td>
-                                <td>₱<%=UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
-                                <td>₱<%=seproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
-                            </tr>
-                            <%
-                                }
-                            %>
-                        </tbody>
-                    </table>
+                        <h2></h2>
 
-                    <h2></h2>
+                        <h3>Faith Formation Proposals</h3>
+                        <%
+                            ArrayList<FF> ffproposal = new ArrayList();
+                            ffproposal = UserDAO.retrieveFFProposalAmountRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                        %>
 
-                    <h3>Faith Formation Proposals</h3>
-                    <%
-                        ArrayList<FF> ffproposal = new ArrayList();
-                        ffproposal = UserDAO.retrieveFFProposalAmountRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
-                    %>
-
-                    <table id="example2" class="table table-striped table-bordered" style="width:100%">
-                        <thead  class="thead-dark">
-                            <tr>
-                                <th>Program</th>
-                                <th>Unit</th>
-                                <th>Department</th>
-                                <th>Amount Requested</th>
-                                <th>Amount Utilized</th>
-                                <th>Variance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                for (int i = 0; i < ffproposal.size(); i++) {
-                            %>
-                            <tr>
-                                <td><%=ffproposal.get(i).getProjectName()%></td>
-                                <td><%=ffproposal.get(i).getUnit()%></td>
-                                <td><%=ffproposal.get(i).getDepartment()%></td>
-                                <td>₱<%=ffproposal.get(i).getTotalAmount()%></td>
-                                <td>₱<%=UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
-                                <td>₱<%=ffproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
-                            </tr>
-                            <%
-                                }
-                            %>
-                        </tbody>
-                    </table>
-
+                        <table id="example2" class="table table-striped table-bordered" style="width:100%">
+                            <thead  class="thead-dark">
+                                <tr>
+                                    <th>Program</th>
+                                    <th>Unit</th>
+                                    <th>Department</th>
+                                    <th>Amount Requested</th>
+                                    <th>Amount Utilized</th>
+                                    <th>Variance</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    for (int i = 0; i < ffproposal.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=ffproposal.get(i).getProjectName()%></td>
+                                    <td><%=ffproposal.get(i).getUnit()%></td>
+                                    <td><%=ffproposal.get(i).getDepartment()%></td>
+                                    <td>₱<%=ffproposal.get(i).getTotalAmount()%></td>
+                                    <td>₱<%=UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                    <td>₱<%=ffproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                    <td><button class="btn btn-primary btn-sm" type="submit" name="viewFF<%=i%>" value="<%=ffproposal.get(i).getId()%>">View</button></td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
                 <%
                     }

@@ -23,7 +23,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create FF Completion Report</title>
+        <title>Create FF Attendance Sheet</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
@@ -233,7 +233,7 @@
 
             <!-- MAIN -->
             <div class="col py-3">
-                <center><h3>Program Accomplishment Report Form</h3></center>
+                <center><h3>Faith Formation Program Attendees</h3></center>
 
                 <div class="form-style-5">
 

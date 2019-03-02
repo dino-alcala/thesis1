@@ -66,12 +66,12 @@ public class addKRA extends HttpServlet {
                     
                     String untrackable[] = request.getParameterValues("goal" + i + "untrackable" + j);
                     if(untrackable != null){
-                        m.setNumtarget(0);
+                        m.setNumtarget(Integer.parseInt(request.getParameter("goal" + i + "numtarget" + j)));
                         m.setNumtypetarget("untrackable");
-                        m.setUnittarget("untrackable");
-                        m.setTypetarget("untrackable");
-                        m.setEngagingtarget("untrackable");
-                    } else if (untrackable == null) {
+                        m.setUnittarget(request.getParameter("goal" + i + "unittarget" + j));
+                        m.setTypetarget(request.getParameter("goal" + i + "typetarget" + j));
+                        m.setEngagingtarget(request.getParameter("goal" + i + "engaging" + j));
+                    } else {
                         Measure temp = new Measure();
                         temp.setNumtarget(Integer.parseInt(request.getParameter("goal" + i + "numtarget" + j)));
                         temp.setNumtypetarget(request.getParameter("goal" + i + "numtypetarget" + j));
