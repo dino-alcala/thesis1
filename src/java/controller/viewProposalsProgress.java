@@ -42,7 +42,7 @@ public class viewProposalsProgress extends HttpServlet {
             HttpSession session = request.getSession();
             UserDAO UserDAO = new UserDAO();
             ArrayList<SE> s = new ArrayList();
-            s = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
+            s = UserDAO.retrieveALLSEProposal();
 
             for (int i = 0; i < s.size(); i++) {
                 if (request.getParameter("viewSE" + i) != null) {

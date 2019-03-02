@@ -847,11 +847,22 @@
                             %>
                             <label for="sel1">Choose Unit:</label>
                             <select class="form-control" id="type" name="unit">
-                                <optgroup label="Added Units">
-                                    <option></option>
+                                <option></option>
+                                <optgroup label="Non-Academic Units">
                                     <%
                                         ArrayList<Unit> units = new ArrayList();
-                                        units = UserDAO.retrieveUnits();
+                                        units = UserDAO.retrieveUnitsNonAcademic();
+                                        for (int i = 0; i < units.size(); i++) {
+                                    %>
+                                    <option value="<%=units.get(i).getName()%>"><%=units.get(i).getName()%></option>
+                                    <%
+                                        }
+                                    %>
+                                    <option></option>
+                                </optgroup>
+                                <optgroup label="Academic Units">
+                                    <%
+                                        units = UserDAO.retrieveUnitsAcademic();
                                         for (int i = 0; i < units.size(); i++) {
                                     %>
                                     <option value="<%=units.get(i).getName()%>"><%=units.get(i).getName()%></option>
@@ -859,7 +870,6 @@
                                         }
                                     %>
                                 </optgroup>
-
                             </select>
                             <% }%>
                         </div>

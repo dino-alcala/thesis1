@@ -30,6 +30,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://c dnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        <script src="https://cdn.rawgit.com/emn178/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
 
         <style>
             p{
@@ -42,7 +44,7 @@
                 border-collapse: collapse;
                 text-align: center;
             }
-            
+
             h2{
                 font-family: "Arial", Helvetica, sans-serif;
                 font-size: 20px;
@@ -77,7 +79,7 @@
             th,tr,td{
                 padding:15px;
             }
-            
+
             .btn-success{
                 background-color: darkgreen;
                 border: none;
@@ -90,7 +92,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-list{
                 background-color: dodgerblue;
                 border: none;
@@ -103,7 +105,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-warning{
                 background-color: darkyellow;
                 border: none;
@@ -116,7 +118,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-danger{
                 background-color: red;
                 border: none;
@@ -129,7 +131,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-audit{
                 background-color: mediumseagreen;
                 border: none;
@@ -190,7 +192,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -418,26 +420,26 @@
                                     <div class="card-header">
                                         <h4>Accomplishment of Objectives:</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Expected Outcomes</th>
-                                        <th>Actual Accomplishment</th>
-                                        <th>Hindering Factors</th>
-                                    </tr>
-                                    <%
-                                        for (int i = 0; i < SEreport.getObjectives().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=SEreport.getObjectives().get(i).getExpectedOutcomes()%></td>
-                                        <td><%=SEreport.getObjectives().get(i).getActualAccomplishment()%></td>
-                                        <td><%=SEreport.getObjectives().get(i).getHinderingFactors()%></td>
-                                    </tr>
-                                    <%
-                                        }
-                                    %>
-                                </table>
-                                </div>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Expected Outcomes</th>
+                                                <th>Actual Accomplishment</th>
+                                                <th>Hindering Factors</th>
+                                            </tr>
+                                            <%
+                                                for (int i = 0; i < SEreport.getObjectives().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=SEreport.getObjectives().get(i).getExpectedOutcomes()%></td>
+                                                <td><%=SEreport.getObjectives().get(i).getActualAccomplishment()%></td>
+                                                <td><%=SEreport.getObjectives().get(i).getHinderingFactors()%></td>
+                                            </tr>
+                                            <%
+                                                }
+                                            %>
+                                        </table>
+                                    </div>
                                 </div>
 
 
@@ -498,9 +500,9 @@
                                 <br/>
 
                                 <%
-                                    if(SE.getStudentorg() != 1){
-                                    if (!SEreport.getFeedback1().equals("No Suggestion") || !SEreport.getFeedback2().equals("No Suggestion") || !SEreport.getFeedback3().equals("No Suggestion")
-                                            || !SEreport.getFeedback4().equals("No Suggestion") || !SEreport.getFeedback5().equals("No Suggestion")) {
+                                    if (SE.getStudentorg() != 1) {
+                                        if (!SEreport.getFeedback1().equals("No Suggestion") || !SEreport.getFeedback2().equals("No Suggestion") || !SEreport.getFeedback3().equals("No Suggestion")
+                                                || !SEreport.getFeedback4().equals("No Suggestion") || !SEreport.getFeedback5().equals("No Suggestion")) {
                                 %>
                                 <div class="card">
                                     <div class="card-header">
@@ -514,47 +516,48 @@
                                             <th>Feedback</th>
                                             </thead>
                                             <tbody>
-                                                <% if (!SEreport.getFeedback1().equals("No Suggestion")) { %>
+                                                <% if (!SEreport.getFeedback1().equals("No Suggestion")) {%>
                                                 <tr>
                                                     <td><center>Vice President for Lasallian Mission:</center></td>
-                                                    <td><%=SE.getLmc1Remarks()%></td>
-                                                    <td><%=SEreport.getFeedback1()%></td>
-                                                </tr>
-                                                <% } %>
-                                                <% if (!SEreport.getFeedback2().equals("No Suggestion")) { %>
-                                                <tr>
-                                                    <td><center>Dean of Student Affairs:</center></td>
-                                                    <td><%=SE.getLmc2Remarks()%></td>
-                                                    <td><%=SEreport.getFeedback2()%></td>
-                                                </tr>
-                                                <% } %>
-                                                <% if (!SEreport.getFeedback3().equals("No Suggestion")) { %>
-                                                <tr>
-                                                    <td><center>Laguna Campus Executive Director</center></td>
-                                                    <td><%=SE.getLmc3Remarks()%></td>
-                                                    <td><%=SEreport.getFeedback3()%></td>
-                                                </tr>
-                                                <% } %>
-                                                <% if (!SEreport.getFeedback4().equals("No Suggestion")) { %>
-                                                <tr>
-                                                    <td><center>LSPO Director</center></td>
-                                                    <td><%=SE.getLmc4Remarks()%></td>
-                                                    <td><%=SEreport.getFeedback4()%></td>
-                                                </tr>
-                                                <% } %>
-                                                <% if (!SEreport.getFeedback5().equals("No Suggestion")) { %>
-                                                <tr>
-                                                    <td><center>COSCA Director</center></td>
-                                                    <td><%=SE.getLmc5Remarks()%></td>
-                                                    <td><%=SEreport.getFeedback5()%></td>
-                                                </tr>
-                                                <% } %>
+                                            <td><%=SE.getLmc1Remarks()%></td>
+                                            <td><%=SEreport.getFeedback1()%></td>
+                                            </tr>
+                                            <% } %>
+                                            <% if (!SEreport.getFeedback2().equals("No Suggestion")) {%>
+                                            <tr>
+                                                <td><center>Dean of Student Affairs:</center></td>
+                                            <td><%=SE.getLmc2Remarks()%></td>
+                                            <td><%=SEreport.getFeedback2()%></td>
+                                            </tr>
+                                            <% } %>
+                                            <% if (!SEreport.getFeedback3().equals("No Suggestion")) {%>
+                                            <tr>
+                                                <td><center>Laguna Campus Executive Director</center></td>
+                                            <td><%=SE.getLmc3Remarks()%></td>
+                                            <td><%=SEreport.getFeedback3()%></td>
+                                            </tr>
+                                            <% } %>
+                                            <% if (!SEreport.getFeedback4().equals("No Suggestion")) {%>
+                                            <tr>
+                                                <td><center>LSPO Director</center></td>
+                                            <td><%=SE.getLmc4Remarks()%></td>
+                                            <td><%=SEreport.getFeedback4()%></td>
+                                            </tr>
+                                            <% } %>
+                                            <% if (!SEreport.getFeedback5().equals("No Suggestion")) {%>
+                                            <tr>
+                                                <td><center>COSCA Director</center></td>
+                                            <td><%=SE.getLmc5Remarks()%></td>
+                                            <td><%=SEreport.getFeedback5()%></td>
+                                            </tr>
+                                            <% } %>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <br/>
-                                <% }}%>
+                                <% }
+                                    }%>
 
                                 <div class="card">
                                     <div class="card-header">
@@ -568,7 +571,7 @@
                                     </div>
                                 </div>
                                 <br/>
-                                
+
                                 <center><button type="submit" value="<%=SE.getId()%>" name="vieweval" class="btn-success">View Evaluation Results</button></center>
                             </div>
 

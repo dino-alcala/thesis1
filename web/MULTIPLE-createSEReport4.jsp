@@ -278,10 +278,6 @@
                                     <% }%>
                                 </table></center>
                             <br>
-                            <center>
-                                <button class="button" type ="button" id="addRowButton" onclick ="addRow()">Add Row</button>
-                                <button class="button" type ="button" id="deleteRowButton" onclick ="deleteRow()" style="background-color:red">Delete Row</button>
-                            </center>
                         </fieldset>    
                         <br><br><br><br>
                         <center><button class="button" type = "submit">Submit</button></center>

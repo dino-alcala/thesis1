@@ -1159,6 +1159,61 @@ public class UserDAO {
         }
         return units;
     }
+    
+    public ArrayList<Unit> retrieveUnitsNonAcademic() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM unit where unitType = 'Non-Academic'";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Unit> units = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Unit u = new Unit();
+                u.setUnitID(rs.getInt("unitID"));
+                u.setName(rs.getString("unitName"));
+                u.setHead(rs.getString("unitHead"));
+                u.setType(rs.getString("unitType"));
+                u.setDepartments(rs.getInt("departments"));
+                u.setFaculty(rs.getInt("numberOfFaculty"));
+                u.setAdmin(rs.getInt("numberOfAdmin"));
+                u.setApsp(rs.getInt("numberOfAPSP"));
+                u.setAsf(rs.getInt("numberOfASF"));
+                u.setCap(rs.getInt("numberOfCAP"));
+                u.setDirecthired(rs.getInt("numberOfDirectHired"));
+                u.setIndependent(rs.getInt("numberOfIndependent"));
+                u.setExternal(rs.getInt("numberOfExternal"));
+                u.setDescription(rs.getString("unitDescription"));
+                u.setUserID(rs.getInt("userID"));
+                units.add(u);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return units;
+    }
 
     public ArrayList<StudentOrg> retrieveStudentOrgs() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -15337,6 +15392,48 @@ public class UserDAO {
         }
         return SE;
     }
+    
+    public ArrayList<SE> retrieveSEImplementedAmountRequestedByDate(Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE step = 9 AND datecreated >= ? AND datecreated <= ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setDate(1, startDate);
+            pstmt.setDate(2, endDate);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setDate(rs2.getDate("datecreated"));
+                s.setName(rs2.getString("programName"));
+                s.setTotalAmount(rs2.getDouble("totalAmountRequested"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
 
     public ArrayList<FF> retrieveFFProposalAmountRequestedByDate(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -15347,6 +15444,48 @@ public class UserDAO {
         ResultSet rs2 = null;
         try {
             String query = "SELECT * FROM ffproposal WHERE step >= 1 && step <= 8 AND datecreated >= ? AND datecreated <= ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setDate(1, startDate);
+            pstmt.setDate(2, endDate);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF f = new FF();
+                f.setDatecreated(rs2.getDate("datecreated"));
+                f.setProjectName(rs2.getString("projectName"));
+                f.setTotalAmount(rs2.getDouble("totalAmount"));
+                f.setUnit(rs2.getString("unit"));
+                f.setDepartment(rs2.getString("department"));
+                f.setId(rs2.getInt("id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+    
+    public ArrayList<FF> retrieveFFImplementedAmountRequestedByDate(Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE step = 9 AND datecreated >= ? AND datecreated <= ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setDate(1, startDate);
