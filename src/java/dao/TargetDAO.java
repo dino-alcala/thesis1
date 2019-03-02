@@ -215,7 +215,7 @@ public class TargetDAO {
             //FOR FAITH FORMATION
             //UNIT TARGET: STAFF
             //
-            else if (m.getUnittarget().equals("Staff") && m.getNumtypetarget().equals("Percent")){
+            else if (m.getUnittarget().equals("Staff")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";                    
                 } else if(m.getEngagingtarget().equals("Parents")){
