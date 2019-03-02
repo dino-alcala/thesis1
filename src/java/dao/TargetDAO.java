@@ -597,11 +597,13 @@ public class TargetDAO {
                         pstmt = conn.prepareStatement(query);
                         pstmt.setInt(1, SE.get(x).getId());
                         rs = pstmt.executeQuery();
+                        
+                        while (rs.next()) {
+                            count = rs.getInt("count");
+                        }
                     }
 
-                    while (rs.next()) {
-                        count = rs.getInt("count");
-                    }
+                    
      
                     return percent = count * 100 / m.getNumtarget();
                    
@@ -1181,11 +1183,13 @@ public class TargetDAO {
                         pstmt = conn.prepareStatement(query);
                         pstmt.setInt(1, SE.get(x).getId());
                         rs = pstmt.executeQuery();
+                        
+                        while (rs.next()) {
+                            count = rs.getInt("count");
+                        }
                     }
 
-                    while (rs.next()) {
-                        count = rs.getInt("count");
-                    }
+                    
      
                     return percent = count * 100 / m.getNumtarget();
                    
@@ -1799,11 +1803,13 @@ public class TargetDAO {
                         pstmt = conn.prepareStatement(query);
                         pstmt.setInt(1, SE.get(x).getId());
                         rs = pstmt.executeQuery();
+                        
+                        while (rs.next()) {
+                            count = rs.getInt("count");
+                        }
                     }
 
-                    while (rs.next()) {
-                        count = rs.getInt("count");
-                    }
+                    
      
                     return percent = count * 100 / m.getNumtarget();
                    
@@ -3006,12 +3012,14 @@ public class TargetDAO {
                         pstmt = conn.prepareStatement(query);
                         pstmt.setInt(1, SE.get(x).getId());
                         rs = pstmt.executeQuery();
+                        
+                        while (rs.next()) {
+                            count = rs.getInt("count");
+                        }
+     
                     }
 
-                    while (rs.next()) {
-                        count = rs.getInt("count");
-                    }
-     
+                    
                     return percent = count * 100 / m.getNumtarget();
                    
                 } catch (SQLException ex) {
