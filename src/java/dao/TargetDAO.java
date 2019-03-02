@@ -75,29 +75,26 @@ public class TargetDAO {
             if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
                 ArrayList<FF> FF = UserDAO.retrieveALLFFProposal();
                 if (m.getEngagingtarget().equals("N/A")) {
-                    query = "SELECT count(f.id) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9";
+                    query = "SELECT count(f.id) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 9";
                 } else if (m.getEngagingtarget().equals("Alumni")) {
-                    query = "SELECT count(f.id) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9 AND a.type IN ('Alumni')";
+                    query = "SELECT count(distinct(f.id)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9 AND a.type IN ('Alumni')";
                 } else if (m.getEngagingtarget().equals("Parents")) {
-                    query = "SELECT count(f.id) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9 AND a.type IN ('Parent')";
+                    query = "SELECT count(distinct(f.id)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9 AND a.type IN ('Parent')";
                 } else if (m.getEngagingtarget().equals("International Students")) {
-                    query = "SELECT count(f.id) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9 AND a.type IN ('International')";
+                    query = "SELECT count(distinct(f.id)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.id = ? AND f.step = 9 AND a.type IN ('International')";
                 }
                 try {
-                    if(query.equals("")){
+                    if (query.equals("")) {
                         return -1;
                     }
-                    
-                    for(int x = 0 ; x < FF.size() ; x++){
-                        pstmt = conn.prepareStatement(query);
-                        pstmt.setInt(1, FF.get(x).getId());
-                        rs = pstmt.executeQuery();
-                        
-                        while (rs.next()) {
-                            count = rs.getInt("count");
-                        }
+
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        count = rs.getInt("count");
                     }
-                    
+
                     return percent = count * 100 / m.getNumtarget();
                 } catch (SQLException ex) {
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -251,7 +248,7 @@ public class TargetDAO {
             //FOR FAITH FORMATION
             //UNIT TARGET: CAP
             //
-            else if(m.getUnittarget().equals("CAP")){
+            else if(m.getUnittarget().equals("CAP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -286,7 +283,7 @@ public class TargetDAO {
             //FOR FAITH FORMATION
             //UNIT TARGET: APSP
             //
-            else if(m.getUnittarget().equals("APSP")){
+            else if(m.getUnittarget().equals("APSP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'APSP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -321,7 +318,7 @@ public class TargetDAO {
             //FOR FAITH FORMATION
             //UNIT TARGET: ASF
             //
-            else if(m.getUnittarget().equals("ASF")){
+            else if(m.getUnittarget().equals("ASF Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'ASF'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -581,32 +578,25 @@ public class TargetDAO {
             else if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
                 ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
                 if (m.getEngagingtarget().equals("N/A")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.step = 9";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9";
                 } else if (m.getEngagingtarget().equals("Alumni")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.step = 9 AND a.type IN ('Alumni')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Alumni')";
                 } else if (m.getEngagingtarget().equals("Parents")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.step = 9 AND a.type IN ('Parent')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Parent')";
                 } else if (m.getEngagingtarget().equals("International Students")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.step = 9 AND a.type IN ('International')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('International')";
                 } else if (m.getEngagingtarget().equals("International Communities")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN community c ON c.communityID = s.targetCommunity WHERE s.id = ? AND c.international = 1 AND s.step = 9";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9";
                 }
                 try {
                     if (query.equals("")) {
                         return -1;
                     }
-                    for (int x = 0; x < SE.size(); x++) {
-                        pstmt = conn.prepareStatement(query);
-                        pstmt.setInt(1, SE.get(x).getId());
-                        rs = pstmt.executeQuery();
-                        
-                        while (rs.next()) {
-                            count = rs.getInt("count");
-                        }
+
+                    while (rs.next()) {
+                        count = rs.getInt("count");
                     }
 
-                    
-     
                     return percent = count * 100 / m.getNumtarget();
                    
                 } catch (SQLException ex) {
@@ -763,7 +753,7 @@ public class TargetDAO {
             //FOR SOCIAL ENGAGEMENT
             //UNIT TARGET: CAP
             //
-            else if(m.getUnittarget().equals("CAP")){
+            else if(m.getUnittarget().equals("CAP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -800,7 +790,7 @@ public class TargetDAO {
             //FOR SOCIAL ENGAGEMENT
             //UNIT TARGET: APSP
             //
-            else if(m.getUnittarget().equals("APSP")){
+            else if(m.getUnittarget().equals("APSP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'APSP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -837,7 +827,7 @@ public class TargetDAO {
             //FOR SOCIAL ENGAGEMENT
             //UNIT TARGET: ASF
             //
-            else if(m.getUnittarget().equals("ASF")){
+            else if(m.getUnittarget().equals("ASF Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'ASF'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -1167,32 +1157,28 @@ public class TargetDAO {
             else if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
                 ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
                 if (m.getEngagingtarget().equals("N/A")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.id = ? AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora'";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.id = ? AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora'";
                 } else if (m.getEngagingtarget().equals("Alumni")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Alumni')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Alumni')";
                 } else if (m.getEngagingtarget().equals("Parents")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9 AND a.type IN ('Parent')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9 AND a.type IN ('Parent')";
                 } else if (m.getEngagingtarget().equals("International Students")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9 AND a.type IN ('International')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9 AND a.type IN ('International')";
                 } else if (m.getEngagingtarget().equals("International Communities")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.id = ? AND s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.id = ? AND s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9";
                 }
                 try {
                     if (query.equals("")) {
                         return -1;
                     }
-                    for (int x = 0; x < SE.size(); x++) {
-                        pstmt = conn.prepareStatement(query);
-                        pstmt.setInt(1, SE.get(x).getId());
-                        rs = pstmt.executeQuery();
-                        
-                        while (rs.next()) {
-                            count = rs.getInt("count");
-                        }
+
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        count = rs.getInt("count");
                     }
 
-                    
-     
                     return percent = count * 100 / m.getNumtarget();
                    
                 } catch (SQLException ex) {
@@ -1352,7 +1338,7 @@ public class TargetDAO {
             //FOR INTERDISCIPLINARY FORA
             //UNIT TARGET: CAP
             //
-            else if(m.getUnittarget().equals("CAP")){
+            else if(m.getUnittarget().equals("CAP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -1389,7 +1375,7 @@ public class TargetDAO {
             //FOR INTERDISCIPLINARY FORA
             //UNIT TARGET: APSP
             //
-            else if(m.getUnittarget().equals("APSP")){
+            else if(m.getUnittarget().equals("APSP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'APSP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -1426,7 +1412,7 @@ public class TargetDAO {
             //FOR INTERDISCIPLINARY FORA
             //UNIT TARGET: ASF
             //
-            else if(m.getUnittarget().equals("ASF")){
+            else if(m.getUnittarget().equals("ASF Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'ASF'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -1787,32 +1773,28 @@ public class TargetDAO {
             if (m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")) {
                 ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
                 if (m.getEngagingtarget().equals("N/A")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.id = ? AND s.step = 9 AND s.sustainable = 1";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.sustainable = 1";
                 } else if (m.getEngagingtarget().equals("Alumni")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.step = 9 AND s.sustainable = 1 AND a.type IN ('Alumni')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Alumni')";
                 } else if (m.getEngagingtarget().equals("Parents")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.sustainable = 1 AND s.step = 9 AND a.type IN ('Parent')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.sustainable = 1 AND s.step = 9 AND a.type IN ('Parent')";
                 } else if (m.getEngagingtarget().equals("International Students")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.sustainable = 1 AND s.step = 9 AND a.type IN ('International')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.sustainable = 1 AND s.step = 9 AND a.type IN ('International')";
                 } else if (m.getEngagingtarget().equals("International Communities")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.id = ? AND s.sustainable = 1 AND s.step = 9";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.sustainable = 1 AND s.step = 9";
                 }
                 try {
                     if (query.equals("")) {
                         return -1;
                     }
-                    for (int x = 0; x < SE.size(); x++) {
-                        pstmt = conn.prepareStatement(query);
-                        pstmt.setInt(1, SE.get(x).getId());
-                        rs = pstmt.executeQuery();
-                        
-                        while (rs.next()) {
-                            count = rs.getInt("count");
-                        }
+
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        count = rs.getInt("count");
                     }
 
-                    
-     
                     return percent = count * 100 / m.getNumtarget();
                    
                 } catch (SQLException ex) {
@@ -1971,7 +1953,7 @@ public class TargetDAO {
             //FOR SUSTAINABLE SE
             //UNIT TARGET: CAP
             //
-            else if(m.getUnittarget().equals("CAP")){
+            else if(m.getUnittarget().equals("CAP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -2008,7 +1990,7 @@ public class TargetDAO {
             //FOR SUSTAINABLE SE
             //UNIT TARGET: APSP
             //
-            else if(m.getUnittarget().equals("APSP")){
+            else if(m.getUnittarget().equals("APSP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'APSP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -2045,7 +2027,7 @@ public class TargetDAO {
             //FOR SUSTAINABLE SE
             //UNIT TARGET: ASF
             //
-            else if(m.getUnittarget().equals("ASF")){
+            else if(m.getUnittarget().equals("ASF Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'ASF'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -2373,15 +2355,15 @@ public class TargetDAO {
             //
             else if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
                 if(m.getEngagingtarget().equals("N/A")){
-                    query = "SELECT count(s.id) as count FROM seproposal s WHERE s.step = 9 AND s.classificationforkra != 'None'";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s WHERE s.step = 9 AND s.classificationforkra != 'None'";
                 } else if(m.getEngagingtarget().equals("Alumni")){
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Alumni')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Alumni')";
                 } else if(m.getEngagingtarget().equals("Parents")){
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Parent')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Parent')";
                 } else if(m.getEngagingtarget().equals("International Students")){
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('International')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('International')";
                 } else if(m.getEngagingtarget().equals("International Communities")){
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None'";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None'";
                 }
                 try{
                     if(query.equals("")){
@@ -2556,7 +2538,7 @@ public class TargetDAO {
             //FOR SDGLP
             //UNIT TARGET: CAP
             //
-            else if(m.getUnittarget().equals("CAP")){
+            else if(m.getUnittarget().equals("CAP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -2593,7 +2575,7 @@ public class TargetDAO {
             //FOR SDGLP
             //UNIT TARGET: APSP
             //
-            else if(m.getUnittarget().equals("APSP")){
+            else if(m.getUnittarget().equals("APSP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'APSP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -2630,7 +2612,7 @@ public class TargetDAO {
             //FOR SDGLP
             //UNIT TARGET: ASF
             //
-            else if(m.getUnittarget().equals("ASF")){
+            else if(m.getUnittarget().equals("ASF Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'ASF'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -2996,32 +2978,28 @@ public class TargetDAO {
             else if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
                 ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
                 if (m.getEngagingtarget().equals("N/A")) {
-                    query = "SELECT count(s.id) as count FROM seproposal WHERE s.id = ? AND s.step = 9 AND s.activityClassification = 'Service-Learning'";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal WHERE s.step = 9 AND s.activityClassification = 'Service-Learning'";
                 } else if (m.getEngagingtarget().equals("Alumni")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Alumni')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Alumni')";
                 } else if (m.getEngagingtarget().equals("Parents")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.activityClassification = 'Service-Learning' AND s.step = 9 AND a.type IN ('Parent')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Service-Learning' AND s.step = 9 AND a.type IN ('Parent')";
                 } else if (m.getEngagingtarget().equals("International Students")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.id = ? AND s.activityClassification = 'Service-Learning' AND s.step = 9 AND a.type IN ('International')";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Service-Learning' AND s.step = 9 AND a.type IN ('International')";
                 } else if (m.getEngagingtarget().equals("International Communities")) {
-                    query = "SELECT count(s.id) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE c.international = 1 AND s.id = ? AND s.step = 9 AND s.activityClassification = 'Service-Learning'";
+                    query = "SELECT count(distinct(s.id)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE c.international = 1 AND s.step = 9 AND s.activityClassification = 'Service-Learning'";
                 }
                 try {
                     if (query.equals("")) {
                         return -1;
                     }
-                    for (int x = 0; x < SE.size(); x++) {
+                
                         pstmt = conn.prepareStatement(query);
-                        pstmt.setInt(1, SE.get(x).getId());
                         rs = pstmt.executeQuery();
                         
                         while (rs.next()) {
                             count = rs.getInt("count");
                         }
      
-                    }
-
-                    
                     return percent = count * 100 / m.getNumtarget();
                    
                 } catch (SQLException ex) {
@@ -3181,7 +3159,7 @@ public class TargetDAO {
             //FOR SERVICE-LEARNING
             //UNIT TARGET: CAP
             //
-            else if(m.getUnittarget().equals("CAP")){
+            else if(m.getUnittarget().equals("CAP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -3218,7 +3196,7 @@ public class TargetDAO {
             //FOR SERVICE-LEARNING
             //UNIT TARGET: APSP
             //
-            else if(m.getUnittarget().equals("APSP")){
+            else if(m.getUnittarget().equals("APSP Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'APSP'";
                 } else if(m.getEngagingtarget().equals("Parents")){
@@ -3255,7 +3233,7 @@ public class TargetDAO {
             //FOR SERVICE-LEARNING
             //UNIT TARGET: ASF
             //
-            else if(m.getUnittarget().equals("ASF")){
+            else if(m.getUnittarget().equals("ASF Employees")){
                 if(m.getEngagingtarget().equals("N/A")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'ASF'";
                 } else if(m.getEngagingtarget().equals("Parents")){
