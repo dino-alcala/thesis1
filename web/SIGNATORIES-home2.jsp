@@ -5,6 +5,11 @@
 --%>
 
 
+<%@page import="entity.KRA"%>
+<%@page import="dao.OvplmDAO"%>
+<%@page import="dao.TargetDAO"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.FF"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
@@ -85,7 +90,7 @@
             tr:hover {
                 background-color: lightgreen;
             }
-            
+
             h4{
                 font-size: 22px;
                 text-align: left;
@@ -94,7 +99,7 @@
                 padding-bottom: 7px;
                 margin-bottom: 25px;
             }
-  
+
             .table{
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
@@ -109,15 +114,15 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-            
+
             html{
                 font-size:14px;
             }
-            
+
             .navbar{
                 height:8%;
             }
-            
+
             .sidebar-expanded{
                 margin-top: 0%;
             }
@@ -169,7 +174,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -246,6 +251,74 @@
             <!-- MAIN -->
 
             <div class="col py-3">
+                <div class="container-fluid panels">
+                    <h4>Key Result Areas </h4>
+                    <form action="calculateTargets">
+                        <%if (session.getAttribute("unit").equals("Office of the Vice President for Lasallian Mission")) {%><center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center><%}%>
+                            <%
+                                DecimalFormat percentage = new DecimalFormat("0.00");
+                                TargetDAO TargetDAO = new TargetDAO();
+                                OvplmDAO OvplmDAO = new OvplmDAO();
+                                ArrayList<KRA> kralist = OvplmDAO.retrieveKRA();
+                                for (int x = 2; x < kralist.size(); x++) {
+                            %>
+                        <h5><%=kralist.get(x).getName()%></h5>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th style="width:30%">Goal</th>
+                                    <th style="width:30%">Measure</th>
+                                    <th style="width:30%">Target</th>
+                                    <th style="width:5%">Accomplishment</th>
+                                    <th style="width:5%"></th>
+                                </tr>
+                            </thead>
+                            <%
+                                KRA kra = OvplmDAO.retrieveKRAByID(kralist.get(x).getId());
+                                for (int y = 0; y < kra.getGoals().size(); y++) {
+                            %> 
+                            <tr>
+                                <td><%=kra.getGoals().get(y).getName()%></td>
+
+                                <%
+                                    for (int z = 0; z < kra.getGoals().get(y).getMeasures().size(); z++) {
+                                %>
+                                <%if (kra.getGoals().get(y).getMeasures().get(z).getUntrackable() == 1) {%>
+                                <td><%if (z == 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
+
+                                <td><%if (z != 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
+
+                                    <%if (z == 0) {%>Not Trackable</td><%}%>
+                                <%if (z != 0) {%><td>Not Trackable</td><%}%>
+
+
+                                <%if (z != 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                                <%if (z == 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+
+                                <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>                                    
+                                <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            </tr>
+                            <%} else {%>
+                            <td><%if (z == 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
+                            <td><%if (z != 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
+
+                                <%if (z == 0) {%><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
+                            <%if (z != 0) {%><td><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
+
+                            <% double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals()); %>
+                            <%if (z == 0) {%><% if (percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                            <%if (z != 0) {%><% if (percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+
+                            <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            </tr>    
+                            <% }
+                                }
+                            } %>
+                        </table>
+                        <% } %>
+                    </form>
+                </div>
                 <form action="viewFF" method="post">
                     <!--- table -->
                     <div class="container-fluid panels">
@@ -262,11 +335,11 @@
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Chairperson")) {
                                 proposals = UserDAO.retrieveFFProposalByDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
-                            
+
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Head")) {
                                 proposals = UserDAO.retrieveFFProposalByStepUnit(2, UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
-                            
+
                             if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                                 proposals = UserDAO.retrieveFFProposalByStepUnit(3, UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                             }
@@ -289,7 +362,7 @@
                                         if (!UserDAO.isFFRevise(proposals.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=proposals.get(i).getActualDate() %></td>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
                                     <td><%=proposals.get(i).getProjectName()%></td>
                                     <td><%=proposals.get(i).getUnit()%></td>
                                     <td><%=proposals.get(i).getDepartment()%></td>

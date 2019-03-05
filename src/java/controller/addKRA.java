@@ -71,6 +71,7 @@ public class addKRA extends HttpServlet {
                         m.setUnittarget(request.getParameter("goal" + i + "unittarget" + j));
                         m.setTypetarget(request.getParameter("goal" + i + "typetarget" + j));
                         m.setEngagingtarget(request.getParameter("goal" + i + "engaging" + j));
+                        m.setUntrackable(1);
                     } else {
                         Measure temp = new Measure();
                         temp.setNumtarget(Integer.parseInt(request.getParameter("goal" + i + "numtarget" + j)));
@@ -81,16 +82,18 @@ public class addKRA extends HttpServlet {
 
                         if (TargetDAO.calculateTarget(temp, TargetDAO.getTotals()) == -1) {
                             m.setNumtarget(Integer.parseInt(request.getParameter("goal" + i + "numtarget" + j)));
-                            m.setNumtypetarget("untrackable");
+                            m.setNumtypetarget(request.getParameter("goal" + i + "numtypetarget" + j));
                             m.setUnittarget(request.getParameter("goal" + i + "unittarget" + j));
                             m.setTypetarget(request.getParameter("goal" + i + "typetarget" + j));
                             m.setEngagingtarget(request.getParameter("goal" + i + "engaging" + j));
+                            m.setUntrackable(1);
                         } else if (TargetDAO.calculateTarget(temp, TargetDAO.getTotals()) != -1) {
                             m.setNumtarget(Integer.parseInt(request.getParameter("goal" + i + "numtarget" + j)));
                             m.setNumtypetarget(request.getParameter("goal" + i + "numtypetarget" + j));
                             m.setUnittarget(request.getParameter("goal" + i + "unittarget" + j));
                             m.setTypetarget(request.getParameter("goal" + i + "typetarget" + j));
                             m.setEngagingtarget(request.getParameter("goal" + i + "engaging" + j));
+                            m.setUntrackable(0);
                         }
                     }
                     g.addMeasure(m);

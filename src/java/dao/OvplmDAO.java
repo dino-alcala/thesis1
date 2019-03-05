@@ -344,7 +344,7 @@ public class OvplmDAO {
                 }
 
                 for (int j = 0; j < KRA.getGoals().get(i).getMeasures().size(); j++) {
-                    query = "INSERT into measure(measure, description, kraID, goalID, numtarget, numtypetarget, unittarget, typetarget, engagingtarget) VALUES(?,?,?,?,?,?,?,?,?)";
+                    query = "INSERT into measure(measure, description, kraID, goalID, numtarget, numtypetarget, unittarget, typetarget, engagingtarget, untrackable) VALUES(?,?,?,?,?,?,?,?,?,?)";
                     pstmt = conn.prepareStatement(query);
                     pstmt.setString(1, KRA.getGoals().get(i).getMeasures().get(j).getMeasure());
                     pstmt.setString(2, KRA.getGoals().get(i).getMeasures().get(j).getDescription());
@@ -355,6 +355,7 @@ public class OvplmDAO {
                     pstmt.setString(7, KRA.getGoals().get(i).getMeasures().get(j).getUnittarget());
                     pstmt.setString(8, KRA.getGoals().get(i).getMeasures().get(j).getTypetarget());
                     pstmt.setString(9, KRA.getGoals().get(i).getMeasures().get(j).getEngagingtarget());
+                    pstmt.setInt(10, KRA.getGoals().get(i).getMeasures().get(j).getUntrackable());
                     rs = pstmt.executeUpdate();
 
                 }
@@ -431,6 +432,7 @@ public class OvplmDAO {
                         m.setUnittarget(rs.getString("unittarget"));
                         m.setTypetarget(rs.getString("typetarget"));
                         m.setEngagingtarget(rs.getString("engagingtarget"));
+                        m.setUntrackable(rs.getInt("untrackable"));
                         measures.add(m);
                     }
 
@@ -556,6 +558,7 @@ public class OvplmDAO {
                     m.setUnittarget(rs.getString("unittarget"));
                     m.setTypetarget(rs.getString("typetarget"));
                     m.setEngagingtarget(rs.getString("engagingtarget"));
+                    m.setUntrackable(rs.getInt("untrackable"));
                     measures.add(m);
                 }
                 goals.get(i).setMeasures(measures);

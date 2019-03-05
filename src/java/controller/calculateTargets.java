@@ -41,8 +41,16 @@ public class calculateTargets extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-editTotals.jsp");
                 dispatcher.forward(request, response);
-            } else if(request.getParameter("measure") != null){
-                
+            } else if(request.getParameter("buttontrackable") != null){
+                request.setAttribute("measureID", request.getParameter("buttontrackable"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewKRATracing.jsp");
+                dispatcher.forward(request, response);
+            } else if(request.getParameter("buttonuntrackable") != null){
+                request.setAttribute("measureID", request.getParameter("buttonuntrackable"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewKRATracing.jsp");
+                dispatcher.forward(request, response);
             }
         }
     }

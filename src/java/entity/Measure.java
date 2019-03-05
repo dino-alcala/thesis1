@@ -20,6 +20,7 @@ public class Measure {
     protected String engagingtarget;
     protected int kraID;
     protected int goalID;
+    protected int untrackable;
     protected int numOfPrograms;
 
     public int getMeasureID() {
@@ -110,6 +111,12 @@ public class Measure {
     public void setEngagingtarget(String engagingtarget) {
         this.engagingtarget = engagingtarget;
     }
-    
-    
+
+    public int getUntrackable() {
+        return untrackable;
+    }
+
+    public void setUntrackable(int untrackable) {
+        this.untrackable = untrackable;
+    }
 }

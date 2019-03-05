@@ -534,7 +534,7 @@ public class TargetDAO {
                 } else if(m.getEngagingtarget().equals("Parents")){
                     query = "SELECT count(distinct(name)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Alumni' AND a.type IN('Parent')";
                 } else if(m.getEngagingtarget().equals("Alumni")){
-                    query = "SELECT count(distinct(name)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Alumni' AND a.type IN('Alumni')";
+                    return -1;
                 } else if(m.getEngagingtarget().equals("International Students")){
                     query = "SELECT count(distinct(name)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Alumni' AND a.type IN('International')";
                 }
@@ -569,7 +569,7 @@ public class TargetDAO {
             //UNIT TARGET: SE PROGRAMS PER UNIT
             //
             if(m.getUnittarget().equals("SE Programs Per Unit")){
-                return - 1;
+                return -1;
             } 
             //
             //FOR SOCIAL ENGAGEMENT
@@ -1020,7 +1020,7 @@ public class TargetDAO {
                 } else if(m.getEngagingtarget().equals("Alumni")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'International' AND a.type IN ('Alumni')";
                 } else if(m.getEngagingtarget().equals("International Students")){
-                    query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'International' AND a.type IN ('International')";
+                    return -1;
                 } else if(m.getEngagingtarget().equals("International Communities")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'International'";
                 }
@@ -1055,7 +1055,7 @@ public class TargetDAO {
                 } else if(m.getEngagingtarget().equals("Parents")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Alumni' AND a.type IN ('Parent')";
                 } else if(m.getEngagingtarget().equals("Alumni")){
-                    query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Alumni' AND a.type IN ('Alumni')";
+                    return -1;
                 } else if(m.getEngagingtarget().equals("International Students")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Alumni' AND a.type IN ('International')";
                 } else if(m.getEngagingtarget().equals("International Communities")){
@@ -1087,7 +1087,7 @@ public class TargetDAO {
             //UNIT TARGET: SE PROGRAMS
             //
             else if(m.getUnittarget().equals("Social Engagement Programs")){
-                return - 1;
+                return -1;
             }
         }
         //
@@ -1640,7 +1640,7 @@ public class TargetDAO {
                 } else if(m.getEngagingtarget().equals("Parents")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Alumni' AND a.type IN ('Parents')";
                 } else if(m.getEngagingtarget().equals("Alumni")){
-                    query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Alumni' AND a.type IN ('Alumni')";
+                    return -1;
                 } else if(m.getEngagingtarget().equals("International Students")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Alumni' AND a.type IN ('International')";
                 } else if(m.getEngagingtarget().equals("International Communities")){
@@ -2183,7 +2183,7 @@ public class TargetDAO {
                 } else if(m.getEngagingtarget().equals("Alumni")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'International' AND a.type IN ('Alumni')";
                 } else if(m.getEngagingtarget().equals("International Students")){
-                    return - 1;
+                    return -1;
                 } else if(m.getEngagingtarget().equals("International Communities")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'International'";
                 }
@@ -2218,7 +2218,7 @@ public class TargetDAO {
                 } else if(m.getEngagingtarget().equals("Parents")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Alumni' AND a.type IN ('Parents')";
                 } else if(m.getEngagingtarget().equals("Alumni")){
-                    return - 1;
+                    return -1;
                 } else if(m.getEngagingtarget().equals("International Students")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Alumni' AND a.type IN ('International')";
                 } else if(m.getEngagingtarget().equals("International Communities")){
@@ -3461,7 +3461,7 @@ public class TargetDAO {
                 } else if(m.getEngagingtarget().equals("Parents")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Alumni' AND a.type IN ('Parents')";
                 } else if(m.getEngagingtarget().equals("Alumni")){
-                    query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Alumni' AND a.type IN ('Alumni')";
+                    return -1;
                 } else if(m.getEngagingtarget().equals("International Students")){
                     query = "SELECT count(distinct(name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Alumni' AND a.type IN ('International')";
                 } else if(m.getEngagingtarget().equals("International Communities")){
@@ -3530,6 +3530,3087 @@ public class TargetDAO {
             return -1;
         }
         return -1;
+    }
+    
+    public ArrayList<Integer> getPrograms(Measure m) {
+        UserDAO UserDAO = new UserDAO();
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String query = "";
+        ArrayList<Integer> ids = new ArrayList();
+        
+        if(m.getTypetarget().equals("Faith Formation")){
+            //for ff
+            //se programs per units - n/a
+            //no specified unit - yes
+            //student orgs - yes
+            //depts - yes
+            //faculty depts - yes
+            //staff - yes
+            //cap - yes
+            //apsp
+            //asf
+            //faculty
+            //admin
+            //grad
+            //undergrad
+            //international - yes
+            //alumni
+            //social engagement - n/a
+            
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: NO SPECIFIED UNIT
+            //
+            if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
+                ArrayList<FF> FF = UserDAO.retrieveALLFFProposal();
+                if (m.getEngagingtarget().equals("N/A")) {
+                    query = "SELECT f.id FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 9";
+                } else if (m.getEngagingtarget().equals("Alumni")) {
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('Alumni')";
+                } else if (m.getEngagingtarget().equals("Parents")) {
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('Parent')";
+                } else if (m.getEngagingtarget().equals("International Students")) {
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('International')";
+                }
+                try {
+                    if (query.equals("")) {
+                        return ids;
+                    }
+
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: STUDENT ORGS
+            //
+            else if(m.getUnittarget().equals("Student Organizations")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 9 AND f.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE a.type IN ('Alumni') AND f.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE a.type IN ('Parent') AND f.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE a.type IN ('International') AND f.studentorg = 1";
+                }
+                try {
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: DEPTS
+            //
+            else if(m.getUnittarget().equals("Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 9 AND f.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('Alumni') AND f.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('Parent') AND f.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('International') AND f.studentorg != 1";
+                }
+                try {
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION 
+            //UNIT TARGET: FACULTY DEPT
+            //
+            else if(m.getUnittarget().equals("Faculty Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID WHERE f.step = 9 AND f.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('Alumni') AND f.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('Parent') AND f.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type IN ('International') AND f.studentorg != 1";
+                }
+                try {
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                   return ids;
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: STAFF
+            //
+            else if (m.getUnittarget().equals("Staff")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";                    
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: CAP
+            //
+            else if(m.getUnittarget().equals("CAP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'CAP' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: APSP
+            //
+            else if(m.getUnittarget().equals("APSP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'APSP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'APSP' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'APSP' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'APSP' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: ASF
+            //
+            else if(m.getUnittarget().equals("ASF Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'ASF'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'ASF' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'ASF' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'ASF' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: ASF
+            //
+            else if(m.getUnittarget().equals("Faculty Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Faculty'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Faculty' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Faculty' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Faculty' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: ADMINISTRATORS
+            //
+            else if(m.getUnittarget().equals("Administrators")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Admin'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Admin' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Admin' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Admin' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: GRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Graduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Grad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Grad' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Grad' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Grad' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: UNDERGRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Undergraduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Undergrad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Undergrad' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Undergrad' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Undergrad' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: INTERNATIONAL STUDENTS
+            //
+            else if(m.getUnittarget().equals("International Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'International'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'International' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'International' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    return ids;
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR FAITH FORMATION
+            //UNIT TARGET: ALUMNI
+            //
+            else if(m.getUnittarget().equals("Alumni")){
+                if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Alumni'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(f.id) FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Alumni' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT count(distinct(name)) as count FROM ffproposal f JOIN ffreport ff ON f.id = ff.ffproposalID JOIN ffreport_attendees a ON ff.id = a.ffreportID WHERE f.step = 9 AND a.type = 'Alumni' AND a.type IN('International')";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("f.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //START OF
+            //SOCIAL ENGAGEMENT
+            //
+        } else if(m.getTypetarget().equals("Social Engagement")){
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: SE PROGRAMS PER UNIT
+            //
+            if(m.getUnittarget().equals("SE Programs Per Unit")){
+                return ids;
+            } 
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: NO SPECIFIED UNIT
+            //
+            else if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
+                ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
+                if (m.getEngagingtarget().equals("N/A")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9";
+                } else if (m.getEngagingtarget().equals("Alumni")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Alumni')";
+                } else if (m.getEngagingtarget().equals("Parents")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Parent')";
+                } else if (m.getEngagingtarget().equals("International Students")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('International')";
+                } else if (m.getEngagingtarget().equals("International Communities")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9";
+                }
+                try {
+                    if (query.equals("")) {
+                        return ids;
+                    }
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                   
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: STUDENT ORGS
+            //
+            else if(m.getUnittarget().equals("Student Organizations")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Alumni') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Parent') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('International') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 9 AND c.international = 1 AND a.type IN ('International') AND s.studentorg = 1";
+                }
+                try {
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+                    
+                    return ids;
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: FACULTY DEPTS
+            //
+            else if(m.getUnittarget().equals("Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 9 AND c.international = 1 AND s.studentorg != 1";
+                }
+                try {
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if(m.getUnittarget().equals("Faculty Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE s.step = 9 AND c.international = 1 AND s.studentorg != 1";
+                }
+                try {
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: STAFF
+            //
+            else if(m.getUnittarget().equals("Staff")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: CAP
+            //
+            else if(m.getUnittarget().equals("CAP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'CAP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: APSP
+            //
+            else if(m.getUnittarget().equals("APSP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'APSP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'APSP' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'APSP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'APSP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'APSP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: ASF
+            //
+            else if(m.getUnittarget().equals("ASF Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'ASF'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'ASF' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'ASF' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'ASF' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'ASF'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: FACULTY
+            //
+            else if(m.getUnittarget().equals("Faculty Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Faculty'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Faculty' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Faculty' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Faculty' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'Faculty'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: ADMINISTRATORS
+            //
+            else if(m.getUnittarget().equals("Administrators")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Admin'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Admin' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Admin' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Admin' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'Admin'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: GRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Graduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Grad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Grad' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Grad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Grad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'Grad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: UNDERGRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Undergraduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Undergrad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Undergrad' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Undergrad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Undergrad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN comminity c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'Undergrad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: INTERNATIONAL STUDENTS
+            //
+            else if(m.getUnittarget().equals("International Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'International'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'International' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'International' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'International'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: ALUMNI
+            //
+            else if(m.getUnittarget().equals("Alumni")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Alumni'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Alumni' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'Alumni' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.classification = 1 AND s.step = 9 AND a.type = 'Alumni'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SOCIAL ENGAGEMENT
+            //UNIT TARGET: SE PROGRAMS
+            //
+            else if(m.getUnittarget().equals("Social Engagement Programs")){
+                return ids;
+            }
+        }
+        //
+        //START OF
+        //INTERDISCIPLINARY FORA
+        //
+        else if(m.getTypetarget().equals("Interdisciplinary Fora")){
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: SE PROGRAMS PER UNIT
+            //
+            if(m.getUnittarget().equals("SE Programs Per Unit")){
+                ArrayList<Unit> units = UserDAO.retrieveUnits();
+                int overallCount = 0;
+                
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('International')";
+                } else if (m.getEngagingtarget().equals("International Communities")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON s.targetCommunity = c.communityID WHERE c.international = 1 AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora'";
+                }
+                try {
+
+                    if (query.equals("")) {
+                        return ids;
+                    }
+
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: NO SPECIFIED UNIT
+            //
+            else if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
+                ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
+                if (m.getEngagingtarget().equals("N/A")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora'";
+                } else if (m.getEngagingtarget().equals("Alumni")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Alumni')";
+                } else if (m.getEngagingtarget().equals("Parents")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9 AND a.type IN ('Parent')";
+                } else if (m.getEngagingtarget().equals("International Students")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9 AND a.type IN ('International')";
+                } else if (m.getEngagingtarget().equals("International Communities")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.activityClassification = 'Interdisciplinary Fora' AND s.step = 9";
+                }
+                try {
+                    if (query.equals("")) {
+                        return ids;
+                    }
+
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                   
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: STUDENT ORGS
+            //
+            else if(m.getUnittarget().equals("Student Organizations")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id)(distinct(department)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Alumni') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Parent') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('International') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND s.studentorg = 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: DEPTS
+            //
+            else if(m.getUnittarget().equals("Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND s.studentorg != 1";
+                }
+                try {
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: FACULTY DEPTS
+            //
+            else if(m.getUnittarget().equals("Faculty Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('International') AND s.studentorg != 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: STAFF
+            //
+            else if(m.getUnittarget().equals("Staff")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: CAP
+            //
+            else if(m.getUnittarget().equals("CAP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'CAP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'CAP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: APSP
+            //
+            else if(m.getUnittarget().equals("APSP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'APSP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'APSP' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'APSP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'APSP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'APSP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: ASF
+            //
+            else if(m.getUnittarget().equals("ASF Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'ASF'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'ASF' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'ASF' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'ASF' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'ASF'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: FACULTY EMPLOYEES
+            //
+            else if(m.getUnittarget().equals("Faculty Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Faculty'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Faculty' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Faculty' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Faculty' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'Faculty'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: ADMINISTRATORS
+            //
+            else if(m.getUnittarget().equals("Administrators")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Admin'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Admin' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Admin' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Admin' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'Admin'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: GRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Graduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Grad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Grad' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Grad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Grad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'Grad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: UNDERGRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Undergraduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Undergrad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Undergrad' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Undergrad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Undergrad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'Undergrad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: INTERNATIONAL STUDENTS
+            //
+            else if(m.getUnittarget().equals("International Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'International'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'International' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'International' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.id = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'International'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: ALUMNI
+            //
+            else if(m.getUnittarget().equals("Alumni")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Alumni'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Alumni' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type = 'Alumni' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1 AND a.type = 'Alumni'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR INTERDISCIPLINARY FORA
+            //UNIT TARGET: SE PROGRAMS
+            //
+            else if(m.getUnittarget().equals("Social Engagement Programs")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Interdisciplinary Fora' AND c.international = 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        //
+        //START OF 
+        //SUSTAINABLE SE
+        //
+        else if(m.getTypetarget().equals("Sustainable SE")){
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: SE PROGRAMS PER UNIT
+            //
+            if(m.getUnittarget().equals("SE Programs Per Unit")){
+                ArrayList<Unit> units = UserDAO.retrieveUnits();
+                int overallCount = 0;
+                
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s WHERE s.step = 9 AND s.sustainable = 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON s.targetCommunity = c.communityID WHERE c.international = 1 AND s.step = 9 AND s.sustainable = 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: NO SPECIFIED UNIT
+            //
+            if (m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")) {
+                ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
+                if (m.getEngagingtarget().equals("N/A")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.sustainable = 1";
+                } else if (m.getEngagingtarget().equals("Alumni")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Alumni')";
+                } else if (m.getEngagingtarget().equals("Parents")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.sustainable = 1 AND s.step = 9 AND a.type IN ('Parent')";
+                } else if (m.getEngagingtarget().equals("International Students")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.sustainable = 1 AND s.step = 9 AND a.type IN ('International')";
+                } else if (m.getEngagingtarget().equals("International Communities")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.sustainable = 1 AND s.step = 9";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: STUDENT ORGS
+            //
+            else if(m.getUnittarget().equals("Student Organizations")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.sustainable = 1 AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Alumni') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Parent') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('International') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.sustainable = 1 AND s.studentorg = 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: DEPARTMENTS
+            //
+            else if(m.getUnittarget().equals("Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.sustainable = 1 AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.sustainable = 1 AND s.studentorg != 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: FACULTY DEPARTMENTS
+            //
+            else if(m.getUnittarget().equals("Faculty Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.sustainable = 1 AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.sustainable = 1 AND s.studentorg != 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: STAFF
+            //
+            else if(m.getUnittarget().equals("Staff")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: CAP
+            //
+            else if(m.getUnittarget().equals("CAP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'CAP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'CAP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: APSP
+            //
+            else if(m.getUnittarget().equals("APSP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'APSP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'APSP' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'APSP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'APSP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'APSP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: ASF
+            //
+            else if(m.getUnittarget().equals("ASF Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'ASF'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'ASF' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'ASF' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'ASF' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'ASF'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: ADMINISTRATORS
+            //
+            else if(m.getUnittarget().equals("Administrators")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Admin'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Admin' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Admin' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Admin' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'Admin'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: GRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Graduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Grad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Grad' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Grad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Grad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'Grad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: UNDERGRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Undergraduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Undergrad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Undergrad' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Undergrad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Undergrad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'Undergrad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: INTERNATIONAL STUDENTS
+            //
+            else if(m.getUnittarget().equals("International Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'International'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'International' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'International' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'International'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: ALUMNI
+            //
+            else if(m.getUnittarget().equals("Alumni")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Alumni'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Alumni' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Alumni' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'Alumni'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
+            //UNIT TARGET: SOCIAL ENGAGEMENT PROGRAMS
+            //
+            else if(m.getUnittarget().equals("Social Engagement Programs")){
+                ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
+                int overallCount = 0;
+                double total;
+                
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s WHERE s.step = 9 AND s.sustainable = 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("Parent")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.sustainable = 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        //
+        //START OF
+        //SDGLP
+        //
+        else if(m.getTypetarget().equals("Sustainable Development Goals Localization Project")){
+            //
+            //FOR SDGLP
+            //UNIT TARGET: SE PROGRAMS PER UNIT
+            //
+            if(m.getUnittarget().equals("SE Programs Per Unit")){
+                ArrayList<Unit> units = UserDAO.retrieveUnits();
+                int overallCount = 0;
+                
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s WHERE s.step = 9 AND s.classificationforkra != 'None'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None'AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON s.targetCommunity = c.communityID WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: NO SPECIFIED UNIT
+            //
+            else if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s WHERE s.step = 9 AND s.classificationforkra != 'None'";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON se.seproposalID = s.id JOIN sereport_attendees a ON a.sereportID = se.id WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: STUDENT ORGS
+            //
+            else if(m.getUnittarget().equals("Student Organizations")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.classificationforkra != 'None' AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Alumni') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Parent') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('International') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None' AND s.studentorg = 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: DEPARTMENTS
+            //
+            else if(m.getUnittarget().equals("Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.classificationforkra != 'None' AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None' AND s.studentorg != 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: FACULTY DEPARTMENTS
+            //
+            else if(m.getUnittarget().equals("Faculty Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.classificationforkra != 'None' AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None' AND s.studentorg != 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: STAFF
+            //
+            else if(m.getUnittarget().equals("Staff")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External AND a.type IN('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: CAP
+            //
+            else if(m.getUnittarget().equals("CAP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'CAP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'CAP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: APSP
+            //
+            else if(m.getUnittarget().equals("APSP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'APSP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'APSP' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'APSP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'APSP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'APSP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: ASF
+            //
+            else if(m.getUnittarget().equals("ASF Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'ASF'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'ASF' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'ASF' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'ASF' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'ASF'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: FACULTY EMPLOYEES
+            //
+            else if(m.getUnittarget().equals("Faculty Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Faculty'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Faculty' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Faculty' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Faculty' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'Faculty'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: ADMINISTRATORS
+            //
+            else if(m.getUnittarget().equals("Administrators")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Admin'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Admin' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Admin' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Admin' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'Admin'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: GRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Graduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Grad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Grad' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Grad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Grad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'Grad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: UNDERGRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Undergraduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Undergrad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Undergrad' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Undergrad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Undergrad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'Undergrad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: INTERNATIONAL STUDENTS
+            //
+            else if(m.getUnittarget().equals("International Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'International'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'International' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'International' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'International'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: ALUMNI
+            //
+            else if(m.getUnittarget().equals("Alumni")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Alumni'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Alumni' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type = 'Alumni' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.classificationforkra != 'None' AND c.international = 1 AND a.type = 'Alumni'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SDGLP
+            //UNIT TARGET: SOCIAL ENGAGEMENT PROGRAMS
+            //
+            else if(m.getUnittarget().equals("Social Engagement Programs")){
+                ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
+                int overallCount = 0;
+                double total;
+                
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s WHERE s.step = 9 AND s.classificationforkra != 'None'";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("Parent")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.classificationforkra != 'None' AND a.type IN('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND s.classificationforkra != 'None'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        //
+        //START OF
+        //SERVICE-LEARNING
+        //
+        else if(m.getTypetarget().equals("Service-Learning")){
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: SE PROGRAMS PER UNIT
+            //
+            if(m.getUnittarget().equals("SE Programs Per Unit")){
+                ArrayList<Unit> units = UserDAO.retrieveUnits();
+                int overallCount = 0;
+                
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s WHERE s.step = 9 AND s.classificationforkra != 'None'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN community c ON s.targetCommunity = c.communityID WHERE c.international = 1 AND s.step = 9 AND s.activityClassification = 'Service-Learning'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: NO SPECIFIED UNIT
+            //
+            else if(m.getUnittarget().equals("No Specified Unit") && m.getNumtypetarget().equals("Count")){
+                ArrayList<SE> SE = UserDAO.retrieveALLSEProposal();
+                if (m.getEngagingtarget().equals("N/A")) {
+                    query = "SELECT distinct(s.id) FROM seproposal WHERE s.step = 9 AND s.activityClassification = 'Service-Learning'";
+                } else if (m.getEngagingtarget().equals("Alumni")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Alumni')";
+                } else if (m.getEngagingtarget().equals("Parents")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Service-Learning' AND s.step = 9 AND a.type IN ('Parent')";
+                } else if (m.getEngagingtarget().equals("International Students")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.activityClassification = 'Service-Learning' AND s.step = 9 AND a.type IN ('International')";
+                } else if (m.getEngagingtarget().equals("International Communities")) {
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN community c ON s.targetCommunity = c.communityID WHERE c.international = 1 AND s.step = 9 AND s.activityClassification = 'Service-Learning'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: STUDENT ORGS
+            //
+            else if(m.getUnittarget().equals("Student Organizations")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Alumni') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Parent') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('International') AND s.studentorg = 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: DEPARTMENTS
+            //
+            else if(m.getUnittarget().equals("Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: FACULTY DEPTS
+            //
+            else if(m.getUnittarget().equals("Faculty Departments")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Alumni') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Parent') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('International') AND s.studentorg != 1";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: STAFF
+            //
+            else if(m.getUnittarget().equals("Staff")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN('Parent')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External' AND a.type IN('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: CAP
+            //
+            else if(m.getUnittarget().equals("CAP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'CAP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'CAP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: APSP
+            //
+            else if(m.getUnittarget().equals("APSP Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'APSP'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'APSP' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'APSP' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'APSP' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'APSP'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: ASF
+            //
+            else if(m.getUnittarget().equals("ASF Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'ASF'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'ASF' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'ASF' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'ASF' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'ASF'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: FACULTY EMPLOYEES
+            //
+            else if(m.getUnittarget().equals("Faculty Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Faculty'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Faculty' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Faculty' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Faculty' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'Faculty'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: ADMINISTRATORS
+            //
+            else if(m.getUnittarget().equals("Administrators")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Admin'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Admin' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Admin' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Admin' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'Admin'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: GRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Graduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Grad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Grad' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Grad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Grad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'Grad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: UNDERGRADUATE STUDENTS
+            //
+            else if(m.getUnittarget().equals("Undergraduate Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Undergrad'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Undergrad' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Undergrad' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Undergrad' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'Undergrad'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: INTERNATIONAL STUDENTS
+            //
+            else if(m.getUnittarget().equals("International Students")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'International'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'International' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'International' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.id = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'International'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: ALUMNI
+            //
+            else if(m.getUnittarget().equals("Alumni")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Alumni'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Alumni' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    return ids;
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type = 'Alumni' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1 AND a.type = 'Alumni'";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SERVICE-LEARNING
+            //UNIT TARGET: SE PROGRAMS
+            //
+            else if(m.getUnittarget().equals("Social Engagement Programs")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND a.type IN ('International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.activityClassification = 'Service-Learning' AND c.international = 1";
+                }
+                try{
+                    if(query.equals("")){
+                        return ids;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        ids.add(rs.getInt("s.id"));
+                    }
+
+                    return ids;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        if (query.equals("")) {
+            return ids;
+        }
+        return ids;
     }
     
     public ArrayList<Integer> getTotals(){

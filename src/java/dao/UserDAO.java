@@ -14187,6 +14187,7 @@ public class UserDAO {
                     m.setUnittarget(rs.getString("unittarget"));
                     m.setTypetarget(rs.getString("typetarget"));
                     m.setEngagingtarget(rs.getString("engagingtarget"));
+                    m.setUntrackable(rs.getInt("untrackable"));
                     measures.add(m);
                 }
                 goals.get(i).setMeasures(measures);
@@ -17295,6 +17296,8 @@ public class UserDAO {
                 m.setUnittarget(rs2.getString("unittarget"));
                 m.setTypetarget(rs2.getString("typetarget"));
                 m.setEngagingtarget(rs2.getString("engagingtarget"));
+                m.setKraID(rs2.getInt("kraID"));
+                m.setGoalID(rs2.getInt("goalID"));
             }
 
         } catch (SQLException ex) {
