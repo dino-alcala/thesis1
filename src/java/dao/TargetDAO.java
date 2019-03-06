@@ -2062,6 +2062,43 @@ public class TargetDAO {
             }
             //
             //FOR SUSTAINABLE SE
+            //UNIT TARGET: FACULTY 
+            //
+            else if(m.getUnittarget().equals("Faculty Employees")){
+                if(m.getEngagingtarget().equals("N/A")){
+                    query = "SELECT count(distinct(a.name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type = 'Faculty'";
+                } else if(m.getEngagingtarget().equals("Parents")){
+                    query = "SELECT count(distinct(a.name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Faculty', 'Parents')";
+                } else if(m.getEngagingtarget().equals("Alumni")){
+                    query = "SELECT count(distinct(a.name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Faculty', 'Alumni')";
+                } else if(m.getEngagingtarget().equals("International Students")){
+                    query = "SELECT count(distinct(a.name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND s.sustainable = 1 AND a.type IN ('Faculty', 'International')";
+                } else if(m.getEngagingtarget().equals("International Communities")){
+                    query = "SELECT count(distinct(a.name)) as count FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c on c.communityID = s.targetCommunity WHERE s.step = 9 AND s.sustainable = 1 AND c.international = 1 AND a.type = 'Faculty'";
+                }
+                try{
+                    if(query.equals("")){
+                        return -1;
+                    }
+                    
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
+
+                    while (rs.next()) {
+                        count = rs.getInt("count");
+                    }
+
+                    if(m.getNumtypetarget().equals("Percent")){
+                        return percent = ((double) count / (double) totalasf) * 100;
+                    } else if(m.getNumtypetarget().equals("Count")) {
+                        return percent = count * 100 / m.getNumtarget();
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //
+            //FOR SUSTAINABLE SE
             //UNIT TARGET: ADMINISTRATORS
             //
             else if(m.getUnittarget().equals("Administrators")){
