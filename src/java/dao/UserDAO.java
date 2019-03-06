@@ -13982,7 +13982,7 @@ public class UserDAO {
         try {
 
             for (int i = 0; i < k.size(); i++) {
-                String query = "SELECT SUM(m.target) FROM measure m WHERE m.kraID = ?";
+                String query = "SELECT SUM(m.measure) FROM measure m WHERE m.kraID = ?";
                 pstmt = conn.prepareStatement(query);
                 pstmt.setInt(1, k.get(i).getId());
 
@@ -14099,12 +14099,10 @@ public class UserDAO {
         ArrayList<KRA> kra = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT count(k.name) as TOTAL, k.name, k.kraID FROM kra k JOIN (SELECT targetKRA FROM seproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ? UNION ALL SELECT targetKRA from ffproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetKRA = k.kraID  GROUP BY k.name DESC";
+            String query = "SELECT count(k.name) as TOTAL, k.name, k.kraID FROM kra k JOIN (SELECT targetKRA FROM seproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetKRA = k.kraID  GROUP BY k.name DESC";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
-            pstmt.setDate(3, startDate);
-            pstmt.setDate(4, endDate);
 
             rs2 = pstmt.executeQuery();
 
@@ -15743,13 +15741,11 @@ public class UserDAO {
         ArrayList<KRA> kra = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT count(m.measure) as TOTAL, m.description, m.measureID, m.kraID, m.goalID FROM measure m JOIN (SELECT targetMeasure FROM seproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ? UNION ALL SELECT targetMeasure from ffproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetMeasure = m.measureID WHERE m.kraID = ? GROUP BY m.description DESC";
+            String query = "SELECT count(m.measure) as TOTAL, m.description, m.measureID, m.kraID, m.goalID FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND m.kraID = ? GROUP BY m.description DESC";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
-            pstmt.setDate(3, startDate);
-            pstmt.setDate(4, endDate);
-            pstmt.setInt(5, kraID);
+            pstmt.setInt(3, kraID);
 
             rs2 = pstmt.executeQuery();
 
@@ -15776,7 +15772,115 @@ public class UserDAO {
         }
         return kra;
     }
+    
+    public ArrayList<Integer> retrieveTotalMeasuresImplemented(int kraID, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
 
+        ArrayList<Integer> total = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT count(m.measure) as TOTAL FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND m.kraID = ? GROUP BY m.measure ASC";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, startDate);
+            pstmt.setDate(2, endDate);
+            pstmt.setInt(3, kraID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                int x = rs2.getInt("TOTAL");
+                total.add(x);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return total;
+    }
+    
+    public ArrayList<String> retrieveMeasureNamesOfMeasuresImplemented(int kraID, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<String> names = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT m.measure FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND m.kraID = ? GROUP BY m.measure ASC";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, startDate);
+            pstmt.setDate(2, endDate);
+            pstmt.setInt(3, kraID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                String x = rs2.getString("measure");
+                names.add(x);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return names;
+    }
+
+    public ArrayList<String> retrieveMeasureDescriptionsOfMeasuresImplemented(int kraID, Date startDate, Date endDate) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<String> names = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT m.description FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND m.kraID = ? GROUP BY m.measure ASC";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, startDate);
+            pstmt.setDate(2, endDate);
+            pstmt.setInt(3, kraID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                String x = rs2.getString("description");
+                names.add(x);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return names;
+    }
+    
     public ArrayList<KRA> retrieveALLProgramsMeasure(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -15785,12 +15889,10 @@ public class UserDAO {
         ArrayList<KRA> kra = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT count(m.measure) as TOTAL, m.description, m.measureID, m.kraID, m.goalID FROM measure m JOIN (SELECT targetMeasure FROM seproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ? UNION ALL SELECT targetMeasure from ffproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetMeasure = m.measureID GROUP BY m.description DESC";
+            String query = "SELECT count(m.measure) as TOTAL, m.description, m.measureID, m.kraID, m.goalID FROM measure m JOIN (SELECT targetMeasure FROM seproposal WHERE step = 9 AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetMeasure = m.measureID GROUP BY m.description DESC";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
-            pstmt.setDate(3, startDate);
-            pstmt.setDate(4, endDate);
 
             rs2 = pstmt.executeQuery();
 
@@ -15902,7 +16004,8 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(sf.expendedAmount) FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 8 AND s.id = ? AND s.datecreated >= ? AND s.datecreated <= ?";
+            String query = "SELECT SUM(sf.expendedAmount) FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 9 AND s.id = ? AND s.datecreated >= ? AND s.datecreated <= ?";
+            
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
             pstmt.setDate(2, startDate);
@@ -15938,7 +16041,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(ff.expendedAmount) FROM ffreport_funds ff JOIN ffreport fe ON ff.ffreportID = fe.id JOIN ffproposal f ON f.id = fe.ffproposalID WHERE f.step = 8 AND f.id = ? AND f.datecreated >= ? AND f.datecreated <= ?";
+            String query = "SELECT SUM(ff.expendedAmount) FROM ffreport_funds ff JOIN ffreport fe ON ff.ffreportID = fe.id JOIN ffproposal f ON f.id = fe.ffproposalID WHERE f.step = 9 AND f.id = ? AND f.datecreated >= ? AND f.datecreated <= ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
             pstmt.setDate(2, startDate);
@@ -16153,14 +16256,11 @@ public class UserDAO {
         ArrayList<KRA> kra = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT count(k.name) as TOTAL, k.name, k.kraID FROM kra k JOIN (SELECT targetKRA FROM seproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ? UNION ALL SELECT targetKRA from ffproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetKRA = k.kraID  GROUP BY k.name DESC";
+            String query = "SELECT count(k.name) as TOTAL, k.name, k.kraID FROM kra k JOIN (SELECT targetKRA FROM seproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetKRA = k.kraID  GROUP BY k.name DESC";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
             pstmt.setDate(3, endDate);
-            pstmt.setString(4, unit);
-            pstmt.setDate(5, startDate);
-            pstmt.setDate(6, endDate);
 
             rs2 = pstmt.executeQuery();
 
@@ -16195,26 +16295,24 @@ public class UserDAO {
         ArrayList<KRA> kra = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT count(m.measure) as TOTAL, m.description, m.measureID, m.kraID, m.goalID, a.programName, a.datecreated FROM measure m JOIN (SELECT targetMeasure, programName, datecreated FROM seproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ? UNION ALL SELECT targetMeasure, projectName AS programName, datecreated from ffproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetMeasure = m.measureID WHERE m.kraID = ? GROUP BY m.description DESC";
+            String query = "SELECT count(m.measure) as TOTAL, m.measure, m.description, m.measureID, m.kraID, m.goalID, s.programName, s.datecreated FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ? AND m.kraID = ? GROUP BY m.measure ASC";
+                           
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
             pstmt.setDate(3, endDate);
-            pstmt.setString(4, unit);
-            pstmt.setDate(5, startDate);
-            pstmt.setDate(6, endDate);
-            pstmt.setInt(7, kraID);
+            pstmt.setInt(4, kraID);
 
             rs2 = pstmt.executeQuery();
 
             while (rs2.next()) {
                 KRA k = new KRA();
-                k.setDate(rs2.getDate("a.datecreated"));
+                k.setDate(rs2.getDate("datecreated"));
                 k.setTotalCountperMeasure(rs2.getInt("TOTAL"));
                 k.setId(rs2.getInt("kraID"));
                 k.setMeasureID(rs2.getInt("measureID"));
                 k.setGoalID(rs2.getInt("goalID"));
-                k.setProgramName(rs2.getString("a.programName"));
+                k.setProgramName(rs2.getString("programName"));
                 kra.add(k);
             }
 
@@ -16241,25 +16339,22 @@ public class UserDAO {
         ArrayList<KRA> kra = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT count(m.measure) as TOTAL, m.description, m.measureID, m.kraID, m.goalID, a.programName, a.datecreated FROM measure m JOIN (SELECT targetMeasure, programName, datecreated FROM seproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ? UNION ALL SELECT targetMeasure, projectName AS programName, datecreated from ffproposal WHERE step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ?) as a ON a.targetMeasure = m.measureID GROUP BY m.description DESC";
+            String query = "SELECT count(m.measure) as TOTAL, m.measure, m.description, m.measureID, m.kraID, m.goalID, s.programName, s.datecreated FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND unit = ? AND actualImplementation >= ? AND actualImplementation <= ? GROUP BY m.measure ASC";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
             pstmt.setDate(3, endDate);
-            pstmt.setString(4, unit);
-            pstmt.setDate(5, startDate);
-            pstmt.setDate(6, endDate);
 
             rs2 = pstmt.executeQuery();
 
             while (rs2.next()) {
                 KRA k = new KRA();
-                k.setDate(rs2.getDate("a.datecreated"));
+                k.setDate(rs2.getDate("datecreated"));
                 k.setTotalCountperMeasure(rs2.getInt("TOTAL"));
                 k.setId(rs2.getInt("kraID"));
                 k.setMeasureID(rs2.getInt("measureID"));
                 k.setGoalID(rs2.getInt("goalID"));
-                k.setProgramName(rs2.getString("a.programName"));
+                k.setProgramName(rs2.getString("programName"));
                 kra.add(k);
             }
 
@@ -17298,6 +17393,7 @@ public class UserDAO {
                 m.setEngagingtarget(rs2.getString("engagingtarget"));
                 m.setKraID(rs2.getInt("kraID"));
                 m.setGoalID(rs2.getInt("goalID"));
+                m.setUntrackable(rs2.getInt("untrackable"));
             }
 
         } catch (SQLException ex) {

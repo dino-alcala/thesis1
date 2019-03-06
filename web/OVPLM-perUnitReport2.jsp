@@ -441,7 +441,7 @@
                 UserDAO UserDAO3 = new UserDAO();
                 ArrayList<KRA> kra = new ArrayList();
                 kra = UserDAO3.retrieveUnitSortedKRA(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
-                kra = UserDAO3.insertPercentage(kra);
+                //kra = UserDAO3.insertPercentage(kra);
 
                 ArrayList<KRA> kraslist = new ArrayList();
             %>
@@ -465,7 +465,6 @@
                             '<%=kraslist.get(j).getDate()%>',
                             '<%=UserDAO3.getKRAnameByID(kraslist.get(j).getId())%>',
                             '<%=UserDAO3.getGoalnameByID(kraslist.get(j).getGoalID())%>',
-                            '<%=UserDAO3.getMeasurenameByID(kraslist.get(j).getMeasureID())%>',
                             '<%=kraslist.get(j).getProgramName()%>'
                     ]).draw(false);
             <%
@@ -489,7 +488,6 @@
                             '<%=kraslist.get(j).getDate()%>',
                             '<%=UserDAO3.getKRAnameByID(kraslist.get(j).getId())%>',
                             '<%=UserDAO3.getGoalnameByID(kraslist.get(j).getGoalID())%>',
-                            '<%=UserDAO3.getMeasurenameByID(kraslist.get(j).getMeasureID())%>',
                             '<%=kraslist.get(j).getProgramName()%>'
                     ]).draw(false);
             <%
@@ -1181,7 +1179,6 @@
                                 <th>Date</th>
                                 <th>KRA</th>
                                 <th>Goal</th>
-                                <th>Measure</th>
                                 <th>Program Name</th>
                             </tr>
                         </thead>
@@ -1282,7 +1279,6 @@
                                     <th>Unit</th>
                                     <th>Department</th>
                                     <th>Amount Requested</th>
-                                    <th>Amount Utilized</th>
                                     <th>Variance</th>
                                     <th></th>
                                 </tr>
@@ -1296,7 +1292,6 @@
                                     <td><%=seproposal.get(i).getUnit()%></td>
                                     <td><%=seproposal.get(i).getDepartment()%></td>
                                     <td>₱<%=seproposal.get(i).getTotalAmount()%></td>
-                                    <td>₱<%=UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td>₱<%=seproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td><button class="btn btn-primary btn-sm" type="submit" name="viewSE<%=i%>" value="<%=seproposal.get(i).getId()%>">View</button></td>
                                 </tr>
@@ -1321,7 +1316,6 @@
                                     <th>Unit</th>
                                     <th>Department</th>
                                     <th>Amount Requested</th>
-                                    <th>Amount Utilized</th>
                                     <th>Variance</th>
                                     <th></th>
                                 </tr>
@@ -1335,7 +1329,6 @@
                                     <td><%=ffproposal.get(i).getUnit()%></td>
                                     <td><%=ffproposal.get(i).getDepartment()%></td>
                                     <td>₱<%=ffproposal.get(i).getTotalAmount()%></td>
-                                    <td>₱<%=UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td>₱<%=ffproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td><button class="btn btn-primary btn-sm" type="submit" name="viewFF<%=i%>" value="<%=ffproposal.get(i).getId()%>">View</button></td>
                                 </tr>

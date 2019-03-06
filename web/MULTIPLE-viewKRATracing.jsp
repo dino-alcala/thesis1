@@ -370,8 +370,8 @@
                             %>
                         <td><%=UserDAO.getGoalnameByID(m.getGoalID())%></td>
                         <td><%=m.getDescription()%></td>
-                        <td><%=m.getNumtarget()%><% if (m.getNumtypetarget().equals("Count")) { %>&nbsp; Count/s<%} else {%>%<%}%> of <%=m.getUnittarget()%> have undergone/conducted/contains a <%=m.getTypetarget()%> program/component<% if (m.getEngagingtarget().equals("N/A")) { %><%} else {%>engaging <%=m.getEngagingtarget()%><%}%></td>
-                        <% if(percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                        <td><%if(m.getUntrackable() == 0){%><%=m.getNumtarget()%><% if (m.getNumtypetarget().equals("Count")) { %>&nbsp; Count/s<%} else {%>%<%}%> of <%=m.getUnittarget()%> have undergone/conducted/contains a <%=m.getTypetarget()%> program/component<% if (m.getEngagingtarget().equals("N/A")) { %><%} else {%>engaging <%=m.getEngagingtarget()%><%}%><%} else {%>Not Trackable<%}%></td>
+                        <% if(percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">N/A</td><%}%>
                         </tbody>
                     </table>
 

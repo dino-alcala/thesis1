@@ -3,6 +3,7 @@
     Created on : 06 18, 18, 7:59:10 PM
     Author     : Karl Madrid
 --%>
+<%@page import="dao.OvplmDAO"%>
 <%@page import="entity.StudentOrg"%>
 <%@page import="entity.Unit"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -49,48 +50,6 @@
         <script type="text/javascript" class="init"></script>
 
         <script>
-            function demoFromHTML() {
-            var pdf = new jsPDF('p', 'pt', 'letter');
-            // source can be HTML-formatted string, or a reference
-            // to an actual DOM element from which the text will be scraped.
-            source = $('#content')[0];
-            // we support special element handlers. Register them with jQuery-style 
-            // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-            // There is no support for any other type of selectors 
-            // (class, of compound) at this time.
-            specialElementHandlers = {
-            // element with id of "bypass" - jQuery style selector
-            '#bypassme': function (element, renderer) {
-            // true = "handled elsewhere, bypass text extraction"
-            return true
-            }
-            };
-            margins = {
-            top: 80,
-                    bottom: 60,
-                    left: 40,
-                    width: 522
-            };
-            // all coords and widths are in jsPDF instance's declared units
-            // 'inches' in this case
-            pdf.fromHTML(
-                    source, // HTML string or DOM elem ref.
-                    margins.left, // x coord
-                    margins.top, { // y coord
-                    'width': margins.width, // max width of content on PDF
-                            'elementHandlers': specialElementHandlers
-                    },
-                    function (dispose) {
-                    // dispose: object with X, Y of the last line add to the PDF 
-                    //          this allow the insertion of new lines after html
-                    pdf.save('Term End Report.pdf');
-                    }, margins
-                    );
-            }
-        </script>
-
-        <script>
-
             $(document).ready(function () {
             var table3 = $('#example').DataTable();
             $("#kralist").on('change', function(){
@@ -100,73 +59,57 @@
                     data:{kra:kra},
                     url:'termEndReport',
                     success: function(response){
-
             <%
                 UserDAO UserDAO3 = new UserDAO();
+                OvplmDAO OvplmDAO = new OvplmDAO();
                 ArrayList<KRA> kra = new ArrayList();
                 kra = UserDAO3.retrieveTermEndSortedKRA(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
-                kra = UserDAO3.insertPercentage(kra);
-
+                //kra = UserDAO3.insertPercentage(kra);
                 ArrayList<KRA> kraslist = new ArrayList();
             %>
                     table3.clear();
                     table3.draw();
             <%
                 for (int i = 0; i < kra.size(); i++) {
-
             %>
                     if (response == "<%=kra.get(i).getId()%>"){
-
-
-            <% kraslist = UserDAO3.retrieveProgramsMeasureByKRA(kra.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            <% kraslist = OvplmDAO.retrieveKRA();
             %>
-
             <%
                 for (int j = 0; j < kraslist.size(); j++) {
             %>
                     var counter = 1;
                     table3.row.add([
-                            '<%=UserDAO3.getKRAnameByID(kraslist.get(j).getId())%>',
-                            '<%=UserDAO3.getGoalnameByID(kraslist.get(j).getGoalID())%>',
-                            '<%=UserDAO3.getMeasurenameByID(kraslist.get(j).getMeasureID())%>',
-                            '<%=kraslist.get(j).getTotalCountperMeasure()%>'
+                            '<%=kraslist.get(j).getName()%>',
+                            '<%=kraslist.get(j).getName()%>'
                     ]).draw(false);
             <%
                 }
             %>
                     }
             <%  }
-
             %>
                     if (response == "All"){
-
-
-            <% kraslist = UserDAO3.retrieveALLProgramsMeasure(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            <% kraslist = OvplmDAO.retrieveKRA();
             %>
-
             <%
                 for (int j = 0; j < kraslist.size(); j++) {
             %>
                     var counter = 1;
                     table3.row.add([
-                            '<%=UserDAO3.getKRAnameByID(kraslist.get(j).getId())%>',
-                            '<%=UserDAO3.getGoalnameByID(kraslist.get(j).getGoalID())%>',
-                            '<%=UserDAO3.getMeasurenameByID(kraslist.get(j).getMeasureID())%>',
-                            '<%=kraslist.get(j).getTotalCountperMeasure()%>'
+                            '<%=kraslist.get(j).getName()%>',
+                            '<%=kraslist.get(j).getName()%>'
                     ]).draw(false);
             <%
                 }
             %>
                     }
-
-
                     console.log(response);
                     }
             });
             }).trigger('change');
             });
             $(document).ready(function () {
-
             var table = $('#example2').DataTable();
             $("#seprogram").on('change', function(){
             var kra = $("#seprogram").val();
@@ -175,22 +118,18 @@
                     data:{kra:kra},
                     url:'termEndReport',
                     success: function(response){
-
             <%
                 UserDAO UserDAO2 = new UserDAO();
             %>
-
             <%
                 ArrayList<SE> s = new ArrayList();
             %>
                     table.clear();
                     table.draw();
                     if (response == "Socially Engaged Research"){
-
             <%
                 s = UserDAO2.retrieveSEImplementedByClassificationDate("Socially Engaged Research", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < s.size(); i++) {
             %>
@@ -208,11 +147,9 @@
             %>
                     }
                     else if (response == "Issue Awareness and Advocacy"){
-
             <%
                 s = UserDAO2.retrieveSEImplementedByClassificationDate("Issue Awareness and Advocacy", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < s.size(); i++) {
             %>
@@ -229,11 +166,9 @@
                 }
             %>
                     } else if (response == "All"){
-
             <%
                 s = UserDAO2.retrieveALLSEImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < s.size(); i++) {
             %>
@@ -250,11 +185,9 @@
                 }
             %>
                     } else if (response == "Service-Learning"){
-
             <%
                 s = UserDAO2.retrieveSEImplementedByClassificationDate("Service-Learning", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < s.size(); i++) {
             %>
@@ -271,11 +204,9 @@
                 }
             %>
                     } else if (response == "Interdisciplinary Fora"){
-
             <%
                 s = UserDAO2.retrieveSEImplementedByClassificationDate("Interdisciplinary Fora", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < s.size(); i++) {
             %>
@@ -292,11 +223,9 @@
                 }
             %>
                     } else if (response == "Direct Service to the Poor and Marginalized"){
-
             <%
                 s = UserDAO2.retrieveSEImplementedByClassificationDate("Direct Service to the Poor and Marginalized", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < s.size(); i++) {
             %>
@@ -313,11 +242,9 @@
                 }
             %>
                     } else if (response == "Public Engagement"){
-
             <%
                 s = UserDAO2.retrieveSEImplementedByClassificationDate("Public Engagement", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < s.size(); i++) {
             %>
@@ -334,11 +261,9 @@
                 }
             %>
                     } else if (response == "Others"){
-
             <%
                 s = UserDAO2.retrieveSEImplementedByClassificationDate("Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < s.size(); i++) {
             %>
@@ -355,7 +280,6 @@
                 }
             %>
                     }
-
                     console.log(response);
                     }
             });
@@ -371,19 +295,15 @@
                     data:{kra:kra},
                     url:'termEndReport',
                     success: function(response){
-
-
             <%
                 ArrayList<FF> f = new ArrayList();
             %>
                     table2.clear();
                     table2.draw();
                     if (response == "Recollection"){
-
             <%
                 f = UserDAO2.retrieveFFImplementedByClassificationDate("Recollection", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < f.size(); i++) {
             %>
@@ -399,11 +319,9 @@
                 }
             %>
                     } else if (response == "Retreat"){
-
             <%
                 f = UserDAO2.retrieveFFImplementedByClassificationDate("Retreat", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < f.size(); i++) {
             %>
@@ -419,11 +337,9 @@
                 }
             %>
                     } else if (response == "Spiritual Talk"){
-
             <%
                 f = UserDAO2.retrieveFFImplementedByClassificationDate("Spiritual Talk", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < f.size(); i++) {
             %>
@@ -439,11 +355,9 @@
                 }
             %>
                     } else if (response == "Prayer Service"){
-
             <%
                 f = UserDAO2.retrieveFFImplementedByClassificationDate("Prayer Service", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < f.size(); i++) {
             %>
@@ -459,11 +373,9 @@
                 }
             %>
                     } else if (response == "Talk on the life of the Founder"){
-
             <%
                 f = UserDAO2.retrieveFFImplementedByClassificationDate("Talk on the life of the Founder", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < f.size(); i++) {
             %>
@@ -479,11 +391,9 @@
                 }
             %>
                     } else if (response == "Br. Gabriel Drolin Experience"){
-
             <%
                 f = UserDAO2.retrieveFFImplementedByClassificationDate("Br. Gabriel Drolin Experience", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < f.size(); i++) {
             %>
@@ -499,11 +409,9 @@
                 }
             %>
                     } else if (response == "All"){
-
             <%
                 f = UserDAO2.retrieveALLFFImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
-
             <%
                 for (int i = 0; i < f.size(); i++) {
             %>
@@ -519,7 +427,6 @@
                 }
             %>
                     }
-
                     console.log(response);
                     }
             });
@@ -709,7 +616,6 @@
                 font-size: 30px;
                 font-family: 'Montserrat', sans-serif;
             }
-
         </style>
 
     </head>
@@ -779,7 +685,6 @@
                                     <%
                                         ArrayList<Notification> n = new ArrayList();
                                         n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
                                         for (int i = 0; i < n.size(); i++) {
                                     %>
                                     <button type="submit" value="<%=n.get(i).getRedirect()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
@@ -884,7 +789,6 @@
                                             }],
                                                     xAxes: [{
                                                     ticks: {
-
                                                     beginAtZero: true,
                                                             fontSize: 20
                                                     }
@@ -894,7 +798,6 @@
                                             titleFontSize: 18,
                                                     bodyFontSize: 18
                                             }
-
                                     }
                             });
                         </script>
@@ -922,8 +825,6 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>KRA</th>
-                                <th>Goal</th>
-                                <th>Measure</th>
                                 <th># of Programs</th>
                             </tr>
                         </thead>
@@ -972,7 +873,6 @@
                                                             bodyFontSize: 18
                                                     }
                                             }
-
                                     });
                                 </script> 
                             </div>
@@ -1190,7 +1090,6 @@
                                                     backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
                                                     data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.countFFImplementedByUnit(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }]
-
                                     },
                                     options: {
                                     legend: {
@@ -1262,7 +1161,6 @@
                                                     backgroundColor: [<%for (int i = 0; i < student.size(); i++) {%>"#2D36EA",<%}%>],
                                                     data: [<%for (int i = 0; i < student.size(); i++) {%> <%=UserDAO.countFFImplementedByStudentOrg(student.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }]
-
                                     },
                                     options: {
                                     legend: {
@@ -1424,7 +1322,6 @@
                                     <th>Unit</th>
                                     <th>Department</th>
                                     <th>Amount Requested</th>
-                                    <th>Amount Utilized</th>
                                     <th>Variance</th>
                                     <th></th>
                                 </tr>
@@ -1438,7 +1335,6 @@
                                     <td><%=seproposal.get(i).getUnit()%></td>
                                     <td><%=seproposal.get(i).getDepartment()%></td>
                                     <td>₱<%=seproposal.get(i).getTotalAmount()%></td>
-                                    <td>₱<%=UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td>₱<%=seproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td><button class="btn btn-primary btn-sm" type="submit" name="viewSE<%=i%>" value="<%=seproposal.get(i).getId()%>">View</button></td>
                                 </tr>
@@ -1463,7 +1359,6 @@
                                     <th>Unit</th>
                                     <th>Department</th>
                                     <th>Amount Requested</th>
-                                    <th>Amount Utilized</th>
                                     <th>Variance</th>
                                 </tr>
                             </thead>
@@ -1476,7 +1371,6 @@
                                     <td><%=ffproposal.get(i).getUnit()%></td>
                                     <td><%=ffproposal.get(i).getDepartment()%></td>
                                     <td>₱<%=ffproposal.get(i).getTotalAmount()%></td>
-                                    <td>₱<%=UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td>₱<%=ffproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td><button class="btn btn-primary btn-sm" type="submit" name="viewFF<%=i%>" value="<%=ffproposal.get(i).getId()%>">View</button></td>
                                 </tr>
@@ -1508,7 +1402,6 @@
             window.open = function () {/*disable open*/
             };
             }
-
             // prevent href=# click jump
             document.addEventListener("DOMContentLoaded", function () {
             var links = document.getElementsByTagName("A");
@@ -1557,7 +1450,6 @@
             } else {
             SeparatorTitle.addClass('d-flex');
             }
-
             // Collapse/Expand icon
             $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }

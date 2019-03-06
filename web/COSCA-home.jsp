@@ -287,7 +287,7 @@
                                 TargetDAO TargetDAO = new TargetDAO();
                                 OvplmDAO OvplmDAO = new OvplmDAO();
                                 ArrayList<KRA> kralist = OvplmDAO.retrieveKRA();
-                                for (int x = 2; x < kralist.size(); x++) {
+                                for (int x = 0; x < kralist.size(); x++) {
                             %>
                         <h5><%=kralist.get(x).getName()%></h5>
                         <table class="table table-bordered">
@@ -333,8 +333,8 @@
                             <%if (z != 0) {%><td><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
 
                             <% double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals()); %>
-                            <%if (z == 0) {%><% if (percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
-                            <%if (z != 0) {%><% if (percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                            <%if(z==0){%><% if(percent >= 0 && percent <= 33.33){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent >= 33.34 && percent <= 66.66){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent >= 66.67 && percent <= 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent > 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                            <%if(z!=0){%><% if(percent >= 0 && percent <= 33.33){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent >= 33.34 && percent <= 66.66){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent >= 66.67 && percent <= 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent > 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
 
                             <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
                             <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
