@@ -293,40 +293,12 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <ul class="list-group sticky-top sticky-offset">
-                    <!-- Menu with submenu -->
-                    <a href="ADMIN-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-group fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Units</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuUnits" class="collapse sidebar-submenu">
-                        <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Add Unit</span>
-                        </a>
-                        <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
-                        </a>
-                    </div>
-                    <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span>&nbsp;+ &nbsp;</span>
-                            <span class="menu-collapsed">Add User</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
                 </ul>
-
             </div>
 
 

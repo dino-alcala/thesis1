@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Unit"%>
 <%@page import="entity.SE"%>
 <%@page import="java.sql.Date"%>
 <%@page import="entity.Community"%>
@@ -443,12 +444,16 @@
                             var chartBPRu = new Chart(ctx, {
                                 type: 'bar',
                                 data: {
-                                    labels: ["CCS", "CLA", "COB", "SOE", "CED", "COS", "COE", "COL"],
+                                    <%
+                                        ArrayList<Unit> units = UserDAO.retrieveUnitsAcademic();
+                                    %>
+                                    
+                                    labels: [<%for (int i = 0; i < units.size(); i++) {%>"<%=units.get(i).getAbbrev()%>",<%}%>],
                                     datasets: [
                                         {
                                             label: "Social Engagement",
                                             backgroundColor: ["#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D"],
-                                            data: [<%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "College of Computer Studies (CCS)", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "College of Liberal Arts (CLA)", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Ramon V. Del Rosario College of Business (RVR-COB)", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "School of Economics (SOE)", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Br. Andrew Gonzales College of Education (BAGCED)", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "College of Science (COS)", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Gokongwei College of Engineering (GCOE)", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "College of Law", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>]
+                                            data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                         }]
 
                                 },

@@ -1277,6 +1277,7 @@ public class UserDAO {
                 Unit u = new Unit();
                 u.setUnitID(rs.getInt("unitID"));
                 u.setName(rs.getString("unitName"));
+                u.setAbbrev(rs.getString("abbrev"));
                 u.setHead(rs.getString("unitHead"));
                 u.setType(rs.getString("unitType"));
                 u.setDepartments(rs.getInt("departments"));

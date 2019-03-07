@@ -245,10 +245,10 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <ul class="list-group sticky-top sticky-offset">
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
                     <script>
-                        $("#sidebar-container").load("sidebarovplm.jsp");
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
                 </ul>
             </div>

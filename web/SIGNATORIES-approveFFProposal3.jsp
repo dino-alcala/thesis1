@@ -257,54 +257,11 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <%
-                    if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
-                %>
-                <ul class="list-group sticky-top sticky-offset">
-                    <!-- Menu with submenu -->
-                    <a href="SIGNATORIES-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="MULTIPLE-socialEngagementProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check fa-fw mr-2"></span>
-                            <span class="menu-collapsed">SE Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check fa-fw mr-2"></span>
-                            <span class="menu-collapsed">FF Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <% } %>
-                </ul>
-                <%
-                    if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
-                %>
-                <ul class="list-group sticky-top sticky-offset">
-                    <a href="SIGNATORIES-home2.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="MULTIPLE-faithFormationProgramsList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-check fa-fw mr-2"></span>
-                            <span class="menu-collapsed">FF Programs</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <% } %>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
                 </ul>
             </div>
 
