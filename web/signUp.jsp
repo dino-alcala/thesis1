@@ -4,6 +4,8 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Department"%>
+<%@page import="entity.Position"%>
 <%@page import="entity.Unit"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Community"%>
@@ -31,7 +33,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-        
+
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -102,7 +104,7 @@
                 border-collapse: collapse;
 
             }
-            
+
             th{
                 padding:15px;
             }
@@ -147,11 +149,11 @@
             .dropdown-toggle {
                 width: 308px;
             }
-            
+
             p{
                 text-align: center;     
             }
-            
+
             #type, #dept{
                 margin-top: 0px;
             }
@@ -172,6 +174,9 @@
                 }
             }
 
+            html{
+                font-size:14px;
+            }
         </style>
 
 
@@ -182,7 +187,7 @@
             %>
             $("document").ready(function () {
 
-                alert("<%=request.getAttribute("successSE")%>");
+            alert("<%=request.getAttribute("successSE")%>");
             });
             <%
                 }
@@ -192,7 +197,7 @@
             %>
             $("document").ready(function () {
 
-                alert("<%=request.getAttribute("successFF")%>");
+            alert("<%=request.getAttribute("successFF")%>");
             });
             <%
                 }
@@ -208,51 +213,43 @@
                 units = UserDAO.retrieveUnits();
             %>
 
-                var c1 = document.getElementById(c1);
-                var c2 = document.getElementById(c2);
-
-                c2.innerHTML = "";
-
+            var c1 = document.getElementById(c1);
+            var c2 = document.getElementById(c2);
+            c2.innerHTML = "";
             <%
                 for (int i = 0; i < units.size(); i++) {
                     ArrayList<Integer> departmentID = new ArrayList();
                     departmentID = UserDAO.retrieveDepartmentByUnitID(units.get(i).getUnitID());
             %>
 
-                if (c1.value == "<%=units.get(i).getName()%>") {
+            if (c1.value == "<%=units.get(i).getName()%>") {
             <%
                 if (departmentID.size() > 1) {
             %>
-                    var nodept = document.createElement("option");
-                    nodept.value = 0;
-                    nodept.innerHTML = "No Department";
-                    c2.options.add(nodept);
+            var nodept = document.createElement("option");
+            nodept.value = 0;
+            nodept.innerHTML = "No Department";
+            c2.options.add(nodept);
             <%
                 }
             %>
 
-                    var optionArray = [<%for (int j = 0; j < departmentID.size(); j++) {%>"<%=UserDAO.getDepartmentByID(departmentID.get(j)).getDepartmentID()%>|<%=UserDAO.getDepartmentByID(departmentID.get(j)).getName()%>",<%}%>];
-                            }
+            var optionArray = [<%for (int j = 0; j < departmentID.size(); j++) {%>"<%=UserDAO.getDepartmentByID(departmentID.get(j)).getDepartmentID()%>|<%=UserDAO.getDepartmentByID(departmentID.get(j)).getName()%>",<%}%>];
+                }
 
             <%
                 }
             %>
-                            for (var option in optionArray) {
-                                var pair = optionArray[option].split("|");
-                                var newOption = document.createElement("option");
-                                newOption.value = pair[0];
-                                newOption.innerHTML = pair[1];
-                                c2.options.add(newOption);
-                            }
+                for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair[1];
+                c2.options.add(newOption);
+                }
 
-            }
-            
-                
-            
-
+                }
         </script>
-        
-        
     </head>
 
     <body>
@@ -348,47 +345,20 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-                <ul class="list-group sticky-top sticky-offset">
-                    <!-- Menu with submenu -->
-                    <a href="ADMIN-home.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-home fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Home</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <a href="#submenuUnits" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-group fa-fw mr-2"></span>
-                            <span class="menu-collapsed">Units</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-                    <div id="submenuUnits" class="collapse sidebar-submenu">
-                        <a href="OVPLM-addUnit.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Add Unit</span>
-                        </a>
-                        <a href="MULTIPLE-unitsList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                            <span class="menu-collapsed" id="subMenuCategory">Units</span>
-                        </a>
-                    </div>
-                    <a href="signUp.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span>&nbsp;+ &nbsp;</span>
-                            <span class="menu-collapsed">Add User</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
+            <div class="sidebar-expanded d-none d-md-block">
+                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+                    <script>
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                    </script>
                 </ul>
             </div>
-            
+
 
             <!-- MAIN -->
             <div class="col py-3">
 
-                    <h2 class="signUpHeading">Create User</h2>
-                    <p><i>Fields with "*" are required</i></p>
+                <h2 class="signUpHeading">Create User</h2>
+                <p><i>Fields with "*" are required</i></p>
 
 
                 <form class="loginForm-signin" action="signUp" method="post">       
@@ -400,10 +370,21 @@
 
                     <div class="form-group">
                         <label for="sel1">Unit:</label>
-                        <select class="form-control" id="type" name="unit" onchange="department(this.id,'dept')">
-                            <optgroup label="Added Units">
+                        <select class="form-control" id="type" name="unit" onchange="department(this.id, 'dept')">
+                            <optgroup label="Academic Units">
                                 <option disabled selected>Select Unit</option>
                                 <%
+                                    units = UserDAO.retrieveUnitsAcademic();
+                                    for (int k = 0; k < units.size(); k++) {
+                                %>
+                                <option><%=units.get(k).getName()%></option>
+                                <%
+                                    }
+                                %>
+                            </optgroup>
+                            <optgroup label="Non-Academic Units">
+                                <%
+                                    units = UserDAO.retrieveUnitsNonAcademic();
                                     for (int k = 0; k < units.size(); k++) {
                                 %>
                                 <option><%=units.get(k).getName()%></option>
@@ -414,9 +395,10 @@
                         </select>
                     </div>
 
+
                     <div class="form-group">
                         <label for="sel1">Department:</label>
-                        <select class="form-control" id="dept" name="dept">
+                        <select class="form-control" id="dept" name="dept" onchange="position(this.id, 'position')">
                             <option disabled selected>Select Department</option>
                         </select>
 
@@ -437,45 +419,45 @@
 
         <script>
             $('#date').datepicker({
-                startDate: new Date()
+            startDate: new Date()
             });
             // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
-                ;
-                window.alert = function () {/*disable alert*/
-                };
-                window.confirm = function () {/*disable confirm*/
-                };
-                window.prompt = function () {/*disable prompt*/
-                };
-                window.open = function () {/*disable open*/
-                };
+            ;
+            window.alert = function () {/*disable alert*/
+            };
+            window.confirm = function () {/*disable confirm*/
+            };
+            window.prompt = function () {/*disable prompt*/
+            };
+            window.open = function () {/*disable open*/
+            };
             }
 
             // prevent href=# click jump
             document.addEventListener("DOMContentLoaded", function () {
-                var links = document.getElementsByTagName("A");
-                for (var i = 0; i < links.length; i++) {
-                    if (links[i].href.indexOf('#') != -1) {
-                        links[i].addEventListener("click", function (e) {
-                            console.debug("prevent href=# click");
-                            if (this.hash) {
-                                if (this.hash == "#") {
-                                    e.preventDefault();
-                                    return false;
-                                } else {
-                                    /*
-                                     var el = document.getElementById(this.hash.replace(/#/, ""));
-                                     if (el) {
-                                     el.scrollIntoView(true);
-                                     }
-                                     */
-                                }
-                            }
-                            return false;
-                        })
-                    }
-                }
+            var links = document.getElementsByTagName("A");
+            for (var i = 0; i < links.length; i++) {
+            if (links[i].href.indexOf('#') != - 1) {
+            links[i].addEventListener("click", function (e) {
+            console.debug("prevent href=# click");
+            if (this.hash) {
+            if (this.hash == "#") {
+            e.preventDefault();
+            return false;
+            } else {
+            /*
+             var el = document.getElementById(this.hash.replace(/#/, ""));
+             if (el) {
+             el.scrollIntoView(true);
+             }
+             */
+            }
+            }
+            return false;
+            })
+            }
+            }
             }, false);
         </script>
         <script>
@@ -485,23 +467,23 @@
             $('#collapse-icon').addClass('fa-angle-double-left');
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
+            SidebarCollapse();
             });
             function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+            } else {
+            SeparatorTitle.addClass('d-flex');
+            }
 
-                // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

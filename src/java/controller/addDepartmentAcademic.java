@@ -44,6 +44,7 @@ public class addDepartmentAcademic extends HttpServlet {
             Unit u = new Unit();
 
             d.setName(request.getParameter("unitname"));
+            d.setAbbrev(request.getParameter("abbrev"));
             d.setFaculty(Integer.parseInt(request.getParameter("faculty")));
             d.setAdmin(Integer.parseInt(request.getParameter("admin")));
             d.setApsp(Integer.parseInt(request.getParameter("apsp")));

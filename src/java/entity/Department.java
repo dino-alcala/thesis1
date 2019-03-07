@@ -12,6 +12,7 @@ package entity;
 public class Department {
     
     protected String name;
+    protected String abbrev;
     protected int departmentID;
     protected int faculty;
     protected int admin;
@@ -28,6 +29,14 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAbbrev() {
+        return abbrev;
+    }
+
+    public void setAbbrev(String abbrev) {
+        this.abbrev = abbrev;
     }
 
     public int getDepartmentID() {

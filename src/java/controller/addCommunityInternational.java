@@ -6,11 +6,9 @@
 package controller;
 
 import dao.OvplmDAO;
-import entity.Department;
-import entity.Unit;
+import entity.Community;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,9 +19,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author dang
+ * @author LA
  */
-public class addAcademicUnit extends HttpServlet {
+public class addCommunityInternational extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,49 +36,29 @@ public class addAcademicUnit extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
-            Unit unit = new Unit();
-
+            /* TODO output your page here. You may use following sample code. */
+            Community c = new Community();
             OvplmDAO OvplmDAO = new OvplmDAO();
 
             HttpSession session = request.getSession();
 
-            unit.setName(request.getParameter("unitname"));
-            unit.setHead(request.getParameter("unithead"));
-            unit.setDepartments(Integer.parseInt(request.getParameter("numberdept")));
-            unit.setType("Academic");
-            unit.setDescription(request.getParameter("unitdescription"));
-            unit.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+            c.setName(request.getParameter("name"));
+            c.setContactperson(request.getParameter("contactperson"));
+            c.setContactnumber(request.getParameter("contactnumber"));
+            c.setCountry(request.getParameter("country"));
+            c.setUnitnumber(request.getParameter("unitnumber"));
+            c.setStreet(request.getParameter("street"));
+            c.setBarangay(request.getParameter("barangay"));
+            c.setCity(request.getParameter("city"));
+            c.setDescription(request.getParameter("description"));
+            c.setInternational(1);
+            c.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
 
-            ArrayList<Department> d = new ArrayList();
+            OvplmDAO.AddCommunity(c);
 
-            for (int i = 0; i < Integer.parseInt(request.getParameter("numberdept")); i++) {
-                Department department = new Department();
-                department.setName(request.getParameter("department" + i));
-                department.setAbbrev(request.getParameter("abbrev" + i));
-                department.setFaculty(Integer.parseInt(request.getParameter("faculty" + i)));
-                department.setAdmin(Integer.parseInt(request.getParameter("admin" + i)));
-                department.setApsp(Integer.parseInt(request.getParameter("apsp" + i)));
-                department.setAsf(Integer.parseInt(request.getParameter("asf" + i)));
-                department.setCap(Integer.parseInt(request.getParameter("cap" + i)));
-                department.setDirecthired(Integer.parseInt(request.getParameter("direct" + i)));
-                department.setIndependent(Integer.parseInt(request.getParameter("independent" + i)));
-                department.setExternal(Integer.parseInt(request.getParameter("external" + i)));
-                d.add(department);
-            }
-
-            OvplmDAO.AddAcademicUnit(unit, d);
-
-            if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
-                dispatcher.forward(request, response);
-            }
-            if (session.getAttribute("unit").toString().equals("Admin")) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
-                dispatcher.forward(request, response);
-            }
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-addCommunity.jsp");
+            dispatcher.forward(request, response);
 
         }
     }

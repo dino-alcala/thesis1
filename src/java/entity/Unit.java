@@ -11,6 +11,7 @@ package entity;
  */
 public class Unit {
     
+    protected String abbrev;
     protected String name;
     protected String head;
     protected String type;
@@ -27,6 +28,14 @@ public class Unit {
     protected int independent;
     protected int external;
 
+    public String getAbbrev() {
+        return abbrev;
+    }
+
+    public void setAbbrev(String abbrev) {
+        this.abbrev = abbrev;
+    }
+    
     public String getName() {
         return name;
     }

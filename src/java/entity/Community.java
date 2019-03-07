@@ -14,11 +14,13 @@ public class Community {
     protected String name;
     protected String contactperson;
     protected String contactnumber;
+    protected String country;
     protected String unitnumber;
     protected String street;
     protected String barangay;
     protected String city;
     protected String description;
+    protected int international;
     protected int userID;
     protected int numberOfPrograms;
 
@@ -52,6 +54,14 @@ public class Community {
 
     public void setContactnumber(String contactnumber) {
         this.contactnumber = contactnumber;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
     
     public String getUnitnumber() {
@@ -92,6 +102,14 @@ public class Community {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getInternational() {
+        return international;
+    }
+
+    public void setInternational(int international) {
+        this.international = international;
     }
 
     public int getUserID() {

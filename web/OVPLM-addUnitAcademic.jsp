@@ -44,12 +44,23 @@
                         
                     // Append a node with a random text
                     container.appendChild(document.createElement("hr"));
-                    container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
+                    container.appendChild(document.createTextNode("Department " + (i + 1) + " Name: "));
                     container.appendChild(document.createElement("br"));
                     // Create an <input> element, set its type and name attributes
                     var input = document.createElement("input");
                     input.type = "text";
                     input.name = "department" + i;
+                    container.appendChild(input);
+                    // Append a line break 
+                    container.appendChild(document.createElement("br"));
+                    
+                    container.appendChild(document.createElement("hr"));
+                    container.appendChild(document.createTextNode("Department " + (i + 1) + " Abbreviation: "));
+                    container.appendChild(document.createElement("br"));
+                    // Create an <input> element, set its type and name attributes
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "abbrev" + i;
                     container.appendChild(input);
                     // Append a line break 
                     container.appendChild(document.createElement("br"));
@@ -323,7 +334,11 @@
                                             <ul class="form-style-1">
                                                 <li>
                                                     <label>Unit Name: <span class="required"></span></label>
-                                                    <input type="text" name="unitname" class="field-long" />
+                                                    <input type="text" name="unitname" placeholder="College of Computer Studies" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Abbreviation: <span class="required"></span></label>
+                                                    <input type="text" name="abbrev" placeholder="CCS" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Unit Head: <span class="required"></span></label>

@@ -45,6 +45,7 @@ public class addNonAcademicUnit extends HttpServlet {
             HttpSession session = request.getSession();
 
             unit.setName(request.getParameter("unitname"));
+            unit.setAbbrev(request.getParameter("abbrev"));
             unit.setHead(request.getParameter("unithead"));
             unit.setDepartments(0);
             unit.setType("Non-Academic");

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : MULTIPLE-addCommunity
-    Created on : 06 12, 18, 12:04:26 PM
+    Document   : OVPLM-addUnit
+    Created on : 06 12, 18, 1:26:08 PM
     Author     : Karl Madrid
 --%>
 
@@ -15,48 +15,137 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Add Community</title>
+        <title>Add Unit</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="css/formstyle1.css">
+        <link rel="stylesheet" type="text/css" href="css/homepagestyle.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+        <script type="text/javascript">
+            $('#body-row .collapse').collapse('hide');
 
-        <style>       
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
+
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+
+
+
+        </script>
+
+        <script>
+                function addFields() {
+                    // Number of inputs to create
+                    var number = document.getElementById("member55").value;
+                    // Container <div> where dynamic content will be placed
+                    var container = document.getElementById("container55");
+                    // Clear previous contents of the container
+                    while (container.hasChildNodes()) {
+                        container.removeChild(container.lastChild);
+                    }
+                    for (i = 0; i < number; i++) {
+                        // Append a node with a random text
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
+                        container.appendChild(document.createElement("br"));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "department" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of Staff for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "staff" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+
+                    }
+                }
+        </script>
+
+        <style>
+            tr:hover {
+                background-color: lightgreen;
             }
 
-            h4{
+            h2{
+                font-size: 40px;
+                text-align: left;
+                margin-top: 20px;
+                border-bottom: 2px solid green;
+                padding-bottom: 10px;
+                margin-bottom: 25px;
+            }
+
+            .table{
+                border-bottom: 2px solid lightgray;
+                margin-bottom: 30px;
+            }
+
+            h1{
                 text-align: left;
                 font-size: 25px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
-
             }   
+
             .formBg{
                 width: 60%;
                 padding: 10px;
                 margin-top: 0px;
             }
 
-            .panels{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
+            .dropbtn {
+                background-color: dimgray;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+            
+            label, .btn-primary, select, option{
+               font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 
@@ -74,24 +163,24 @@
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown d-sm-block d-md-none">*
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
-                            Dashboard
+                    <li class="nav-item dropdown d-sm-block d-md-none">
+                        <a class="nav-link" href="OVPLM-home.html" id="smallerscreenmenu">
+                            Home
                         </a>
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
-                            Proposals
+                        <a class="nav-link" href="MULTIPLE-faithFormationProgramsList.html" id="smallerscreenmenu">
+                            Programs
                         </a>
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
+                        <a class="nav-link" href="MULTIPLE-unitsList.html" id="smallerscreenmenu">
                             Units
                         </a>
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
+                        <a class="nav-link" href="MULTIPLE-communityList.html" id="smallerscreenmenu">
+                            Communities
+                        </a>
+                        <a class="nav-link" href="MULTIPLE-krasList.html" id="smallerscreenmenu">
                             Key Result Areas
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Reports
-                        </a>
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
-                            Accomplishment
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Evaluation Forms
@@ -162,143 +251,123 @@
             <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
                 <ul class="list-group sticky-top sticky-offset">
                     <script>
-                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                        $("#sidebar-container").load("sidebarovplm.jsp");
                     </script>
                 </ul>
             </div>
 
-
             <!-- MAIN -->
             <div class="col py-3">
+
                 <div class="container">
-                    <div class="col-lg-12">
-                        <div class="formBg">
-                            <h4>Add Community</h4>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="formBg">
+                                <h1>Add Unit</h1>
 
-                            <p><i>Fields with "*" are required</i></p>
+                                <div class="panel panel-success">
 
-                            <form action="addCommunity" method="post">
-                                <ul class="form-style-1">
-                                    <li>
-                                        <label>Community Name:* <span class="required"></span></label>
-                                        <input type="text" name="name" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Contact person:* <span class="required"></span></label>
-                                        <input type="text" name="contactperson" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Contact number:* <span class="required"></span></label>
-                                        <input type="text" name="contactnumber" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Unit Number*: <span class="required"></span></label>
-                                        <input type="text" name="unitnumber" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Street*: <span class="required"></span></label>
-                                        <input type="text" name="street" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Barangay*: <span class="required"></span></label>
-                                        <input type="text" name="barangay" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>City*: <span class="required"></span></label>
-                                        <input type="text" name="city" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Description: <span class="required"></span></label>
-                                        <textarea rows="4" cols="40" name="description"></textarea>
-                                    </li>
+                                    <div class="panel-heading"></div>
 
+                                    <div class="panel-body">
 
-                                    <li align="center">
-                                        <button type="submit" class="btn btn-info">Add Community</button>
-                                    </li>
-                                </ul>
-                            </form>
+                                        <p><i>Fields with "*" are required</i></p>
 
+                                        <form action="addCommunity" method="post">
+                                            <ul class="form-style-1">
+                                                <li>
+                                                    <label>Unit Type:* <span class="required"></span></label>
+                                                    <select name="communitytype">
+                                                        <option value="Local">Local</option>
+                                                        <option value="International">International</option>
+                                                    </select>
+                                                </li>
+
+                                                <li>
+                                                    <button type="submit" class="btn btn-primary">Proceed</button>
+                                                </li>
+                                            </ul>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
         </div>
 
-
-
         <script>
-            // sandbox disable popups
-            if (window.self !== window.top && window.name != "view1") {
-                ;
-                window.alert = function () {/*disable alert*/
-                };
-                window.confirm = function () {/*disable confirm*/
-                };
-                window.prompt = function () {/*disable prompt*/
-                };
-                window.open = function () {/*disable open*/
-                };
-            }
-
-            // prevent href=# click jump
-            document.addEventListener("DOMContentLoaded", function () {
-                var links = document.getElementsByTagName("A");
-                for (var i = 0; i < links.length; i++) {
-                    if (links[i].href.indexOf('#') != -1) {
-                        links[i].addEventListener("click", function (e) {
-                            console.debug("prevent href=# click");
-                            if (this.hash) {
-                                if (this.hash == "#") {
-                                    e.preventDefault();
-                                    return false;
-                                } else {
-                                    /*
-                                     var el = document.getElementById(this.hash.replace(/#/, ""));
-                                     if (el) {
-                                     el.scrollIntoView(true);
-                                     }
-                                     */
-                                }
-                            }
-                            return false;
-                        })
-                    }
+                // sandbox disable popups
+                if (window.self !== window.top && window.name != "view1") {
+                    ;
+                    window.alert = function () {/*disable alert*/
+                    };
+                    window.confirm = function () {/*disable confirm*/
+                    };
+                    window.prompt = function () {/*disable prompt*/
+                    };
+                    window.open = function () {/*disable open*/
+                    };
                 }
-            }, false);
+
+                // prevent href=# click jump
+                document.addEventListener("DOMContentLoaded", function () {
+                    var links = document.getElementsByTagName("A");
+                    for (var i = 0; i < links.length; i++) {
+                        if (links[i].href.indexOf('#') != -1) {
+                            links[i].addEventListener("click", function (e) {
+                                console.debug("prevent href=# click");
+                                if (this.hash) {
+                                    if (this.hash == "#") {
+                                        e.preventDefault();
+                                        return false;
+                                    } else {
+                                        /*
+                                         var el = document.getElementById(this.hash.replace(/#/, ""));
+                                         if (el) {
+                                         el.scrollIntoView(true);
+                                         }
+                                         */
+                                    }
+                                }
+                                return false;
+                            })
+                        }
+                    }
+                }, false);
         </script>
         <script>
-            // Hide submenus
-            $('#body-row .collapse').collapse('hide');
-
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
-            });
-
-            function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
+                // Hide submenus
+                $('#body-row .collapse').collapse('hide');
 
                 // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
-        </script>
+                $('#collapse-icon').addClass('fa-angle-double-left');
 
+                // Collapse click
+                $('[data-toggle=sidebar-colapse]').click(function () {
+                    SidebarCollapse();
+                });
+
+                function SidebarCollapse() {
+                    $('.menu-collapsed').toggleClass('d-none');
+                    $('.sidebar-submenu').toggleClass('d-none');
+                    $('.submenu-icon').toggleClass('d-none');
+                    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                    // Treating d-flex/d-none on separators with title
+                    var SeparatorTitle = $('.sidebar-separator-title');
+                    if (SeparatorTitle.hasClass('d-flex')) {
+                        SeparatorTitle.removeClass('d-flex');
+                    } else {
+                        SeparatorTitle.addClass('d-flex');
+                    }
+
+                    // Collapse/Expand icon
+                    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                }
+        </script>
     </body>
 </html>

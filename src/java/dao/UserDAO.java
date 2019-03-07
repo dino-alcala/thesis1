@@ -20,6 +20,7 @@ import entity.Goal;
 import entity.KRA;
 import entity.Measure;
 import entity.Notification;
+import entity.Position;
 import entity.SE;
 import entity.SEattendees;
 import entity.SEevaluation;
@@ -1402,6 +1403,83 @@ public class UserDAO {
                 /* ignored */ }
         }
         return deptid;
+    }
+    
+    public ArrayList<Position> retrievePositions() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM positions";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Position> positions = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Position p = new Position();
+                p.setPosition(rs.getString("position"));
+                p.setDepartmentID(rs.getInt("departmentID"));
+                p.setUnitID(rs.getInt("unitID"));
+                positions.add(p);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return positions;
+    }
+    
+    public ArrayList<Integer> retrieveDepartmentIDs() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT departmentID FROM department";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Integer> ids = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int x = rs.getInt("departmentID");
+                ids.add(x);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return ids;
     }
 
     public ArrayList<Department> getDepartmentsIDsByUnitID(int unitID) {
@@ -6708,6 +6786,74 @@ public class UserDAO {
                 /* ignored */ }
         }
         return name;
+    }
+    
+    public ArrayList<String> getCountries() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs = null;
+        ArrayList<String> cities = new ArrayList();
+        
+        try {
+            String query = "SELECT name FROM country GROUP BY name";
+            pstmt = conn.prepareStatement(query);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String s = rs.getString("name");
+                cities.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return cities;
+    }
+    
+    public ArrayList<String> getCities() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ResultSet rs = null;
+        ArrayList<String> cities = new ArrayList();
+        
+        try {
+            String query = "SELECT name FROM city GROUP BY name";
+            pstmt = conn.prepareStatement(query);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String s = rs.getString("name");
+                cities.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return cities;
     }
 
     public int getSEOwner(int seID) {
@@ -15358,7 +15504,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE step >= 1 && step <= 8 AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM seproposal WHERE step >= 1 && step <= 8 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setDate(1, startDate);
@@ -15400,7 +15546,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE step = 9 AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM seproposal WHERE step = 9 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setDate(1, startDate);
@@ -15442,7 +15588,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE step >= 1 && step <= 8 AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM ffproposal WHERE step >= 1 && step <= 8 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setDate(1, startDate);
@@ -15484,7 +15630,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE step = 9 AND datecreated >= ? AND datecreated <= ?";
+            String query = "SELECT * FROM ffproposal WHERE step = 9 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setDate(1, startDate);
@@ -16004,7 +16150,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(sf.expendedAmount) FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 9 AND s.id = ? AND s.datecreated >= ? AND s.datecreated <= ?";
+            String query = "SELECT SUM(sf.expendedAmount) FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 9 AND s.id = ? AND s.datecreated >= ? AND s.datecreated <= ? AND sourceOfFunds = 'OVPLM'";
             
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
@@ -16041,7 +16187,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(ff.expendedAmount) FROM ffreport_funds ff JOIN ffreport fe ON ff.ffreportID = fe.id JOIN ffproposal f ON f.id = fe.ffproposalID WHERE f.step = 9 AND f.id = ? AND f.datecreated >= ? AND f.datecreated <= ?";
+            String query = "SELECT SUM(ff.expendedAmount) FROM ffreport_funds ff JOIN ffreport fe ON ff.ffreportID = fe.id JOIN ffproposal f ON f.id = fe.ffproposalID WHERE f.step = 9 AND f.id = ? AND f.datecreated >= ? AND f.datecreated <= ? AND sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
             pstmt.setDate(2, startDate);
@@ -17037,7 +17183,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE step = 9";
+            String query = "SELECT * FROM seproposal WHERE step = 9 AND sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
 
             rs2 = pstmt.executeQuery();
@@ -17077,7 +17223,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(sf.expendedAmount) FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 8 AND s.id = ?";
+            String query = "SELECT SUM(sf.expendedAmount) FROM sereport_funds sf JOIN sereport se ON sf.sereportID = se.id JOIN seproposal s ON s.id = se.seproposalID WHERE s.step = 9 AND s.id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
 
@@ -17110,7 +17256,7 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE step = 9";
+            String query = "SELECT * FROM ffproposal WHERE step = 9 AND sourceOfFunds = 'OVPLM'";
             pstmt = conn.prepareStatement(query);
 
             rs2 = pstmt.executeQuery();

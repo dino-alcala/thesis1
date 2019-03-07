@@ -6,9 +6,11 @@
 package controller;
 
 import dao.OvplmDAO;
-import entity.Community;
+import entity.Department;
+import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -37,26 +39,16 @@ public class addCommunity extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            Community c = new Community();
-            OvplmDAO OvplmDAO = new OvplmDAO();
 
-            HttpSession session = request.getSession();
-
-            c.setName(request.getParameter("name"));
-            c.setContactperson(request.getParameter("contactperson"));
-            c.setContactnumber(request.getParameter("contactnumber"));
-            c.setUnitnumber(request.getParameter("unitnumber"));
-            c.setStreet(request.getParameter("street"));
-            c.setBarangay(request.getParameter("barangay"));
-            c.setCity(request.getParameter("city"));
-            c.setDescription(request.getParameter("description"));
-            c.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
-            OvplmDAO.AddCommunity(c);
-
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-addCommunity.jsp");
-            dispatcher.forward(request, response);
+            if (request.getParameter("communitytype").equals("Local")) {
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-addCommunityLocal.jsp");
+                dispatcher.forward(request, response);
+            } else if (request.getParameter("communitytype").equals("International")) {
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-addCommunityInternational.jsp");
+                dispatcher.forward(request, response);
+            }
 
         }
     }

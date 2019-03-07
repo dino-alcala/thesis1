@@ -18,6 +18,30 @@ USE `thsis01`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `barangay`
+--
+
+DROP TABLE IF EXISTS `barangay`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `barangay` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `city` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `barangay`
+--
+
+LOCK TABLES `barangay` WRITE;
+/*!40000 ALTER TABLE `barangay` DISABLE KEYS */;
+/*!40000 ALTER TABLE `barangay` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `budget`
 --
 
@@ -49,6 +73,30 @@ INSERT INTO `budget` VALUES (1,'2018-10-19',10000000,NULL,10000000,NULL,NULL),(2
 UNLOCK TABLES;
 
 --
+-- Table structure for table `city`
+--
+
+DROP TABLE IF EXISTS `city`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `city` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `city`
+--
+
+LOCK TABLES `city` WRITE;
+/*!40000 ALTER TABLE `city` DISABLE KEYS */;
+INSERT INTO `city` VALUES (1,'Manila'),(2,'Mandaluyong'),(3,'Marikina'),(4,'Pasig'),(5,'Quezon City'),(6,'San Juan'),(7,'Caloocan'),(8,'Malabon'),(9,'Navotas'),(10,'Valenzuela'),(11,'Las Pinas'),(12,'Makati'),(13,'Muntinlupa'),(14,'Paranque'),(15,'Pasay'),(16,'Taguig'),(17,'Baguio'),(18,'Tabuk'),(19,'Batac'),(20,'Laoag'),(21,'Candon'),(22,'Vigan'),(23,'San Fernando'),(24,'Alaminos'),(25,'Dagupan'),(26,'San Carlos'),(27,'Urdaneta'),(28,'Tuguegarao'),(29,'Cauayan'),(30,'Ilagan'),(31,'Santiago'),(32,'Balanga'),(33,'Malolos'),(34,'Meycauayan'),(35,'San Jose Del Monte'),(36,'Cabanatuan'),(37,'Gapan'),(38,'Munoz'),(39,'Palayan'),(40,'Angeles'),(41,'Mabalacat'),(42,'San Fernando'),(43,'Tarlac'),(44,'Olongapo'),(45,'Batangas City'),(46,'Lipa'),(47,'Tanauan'),(48,'Bacoor'),(49,'Cavite'),(50,'Dasmarinas'),(51,'General Trias'),(52,'Imus'),(53,'Tagaytay'),(54,'Trece Martires'),(55,'Bińan'),(56,'Cabuyao'),(57,'Calamba'),(58,'San Pablo'),(59,'San Pedro'),(60,'Santa Rosa'),(61,'Lucena'),(62,'Tayabas'),(63,'Antipolo'),(64,'Calapan'),(65,'Puerto Princesa'),(66,'Legazpi'),(67,'Ligao'),(68,'Tabaco'),(69,'Iriga'),(70,'Naga'),(71,'Masbate'),(72,'Sorsogon'),(73,'Roxas'),(74,'Iloilo'),(75,'Passi'),(76,'Bacolod'),(77,'Bago'),(78,'Cadiz'),(79,'Escalante'),(80,'Himamaylan'),(81,'Kabankalan'),(82,'La Carlota'),(83,'Sagay'),(84,'San Carlos'),(85,'Silay'),(86,'Sipalay'),(87,'Talisay'),(88,'Victorias'),(89,'Tagbilaran'),(90,'Bogo'),(91,'Carcar'),(92,'Cebu'),(93,'Danao'),(94,'Lapu-lapu (Opon)'),(95,'Mandaue'),(96,'Naga'),(97,'Talisay'),(98,'Toledo'),(99,'Bais'),(100,'Bayawan'),(101,'Canlaon'),(102,'Dumaguete'),(103,'Guihulngan'),(104,'Tanjay'),(105,'Borongan'),(106,'Baybay'),(107,'Ormoc City'),(108,'Tacloban'),(109,'Calbayog'),(110,'Catbalogan'),(111,'Maasin'),(112,'Dapitan'),(113,'Dipolog'),(114,'Pagadian'),(115,'Zamboanga'),(116,'Isabela'),(117,'Malaybalay'),(118,'Valencia'),(119,'Iligan'),(120,'Oroquieta'),(121,'Ozamiz'),(122,'Tangub'),(123,'Cagayan De Oro'),(124,'El Salvador'),(125,'Gingoog'),(126,'Panabo'),(127,'Samal'),(128,'Tagum'),(129,'Davao'),(130,'Digos'),(131,'Mati'),(132,'Kidapawan'),(133,'General Santos'),(134,'Koronadal'),(135,'Tacurong'),(136,'Cotabato'),(137,'Butuan'),(138,'Cabadbaran'),(139,'Bayugan'),(140,'Surigao'),(141,'Bislig'),(142,'Tandag'),(143,'Lamitan'),(144,'Marawi'),(145,'Marilao');
+/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `community`
 --
 
@@ -60,13 +108,14 @@ CREATE TABLE `community` (
   `name` varchar(200) DEFAULT NULL,
   `contactPerson` varchar(200) DEFAULT NULL,
   `contactNumber` varchar(200) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
   `unitNumber` varchar(200) DEFAULT NULL,
   `street` varchar(200) DEFAULT NULL,
   `barangay` varchar(200) DEFAULT NULL,
   `city` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
-  `userID` int(11) DEFAULT NULL,
   `international` int(1) DEFAULT NULL,
+  `userID` int(11) DEFAULT NULL,
   PRIMARY KEY (`communityID`),
   KEY `LA4_idx` (`userID`),
   CONSTRAINT `LA4` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -79,8 +128,32 @@ CREATE TABLE `community` (
 
 LOCK TABLES `community` WRITE;
 /*!40000 ALTER TABLE `community` DISABLE KEYS */;
-INSERT INTO `community` VALUES (1,'Khalids Retirement Home','Khalid Malo','09291107660','24','Mabango Street','Barangay Rahim','Makati City','Khalid\'s Retirement Home',71,NULL),(2,'Karls Community for the Jobless','Karl Madrid','09566082949','8','New York Street','Barangay KM','Quezon City','Karl\'s Community for the Jobless',71,NULL),(3,'Lasalle Singapore','Luis Grefiel','09291577712','9','Woodlands Street','Example Barangay','Singapore City','Lasalle Singapore Description',71,1),(4,'Angelos School for the Special','Angelo De Jesus','09174029299','17','Matuwid Street','Barangay Tibay','Paranaque City','Angelo\'s School for the Special',71,NULL);
+INSERT INTO `community` VALUES (1,'Khalids Retirement Home','Khalid Malo','09291107660','Philippines','24','Mabango Street','Barangay Rahim','Makati City','Khalid\'s Retirement Home',NULL,71),(2,'Karls Community for the Jobless','Karl Madrid','09566082949','Philippines','8','New York Street','Barangay KM','Quezon City','Karl\'s Community for the Jobless',NULL,71),(3,'Lasalle Singapore','Luis Grefiel','09291577712','Singapore','9','Woodlands Street','Example Barangay','Singapore City','Lasalle Singapore Description',1,71),(4,'Angelos School for the Special','Angelo De Jesus','09174029299','Philippines','17','Matuwid Street','Barangay Tibay','Paranaque City','Angelo\'s School for the Special',NULL,71);
 /*!40000 ALTER TABLE `community` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `country`
+--
+
+DROP TABLE IF EXISTS `country`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `country` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `country`
+--
+
+LOCK TABLES `country` WRITE;
+/*!40000 ALTER TABLE `country` DISABLE KEYS */;
+INSERT INTO `country` VALUES (1,'Afghanistan'),(2,'Åland Islands'),(3,'Albania'),(4,'Algeria'),(5,'American Samoa'),(6,'Andorra'),(7,'Angola'),(8,'Anguilla'),(9,'Antarctica'),(10,'Antigua & Barbuda'),(11,'Argentina'),(12,'Armenia'),(13,'Aruba'),(14,'Ascension Island'),(15,'Australia'),(16,'Austria'),(17,'Azerbaijan'),(18,'Bahamas'),(19,'Bahrain'),(20,'Bangladesh'),(21,'Barbados'),(22,'Belarus'),(23,'Belgium'),(24,'Belize'),(25,'Benin'),(26,'Bermuda'),(27,'Bhutan'),(28,'Bolivia'),(29,'Bosnia & Herzegovina'),(30,'Botswana'),(31,'Brazil'),(32,'British Indian Ocean Territory'),(33,'British Virgin Islands'),(34,'Brunei'),(35,'Bulgaria'),(36,'Burkina Faso'),(37,'Burundi'),(38,'Cambodia'),(39,'Cameroon'),(40,'Canada'),(41,'Canary Islands'),(42,'Cape Verde'),(43,'Caribbean Netherlands'),(44,'Cayman Islands'),(45,'Central African Republic'),(46,'Ceuta & Melilla'),(47,'Chad'),(48,'Chile'),(49,'China'),(50,'Christmas Island'),(51,'Cocos (Keeling) Islands'),(52,'Colombia'),(53,'Comoros'),(54,'Congo - Brazzaville'),(55,'Congo - Kinshasa'),(56,'Cook Islands'),(57,'Costa Rica'),(58,'Côte d’Ivoire'),(59,'Croatia'),(60,'Cuba'),(61,'Curaçao'),(62,'Cyprus'),(63,'Czechia'),(64,'Denmark'),(65,'Diego Garcia'),(66,'Djibouti'),(67,'Dominica'),(68,'Dominican Republic'),(69,'Ecuador'),(70,'Egypt'),(71,'El Salvador'),(72,'Equatorial Guinea'),(73,'Eritrea'),(74,'Estonia'),(75,'Ethiopia'),(76,'Eurozone'),(77,'Falkland Islands'),(78,'Faroe Islands'),(79,'Fiji'),(80,'Finland'),(81,'France'),(82,'French Guiana'),(83,'French Polynesia'),(84,'French Southern Territories'),(85,'Gabon'),(86,'Gambia'),(87,'Georgia'),(88,'Germany'),(89,'Ghana'),(90,'Gibraltar'),(91,'Greece'),(92,'Greenland'),(93,'Grenada'),(94,'Guadeloupe'),(95,'Guam'),(96,'Guatemala'),(97,'Guernsey'),(98,'Guinea'),(99,'Guinea-Bissau'),(100,'Guyana'),(101,'Haiti'),(102,'Honduras'),(103,'Hong Kong SAR China'),(104,'Hungary'),(105,'Iceland'),(106,'India'),(107,'Indonesia'),(108,'Iran'),(109,'Iraq'),(110,'Ireland'),(111,'Isle of Man'),(112,'Israel'),(113,'Italy'),(114,'Jamaica'),(115,'Japan'),(116,'Jersey'),(117,'Jordan'),(118,'Kazakhstan'),(119,'Kenya'),(120,'Kiribati'),(121,'Kosovo'),(122,'Kuwait'),(123,'Kyrgyzstan'),(124,'Laos'),(125,'Latvia'),(126,'Lebanon'),(127,'Lesotho'),(128,'Liberia'),(129,'Libya'),(130,'Liechtenstein'),(131,'Lithuania'),(132,'Luxembourg'),(133,'Macau SAR China'),(134,'Macedonia'),(135,'Madagascar'),(136,'Malawi'),(137,'Malaysia'),(138,'Maldives'),(139,'Mali'),(140,'Malta'),(141,'Marshall Islands'),(142,'Martinique'),(143,'Mauritania'),(144,'Mauritius'),(145,'Mayotte'),(146,'Mexico'),(147,'Micronesia'),(148,'Moldova'),(149,'Monaco'),(150,'Mongolia'),(151,'Montenegro'),(152,'Montserrat'),(153,'Morocco'),(154,'Mozambique'),(155,'Myanmar (Burma)'),(156,'Namibia'),(157,'Nauru'),(158,'Nepal'),(159,'Netherlands'),(160,'New Caledonia'),(161,'New Zealand'),(162,'Nicaragua'),(163,'Niger'),(164,'Nigeria'),(165,'Niue'),(166,'Norfolk Island'),(167,'North Korea'),(168,'Northern Mariana Islands'),(169,'Norway'),(170,'Oman'),(171,'Pakistan'),(172,'Palau'),(173,'Palestinian Territories'),(174,'Panama'),(175,'Papua New Guinea'),(176,'Paraguay'),(177,'Peru'),(178,'Philippines'),(179,'Pitcairn Islands'),(180,'Poland'),(181,'Portugal'),(182,'Puerto Rico'),(183,'Qatar'),(184,'Réunion'),(185,'Romania'),(186,'Russia'),(187,'Rwanda'),(188,'Samoa'),(189,'San Marino'),(190,'São Tomé & Príncipe'),(191,'Saudi Arabia'),(192,'Senegal'),(193,'Serbia'),(194,'Seychelles'),(195,'Sierra Leone'),(196,'Singapore'),(197,'Sint Maarten'),(198,'Slovakia'),(199,'Slovenia'),(200,'Solomon Islands'),(201,'Somalia'),(202,'South Africa'),(203,'South Georgia & South Sandwich Islands'),(204,'South Korea'),(205,'South Sudan'),(206,'Spain'),(207,'Sri Lanka'),(208,'St. Barthélemy'),(209,'St. Helena'),(210,'St. Kitts & Nevis'),(211,'St. Lucia'),(212,'St. Martin'),(213,'St. Pierre & Miquelon'),(214,'St. Vincent & Grenadines'),(215,'Sudan'),(216,'Suriname'),(217,'Svalbard & Jan Mayen'),(218,'Swaziland'),(219,'Sweden'),(220,'Switzerland'),(221,'Syria'),(222,'Taiwan'),(223,'Tajikistan'),(224,'Tanzania'),(225,'Thailand'),(226,'Timor-Leste'),(227,'Togo'),(228,'Tokelau'),(229,'Tonga'),(230,'Trinidad & Tobago'),(231,'Tristan da Cunha'),(232,'Tunisia'),(233,'Turkey'),(234,'Turkmenistan'),(235,'Turks & Caicos Islands'),(236,'Tuvalu'),(237,'U.S. Outlying Islands'),(238,'U.S. Virgin Islands'),(239,'Uganda'),(240,'Ukraine'),(241,'United Arab Emirates'),(242,'United Kingdom'),(243,'United Nations'),(244,'United States'),(245,'Uruguay'),(246,'Uzbekistan'),(247,'Vanuatu'),(248,'Vatican City'),(249,'Venezuela'),(250,'Vietnam'),(251,'Wallis & Futuna'),(252,'Western Sahara'),(253,'Yemen'),(254,'Zambia'),(255,'Zimbabwe');
+/*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -93,6 +166,7 @@ DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
   `departmentID` int(11) NOT NULL,
   `department` varchar(100) DEFAULT NULL,
+  `abbrev` varchar(45) DEFAULT NULL,
   `numberOfFaculty` int(11) DEFAULT NULL,
   `numberOfAdmin` int(11) DEFAULT NULL,
   `numberOfAPSP` int(11) DEFAULT NULL,
@@ -111,37 +185,8 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (0,'No Department',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,'Admin ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Computer Technology (CT)',15,2,10,12,10,2,2,2),(3,'Information Technology (IT)',15,2,10,12,10,2,2,2),(4,'Software Technology (ST)',15,2,10,12,10,2,2,2),(5,'Counselling and Educational Psychology Department (CEPD)',15,2,10,12,10,2,2,2),(6,'Department of English and Applied Linguistics (DEAL)',15,2,10,12,10,2,2,2),(7,'Educational Leadership and Management Department (ELMD)',15,2,10,12,10,2,2,2),(8,'Physical Education Department (PED)',15,2,10,12,10,2,2,2),(9,'Science Education Department (SED)',15,2,10,12,10,2,2,2),(10,'Behavioral Sciences (BS)',15,2,10,12,10,2,2,2),(11,'Communication (COMM)',15,2,10,12,10,2,2,2),(12,'Literature (LIT)',15,2,10,12,10,2,2,2),(13,'Filipino (FIL)',15,2,10,21,10,2,2,2),(14,'History (HIS)',15,2,10,12,10,2,2,2),(15,'International Studies (IS)',15,2,10,12,10,2,2,2),(16,'Philosophy (PHILO)',15,2,10,12,10,2,2,2),(17,'Political Science (POLSCI)',15,2,10,12,10,2,2,2),(18,'Psychology (PSYCH)',15,2,10,12,10,2,2,2),(19,'Theology and Religious Education (TRED)',15,2,10,12,10,2,2,2),(20,'Biology (BIO)',15,2,10,12,10,2,2,2),(21,'Chemistry (CHEM)',15,2,10,12,10,2,2,2),(22,'Physics (PHYS)',15,2,10,12,10,2,2,2),(23,'Chemical Engineering (CHEMENG)',15,2,10,12,10,2,2,2),(24,'Civil Engineering (CIV)',15,2,10,12,10,2,2,2),(25,'Electronics and Communications Engineering (ECE)',15,2,10,12,10,2,2,2),(26,'Industrial Engineering (IE)',15,2,10,12,10,2,2,2),(27,'Manufacturing Engineering and Management (MEM)',15,2,10,12,10,2,2,2),(28,'Mechanical Engineering (ME)',15,2,10,12,10,2,2,2),(29,'Accountancy (ACC)',15,2,10,12,10,2,2,2),(30,'Commercial Law (CL)',15,2,10,12,10,2,2,2),(31,'Decision Sciences and Innovation Department (DSID)',15,2,10,12,10,2,2,2),(32,'Management of Financial Institutions (RVRCOB-MFI)',15,2,10,12,10,2,2,2),(33,'Management and Organization Department (RVRCOB-MOD)',15,2,10,12,10,2,2,2),(34,'Marketing Management (RVRCOB-MM)',15,2,10,12,10,2,2,2),(35,'Industrial Applied Economics (IAE)',15,2,10,12,10,2,2,2),(36,'Financial Applied Economics (FAE)',15,2,10,12,10,2,2,2),(37,'Ladderized Applied Economics (LAE)',15,2,10,12,10,2,2,2),(38,'Management of Financial Institutions (SOE-MFI)',15,2,10,12,10,2,2,2),(39,'Management and Organization Department (SOE-MOD)',15,2,10,12,10,2,2,2),(40,'Marketing Management (SOE-MM)',15,2,10,12,10,2,2,2);
+INSERT INTO `department` VALUES (0,'No Department','None',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,'Admin ','Admin',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Computer Technology (CT)','CCSCT',15,2,10,12,10,2,2,2),(3,'Information Technology (IT)','CCSIT',15,2,10,12,10,2,2,2),(4,'Software Technology (ST)','CCSST',15,2,10,12,10,2,2,2),(5,'Counselling and Educational Psychology Department (CEPD)','BAGCEDCEPD',15,2,10,12,10,2,2,2),(6,'Department of English and Applied Linguistics (DEAL)','BAGCEDDEAL',15,2,10,12,10,2,2,2),(7,'Educational Leadership and Management Department (ELMD)','BAGCEDELMD',15,2,10,12,10,2,2,2),(8,'Physical Education Department (PED)','BAGCEDPED',15,2,10,12,10,2,2,2),(9,'Science Education Department (SED)','BAGCEDSED',15,2,10,12,10,2,2,2),(10,'Behavioral Sciences (BS)','CLABS',15,2,10,12,10,2,2,2),(11,'Communication (COMM)','CLACOMM',15,2,10,12,10,2,2,2),(12,'Literature (LIT)','CLALIT',15,2,10,12,10,2,2,2),(13,'Filipino (FIL)','CLAFIL',15,2,10,21,10,2,2,2),(14,'History (HIS)','CLAHIS',15,2,10,12,10,2,2,2),(15,'International Studies (IS)','CLAIS',15,2,10,12,10,2,2,2),(16,'Philosophy (PHILO)','CLAPHILO',15,2,10,12,10,2,2,2),(17,'Political Science (POLSCI)','CLAPOLISCI',15,2,10,12,10,2,2,2),(18,'Psychology (PSYCH)','CLAPSYCH',15,2,10,12,10,2,2,2),(19,'Theology and Religious Education (TRED)','CLATRED',15,2,10,12,10,2,2,2),(20,'Biology (BIO)','COSBIO',15,2,10,12,10,2,2,2),(21,'Chemistry (CHEM)','COSCHEM',15,2,10,12,10,2,2,2),(22,'Physics (PHYS)','COSPHYS',15,2,10,12,10,2,2,2),(23,'Chemical Engineering (CHEMENG)','GCOECHEMENG',15,2,10,12,10,2,2,2),(24,'Civil Engineering (CIV)','GCOECIV',15,2,10,12,10,2,2,2),(25,'Electronics and Communications Engineering (ECE)','GCOEECE',15,2,10,12,10,2,2,2),(26,'Industrial Engineering (IE)','GCOEIE',15,2,10,12,10,2,2,2),(27,'Manufacturing Engineering and Management (MEM)','GCOEMEM',15,2,10,12,10,2,2,2),(28,'Mechanical Engineering (ME)','GCOEME',15,2,10,12,10,2,2,2),(29,'Accountancy (ACC)','RVRCOBACC',15,2,10,12,10,2,2,2),(30,'Commercial Law (CL)','RVRCOBCL',15,2,10,12,10,2,2,2),(31,'Decision Sciences and Innovation Department (DSID)','RVRCOBDSID',15,2,10,12,10,2,2,2),(32,'Management of Financial Institutions (RVRCOB-MFI)','RVRCOBMFI',15,2,10,12,10,2,2,2),(33,'Management and Organization Department (RVRCOB-MOD)','RVRCOBMOD',15,2,10,12,10,2,2,2),(34,'Marketing Management (RVRCOB-MM)','RVRCOBMM',15,2,10,12,10,2,2,2),(35,'Industrial Applied Economics (IAE)','SOEIAE',15,2,10,12,10,2,2,2),(36,'Financial Applied Economics (FAE)','SOEFAE',15,2,10,12,10,2,2,2),(37,'Ladderized Applied Economics (LAE)','SOELAE',15,2,10,12,10,2,2,2),(38,'Management of Financial Institutions (SOE-MFI)','SOEMFI',15,2,10,12,10,2,2,2),(39,'Management and Organization Department (SOE-MOD)','SOEMOD',15,2,10,12,10,2,2,2),(40,'Marketing Management (SOE-MM)','SOEMM',15,2,10,12,10,2,2,2);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `employeelist`
---
-
-DROP TABLE IF EXISTS `employeelist`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `employeelist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) DEFAULT NULL,
-  `type` varchar(45) DEFAULT NULL,
-  `attendff` int(11) DEFAULT NULL,
-  `attendse` int(11) DEFAULT NULL,
-  `unitID` int(11) DEFAULT NULL,
-  `departmentID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `employeelist`
---
-
-LOCK TABLES `employeelist` WRITE;
-/*!40000 ALTER TABLE `employeelist` DISABLE KEYS */;
-INSERT INTO `employeelist` VALUES (1,'Dino Alcala','CAP',NULL,NULL,10,NULL),(2,'Karl Madrid','CAP',NULL,NULL,10,NULL),(3,'Luis Grefiel','APSP',NULL,NULL,10,NULL),(4,'Angelo De Jesus','APSP',NULL,NULL,10,NULL),(5,NULL,'ASF',NULL,NULL,NULL,NULL),(6,NULL,'ASF',NULL,NULL,NULL,NULL),(7,NULL,'Faculty',NULL,NULL,NULL,NULL),(8,NULL,'Faculty',NULL,NULL,NULL,NULL),(9,NULL,'Admin',NULL,NULL,NULL,NULL),(10,NULL,'Admin',NULL,NULL,NULL,NULL),(11,NULL,'Directhired',NULL,NULL,NULL,NULL),(12,NULL,'Directhired',NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `employeelist` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -825,7 +870,7 @@ CREATE TABLE `positions` (
   `unitID` int(11) DEFAULT NULL,
   `departmentID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -834,7 +879,7 @@ CREATE TABLE `positions` (
 
 LOCK TABLES `positions` WRITE;
 /*!40000 ALTER TABLE `positions` DISABLE KEYS */;
-INSERT INTO `positions` VALUES (1,'OVPLM - Vice President for Lasallian Mission',10,0),(2,'OVPLM - Executve Officer',10,0),(3,'OVPLM - Unit Representative',10,0),(4,'BAGCED - ADEALM',13,0),(5,'BAGCED - Dean',13,0),(6,'BAGCEDCEPD - Chairperson',13,5),(7,'BAGCEDCEPD - Department Chair',13,5),(8,'BAGCEDCEPD - Unit Representative',13,5),(9,'BAGCEDDEAL - Chairperson',13,6),(10,'BAGCEDDEAL - Department Chair',13,6),(11,'BAGCEDDEAL - Unit Representative',13,6),(12,'BAGCEDELMD - Chairperson',13,7),(13,'BAGCEDELMD - Department Chair',13,7),(14,'BAGCEDELMD - Unit Representative',13,7),(15,'BAGCEDPED - Chairperson',13,8),(16,'BAGCEDPED - Department Chair',13,8),(17,'BAGCEDPED - Unit Representative',13,8),(18,'BAGCEDSED - Chairperson',13,9),(19,'BAGCEDSED - Department Chair',13,9),(20,'BAGCEDSED - Unit Representative',13,9),(21,'CCS - ADEALM',11,0),(22,'CCS - ADLM',11,0),(23,'CCS - Dean',11,0),(24,'CCSCT - Chairperson',11,2),(25,'CCSCT - Department Chair',11,2),(26,'CCSCT - Unit Representative',11,2),(27,'CCSIT - Chairperson',11,3),(28,'CCSIT - Department Chair',11,3),(29,'CCSIT - Unit Representative',11,3),(30,'CCSST - Chairperson',11,4),(31,'CCSST - Department Chair',11,4),(32,'CCSST - Unit Representative',11,4);
+INSERT INTO `positions` VALUES (1,'Vice President for Lasallian Mission',10,0),(2,'Executive Officer',10,0),(3,'Sir Jay Position',10,0),(4,'Ms Carmel Position',10,0),(5,'Executive Director',20,0),(6,'Dean',23,0),(7,'Director',21,0),(8,'Director',19,0),(9,'Sir Neil Position',19,0),(10,'Unit Representative',10,0),(11,'Unit Representative',19,0),(12,'Unit Representative',20,0),(13,'Unit Representative',21,0),(14,'Unit Representative',22,0),(15,'Unit Representative',23,0),(16,'Unit Representative',24,0),(17,'Unit Representative',25,0),(18,'ADEALM',11,0),(19,'ADEALM',12,0),(20,'ADEALM',13,0),(21,'ADEALM',14,0),(22,'ADEALM',15,0),(23,'ADEALM',16,0),(24,'ADEALM',17,0),(25,'ADEALM',18,0),(26,'Dean',11,0),(27,'Dean',12,0),(28,'Dean',13,0),(29,'Dean',14,0),(30,'Dean',15,0),(31,'Dean',16,0),(32,'Dean',17,0),(33,'Dean',18,0),(34,'VP/VC',10,0),(35,'VP/VC',19,0),(36,'VP/VC',20,0),(37,'VP/VC',21,0),(38,'VP/VC',22,0),(39,'VP/VC',23,0),(40,'VP/VC',24,0),(41,'VP/VC',25,0),(42,'Social Engagement Director',10,0),(43,'Social Engagement Director',19,0),(44,'Social Engagement Director',20,0),(45,'Social Engagement Director',21,0),(46,'Social Engagement Director',22,0),(47,'Social Engagement Director',23,0),(48,'Social Engagement Director',24,0),(49,'Social Engagement Director',25,0),(50,'Unit Chair',10,0),(51,'Unit Chair',19,0),(52,'Unit Chair',20,0),(53,'Unit Chair',21,0),(54,'Unit Chair',22,0),(55,'Unit Chair',23,0),(56,'Unit Chair',24,0),(57,'Unit Chair',25,0),(58,'Unit Head',10,0),(59,'Unit Head',19,0),(60,'Unit Head',20,0),(61,'Unit Head',21,0),(62,'Unit Head',22,0),(63,'Unit Head',23,0),(64,'Unit Head',24,0),(65,'Unit Head',25,0),(66,'Director',10,0),(67,'Director',19,0),(68,'Director',20,0),(69,'Director',21,0),(70,'Director',22,0),(71,'Director',23,0),(72,'Director',24,0),(73,'Director',25,0),(74,'Unit Representative',11,2),(75,'Unit Representative',11,3),(76,'Unit Representative',11,4),(77,'Unit Representative',13,5),(78,'Unit Representative',13,6),(79,'Unit Representative',13,7),(80,'Unit Representative',13,8),(81,'Unit Representative',13,9),(82,'Unit Representative',14,10),(83,'Unit Representative',14,11),(84,'Unit Representative',14,12),(85,'Unit Representative',14,13),(86,'Unit Representative',14,14),(87,'Unit Representative',14,15),(88,'Unit Representative',14,16),(89,'Unit Representative',14,17),(90,'Unit Representative',14,18),(91,'Unit Representative',14,19),(92,'Unit Representative',15,20),(93,'Unit Representative',15,21),(94,'Unit Representative',15,22),(95,'Unit Representative',16,23),(96,'Unit Representative',16,24),(97,'Unit Representative',16,25),(98,'Unit Representative',16,26),(99,'Unit Representative',16,27),(100,'Unit Representative',16,28),(101,'Unit Representative',17,29),(102,'Unit Representative',17,30),(103,'Unit Representative',17,31),(104,'Unit Representative',17,32),(105,'Unit Representative',17,33),(106,'Unit Representative',17,34),(107,'Unit Representative',18,35),(108,'Unit Representative',18,36),(109,'Unit Representative',18,37),(110,'Unit Representative',18,38),(111,'Unit Representative',18,39),(112,'Unit Representative',18,40),(113,'Department Chair',11,2),(114,'Department Chair',11,3),(115,'Department Chair',11,4),(116,'Department Chair',13,5),(117,'Department Chair',13,6),(118,'Department Chair',13,7),(119,'Department Chair',13,8),(120,'Department Chair',13,9),(121,'Department Chair',14,10),(122,'Department Chair',14,11),(123,'Department Chair',14,12),(124,'Department Chair',14,13),(125,'Department Chair',14,14),(126,'Department Chair',14,15),(127,'Department Chair',14,16),(128,'Department Chair',14,17),(129,'Department Chair',14,18),(130,'Department Chair',14,19),(131,'Department Chair',15,20),(132,'Department Chair',15,21),(133,'Department Chair',15,22),(134,'Department Chair',16,23),(135,'Department Chair',16,24),(136,'Department Chair',16,25),(137,'Department Chair',16,26),(138,'Department Chair',16,27),(139,'Department Chair',16,28),(140,'Department Chair',17,29),(141,'Department Chair',17,30),(142,'Department Chair',17,31),(143,'Department Chair',17,32),(144,'Department Chair',17,33),(145,'Department Chair',17,34),(146,'Department Chair',18,35),(147,'Department Chair',18,36),(148,'Department Chair',18,37),(149,'Department Chair',18,38),(150,'Department Chair',18,39),(151,'Department Chair',18,40),(152,'Chairperson',11,2),(153,'Chairperson',11,3),(154,'Chairperson',11,4),(155,'Chairperson',13,5),(156,'Chairperson',13,6),(157,'Chairperson',13,7),(158,'Chairperson',13,8),(159,'Chairperson',13,9),(160,'Chairperson',14,10),(161,'Chairperson',14,11),(162,'Chairperson',14,12),(163,'Chairperson',14,13),(164,'Chairperson',14,14),(165,'Chairperson',14,15),(166,'Chairperson',14,16),(167,'Chairperson',14,17),(168,'Chairperson',14,18),(169,'Chairperson',14,19),(170,'Chairperson',15,20),(171,'Chairperson',15,21),(172,'Chairperson',15,22),(173,'Chairperson',16,23),(174,'Chairperson',16,24),(175,'Chairperson',16,25),(176,'Chairperson',16,26),(177,'Chairperson',16,27),(178,'Chairperson',16,28),(179,'Chairperson',17,29),(180,'Chairperson',17,30),(181,'Chairperson',17,31),(182,'Chairperson',17,32),(183,'Chairperson',17,33),(184,'Chairperson',17,34),(185,'Chairperson',18,35),(186,'Chairperson',18,36),(187,'Chairperson',18,37),(188,'Chairperson',18,38),(189,'Chairperson',18,39),(190,'Chairperson',18,40),(191,'ADLM',10,0),(192,'ADLM',11,0),(193,'ADLM',12,0),(194,'ADLM',13,0),(195,'ADLM',14,0),(196,'ADLM',15,0),(197,'ADLM',16,0),(198,'ADLM',17,0),(199,'ADLM',18,0),(200,'ADLM',19,0),(201,'ADLM',20,0),(202,'ADLM',21,0),(203,'ADLM',22,0),(204,'ADLM',23,0),(205,'ADLM',24,0),(206,'ADLM',25,0);
 /*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1293,7 +1338,7 @@ CREATE TABLE `seproposal_revisions` (
   PRIMARY KEY (`id`),
   KEY `LA40_idx` (`seproposalID`),
   CONSTRAINT `LA40` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1351,7 +1396,7 @@ CREATE TABLE `seproposal_revisions_expenses` (
   PRIMARY KEY (`id`),
   KEY `LA44_idx` (`seproposalID`),
   CONSTRAINT `LA44` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1380,7 +1425,7 @@ CREATE TABLE `seproposal_revisions_measures` (
   KEY `LA43_idx` (`measureID`),
   CONSTRAINT `LA42` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `LA43` FOREIGN KEY (`measureID`) REFERENCES `measure` (`measureID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1408,7 +1453,7 @@ CREATE TABLE `seproposal_revisions_personresponsible` (
   PRIMARY KEY (`id`),
   KEY `LA46_idx` (`seproposalID`),
   CONSTRAINT `LA47` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1439,7 +1484,7 @@ CREATE TABLE `seproposal_revisions_workplan` (
   PRIMARY KEY (`id`),
   KEY `LA41_idx` (`seproposalID`),
   CONSTRAINT `LA41` FOREIGN KEY (`seproposalID`) REFERENCES `seproposal_revisions` (`seproposalID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1736,6 +1781,7 @@ DROP TABLE IF EXISTS `unit`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `unit` (
   `unitID` int(11) NOT NULL AUTO_INCREMENT,
+  `abbrev` varchar(45) DEFAULT NULL,
   `unitName` varchar(100) DEFAULT NULL,
   `unitHead` varchar(100) DEFAULT NULL,
   `unitType` varchar(45) DEFAULT NULL,
@@ -1760,7 +1806,7 @@ CREATE TABLE `unit` (
 
 LOCK TABLES `unit` WRITE;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
-INSERT INTO `unit` VALUES (10,'Office of the Vice President for Lasallian Mission (OVPLM)','OVPLM Unit Head','Non-Academic',0,0,1,3,2,2,1,1,1,'OVPLM Unit',1),(11,'College of Computer Studies (CCS)','CCS Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCS Unit ',1),(12,'College of Law (COL)','COL Unit Head','Academic',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COL Unit',71),(13,'Br. Andrew Gonzales College of Education (BAGCED)','CED Unit Head','Academic',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CED Unit',1),(14,'College of Liberal Arts (CLA)','CLA Unit Head','Academic',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CLA Unit',74),(15,'College of Science (COS)','COS Unit Head','Academic',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COS Unit',74),(16,'Gokongwei College of Engineering (GCOE)','GCOE Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'GCOE Unit',74),(17,'Ramon V. Del Rosario College of Business (RVR-COB)','RVR-COB Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'RVR-COB Unit',74),(18,'School of Economics (SOE)','SOE Unit HEad','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SOE Unit',74),(19,'Center for Social Concern and Action (COSCA)','COSCA Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'COSCA Unit Description',71),(20,'Laguna Campus Lasallian Mission (LCLM)','LCLM Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LCLM Unit Description',71),(21,'Lasallian Pastoral Office (LSPO)','LSPO Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LSPO Unit Description',71),(22,'Lasallian Mission Council (LMC)','LMC Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LMC Unit Description',71),(23,'Dean of Student Affairs (DSA)','DSA Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'DSA Unit Description',1),(24,'Office of Personnel Management (OPM)','OPM Program Head','Non-Academic',0,0,2,5,5,5,2,1,2,'OPM Unit Description',74),(25,'Security Office (SO)','Norman Dela Cruz','Non-Academic',0,10,10,10,5,10,10,10,10,'This is the Office of the Security of the University',1);
+INSERT INTO `unit` VALUES (10,'OVPLM','Office of the Vice President for Lasallian Mission (OVPLM)','OVPLM Unit Head','Non-Academic',0,0,1,3,2,2,1,1,1,'OVPLM Unit',1),(11,'CCS','College of Computer Studies (CCS)','CCS Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCS Unit ',1),(12,'COL','College of Law (COL)','COL Unit Head','Academic',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COL Unit',71),(13,'BAGCED','Br. Andrew Gonzales College of Education (BAGCED)','CED Unit Head','Academic',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CED Unit',1),(14,'CLA','College of Liberal Arts (CLA)','CLA Unit Head','Academic',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CLA Unit',74),(15,'COS','College of Science (COS)','COS Unit Head','Academic',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COS Unit',74),(16,'GCOE','Gokongwei College of Engineering (GCOE)','GCOE Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'GCOE Unit',74),(17,'RVRCOB','Ramon V. Del Rosario College of Business (RVR-COB)','RVR-COB Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'RVR-COB Unit',74),(18,'SOE','School of Economics (SOE)','SOE Unit HEad','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SOE Unit',74),(19,'COSCA','Center for Social Concern and Action (COSCA)','COSCA Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'COSCA Unit Description',71),(20,'LCLM','Laguna Campus Lasallian Mission (LCLM)','LCLM Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LCLM Unit Description',71),(21,'LSPO','Lasallian Pastoral Office (LSPO)','LSPO Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LSPO Unit Description',71),(22,'LMC','Lasallian Mission Council (LMC)','LMC Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LMC Unit Description',71),(23,'DSA','Dean of Student Affairs (DSA)','DSA Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'DSA Unit Description',1),(24,'OPM','Office of Personnel Management (OPM)','OPM Program Head','Non-Academic',0,0,2,5,5,5,2,1,2,'OPM Unit Description',74),(25,'SO','Security Office (SO)','Norman Dela Cruz','Non-Academic',0,10,10,10,5,10,10,10,10,'This is the Office of the Security of the University',1);
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1802,4 +1848,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-07  1:34:54
+-- Dump completed on 2019-03-07 18:26:13

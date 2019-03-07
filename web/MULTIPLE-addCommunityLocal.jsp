@@ -1,10 +1,9 @@
 <%-- 
-    Document   : MULTIPLE-evaluationFFResponsesList
-    Created on : 06 18, 18, 7:50:22 PM
+    Document   : MULTIPLE-addCommunity
+    Created on : 06 12, 18, 12:04:26 PM
     Author     : Karl Madrid
 --%>
 
-<%@page import="entity.FF"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
@@ -16,13 +15,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>FF Evaluation Responses List</title>
+        <title>Add Community</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/homepagestyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/homepagestyle.css">
+        <link rel="stylesheet" href="css/formstyle1.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,42 +30,23 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-        <style type="text/css" class="init"></style>
-
-        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
-        <script type="text/javascript" class="init"></script>
-
-        <script>
-            $(document).ready(function () {
-                $('#example').DataTable();
-            });
-        </script>
-
-
-        <style>
-            #myInput{
-                margin-bottom: 20px;
-            }
-
-            tr:hover {
-                background-color: lightgreen;
+        <style>       
+            body{
+                background-color: whitesmoke;
+                padding-top: 56px;
             }
 
             h4{
-                font-size: 25px;
                 text-align: left;
-                margin-top: 0px;
+                font-size: 25px;
                 border-bottom: 2px solid green;
-                padding-bottom: 5px;
-                margin-bottom: 15px;
-                font-family: 'Roboto', sans-serif;
-            }
+                padding-bottom: 10px;
 
-            .table{
-                margin-bottom: 20px;
+            }   
+            .formBg{
+                width: 60%;
+                padding: 10px;
+                margin-top: 0px;
             }
 
             .panels{
@@ -77,41 +58,7 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-
-            h3{
-                border-bottom: 2px solid green;
-            }
-
-            #buttonCompleted{
-                color: green;
-                background-color: white;
-                border-color: green;
-                margin-top:25px;
-            }
-
-            #buttonPending{
-                color: white;
-                background-color: green;
-                border-color: green;
-                margin-top:25px;
-            }
-
-            #buttonCompleted:hover{
-                color: white;
-                background-color: green;
-                border-color: green;
-            }
-
-            #buttonPending:hover{
-                color: white;
-                background-color: green;
-                border-color: green;
-            }
         </style>
-
-        <script type="text/javascript">
-
-        </script>
 
     </head>
 
@@ -127,7 +74,7 @@
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown d-sm-block d-md-none">
+                    <li class="nav-item dropdown d-sm-block d-md-none">*
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Dashboard
                         </a>
@@ -142,6 +89,9 @@
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Reports
+                        </a>
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
+                            Accomplishment
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Evaluation Forms
@@ -209,7 +159,7 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div  id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
                 <ul class="list-group sticky-top sticky-offset">
                     <script>
                         $("#sidebar-container").load("sidebarmultiple.jsp");
@@ -217,65 +167,74 @@
                 </ul>
             </div>
 
+
             <!-- MAIN -->
-
             <div class="col py-3">
-                <form action="viewFFResponses" method="post">
-                    <!--- table -->
-                    <div class="container-fluid panels">
-                        <div class="btn-group btn-group-justified">
-                            <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-evaluationSEResponsesList.jsp">Social Engagement</a>
-                            <a href="MULTIPLE-evaluationFFResponsesList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Faith Formation</a>
+                <div class="container">
+                    <div class="col-lg-12">
+                        <div class="formBg">
+                            <h4>Add Community</h4>
+
+                            <p><i>Fields with "*" are required</i></p>
+
+                            <form action="addCommunity" method="post">
+                                <ul class="form-style-1">
+                                    <li>
+                                        <label>Community Name:* <span class="required"></span></label>
+                                        <input type="text" name="name" class="field-long" />
+                                    </li>
+                                    <li>
+                                        <label>Contact person:* <span class="required"></span></label>
+                                        <input type="text" name="contactperson" class="field-long" />
+                                    </li>
+                                    <li>
+                                        <label>Contact number:* <span class="required"></span></label>
+                                        <input type="text" name="contactnumber" class="field-long" />
+                                    </li>
+                                    <li>
+                                        <label>Unit Number*: <span class="required"></span></label>
+                                        <input type="text" name="unitnumber" class="field-long" />
+                                    </li>
+                                    <li>
+                                        <label>Street*: <span class="required"></span></label>
+                                        <input type="text" name="street" class="field-long" />
+                                    </li>
+                                    <li>
+                                        <label>Barangay*: <span class="required"></span></label>
+                                        <input type="text" name="barangay" class="field-long" />
+                                    </li>
+                                    <li>
+                                        <label>City*: <span class="required"></span></label>
+                                        <select name="city">
+                                            <%
+                                                ArrayList<String> cities = UserDAO.getCities();
+                                                for(int x = 0 ; x < cities.size() ; x++){
+                                            %>
+                                            <option value="<%=cities.get(x)%>"><%=cities.get(x)%></option>
+                                            <%}%>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label>Description: <span class="required"></span></label>
+                                        <textarea rows="4" cols="40" name="description"></textarea>
+                                    </li>
+
+
+                                    <li align="center">
+                                        <button type="submit" class="btn btn-info">Add Community</button>
+                                    </li>
+                                </ul>
+                            </form>
+
                         </div>
-                        <br><br>
-
-                        <h4>Faith Formation Evaluation</h4>
-
-                        <%
-                            ArrayList<FF> f = new ArrayList();
-                            f = UserDAO.retrieveFFProposalByStep(9);
-                        %>
-
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">    
-                            <thead class="thead-dark" >
-                                <tr>
-                                    <th>Implementation</th> 
-                                    <th>Program Name</th>
-                                    <th>Unit</th>
-                                    <th>Department</th>
-                                    <th>Program Head</th>
-                                    <th>Activity Classification</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                                <%
-                                    for (int i = 0; i < f.size(); i++) {
-                                        if (UserDAO.hasFFEvaluation(f.get(i).getId())) {
-                                %>
-                                <tr>
-                                    <td><%=f.get(i).getActualDate()%></td>
-                                    <td><%=f.get(i).getProjectName()%></td>
-                                    <td><%=f.get(i).getUnit()%></td>
-                                    <td><%=f.get(i).getDepartment()%></td>
-                                    <td><%=f.get(i).getProgramHead()%></td>
-                                    <td><%=f.get(i).getActivityClassification()%></td>
-                                    <td><button type="submit" name="ffID<%=i%>" value="<%=f.get(i).getId()%>" class="btn btn-primary btn-sm">View Responses</button></td>
-                                </tr>
-                                <%
-                                        }
-                                    }
-                                %>
-                            </tbody>
-                        </table>
-
 
                     </div>
-                </form>
+                </div>
             </div>
 
-
         </div>
+
+
 
         <script>
             // sandbox disable popups
@@ -320,17 +279,21 @@
         <script>
             // Hide submenus
             $('#body-row .collapse').collapse('hide');
+
             // Collapse/Expand icon
             $('#collapse-icon').addClass('fa-angle-double-left');
+
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
                 SidebarCollapse();
             });
+
             function SidebarCollapse() {
                 $('.menu-collapsed').toggleClass('d-none');
                 $('.sidebar-submenu').toggleClass('d-none');
                 $('.submenu-icon').toggleClass('d-none');
                 $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
                 // Treating d-flex/d-none on separators with title
                 var SeparatorTitle = $('.sidebar-separator-title');
                 if (SeparatorTitle.hasClass('d-flex')) {
@@ -343,5 +306,6 @@
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
+
     </body>
 </html>

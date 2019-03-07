@@ -207,7 +207,11 @@
                                             <ul class="form-style-1">
                                                 <li>
                                                     <label>Unit Name: <span class="required"></span></label>
-                                                    <input type="text" name="unitname" class="field-long" />
+                                                    <input type="text" name="unitname" placeholder="Security Office" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Abbreviation: <span class="required"></span></label>
+                                                    <input type="text" name="abbrev" placeholder="SO" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Unit Head: <span class="required"></span></label>

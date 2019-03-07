@@ -239,7 +239,7 @@
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
                                 <tr>
-                                    <th>Date</th> 
+                                    <th>Implementation</th> 
                                     <th>Program Name</th>
                                     <th>Unit</th>
                                     <th>Department</th>
@@ -254,7 +254,7 @@
                                         if (UserDAO.hasSEEvaluation(s.get(i).getId())) {
                                 %>
                                 <tr>
-                                    <td><%=s.get(i).getDate()%></td>
+                                    <td><%=s.get(i).getActualDate()%></td>
                                     <td><%=s.get(i).getName()%></td>
                                     <td><%=s.get(i).getUnit()%></td>
                                     <td><%=s.get(i).getDepartment()%></td>

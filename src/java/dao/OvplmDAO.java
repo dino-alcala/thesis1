@@ -33,7 +33,7 @@ public class OvplmDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO unit(unitName, unitHead, departments, unitType, unitDescription, userID) VALUES(?,?,?,?,?,?)";
+            String query = "INSERT INTO unit(unitName, unitHead, departments, unitType, unitDescription, userID, abbrev) VALUES(?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, u.getName());
@@ -42,6 +42,7 @@ public class OvplmDAO {
             pstmt.setString(4, u.getType());
             pstmt.setString(5, u.getDescription());
             pstmt.setInt(6, u.getUserID());
+            pstmt.setString(7, u.getAbbrev());
 
             int rs = pstmt.executeUpdate();
 
@@ -204,7 +205,7 @@ public class OvplmDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO unit(unitName, unitHead, unitType, departments, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal, unitDescription, userID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO unit(unitName, unitHead, unitType, departments, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal, unitDescription, userID, abbrev) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, u.getName());
@@ -221,6 +222,7 @@ public class OvplmDAO {
             pstmt.setInt(12, u.getIndependent());
             pstmt.setString(13, u.getDescription());
             pstmt.setInt(14, u.getUserID());
+            pstmt.setString(15, u.getAbbrev());
 
             int rs = pstmt.executeUpdate();
 

@@ -377,7 +377,11 @@
                                                 </li>
                                                 <li>
                                                     <label>Department Name: <span class="required"></span></label>
-                                                    <input type="text" name="unitname" class="field-long" />
+                                                    <input type="text" name="unitname" placeholder="Department of Mathematics" class="field-long" />
+                                                </li>
+                                                <li>
+                                                    <label>Abbreviation: <span class="required"></span></label>
+                                                    <input type="text" name="abbrev" placeholder="DOM" class="field-long" />
                                                 </li>
                                                 <br>
                                                 <li>
