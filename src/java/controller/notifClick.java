@@ -5,6 +5,8 @@
  */
 package controller;
 
+import dao.UserDAO;
+import entity.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -37,15 +39,15 @@ public class notifClick extends HttpServlet {
 
             HttpSession session = request.getSession();
             ServletContext context = getServletContext();
+            UserDAO UserDAO = new UserDAO();
+            Notification n = UserDAO.retrieveNotificationByID(Integer.parseInt(request.getParameter("redirect")));
             
-            request.setAttribute("seID", request.getParameter("ID"));
-            request.setAttribute("ffID", request.getParameter("ID"));
-            request.setAttribute("SE", request.getParameter("ID"));
-            request.setAttribute("FF", request.getParameter("ID"));
-
-            System.out.println("DSADJSAKLDJAKLSJDKLAS " + request.getParameter("ID"));
+            request.setAttribute("seID", n.getAttribute());
+            request.setAttribute("ffID", n.getAttribute());
+            request.setAttribute("SE", n.getAttribute());
+            request.setAttribute("FF", n.getAttribute());
             
-            RequestDispatcher dispatcher = context.getRequestDispatcher(request.getParameter("redirect"));
+            RequestDispatcher dispatcher = context.getRequestDispatcher(n.getRedirect());
             dispatcher.forward(request, response);
         }
     }

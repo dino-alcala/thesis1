@@ -231,15 +231,12 @@
 
                                         for (int i = 0; i < n.size(); i++) {
                                     %>
-                                    <button type="submit" value="<%=n.get(i).getRedirect()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
+                                    <button type="submit" value="<%=n.get(i).getId()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
                                         <li class="notification-box">
                                             <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong><br>
                                             <%=n.get(i).getBody()%>
                                         </li>
                                     </button>
-
-                                    <input type="hidden" name="ID" value="<%=n.get(i).getAttribute()%>"/>
-
                                     <%
                                         }
                                     %>
@@ -386,12 +383,15 @@
                             
                                 <br/>
                                 
+                                <% if(FF.getStep() == 2){ %>
                                 <center><button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
-                                 <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br>  
-                                <button onclick="return window.confirm('Approve Program?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
+                                    <button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button><br>  
+                                    <button onclick="return window.confirm('Approve Program?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Approve</button>
                                     <button onclick="return window.confirm('Mark Proposal for Revision?')" class="btn-warning" type="submit" name="revise" value="<%=FF.getId()%>">Revise</button>
                                     <button onclick="return window.confirm('Reject Program?')" class="btn-danger" type="submit" style='background-color:red; border-color:red;' name="reject" value="<%=FF.getId()%>">Reject</button></center>
-                                   
+                                    <%} else {%>
+                                <center><legend>This proposal is done with this step</legend></center>
+                                <%}%>         
                             </div>
 
                         </div>

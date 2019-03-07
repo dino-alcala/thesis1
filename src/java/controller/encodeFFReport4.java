@@ -68,6 +68,12 @@ public class encodeFFReport4 extends HttpServlet {
             }
 
             FFreport.setAttendees(attendees);
+            
+            FFreport.setFeedback1("No Suggestion");
+            FFreport.setFeedback2("No Suggestion");
+            FFreport.setFeedback3("No Suggestion");
+            FFreport.setFeedback4("No Suggestion");
+            FFreport.setFeedback5("No Suggestion");
 
             UserDAO.AddFFreport(FFreport);
             UserDAO.updateStepFF(9, FFreport.getFfproposalID());

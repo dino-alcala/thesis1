@@ -3443,6 +3443,7 @@ public class UserDAO {
 
             while (rs2.next()) {
                 Notification n = new Notification();
+                n.setId(rs2.getInt("id"));
                 n.setTitle(rs2.getString("title"));
                 n.setBody(rs2.getString("body"));
                 n.setDt(rs2.getString("datetime"));
@@ -3464,6 +3465,44 @@ public class UserDAO {
                 /* ignored */ }
         }
         return Notification;
+    }
+    
+    public Notification retrieveNotificationByID(int id) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        Notification n = new Notification();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM notification WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, id);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                n.setTitle(rs2.getString("title"));
+                n.setBody(rs2.getString("body"));
+                n.setDt(rs2.getString("datetime"));
+                n.setRedirect(rs2.getString("redirect"));
+                n.setAttribute(rs2.getInt("attribute"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return n;
     }
 
     public ArrayList<SE> retrieveSEProposalByStep(int step) {

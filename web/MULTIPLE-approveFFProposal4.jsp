@@ -232,15 +232,12 @@
 
                                         for (int i = 0; i < n.size(); i++) {
                                     %>
-                                    <button type="submit" value="<%=n.get(i).getRedirect()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
+                                    <button type="submit" value="<%=n.get(i).getId()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
                                         <li class="notification-box">
                                             <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong><br>
                                             <%=n.get(i).getBody()%>
                                         </li>
                                     </button>
-
-                                    <input type="hidden" name="ID" value="<%=n.get(i).getAttribute()%>"/>
-
                                     <%
                                         }
                                     %>
@@ -585,11 +582,15 @@
                                 <br/>
                                 <input type="hidden" name="ffID" value="<%=FF.getId()%>">
                                 
-                                <center><button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button> 
+                                <% if(FF.getStep() == 5){ %>
+                                 <center><button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button> 
                                
                                 <button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
                                 
-                                <button onclick="return window.confirm('Proceed?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center> 
+                                <button onclick="return window.confirm('Proceed?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center>                  
+                                <%} else {%>
+                                <center><legend>This proposal is done with this step</legend></center>
+                                <%}%>     
                             </div>
 
                         </div>

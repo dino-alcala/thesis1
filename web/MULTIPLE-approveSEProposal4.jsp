@@ -290,15 +290,12 @@
 
                                         for (int i = 0; i < n.size(); i++) {
                                     %>
-                                    <button type="submit" value="<%=n.get(i).getRedirect()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
+                                    <button type="submit" value="<%=n.get(i).getId()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
                                         <li class="notification-box">
                                             <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong><br>
                                             <%=n.get(i).getBody()%>
                                         </li>
                                     </button>
-
-                                    <input type="hidden" name="ID" value="<%=n.get(i).getAttribute()%>"/>
-
                                     <%
                                         }
                                     %>
@@ -842,10 +839,16 @@
                                 </div>
                                 <br/>
                                 <input type="hidden" name="seID" value="<%=SE.getId()%>">
+                                
+                                <% if(SE.getStep() == 5){ %>
                                 <center>
                                     <button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
                                     <button onclick="return window.confirm('Proceed?')" class="btn-success" name="approve" value="<%=SE.getId()%>">Proceed</button>
-                                </center>    
+                                </center>                       
+                                <%} else {%>
+                                <center><legend>This proposal is done with this step</legend></center>
+                                <%}%>
+                                   
                             </div>
 
                         </div>

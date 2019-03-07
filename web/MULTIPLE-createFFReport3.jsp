@@ -271,15 +271,12 @@
 
                                         for (int i = 0; i < n.size(); i++) {
                                     %>
-                                    <button type="submit" value="<%=n.get(i).getRedirect()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
+                                    <button type="submit" value="<%=n.get(i).getId()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
                                         <li class="notification-box">
                                             <strong class="notificationBoxHeader"><%=n.get(i).getTitle()%></strong><br>
                                             <%=n.get(i).getBody()%>
                                         </li>
                                     </button>
-
-                                    <input type="hidden" name="ID" value="<%=n.get(i).getAttribute()%>"/>
-
                                     <%
                                         }
                                     %>
@@ -351,32 +348,32 @@
                                     <tr>
                                         <td style="padding:2%"><center>Br. Michael Broughton</center></td>
                                 <td style="padding:10px"><%=FF.getLmc1Remarks()%></td>
-                                <td><textarea name="feedback1" rows="3" style="border-radius:0px;"></textarea></td>
+                                <td><textarea required name="feedback1" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
                                 <% if (FF.getRemarktype2().equals("For Action")) {%>
                                 <tr>
                                     <td style="padding:2%"><center>Nelca Villarin</center></td>
                                 <td style="padding:10px"><%=FF.getLmc2Remarks()%></td>
-                                <td><textarea name="feedback2" rows="3" style="border-radius:0px;"></textarea></td>
+                                <td><textarea required name="feedback2" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
                                 <% if (FF.getRemarktype3().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>Margarita Perdido</center></td>
                                 <td style="padding:10px"><%=FF.getLmc3Remarks()%></td>
-                                <td><textarea name="feedback3" rows="3" style="border-radius:0px;"></textarea></td>
+                                <td><textarea required name="feedback3" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
                                 <% if (FF.getRemarktype4().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>James Laxa</center></td>
                                 <td style="padding:10px"><%=FF.getLmc4Remarks()%></td>
-                                <td><textarea name="feedback4" rows="3" style="border-radius:0px;"></textarea></td>
+                                <td><textarea required name="feedback4" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% } %>
                                 <% if (FF.getRemarktype5().equals("For Action")) {%>
                                 <tr><td style="padding:2%"><center>Fritzie De Vera</center></td>
                                 <td style="padding:10px"><%=FF.getLmc5Remarks()%></td>
-                                <td><textarea name="feedback5" rows="3" style="border-radius:0px;"></textarea></td>
+                                <td><textarea required name="feedback5" rows="3" style="border-radius:0px;"></textarea></td>
                                 </tr>
                                 <% }%>
                                 </tbody>

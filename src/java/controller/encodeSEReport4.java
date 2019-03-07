@@ -68,6 +68,12 @@ public class encodeSEReport4 extends HttpServlet {
             }
 
             SEreport.setAttendees(attendees);
+            
+            SEreport.setFeedback1("No Suggestion");
+            SEreport.setFeedback2("No Suggestion");
+            SEreport.setFeedback3("No Suggestion");
+            SEreport.setFeedback4("No Suggestion");
+            SEreport.setFeedback5("No Suggestion");
 
             UserDAO.AddSEreport(SEreport);
             UserDAO.updateStep(9, SEreport.getSeproposalID());
