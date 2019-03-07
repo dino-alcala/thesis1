@@ -263,7 +263,7 @@
                             <tr>
                                 <td><%=kra.getGoals().get(i).getMeasures().get(j).getMeasure()%></td>
                                 <td><%=kra.getGoals().get(i).getMeasures().get(j).getDescription()%></td>
-                                <td><%=kra.getGoals().get(i).getMeasures().get(j).getNumtarget()%><%=kra.getGoals().get(i).getMeasures().get(j).getNumtypetarget()%> of <%=kra.getGoals().get(i).getMeasures().get(j).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(i).getMeasures().get(j).getTypetarget()%> program/component engaging <%=kra.getGoals().get(i).getMeasures().get(j).getEngagingtarget()%></td>
+                                <td><%if(kra.getGoals().get(i).getMeasures().get(j).getUntrackable() == 0){%><%=kra.getGoals().get(i).getMeasures().get(j).getNumtarget()%><% if(kra.getGoals().get(i).getMeasures().get(j).getNumtypetarget().equals("Count")){%>&nbsp; Count/s<%} else {%>%<%}%> of <%=kra.getGoals().get(i).getMeasures().get(j).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(i).getMeasures().get(j).getTypetarget()%> program/component engaging <%=kra.getGoals().get(i).getMeasures().get(j).getEngagingtarget()%><%} else {%>Not Trackable<%}%></td>
                             </tr>
                         </tbody>
                         <%
@@ -303,7 +303,7 @@
                             <tr>
                                 <td><%=s.get(i).getName()%></td>
                                 <td><%=s.get(i).getUnit()%></td>
-                                <th><%=s.get(i).getDepartment()%></th>
+                                <td><%=s.get(i).getDepartment()%></td>
                                 <td><%=s.get(i).getProgramHead()%></td>
                             </tr>
                             <%

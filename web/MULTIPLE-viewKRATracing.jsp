@@ -222,7 +222,7 @@
             %>
             $("document").ready(function () {
 
-            alert("<%=request.getAttribute("successSE")%>");
+                alert("<%=request.getAttribute("successSE")%>");
             });
             <%
                 }
@@ -232,7 +232,7 @@
             %>
             $("document").ready(function () {
 
-            alert("<%=request.getAttribute("successFF")%>");
+                alert("<%=request.getAttribute("successFF")%>");
             });
             <%
                 }
@@ -281,7 +281,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -343,7 +343,7 @@
             <div class="col py-3">
 
                 <!---KRAs-->
-                <% 
+                <%
                     TargetDAO TargetDAO = new TargetDAO();
                     OvplmDAO OvplmDAO = new OvplmDAO();
                     Measure m = UserDAO.GetMeasureObject(Integer.parseInt(request.getAttribute("measureID").toString()));
@@ -357,18 +357,27 @@
                                 <th scope="col">Goal</th>
                                 <th scope="col">Measure</th>
                                 <th scope="col">Target</th>
-                                <th scope="col">Accomplishment Against Total</th>
+                                <th scope="col">Accomplishment Against Target</th>
+                                <%if(m.getNumtypetarget().equals("Percent")){%><th scope="col">Accomplishment Against Total</th><%}%>
                             </tr>
                         </thead>
                         <tbody>
                             <%
                                 DecimalFormat percentage = new DecimalFormat("0.00");
                                 double percent = TargetDAO.calculateTarget(m, TargetDAO.getTotals());
+
+                                if (m.getNumtypetarget().equals("Percent")) {
+                                    percent = percent / m.getNumtarget() * 100;
+                                }
                             %>
                         <td><%=UserDAO.getGoalnameByID(m.getGoalID())%></td>
                         <td><%=m.getDescription()%></td>
-                        <td><%if(m.getUntrackable() == 0){%><%=m.getNumtarget()%><% if (m.getNumtypetarget().equals("Count")) { %>&nbsp; Count/s<%} else {%>%<%}%> of <%=m.getUnittarget()%> have undergone/conducted/contains a <%=m.getTypetarget()%> program/component<% if (m.getEngagingtarget().equals("N/A")) { %><%} else {%>engaging <%=m.getEngagingtarget()%><%}%><%} else {%>Not Trackable<%}%></td>
-                        <% if(percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">N/A</td><%}%>
+                        <td><%if (m.getUntrackable() == 0) {%><%=m.getNumtarget()%><% if (m.getNumtypetarget().equals("Count")) { %>&nbsp; Count/s<%} else {%>%<%}%> of <%=m.getUnittarget()%> have undergone/conducted/contains a <%=m.getTypetarget()%> program/component<% if (m.getEngagingtarget().equals("N/A")) { %><%} else {%>engaging <%=m.getEngagingtarget()%><%}%><%} else {%>Not Trackable<%}%></td>
+                        <% if (percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">N/A</td><%}%>
+                        <%
+                            percent = TargetDAO.calculateTarget(m, TargetDAO.getTotals());
+                        %>
+                        <%if(m.getNumtypetarget().equals("Percent")){%><% if (percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">N/A</td><%}%><%}%>
                         </tbody>
                     </table>
 
@@ -384,7 +393,7 @@
                         ArrayList<Integer> ids = new ArrayList();
 
                         if (m.getTypetarget().equals("Faith Formation")) {
-                            for(int x = 0 ; x < TargetDAO.getPrograms(m).size() ; x++){
+                            for (int x = 0; x < TargetDAO.getPrograms(m).size(); x++) {
                                 FF proposal = UserDAO.retrieveFFByFFID(TargetDAO.getPrograms(m).get(x));
                                 FF.add(proposal);
                             }
@@ -403,7 +412,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <%                                
+                                <%
                                     for (int i = 0; i < FF.size(); i++) {
                                 %>
                                 <tr>
@@ -422,8 +431,8 @@
                     </form>
 
                     <%
-                        if(!m.getTypetarget().equals("Faith Formation")) {
-                            for(int x = 0 ; x < TargetDAO.getPrograms(m).size() ; x++){
+                        if (!m.getTypetarget().equals("Faith Formation")) {
+                            for (int x = 0; x < TargetDAO.getPrograms(m).size(); x++) {
                                 SE proposal = UserDAO.retrieveSEBySEID(TargetDAO.getPrograms(m).get(x));
                                 SE.add(proposal);
                             }
@@ -471,45 +480,45 @@
 
         <script>
             $('#date').datepicker({
-            startDate: new Date()
+                startDate: new Date()
             });
             // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
-            ;
-            window.alert = function () {/*disable alert*/
-            };
-            window.confirm = function () {/*disable confirm*/
-            };
-            window.prompt = function () {/*disable prompt*/
-            };
-            window.open = function () {/*disable open*/
-            };
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
             }
 
             // prevent href=# click jump
             document.addEventListener("DOMContentLoaded", function () {
-            var links = document.getElementsByTagName("A");
-            for (var i = 0; i < links.length; i++) {
-            if (links[i].href.indexOf('#') != - 1) {
-            links[i].addEventListener("click", function (e) {
-            console.debug("prevent href=# click");
-            if (this.hash) {
-            if (this.hash == "#") {
-            e.preventDefault();
-            return false;
-            } else {
-            /*
-             var el = document.getElementById(this.hash.replace(/#/, ""));
-             if (el) {
-             el.scrollIntoView(true);
-             }
-             */
-            }
-            }
-            return false;
-            })
-            }
-            }
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
+                                }
+                            }
+                            return false;
+                        })
+                    }
+                }
             }, false);
         </script>
         <script>
@@ -519,23 +528,23 @@
             $('#collapse-icon').addClass('fa-angle-double-left');
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
-            SidebarCollapse();
+                SidebarCollapse();
             });
             function SidebarCollapse() {
-            $('.menu-collapsed').toggleClass('d-none');
-            $('.sidebar-submenu').toggleClass('d-none');
-            $('.submenu-icon').toggleClass('d-none');
-            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-            // Treating d-flex/d-none on separators with title
-            var SeparatorTitle = $('.sidebar-separator-title');
-            if (SeparatorTitle.hasClass('d-flex')) {
-            SeparatorTitle.removeClass('d-flex');
-            } else {
-            SeparatorTitle.addClass('d-flex');
-            }
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
 
-            // Collapse/Expand icon
-            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

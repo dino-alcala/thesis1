@@ -14414,7 +14414,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal s JOIN kra k ON s.targetKRA = k.kraID WHERE k.kraID = ? AND s.step = 8";
+            String query = "SELECT * FROM seproposal s JOIN kra k ON s.targetKRA = k.kraID WHERE k.kraID = ? AND s.step = 8 OR s.step = 9";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, kraID);

@@ -397,12 +397,13 @@
                             
                             <% 
                                 double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals()); 
+
                                 if(kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Percent")){
                                     percent = percent / kra.getGoals().get(y).getMeasures().get(z).getNumtarget() * 100;
                                 }
                             %>
-                            <%if(z==0){%><% if(percent >= 0 && percent <= 33.33333333){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent >= 33.344444 && percent <= 66.666666){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent >= 66.677777 && percent <= 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent > 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
-                            <%if(z!=0){%><% if(percent >= 0 && percent <= 33.33333333){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent >= 33.344444 && percent <= 66.666666){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent >= 66.677777 && percent <= 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent > 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                            <%if(z==0){%><% if(percent >= 0 && percent < 100/3){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent > 100/3 && percent < 100*(2/3)){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent > 100*(2/3) && percent < 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                            <%if(z!=0){%><% if(percent >= 0 && percent < 100/3){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent > 100/3 && percent < 100*(2/3)){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent > 100*(2/3) && percent < 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
                             
                             <%if(z==0){%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
                             <%if(z!=0){%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
