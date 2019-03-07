@@ -5,10 +5,10 @@
  */
 package controller;
 
-import dao.OvplmDAO;
 import dao.UserDAO;
 import entity.Department;
 import entity.Unit;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -17,13 +17,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Dino Alcala
+ * @author LA
  */
-public class addDepartmentAcademic extends HttpServlet {
+public class signUp2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,42 +37,34 @@ public class addDepartmentAcademic extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            OvplmDAO OvplmDAO = new OvplmDAO();
+            /* TODO output your page here. You may use following sample code. */
 
-            HttpSession session = request.getSession();
             UserDAO UserDAO = new UserDAO();
-            Department d = new Department();
-            Unit u = new Unit();
+            User u = new User();
 
-            d.setName(request.getParameter("deptname"));
-            d.setAbbrev(UserDAO.getUnitByName(request.getParameter("unit")).getAbbrev() + request.getParameter("abbrev"));
-            d.setFaculty(Integer.parseInt(request.getParameter("faculty")));
-            d.setAdmin(Integer.parseInt(request.getParameter("admin")));
-            d.setApsp(Integer.parseInt(request.getParameter("apsp")));
-            d.setAsf(Integer.parseInt(request.getParameter("asf")));
-            d.setCap(Integer.parseInt(request.getParameter("cap")));
-            d.setDirecthired(Integer.parseInt(request.getParameter("direct")));
-            d.setIndependent(Integer.parseInt(request.getParameter("independent")));
-            d.setExternal(Integer.parseInt(request.getParameter("external")));
-           
-            OvplmDAO.AddDepartment(d, request.getParameter("unit"));
+            u.setFirstName(request.getParameter("firstname"));
+            u.setLastName(request.getParameter("lastname"));
+            u.setEmail(request.getParameter("email"));
+            u.setUnit(request.getParameter("unit"));
+            u.setDepartment(Integer.parseInt(request.getParameter("dept")));
+            u.setUsername(request.getParameter("username"));
+            u.setPassword(request.getParameter("password"));
             
-            int unitid = UserDAO.getUnitByName(request.getParameter("unit")).getUnitID();
-            int deptid = UserDAO.getDepartmentIDByName(request.getParameter("deptname"));
-            UserDAO.addPositionsDepartment(unitid, deptid);
-            
-            if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
-                request.setAttribute("success", "You ave successfully added a Department! The system Admin may now add Users for this department!");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
-                dispatcher.forward(request, response);
+            if(UserDAO.getUnitTypeByName(request.getParameter("unit")).equals("Academic")){
+                Unit unit = UserDAO.getUnitByName(request.getParameter("unit"));
+                Department d = UserDAO.getDepartmentByID(Integer.parseInt(request.getParameter("dept")));
+                u.setPosition(d.getAbbrev() + " - " + request.getParameter("position"));
+            } else if(UserDAO.getUnitTypeByName(request.getParameter("unit")).equals("Non-Academic")){
+                Unit unit = UserDAO.getUnitByName(request.getParameter("unit"));
+                u.setPosition(unit.getAbbrev()+ " - " + request.getParameter("position"));
             }
-            if (session.getAttribute("unit").toString().equals("Admin")) {
-                request.setAttribute("success", "You ave successfully added a Department!  You may now add Users for this Department by clicking on  'Add User' in the sidebar");
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
-                dispatcher.forward(request, response);
-            }
+
+            UserDAO.signUp(u);
+
+            request.setAttribute("success", "You ave successfully added a New User!");
+            ServletContext context = getServletContext();
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

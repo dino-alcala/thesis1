@@ -60,7 +60,7 @@ public class OvplmDAO {
 
             ArrayList<Integer> deptID = new ArrayList();
             for (int i = 0; i < d.size(); i++) {
-                query = "INSERT INTO department (departmentID, department, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                query = "INSERT INTO department (departmentID, department, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal, abbrev) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                 pstmt = conn.prepareStatement(query);
 
                 pstmt.setInt(1, lastdepartmentID + 1);
@@ -73,6 +73,7 @@ public class OvplmDAO {
                 pstmt.setInt(8, d.get(i).getDirecthired());
                 pstmt.setInt(9, d.get(i).getIndependent());
                 pstmt.setInt(10, d.get(i).getExternal());
+                pstmt.setString(11, d.get(i).getAbbrev());
 
                 rs = pstmt.executeUpdate();
 
@@ -136,7 +137,7 @@ public class OvplmDAO {
             }
 
             
-            query = "INSERT INTO department(departmentID, department, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal) VALUES(?,?,?,?,?,?,?,?,?,?)";
+            query = "INSERT INTO department(departmentID, department, numberOfFaculty, numberOfAdmin, numberOfAPSP, numberOfASF, numberOfCAP, numberOfDirectHired, numberOfIndependent, numberOfExternal, abbrev) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, lastdepartmentID + 1);
@@ -149,6 +150,7 @@ public class OvplmDAO {
             pstmt.setInt(8, d.getDirecthired());
             pstmt.setInt(9, d.getIndependent());
             pstmt.setInt(10, d.getExternal());
+            pstmt.setString(11, d.getAbbrev());
 
             int rs = pstmt.executeUpdate();
             query = "UPDATE unit SET departments = departments + 1 where unitName = ?";

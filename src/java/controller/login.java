@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UserDAO;
+import entity.Notification;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -68,7 +69,36 @@ public class login extends HttpServlet {
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
                     dispatcher.forward(request, response);
                 } else if (UserDAO.isOVPLM(u.getUsername())) {
-
+                    if(UserDAO.getLatestBudget().getRemainingBudget() <= 400000 && UserDAO.getLatestBudget().getRemainingBudget() <= 300000){
+                        java.util.Date dt = new java.util.Date();
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        
+                        Notification n = new Notification();
+                        n.setTitle("Budget Low");
+                        n.setBody("Overall Remaining Budget is now at: " + UserDAO.getLatestBudget().getRemainingBudget());
+                        n.setDt(sdf2.format(dt));
+                        n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                        n.setRedirect("/MULTIPLE-viewBudget.jsp");
+                        n.setAttribute(0);
+                        UserDAO.AddNotification(n);
+                        
+                        n.setTitle("Budget Low");
+                        n.setBody("Overall Remaining Budget is now at: " + UserDAO.getLatestBudget().getRemainingBudget());
+                        n.setDt(sdf2.format(dt));
+                        n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
+                        n.setRedirect("/MULTIPLE-viewBudget.jsp");
+                        n.setAttribute(0);
+                        UserDAO.AddNotification(n);
+                        
+                        n.setTitle("Budget Low");
+                        n.setBody("Overall Remaining Budget is now at: " + UserDAO.getLatestBudget().getRemainingBudget());
+                        n.setDt(sdf2.format(dt));
+                        n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
+                        n.setRedirect("/MULTIPLE-viewBudget.jsp");
+                        n.setAttribute(0);
+                        UserDAO.AddNotification(n);
+                    }
                     int id = UserDAO.getIDbyUsername(u.getUsername());
                     String position = UserDAO.getPosition(u.getUsername());
                     session.setAttribute("userID", id);

@@ -1405,17 +1405,19 @@ public class UserDAO {
         return deptid;
     }
     
-    public ArrayList<Position> retrievePositions() {
+    public ArrayList<Position> retrievePositions(int id, int id2) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM positions";
+        String query = "SELECT * FROM positions WHERE unitID = ? AND departmentID = ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Position> positions = new ArrayList();
 
         try {
             ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.setInt(2, id2);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -1443,6 +1445,211 @@ public class UserDAO {
                 /* ignored */ }
         }
         return positions;
+    }
+    
+    public void addPositionsAcademic(ArrayList<Integer> deptid, int unitid) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = null;
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int rs2 = 0;
+
+        try {
+            for(int x = 0 ; x < deptid.size() ; x++){
+                query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+                ps = conn.prepareStatement(query);
+                ps.setString(1, "Unit Representative");
+                ps.setInt(2, unitid);
+                ps.setInt(3, deptid.get(x));
+                rs2 = ps.executeUpdate();
+            }
+            
+            for(int x = 0 ; x < deptid.size() ; x++){
+                query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+                ps = conn.prepareStatement(query);
+                ps.setString(1, "Department Chair");
+                ps.setInt(2, unitid);
+                ps.setInt(3, deptid.get(x));
+                rs2 = ps.executeUpdate();
+            }
+            
+            for(int x = 0 ; x < deptid.size() ; x++){
+                query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+                ps = conn.prepareStatement(query);
+                ps.setString(1, "Chairperson");
+                ps.setInt(2, unitid);
+                ps.setInt(3, deptid.get(x));
+                rs2 = ps.executeUpdate();
+            }
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Dean");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "ADEALM");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "ADLM");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void addPositionsNonAcademic(int unitid) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = null;
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int rs2 = 0;
+
+        try {
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Unit Representative");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Unit Chair");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Social Engagement Director");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Unit Head");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Director");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "ADLM");
+            ps.setInt(2, unitid);
+            ps.setInt(3, 0);
+            rs2 = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void addPositionsDepartment(int unitid, int deptid) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = null;
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int rs2 = 0;
+
+        try {
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Unit Representative");
+            ps.setInt(2, unitid);
+            ps.setInt(3, deptid);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Department Chair");
+            ps.setInt(2, unitid);
+            ps.setInt(3, deptid);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "ADEALM");
+            ps.setInt(2, unitid);
+            ps.setInt(3, deptid);
+            rs2 = ps.executeUpdate();
+            
+            query = "INSERT INTO positions (position, unitID, departmentID) VALUES (?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "Chairperson");
+            ps.setInt(2, unitid);
+            ps.setInt(3, deptid);
+            rs2 = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
     }
     
     public ArrayList<Integer> retrieveDepartmentIDs() {
@@ -1546,6 +1753,7 @@ public class UserDAO {
                 dept.setDirecthired(rs.getInt("numberofDirectHired"));
                 dept.setIndependent(rs.getInt("numberofIndependent"));
                 dept.setExternal(rs.getInt("numberofExternal"));
+                dept.setAbbrev(rs.getString("abbrev"));
             }
 
         } catch (SQLException ex) {
@@ -2494,11 +2702,14 @@ public class UserDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                u.setUnitID(rs.getInt("unitID"));
+                u.setName(rs.getString("unitName"));
                 u.setFaculty(rs.getInt("numberOfFaculty"));
                 u.setApsp(rs.getInt("numberOfAPSP"));
                 u.setAsf(rs.getInt("numberOfASF"));
                 u.setDirecthired(rs.getInt("numberOfDirectHired"));
                 u.setType(rs.getString("unitType"));
+                u.setAbbrev(rs.getString("abbrev"));
             }
 
         } catch (SQLException ex) {

@@ -5,16 +5,20 @@
  */
 package controller;
 
+import dao.OvplmDAO;
 import dao.UserDAO;
-import entity.User;
+import entity.Department;
+import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,26 +39,15 @@ public class signUp extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
 
-            UserDAO UserDAO = new UserDAO();
-            User u = new User();
-
-            u.setFirstName(request.getParameter("firstname"));
-            u.setLastName(request.getParameter("lastname"));
-            u.setEmail(request.getParameter("email"));
-            u.setUnit(request.getParameter("unit"));
-            u.setPosition(request.getParameter("position"));
-            u.setDepartment(Integer.parseInt(request.getParameter("dept")));
-            u.setUsername(request.getParameter("username"));
-            u.setPassword(request.getParameter("password"));
-
-            UserDAO.signUp(u);
-
+            request.setAttribute("unit", request.getParameter("unit"));
+            request.setAttribute("dept", request.getParameter("dept"));
             
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/signUp2.jsp");
             dispatcher.forward(request, response);
+            
+
         }
     }
 

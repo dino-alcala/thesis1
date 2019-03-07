@@ -444,6 +444,10 @@
         <servlet-name>addCommunityInternational</servlet-name>
         <servlet-class>controller.addCommunityInternational</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>signUp2</servlet-name>
+        <servlet-class>controller.signUp2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -887,6 +891,10 @@
     <servlet-mapping>
         <servlet-name>addCommunityInternational</servlet-name>
         <url-pattern>/addCommunityInternational</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>signUp2</servlet-name>
+        <url-pattern>/signUp2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

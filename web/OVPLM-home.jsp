@@ -127,6 +127,16 @@
             <%
                 }
             %>
+                
+                <%
+                if (request.getAttribute("success") != null) {
+            %>
+            $("document").ready(function () {
+                alert("<%=request.getAttribute("success")%>");
+            });
+            <%
+                }
+            %>
         </script>
         <style>
             #notifsScroll {

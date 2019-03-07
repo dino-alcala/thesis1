@@ -338,7 +338,7 @@
                                                 </li>
                                                 <li>
                                                     <label>Abbreviation: <span class="required"></span></label>
-                                                    <input type="text" name="abbrev" placeholder="CCS" class="field-long" />
+                                                    <input type="text" name="unitabbrev" placeholder="CCS" class="field-long" />
                                                 </li>
                                                 <li>
                                                     <label>Unit Head: <span class="required"></span></label>

@@ -1,19 +1,10 @@
 <%-- 
-    Document   : UR-home
-    Created on : 06 27, 18, 1:25:59 PM
+    Document   : OVPLM-addUnit
+    Created on : 06 12, 18, 1:26:08 PM
     Author     : Karl Madrid
 --%>
 
-<%@page import="entity.Department"%>
-<%@page import="entity.Position"%>
 <%@page import="entity.Unit"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="entity.Community"%>
-<%@page import="dao.OvplmDAO"%>
-<%@page import="entity.FF"%>
-<%@page import="entity.SE"%>
-<%@page import="java.util.Collections"%>
-<%@page import="entity.KRA"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
@@ -25,20 +16,88 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Create User</title>
+        <title>Add User</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/formstyle5">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/formstyle1.css">
+        <link rel="stylesheet" type="text/css" href="css/homepagestyle.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        <script type="text/javascript">
+            $('#body-row .collapse').collapse('hide');
+
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
+
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+
+
+
+        </script>
+
+        <script>
+                function addFields() {
+                    // Number of inputs to create
+                    var number = document.getElementById("member55").value;
+                    // Container <div> where dynamic content will be placed
+                    var container = document.getElementById("container55");
+                    // Clear previous contents of the container
+                    while (container.hasChildNodes()) {
+                        container.removeChild(container.lastChild);
+                    }
+                    for (i = 0; i < number; i++) {
+                        // Append a node with a random text
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
+                        container.appendChild(document.createElement("br"));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "department" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createTextNode("Number of Staff for Department " + (i + 1) + ": "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "staff" + i;
+                        container.appendChild(input);
+                        // Append a line break 
+                        container.appendChild(document.createElement("br"));
+
+                    }
+                }
+        </script>
 
         <style>
             tr:hover {
@@ -46,7 +105,7 @@
             }
 
             h2{
-                font-size: 25px;
+                font-size: 40px;
                 text-align: left;
                 margin-top: 20px;
                 border-bottom: 2px solid green;
@@ -59,198 +118,86 @@
                 margin-bottom: 30px;
             }
 
-            .panels{
-                margin-top: 20px;
-                background-color: white;
-                padding-bottom: 15px;
-                border-style: solid;
-                border-color: lightgray;
-                border-width: 1px;
-                border-radius: 8px;
-            }
+            h1{
+                text-align: left;
+                font-size: 25px;
+                border-bottom: 2px solid green;
+                padding-bottom: 10px;
+            }   
 
-            table,th,td{
-                border:.5px solid
-                    black;
-            }
-
-            hr{
-                background-color:green;
-            }
-
-            textarea{
-                resize: none;
-            } 
-
-
-            h2 {
-                margin-top: 1.3em;
-            }
-
-            a {
-                color: #0083e8;
-            }
-
-            b{
-                font-weight: 600;
-            }
-
-            th {
-                background-color: green;
-                color: white;
-            }
-
-            table {
-                border-collapse: collapse;
-
-            }
-
-            th{
-                padding:15px;
-            }
-
-
-            .loginWrapper {	
-                margin-top: 20px;
-            }
-
-            .loginForm-signin {
-                max-width: 380px;
-                padding: 15px 35px 45px;
-                margin: 0 auto;
-                margin-bottom: 100px;
-                background-color: #fff;
-                border: 1px solid rgba(0,0,0,0.1); 
-            }
-
-            .loginForm-signin-heading{
-                margin-bottom: 10px;
-                text-align: center;      
-            }
-
-            .Form-control {
-                position: relative;
-                font-size: 16px;
-                height: auto;
-                margin-bottom: 10px;    
-                margin-top: 10px; 
+            .formBg{
+                width: 60%;
                 padding: 10px;
-                width: 100%;
-            }
-
-            .signUpHeading{
-                margin-top: 10px;
-                margin-bottom: 20px;    
-                font-size: 25px;    
-                font-family: 'Open Sans', sans-serif;
-                color: black;
-            }    
-
-            .dropdown-toggle {
-                width: 308px;
-            }
-
-            p{
-                text-align: center;     
-            }
-
-            #type, #dept{
                 margin-top: 0px;
             }
 
-            .hint{
-                margin-bottom: 0px;
-                text-align: left;
+            .dropbtn {
+                background-color: dimgray;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
             }
 
-            @keyframes colorize {
-                0% {
-                    -webkit-filter: grayscale(100%);
-                    filter: grayscale(100%);
-                }
-                100% {
-                    -webkit-filter: grayscale(0%);
-                    filter: grayscale(0%);
-                }
+            .dropdown {
+                position: relative;
+                display: inline-block;
             }
 
-            html{
-                font-size:14px;
+            label, .btn-primary, select, option{
+                font-family: "Arial", Helvetica, sans-serif;
             }
         </style>
 
+    </head>
 
-        <script type="text/javascript">
-            <%
-                if (request.getAttribute("successSE") != null) {
-
-            %>
-            $("document").ready(function () {
-
-            alert("<%=request.getAttribute("successSE")%>");
-            });
-            <%
-                }
-
-                if (request.getAttribute("successFF") != null) {
-
-            %>
-            $("document").ready(function () {
-
-            alert("<%=request.getAttribute("successFF")%>");
-            });
-            <%
-                }
-            %>
-        </script>
-
-        <script type="text/javascript">
+    <script type="text/javascript">
             function department(c1, c2) {
 
-            <%
+        <%
                 UserDAO UserDAO = new UserDAO();
                 ArrayList<Unit> units = new ArrayList();
                 units = UserDAO.retrieveUnits();
-            %>
+        %>
 
-            var c1 = document.getElementById(c1);
-            var c2 = document.getElementById(c2);
-            c2.innerHTML = "";
-            <%
+                var c1 = document.getElementById(c1);
+                var c2 = document.getElementById(c2);
+                c2.innerHTML = "";
+        <%
                 for (int i = 0; i < units.size(); i++) {
                     ArrayList<Integer> departmentID = new ArrayList();
                     departmentID = UserDAO.retrieveDepartmentByUnitID(units.get(i).getUnitID());
-            %>
+        %>
 
-            if (c1.value == "<%=units.get(i).getName()%>") {
-            <%
+                if (c1.value == "<%=units.get(i).getName()%>") {
+        <%
                 if (departmentID.size() > 1) {
-            %>
-            var nodept = document.createElement("option");
-            nodept.value = 0;
-            nodept.innerHTML = "No Department";
-            c2.options.add(nodept);
-            <%
+        %>
+                var nodept = document.createElement("option");
+                        nodept.value = 0;
+                        nodept.innerHTML = "No Department";
+                        c2.options.add(nodept);
+        <%
                 }
-            %>
+        %>
 
-            var optionArray = [<%for (int j = 0; j < departmentID.size(); j++) {%>"<%=UserDAO.getDepartmentByID(departmentID.get(j)).getDepartmentID()%>|<%=UserDAO.getDepartmentByID(departmentID.get(j)).getName()%>",<%}%>];
-                }
+                var optionArray = [<%for (int j = 0; j < departmentID.size(); j++) {%>"<%=UserDAO.getDepartmentByID(departmentID.get(j)).getDepartmentID()%>|<%=UserDAO.getDepartmentByID(departmentID.get(j)).getName()%>",<%}%>];
+                        }
 
-            <%
+        <%
                 }
-            %>
-                for (var option in optionArray) {
-                var pair = optionArray[option].split("|");
-                var newOption = document.createElement("option");
-                newOption.value = pair[0];
-                newOption.innerHTML = pair[1];
-                c2.options.add(newOption);
-                }
+        %>
+                        for (var option in optionArray) {
+                            var pair = optionArray[option].split("|");
+                            var newOption = document.createElement("option");
+                            newOption.value = pair[0];
+                            newOption.innerHTML = pair[1];
+                            c2.options.add(newOption);
+                        }
 
-                }
-        </script>
-    </head>
+                    }
+    </script>
 
     <body>
         <!-- Bootstrap NavBar -->
@@ -265,22 +212,25 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown d-sm-block d-md-none">
-                        <a class="nav-link" href="UR-home.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="OVPLM-home.html" id="smallerscreenmenu">
                             Home
                         </a>
-                        <a class="nav-link" href="MULTIPLE-faithFormationProgramsList.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="MULTIPLE-faithFormationProgramsList.html" id="smallerscreenmenu">
                             Programs
                         </a>
-                        <a class="nav-link" href="MULTIPLE-unitsList.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="MULTIPLE-unitsList.html" id="smallerscreenmenu">
                             Units
                         </a>
-                        <a class="nav-link" href="MULTIPLE-communityList.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="MULTIPLE-communityList.html" id="smallerscreenmenu">
                             Communities
                         </a>
-                        <a class="nav-link" href="MULTIPLE-krasList.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="MULTIPLE-krasList.html" id="smallerscreenmenu">
                             Key Result Areas
                         </a>
-                        <a class="nav-link" href="MULTIPLE-evaluationSEResponsesList.jsp" id="smallerscreenmenu">
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
+                            Reports
+                        </a>
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
                             Evaluation Forms
                         </a>
                     </li>
@@ -345,145 +295,151 @@
         <div class="row" id="body-row">
 
             <!-- Sidebar -->
-            <div class="sidebar-expanded d-none d-md-block">
-                <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group sticky-top sticky-offset">
                     <script>
-                        $("#sidebar-container").load("sidebarmultiple.jsp");
+                        $("#sidebar-container").load("sidebarovplm.jsp");
                     </script>
                 </ul>
             </div>
 
-
             <!-- MAIN -->
             <div class="col py-3">
 
-                <h2 class="signUpHeading">Create User</h2>
-                <p><i>Fields with "*" are required</i></p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="formBg">
+                                <h1>Add User</h1>
 
+                                <div class="panel panel-success">
 
-                <form class="loginForm-signin" action="signUp" method="post">       
+                                    <div class="panel-heading"></div>
 
-                    <input type="text" class="Form-control" name="firstname" placeholder="First Name*" required="" autofocus="" />
-                    <input type="text" class="Form-control" name="lastname" placeholder="Last Name*" required="" autofocus="" />
-                    <p class="hint"><i>(e.g. firstname_lastname@dlsu.edu.ph)</i></p>   
-                    <input type="email" class="Form-control" name="email" placeholder="Email Address*" required="" autofocus="" />
+                                    <div class="panel-body">
 
-                    <div class="form-group">
-                        <label for="sel1">Unit:</label>
-                        <select class="form-control" id="type" name="unit" onchange="department(this.id, 'dept')">
-                            <optgroup label="Academic Units">
-                                <option disabled selected>Select Unit</option>
-                                <%
-                                    units = UserDAO.retrieveUnitsAcademic();
-                                    for (int k = 0; k < units.size(); k++) {
-                                %>
-                                <option><%=units.get(k).getName()%></option>
-                                <%
-                                    }
-                                %>
-                            </optgroup>
-                            <optgroup label="Non-Academic Units">
-                                <%
-                                    units = UserDAO.retrieveUnitsNonAcademic();
-                                    for (int k = 0; k < units.size(); k++) {
-                                %>
-                                <option><%=units.get(k).getName()%></option>
-                                <%
-                                    }
-                                %>
-                            </optgroup>
-                        </select>
+                                        <form action="signUp" method="post">
+                                            <ul class="form-style-1">
+                                                <li>
+                                                    <label for="sel1">Select Unit of New User:</label>
+                                                    <select class="form-control" id="type" name="unit" onchange="department(this.id, 'dept')">
+                                                        <optgroup label="Academic Units">
+                                                            <option disabled selected>Select Unit</option>
+                                                            <%
+                                                                units = UserDAO.retrieveUnitsAcademic();
+                                                                for (int k = 0; k < units.size(); k++) {
+                                                            %>
+                                                            <option><%=units.get(k).getName()%></option>
+                                                            <%
+                                                                }
+                                                            %>
+                                                        </optgroup>
+                                                        <optgroup label="Non-Academic Units">
+                                                            <%
+                                                                units = UserDAO.retrieveUnitsNonAcademic();
+                                                                for (int k = 0; k < units.size(); k++) {
+                                                            %>
+                                                            <option><%=units.get(k).getName()%></option>
+                                                            <%
+                                                                }
+                                                            %>
+                                                        </optgroup>
+                                                    </select>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group">
+                                                        <label for="sel1">Select Department of New User:</label>
+                                                        <select class="form-control" id="dept" name="dept" onchange="position(this.id, 'position')">
+                                                            <option disabled selected>Select Department</option>
+                                                        </select>
+
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <button type="submit" class="btn btn-primary">Proceed</button>
+                                                </li>
+                                            </ul>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
-                    <div class="form-group">
-                        <label for="sel1">Department:</label>
-                        <select class="form-control" id="dept" name="dept" onchange="position(this.id, 'position')">
-                            <option disabled selected>Select Department</option>
-                        </select>
-
-                    </div>
-
-                    <p class="hint"><i>(e.g. OVPLM - Executive Officer)</i></p>   
-                    <input type="text" class="Form-control" name="position" placeholder="Position*" required="" autofocus="" />
-
-                    <input type="text" class="Form-control" name="username" placeholder="Username*" required="" autofocus="" />
-                    <input type="password" class="Form-control" name="password" placeholder="Password*" required=""/>
-                    <input type="password" class="Form-control" name="password2" placeholder="Confirm Password*" required=""/>
-
-                    <button class="btn btn-md btn-primary btn-block" type="submit">Register</button>
-
-                </form>
+                </div>
             </div>
+
         </div>
 
         <script>
-            $('#date').datepicker({
-            startDate: new Date()
-            });
             // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
-            ;
-            window.alert = function () {/*disable alert*/
-            };
-            window.confirm = function () {/*disable confirm*/
-            };
-            window.prompt = function () {/*disable prompt*/
-            };
-            window.open = function () {/*disable open*/
-            };
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
             }
 
             // prevent href=# click jump
             document.addEventListener("DOMContentLoaded", function () {
-            var links = document.getElementsByTagName("A");
-            for (var i = 0; i < links.length; i++) {
-            if (links[i].href.indexOf('#') != - 1) {
-            links[i].addEventListener("click", function (e) {
-            console.debug("prevent href=# click");
-            if (this.hash) {
-            if (this.hash == "#") {
-            e.preventDefault();
-            return false;
-            } else {
-            /*
-             var el = document.getElementById(this.hash.replace(/#/, ""));
-             if (el) {
-             el.scrollIntoView(true);
-             }
-             */
-            }
-            }
-            return false;
-            })
-            }
-            }
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.indexOf('#') != -1) {
+                        links[i].addEventListener("click", function (e) {
+                            console.debug("prevent href=# click");
+                            if (this.hash) {
+                                if (this.hash == "#") {
+                                    e.preventDefault();
+                                    return false;
+                                } else {
+                                    /*
+                                     var el = document.getElementById(this.hash.replace(/#/, ""));
+                                     if (el) {
+                                     el.scrollIntoView(true);
+                                     }
+                                     */
+                                }
+                            }
+                            return false;
+                        })
+                    }
+                }
             }, false);
         </script>
         <script>
             // Hide submenus
             $('#body-row .collapse').collapse('hide');
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-            SidebarCollapse();
-            });
-            function SidebarCollapse() {
-            $('.menu-collapsed').toggleClass('d-none');
-            $('.sidebar-submenu').toggleClass('d-none');
-            $('.submenu-icon').toggleClass('d-none');
-            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-            // Treating d-flex/d-none on separators with title
-            var SeparatorTitle = $('.sidebar-separator-title');
-            if (SeparatorTitle.hasClass('d-flex')) {
-            SeparatorTitle.removeClass('d-flex');
-            } else {
-            SeparatorTitle.addClass('d-flex');
-            }
 
             // Collapse/Expand icon
-            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
+
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

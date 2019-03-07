@@ -6,6 +6,7 @@
 package controller;
 
 import dao.OvplmDAO;
+import dao.UserDAO;
 import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,6 +42,7 @@ public class addNonAcademicUnit extends HttpServlet {
             Unit unit = new Unit();
 
             OvplmDAO OvplmDAO = new OvplmDAO();
+            UserDAO UserDAO = new UserDAO();
 
             HttpSession session = request.getSession();
 
@@ -61,13 +63,18 @@ public class addNonAcademicUnit extends HttpServlet {
             unit.setExternal(Integer.parseInt(request.getParameter("external")));
             
             OvplmDAO.AddNonAcademicUnit(unit);
+            
+            int unitid = UserDAO.getUnitByName(request.getParameter("unitname")).getUnitID();
+            UserDAO.addPositionsNonAcademic(unitid);
 
             if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
+                request.setAttribute("success", "You ave successfully added a Non-Academic Unit! The system Admin may now add Users for this unit!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
                 dispatcher.forward(request, response);
             }
             if (session.getAttribute("unit").toString().equals("Admin")) {
+                request.setAttribute("success", "You ave successfully added a Non-Academic Unit!  You may now add Users for this Unit by clicking on  'Add User' in the sidebar");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
                 dispatcher.forward(request, response);

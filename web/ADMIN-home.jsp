@@ -56,6 +56,16 @@
                     });
                 });
             });
+            
+            <%
+                if (request.getAttribute("success") != null) {
+            %>
+            $("document").ready(function () {
+                alert("<%=request.getAttribute("success")%>");
+            });
+            <%
+                }
+            %>
 
             function sortTable(n) {
                 var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;

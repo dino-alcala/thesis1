@@ -6,6 +6,7 @@
 package controller;
 
 import dao.OvplmDAO;
+import dao.UserDAO;
 import entity.Department;
 import entity.Unit;
 import java.io.IOException;
@@ -42,10 +43,12 @@ public class addAcademicUnit extends HttpServlet {
             Unit unit = new Unit();
 
             OvplmDAO OvplmDAO = new OvplmDAO();
+            UserDAO UserDAO = new UserDAO();
 
             HttpSession session = request.getSession();
 
             unit.setName(request.getParameter("unitname"));
+            unit.setAbbrev(request.getParameter("unitabbrev"));
             unit.setHead(request.getParameter("unithead"));
             unit.setDepartments(Integer.parseInt(request.getParameter("numberdept")));
             unit.setType("Academic");
@@ -57,7 +60,7 @@ public class addAcademicUnit extends HttpServlet {
             for (int i = 0; i < Integer.parseInt(request.getParameter("numberdept")); i++) {
                 Department department = new Department();
                 department.setName(request.getParameter("department" + i));
-                department.setAbbrev(request.getParameter("abbrev" + i));
+                department.setAbbrev(request.getParameter("unitabbrev") + request.getParameter("abbrev" + i));
                 department.setFaculty(Integer.parseInt(request.getParameter("faculty" + i)));
                 department.setAdmin(Integer.parseInt(request.getParameter("admin" + i)));
                 department.setApsp(Integer.parseInt(request.getParameter("apsp" + i)));
@@ -70,13 +73,24 @@ public class addAcademicUnit extends HttpServlet {
             }
 
             OvplmDAO.AddAcademicUnit(unit, d);
+            
+            ArrayList<Integer> deptid = new ArrayList();
+            for (int i = 0; i < Integer.parseInt(request.getParameter("numberdept")); i++) {
+                int id = UserDAO.getDepartmentIDByName(d.get(i).getName());
+                deptid.add(id);
+            }
+            int unitid = UserDAO.getUnitByName(request.getParameter("unitname")).getUnitID();
+            
+            UserDAO.addPositionsAcademic(deptid, unitid);
 
             if (session.getAttribute("unit").toString().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {
+                request.setAttribute("success", "You ave successfully added an Academic Unit! The system Admin may now add Users for this unit!");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
                 dispatcher.forward(request, response);
             }
             if (session.getAttribute("unit").toString().equals("Admin")) {
+                request.setAttribute("success", "You ave successfully added an Academic Unit!  You may now add Users for this Unit by clicking on  'Add User' in the sidebar");
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
                 dispatcher.forward(request, response);
