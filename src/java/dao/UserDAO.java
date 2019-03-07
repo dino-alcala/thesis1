@@ -16206,15 +16206,15 @@ public class UserDAO {
         return total;
     }
     
-    public ArrayList<String> retrieveMeasureNamesOfMeasuresImplemented(int kraID, Date startDate, Date endDate) {
+    public ArrayList<Measure> retrieveMeasuresImplemented(int kraID, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
 
-        ArrayList<String> names = new ArrayList();
+        ArrayList<Measure> measures = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT m.measure FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND m.kraID = ? GROUP BY m.measure ASC";
+            String query = "SELECT count(m.measure) as TOTAL, m.measure, m.description FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND m.kraID = ? GROUP BY m.measure ASC";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
@@ -16223,8 +16223,11 @@ public class UserDAO {
             rs2 = pstmt.executeQuery();
 
             while (rs2.next()) {
-                String x = rs2.getString("measure");
-                names.add(x);
+                Measure m = new Measure();
+                m.setMeasureID(rs2.getInt("TOTAL"));
+                m.setMeasure(rs2.getString("measure"));
+                m.setDescription(rs2.getString("description"));
+                measures.add(m);
             }
 
         } catch (SQLException ex) {
@@ -16239,45 +16242,9 @@ public class UserDAO {
             } catch (Exception e) {
                 /* ignored */ }
         }
-        return names;
+        return measures;
     }
 
-    public ArrayList<String> retrieveMeasureDescriptionsOfMeasuresImplemented(int kraID, Date startDate, Date endDate) {
-        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-        Connection conn = myFactory.getConnection();
-        PreparedStatement pstmt = null;
-
-        ArrayList<String> names = new ArrayList();
-        ResultSet rs2 = null;
-        try {
-            String query = "SELECT m.description FROM measure m JOIN se_measures sm ON sm.measureID = m.measureID JOIN seproposal s ON s.id = sm.seproposalID WHERE s.step = 9 AND s.actualImplementation >= ? AND s.actualImplementation <= ? AND m.kraID = ? GROUP BY m.measure ASC";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setDate(1, startDate);
-            pstmt.setDate(2, endDate);
-            pstmt.setInt(3, kraID);
-
-            rs2 = pstmt.executeQuery();
-
-            while (rs2.next()) {
-                String x = rs2.getString("description");
-                names.add(x);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                pstmt.close();
-            } catch (Exception e) {
-                /* ignored */ }
-            try {
-                conn.close();
-            } catch (Exception e) {
-                /* ignored */ }
-        }
-        return names;
-    }
-    
     public ArrayList<KRA> retrieveALLProgramsMeasure(Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -17095,7 +17062,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(totalAmountRequested) FROM seproposal WHERE step = 9 AND unit = ? AND sourceOfFunds = 'OVPLM' AND actualImplementation >= ? AND actualImplementation <= ?";
+            String query = "SELECT SUM(amountUsed) FROM seproposal s JOIN seproposal_expenses se ON s.id = se.seproposalID WHERE s.step = 9 AND s.unit = ? AND s.sourceOfFunds = 'OVPLM' AND s.actualImplementation >= ? AND s.actualImplementation <= ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
@@ -17104,7 +17071,7 @@ public class UserDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                budget = rs.getDouble("SUM(totalAmountRequested)");
+                budget = rs.getDouble("SUM(amountUsed)");
             }
 
         } catch (SQLException ex) {
@@ -17131,7 +17098,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(totalAmount) FROM ffproposal WHERE step = 9 AND unit = ? AND sourceOfFunds = 'OVPLM' AND actualImplementation >= ? AND actualImplementation <= ?";
+            String query = "SELECT SUM(amountUsed) FROM ffproposal f JOIN ffproposal_expenses fe ON f.id = fe.ffproposalID WHERE f.step = 9 AND f.unit = ? AND f.sourceOfFunds = 'OVPLM' AND f.actualImplementation >= ? AND f.actualImplementation <= ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, unit);
             pstmt.setDate(2, startDate);
@@ -17140,7 +17107,7 @@ public class UserDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                budget = rs.getDouble("SUM(totalAmount)");
+                budget = rs.getDouble("SUM(amountUsed)");
             }
 
         } catch (SQLException ex) {

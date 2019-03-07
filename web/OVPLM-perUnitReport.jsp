@@ -400,7 +400,6 @@
                             <% }%>
                         </div>
                         <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
-                        <button type="button" class="btn btn-default">Download Report</button>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>

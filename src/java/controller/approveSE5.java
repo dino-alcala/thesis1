@@ -146,7 +146,7 @@ public class approveSE5 extends HttpServlet {
             request.setAttribute("successSE1", "You have successfully approved the SE Proposal!");
 
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-seProgramsForApproval.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-seProgramsForPRSUpload.jsp");
             dispatcher.forward(request, response);
         }
     }

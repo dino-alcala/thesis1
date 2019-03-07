@@ -143,7 +143,7 @@ public class approveFF5 extends HttpServlet {
             request.setAttribute("successFF1", "You have successfully approved the FF Proposal!");
 
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-ffProgramsForApproval.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-ffProgramsForPRSUpload.jsp");
             dispatcher.forward(request, response);
         }
     }

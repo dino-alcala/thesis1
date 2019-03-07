@@ -357,7 +357,7 @@
                                 <th scope="col">Goal</th>
                                 <th scope="col">Measure</th>
                                 <th scope="col">Target</th>
-                                <th scope="col">Accomplishment</th>
+                                <th scope="col">Accomplishment Against Total</th>
                             </tr>
                         </thead>
                         <tbody>

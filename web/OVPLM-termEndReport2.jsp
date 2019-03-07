@@ -3,6 +3,7 @@
     Created on : 06 18, 18, 7:59:10 PM
     Author     : Karl Madrid
 --%>
+<%@page import="entity.Measure"%>
 <%@page import="dao.OvplmDAO"%>
 <%@page import="entity.StudentOrg"%>
 <%@page import="entity.Unit"%>
@@ -73,15 +74,15 @@
                 for (int i = 0; i < kra.size(); i++) {
             %>
                     if (response == "<%=kra.get(i).getId()%>"){
-            <% kraslist = OvplmDAO.retrieveKRA();
+                    <% ArrayList<Measure> measure = UserDAO3.retrieveMeasuresImplemented(kra.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
             <%
-                for (int j = 0; j < kraslist.size(); j++) {
+                for (int j = 0; j < measure.size(); j++) {
             %>
                     var counter = 1;
                     table3.row.add([
-                            '<%=kraslist.get(j).getName()%>',
-                            '<%=kraslist.get(j).getName()%>'
+                            '<%=measure.get(j).getMeasure()%>',
+                            '<%=measure.get(j).getMeasureID()%>'
                     ]).draw(false);
             <%
                 }
@@ -94,13 +95,17 @@
             %>
             <%
                 for (int j = 0; j < kraslist.size(); j++) {
+                    
+                ArrayList<Measure> measure = UserDAO3.retrieveMeasuresImplemented(kra.get(j).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                for (int z = 0 ; z < measure.size() ; z++){
             %>
                     var counter = 1;
                     table3.row.add([
-                            '<%=kraslist.get(j).getName()%>',
-                            '<%=kraslist.get(j).getName()%>'
+                            '<%=measure.get(z).getMeasure()%>',
+                            '<%=measure.get(z).getMeasureID()%>'
                     ]).draw(false);
             <%
+                    }
                 }
             %>
                     }
@@ -109,6 +114,8 @@
             });
             }).trigger('change');
             });
+            
+            
             $(document).ready(function () {
             var table = $('#example2').DataTable();
             $("#seprogram").on('change', function(){
@@ -285,6 +292,8 @@
             });
             }).trigger('change');
             });
+            
+            
             $(document).ready(function () {
             $('#example3').DataTable();
             var table2 = $('#example3').DataTable();
@@ -310,7 +319,7 @@
                     var counter = 1;
                     table2.row.add([
                             '<%=f.get(i).getDatecreated()%>',
-                            '<%=f.get(i).getProjectName()%>',
+                            "<%=f.get(i).getProjectName()%>",
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
@@ -328,7 +337,7 @@
                     var counter = 1;
                     table2.row.add([
                             '<%=f.get(i).getDatecreated()%>',
-                            '<%=f.get(i).getProjectName()%>',
+                            "<%=f.get(i).getProjectName()%>",
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
@@ -346,7 +355,7 @@
                     var counter = 1;
                     table2.row.add([
                             '<%=f.get(i).getDatecreated()%>',
-                            '<%=f.get(i).getProjectName()%>',
+                            "<%=f.get(i).getProjectName()%>",
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
@@ -364,7 +373,7 @@
                     var counter = 1;
                     table2.row.add([
                             '<%=f.get(i).getDatecreated()%>',
-                            '<%=f.get(i).getProjectName()%>',
+                            "<%=f.get(i).getProjectName()%>",
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
@@ -382,7 +391,7 @@
                     var counter = 1;
                     table2.row.add([
                             '<%=f.get(i).getDatecreated()%>',
-                            '<%=f.get(i).getProjectName()%>',
+                            "<%=f.get(i).getProjectName()%>",
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
@@ -400,7 +409,7 @@
                     var counter = 1;
                     table2.row.add([
                             '<%=f.get(i).getDatecreated()%>',
-                            '<%=f.get(i).getProjectName()%>',
+                            "<%=f.get(i).getProjectName()%>",
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
@@ -418,7 +427,7 @@
                     var counter = 1;
                     table2.row.add([
                             '<%=f.get(i).getDatecreated()%>',
-                            '<%=f.get(i).getProjectName()%>',
+                            "<%=f.get(i).getProjectName()%>",
                             '<%=f.get(i).getProgramHead()%>',
                             '<%=f.get(i).getActivityClassification()%>',
                             '<%=f.get(i).getSourceOfFunds()%>'
@@ -432,6 +441,8 @@
             });
             }).trigger('change');
             });
+            
+            
             $(document).ready(function () {
             $('#example4').DataTable();
             });
@@ -731,7 +742,6 @@
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
 
                         <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
-                        <button type="button" class="btn btn-info">Download Report</button>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>
@@ -822,8 +832,8 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">    
                         <thead class="thead-dark">
                             <tr>
-                                <th>KRA</th>
-                                <th># of Programs</th>
+                                <th style="width:20%"><center>KRA-Goal-Measure</center></th>
+                                <th style="width:20%"><center># of Programs</center></th>
                             </tr>
                         </thead>
                         <tbody>
