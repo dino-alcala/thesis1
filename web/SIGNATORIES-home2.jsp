@@ -259,7 +259,6 @@
                 <div class="container-fluid panels">
                     <h4>Key Result Areas </h4>
                     <form action="calculateTargets">
-                        <%if (session.getAttribute("unit").equals("Office of the Vice President for Lasallian Mission")) {%><center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center><%}%>
                             <%
                                 DecimalFormat percentage = new DecimalFormat("0.00");
                                 TargetDAO TargetDAO = new TargetDAO();

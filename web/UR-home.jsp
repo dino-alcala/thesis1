@@ -229,7 +229,6 @@
                 <div class="container-fluid panels">
                     <h4>Key Result Areas </h4>
                     <form action="calculateTargets">
-                        <%if (session.getAttribute("unit").equals("Office of the Vice President for Lasallian Mission")) {%><center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center><%}%>
                             <%
                                 DecimalFormat percentage = new DecimalFormat("0.00");
                                 TargetDAO TargetDAO = new TargetDAO();
@@ -280,17 +279,17 @@
                                 <%if (z == 0) {%><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
                             <%if (z != 0) {%><td><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
 
-                            <% 
-                                double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals()); 
-                                if(kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Percent")){
+                            <%
+                                double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals());
+                                if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Percent")) {
                                     percent = percent / kra.getGoals().get(y).getMeasures().get(z).getNumtarget() * 100;
                                 }
                             %>
-                            <%if(z==0){%><% if(percent >= 0 && percent <= 33.33){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent >= 33.34 && percent <= 66.66){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent >= 66.67 && percent <= 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent > 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
-                            <%if(z!=0){%><% if(percent >= 0 && percent <= 33.33){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent >= 33.34 && percent <= 66.66){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent >= 66.67 && percent <= 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent > 101) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
-
                             <%if(z==0){%><% if(percent >= 0 && percent < 100/3){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent > 100/3 && percent < 100*(2/3)){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent > 100*(2/3) && percent < 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
                             <%if(z!=0){%><% if(percent >= 0 && percent < 100/3){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent > 100/3 && percent < 100*(2/3)){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent > 100*(2/3) && percent < 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+
+                            <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
                             </tr>    
                             <% }
                                 }
@@ -300,7 +299,6 @@
                     </form>
                 </div>
 
-
                 <!--- table -->
                 <form action="viewProposalsProgress" method="post">
                     <div class="container-fluid panels">
@@ -308,9 +306,7 @@
                             ArrayList<SE> s = new ArrayList();
                             s = UserDAO.retrieveSEbyDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                         %>
-
                         <h4>SE Proposals Progress (<%=s.size()%>)</h4>
-
                         <input class="form-control" id="myInput" type="text" placeholder="Search table..">
 
                         <table class="table ">
@@ -344,13 +340,11 @@
                     </div>
 
                     <div class="container-fluid panels">
-
                         <%
                             ArrayList<FF> f = new ArrayList();
                             f = UserDAO.retrieveFFbyDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                         %>
                         <h4>FF Proposals Progress (<%=f.size()%>)</h4>
-
                         <input class="form-control" id="myInput" type="text" placeholder="Search table..">
 
                         <table class="table ">
