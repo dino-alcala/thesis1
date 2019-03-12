@@ -45,7 +45,7 @@ public class approveSECancellation extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
 
             SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("cancel")));
-            if (SE.getSourceOfFunds().equals("OVPLM")) {
+            if (SE.getSourceOfFunds().equals("OVPLM") && SE.getStep() == 8) {
                 Budget b = new Budget();
                 b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
                 b.setBudgetRequested(SE.getTotalAmount() * -1);

@@ -398,7 +398,7 @@
                                         <select name="remarktype">
                                             <option value="--">Select</option>
                                             <option value="Comment">Comment (for Approve button)</option>
-                                            <option value="Suggestion">Suggestion (for Approve button)</option>
+                                            <option value="For Action">For Action (for Approve button)</option>
                                             <option value="Revise">Revise</option>
                                             <option value="Reject">Reject</option>
                                         </select>

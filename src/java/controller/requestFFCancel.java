@@ -39,7 +39,7 @@ public class requestFFCancel extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
 
             UserDAO UserDAO = new UserDAO();
-            UserDAO.requestCancel(Integer.parseInt(request.getParameter("cancel")), request.getParameter("reason"));
+            UserDAO.requestCancelFF(Integer.parseInt(request.getParameter("cancel")), request.getParameter("reason"));
             FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("cancel")));
             FF.setReasonforcancel(request.getParameter("reason"));
 
@@ -55,6 +55,7 @@ public class requestFFCancel extends HttpServlet {
             n.setRedirect("/MULTIPLE-approveFFCancellation.jsp");
             n.setAttribute(FF.getId());
             UserDAO.AddNotification(n);
+            UserDAO.updateStepFF(10, Integer.parseInt(request.getParameter("cancel")));
 
             request.setAttribute("cancelProgram", "Request for Cancellation has been Submitted!");
             ServletContext context = getServletContext();

@@ -46,7 +46,7 @@ public class approveFFCancellation extends HttpServlet {
             java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
             FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("cancel")));
-            if (FF.getSourceOfFunds().equals("OVPLM")) {
+            if (FF.getSourceOfFunds().equals("OVPLM") && FF.getStep() == 8) {
                 Budget b = new Budget();
                 b.setCurrentBudget(UserDAO.getLatestBudget().getRemainingBudget());
                 b.setBudgetRequested(FF.getTotalAmount() * -1);

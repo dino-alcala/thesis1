@@ -582,13 +582,20 @@
                                 <br/>
                                 <input type="hidden" name="ffID" value="<%=FF.getId()%>">
                                 
-                                <% if(FF.getStep() == 5){ %>
+                                <% 
+                                    if(FF.getStep() == 5){ 
+                                    if(session.getAttribute("position").toString().equals("OVPLM - Office of the Vice President for Lasallian Mission") && UserDAO.hasMichaelVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
+                                                session.getAttribute("position").toString().equals("DSA - Dean") && UserDAO.hasNelcaVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
+                                                session.getAttribute("position").toString().equals("LCLM - Executive Director") && UserDAO.hasMargaritaVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
+                                                session.getAttribute("position").toString().equals("COSCA - Director") && UserDAO.hasFritzieVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
+                                                session.getAttribute("position").toString().equals("LSPO - Director") && UserDAO.hasJamesVoted(Integer.parseInt(request.getAttribute("seID").toString()))){
+                                %>
                                  <center><button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button> 
                                
                                 <button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
                                 
                                 <button onclick="return window.confirm('Proceed?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center>                  
-                                <%} else {%>
+                                <%}} else {%>
                                 <center><legend>This proposal is done with this step</legend></center>
                                 <%}%>     
                             </div>

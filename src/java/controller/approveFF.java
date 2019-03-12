@@ -129,11 +129,11 @@ public class approveFF extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     if (UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()).equals("Academic")) {
                         n.setUserID(UserDAO.getUserIDforNotifsChairperson(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())), UserDAO.getDepartmentIDByName(UserDAO.getDepartmentByffID(Integer.parseInt(request.getParameter("approve"))))));
-                        n.setRedirect("/SIGNATORIES-approveFFProposal.jsp");
+                        n.setRedirect("/SIGNATORIES-approveFFProposal2.jsp");
                         n.setAttribute(FF.getId());
                     } else if (UserDAO.getUnitTypeByName(session.getAttribute("unit").toString()).equals("Non-Academic")) {
                         n.setUserID(UserDAO.getUserIDforNotifsUnitHead(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-                        n.setRedirect("/SIGNATORIES-approveFFProposal.jsp");
+                        n.setRedirect("/SIGNATORIES-approveFFProposal2.jsp");
                         n.setAttribute(FF.getId());
                     }
 

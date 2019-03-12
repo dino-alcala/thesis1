@@ -138,7 +138,7 @@ public class approveFF3 extends HttpServlet {
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved this proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
                 n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
@@ -146,7 +146,7 @@ public class approveFF3 extends HttpServlet {
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved this proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
                 n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
@@ -154,7 +154,7 @@ public class approveFF3 extends HttpServlet {
                 UserDAO.AddNotification(n);
                 
                 n.setTitle("Proposal Approval Count: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))));
-                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved your proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
+                n.setBody(UserDAO.getNameByID(Integer.parseInt(session.getAttribute("userID").toString())) + " has approved this proposal. Count: " + UserDAO.getFFVoteCount(Integer.parseInt(request.getParameter("approve"))) + "/4" + "\n"  + sdf.format(dt));
                 n.setDt(sdf2.format(dt));
                 n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Sir Jay Position"));
                 n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");

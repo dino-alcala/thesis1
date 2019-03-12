@@ -55,6 +55,7 @@ public class requestSECancel extends HttpServlet {
             n.setRedirect("/MULTIPLE-approveSECancellation.jsp");
             n.setAttribute(SE.getId());
             UserDAO.AddNotification(n);
+            UserDAO.updateStep(10, Integer.parseInt(request.getParameter("cancel")));
 
             request.setAttribute("cancelProgram", "Request for Cancellation has been Submitted!");
             ServletContext context = getServletContext();

@@ -158,10 +158,10 @@ public class approveFF2 extends HttpServlet {
             if (request.getParameter("revise") != null) {
                 Notification n3 = new Notification();
                 n3.setTitle("FF Proposal for Revision");
-                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
+                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("revise")));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion") || request.getParameter("remarktype").equals("Reject")){
+                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("For Action") || request.getParameter("remarktype").equals("Reject")){
                         request.setAttribute("remarksFF", "Please select the correct remark type!");
                         request.setAttribute("ffID", FF.getId());
                         ServletContext context = getServletContext();
