@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FF"%>
 <%@page import="dao.TargetDAO"%>
 <%@page import="entity.Measure"%>
 <%@page import="entity.Goal"%>
@@ -127,8 +128,8 @@
             <%
                 }
             %>
-                
-                <%
+
+            <%
                 if (request.getAttribute("success") != null) {
             %>
             $("document").ready(function () {
@@ -207,14 +208,14 @@
                 color: white;
                 background-color: green;
             }
-            
+
             .accomplishmentYellow{
                 text-align: center;
                 font-size: 17px;
                 color: white;
                 background-color: #FFBF00;
             }
-            
+
             .accomplishmentRed{
                 text-align: center;
                 font-size: 17px;
@@ -279,7 +280,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -288,7 +289,7 @@
                         </ul>
                     </div>
                 </div>
-            
+
                 <div class="nav-button">
                     <div class="dropdown">
                         <button type="button" class="btn btn-info navbar-btn-notifications" href="#" data-toggle="dropdown">
@@ -343,127 +344,242 @@
             <div class="col py-3">
                 <div class="container-fluid panels">
                     <h4>Key Result Areas </h4>
-                    <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center><br>
-                    <form action="calculateTargets">                        
-                    <% 
-                        DecimalFormat percentage = new DecimalFormat("0.00");
-                        TargetDAO TargetDAO = new TargetDAO();
-                        OvplmDAO OvplmDAO = new OvplmDAO();
-                        ArrayList<KRA> kralist =  OvplmDAO.retrieveKRA();
-                        for(int x = 0 ; x < kralist.size() ; x++){ 
-                    %>
-                    <h5><%=kralist.get(x).getName()%></h5>
-                    <table class="table table-bordered">
-                        <thead class="thead-light">
-                            <tr>
-                                <th style="width:30%">Goal</th>
-                                <th style="width:30%">Measure</th>
-                                <th style="width:30%">Target</th>
-                                <th style="width:5%">Accomplishment Against Target</th>
-                                <th style="width:5%"></th>
-                            </tr>
-                        </thead>
-                        <% 
-                            KRA kra = OvplmDAO.retrieveKRAByID(kralist.get(x).getId());
-                            for(int y = 0 ; y < kra.getGoals().size() ; y++){        
-                        %> 
-                        <tr>
-                            <td><%=kra.getGoals().get(y).getName()%></td>
-                            
-                        <% 
-                            for(int z = 0 ; z < kra.getGoals().get(y).getMeasures().size(); z++){ 
-                        %>
-                            <%if (kra.getGoals().get(y).getMeasures().get(z).getUntrackable() == 1) {%>
-                                <td><%if(z==0){%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
-                        
-                                <td><%if(z!=0){%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
-
-                                    <%if(z==0){%>Not Trackable</td><%}%>
-                                    <%if(z!=0){%><td>Not Trackable</td><%}%>
-
-                                    
-                                    <%if(z!=0){%><td class="accomplishmentRed">Not Trackable</td><%}%>
-                                    <%if(z==0){%><td class="accomplishmentRed">Not Trackable</td><%}%>
-                                    
-                                    <%if(z==0){%><td><button class="btn btn-primary btn-sm" type="submit" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>                                    
-                                    <%if(z!=0){%><td><button class="btn btn-primary btn-sm" type="submit" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                    <form action="calculateTargets">
+                        <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center>
+                            <%
+                                DecimalFormat percentage = new DecimalFormat("0.00");
+                                TargetDAO TargetDAO = new TargetDAO();
+                                OvplmDAO OvplmDAO = new OvplmDAO();
+                                ArrayList<KRA> kralist = OvplmDAO.retrieveKRA();
+                                for (int x = 0; x < kralist.size(); x++) {
+                            %>
+                        <h5><%=kralist.get(x).getName()%></h5>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th style="width:30%">Goal</th>
+                                    <th style="width:30%">Measure</th>
+                                    <th style="width:30%">Target</th>
+                                    <th style="width:5%">Accomplishment Against Target</th>
+                                    <th style="width:5%"></th>
                                 </tr>
-                        <%} else {%>
-                        <td><%if(z==0){%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
-                        <td><%if(z!=0){%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
-                            
-                            <%if(z==0){%><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if(kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")){%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if(!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")){%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
-                            <%if(z!=0){%><td><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if(kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")){%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if(!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")){%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
-                            
-                            <% 
-                                double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals()); 
+                            </thead>
+                            <%
+                                KRA kra = OvplmDAO.retrieveKRAByID(kralist.get(x).getId());
+                                for (int y = 0; y < kra.getGoals().size(); y++) {
+                            %> 
+                            <tr>
+                                <td><%=kra.getGoals().get(y).getName()%></td>
 
-                                if(kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Percent")){
+                                <%
+                                    for (int z = 0; z < kra.getGoals().get(y).getMeasures().size(); z++) {
+                                %>
+                                <%if (kra.getGoals().get(y).getMeasures().get(z).getUntrackable() == 1) {%>
+                                <td><%if (z == 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
+
+                                <td><%if (z != 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
+
+                                    <%if (z == 0) {%>Not Trackable</td><%}%>
+                                <%if (z != 0) {%><td>Not Trackable</td><%}%>
+
+
+                                <%if (z != 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                                <%if (z == 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+
+                                <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>                                    
+                                <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            </tr>
+                            <%} else {%>
+                            <td><%if (z == 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
+                            <td><%if (z != 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
+
+                                <%if (z == 0) {%><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
+                            <%if (z != 0) {%><td><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
+
+                            <%
+                                double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals());
+                                if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Percent")) {
                                     percent = percent / kra.getGoals().get(y).getMeasures().get(z).getNumtarget() * 100;
                                 }
                             %>
-                            <%if(z==0){%><% if(percent >= 0 && percent < 100/3){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent > 100/3 && percent < 100*(2/3)){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent > 100*(2/3) && percent < 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
-                            <%if(z!=0){%><% if(percent >= 0 && percent < 100/3){ %><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if(percent > 100/3 && percent < 100*(2/3)){%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if(percent > 100*(2/3) && percent < 100){%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if(percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
-                            
-                            <%if(z==0){%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
-                            <%if(z!=0){%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
-                        </tr>    
-                        <% }}} %>
-                    </table>
-                    <% } %>
+                            <%if (z == 0) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                            <%if (z != 0) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+
+                            <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            </tr>    
+                            <% }
+                                    }
+                                } %>
+                        </table>
+                        <% } %>
                     </form>
                 </div>
 
                 <!--- table -->
-                <%                    
+                <%
                     ArrayList<SE> proposals = new ArrayList();
                     if (session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission")) {
                         proposals = UserDAO.retrieveSEProposalByStep(5);
 
                 %>
                 <div class="container-fluid panels">
-
-
-                    <h4>Proposals to assess (<%=proposals.size()%>)</h4>
-
+                    <h4>SE Proposals to assess (<%=proposals.size()%>)</h4>
                     <input class="form-control" id="myInput" type="text" placeholder="Search table..">
+                    <form action="viewProposalsAssess">
+                        <table class="table ">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th onclick="sortTable(0)">Date</th>
+                                    <th onclick="sortTable(1)">Program Name</th>
+                                    <th onclick="sortTable(2)">Unit</th>
+                                    <th onclick="sortTable(3)">Program Head</th>
+                                    <th onclick="sortTable(4)">Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                <%
+                                    for (int i = 0; i < proposals.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=proposals.get(i).getActualDate()%></td>
+                                    <td><%=proposals.get(i).getName()%></td>
+                                    <td><%=proposals.get(i).getUnit()%></td>
+                                    <td><%=proposals.get(i).getProgramHead()%></td>
+                                    <td></td>
+                                    <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                </tr>
 
-                    <table class="table ">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th onclick="sortTable(0)">Date</th>
-                                <th onclick="sortTable(1)">Program Name</th>
-                                <th onclick="sortTable(2)">Unit</th>
-                                <th onclick="sortTable(3)">Program Head</th>
-                                <th onclick="sortTable(4)">Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="myTable">
-                            <%
-                                for (int i = 0; i < proposals.size(); i++) {
-                            %>
-                            <tr>
-                                <td><%=proposals.get(i).getActualDate()%></td>
-                                <td><%=proposals.get(i).getName()%></td>
-                                <td><%=proposals.get(i).getUnit()%></td>
-                                <td><%=proposals.get(i).getProgramHead()%></td>
-                                <td></td>
-                                <td><button type="submit" name="approve<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                            </tr>
+                                <%
+                                    }
+                                %>
 
+                            </tbody>
+                        </table>
+                    </form>
+
+                    <%
+                        ArrayList<FF> ffproposals = new ArrayList<FF>();
+                        ffproposals = UserDAO.retrieveFFProposalByStep(5);
+                    %>
+                    <form action="viewProposalsAssess" method="post">
+                        <div class="container-fluid panels">
+                            <h4>FF Proposals to Assess (<%=proposals.size()%>)</h4>
+
+                            <input class="form-control" id="myInput" type="text" placeholder="Search table..">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th onclick="sortTable(0)">Date</th>
+                                        <th onclick="sortTable(1)">Program Name</th>
+                                        <th onclick="sortTable(2)">Program Head</th>
+                                        <th onclick="sortTable(4)">Status</th>
+                                        <th onclick="sortTable(5)">Department</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                    <%
+                                        for (int i = 0; i < proposals.size(); i++) {
+                                    %>
+                                    <tr>
+                                        <td><%=ffproposals.get(i).getDatecreated()%></td>
+                                        <td><%=ffproposals.get(i).getProjectName()%></td>
+                                        <td><%=ffproposals.get(i).getProgramHead()%></td>
+                                        <td>Step <%=UserDAO.getStepFF(proposals.get(i).getId())%></td>
+                                        <td><%=ffproposals.get(i).getDepartment()%></td>
+
+                                        <td><button type="submit" name="viewFF<%=i%>" value="<%=ffproposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <%}%>
+
+                <form action="viewProposalsProgress" method="post">             
+                    <div class="container-fluid panels">
+                        <%
+                            proposals = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
+                        %>
+                        <h4>SE Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=proposals.size()%>)</h4>
+
+                        <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
+                        <br>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th onclick="sortTable(0)">Date</th>
+                                    <th onclick="sortTable(1)">Program Name</th>
+                                    <th onclick="sortTable(2)">Program Head</th>
+                                    <th onclick="sortTable(4)">Status</th>
+                                    <th onclick="sortTable(5)">Department</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable2">
+                                <%
+                                    for (int i = 0; i < proposals.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=proposals.get(i).getDate()%></td>
+                                    <td><%=proposals.get(i).getName()%></td>
+                                    <td><%=proposals.get(i).getProgramHead()%></td>
+                                    <td>Step <%=UserDAO.getStep(proposals.get(i).getId())%></td>
+                                    <td><center><%=proposals.get(i).getDepartment()%></center></td>
+                            <td><button type="submit" name="viewSE<%=i%>" value="<%=proposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                            </tr>
                             <%
                                 }
                             %>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>    
 
-                        </tbody>
-                    </table>
-                </div>
+                <form action="viewProposalsProgress" method="post">             
+                    <div class="container-fluid panels">
+                        <%
+                            ArrayList<FF> ffproposals = new ArrayList();
+                            ffproposals = UserDAO.retrieveFFbyUnit(session.getAttribute("unit").toString());
+                        %>
+                        <h4>FF Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=proposals.size()%>)</h4>
 
-                <%
-                    }
-                %>
-
+                        <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
+                        <br>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th onclick="sortTable(0)">Date</th>
+                                    <th onclick="sortTable(1)">Program Name</th>
+                                    <th onclick="sortTable(2)">Program Head</th>
+                                    <th onclick="sortTable(4)">Status</th>
+                                    <th onclick="sortTable(5)">Department</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable2">
+                                <%
+                                    for (int i = 0; i < ffproposals.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=ffproposals.get(i).getDatecreated()%></td>
+                                    <td><%=ffproposals.get(i).getProjectName()%></td>
+                                    <td><%=ffproposals.get(i).getProgramHead()%></td>
+                                    <td>Step <%=UserDAO.getStepFF(proposals.get(i).getId())%></td>
+                                    <td><center><%=ffproposals.get(i).getDepartment()%></center></td>
+                            <td><button type="submit" name="viewFF<%=i%>" value="<%=ffproposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
 
                 <%
                     Budget b = new Budget();

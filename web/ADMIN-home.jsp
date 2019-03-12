@@ -22,8 +22,6 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" type="text/css" href="css/homepagestyle.css">
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
@@ -31,6 +29,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <style type="text/css" class="init"></style>
+        
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
+        <script type="text/javascript" class="init"></script>
 
         <%
             if (session.getAttribute("unit").equals("Admin")) {
@@ -46,7 +52,12 @@
             }
         %>
 
-
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
+        
         <script>
             $(document).ready(function () {
                 $("#myInput").on("keyup", function () {
@@ -151,7 +162,7 @@
 
             thead{
                 color: white;
-                background: #4FAC50;
+                background: black;
             }
 
             #myTable th, #myTable td {
@@ -180,32 +191,15 @@
                 font-size: 15px;
             }
 
-            #myTable tr.header, #myTable tr:hover {
-                background-color: lightgreen;
-            }
 
-            #employees {
-                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            #employees td, #employees th {
-                border: 1px solid #ddd;
-                padding: 12px;
-            }
-
-
-            #employees tr:hover {
-                background-color: lightgreen;
-            }
-
-            #employees th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: #4CAF50;
-                color: white;
+            .panels{
+                margin-top: 20px;
+                background-color: white;
+                padding-bottom: 15px;
+                border-style: solid;
+                border-color: lightgray;
+                border-width: 1px;
+                border-radius: 8px;
             }
         </style>
 
@@ -305,27 +299,22 @@
             <!--MAIN-->
             <div class="col py-3">
 
-                <div class="row">
-                    <div class="col-lg-10">
+                <div class="container-fluid panels">
                         <%
                             ArrayList<User> u = new ArrayList();
                             u = UserDAO.retrieveEmployees();
                         %>
                         <h3 class="panel-title">Employees List (<%=u.size()%>)</h3>
 
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter..">
-
                         <div class="panel panel-primary">
-
                             <div class="panel-body">
                                 <form action="viewEmployee" method="post">
-                                    <table id="myTable">
-
+                                    <table id="example" class="table table-striped table-bordered" style="width:100%">    
                                         <thead>
                                             <tr>
                                                 <th onclick="sortTable(0)">Name</th>
                                                 <th onclick="sortTable(1)">Office</th>
-                                                <th onclick=                                "sortTable(2)">Email Address</th>
+                                                <th onclick="sortTable(2)">Email Address</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -354,8 +343,6 @@
                         </div>
 
                     </div>
-
-                </div>
 
             </div>
 

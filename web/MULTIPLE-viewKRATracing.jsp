@@ -377,7 +377,7 @@
                         <%
                             percent = TargetDAO.calculateTarget(m, TargetDAO.getTotals());
                         %>
-                        <%if(m.getNumtypetarget().equals("Percent")){%><% if (percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">N/A</td><%}%><%}%>
+                        <%if(m.getNumtypetarget().equals("Percent")){%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
                         </tbody>
                     </table>
 

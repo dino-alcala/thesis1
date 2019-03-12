@@ -73,7 +73,7 @@ public class viewProposalsAssess extends HttpServlet {
                 }
             }
             
-            if(session.getAttribute("position").equals("COSCA - Director") || session.getAttribute("position").equals("DSA - Dean") || session.getAttribute("position").equals("LCLM - Executive Director")){
+            if(session.getAttribute("position").equals("COSCA - Director") || session.getAttribute("position").equals("OVPLM - Vice President for Lasallian Mission") || session.getAttribute("position").equals("DSA - Dean") || session.getAttribute("position").equals("LCLM - Executive Director")){
                 ArrayList<SE> s = new ArrayList();
                 s = UserDAO.retrieveSEProposalToAssessByStep(5);
                 for (int i = 0; i < s.size(); i++) {
@@ -82,6 +82,18 @@ public class viewProposalsAssess extends HttpServlet {
 
                         ServletContext context = getServletContext();
                         RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                }
+                
+                ArrayList<FF> f = new ArrayList();
+                f = UserDAO.retrieveFFProposalToAssessByStep(5);
+                for (int i = 0; i < f.size(); i++) {
+                    if (request.getParameter("viewFF" + i) != null) {
+                        request.setAttribute("ffID", request.getParameter("viewFF" + i));
+
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveFFProposal3.jsp");
                         dispatcher.forward(request, response);
                     }
                 }
@@ -100,6 +112,17 @@ public class viewProposalsAssess extends HttpServlet {
                     }
                 }
                 
+                ArrayList<SE> s = new ArrayList();
+                s = UserDAO.retrieveSEProposalToAssessByStep(5);
+                for (int i = 0; i < s.size(); i++) {
+                    if (request.getParameter("viewSE" + i) != null) {
+                        request.setAttribute("seID", request.getParameter("viewSE" + i));
+
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-approveSEProposal4.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                }
             }
         }
     }
