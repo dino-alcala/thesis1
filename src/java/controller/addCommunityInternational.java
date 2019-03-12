@@ -56,6 +56,7 @@ public class addCommunityInternational extends HttpServlet {
 
             OvplmDAO.AddCommunity(c);
 
+            request.setAttribute("successcommunity", "You ave successfully added a New International Community!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-addCommunity.jsp");
             dispatcher.forward(request, response);

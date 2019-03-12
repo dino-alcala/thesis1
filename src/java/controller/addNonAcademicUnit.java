@@ -61,6 +61,7 @@ public class addNonAcademicUnit extends HttpServlet {
             unit.setDirecthired(Integer.parseInt(request.getParameter("direct")));
             unit.setIndependent(Integer.parseInt(request.getParameter("independent")));
             unit.setExternal(Integer.parseInt(request.getParameter("external")));
+            unit.setActive(1);
             
             OvplmDAO.AddNonAcademicUnit(unit);
             

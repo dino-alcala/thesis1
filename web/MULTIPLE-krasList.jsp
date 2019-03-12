@@ -30,6 +30,18 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("success") != null) {
+            %>
+            $("document").ready(function () {
+                alert("<%=request.getAttribute("success")%>");
+            });
+            <%
+                }
+            %>
+        </script>
+        
         <style>   
             #myInput{
                 margin-bottom: 20px;
@@ -56,7 +68,7 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-            
+
             .viewButton{
                 text-align: center;
                 margin-bottom: 0%;
@@ -106,7 +118,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -174,18 +186,17 @@
                     kra = OvplmDAO.retrieveKRA();
                 %>
                 <!---KRAs-->
-                <form action="viewKRA" method="post">
-                    <div class="container-fluid kras">
-
+                <div class="container-fluid kras">
+                    <form action="viewKRA" method="post">
                         <h2>Key Result Areas</h2>
 
-
+                        <legend>Active:</legend>
                         <div class="card-columns">
                             <%
                                 for (int i = 0; i < kra.size(); i++) {
                             %>
 
-                            <div class="card bg-basic krascards">
+                            <div style="width:100%; height:150px" class="card bg-basic krascards">
                                 <div class="card-body text-left">
                                     <p class="card-text"><b><%=kra.get(i).getName()%></b></p>
                                     <hr>
@@ -197,8 +208,42 @@
                             %>
 
                         </div>
-                    </div>
-                </form>
+                    </form>
+                    <br>
+
+                    <form action="viewKRAInactive" method="post">
+                        <%
+                            kra = OvplmDAO.retrieveKRAInactive();
+                            String none = null;
+                            if (kra.size() == 0) {
+                                none = "None";
+                            } else {
+                                none = "Not null";
+                            }
+                        %>
+                        <legend>Inactive: <%if (none.equals("None")) {%>None<%}%></legend>
+                        <div class="card-columns">
+                            <%
+                                for (int i = 0; i < kra.size(); i++) {
+                            %>
+
+                            <div style="width:100%; height:150px" class="card bg-basic krascards">
+                                <div class="card-body text-left">
+                                    <p class="card-text"><b><%=kra.get(i).getName()%></b></p>
+                                    <hr>
+                                    <p class="viewButton"><button type="submit" name="kra<%=i%>" class="btn btn-primary btn-sm">View</button></p>
+                                </div>
+                            </div>
+                            <%
+                                }
+                            %>
+
+                        </div>
+
+                    </form>
+                </div>
+
+
             </div>
         </div>
         <script>

@@ -463,8 +463,7 @@
                     var counter = 1;
                     table3.row.add([
                             '<%=kraslist.get(j).getDate()%>',
-                            '<%=UserDAO3.getKRAnameByID(kraslist.get(j).getId())%>',
-                            '<%=UserDAO3.getGoalnameByID(kraslist.get(j).getGoalID())%>',
+                            '<%=kraslist.get(j).getName()%>',
                             '<%=kraslist.get(j).getProgramName()%>'
                     ]).draw(false);
             <%
@@ -486,8 +485,7 @@
                     var counter = 1;
                     table3.row.add([
                             '<%=kraslist.get(j).getDate()%>',
-                            '<%=UserDAO3.getKRAnameByID(kraslist.get(j).getId())%>',
-                            '<%=UserDAO3.getGoalnameByID(kraslist.get(j).getGoalID())%>',
+                            '<%=kraslist.get(j).getName()%>',
                             '<%=kraslist.get(j).getProgramName()%>'
                     ]).draw(false);
             <%
@@ -1173,8 +1171,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Date</th>
-                                <th>KRA</th>
-                                <th>Goal</th>
+                                <th>Measure</th>
                                 <th>Program Name</th>
                             </tr>
                         </thead>

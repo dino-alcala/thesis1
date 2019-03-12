@@ -199,6 +199,7 @@
                                                     <li>
                                                         <label>Unit Name: <span class="required"></span></label>
                                                         <input disabled type="text" name="unitname" class="field-long" value="<%=u.getName()%>"/>
+                                                        <input type="hidden" class="field-long" value="<%=u.getName()%>"/>
                                                     </li>
                                                     <li>
                                                         <label>Unit Head: <span class="required"></span></label>
@@ -216,45 +217,46 @@
                                                     %>
                                                     <li>
                                                         <label>Department Name: <span class="required"></span></label>
-                                                        <input disabled type="text" name="unitname" class="field-long" value="<%=d.getName()%>"/>
+                                                        <input disabled type="text" class="field-long" value="<%=d.getName()%>"/>
+                                                        <input type="hidden" name="department<%=x%>" class="field-long" value="<%=d.getName()%>"/>
                                                     </li>
                                                     <li>
                                                         <label>Total number of CAP: <span class="required"></span></label>
-                                                        <input type="number" name="cap" class="field-num" value="<%=d.getCap()%>"/>
+                                                        <input type="number" name="cap<%=x%>" class="field-num" value="<%=d.getCap()%>"/>
                                                     </li>
                                                     <li>
                                                         <label>Total number of APSP: <span class="required"></span></label>
-                                                        <input type="number" name="apsp" class="field-num" value="<%=d.getApsp()%>"/>
+                                                        <input type="number" name="apsp<%=x%>" class="field-num" value="<%=d.getApsp()%>"/>
                                                     </li>
                                                     <li>
                                                         <label>Total number of ASF: <span class="required"></span></label>
-                                                        <input type="number" name="asf" class="field-num" value="<%=d.getAsf()%>"/>
+                                                        <input type="number" name="asf<%=x%>" class="field-num" value="<%=d.getAsf()%>"/>
                                                     </li>
-                                                    
                                                     <li>
                                                         <label>Total number for Faculty: <span class="required"></span></label>
-                                                        <input type="number" name="faculty" class="field-num" value="<%=d.getFaculty()%>"/>
+                                                        <input type="number" name="faculty<%=x%>" class="field-num" value="<%=d.getFaculty()%>"/>
                                                     </li>                                                                                  
                                                     <li>
                                                         <label>Total number of Admin: <span class="required"></span></label>
-                                                        <input type="number" name="admin" class="field-num" value="<%=d.getAdmin()%>"/>
+                                                        <input type="number" name="admin<%=x%>" class="field-num" value="<%=d.getAdmin()%>"/>
                                                     </li>
                                                     <li>
                                                         <label>Total number of Direct Hired Contractuals: <span class="required"></span></label>
-                                                        <input type="number" name="directhired" class="field-num" value="<%=d.getDirecthired() %>"/>
+                                                        <input type="number" name="directhired<%=x%>" class="field-num" value="<%=d.getDirecthired() %>"/>
                                                     </li>
                                                     <li>
                                                         <label>Total number of Independent Contractors: <span class="required"></span></label>
-                                                        <input type="number" name="independent" class="field-num" value="<%=d.getIndependent()%>"/>
+                                                        <input type="number" name="independent<%=x%>" class="field-num" value="<%=d.getIndependent()%>"/>
                                                     </li>
                                                     <li>
                                                         <label>Total number of External Service Personnel: <span class="required"></span></label>
-                                                        <input type="number" name="external" class="field-num" value="<%=d.getExternal()%>"/>
+                                                        <input type="number" name="external<%=x%>" class="field-num" value="<%=d.getExternal()%>"/>
                                                     </li>
                                                     <br><hr><br>
                                                     <% } %>
                                                     
                                                     <li align="center">
+                                                        <input type="hidden" name="numberdept" class="field-num" value="<%=Departments.size()%>"/>
                                                         <button type="submit" name="unit" value="<%=request.getAttribute("unitID")%>" class="btn btn-warning">Edit Unit</button>
                                                     </li>
                                                 </ul>

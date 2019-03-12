@@ -259,10 +259,10 @@
 
                                 <p align="right"> 
                                     <input type="text" hidden name="type" id="type" value="<%= u.getType() %>"/>
+                                    <%if(session.getAttribute("unit").equals("Office of the Vice President for Lasallian Mission (OVPLM)")){%>
                                     <button type="submit" name="unit" value="<%=u.getUnitID()%>" class="btn btn-warning">Edit</button>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-primary">Generate Report</button>
-
+                                    <button type="submit" onclick="return window.confirm('Are you sure you want to disable this Unit?')" name="disable" value="<%=u.getUnitID()%>" class="btn btn-danger">Disable</button>
+                                    <%}%>
                                 </p>
 
                             </div>

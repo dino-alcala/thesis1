@@ -43,19 +43,11 @@ public class editUnitAcademic extends HttpServlet {
 
             Unit unit = new Unit();
 
-            /*
             unit.setUnitID(Integer.parseInt(request.getParameter("unit")));
             unit.setName(request.getParameter("unitname"));
             unit.setHead(request.getParameter("unithead"));
-            unit.setCap(Integer.parseInt(request.getParameter("cap")));
-            unit.setApsp(Integer.parseInt(request.getParameter("apsp")));
-            unit.setAsf(Integer.parseInt(request.getParameter("asf")));
-            unit.setFaculty(Integer.parseInt(request.getParameter("faculty")));
-            unit.setAdmin(Integer.parseInt(request.getParameter("admin")));
-            unit.setDirecthired(Integer.parseInt(request.getParameter("directhired")));
-            unit.setIndependent(Integer.parseInt(request.getParameter("independent")));
-            unit.setExternal(Integer.parseInt(request.getParameter("external")));
             unit.setDescription(request.getParameter("unitdesc"));
+            unit.setActive(1);
 
             ArrayList<Department> d = new ArrayList();
 
@@ -67,13 +59,13 @@ public class editUnitAcademic extends HttpServlet {
                 department.setApsp(Integer.parseInt(request.getParameter("apsp" + i)));
                 department.setAsf(Integer.parseInt(request.getParameter("asf" + i)));
                 department.setCap(Integer.parseInt(request.getParameter("cap" + i)));
-                department.setDirecthired(Integer.parseInt(request.getParameter("direct" + i)));
+                department.setDirecthired(Integer.parseInt(request.getParameter("directhired" + i)));
                 department.setIndependent(Integer.parseInt(request.getParameter("independent" + i)));
                 department.setExternal(Integer.parseInt(request.getParameter("external" + i)));
                 d.add(department);
             }
             
-            UserDAO.updateUnitAcademic(unit, d);*/
+            UserDAO.updateUnitAcademic(unit, d);
 
             request.setAttribute("successSE", "You have successfully edited the unit!");
             ServletContext context = getServletContext();

@@ -6,7 +6,7 @@
 package controller;
 
 import dao.OvplmDAO;
-import entity.Community;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -15,13 +15,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author LA
+ * @author Dino Alcala
  */
-public class addCommunityLocal extends HttpServlet {
+public class enabledisableKRA extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,31 +35,20 @@ public class addCommunityLocal extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            Community c = new Community();
+
             OvplmDAO OvplmDAO = new OvplmDAO();
-
-            HttpSession session = request.getSession();
-
-            c.setName(request.getParameter("name"));
-            c.setContactperson(request.getParameter("contactperson"));
-            c.setContactnumber(request.getParameter("contactnumber"));
-            c.setCountry("Philippines");
-            c.setUnitnumber(request.getParameter("unitnumber"));
-            c.setStreet(request.getParameter("street"));
-            c.setBarangay(request.getParameter("barangay"));
-            c.setCity(request.getParameter("city"));
-            c.setDescription(request.getParameter("description"));
-            c.setInternational(0);
-            c.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
-            OvplmDAO.AddCommunity(c);
-
-            request.setAttribute("successcommunity", "You ave successfully added a New Local Community!");
+            
+            if(request.getParameter("enable") != null){
+                OvplmDAO.enableKRA(Integer.parseInt(request.getParameter("enable")));
+                request.setAttribute("success", "You have successfully enabled the KRA!");
+            } else if(request.getParameter("disable") != null){
+                request.setAttribute("success", "You have successfully disabled the KRA!");
+                OvplmDAO.disableKRA(Integer.parseInt(request.getParameter("disable")));
+            }
+            
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-addCommunity.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-krasList.jsp");
             dispatcher.forward(request, response);
-
         }
     }
 

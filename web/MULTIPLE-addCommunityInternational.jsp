@@ -174,7 +174,7 @@
 
                             <p><i>Fields with "*" are required</i></p>
 
-                            <form action="addCommunity" method="post">
+                            <form action="addCommunityInternational" method="post">
                                 <ul class="form-style-1">
                                     <li>
                                         <label>Community Name:* <span class="required"></span></label>

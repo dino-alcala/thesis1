@@ -448,6 +448,26 @@
         <servlet-name>signUp2</servlet-name>
         <servlet-class>controller.signUp2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>kradisable</servlet-name>
+        <servlet-class>controller.kradisable</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>kraenable</servlet-name>
+        <servlet-class>controller.kraenable</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>enabledisableKRA</servlet-name>
+        <servlet-class>controller.enabledisableKRA</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewKRAInactive</servlet-name>
+        <servlet-class>controller.viewKRAInactive</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewUnitInactive</servlet-name>
+        <servlet-class>controller.viewUnitInactive</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -895,6 +915,26 @@
     <servlet-mapping>
         <servlet-name>signUp2</servlet-name>
         <url-pattern>/signUp2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>kradisable</servlet-name>
+        <url-pattern>/kradisable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>kraenable</servlet-name>
+        <url-pattern>/kraenable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>enabledisableKRA</servlet-name>
+        <url-pattern>/enabledisableKRA</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewKRAInactive</servlet-name>
+        <url-pattern>/viewKRAInactive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewUnitInactive</servlet-name>
+        <url-pattern>/viewUnitInactive</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

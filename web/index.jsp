@@ -122,7 +122,7 @@
                     System.out.print(kra.get(i).getName() + " - " + kra.get(i).getTotal());
                 }
 
-                kra = UserDAO.insertPercentage(kra);
+                //kra = UserDAO.insertPercentage(kra);
 
                 for (int i = 0; i < kra.size(); i++) {
                     System.out.println(kra.get(i).getName() + " - " + kra.get(i).getTotal() + " - " + kra.get(i).getPercentage());

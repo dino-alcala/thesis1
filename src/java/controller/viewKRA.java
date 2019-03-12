@@ -43,6 +43,7 @@ public class viewKRA extends HttpServlet {
             UserDAO UserDAO = new UserDAO();
             OvplmDAO OvplmDAO = new OvplmDAO();
             ArrayList<KRA> kra = new ArrayList();
+
             kra = OvplmDAO.retrieveKRA();
 
             for (int i = 0; i < kra.size(); i++) {
@@ -53,15 +54,7 @@ public class viewKRA extends HttpServlet {
 
             ArrayList<KRA> kra2 = new ArrayList();
             kra2 = UserDAO.retrieveSORTEDKRA();
-            kra2 = UserDAO.insertPercentage(kra2);
-            Collections.sort(kra2, KRA.compareDESCPercentage);
-
-            for (int i = 0; i < kra2.size(); i++) {
-                if (request.getParameter("top" + i) != null) {
-                    request.setAttribute("kraID", kra2.get(i).getId());
-                    request.setAttribute("percentage", kra2.get(i).getPercentage());
-                }
-            }
+            //kra2 = UserDAO.insertPercentage(kra2);
 
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewKRA.jsp");

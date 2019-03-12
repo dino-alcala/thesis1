@@ -27,6 +27,7 @@ public class Unit {
     protected int directhired;
     protected int independent;
     protected int external;
+    protected int active;
 
     public String getAbbrev() {
         return abbrev;
@@ -154,6 +155,14 @@ public class Unit {
 
     public void setExternal(int external) {
         this.external = external;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 
 }

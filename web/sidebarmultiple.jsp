@@ -76,21 +76,13 @@
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-building fa-fw mr-2"></span>
                         <span class="menu-collapsed">Communities</span>
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <div id="submenuCommunity" class="collapse sidebar-submenu">
-                    <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
-                    </a>
-                    <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                </div>
                 <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-check-square-o fa-fw mr-2"></span>
@@ -616,21 +608,13 @@
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-building fa-fw mr-2"></span>
                         <span class="menu-collapsed">Communities</span>
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <div id="submenuCommunity" class="collapse sidebar-submenu">
-                    <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
-                    </a>
-                    <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                </div>
                 <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-check-square-o fa-fw mr-2"></span>
@@ -712,21 +696,13 @@
                         <span class="menu-collapsed" id="subMenuCategory">FF Programs</span>
                     </a>
                 </div>
-                <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-building fa-fw mr-2"></span>
                         <span class="menu-collapsed">Communities</span>
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <div id="submenuCommunity" class="collapse sidebar-submenu">
-                    <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
-                    </a>
-                    <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                </div>
                 <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-check-square-o fa-fw mr-2"></span>
@@ -789,21 +765,13 @@
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-building fa-fw mr-2"></span>
                         <span class="menu-collapsed">Communities</span>
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <div id="submenuCommunity" class="collapse sidebar-submenu">
-                    <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
-                    </a>
-                    <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                </div>
                 <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-check-square-o fa-fw mr-2"></span>
@@ -968,21 +936,13 @@
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <a href="#submenuCommunity" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
+                <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-building fa-fw mr-2"></span>
                         <span class="menu-collapsed">Communities</span>
                         <span class="submenu-icon ml-auto"></span>
                     </div>
                 </a>
-                <div id="submenuCommunity" class="collapse sidebar-submenu">
-                    <a href="MULTIPLE-addCommunity.jsp" class="list-group-item list-group-item-action" id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Add Community</span>
-                    </a>
-                    <a href="MULTIPLE-communityList.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">Communities</span>
-                    </a>
-                </div>
                 <a href="MULTIPLE-krasList.jsp" class="list-group-item list-group-item-action flex-column align-items-start" id="sidebarCategory">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-check-square-o fa-fw mr-2"></span>

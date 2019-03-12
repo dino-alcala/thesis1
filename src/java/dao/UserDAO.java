@@ -1110,7 +1110,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM unit";
+        String query = "SELECT * FROM unit WHERE active = 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Unit> units = new ArrayList();
@@ -1161,11 +1161,128 @@ public class UserDAO {
         return units;
     }
     
+    public ArrayList<Unit> retrieveUnitsInactive() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM unit WHERE active = 0";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Unit> units = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Unit u = new Unit();
+                u.setUnitID(rs.getInt("unitID"));
+                u.setName(rs.getString("unitName"));
+                u.setHead(rs.getString("unitHead"));
+                u.setType(rs.getString("unitType"));
+                u.setDepartments(rs.getInt("departments"));
+                u.setFaculty(rs.getInt("numberOfFaculty"));
+                u.setAdmin(rs.getInt("numberOfAdmin"));
+                u.setApsp(rs.getInt("numberOfAPSP"));
+                u.setAsf(rs.getInt("numberOfASF"));
+                u.setCap(rs.getInt("numberOfCAP"));
+                u.setDirecthired(rs.getInt("numberOfDirectHired"));
+                u.setIndependent(rs.getInt("numberOfIndependent"));
+                u.setExternal(rs.getInt("numberOfExternal"));
+                u.setDescription(rs.getString("unitDescription"));
+                u.setUserID(rs.getInt("userID"));
+                units.add(u);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return units;
+    }
+    
+    public void disableUnit(int id) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "UPDATE unit SET active = 0 WHERE unitID = ?";
+        PreparedStatement ps = null;
+        int rs = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void enableUnit(int id) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "UPDATE unit SET active = 1 WHERE unitID = ?";
+        PreparedStatement ps = null;
+        int rs = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
     public ArrayList<Unit> retrieveUnitsNonAcademic() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM unit where unitType = 'Non-Academic'";
+        String query = "SELECT * FROM unit where unitType = 'Non-Academic' and active = 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Unit> units = new ArrayList();
@@ -1262,7 +1379,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM unit where unitType = 'Academic'";
+        String query = "SELECT * FROM unit where unitType = 'Academic' AND active = 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Unit> units = new ArrayList();
@@ -14530,7 +14647,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM KRA where kraID = ?";
+        String query = "SELECT * FROM KRA where kraID = ? WHERE active = 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
         KRA kra = new KRA();
@@ -16674,8 +16791,8 @@ public class UserDAO {
                 k.setDate(rs2.getDate("datecreated"));
                 k.setTotalCountperMeasure(rs2.getInt("TOTAL"));
                 k.setId(rs2.getInt("kraID"));
-                k.setMeasureID(rs2.getInt("measureID"));
                 k.setGoalID(rs2.getInt("goalID"));
+                k.setName(rs2.getString("measure"));
                 k.setProgramName(rs2.getString("programName"));
                 kra.add(k);
             }
@@ -16716,6 +16833,7 @@ public class UserDAO {
                 k.setDate(rs2.getDate("datecreated"));
                 k.setTotalCountperMeasure(rs2.getInt("TOTAL"));
                 k.setId(rs2.getInt("kraID"));
+                k.setName(rs2.getString("measure"));
                 k.setMeasureID(rs2.getInt("measureID"));
                 k.setGoalID(rs2.getInt("goalID"));
                 k.setProgramName(rs2.getString("programName"));

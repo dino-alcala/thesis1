@@ -50,6 +50,7 @@ public class addKRA extends HttpServlet {
             KRA.setName(request.getParameter("kraname"));
             KRA.setDate(Date.valueOf(request.getParameter("date")));
             KRA.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+            KRA.setActive(1);
 
             int countgoals = Integer.parseInt(request.getParameter("countgoals"));
             for (int i = 1; i <= countgoals ; i++) {

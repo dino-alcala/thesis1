@@ -26,6 +26,7 @@ public class KRA {
     protected int goalID;
     protected int totalCountperMeasure;
     protected String programName;
+    protected int active;
 
     public int getId() {
         return id;
@@ -143,5 +144,13 @@ public class KRA {
 
     public void setProgramName(String programName) {
         this.programName = programName;
+    }
+    
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }

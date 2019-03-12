@@ -203,7 +203,8 @@
                                                 <ul class="form-style-1">
                                                     <li>
                                                         <label>Unit Name: <span class="required"></span></label>
-                                                        <input disabled type="text" name="unitname" class="field-long" value="<%=u.getName()%>"/>
+                                                        <input disabled type="text" class="field-long" value="<%=u.getName()%>"/>
+                                                        <input type="hidden" name="unitname" class="field-long" value="<%=u.getName()%>"/>
                                                     </li>
                                                     <li>
                                                         <label>Unit Head: <span class="required"></span></label>

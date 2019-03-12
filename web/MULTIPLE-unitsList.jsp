@@ -42,7 +42,18 @@
             });
         </script>
 
-
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("success") != null) {
+            %>
+            $("document").ready(function () {
+                alert("<%=request.getAttribute("success")%>");
+            });
+            <%
+                }
+            %>
+        </script>
+        
         <style>    
             #myInput{
                 margin-bottom: 20px;
@@ -75,6 +86,32 @@
                 border-color: lightgray;
                 border-width: 1px;
                 border-radius: 8px;
+            }
+            
+            #buttonActive{
+                color: white;
+                background-color: green;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonInactive{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonActive:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+            #buttonInactive:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
             }
         </style>  
         
@@ -213,6 +250,10 @@
 
                 <!--- table -->
                 <div class="container-fluid panels">
+                    <div class="btn-group btn-group-justified">
+                            <a type="button" class="btn btn-primary" id="buttonActive" href="MULTIPLE-unitsList.jsp">Active</a>
+                            <a type="button" class="btn btn-primary" id="buttonInactive" href="MULTIPLE-unitsListInactive.jsp">Inactive</a>
+                    </div>
 
                     <%
                         ArrayList<Unit> u = new ArrayList();

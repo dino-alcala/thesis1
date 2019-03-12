@@ -1,12 +1,17 @@
 <%-- 
-    Document   : MULTIPLE-addCommunity
-    Created on : 06 12, 18, 12:04:26 PM
+    Document   : MULTIPLE-viewKRA
+    Created on : 06 12, 18, 12:15:42 PM
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.FF"%>
+<%@page import="entity.SE"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
+<%@page import="entity.KRA"%>
+<%@page import="dao.OvplmDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,14 +20,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Add Community</title>
+        <title>Inactive KRA Details</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="css/sidebar.css">
         <link rel="stylesheet" href="css/homepagestyle.css">
-        <link rel="stylesheet" href="css/formstyle1.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,23 +34,81 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
-        <style>       
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <style type="text/css" class="init"></style>
+
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
+        <script type="text/javascript" class="init"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+            $(document).ready(function () {
+                $('#example2').DataTable();
+            });
+            $(document).ready(function () {
+                $('#example3').DataTable();
+            });
+        </script>
+
+        <style>
+            tr:hover {
+                background-color: lightgreen;
             }
 
-            h4{
-                text-align: left;
+            h2{
                 font-size: 25px;
+                text-align: left;
+                margin-top: 15px;
                 border-bottom: 2px solid green;
-                padding-bottom: 10px;
+                padding-bottom: 5px;
+                margin-bottom: 25px;
+                font-family: 'Roboto', sans-serif;
+            }
 
-            }   
-            .formBg{
-                width: 60%;
-                padding: 10px;
-                margin-top: 0px;
+            .table{
+                margin-bottom: 20px;
+            }
+
+            .panels{
+                margin-top: 20px;
+                background-color: white;
+                padding-bottom: 15px;
+                border-style: solid;
+                border-color: lightgray;
+                border-width: 1px;
+                border-radius: 8px;
+            }
+
+            .kraheading{
+                font-size: 50px;
+                text-align: center;
+                margin-top: 15px;
+                border-bottom: 2px solid green;
+                padding-bottom: 5px;
+                margin-bottom: 25px;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .button {
+                background-color: red;
+                border: none;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                padding: 14px 40px;
+            }
+
+            p{
+                margin-top: 40px;
+                text-align: center;
             }
 
             .panels{
@@ -74,7 +136,7 @@
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown d-sm-block d-md-none">*
+                    <li class="nav-item dropdown d-sm-block d-md-none">
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Dashboard
                         </a>
@@ -85,13 +147,13 @@
                             Units
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
+                            Communities
+                        </a>
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
                             Key Result Areas
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Reports
-                        </a>
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
-                            Accomplishment
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Evaluation Forms
@@ -106,7 +168,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -159,79 +221,107 @@
             <div class="sidebar-expanded d-none d-md-block">
                 <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
                     <script>
-                        $("#sidebar-container").load("sidebarovplm.jsp");
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
                 </ul>
             </div>
 
-
             <!-- MAIN -->
             <div class="col py-3">
-                <div class="container">
-                    <div class="col-lg-12">
-                        <div class="formBg">
-                            <h4>Add Community</h4>
 
-                            <p><i>Fields with "*" are required</i></p>
+                <%
+                    OvplmDAO OvplmDAO = new OvplmDAO();
+                    KRA kra = new KRA();
+                    kra = OvplmDAO.retrieveKRAByID(Integer.parseInt(request.getAttribute("kraID").toString()));
+                %>
+                <!---KRAs-->
+                <div class="container-fluid panels">
 
-                            <form action="addCommunityLocal" method="post">
-                                <ul class="form-style-1">
-                                    <li>
-                                        <label>Community Name:* <span class="required"></span></label>
-                                        <input type="text" name="name" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Contact person:* <span class="required"></span></label>
-                                        <input type="text" name="contactperson" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Contact number:* <span class="required"></span></label>
-                                        <input type="text" name="contactnumber" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Unit Number*: <span class="required"></span></label>
-                                        <input type="text" name="unitnumber" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Street*: <span class="required"></span></label>
-                                        <input type="text" name="street" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Barangay*: <span class="required"></span></label>
-                                        <input type="text" name="barangay" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>City*: <span class="required"></span></label>
-                                        <select name="city">
-                                            <%
-                                                ArrayList<String> cities = UserDAO.getCities();
-                                                for(int x = 0 ; x < cities.size() ; x++){
-                                            %>
-                                            <option value="<%=cities.get(x)%>"><%=cities.get(x)%></option>
-                                            <%}%>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <label>Description: <span class="required"></span></label>
-                                        <textarea rows="4" cols="40" name="description"></textarea>
-                                    </li>
+                    <h2 class="kraheading"><%=kra.getName()%></h2>
 
-
-                                    <li align="center">
-                                        <button type="submit" class="btn btn-info">Add Community</button>
-                                    </li>
-                                </ul>
-                            </form>
-
-                        </div>
-
-                    </div>
                 </div>
+
+                <div class="container-fluid panels">
+                    <%
+                        for (int i = 0; i < kra.getGoals().size(); i++) {
+                    %>
+
+                    <h2 >Goal <%=kra.getGoals().get(i).getGoal()%>: <%=kra.getGoals().get(i).getName()%>  </h2>
+
+                    <table class="table table-striped table-bordered" style="width:100%">    
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="width:10%">Measure</th>
+                                <th style="width:30%">Description</th>
+                                <th style="width:30%">Target</th>
+                            </tr>
+                        </thead>
+                        <%
+                            for (int j = 0; j < kra.getGoals().get(i).getMeasures().size(); j++) {
+                        %>
+                        <tbody>
+                            <tr>
+                                <td><%=kra.getGoals().get(i).getMeasures().get(j).getMeasure()%></td>
+                                <td><%=kra.getGoals().get(i).getMeasures().get(j).getDescription()%></td>
+                                <td><%if (kra.getGoals().get(i).getMeasures().get(j).getUntrackable() == 0) {%><%=kra.getGoals().get(i).getMeasures().get(j).getNumtarget()%><% if (kra.getGoals().get(i).getMeasures().get(j).getNumtypetarget().equals("Count")) {%>&nbsp; Count/s<%} else {%>%<%}%> of <%=kra.getGoals().get(i).getMeasures().get(j).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(i).getMeasures().get(j).getTypetarget()%> program/component engaging <%=kra.getGoals().get(i).getMeasures().get(j).getEngagingtarget()%><%} else {%>Not Trackable<%}%></td>
+                            </tr>
+                        </tbody>
+                        <%
+                            }
+                        %>
+                    </table>
+
+                    <%
+                        }
+                    %>
+
+                </div>
+
+                <!--- table -->
+                <div class="container-fluid panels">
+                    <%
+                        ArrayList<SE> s = new ArrayList();
+                        s = UserDAO.retrieveSEProposalByKRAID(Integer.parseInt(request.getAttribute("kraID").toString()));
+                    %>
+
+                    <h2>Social Engagement Programs Contributed</h2>
+
+
+                    <table id="example2" class="table table-striped table-bordered" style="width:100%">    
+                        <thead class="thead-dark" >
+                            <tr>
+                                <th style="width:25%">Program Name</th>
+                                <th>Unit</th>
+                                <th>Department</th>
+                                <th>Program Head</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                for (int i = 0; i < s.size(); i++) {
+                            %>
+                            <tr>
+                                <td><%=s.get(i).getName()%></td>
+                                <td><%=s.get(i).getUnit()%></td>
+                                <td><%=s.get(i).getDepartment()%></td>
+                                <td><%=s.get(i).getProgramHead()%></td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br>
+                <%if(session.getAttribute("unit").equals("Office of the Vice President for Lasallian Mission (OVPLM)")){%>
+                <form action="enabledisableKRA">
+                    <center><button onclick="return window.confirm('Are you sure you want to enable this KRA?')" type="submit" name="enable" class="btn btn-primary btn-sm" value="<%=kra.getId()%>">Set Active</button></center>
+                </form>
+                <%}%>
             </div>
 
         </div>
-
-
 
         <script>
             // sandbox disable popups
@@ -276,21 +366,17 @@
         <script>
             // Hide submenus
             $('#body-row .collapse').collapse('hide');
-
             // Collapse/Expand icon
             $('#collapse-icon').addClass('fa-angle-double-left');
-
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
                 SidebarCollapse();
             });
-
             function SidebarCollapse() {
                 $('.menu-collapsed').toggleClass('d-none');
                 $('.sidebar-submenu').toggleClass('d-none');
                 $('.submenu-icon').toggleClass('d-none');
                 $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
                 // Treating d-flex/d-none on separators with title
                 var SeparatorTitle = $('.sidebar-separator-title');
                 if (SeparatorTitle.hasClass('d-flex')) {
@@ -303,6 +389,5 @@
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
-
     </body>
 </html>

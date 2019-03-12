@@ -52,6 +52,7 @@ public class editUnitNonAcademic extends HttpServlet {
             unit.setIndependent(Integer.parseInt(request.getParameter("independent")));
             unit.setExternal(Integer.parseInt(request.getParameter("external")));
             unit.setDescription(request.getParameter("unitdesc"));
+            unit.setActive(1);
 
             UserDAO.updateUnitNonAcademic(unit);
 

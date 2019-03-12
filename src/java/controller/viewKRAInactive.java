@@ -6,22 +6,24 @@
 package controller;
 
 import dao.OvplmDAO;
-import entity.Community;
+import dao.UserDAO;
+import entity.KRA;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author LA
  */
-public class addCommunityLocal extends HttpServlet {
+public class viewKRAInactive extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,30 +39,26 @@ public class addCommunityLocal extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            Community c = new Community();
+
+            UserDAO UserDAO = new UserDAO();
             OvplmDAO OvplmDAO = new OvplmDAO();
+            ArrayList<KRA> kra = new ArrayList();
 
-            HttpSession session = request.getSession();
+            kra = OvplmDAO.retrieveKRAInactive();
 
-            c.setName(request.getParameter("name"));
-            c.setContactperson(request.getParameter("contactperson"));
-            c.setContactnumber(request.getParameter("contactnumber"));
-            c.setCountry("Philippines");
-            c.setUnitnumber(request.getParameter("unitnumber"));
-            c.setStreet(request.getParameter("street"));
-            c.setBarangay(request.getParameter("barangay"));
-            c.setCity(request.getParameter("city"));
-            c.setDescription(request.getParameter("description"));
-            c.setInternational(0);
-            c.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+            for (int i = 0; i < kra.size(); i++) {
+                if (request.getParameter("kra" + i) != null) {
+                    request.setAttribute("kraID", kra.get(i).getId());
+                }
+            }
 
-            OvplmDAO.AddCommunity(c);
+            ArrayList<KRA> kra2 = new ArrayList();
+            kra2 = UserDAO.retrieveSORTEDKRA();
+            //kra2 = UserDAO.insertPercentage(kra2);
 
-            request.setAttribute("successcommunity", "You ave successfully added a New Local Community!");
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-addCommunity.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewKRAInactive.jsp");
             dispatcher.forward(request, response);
-
         }
     }
 

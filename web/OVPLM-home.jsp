@@ -343,8 +343,8 @@
             <div class="col py-3">
                 <div class="container-fluid panels">
                     <h4>Key Result Areas </h4>
-                    <form action="calculateTargets">
-                        <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center>
+                    <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center><br>
+                    <form action="calculateTargets">                        
                     <% 
                         DecimalFormat percentage = new DecimalFormat("0.00");
                         TargetDAO TargetDAO = new TargetDAO();

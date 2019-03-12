@@ -382,7 +382,7 @@ public class OvplmDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM KRA";
+        String query = "SELECT * FROM KRA WHERE active = 1";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<KRA> kra = new ArrayList();
@@ -464,6 +464,154 @@ public class OvplmDAO {
         return kra;
     }
     
+    public ArrayList<KRA> retrieveKRAInactive() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT * FROM KRA WHERE active = 0";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<KRA> kra = new ArrayList();
+
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                KRA k = new KRA();
+                k.setId(rs.getInt("kraID"));
+                k.setName(rs.getString("name"));
+                k.setDate(rs.getDate("date"));
+                k.setUserID(rs.getInt("userID"));
+                kra.add(k);
+            }
+
+            for (int i = 0; i < kra.size(); i++) {
+                ArrayList<Goal> goals = new ArrayList();
+
+                query = "SELECT * FROM goal WHERE kraID = ?";
+
+                ps = conn.prepareStatement(query);
+                ps.setInt(1, kra.get(i).getId());
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    Goal g = new Goal();
+                    g.setGoalID(rs.getInt("goalID"));
+                    g.setGoal(rs.getInt("goalNumber"));
+                    g.setName(rs.getString("name"));
+                    goals.add(g);
+                }
+
+                for (int j = 0; j < goals.size(); j++) {
+                    ArrayList<Measure> measures = new ArrayList();
+
+                    query = "SELECT * FROM measure WHERE goalID = ?";
+
+                    ps = conn.prepareStatement(query);
+                    ps.setInt(1, goals.get(j).getGoalID());
+                    rs = ps.executeQuery();
+
+                    while (rs.next()) {
+                        Measure m = new Measure();
+                        m.setMeasureID(rs.getInt("measureID"));
+                        m.setMeasure(rs.getString("measure"));
+                        m.setDescription(rs.getString("description"));
+                        m.setNumtarget(rs.getInt("numtarget"));
+                        m.setNumtypetarget(rs.getString("numtypetarget"));
+                        m.setUnittarget(rs.getString("unittarget"));
+                        m.setTypetarget(rs.getString("typetarget"));
+                        m.setEngagingtarget(rs.getString("engagingtarget"));
+                        m.setUntrackable(rs.getInt("untrackable"));
+                        measures.add(m);
+                    }
+
+                    goals.get(j).setMeasures(measures);
+                }
+                kra.get(i).setGoals(goals);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return kra;
+    }
+    
+    public void disableKRA(int id) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "UPDATE kra SET active = 0 WHERE kraID = ?";
+        PreparedStatement ps = null;
+        int rs = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void enableKRA(int id) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "UPDATE kra SET active = 1 WHERE kraID = ?";
+        PreparedStatement ps = null;
+        int rs = 0;
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
     public ArrayList<Goal> retrieveKRAGoals(int x) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -524,6 +672,7 @@ public class OvplmDAO {
                 kra.setName(rs.getString("name"));
                 kra.setDate(rs.getDate("date"));
                 kra.setUserID(rs.getInt("userID"));
+                kra.setActive(rs.getInt("active"));
             }
 
             ArrayList<Goal> goals = new ArrayList();

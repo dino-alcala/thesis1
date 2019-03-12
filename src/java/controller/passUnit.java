@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -35,18 +36,34 @@ public class passUnit extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
+            UserDAO UserDAO = new UserDAO();
             request.setAttribute("unitID", request.getParameter("unit"));
             
-            if(request.getParameter("type").toString().equals("Non-Academic")){
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editUnitNonAcademic.jsp");
-                dispatcher.forward(request, response);
-            } else if(request.getParameter("type").toString().equals("Academic")) {
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editUnitAcademic.jsp");
-                dispatcher.forward(request, response);
+            if(request.getParameter("enable") == null && request.getParameter("disable") == null){
+                if(request.getParameter("type").toString().equals("Non-Academic")){
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editUnitNonAcademic.jsp");
+                    dispatcher.forward(request, response);
+                } else if(request.getParameter("type").toString().equals("Academic")) {
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-editUnitAcademic.jsp");
+                    dispatcher.forward(request, response);
+                }
+            } else if(request.getParameter("enable") != null){
+                    UserDAO.enableUnit(Integer.parseInt(request.getParameter("enable")));
+                
+                    request.setAttribute("success", "You have successfully enabled the Unit!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-unitsList.jsp");
+                    dispatcher.forward(request, response);
+            } else if(request.getParameter("disable") != null){
+                    UserDAO.disableUnit(Integer.parseInt(request.getParameter("disable")));
+                
+                    request.setAttribute("success", "You have successfully disabled the Unit!");
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-unitsList.jsp");
+                    dispatcher.forward(request, response);
             }
-
             
         }
     }

@@ -1,11 +1,12 @@
 <%-- 
-    Document   : MULTIPLE-addCommunity
-    Created on : 06 12, 18, 12:04:26 PM
+    Document   : MULTIPLE-unitsList
+    Created on : 06 12, 18, 11:52:42 AM
     Author     : Karl Madrid
 --%>
 
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="entity.Unit"%>
 <%@page import="dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,38 +16,55 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Add Community</title>
+        <title>Inactive Units List</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/sidebar.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/homepagestyle.css">
-        <link rel="stylesheet" href="css/formstyle1.css">
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <style type="text/css" class="init"></style>
 
-        <style>       
-            body{
-                background-color: whitesmoke;
-                padding-top: 56px;
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
+        <script type="text/javascript" class="init"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
+
+
+        <style>    
+            #myInput{
+                margin-bottom: 20px;
+            }
+
+            tr:hover {
+                background-color: lightgreen;
             }
 
             h4{
-                text-align: left;
                 font-size: 25px;
+                text-align: left;
+                margin-top: 20px;
                 border-bottom: 2px solid green;
                 padding-bottom: 10px;
+                margin-bottom: 25px;
+                font-family: 'Roboto', sans-serif;
+            }
 
-            }   
-            .formBg{
-                width: 60%;
-                padding: 10px;
-                margin-top: 0px;
+            .table{
+                border-bottom: 2px solid lightgray;
+                margin-bottom: 30px;
             }
 
             .panels{
@@ -58,7 +76,59 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-        </style>
+            
+            #buttonInactive{
+                color: white;
+                background-color: green;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonActive{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonInactive:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+            #buttonActive:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+        </style>  
+        
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successSE") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successSE")%>");
+            });
+
+            <%
+                }
+
+                if (request.getAttribute("successFF") != null) {
+
+            %>
+            $("document").ready(function () {
+
+                alert("<%=request.getAttribute("successFF")%>");
+            });
+
+            <%
+                }
+            %>
+        </script>
 
     </head>
 
@@ -74,7 +144,7 @@
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown d-sm-block d-md-none">*
+                    <li class="nav-item dropdown d-sm-block d-md-none">
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Dashboard
                         </a>
@@ -85,13 +155,13 @@
                             Units
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
+                            Communities
+                        </a>
+                        <a class="nav-link" href="#" id="smallerscreenmenu">
                             Key Result Areas
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Reports
-                        </a>
-                        <a class="nav-link" href="#" id="smallerscreenmenu">
-                            Accomplishment
                         </a>
                         <a class="nav-link" href="#" id="smallerscreenmenu">
                             Evaluation Forms
@@ -159,79 +229,58 @@
             <div class="sidebar-expanded d-none d-md-block">
                 <ul id="sidebar-container" class="list-group sticky-top sticky-offset">
                     <script>
-                        $("#sidebar-container").load("sidebarovplm.jsp");
+                        $("#sidebar-container").load("sidebarmultiple.jsp");
                     </script>
                 </ul>
             </div>
 
-
             <!-- MAIN -->
             <div class="col py-3">
-                <div class="container">
-                    <div class="col-lg-12">
-                        <div class="formBg">
-                            <h4>Add Community</h4>
 
-                            <p><i>Fields with "*" are required</i></p>
-
-                            <form action="addCommunityLocal" method="post">
-                                <ul class="form-style-1">
-                                    <li>
-                                        <label>Community Name:* <span class="required"></span></label>
-                                        <input type="text" name="name" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Contact person:* <span class="required"></span></label>
-                                        <input type="text" name="contactperson" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Contact number:* <span class="required"></span></label>
-                                        <input type="text" name="contactnumber" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Unit Number*: <span class="required"></span></label>
-                                        <input type="text" name="unitnumber" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Street*: <span class="required"></span></label>
-                                        <input type="text" name="street" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>Barangay*: <span class="required"></span></label>
-                                        <input type="text" name="barangay" class="field-long" />
-                                    </li>
-                                    <li>
-                                        <label>City*: <span class="required"></span></label>
-                                        <select name="city">
-                                            <%
-                                                ArrayList<String> cities = UserDAO.getCities();
-                                                for(int x = 0 ; x < cities.size() ; x++){
-                                            %>
-                                            <option value="<%=cities.get(x)%>"><%=cities.get(x)%></option>
-                                            <%}%>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <label>Description: <span class="required"></span></label>
-                                        <textarea rows="4" cols="40" name="description"></textarea>
-                                    </li>
-
-
-                                    <li align="center">
-                                        <button type="submit" class="btn btn-info">Add Community</button>
-                                    </li>
-                                </ul>
-                            </form>
-
-                        </div>
-
+                <!--- table -->
+                <div class="container-fluid panels">
+                    <div class="btn-group btn-group-justified">
+                            <a type="button" class="btn btn-primary" id="buttonActive" href="MULTIPLE-unitsList.jsp">Active</a>
+                            <a type="button" class="btn btn-primary" id="buttonInactive" href="MULTIPLE-unitsListInactive.jsp">Inactive</a>
                     </div>
+
+                    <%
+                        ArrayList<Unit> u = new ArrayList();
+                        u = UserDAO.retrieveUnitsInactive();
+                    %>
+                    <h4>Unit List (<%=u.size()%>)</h4>
+
+
+                    <form action="viewUnitInactive" method="post">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">    
+                            <thead class="thead-dark" >
+                                <tr>
+                                    <th>Unit Name</th>
+                                    <th>Unit Head</th>
+                                    <th>Unit Description</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+
+                                <%
+                                    for (int i = 0; i < u.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=u.get(i).getName()%></td>        
+                                    <td><%=u.get(i).getHead()%></td>
+                                    <td><%=u.get(i).getDescription()%></td>
+                                    <td><button type="submit" name="unitID<%=i%>" class="btn btn-info">View</button></td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
-
         </div>
-
-
 
         <script>
             // sandbox disable popups
@@ -276,21 +325,17 @@
         <script>
             // Hide submenus
             $('#body-row .collapse').collapse('hide');
-
             // Collapse/Expand icon
             $('#collapse-icon').addClass('fa-angle-double-left');
-
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
                 SidebarCollapse();
             });
-
             function SidebarCollapse() {
                 $('.menu-collapsed').toggleClass('d-none');
                 $('.sidebar-submenu').toggleClass('d-none');
                 $('.submenu-icon').toggleClass('d-none');
                 $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
                 // Treating d-flex/d-none on separators with title
                 var SeparatorTitle = $('.sidebar-separator-title');
                 if (SeparatorTitle.hasClass('d-flex')) {
@@ -303,6 +348,5 @@
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
-
     </body>
 </html>

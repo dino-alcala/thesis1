@@ -60,42 +60,18 @@
 
 
         </script>
-
-        <script>
-                function addFields() {
-                    // Number of inputs to create
-                    var number = document.getElementById("member55").value;
-                    // Container <div> where dynamic content will be placed
-                    var container = document.getElementById("container55");
-                    // Clear previous contents of the container
-                    while (container.hasChildNodes()) {
-                        container.removeChild(container.lastChild);
-                    }
-                    for (i = 0; i < number; i++) {
-                        // Append a node with a random text
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Department " + (i + 1) + ": "));
-                        container.appendChild(document.createElement("br"));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "department" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
-
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createTextNode("Number of Staff for Department " + (i + 1) + ": "));
-                        // Create an <input> element, set its type and name attributes
-                        var input = document.createElement("input");
-                        input.type = "text";
-                        input.name = "staff" + i;
-                        container.appendChild(input);
-                        // Append a line break 
-                        container.appendChild(document.createElement("br"));
-
-                    }
+        
+        <script type="text/javascript">
+            <%
+                if (request.getAttribute("successcommunity") != null) {
+            %>
+            $("document").ready(function () {
+                alert("<%=request.getAttribute("successcommunity")%>");
+            });
+            <%
                 }
+            %>
+
         </script>
 
         <style>

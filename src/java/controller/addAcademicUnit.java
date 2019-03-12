@@ -54,6 +54,7 @@ public class addAcademicUnit extends HttpServlet {
             unit.setType("Academic");
             unit.setDescription(request.getParameter("unitdescription"));
             unit.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
+            unit.setActive(1);
 
             ArrayList<Department> d = new ArrayList();
 

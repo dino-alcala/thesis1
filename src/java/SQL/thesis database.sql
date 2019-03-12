@@ -119,7 +119,7 @@ CREATE TABLE `community` (
   PRIMARY KEY (`communityID`),
   KEY `LA4_idx` (`userID`),
   CONSTRAINT `LA4` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -802,6 +802,7 @@ CREATE TABLE `kra` (
   `name` varchar(200) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
+  `active` int(11) DEFAULT NULL,
   PRIMARY KEY (`kraID`),
   KEY `LA5_idx` (`userID`),
   CONSTRAINT `LA5` FOREIGN KEY (`userID`) REFERENCES `informationsheet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -814,7 +815,7 @@ CREATE TABLE `kra` (
 
 LOCK TABLES `kra` WRITE;
 /*!40000 ALTER TABLE `kra` DISABLE KEYS */;
-INSERT INTO `kra` VALUES (3,'KRA3 - Formation for all sectors that is truly Lasallian','2019-02-19',74),(6,'KRA5 - Community that is attuned to a sustainable Earth and socially engaged','2019-02-21',74);
+INSERT INTO `kra` VALUES (3,'KRA3 - Formation for all sectors that is truly Lasallian','2019-02-19',74,1),(6,'KRA5 - Community that is attuned to a sustainable Earth and socially engaged','2019-02-21',74,1);
 /*!40000 ALTER TABLE `kra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1829,6 +1830,7 @@ CREATE TABLE `unit` (
   `numberOfExternal` int(11) DEFAULT NULL,
   `unitDescription` varchar(200) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
+  `active` int(11) DEFAULT NULL,
   PRIMARY KEY (`unitID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1839,7 +1841,7 @@ CREATE TABLE `unit` (
 
 LOCK TABLES `unit` WRITE;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
-INSERT INTO `unit` VALUES (10,'OVPLM','Office of the Vice President for Lasallian Mission (OVPLM)','OVPLM Unit Head','Non-Academic',0,0,1,3,2,2,1,1,1,'OVPLM Unit',1),(11,'CCS','College of Computer Studies (CCS)','CCS Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCS Unit ',1),(12,'COL','College of Law (COL)','COL Unit Head','Academic',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COL Unit',71),(13,'BAGCED','Br. Andrew Gonzales College of Education (BAGCED)','CED Unit Head','Academic',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CED Unit',1),(14,'CLA','College of Liberal Arts (CLA)','CLA Unit Head','Academic',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CLA Unit',74),(15,'COS','College of Science (COS)','COS Unit Head','Academic',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COS Unit',74),(16,'GCOE','Gokongwei College of Engineering (GCOE)','GCOE Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'GCOE Unit',74),(17,'RVRCOB','Ramon V. Del Rosario College of Business (RVR-COB)','RVR-COB Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'RVR-COB Unit',74),(18,'SOE','School of Economics (SOE)','SOE Unit HEad','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SOE Unit',74),(19,'COSCA','Center for Social Concern and Action (COSCA)','COSCA Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'COSCA Unit Description',71),(20,'LCLM','Laguna Campus Lasallian Mission (LCLM)','LCLM Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LCLM Unit Description',71),(21,'LSPO','Lasallian Pastoral Office (LSPO)','LSPO Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LSPO Unit Description',71),(22,'LMC','Lasallian Mission Council (LMC)','LMC Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LMC Unit Description',71),(23,'DSA','Dean of Student Affairs (DSA)','DSA Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'DSA Unit Description',1),(24,'OPM','Office of Personnel Management (OPM)','OPM Program Head','Non-Academic',0,0,2,5,5,5,2,1,2,'OPM Unit Description',74),(25,'SO','Security Office (SO)','Norman Dela Cruz','Non-Academic',0,10,10,10,5,10,10,10,10,'This is the Office of the Security of the University',1);
+INSERT INTO `unit` VALUES (10,'OVPLM','Office of the Vice President for Lasallian Mission (OVPLM)','OVPLM Unit Head','Non-Academic',0,0,1,3,2,2,1,1,1,'OVPLM Unit',1,1),(11,'CCS','College of Computer Studies (CCS)','CCS Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCS Unit ',1,1),(12,'COL','College of Law (COL)','COL Unit Head','Academic',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COL Unit',71,1),(13,'BAGCED','Br. Andrew Gonzales College of Education (BAGCED)','CED Unit Head','Academic',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CED Unit',1,1),(14,'CLA','College of Liberal Arts (CLA)','CLA Unit Head','Academic',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CLA Unit',74,1),(15,'COS','College of Science (COS)','COS Unit Head','Academic',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COS Unit',74,1),(16,'GCOE','Gokongwei College of Engineering (GCOE)','GCOE Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'GCOE Unit',74,1),(17,'RVRCOB','Ramon V. Del Rosario College of Business (RVR-COB)','RVR-COB Unit Head','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'RVR-COB Unit',74,1),(18,'SOE','School of Economics (SOE)','SOE Unit HEad','Academic',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SOE Unit',74,1),(19,'COSCA','Center for Social Concern and Action (COSCA)','COSCA Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'COSCA Unit Description',71,1),(20,'LCLM','Laguna Campus Lasallian Mission (LCLM)','LCLM Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LCLM Unit Description',71,1),(21,'LSPO','Lasallian Pastoral Office (LSPO)','LSPO Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LSPO Unit Description',71,1),(22,'LMC','Lasallian Mission Council (LMC)','LMC Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'LMC Unit Description',71,1),(23,'DSA','Dean of Student Affairs (DSA)','DSA Unit Head','Non-Academic',0,0,2,5,5,5,2,1,2,'DSA Unit Description',1,1),(24,'OPM','Office of Personnel Management (OPM)','OPM Program Head','Non-Academic',0,0,2,5,5,5,2,1,2,'OPM Unit Description',74,1),(25,'SO','Security Office (SO)','Norman Dela Cruz','Non-Academic',0,10,10,10,5,10,10,10,10,'This is the Office of the Security of the University',1,1);
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1881,4 +1883,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-08  1:47:35
+-- Dump completed on 2019-03-12 17:26:28

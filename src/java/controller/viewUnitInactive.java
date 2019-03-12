@@ -5,23 +5,23 @@
  */
 package controller;
 
-import dao.OvplmDAO;
-import entity.Community;
+import dao.UserDAO;
+import entity.Unit;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author LA
  */
-public class addCommunityLocal extends HttpServlet {
+public class viewUnitInactive extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,30 +37,25 @@ public class addCommunityLocal extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            Community c = new Community();
-            OvplmDAO OvplmDAO = new OvplmDAO();
 
-            HttpSession session = request.getSession();
-
-            c.setName(request.getParameter("name"));
-            c.setContactperson(request.getParameter("contactperson"));
-            c.setContactnumber(request.getParameter("contactnumber"));
-            c.setCountry("Philippines");
-            c.setUnitnumber(request.getParameter("unitnumber"));
-            c.setStreet(request.getParameter("street"));
-            c.setBarangay(request.getParameter("barangay"));
-            c.setCity(request.getParameter("city"));
-            c.setDescription(request.getParameter("description"));
-            c.setInternational(0);
-            c.setUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
-            OvplmDAO.AddCommunity(c);
-
-            request.setAttribute("successcommunity", "You ave successfully added a New Local Community!");
-            ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-addCommunity.jsp");
-            dispatcher.forward(request, response);
-
+            UserDAO UserDAO = new UserDAO();
+            ArrayList<Unit> u = new ArrayList();
+            u = UserDAO.retrieveUnitsInactive();
+            
+            for(int i = 0; i < u.size(); i++){
+                if(request.getParameter("unitID"+i)!=null){
+                    request.setAttribute("unitID", u.get(i).getUnitID());
+                    if(u.get(i).getType().toString().equals("Non-Academic")){
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewUnitDetailsNonAcademicInactive.jsp");
+                        dispatcher.forward(request, response);
+                    } else if(u.get(i).getType().toString().equals("Academic")){
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-viewUnitDetailsAcademicInactive.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                }
+            }
         }
     }
 

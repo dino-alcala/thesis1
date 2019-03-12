@@ -168,7 +168,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -263,7 +263,7 @@
                             <tr>
                                 <td><%=kra.getGoals().get(i).getMeasures().get(j).getMeasure()%></td>
                                 <td><%=kra.getGoals().get(i).getMeasures().get(j).getDescription()%></td>
-                                <td><%if(kra.getGoals().get(i).getMeasures().get(j).getUntrackable() == 0){%><%=kra.getGoals().get(i).getMeasures().get(j).getNumtarget()%><% if(kra.getGoals().get(i).getMeasures().get(j).getNumtypetarget().equals("Count")){%>&nbsp; Count/s<%} else {%>%<%}%> of <%=kra.getGoals().get(i).getMeasures().get(j).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(i).getMeasures().get(j).getTypetarget()%> program/component engaging <%=kra.getGoals().get(i).getMeasures().get(j).getEngagingtarget()%><%} else {%>Not Trackable<%}%></td>
+                                <td><%if (kra.getGoals().get(i).getMeasures().get(j).getUntrackable() == 0) {%><%=kra.getGoals().get(i).getMeasures().get(j).getNumtarget()%><% if (kra.getGoals().get(i).getMeasures().get(j).getNumtypetarget().equals("Count")) {%>&nbsp; Count/s<%} else {%>%<%}%> of <%=kra.getGoals().get(i).getMeasures().get(j).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(i).getMeasures().get(j).getTypetarget()%> program/component engaging <%=kra.getGoals().get(i).getMeasures().get(j).getEngagingtarget()%><%} else {%>Not Trackable<%}%></td>
                             </tr>
                         </tbody>
                         <%
@@ -312,6 +312,12 @@
                         </tbody>
                     </table>
                 </div>
+                <br>
+                <%if(session.getAttribute("unit").equals("Office of the Vice President for Lasallian Mission (OVPLM)")){%>
+                <form action="enabledisableKRA">
+                    <center><button onclick="return window.confirm('Are you sure you want to disable this KRA?')" type="submit" name="disable" class="btn btn-primary btn-sm" value="<%=kra.getId()%>">Set Inactive</button></center>
+                </form>
+                <%}%>
             </div>
 
         </div>
