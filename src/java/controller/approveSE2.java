@@ -180,10 +180,10 @@ public class approveSE2 extends HttpServlet {
                     UserDAO.reviseSE(Integer.parseInt(request.getParameter("revise")));
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("revise")));
                     UserDAO.reviseCOSCA(Integer.parseInt(request.getParameter("revise")));
-                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + " has some revisions before it is approved by COSCA." + "\n"  + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("revise"))) + " has some revisions before it is approved by COSCA." + "\n"  + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("revise"))));
-                    n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
+                    n3.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
                     n3.setAttribute(SE.getId());
                 }
 

@@ -6607,7 +6607,7 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE seproposal SET isRevise = 1 WHERE id = ?";
+            String query = "UPDATE seproposal SET isRevise = 1, step = 1 WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, seID);
 
@@ -6633,7 +6633,7 @@ public class UserDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String query = "UPDATE ffproposal SET isRevise = 1 WHERE id = ?";
+            String query = "UPDATE ffproposal SET isRevise = 1, step = 1 WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
 
