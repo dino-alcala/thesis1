@@ -143,13 +143,13 @@ public class approveSE extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Social Engagement Director")) {
                     n.setUserID(UserDAO.getUserIDforNotifsVPVC(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-                    n.setRedirect("/SIGNATORIES-approveSEProposal2.jsp");
+                    n.setRedirect("/SIGNATORIES-approveSEProposal3.jsp");
                     n.setAttribute(SE.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n.setUserID(UserDAO.getUserIDforNotifsNeil());
-                    n.setRedirect("/SIGNATORIES-approveSEProposal3.jsp");
+                    n.setRedirect("/MULTIPLE-approveSEProposal3.jsp");
                     n.setAttribute(SE.getId());
                 }
 
@@ -161,7 +161,7 @@ public class approveSE extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("VP/VC")) {
                     n.setUserID(UserDAO.getUserIDforNotifsNeil());
-                    n.setRedirect("/SIGNATORIES-approveSEProposal3.jsp");
+                    n.setRedirect("/MULTIPLE-approveSEProposal3.jsp");
                     n.setAttribute(SE.getId());
                 }
 

@@ -15367,7 +15367,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE unit = ? AND step != 8 AND step != 0 AND step != -1 ORDER BY id DESC LIMIT 5";
+            String query = "SELECT * FROM seproposal WHERE unit = ? AND step != 9 AND step != 0 AND step != -1 ORDER BY id DESC LIMIT 5";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, unit);
@@ -15410,7 +15410,7 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE department = ? AND step != 8 AND step != 0 AND step != -1 ORDER BY id DESC LIMIT 5";
+            String query = "SELECT * FROM seproposal WHERE department = ? AND step != 9 AND step != 0 AND step != -1 ORDER BY id DESC LIMIT 5";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, department);

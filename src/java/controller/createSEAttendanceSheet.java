@@ -93,7 +93,7 @@ public class createSEAttendanceSheet extends HttpServlet {
                 String from = "ovplmpms@gmail.com";
                 String to = attendees.get(x).getEmail();
                 String subject = "Evaluation Code";
-                String message = "FF Evaluation Code for '" + SE.getName() + "': " + code + "\n" + "\n" + "Please proceed to the OVPLM PMS Website, click the 'Evaluate' button at the bottom of the 'Login' button, and input this code, and evaluate the program." + "\n" + "\n" + "Thank You!";
+                String message = "Thank you for participating in our Social Engagement Program! Please follow the instructions below to evaluate your experience." + "\n" + "\n" + "SE Evaluation Code for '" + SE.getName() + "': " + code + "\n" + "\n" + "Please proceed to the OVPLM PMS Website, click the 'Evaluate' button at the bottom of the 'Login' button, and input this code, and evaluate the program." + "\n" + "\n" + "Thank You!";
                 String login = "ovplmpms@gmail.com";
                 String password = "11434643ovplmpms";
 

@@ -458,7 +458,9 @@
                             </tbody>
                         </table>
                     </form>
+                </div>
 
+                <div class="container-fluid panels">
                     <%
                         ArrayList<FF> ffproposals = new ArrayList<FF>();
                         ffproposals = UserDAO.retrieveFFProposalByStep(5);
@@ -546,7 +548,7 @@
                             ArrayList<FF> ffproposals = new ArrayList();
                             ffproposals = UserDAO.retrieveFFbyUnit(session.getAttribute("unit").toString());
                         %>
-                        <h4>FF Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=proposals.size()%>)</h4>
+                        <h4>FF Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=ffproposals.size()%>)</h4>
 
                         <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
                         <br>
@@ -569,7 +571,7 @@
                                     <td><%=ffproposals.get(i).getDatecreated()%></td>
                                     <td><%=ffproposals.get(i).getProjectName()%></td>
                                     <td><%=ffproposals.get(i).getProgramHead()%></td>
-                                    <td>Step <%=UserDAO.getStepFF(proposals.get(i).getId())%></td>
+                                    <td>Step <%=UserDAO.getStepFF(ffproposals.get(i).getId())%></td>
                                     <td><center><%=ffproposals.get(i).getDepartment()%></center></td>
                             <td><button type="submit" name="viewFF<%=i%>" value="<%=ffproposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                             </tr>

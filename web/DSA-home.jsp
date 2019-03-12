@@ -301,13 +301,13 @@
                 <div class="container-fluid panels">
                     <h4>Key Result Areas </h4>
                     <form action="calculateTargets">
-                            <%
-                                DecimalFormat percentage = new DecimalFormat("0.00");
-                                TargetDAO TargetDAO = new TargetDAO();
-                                OvplmDAO OvplmDAO = new OvplmDAO();
-                                ArrayList<KRA> kralist = OvplmDAO.retrieveKRA();
-                                for (int x = 0; x < kralist.size(); x++) {
-                            %>
+                        <%
+                            DecimalFormat percentage = new DecimalFormat("0.00");
+                            TargetDAO TargetDAO = new TargetDAO();
+                            OvplmDAO OvplmDAO = new OvplmDAO();
+                            ArrayList<KRA> kralist = OvplmDAO.retrieveKRA();
+                            for (int x = 0; x < kralist.size(); x++) {
+                        %>
                         <h5><%=kralist.get(x).getName()%></h5>
                         <table class="table table-bordered">
                             <thead class="thead-light">
@@ -364,8 +364,8 @@
                             <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
                             </tr>    
                             <% }
-                                }
-                            } %>
+                                    }
+                                } %>
                         </table>
                         <% } %>
                     </form>
@@ -412,14 +412,15 @@
                             </tbody>
                         </table>
                     </form>
-
+                </div>
+                <div class="container-fluid panels">
                     <%
                         ArrayList<FF> ffproposals = new ArrayList<FF>();
                         ffproposals = UserDAO.retrieveFFProposalByStep(5);
                     %>
                     <form action="viewProposalsAssess" method="post">
                         <div class="container-fluid panels">
-                            <h4>FF Proposals to Assess (<%=proposals.size()%>)</h4>
+                            <h4>FF Proposals to Assess (<%=ffproposals.size()%>)</h4>
 
                             <input class="form-control" id="myInput" type="text" placeholder="Search table..">
                             <table class="table">
@@ -435,13 +436,13 @@
                                 </thead>
                                 <tbody id="myTable">
                                     <%
-                                        for (int i = 0; i < proposals.size(); i++) {
+                                        for (int i = 0; i < ffproposals.size(); i++) {
                                     %>
                                     <tr>
                                         <td><%=ffproposals.get(i).getDatecreated()%></td>
                                         <td><%=ffproposals.get(i).getProjectName()%></td>
                                         <td><%=ffproposals.get(i).getProgramHead()%></td>
-                                        <td>Step <%=UserDAO.getStepFF(proposals.get(i).getId())%></td>
+                                        <td>Step <%=UserDAO.getStepFF(ffproposals.get(i).getId())%></td>
                                         <td><%=ffproposals.get(i).getDepartment()%></td>
 
                                         <td><button type="submit" name="viewFF<%=i%>" value="<%=ffproposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
@@ -453,7 +454,7 @@
                     </form>
                 </div>
                 <%}%>
-                
+
                 <form action="viewProposalsProgress" method="post">             
                     <div class="container-fluid panels">
                         <%
