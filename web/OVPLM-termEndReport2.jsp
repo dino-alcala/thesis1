@@ -1330,7 +1330,6 @@
                                     <th>Unit</th>
                                     <th>Department</th>
                                     <th>Amount Requested</th>
-                                    <th>Variance</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -1343,7 +1342,6 @@
                                     <td><%=seproposal.get(i).getUnit()%></td>
                                     <td><%=seproposal.get(i).getDepartment()%></td>
                                     <td>₱<%=seproposal.get(i).getTotalAmount()%></td>
-                                    <td>₱<%=seproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetBySEIDDate(seproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td><button class="btn btn-primary btn-sm" type="submit" name="viewSE<%=i%>" value="<%=seproposal.get(i).getId()%>">View</button></td>
                                 </tr>
                                 <%
@@ -1367,7 +1365,6 @@
                                     <th>Unit</th>
                                     <th>Department</th>
                                     <th>Amount Requested</th>
-                                    <th>Variance</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1379,7 +1376,6 @@
                                     <td><%=ffproposal.get(i).getUnit()%></td>
                                     <td><%=ffproposal.get(i).getDepartment()%></td>
                                     <td>₱<%=ffproposal.get(i).getTotalAmount()%></td>
-                                    <td>₱<%=ffproposal.get(i).getTotalAmount() - UserDAO.getUtilizedBudgetByFFIDDate(ffproposal.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
                                     <td><button class="btn btn-primary btn-sm" type="submit" name="viewFF<%=i%>" value="<%=ffproposal.get(i).getId()%>">View</button></td>
                                 </tr>
                                 <%

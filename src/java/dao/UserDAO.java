@@ -15766,7 +15766,7 @@ public class UserDAO {
 
         double budget = 0;
         try {
-            String query = "SELECT SUM(total.totalAmountRequested) as totalRequestedBudget FROM (SELECT totalAmountRequested FROM seproposal WHERE step = 8 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM' UNION ALL SELECT totalAmount as totalAmountRequested from ffproposal WHERE step = 8 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM') as total";
+            String query = "SELECT SUM(total.totalAmountRequested) as totalRequestedBudget FROM (SELECT totalAmountRequested FROM seproposal WHERE step >= 1 AND step <= 8 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM' UNION ALL SELECT totalAmount as totalAmountRequested from ffproposal WHERE step >= 1 AND step <= 8 AND datecreated >= ? AND datecreated <= ? AND sourceOfFunds = 'OVPLM') as total";
             pstmt = conn.prepareStatement(query);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);

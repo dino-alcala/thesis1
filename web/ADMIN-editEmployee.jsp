@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.Unit"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.User"%>
@@ -97,59 +98,49 @@
 
         <script type="text/javascript">
             function department(c1, c2) {
+
+        <%
+                ArrayList<Unit> units = new ArrayList();
+                units = UserDAO.retrieveUnits();
+        %>
+
                 var c1 = document.getElementById(c1);
                 var c2 = document.getElementById(c2);
-
                 c2.innerHTML = "";
+        <%
+                for (int i = 0; i < units.size(); i++) {
+                    ArrayList<Integer> departmentID = new ArrayList();
+                    departmentID = UserDAO.retrieveDepartmentByUnitID(units.get(i).getUnitID());
+        %>
 
-                if (c1.value == "Center for Social Concern and Action (COSCA)") {
-                    var optionArray = ["0|N/A"];
+                if (c1.value == "<%=units.get(i).getName()%>") {
+        <%
+                if (departmentID.size() > 1) {
+        %>
+                var nodept = document.createElement("option");
+                        nodept.value = 0;
+                        nodept.innerHTML = "No Department";
+                        c2.options.add(nodept);
+        <%
                 }
+        %>
 
-                if (c1.value == "Br. Andrew Gonzales College of Education (BAGCED)") {
-                    var optionArray = ["1|Counselling and Educational Psychology Department (CEPD)", "2|Departmentof English and Applied Linguistics (DEAL)", "3|Educational Leadership and Management Department (ELMD)", "4|Physical Education Department (PED)", "5|Science Education Department (SED)"];
+                var optionArray = [<%for (int j = 0; j < departmentID.size(); j++) {%>"<%=UserDAO.getDepartmentByID(departmentID.get(j)).getDepartmentID()%>|<%=UserDAO.getDepartmentByID(departmentID.get(j)).getName()%>",<%}%>];
+                        }
+
+        <%
                 }
+        %>
+                        for (var option in optionArray) {
+                            var pair = optionArray[option].split("|");
+                            var newOption = document.createElement("option");
+                            newOption.value = pair[0];
+                            newOption.innerHTML = pair[1];
+                            c2.options.add(newOption);
+                        }
 
-                if (c1.value == "College of Computer Studies (CCS)") {
-                    var optionArray = ["6|Computer Technology (CT)", "7|Information Technology (IT)", "8|Software Technology (ST)"];
-                }
-
-                if (c1.value == "College of Liberal Arts (CLA)") {
-                    var optionArray = ["9|Behavioral Sciences", "10|Communication", "11|Literature", "12|Filipino", "13|History", "14|International Studies"
-                                , "15|Philosophy", "16|Political Science", "17|Psychology", "18|Theology and Religious Education"];
-                }
-
-                if (c1.value == "College of Science (COS)") {
-                    var optionArray = ["19|Biology", "20|Chemistry", "21|Mathematics", "22|Physics"];
-                }
-
-                if (c1.value == "Gokongwei College of Engineering (GCOE)") {
-                    var optionArray = ["23|Chemical Engineering", "24|Civil Engineering", "25|Electronics and Communications Engineering", "26|Industrial Engineering", "27|Manufacturing Engineering and Management", "28|Mechanical Engineering"];
-                }
-
-                if (c1.value == "Ramon V. del Rosario College of Business (RVRCOB)") {
-                    var optionArray = ["29|Accountancy", "30|Commercial Law", "31|Decision Sciences and Innovation Department", "32|Management of Financial Institutions", "33|Management and Organization Department", "34|Marketing Management"];
-                }
-
-                if (c1.value == "School of Economics (SOE)") {
-                    var optionArray = ["35|Industrial Applied Economics", "36|Financial Appied Economics", "37|Ladderized Applied Economics", "38|Management of Financial Institutions", "39|Management and Organization Department", "40|Marketing Management"];
-                }
-
-                for (var option in optionArray) {
-                    var pair = optionArray[option].split("|");
-                    var newOption = document.createElement("option");
-                    newOption.value = pair[0];
-
-                    if (newOption.value == <%=u.getDepartment()%>) {
-                        newOption.selected = "selected";
                     }
-
-                    newOption.innerHTML = pair[1];
-                    c2.options.add(newOption);
-                }
-
-            }
-        </script>
+    </script>
 
     </head>
 
@@ -270,25 +261,27 @@
 
                                             <li>
                                                 <label>Unit</label>
-                                                <select name="unit" id="type" class="field-select" onchange="department(this.id, 'dept')">
-                                                    <optgroup label ="Offices">
-                                                        <option <%if (u.getUnit().equals("Center for Social Concern and Action (COSCA)")) {%> selected="selected"<%}%>>Center for Social Concern and Action (COSCA)</option>
-                                                        <option <%if (u.getUnit().equals("Dean of Student Affairs")) {%> selected="selected"<%}%>>Dean of Student Affairs</option>
-                                                        <option <%if (u.getUnit().equals("Laguna Campus Lasallian Mission")) {%> selected="selected"<%}%>>Laguna Campus Lasallian Mission</option>
-                                                        <option <%if (u.getUnit().equals("Lasallian Mission Director")) {%> selected="selected"<%}%>>Lasallian Mission Director</option>
-                                                        <option <%if (u.getUnit().equals("Lasallian Pastoral Office (LSPO)")) {%> selected="selected"<%}%>>Lasallian Pastoral Office (LSPO)</option>
-                                                        <option <%if (u.getUnit().equals("Office of the Vice President for Lasallian Mission (OVPLM)")) {%> selected="selected"<%}%>>Office of the Vice President for Lasallian Mission (OVPLM)</option>
-                                                        <option <%if (u.getUnit().equals("Office of Personnel Management Director")) {%> selected="selected"<%}%>>Office of Personnel Management Director</option>
+                                                <select class="form-control" id="type" name="unit" onchange="department(this.id, 'dept')">
+                                                    <optgroup label="Academic Units">
+                                                        <option disabled selected>Select Unit</option>
+                                                        <%
+                                                            units = UserDAO.retrieveUnitsAcademic();
+                                                            for (int k = 0; k < units.size(); k++) {
+                                                        %>
+                                                        <option <%if(units.get(k).getName().equals(u.getUnit())){%>selected<%}%>><%=units.get(k).getName()%></option>
+                                                        <%
+                                                            }
+                                                        %>
                                                     </optgroup>
-                                                    <optgroup label="Colleges">
-                                                        <option <%if (u.getUnit().equals("Br. Andrew Gonzales College of Education (BAGCED)")) {%> selected="selected"<%}%>>Br. Andrew Gonzales College of Education (BAGCED)</option>
-                                                        <option <%if (u.getUnit().equals("College of Computer Studies (CCS)")) {%> selected="selected"<%}%>>College of Computer Studies (CCS)</option>
-                                                        <option <%if (u.getUnit().equals("College of Law (COL)")) {%> selected="selected"<%}%>>College of Law (COL)</option>
-                                                        <option <%if (u.getUnit().equals("College of Liberal Arts (CLA)")) {%> selected="selected"<%}%>>College of Liberal Arts (CLA)</option>
-                                                        <option <%if (u.getUnit().equals("College of Science (COS)")) {%> selected="selected"<%}%>>College of Science (COS)</option>
-                                                        <option <%if (u.getUnit().equals("Gokongwei College of Engineering (GCOE)")) {%> selected="selected"<%}%>>Gokongwei College of Engineering (GCOE)</option>
-                                                        <option <%if (u.getUnit().equals("Ramon V. del Rosario College of Business (RVRCOB)")) {%> selected="selected"<%}%>>Ramon V. del Rosario College of Business (RVRCOB)</option>
-                                                        <option <%if (u.getUnit().equals("School of Economics (SOE)")) {%> selected="selected"<%}%>>School of Economics (SOE)</option>
+                                                    <optgroup label="Non-Academic Units">
+                                                        <%
+                                                            units = UserDAO.retrieveUnitsNonAcademic();
+                                                            for (int k = 0; k < units.size(); k++) {
+                                                        %>
+                                                        <option <%if(units.get(k).getName().equals(u.getUnit())){%>selected<%}%>><%=units.get(k).getName()%></option>
+                                                        <%
+                                                            }
+                                                        %>
                                                     </optgroup>
                                                 </select>
                                             </li>

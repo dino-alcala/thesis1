@@ -345,7 +345,7 @@
                 <div class="container-fluid panels">
                     <h4>Key Result Areas </h4>
                     <form action="calculateTargets">
-                        <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Total Targets</button></center>
+                        <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Actual # of Units</button></center>
                             <%
                                 DecimalFormat percentage = new DecimalFormat("0.00");
                                 TargetDAO TargetDAO = new TargetDAO();
@@ -467,7 +467,7 @@
                     %>
                     <form action="viewProposalsAssess" method="post">
                         <div class="container-fluid panels">
-                            <h4>FF Proposals to Assess (<%=proposals.size()%>)</h4>
+                            <h4>FF Proposals to Assess (<%=ffproposals.size()%>)</h4>
 
                             <input class="form-control" id="myInput" type="text" placeholder="Search table..">
                             <table class="table">
@@ -483,13 +483,13 @@
                                 </thead>
                                 <tbody id="myTable">
                                     <%
-                                        for (int i = 0; i < proposals.size(); i++) {
+                                        for (int i = 0; i < ffproposals.size(); i++) {
                                     %>
                                     <tr>
                                         <td><%=ffproposals.get(i).getDatecreated()%></td>
                                         <td><%=ffproposals.get(i).getProjectName()%></td>
                                         <td><%=ffproposals.get(i).getProgramHead()%></td>
-                                        <td>Step <%=UserDAO.getStepFF(proposals.get(i).getId())%></td>
+                                        <td>Step <%=UserDAO.getStepFF(ffproposals.get(i).getId())%></td>
                                         <td><%=ffproposals.get(i).getDepartment()%></td>
 
                                         <td><button type="submit" name="viewFF<%=i%>" value="<%=ffproposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>

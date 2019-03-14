@@ -842,24 +842,24 @@
                                 
                                 <% 
                                     if(SE.getStep() == 5){ 
-                                        if(session.getAttribute("position").toString().equals("OVPLM - Office of the Vice President for Lasallian Mission") && UserDAO.hasMichaelVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
-                                                session.getAttribute("position").toString().equals("DSA - Dean") && UserDAO.hasNelcaVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
-                                                session.getAttribute("position").toString().equals("LCLM - Executive Director") && UserDAO.hasMargaritaVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
-                                                session.getAttribute("position").toString().equals("COSCA - Director") && UserDAO.hasFritzieVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
-                                                session.getAttribute("position").toString().equals("LSPO - Director") && UserDAO.hasJamesVoted(Integer.parseInt(request.getAttribute("seID").toString()))){
+                                        if(session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") && !UserDAO.hasMichaelVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
+                                                session.getAttribute("position").toString().equals("DSA - Dean") && !UserDAO.hasNelcaVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
+                                                session.getAttribute("position").toString().equals("LCLM - Executive Director") && !UserDAO.hasMargaritaVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
+                                                session.getAttribute("position").toString().equals("COSCA - Director") && !UserDAO.hasFritzieVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
+                                                session.getAttribute("position").toString().equals("LSPO - Director") && !UserDAO.hasJamesVoted(Integer.parseInt(request.getAttribute("seID").toString()))){
                                 %>
                                 <center>
                                     <button class="button" type="submit" name="auditSE" value="<%=request.getAttribute("seID")%>">View Audit Trail</button>
                                     <button onclick="return window.confirm('Proceed?')" class="btn-success" name="approve" value="<%=SE.getId()%>">Proceed</button>
                                 </center>                       
-                                <%}} else {%>
+                                <%} else {%>
                                 <center><legend>This proposal is done with this step</legend></center>
-                                <%}%>
-                                   
+                                    <%}
+                                } else {%>
+                                <center><legend>This proposal is done with this step</legend></center>
+                                    <%}%>                                        
                             </div>
-
                         </div>
-
                     </div>
                 </form>
             </div>

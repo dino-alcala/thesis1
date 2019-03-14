@@ -331,7 +331,7 @@
                                     </div>
                                     <div class="card-body">
                                         <center>
-                                            <b>Reason for Cancellation of SE Program</b><br>
+                                            <b>Reason for Cancellation of FF Program</b><br>
                                             <textarea id="remarks3" rows="3" cols="110" style="margin-bottom:-0.5%" name="reason"></textarea>
                                         </center>
                                     </div>

@@ -71,7 +71,7 @@
             }
 
             .card-header{
-                 background-color: darkgreen;
+                background-color: darkgreen;
                 font-family: "Arial", Helvetica, sans-serif;
                 font-size: 15px;
             }
@@ -94,7 +94,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-warning{
                 background-color: darkyellow;
                 border: none;
@@ -107,7 +107,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-danger{
                 background-color: red;
                 border: none;
@@ -120,7 +120,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-audit{
                 background-color: gray;
                 border: none;
@@ -133,7 +133,7 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             .btn-list{
                 background-color: dodgerblue;
                 border: none;
@@ -146,13 +146,13 @@
                 font-size: 16px;
                 font-family: "Arial", Helvetica, sans-serif;
             }
-            
+
             th,tr,td{
                 padding:15px;
             }
 
         </style>
-        
+
         <script type="text/javascript">
             <%
                 if (request.getAttribute("remarksFF") != null) {
@@ -162,7 +162,7 @@
 
                 alert("<%=request.getAttribute("remarksFF")%>");
             });
-            <% } %>
+            <% }%>
         </script>
 
     </head>
@@ -208,7 +208,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -351,36 +351,36 @@
                                     <div class="card-header">
                                         <h4>Breakdown of Expenses</h4>
                                     </div>
-                                <div class="card-body">
-                                <table style="width:100%">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Unit Cost</th> 
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                    <%
-                                        double count = 0;
-                                        for (int i = 0; i < FF.getExpenses().size(); i++) {
-                                    %>
-                                    <tr>
-                                        <td><%=FF.getExpenses().get(i).getItem()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
-                                        <td><%=FF.getExpenses().get(i).getQuantity()%></td>
-                                        <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
-                                    </tr>
-                                    <%
-                                            count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
-                                        }
-                                    %>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total: <%=count%></td>
-                                    </tr>
-                                </table>
-                                </div>
+                                    <div class="card-body">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Unit Cost</th> 
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                            <%
+                                                double count = 0;
+                                                for (int i = 0; i < FF.getExpenses().size(); i++) {
+                                            %>
+                                            <tr>
+                                                <td><%=FF.getExpenses().get(i).getItem()%></td>
+                                                <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
+                                                <td><%=FF.getExpenses().get(i).getQuantity()%></td>
+                                                <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
+                                            </tr>
+                                            <%
+                                                    count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
+                                                }
+                                            %>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total: <%=count%></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <br/>
 
@@ -581,27 +581,28 @@
                                 </table>
                                 <br/>
                                 <input type="hidden" name="ffID" value="<%=FF.getId()%>">
-                                
-                                <% 
-                                    if(FF.getStep() == 5){ 
-                                    if(session.getAttribute("position").toString().equals("OVPLM - Office of the Vice President for Lasallian Mission") && UserDAO.hasMichaelVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
-                                                session.getAttribute("position").toString().equals("DSA - Dean") && UserDAO.hasNelcaVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
-                                                session.getAttribute("position").toString().equals("LCLM - Executive Director") && UserDAO.hasMargaritaVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
-                                                session.getAttribute("position").toString().equals("COSCA - Director") && UserDAO.hasFritzieVoted(Integer.parseInt(request.getAttribute("seID").toString())) ||
-                                                session.getAttribute("position").toString().equals("LSPO - Director") && UserDAO.hasJamesVoted(Integer.parseInt(request.getAttribute("seID").toString()))){
+
+                                <%
+                                    if (FF.getStep() == 5) {
+                                        if (session.getAttribute("position").toString().equals("OVPLM - Vice President for Lasallian Mission") && !UserDAO.hasMichaelVoted(Integer.parseInt(request.getAttribute("seID").toString()))
+                                                || session.getAttribute("position").toString().equals("DSA - Dean") && !UserDAO.hasNelcaVoted(Integer.parseInt(request.getAttribute("seID").toString()))
+                                                || session.getAttribute("position").toString().equals("LCLM - Executive Director") && !UserDAO.hasMargaritaVoted(Integer.parseInt(request.getAttribute("seID").toString()))
+                                                || session.getAttribute("position").toString().equals("COSCA - Director") && !UserDAO.hasFritzieVoted(Integer.parseInt(request.getAttribute("seID").toString()))
+                                                || session.getAttribute("position").toString().equals("LSPO - Director") && !UserDAO.hasJamesVoted(Integer.parseInt(request.getAttribute("seID").toString()))) {
                                 %>
-                                 <center><button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button> 
-                               
-                                <button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
-                                
-                                <button onclick="return window.confirm('Proceed?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center>                  
-                                <%}} else {%>
+
+                                <center><button class="btn-audit" type="submit" name="auditFF" value="<%=request.getAttribute("ffID")%>">View Audit Trail</button> 
+                                    <button class='btn-list' type="submit" name="viewAttendees" value="<%=FF.getId()%>">Attendees List</button>
+                                    <button onclick="return window.confirm('Proceed?')" class="btn-success" type="submit" name="approve" value="<%=FF.getId()%>">Proceed</button></center>                  
+
+                                <%} else {%>
                                 <center><legend>This proposal is done with this step</legend></center>
-                                <%}%>     
+                                    <%}
+                                } else {%>
+                                <center><legend>This proposal is done with this step</legend></center>
+                                    <%}%>     
                             </div>
-
                         </div>
-
                     </div>
                 </form>
             </div>

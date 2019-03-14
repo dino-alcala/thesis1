@@ -487,7 +487,7 @@
                             proposals = new ArrayList();
                             proposals = UserDAO.retrieveSEbyUnit(session.getAttribute("unit").toString());
                         %>
-                        <h4>SE Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=proposals.size()%>)</h4>
+                        <h4>SE Proposals Progress for COSCA (<%=proposals.size()%>)</h4>
 
                         <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
                         <br>
@@ -521,50 +521,50 @@
                         </table>
                     </div>
                 </form>    
-            </div>
-            <div class="container-fluid panels">
-                <form action="viewProposalsProgress" method="post">             
-                    <div class="container-fluid panels">
-                        <%
-                            ArrayList<FF> ffproposals = new ArrayList();
-                            ffproposals = UserDAO.retrieveFFbyUnit(session.getAttribute("unit").toString());
-                        %>
-                        <h4>FF Proposals Progress for <%=session.getAttribute("unit").toString()%> (<%=ffproposals.size()%>)</h4>
 
-                        <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
-                        <br>
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th onclick="sortTable(0)">Date</th>
-                                    <th onclick="sortTable(1)">Program Name</th>
-                                    <th onclick="sortTable(2)">Program Head</th>
-                                    <th onclick="sortTable(4)">Status</th>
-                                    <th onclick="sortTable(5)">Department</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable2">
-                                <%
-                                    for (int i = 0; i < ffproposals.size(); i++) {
-                                %>
-                                <tr>
-                                    <td><%=ffproposals.get(i).getDatecreated()%></td>
-                                    <td><%=ffproposals.get(i).getProjectName()%></td>
-                                    <td><%=ffproposals.get(i).getProgramHead()%></td>
-                                    <td>Step <%=UserDAO.getStepFF(ffproposals.get(i).getId())%></td>
-                                    <td><center><%=ffproposals.get(i).getDepartment()%></center></td>
-                            <td><button type="submit" name="viewFF<%=i%>" value="<%=ffproposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
-                            </tr>
+                <div class="container-fluid panels">
+                    <form action="viewProposalsProgress" method="post">             
+                        <div class="container-fluid panels">
                             <%
-                                }
+                                ArrayList<FF> ffproposals = new ArrayList();
+                                ffproposals = UserDAO.retrieveFFbyUnit(session.getAttribute("unit").toString());
                             %>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-            </div>
+                            <h4>FF Proposals Progress for COSCA (<%=ffproposals.size()%>)</h4>
 
+                            <input class="form-control" id="myInput2" type="text" placeholder="Search table..">
+                            <br>
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th onclick="sortTable(0)">Date</th>
+                                        <th onclick="sortTable(1)">Program Name</th>
+                                        <th onclick="sortTable(2)">Program Head</th>
+                                        <th onclick="sortTable(4)">Status</th>
+                                        <th onclick="sortTable(5)">Department</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable2">
+                                    <%
+                                        for (int i = 0; i < ffproposals.size(); i++) {
+                                    %>
+                                    <tr>
+                                        <td><%=ffproposals.get(i).getDatecreated()%></td>
+                                        <td><%=ffproposals.get(i).getProjectName()%></td>
+                                        <td><%=ffproposals.get(i).getProgramHead()%></td>
+                                        <td>Step <%=UserDAO.getStepFF(ffproposals.get(i).getId())%></td>
+                                        <td><center><%=ffproposals.get(i).getDepartment()%></center></td>
+                                <td><button type="submit" name="viewFF<%=i%>" value="<%=ffproposals.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <script>
