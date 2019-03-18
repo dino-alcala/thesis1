@@ -3,6 +3,7 @@
     Created on : 06 18, 18, 7:59:10 PM
     Author     : Karl Madrid
 --%>
+<%@page import="dao.TargetDAO"%>
 <%@page import="entity.Measure"%>
 <%@page import="dao.OvplmDAO"%>
 <%@page import="entity.StudentOrg"%>
@@ -63,8 +64,9 @@
             <%
                 UserDAO UserDAO3 = new UserDAO();
                 OvplmDAO OvplmDAO = new OvplmDAO();
+                TargetDAO TargetDAO = new TargetDAO();
                 ArrayList<KRA> kra = new ArrayList();
-                kra = UserDAO3.retrieveTermEndSortedKRA(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                kra = TargetDAO.retrieveTermEndSortedKRA(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
                 //kra = UserDAO3.insertPercentage(kra);
                 ArrayList<KRA> kraslist = new ArrayList();
             %>
@@ -74,7 +76,7 @@
                 for (int i = 0; i < kra.size(); i++) {
             %>
                     if (response == "<%=kra.get(i).getId()%>"){
-                    <% ArrayList<Measure> measure = UserDAO3.retrieveMeasuresImplemented(kra.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                    <% ArrayList<Measure> measure = TargetDAO.retrieveMeasuresImplementedOfSelectedKRA(kra.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
             <%
                 for (int j = 0; j < measure.size(); j++) {
@@ -94,9 +96,8 @@
             <% kraslist = OvplmDAO.retrieveKRA();
             %>
             <%
-                for (int j = 0; j < kraslist.size(); j++) {
                     
-                ArrayList<Measure> measure = UserDAO3.retrieveMeasuresImplemented(kraslist.get(j).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                ArrayList<Measure> measure = TargetDAO.retrieveMeasuresImplemented(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
                 for (int z = 0 ; z < measure.size() ; z++){
             %>
                     var counter = 1;
@@ -106,7 +107,7 @@
                     ]).draw(false);
             <%
                     }
-                }
+                
             %>
                     }
                     console.log(response);

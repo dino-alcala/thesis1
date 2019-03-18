@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="dao.TargetDAO"%>
 <%@page import="entity.StudentOrg"%>
 <%@page import="entity.Department"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -439,8 +440,9 @@
 
             <%
                 UserDAO UserDAO3 = new UserDAO();
+                TargetDAO TargetDAO = new TargetDAO();
                 ArrayList<KRA> kra = new ArrayList();
-                kra = UserDAO3.retrieveUnitSortedKRA(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                kra = TargetDAO.retrieveUnitSortedKRA(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
                 //kra = UserDAO3.insertPercentage(kra);
 
                 ArrayList<KRA> kraslist = new ArrayList();
@@ -454,7 +456,7 @@
                     if (response == "<%=kra.get(i).getId()%>"){
 
 
-            <% kraslist = UserDAO3.retrieveProgramsUnitMeasureByKRA(request.getAttribute("unit").toString(), kra.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            <% kraslist = TargetDAO.retrieveProgramsUnitMeasureOfSelectedKRA(kra.get(i).getId(), request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%
@@ -476,7 +478,7 @@
                     if (response == "All"){
 
 
-            <% kraslist = UserDAO3.retrieveALLProgramsUnitMeasure(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            <% kraslist = TargetDAO.retrieveProgramsUnitMeasure(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
 
             <%

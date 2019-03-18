@@ -245,7 +245,7 @@ public class approveSE3 extends HttpServlet {
 
                         n2.setDt((sdf2.format(dt)));
                         n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("seID"))));
-                        n2.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                        n2.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");
                         n2.setAttribute(SE.getId());
                         UserDAO.AddNotification(n2);
                     }

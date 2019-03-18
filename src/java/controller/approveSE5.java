@@ -125,23 +125,26 @@ public class approveSE5 extends HttpServlet {
             n3.setAttribute(SE.getId());
             UserDAO.AddNotification(n3);
 
-            Budget current = new Budget();
+            if(SE.getSourceOfFunds().equals("OVPLM")){
+                Budget current = new Budget();
 
-            current = UserDAO.getLatestBudget();
+                current = UserDAO.getLatestBudget();
 
-            Budget b = new Budget();
+                Budget b = new Budget();
 
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
-            javaDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+                javaDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
-            b.setDate(sqlDate);
-            b.setCurrentBudget(current.getRemainingBudget());
-            b.setBudgetRequested(SE.getTotalAmount());
-            b.setRemainingBudget(current.getRemainingBudget() - SE.getTotalAmount());
-            b.setSeID(SE.getId());
+                b.setDate(sqlDate);
+                b.setCurrentBudget(current.getRemainingBudget());
+                b.setBudgetRequested(SE.getTotalAmount());
+                b.setRemainingBudget(current.getRemainingBudget() - SE.getTotalAmount());
+                b.setSeID(SE.getId());
 
-            UserDAO.addLatestBudget(b);
+                UserDAO.addLatestBudget(b);
+            }
+            
 
             request.setAttribute("successSE1", "You have successfully approved the SE Proposal!");
 

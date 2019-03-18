@@ -126,21 +126,24 @@ public class approveFF5 extends HttpServlet {
             n3.setAttribute(FF.getId());
             UserDAO.AddNotification(n3);
 
-            Budget current = new Budget();
+            if(FF.getSourceOfFunds().equals("OVPLM")){
+                Budget current = new Budget();
 
-            current = UserDAO.getLatestBudget();
+                current = UserDAO.getLatestBudget();
 
-            Budget b = new Budget();
+                Budget b = new Budget();
 
-            java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+                java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
 
-            b.setDate(sqlDate);
-            b.setCurrentBudget(current.getRemainingBudget());
-            b.setBudgetRequested(FF.getTotalAmount());
-            b.setRemainingBudget(current.getRemainingBudget() - FF.getTotalAmount());
-            b.setFfID(FF.getId());
+                b.setDate(sqlDate);
+                b.setCurrentBudget(current.getRemainingBudget());
+                b.setBudgetRequested(FF.getTotalAmount());
+                b.setRemainingBudget(current.getRemainingBudget() - FF.getTotalAmount());
+                b.setFfID(FF.getId());
 
-            UserDAO.addLatestBudget(b);
+                UserDAO.addLatestBudget(b);
+            }
+            
 
             request.setAttribute("successFF1", "You have successfully approved the FF Proposal!");
 
