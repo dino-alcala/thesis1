@@ -6,11 +6,13 @@
 package dao;
 
 import entity.FF;
+import entity.KRA;
 import entity.Measure;
 import entity.SE;
 import entity.Unit;
 import entity.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -4182,15 +4184,15 @@ public class TargetDAO {
             //
             else if(m.getUnittarget().equals("Staff")){
                 if(m.getEngagingtarget().equals("N/A")){
-                    query = "SELECT distinc(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
                 } else if(m.getEngagingtarget().equals("Parents")){
-                    query = "SELECT distinc(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN('CAP', Parent') OR a.type IN('APSP', Parent') OR a.type IN('ASF', Parent') OR a.type IN('Faculty', Parent') OR a.type IN('Admin', Parent') OR a.type IN('Directhired', Parent') OR a.type IN('Independent', Parent') OR a.type IN('External', Parent')";
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN('CAP', Parent') OR a.type IN('APSP', Parent') OR a.type IN('ASF', Parent') OR a.type IN('Faculty', Parent') OR a.type IN('Admin', Parent') OR a.type IN('Directhired', Parent') OR a.type IN('Independent', Parent') OR a.type IN('External', Parent')";
                 } else if(m.getEngagingtarget().equals("Alumni")){
-                    query = "SELECT distinc(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN('CAP', Alumni') OR a.type IN('APSP', Alumni') OR a.type IN('ASF', Alumni') OR a.type IN('Faculty', Alumni') OR a.type IN('Admin', Alumni') OR a.type IN('Directhired', Alumni') OR a.type IN('Independent', Alumni') OR a.type IN('External', Alumni')";
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN('CAP', Alumni') OR a.type IN('APSP', Alumni') OR a.type IN('ASF', Alumni') OR a.type IN('Faculty', Alumni') OR a.type IN('Admin', Alumni') OR a.type IN('Directhired', Alumni') OR a.type IN('Independent', Alumni') OR a.type IN('External', Alumni')";
                 } else if(m.getEngagingtarget().equals("International Students")){
-                    query = "SELECT distinc(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN('CAP', International') OR a.type IN('APSP', International') OR a.type IN('ASF', International') OR a.type IN('Faculty', International') OR a.type IN('Admin', International') OR a.type IN('Directhired', International') OR a.type IN('Independent', International') OR a.type IN('External', International')";
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID WHERE s.step = 9 AND a.type IN('CAP', International') OR a.type IN('APSP', International') OR a.type IN('ASF', International') OR a.type IN('Faculty', International') OR a.type IN('Admin', International') OR a.type IN('Directhired', International') OR a.type IN('Independent', International') OR a.type IN('External', International')";
                 } else if(m.getEngagingtarget().equals("International Communities")){
-                    query = "SELECT distinc(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
+                    query = "SELECT distinct(s.id) FROM seproposal s JOIN sereport se ON s.id = se.seproposalID JOIN sereport_attendees a ON se.id = a.sereportID JOIN community c ON c.communityID = s.targetCommunity WHERE c.international = 1 AND s.step = 9 AND a.type = 'CAP' OR a.type = 'APSP' OR a.type = 'ASF' OR a.type = 'Faculty' OR a.type = 'Admin' OR a.type = 'Directhired' OR a.type = 'Independent' OR a.type = 'External'";
                 }
                 try{
                     if(query.equals("")){
@@ -6756,5 +6758,218 @@ public class TargetDAO {
             } catch (Exception e) {
                 /* ignored */ }
         }
+    }
+    
+    public ArrayList<KRA> retrieveTermEndSortedKRA(Date start, Date end) {
+        OvplmDAO OvplmDAO = new OvplmDAO();
+        UserDAO UserDAO = new UserDAO();
+        
+        ResultSet rs2 = null;
+
+        ArrayList<KRA> kra = new ArrayList();
+        ArrayList<KRA> kra2 = new ArrayList();
+        kra = OvplmDAO.retrieveKRA();
+        int count = 0;
+        
+     
+        for (int x = 0; x < kra.size(); x++) {
+            KRA k = kra.get(x);
+
+            for (int y = 0; y < k.getGoals().size(); y++) {
+                for (int z = 0; z < k.getGoals().get(y).getMeasures().size(); z++) {
+                    for (int a = 0 ; a < this.getPrograms(k.getGoals().get(y).getMeasures().get(z)).size() ; a++) {
+                        SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(k.getGoals().get(y).getMeasures().get(z)).get(a));
+                        if(proposal.getActualDate().before(end) && proposal.getActualDate().after(start)){
+                            count += 1;
+                        }                        
+                    }
+                }
+            }
+
+            k.setTotal(count);
+            count = 0;
+
+            kra2.add(k);
+        }
+
+        return kra2;
+    }
+    
+    public ArrayList<Measure> retrieveMeasuresImplemented(Date start, Date end) {
+        OvplmDAO OvplmDAO = new OvplmDAO();
+        UserDAO UserDAO = new UserDAO();
+        
+        ArrayList<KRA> kra = new ArrayList();
+        ArrayList<Measure> measures = new ArrayList();
+        ArrayList<Measure> measures2 = new ArrayList();
+        
+        
+        kra = OvplmDAO.retrieveKRA();
+        int count = 0;
+        
+        for (int x = 0; x < kra.size(); x++) {
+            KRA k = kra.get(x);
+            
+            for(int y = 0 ; y < kra.get(x).getGoals().size() ; y++){
+                for(int z = 0 ; z < kra.get(x).getGoals().get(y).getMeasures().size() ; z++){
+                    Measure m = kra.get(x).getGoals().get(y).getMeasures().get(z);
+                    
+                    for (int a = 0 ; a < this.getPrograms(k.getGoals().get(y).getMeasures().get(z)).size() ; a++) {
+                        SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(k.getGoals().get(y).getMeasures().get(z)).get(a));
+                        if(proposal.getActualDate().before(end) && proposal.getActualDate().after(start)){
+                            count += 1;
+                        }
+                    }
+                    m.setMeasureID(count);
+                    count = 0;
+                    if (m.getUntrackable() == 0) {
+                        measures2.add(m);
+
+                    }
+                }
+            }
+        }
+        
+        return measures2;
+    }
+    
+    public ArrayList<Measure> retrieveMeasuresImplementedOfSelectedKRA(int id, Date start, Date end) {
+        OvplmDAO OvplmDAO = new OvplmDAO();
+        UserDAO UserDAO = new UserDAO();
+        
+        ArrayList<KRA> kra = new ArrayList();
+        ArrayList<KRA> kra2 = new ArrayList();
+        ArrayList<Measure> measures = new ArrayList();
+        ArrayList<Measure> measures2 = new ArrayList();
+        
+        
+        kra2 = OvplmDAO.retrieveKRA();
+        for(int x = 0 ; x < kra2.size() ; x++){
+            if(kra2.get(x).getId() == id){
+                kra.add(kra2.get(x));
+            }
+        }
+        
+        int count = 0;
+        
+        for (int x = 0; x < kra.size(); x++) {
+            KRA k = kra.get(x);
+            
+            for(int y = 0 ; y < kra.get(x).getGoals().size() ; y++){
+                for(int z = 0 ; z < kra.get(x).getGoals().get(y).getMeasures().size() ; z++){
+                    Measure m = kra.get(x).getGoals().get(y).getMeasures().get(z);
+                    
+                    for (int a = 0 ; a < this.getPrograms(k.getGoals().get(y).getMeasures().get(z)).size() ; a++) {
+                        SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(k.getGoals().get(y).getMeasures().get(z)).get(a));
+                        if(proposal.getActualDate().before(end) && proposal.getActualDate().after(start)){
+                            count += 1;
+                        }
+                    }
+                    m.setMeasureID(count);
+                    count = 0;
+                    if (m.getUntrackable() == 0) {
+                        measures2.add(m);
+
+                    }
+                }
+            }
+        }
+        
+        return measures2;
+    }
+    
+    public ArrayList<KRA> retrieveUnitSortedKRA(String unit, Date start, Date end) {
+        OvplmDAO OvplmDAO = new OvplmDAO();
+        UserDAO UserDAO = new UserDAO();
+        
+        ResultSet rs2 = null;
+
+        ArrayList<KRA> kra = new ArrayList();
+        ArrayList<KRA> kra2 = new ArrayList();
+        kra = OvplmDAO.retrieveKRA();
+        int count = 0;
+        
+     
+        for (int x = 0; x < kra.size(); x++) {
+            KRA k = kra.get(x);
+
+            for (int y = 0; y < k.getGoals().size(); y++) {
+                for (int z = 0; z < k.getGoals().get(y).getMeasures().size(); z++) {
+                    for (int a = 0 ; a < this.getPrograms(k.getGoals().get(y).getMeasures().get(z)).size() ; a++) {
+                        SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(k.getGoals().get(y).getMeasures().get(z)).get(a));
+                        if(proposal.getUnit().equals(unit) && proposal.getActualDate().before(end) && proposal.getActualDate().after(start)){
+                            count += 1;
+                        }
+                    }
+                }
+            }
+
+            k.setTotal(count);
+            count = 0;
+
+            if(!kra2.contains(k)){
+                kra2.add(k);
+            }
+        }
+
+        return kra2;
+    }
+    
+    public ArrayList<KRA> retrieveProgramsUnitMeasureOfSelectedKRA(String unit, int id, Date start, Date end) {
+        OvplmDAO OvplmDAO = new OvplmDAO();
+        UserDAO UserDAO = new UserDAO();
+        
+        ResultSet rs2 = null;
+
+        ArrayList<KRA> kra = new ArrayList();
+        ArrayList<KRA> kra2 = new ArrayList();
+        
+        kra = OvplmDAO.retrieveKRA();
+        
+        for(int a = 0 ; a < kra.size(); a++){
+            KRA k = kra.get(a);
+            for(int x = 0 ; x < k.getGoals().size() ; x++){
+                for(int y = 0 ; y < k.getGoals().get(x).getMeasures().size() ; y++){
+                    for(int z = 0 ; z < this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).size() ; z++){
+                        SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).get(z));
+                        if(k.getId() == id && proposal.getUnit().equals(unit) && proposal.getActualDate().before(end) && proposal.getActualDate().after(start)){
+                            k.setProgramName(proposal.getName());
+                            kra2.add(k);
+                        }
+                    }
+                }
+            }
+        }
+        
+        return kra2;
+    }
+    
+    public ArrayList<KRA> retrieveProgramsUnitMeasure(String unit, Date start, Date end) {
+        OvplmDAO OvplmDAO = new OvplmDAO();
+        UserDAO UserDAO = new UserDAO();
+        
+        ResultSet rs2 = null;
+
+        ArrayList<KRA> kra = new ArrayList();
+        ArrayList<KRA> kra2 = new ArrayList();
+        
+        kra = OvplmDAO.retrieveKRA();
+        
+        for(int a = 0 ; a < kra.size(); a++){
+            KRA k = kra.get(a);
+            for(int x = 0 ; x < k.getGoals().size() ; x++){
+                for(int y = 0 ; y < k.getGoals().get(x).getMeasures().size() ; y++){
+                    for(int z = 0 ; z < this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).size() ; z++){
+                        SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).get(z));
+                        if(proposal.getUnit().equals(unit) && proposal.getActualDate().before(end) && proposal.getActualDate().after(start)){
+                            k.setProgramName(proposal.getName());
+                            kra2.add(k);
+                        }
+                    }
+                }
+            }
+        }
+        
+        return kra2;
     }
 }

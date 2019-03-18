@@ -202,7 +202,7 @@ public class approveFF3 extends HttpServlet {
 
                         n2.setDt((sdf2.format(dt)));
                         n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("ffID"))));
-                        n2.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+                        n2.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
                         n2.setAttribute(FF.getId());
                         UserDAO.AddNotification(n2);
                         

@@ -321,13 +321,13 @@
             %>
             <!-- MAIN -->
             <div class="col py-3">
-                <form action="requestSECancel" method="post">
+                <form action="requestFFCancel" method="post">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Cancel FF Program</h4>
+                                        <h4>Cancel FF Program - <%=UserDAO.getProjectName(FF.getId())%></h4>
                                     </div>
                                     <div class="card-body">
                                         <center>
@@ -342,9 +342,7 @@
                                     <button onclick="return window.confirm('Cancel Program?')" class="btn-success" name="cancel" value="<%=FF.getId()%>">Submit</button>
                                 </center>
                             </div>
-
                         </div>
-
                     </div>
                 </form>
             </div>

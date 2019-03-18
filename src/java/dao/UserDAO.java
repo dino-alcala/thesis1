@@ -3299,7 +3299,7 @@ public class UserDAO {
             rs = pstmt.executeUpdate();
 
             for (int i = 0; i < SE.getExpenses().size(); i++) {
-                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, seproposalID) VALUES(?,?,?,?,?)";
+                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, seproposalID, datetime) VALUES(?,?,?,?,?,?)";
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, SE.getExpenses().get(i).getItem());
@@ -3307,6 +3307,7 @@ public class UserDAO {
                 pstmt.setInt(3, SE.getExpenses().get(i).getQuantity());
                 pstmt.setDouble(4, SE.getExpenses().get(i).getSubtotal());
                 pstmt.setInt(5, SE.getId());
+                pstmt.setString(6, SE.getExpenses().get(i).getDatetime());
 
                 rs = pstmt.executeUpdate();
             }
@@ -3469,7 +3470,7 @@ public class UserDAO {
             rs = pstmt.executeUpdate();
 
             for (int i = 0; i < FF.getExpenses().size(); i++) {
-                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, ffproposalID) VALUES(?,?,?,?,?)";
+                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, ffproposalID, datetime) VALUES(?,?,?,?,?,?)";
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, FF.getExpenses().get(i).getItem());
@@ -3477,6 +3478,7 @@ public class UserDAO {
                 pstmt.setInt(3, FF.getExpenses().get(i).getQuantity());
                 pstmt.setDouble(4, FF.getExpenses().get(i).getSubtotal());
                 pstmt.setInt(5, FF.getId());
+                pstmt.setString(6, FF.getExpenses().get(i).getDatetime());
 
                 rs = pstmt.executeUpdate();
             }

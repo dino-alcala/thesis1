@@ -417,6 +417,10 @@
         <servlet-class>controller.requestSECancel</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>requestFFCancel</servlet-name>
+        <servlet-class>controller.requestFFCancel</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>approveSECancellation</servlet-name>
         <servlet-class>controller.approveSECancellation</servlet-class>
     </servlet>
@@ -883,6 +887,10 @@
     <servlet-mapping>
         <servlet-name>requestSECancel</servlet-name>
         <url-pattern>/requestSECancel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>requestFFCancel</servlet-name>
+        <url-pattern>/requestFFCancel</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>approveSECancellation</servlet-name>

@@ -207,7 +207,7 @@ public class approveSE2 extends HttpServlet {
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     UserDAO.updatecoscaRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("reject")));
                     UserDAO.rejectCOSCA(Integer.parseInt(request.getParameter("reject")));
-                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + " has been rejected by COSCA. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
+                    n3.setBody(UserDAO.getProgramName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by COSCA. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                     n3.setDt(sdf2.format(dt));
                     n3.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("reject"))));
                     n3.setRedirect("/MULTIPLE-viewSEProgramDetails.jsp");

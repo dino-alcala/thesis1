@@ -65,10 +65,79 @@ public class approveFF2 extends HttpServlet {
             if (request.getParameter("approve") != null) {
                 FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion")){
+                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("For Action")){
                         UserDAO.updateStepFF(5, Integer.parseInt(request.getParameter("approve")));
                         UserDAO.approveLSPO(Integer.parseInt(request.getParameter("approve")));
                         UserDAO.updatelsporemarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("approve")));
+                        
+                        java.util.Date dt = new java.util.Date();
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                        Notification n = new Notification();
+                        n.setBody("Progam: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + "\n" + sdf.format(dt));
+
+                        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
+                        java.util.Date javaDate = new java.util.Date();
+                        String input1 = new java.sql.Date(javaDate.getTime()).toString();
+                        String input2 = FF.getActualDate().toString();
+
+                        try {
+                            java.util.Date date1 = myFormat.parse(input1);
+                            java.util.Date date2 = myFormat.parse(input2);
+                            long diff = date2.getTime() - date1.getTime();
+                            long days = (diff / (1000*60*60*24));
+
+                            if(days <= 14){
+                                n.setTitle("Urgent FF Proposal ready for Approval");
+                            } else if (days >= 15){
+                                n.setTitle("FF Proposal ready for Approval");
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        n.setDt(sdf2.format(dt));
+
+                        if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                            n.setUserID(UserDAO.getUserIDforNotifsPosition("LCLM - Executive Director"));
+                            n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            n.setAttribute(FF.getId());
+                            UserDAO.AddNotification(n);
+
+                            n.setUserID(UserDAO.getUserIDforNotifsPosition("COSCA - Director"));
+                            n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            n.setAttribute(FF.getId());
+                            UserDAO.AddNotification(n);
+
+                            n.setUserID(UserDAO.getUserIDforNotifsPosition("DSA - Dean"));
+                            n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            n.setAttribute(FF.getId());
+                            UserDAO.AddNotification(n);
+
+                            n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
+                            n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            n.setAttribute(FF.getId());
+                            UserDAO.AddNotification(n);
+                        }
+
+                        Notification n2 = new Notification();
+                        n2.setTitle("FF Proposal Approved");
+
+                        if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
+                            n2.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + " has been approved by the LSPO! It will now be taken to the LMC Council." + "\n"  + sdf.format(dt));
+                        }
+
+                        n2.setDt(sdf2.format(dt));
+                        n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
+                        n2.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                        n2.setAttribute(FF.getId());
+
+                        UserDAO.AddNotification(n2);
+
+                        request.setAttribute("successFF1", "You have successfully approved the FF Proposal!");
+                        ServletContext context = getServletContext();
+                        RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-ffProgramsForApproval.jsp");
+                        dispatcher.forward(request, response);
                     } else if(request.getParameter("remarktype").equals("--")) {
                         request.setAttribute("remarksFF", "Please select a remark type!");
                         request.setAttribute("ffID", FF.getId());
@@ -83,76 +152,6 @@ public class approveFF2 extends HttpServlet {
                         dispatcher.forward(request, response);
                     }
                 }
-                
-                java.util.Date dt = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-                java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                Notification n = new Notification();
-                n.setBody("Progam: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + "\n" + sdf.format(dt));
-                
-                SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
-                java.util.Date javaDate = new java.util.Date();
-                String input1 = new java.sql.Date(javaDate.getTime()).toString();
-                String input2 = FF.getActualDate().toString();
-                
-                try {
-                    java.util.Date date1 = myFormat.parse(input1);
-                    java.util.Date date2 = myFormat.parse(input2);
-                    long diff = date2.getTime() - date1.getTime();
-                    long days = (diff / (1000*60*60*24));
-
-                    if(days <= 14){
-                        n.setTitle("Urgent FF Proposal ready for Approval");
-                    } else if (days >= 15){
-                        n.setTitle("FF Proposal ready for Approval");
-                    }
-                } catch (ParseException ex) {
-                    Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                n.setDt(sdf2.format(dt));
-
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n.setUserID(UserDAO.getUserIDforNotifsPosition("LCLM - Executive Director"));
-                    n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
-                    n.setAttribute(FF.getId());
-                    UserDAO.AddNotification(n);
-
-                    n.setUserID(UserDAO.getUserIDforNotifsPosition("COSCA - Director"));
-                    n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
-                    n.setAttribute(FF.getId());
-                    UserDAO.AddNotification(n);
-                    
-                    n.setUserID(UserDAO.getUserIDforNotifsPosition("DSA - Dean"));
-                    n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
-                    n.setAttribute(FF.getId());
-                    UserDAO.AddNotification(n);
-                    
-                    n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
-                    n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
-                    n.setAttribute(FF.getId());
-                    UserDAO.AddNotification(n);
-                }
-
-                Notification n2 = new Notification();
-                n2.setTitle("FF Proposal Approved");
-
-                if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    n2.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + " has been approved by the LSPO! It will now be taken to the LMC Council." + "\n"  + sdf.format(dt));
-                }
-
-                n2.setDt(sdf2.format(dt));
-                n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
-                n2.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
-                n2.setAttribute(FF.getId());
-
-                UserDAO.AddNotification(n2);
-
-                request.setAttribute("successFF1", "You have successfully approved the FF Proposal!");
-
-                ServletContext context = getServletContext();
-                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-ffProgramsForApproval.jsp");
-                dispatcher.forward(request, response);
             }
 
             if (request.getParameter("revise") != null) {
@@ -200,10 +199,10 @@ public class approveFF2 extends HttpServlet {
             if (request.getParameter("reject") != null) {
                 Notification n3 = new Notification();
                 n3.setTitle("FF Proposal Rejected");
-                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("ffID")));
+                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("reject")));
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
-                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("Suggestion") || request.getParameter("remarktype").equals("Revise")){
+                    if(request.getParameter("remarktype").equals("Comment") || request.getParameter("remarktype").equals("For Action") || request.getParameter("remarktype").equals("Revise")){
                         request.setAttribute("remarksFF", "Please select the correct remark type!");
                         request.setAttribute("ffID", FF.getId());
                         ServletContext context = getServletContext();
@@ -222,6 +221,7 @@ public class approveFF2 extends HttpServlet {
                         
                         UserDAO.updatelsporemarks(request.getParameter("remarks1"), request.getParameter("remarktype"), Integer.parseInt(request.getParameter("reject")));
                         UserDAO.rejectLSPO(Integer.parseInt(request.getParameter("reject")));
+                        UserDAO.rejectFF(Integer.parseInt(request.getParameter("reject")));
                         n3.setBody(UserDAO.getProjectName(Integer.parseInt(request.getParameter("reject"))) + " has been rejected by the LSPO. Reason: " + request.getParameter("remarks1") + "\n" + sdf.format(dt));
                         n3.setDt(sdf2.format(dt));
                         n3.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("reject"))));
@@ -229,8 +229,6 @@ public class approveFF2 extends HttpServlet {
                         n3.setAttribute(FF.getId());
                     }
                 }
-
-                UserDAO.rejectFF(Integer.parseInt(request.getParameter("reject")));
                 UserDAO.AddNotification(n3);
 
                 request.setAttribute("rejectFF1", "You have rejected the proposal.");

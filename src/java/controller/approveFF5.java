@@ -96,7 +96,9 @@ public class approveFF5 extends HttpServlet {
             }
 
             n2.setDt(sdf2.format(dt));
-            n2.setUserID(UserDAO.getSEOwner(Integer.parseInt(request.getParameter("approve"))));
+            n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));
+            n2.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
+            n2.setAttribute(FF.getId());
             UserDAO.AddNotification(n2);
 
             Notification n3 = new Notification();

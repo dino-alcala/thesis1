@@ -96,7 +96,7 @@
             <%
                 for (int j = 0; j < kraslist.size(); j++) {
                     
-                ArrayList<Measure> measure = UserDAO3.retrieveMeasuresImplemented(kra.get(j).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                ArrayList<Measure> measure = UserDAO3.retrieveMeasuresImplemented(kraslist.get(j).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
                 for (int z = 0 ; z < measure.size() ; z++){
             %>
                     var counter = 1;
@@ -696,7 +696,6 @@
                                     <%
                                         ArrayList<Notification> n = new ArrayList();
                                         n = UserDAO.retrieveNotificationByUserID(Integer.parseInt(session.getAttribute("userID").toString()));
-
                                         for (int i = 0; i < n.size(); i++) {
                                     %>
                                     <button type="submit" value="<%=n.get(i).getId()%>" name="redirect" style="width:100%; background-color:white; text-align:left;"> 
