@@ -171,6 +171,19 @@
                 background-color: green;
                 border-color: green;
             }
+            
+            #buttonApproved{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+            
+            #buttonApproved:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
         </style>
 
     </head>
@@ -285,6 +298,7 @@
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-faithFormationProgramsList.jsp">Completed</a>
+                            <a href="MULTIPLE-approvedFFList.jsp" type="button" class="btn btn-primary" id="buttonApproved" >Approved</a>
                             <a href="MULTIPLE-pendingFFList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
                             <a href="MULTIPLE-cancelledFFList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
                             <a href="MULTIPLE-rejectedFFList.jsp" type="button" class="btn btn-primary" id="buttonRejected" >Rejected</a>
@@ -315,7 +329,7 @@
                                     <td><%=my.get(i).getUnit()%></td>
                                     <td><%=my.get(i).getDepartment()%></td>
                                     <td><%=my.get(i).getProgramHead()%></td>
-                                    <td><% if(UserDAO.getStepFF(my.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStepFF(my.get(i).getId())%> <%}%></td>
+                                    <td><% if(UserDAO.getStepFF(my.get(i).getId()) == 10){%> Pending Cancellation <%} else if(UserDAO.getStepFF(my.get(i).getId()) == 11){%>Requesting for Edit<%} else {%>Step <%=UserDAO.getStepFF(my.get(i).getId())%> <%}%></td>
                                     <td><button type="submit" name="viewFF<%=i%>" value="<%=my.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%
@@ -354,7 +368,7 @@
                                     <td><%=others.get(i).getUnit()%></td>
                                     <td><%=others.get(i).getDepartment()%></td>
                                     <td><%=others.get(i).getProgramHead()%></td>
-                                    <td><% if(UserDAO.getStepFF(others.get(i).getId()) == 10){%> Pending Cancellation <%} else {%>Step <%=UserDAO.getStepFF(others.get(i).getId())%> <%}%></td>
+                                    <td><% if(UserDAO.getStepFF(others.get(i).getId()) == 10){%> Pending Cancellation <%} else if(UserDAO.getStepFF(others.get(i).getId()) == 11){%>Requesting for Edit<%}else{%>Step <%=UserDAO.getStepFF(others.get(i).getId())%> <%}%></td>
                                     <td><button type="submit" name="viewOthers<%=i%>" value="<%=others.get(i).getId()%>" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <%

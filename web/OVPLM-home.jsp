@@ -234,6 +234,26 @@
             }
         </style>
 
+        <script>
+            function PrintElem(elem)
+            {
+                var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+                mywindow.document.write('<html><head><title>' + document.title + '</title>');
+                mywindow.document.write('</head><body >');
+                mywindow.document.write('<h1>' + document.title + '</h1>');
+                mywindow.document.write(document.getElementById(elem).innerHTML);
+
+                mywindow.document.close(); // necessary for IE >= 10
+                mywindow.focus(); // necessary for IE >= 10*/
+
+                mywindow.print();
+                mywindow.close();
+
+                return true;
+            }
+        </script>
+
     </head>
 
     <body>
@@ -342,10 +362,11 @@
             <!-- MAIN -->
 
             <div class="col py-3">
-                <div class="container-fluid panels">
+                <div id="kratracing" class="container-fluid panels">
                     <h4>Key Result Areas </h4>
                     <form action="calculateTargets">
-                        <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Actual # of Units</button></center>
+                        <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Actual # of Units</button>
+                            <button type="button" onclick="PrintElem('kratracing')" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span>Print Page</button></center>
                             <%
                                 DecimalFormat percentage = new DecimalFormat("0.00");
                                 TargetDAO TargetDAO = new TargetDAO();
@@ -360,7 +381,7 @@
                                     <th style="width:30%">Goal</th>
                                     <th style="width:30%">Measure</th>
                                     <th style="width:30%">Target</th>
-                                    <th style="width:5%">Accomplishment Against Target</th>
+                                    <th style="width:5%">Accomplishment</th>
                                     <th style="width:5%"></th>
                                 </tr>
                             </thead>

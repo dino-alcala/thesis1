@@ -105,7 +105,7 @@ public class approveSECancellation extends HttpServlet {
 
             UserDAO.updateStep(0, Integer.parseInt(request.getParameter("cancel")));
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-socialEngagementProgramsList.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-seProgramsForCancellation.jsp");
             dispatcher.forward(request, response);
         }
     }

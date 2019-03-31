@@ -49,7 +49,7 @@ public class requestSECancel extends HttpServlet {
 
             Notification n = new Notification();
             n.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("cancel")))  + "\n" + sdf.format(dt));
-            n.setTitle("Request for Cancellation Submitted");
+            n.setTitle("Request for Cancellation Received");
             n.setDt(sdf2.format(dt));
             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Executive Officer"));
             n.setRedirect("/MULTIPLE-approveSECancellation.jsp");
@@ -59,7 +59,7 @@ public class requestSECancel extends HttpServlet {
 
             request.setAttribute("cancelProgram", "Request for Cancellation has been Submitted!");
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-socialEngagementProgramsList.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-seProgramsForCancellation.jsp");
             dispatcher.forward(request, response);
         }
     }

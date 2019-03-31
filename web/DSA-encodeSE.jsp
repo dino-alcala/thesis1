@@ -612,7 +612,10 @@
                         </fieldset>
                         <br><br>
                         <br>
-                        <center><button style="width:10%" type="submit" class="button">Next</button></center>
+                        <center>
+                            <legend>Page 1 of 2</legend>
+                            <button style="width:10%" type="submit" class="button">Next</button>
+                        </center>
                     </form>
                 </div>
             </div>

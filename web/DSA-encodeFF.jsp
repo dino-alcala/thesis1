@@ -500,7 +500,7 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><input id="inputText" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="ffitem0" required></td>
+                                        <td><input id="ffitem0" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="ffitem0" required></td>
                                         <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="ffunitcost0" name ="ffunitcost0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffquantity0" name ="ffquantity0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="ffsubtotal0" name ="ffsubtotal0" value="0" readonly required></td>
@@ -521,7 +521,10 @@
                         </fieldset>
 
                         <br><br><br><br>
-                        <center><button style="width:10%" type = "submit" class="button">Next</button></center>
+                        <center>
+                            <legend>Page 1 of 2</legend>
+                            <button style="width:10%" type = "submit" class="button">Next</button>
+                        </center>
                     </form>
                 </div>
             </div>

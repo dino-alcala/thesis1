@@ -80,13 +80,6 @@
                 border-bottom: 2px solid green;
             }
 
-            #buttonSE{
-                color: green;
-                background-color: white;
-                border-color: green;
-                margin-top:25px;
-            }
-
             #buttonFF{
                 color: white;
                 background-color: green;
@@ -94,13 +87,46 @@
                 margin-top:25px;
             }
 
-            #buttonSE:hover{
+            #buttonSE{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+            
+            #buttonFF2{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonSE2{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonFF:hover{
                 color: white;
                 background-color: green;
                 border-color: green;
             }
 
-            #buttonFF:hover{
+            #buttonSE:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+            
+            #buttonFF2:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+            #buttonSE2:hover{
                 color: white;
                 background-color: green;
                 border-color: green;
@@ -111,48 +137,15 @@
 
         <script type="text/javascript">
             <%
-                if (request.getAttribute("successFF1") != null) {
+                if (request.getAttribute("cancelProgram") != null) {
 
             %>
             $("document").ready(function () {
 
-                alert("<%=request.getAttribute("successFF1")%>");
+                alert("<%=request.getAttribute("cancelProgram")%>");
             });
 
-            <%
-                }
-                if (request.getAttribute("successFF2") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("successFF2")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("reviseFF1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("reviseFF1")%>");
-            });
-
-            <%
-                }
-
-                if (request.getAttribute("rejectFF1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("rejectFF1")%>");
-            });
-
-            <%
-                }
-            %>
+            <% } %>
 
         </script>
 
@@ -269,8 +262,10 @@
                     <!--- table -->
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
-                            <a type="button" class="btn btn-primary" id="buttonSE" href="MULTIPLE-seProgramsForCancellation.jsp">Social Engagement</a>
-                            <a href="MULTIPLE-ffProgramsForCancellation.jsp" type="button" class="btn btn-primary" id="buttonFF" >Faith Formation</a>
+                            <a type="button" class="btn btn-primary" id="buttonSE" href="MULTIPLE-seProgramsForCancellation.jsp">SE Cancellation Requests</a>
+                            <a href="MULTIPLE-ffProgramsForCancellation.jsp" type="button" class="btn btn-primary" id="buttonFF" >FF Cancellation Requests</a>
+                            <a type="button" class="btn btn-primary" id="buttonSE2" href="MULTIPLE-seProgramsForEdit.jsp">SE Edit Requets</a>
+                            <a href="MULTIPLE-ffProgramsForEdit.jsp" type="button" class="btn btn-primary" id="buttonFF2" >FF Edit Requests</a>
                         </div>
 
                         <br>

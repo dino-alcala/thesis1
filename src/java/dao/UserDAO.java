@@ -1110,7 +1110,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM unit WHERE active = 1";
+        String query = "SELECT * FROM unit WHERE active = 1 GROUP BY unitName ASC";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Unit> units = new ArrayList();
@@ -1165,7 +1165,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM unit WHERE active = 0";
+        String query = "SELECT * FROM unit WHERE active = 0 GROUP BY unitName ASC";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Unit> units = new ArrayList();
@@ -1282,7 +1282,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM unit where unitType = 'Non-Academic' and active = 1";
+        String query = "SELECT * FROM unit where unitType = 'Non-Academic' and active = 1 GROUP BY unitName ASC";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Unit> units = new ArrayList();
@@ -1337,7 +1337,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM studentorgs";
+        String query = "SELECT * FROM studentorgs GROUP BY name ASC";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<StudentOrg> orgs = new ArrayList();
@@ -1379,7 +1379,7 @@ public class UserDAO {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
 
-        String query = "SELECT * FROM unit where unitType = 'Academic' AND active = 1";
+        String query = "SELECT * FROM unit where unitType = 'Academic' AND active = 1 GROUP BY unitName ASC";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Unit> units = new ArrayList();
@@ -2979,7 +2979,7 @@ public class UserDAO {
             }
 
             for (int i = 0; i < SE.getExpenses().size(); i++) {
-                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, seproposalID, datetime) VALUES(?,?,?,?,?,?)";
+                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, seproposalID, datetime, updatedBy) VALUES(?,?,?,?,?,?,?)";
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, SE.getExpenses().get(i).getItem());
@@ -2988,6 +2988,7 @@ public class UserDAO {
                 pstmt.setDouble(4, SE.getExpenses().get(i).getSubtotal());
                 pstmt.setInt(5, seID);
                 pstmt.setString(6, SE.getExpenses().get(i).getDatetime());
+                pstmt.setString(7, SE.getExpenses().get(i).getUpdatedBy());
 
                 rs = pstmt.executeUpdate();
             }
@@ -3299,7 +3300,7 @@ public class UserDAO {
             rs = pstmt.executeUpdate();
 
             for (int i = 0; i < SE.getExpenses().size(); i++) {
-                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, seproposalID, datetime) VALUES(?,?,?,?,?,?)";
+                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, seproposalID, datetime, updatedBy) VALUES(?,?,?,?,?,?,?)";
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, SE.getExpenses().get(i).getItem());
@@ -3308,6 +3309,7 @@ public class UserDAO {
                 pstmt.setDouble(4, SE.getExpenses().get(i).getSubtotal());
                 pstmt.setInt(5, SE.getId());
                 pstmt.setString(6, SE.getExpenses().get(i).getDatetime());
+                pstmt.setString(7, SE.getExpenses().get(i).getUpdatedBy());
 
                 rs = pstmt.executeUpdate();
             }
@@ -3397,7 +3399,7 @@ public class UserDAO {
             }
 
             for (int i = 0; i < FF.getExpenses().size(); i++) {
-                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, ffproposalID, datetime) VALUES(?,?,?,?,?,?)";
+                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, ffproposalID, datetime, updatedBy) VALUES(?,?,?,?,?,?,?)";
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, FF.getExpenses().get(i).getItem());
@@ -3406,6 +3408,7 @@ public class UserDAO {
                 pstmt.setDouble(4, FF.getExpenses().get(i).getSubtotal());
                 pstmt.setInt(5, ffID);
                 pstmt.setString(6, FF.getExpenses().get(i).getDatetime());
+                pstmt.setString(7, FF.getExpenses().get(i).getUpdatedBy());
 
                 rs = pstmt.executeUpdate();
             }
@@ -3470,7 +3473,7 @@ public class UserDAO {
             rs = pstmt.executeUpdate();
 
             for (int i = 0; i < FF.getExpenses().size(); i++) {
-                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, ffproposalID, datetime) VALUES(?,?,?,?,?,?)";
+                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, ffproposalID, datetime, updatedBy) VALUES(?,?,?,?,?,?,?)";
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, FF.getExpenses().get(i).getItem());
@@ -3479,6 +3482,7 @@ public class UserDAO {
                 pstmt.setDouble(4, FF.getExpenses().get(i).getSubtotal());
                 pstmt.setInt(5, FF.getId());
                 pstmt.setString(6, FF.getExpenses().get(i).getDatetime());
+                pstmt.setString(7, FF.getExpenses().get(i).getUpdatedBy());
 
                 rs = pstmt.executeUpdate();
             }
@@ -3815,6 +3819,46 @@ public class UserDAO {
         return SE;
     }
     
+    public ArrayList<SE> retrieveSEProposalsForEdit() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE step = 11";
+            pstmt = conn.prepareStatement(query);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setActualDate(rs2.getDate("actualImplementation"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setActivityClassification(rs2.getString("activityClassification"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
     public ArrayList<FF> retrieveFFProposalsForCancellation() {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -3824,6 +3868,45 @@ public class UserDAO {
         ResultSet rs2 = null;
         try {
             String query = "SELECT * FROM ffproposal WHERE step = 10";
+            pstmt = conn.prepareStatement(query);
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF s = new FF();
+                s.setActualDate(rs2.getDate("actualImplementation"));
+                s.setProjectName(rs2.getString("projectName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setActivityClassification(rs2.getString("activityClassification"));
+                s.setId(rs2.getInt("id"));
+                FF.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+    
+    public ArrayList<FF> retrieveFFProposalsForEdit() {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE step = 11";
             pstmt = conn.prepareStatement(query);
             rs2 = pstmt.executeQuery();
 
@@ -4031,7 +4114,47 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE userID != ? AND step >= 8 AND step <= 9";
+            String query = "SELECT * FROM seproposal WHERE userID != ? AND step = 9";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, userID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setActualDate(rs2.getDate("actualImplementation"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
+    public ArrayList<SE> retrieveSEProposalByApproved(int userID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE userID != ? AND step = 8";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, userID);
 
@@ -4191,7 +4314,48 @@ public class UserDAO {
         ArrayList<SE> SE = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM seproposal WHERE userID = ? AND step >= 8 AND step <= 9";
+            String query = "SELECT * FROM seproposal WHERE userID = ? AND step = 9";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, userID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setActualDate(rs2.getDate("actualImplementation"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
+    
+    public ArrayList<SE> retrieveSEProposalByApprovedOwner(int userID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE userID = ? AND step = 8";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
@@ -4522,7 +4686,48 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step >= 8 AND step <= 9";
+            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step = 9";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, userID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF f = new FF();
+                f.setActualDate(rs2.getDate("actualImplementation"));
+                f.setProjectName(rs2.getString("projectName"));
+                f.setProgramHead(rs2.getString("programHead"));
+                f.setUnit(rs2.getString("unit"));
+                f.setDepartment(rs2.getString("department"));
+                f.setId(rs2.getInt("id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+    
+    public ArrayList<FF> retrieveFFProposalByApprovedOwner(int userID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE userID = ? AND step = 8";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
@@ -4563,7 +4768,48 @@ public class UserDAO {
         ArrayList<FF> FF = new ArrayList();
         ResultSet rs2 = null;
         try {
-            String query = "SELECT * FROM ffproposal WHERE userID != ? AND step >= 8 AND step <= 9";
+            String query = "SELECT * FROM ffproposal WHERE userID != ? AND step = 9";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, userID);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF f = new FF();
+                f.setActualDate(rs2.getDate("actualImplementation"));
+                f.setProjectName(rs2.getString("projectName"));
+                f.setProgramHead(rs2.getString("programHead"));
+                f.setUnit(rs2.getString("unit"));
+                f.setDepartment(rs2.getString("department"));
+                f.setId(rs2.getInt("id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+    
+    public ArrayList<FF> retrieveFFProposalByApproved(int userID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE userID != ? AND step = 8";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, userID);
@@ -4936,6 +5182,7 @@ public class UserDAO {
                 SE.setRemarktype4(rs2.getString("remarktype4"));
                 SE.setRemarktype5(rs2.getString("remarktype5"));
                 SE.setReasonforcancel(rs2.getString("reasonforcancel"));
+                SE.setReasonforedit(rs2.getString("reasonforedit"));
             }
 
             ArrayList<String> component = new ArrayList();
@@ -4970,6 +5217,7 @@ public class UserDAO {
                 se.setSubtotal(rs2.getDouble("subtotal"));
                 se.setAmountUsed(rs2.getDouble("amountUsed"));
                 se.setDatetime(rs2.getString("datetime"));
+                se.setUpdatedBy(rs2.getString("updatedBy"));
                 expenses.add(se);
             }
 
@@ -5266,6 +5514,7 @@ public class UserDAO {
                 FF.setRemarktype4(rs2.getString("remarktype4"));
                 FF.setRemarktype5(rs2.getString("remarktype5"));
                 FF.setReasonforcancel(rs2.getString("reasonforcancel"));
+                FF.setReasonforedit(rs2.getString("reasonforedit"));
             }
 
             ArrayList<FFexpenses> expenses = new ArrayList();
@@ -5285,6 +5534,7 @@ public class UserDAO {
                 ff.setSubtotal(rs2.getDouble("subtotal"));
                 ff.setAmountUsed(rs2.getDouble("amountUsed"));
                 ff.setDatetime(rs2.getString("datetime"));
+                ff.setUpdatedBy(rs2.getString("updatedBy"));
                 expenses.add(ff);
             }
 
@@ -5484,6 +5734,33 @@ public class UserDAO {
         }
     }
     
+    public void requestEdit(int seID, String edit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE seproposal SET reasonforedit = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, edit);
+            pstmt.setInt(2, seID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
     public void requestCancelFF(int ffID, String cancel) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -5493,6 +5770,33 @@ public class UserDAO {
             String query = "UPDATE ffproposal SET reasonforcancel = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, cancel);
+            pstmt.setInt(2, ffID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void requestEditFF(int ffID, String edit) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE ffproposal SET reasonforedit = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, edit);
             pstmt.setInt(2, ffID);
 
             int rs = pstmt.executeUpdate();
@@ -6628,6 +6932,32 @@ public class UserDAO {
                 /* ignored */ }
         }
     }
+    
+    public void requestReviseSE(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE seproposal SET isRevise = 1, step = 1, lmc1 = 0, lmc2 = 0, lmc3 = 0, lmc4 = 0, lmc5 = 0, hasVoted1 = 0, hasVoted2 = 0, hasVoted3 = 0, hasVoted4 = 0, hasVoted5 = 0, lmcApprovalCount = 0 WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, seID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
 
     public void reviseFF(int ffID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -6636,6 +6966,32 @@ public class UserDAO {
 
         try {
             String query = "UPDATE ffproposal SET isRevise = 1, step = 1 WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, ffID);
+
+            int rs = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+    }
+    
+    public void requestReviseFF(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE ffproposal SET isRevise = 1, step = 1, lmc1 = 0, lmc2 = 0, lmc3 = 0, lmc4 = 0, lmc5 = 0, hasVoted1 = 0, hasVoted2 = 0, hasVoted3 = 0, hasVoted4 = 0, hasVoted5 = 0, lmcApprovalCount = 0 WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, ffID);
 
@@ -14566,7 +14922,7 @@ public class UserDAO {
         }
         return SE;
     }
-
+    
     public ArrayList<FF> retrieveFFProposalByKRAID(int kraID) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -15176,7 +15532,7 @@ public class UserDAO {
         return count;
     }
 
-    public int countSEImplementedByDepartment(String department, Date startDate, Date endDate) {
+    public int countSEImplementedByDepartment(String unit, String department, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -15185,12 +15541,13 @@ public class UserDAO {
         ResultSet rs2 = null;
         int count = 0;
         try {
-            String query = "SELECT count(department) FROM seproposal WHERE step = 9 AND department = ? AND actualImplementation >= ? AND actualImplementation <= ?";
+            String query = "SELECT count(department) FROM seproposal WHERE step = 9 AND department = ? AND actualImplementation >= ? AND actualImplementation <= ? AND unit = ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, department);
             pstmt.setDate(2, startDate);
             pstmt.setDate(3, endDate);
+            pstmt.setString(4, unit);
 
             rs2 = pstmt.executeQuery();
 
@@ -15324,7 +15681,7 @@ public class UserDAO {
         return count;
     }
 
-    public int countFFImplementedByDepartment(String department, Date startDate, Date endDate) {
+    public int countFFImplementedByDepartment(String unit, String department, Date startDate, Date endDate) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         PreparedStatement pstmt = null;
@@ -15333,12 +15690,13 @@ public class UserDAO {
         ResultSet rs2 = null;
         int count = 0;
         try {
-            String query = "SELECT count(department) FROM ffproposal WHERE step = 9 AND department = ? AND actualImplementation >= ? AND actualImplementation <= ?";
+            String query = "SELECT count(department) FROM ffproposal WHERE step = 9 AND department = ? AND actualImplementation >= ? AND actualImplementation <= ? AND unit = ?";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, department);
             pstmt.setDate(2, startDate);
             pstmt.setDate(3, endDate);
+            pstmt.setString(4, unit);
 
             rs2 = pstmt.executeQuery();
 
@@ -17344,7 +17702,7 @@ public class UserDAO {
             int rs = pstmt.executeUpdate();
 
             for (int i = 0; i < expenses.size(); i++) {
-                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, seproposalID, datetime) VALUES(?,?,?,?,?,?,?)";
+                query = "INSERT INTO seproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, seproposalID, datetime, updatedBy) VALUES(?,?,?,?,?,?,?,?)";
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -17357,6 +17715,7 @@ public class UserDAO {
                 pstmt.setDouble(5, expenses.get(i).getAmountUsed());
                 pstmt.setInt(6, expenses.get(i).getSeproposalID());
                 pstmt.setString(7, sdf.format(dt));
+                pstmt.setString(8, expenses.get(i).getUpdatedBy());
 
                 rs = pstmt.executeUpdate();
             }
@@ -17399,6 +17758,7 @@ public class UserDAO {
                 e.setSeproposalID(rs.getInt("seproposalID"));
                 e.setAmountUsed(rs.getDouble("amountUsed"));
                 e.setDatetime(rs.getString("datetime"));
+                e.setUpdatedBy(rs.getString("updatedBy"));
                 expenses.add(e);
             }
 
@@ -17436,7 +17796,7 @@ public class UserDAO {
             int rs = pstmt.executeUpdate();
 
             for (int i = 0; i < expenses.size(); i++) {
-                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, ffproposalID, datetime) VALUES(?,?,?,?,?,?,?)";
+                query = "INSERT INTO ffproposal_expenses(item, unitcost, quantity, subtotal, amountUsed, ffproposalID, datetime, updatedBy) VALUES(?,?,?,?,?,?,?,?)";
 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -17449,6 +17809,7 @@ public class UserDAO {
                 pstmt.setDouble(5, expenses.get(i).getAmountUsed());
                 pstmt.setInt(6, expenses.get(i).getFfproposalID());
                 pstmt.setString(7, sdf.format(dt));
+                pstmt.setString(8, expenses.get(i).getUpdatedBy());
 
                 rs = pstmt.executeUpdate();
             }
@@ -17491,6 +17852,7 @@ public class UserDAO {
                 f.setFfproposalID(rs.getInt("ffproposalID"));
                 f.setAmountUsed(rs.getDouble("amountUsed"));
                 f.setDatetime(rs.getString("datetime"));
+                f.setUpdatedBy(rs.getString("updatedBy"));
                 expenses.add(f);
             }
 
@@ -18929,6 +19291,11 @@ public class UserDAO {
             while (rs.next()) {
                 Department d = new Department();
                 d.setName(rs.getString("d.department"));
+                Departments.add(d);
+            }
+            if(this.getUnitByName(unit).getType().equals("Academic")){
+                Department d = new Department();
+                d.setName("ADEALM");
                 Departments.add(d);
             }
 

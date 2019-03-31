@@ -49,6 +49,7 @@ public class editEmployee extends HttpServlet {
             
             UserDAO.updateEmployee(u);
             
+            request.setAttribute("success", "You have successfully edited a User!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/ADMIN-home.jsp");
             dispatcher.forward(request, response);

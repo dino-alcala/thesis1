@@ -311,7 +311,10 @@
                             </center>
                         </fieldset>    
                         <br><br><br><br>
-                        <center><button style="width:10%" type = "submit" class="button">Submit</button></center>
+                        <center>
+                            <legend>Page 2 of 2</legend>
+                            <button style="width:10%" type = "submit" class="button">Submit</button>
+                        </center>
                     </form>
                 </div>
             </div>

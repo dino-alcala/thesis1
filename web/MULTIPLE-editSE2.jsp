@@ -240,8 +240,8 @@
             var row = table.insertRow(rows);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            cell1.innerHTML = "<td><textarea style='border-radius: 0px;'  rows = '1' cols = '50%' name ='responsiblename" + count + "'></textarea></td>";
-            cell2.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '1' cols = '50%' name ='responsibleemail" + count + "'></textarea></td>";
+            cell1.innerHTML = "<td><textarea id='inputText' style='border-radius: 0px;'  rows = '1' cols = '50%' name ='responsiblename" + count + "'></textarea></td>";
+            cell2.innerHTML = "<td><textarea id='inputText' style='border-radius: 0px;' rows = '1' cols = '50%' name ='responsibleemail" + count + "'></textarea></td>";
             count++;
             document.getElementById("countresponsible").setAttribute('value', count);
             }
@@ -270,11 +270,11 @@
             var cell3 = row.insertCell(2);
             var cell4 = row.insertCell(3);
             var cell5 = row.insertCell(4);
-            cell1.innerHTML = "<td><input style='border-radius: 0px;' type ='date' name='date" + count + "'/></td>";
-            cell2.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='activity" + count + "'></textarea>";
-            cell3.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='time" + count + "'></textarea>";
-            cell4.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='timeend" + count + "'></textarea>";
-            cell5.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='venue" + count + "'></textarea>";
+            cell1.innerHTML = "<td><input id='inputText' style='border-radius: 0px;' type ='date' name='date" + count + "'/></td>";
+            cell2.innerHTML = "<textarea id='inputText' style='border-radius: 0px;' rows = '2' cols = '25%' name ='activity" + count + "'></textarea>";
+            cell3.innerHTML = "<textarea id='inputText' style='border-radius: 0px;' rows = '2' cols = '25%' name ='time" + count + "'></textarea>";
+            cell4.innerHTML = "<textarea id='inputText' style='border-radius: 0px;' rows = '2' cols = '25%' name ='timeend" + count + "'></textarea>";
+            cell5.innerHTML = "<textarea id='inputText' style='border-radius: 0px;' rows = '2' cols = '25%' name ='venue" + count + "'></textarea>";
             count++;
             document.getElementById("countproject").setAttribute('value', count);
             }
@@ -497,11 +497,11 @@
                                     %>
                                     <tr>
 
-                                        <td><input id="inputText" style="border-radius: 0px;" type ="date" name="date<%=i%>" value="<%=SE.getWorkplan().get(i).getDate()%>" min="<%=sqlDate%>"/></td>
-                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="activity<%=i%>"><%=SE.getWorkplan().get(i).getActivity()%></textarea></td>
-                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="time<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend()%></textarea></td>
-                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="timeend<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></textarea></td>
-                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "2" cols = "25%" name ="venue<%=i%>"><%=SE.getWorkplan().get(i).getVenue()%></textarea></td>
+                                        <td><input id="inputText" style="border-radius: 0px; font-family: 'Arial', Helvetica, sans-serif;" type ="date" name="date<%=i%>" value="<%=SE.getWorkplan().get(i).getDate()%>" min="<%=sqlDate%>"/></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px; font-family: 'Arial', Helvetica, sans-serif;" rows = "2" cols = "25%" name ="activity<%=i%>"><%=SE.getWorkplan().get(i).getActivity()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px; font-family: 'Arial', Helvetica, sans-serif;" rows = "2" cols = "25%" name ="time<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px; font-family: 'Arial', Helvetica, sans-serif;" rows = "2" cols = "25%" name ="timeend<%=i%>"><%=SE.getWorkplan().get(i).getTimestarttimeend2()%></textarea></td>
+                                        <td><textarea id="inputText" style="border-radius: 0px; font-family: 'Arial', Helvetica, sans-serif;" rows = "2" cols = "25%" name ="venue<%=i%>"><%=SE.getWorkplan().get(i).getVenue()%></textarea></td>
 
                                     </tr>
                                     <%
@@ -528,7 +528,7 @@
                         %>
 
                         <legend><b>Breakdown of Expenses - Amount Requested: PHP <%=df.format(Double.parseDouble(request.getAttribute("totalamount").toString()))%></b></legend>
-                        <input type="hidden" value="<%=SE.getExpenses().size()%>" id="countexpenses" name="countexpenses">
+                        <input type="number" value="<%=SE.getExpenses().size()%>" id="countexpenses" name="countexpenses">
                         <fieldset>
                             <center><table style = "width:100%" id="breakdowntable">
                                     <tr>
@@ -541,10 +541,10 @@
                                         for (int i = 0; i < SE.getExpenses().size(); i++) {
                                     %>
                                     <tr>
-                                        <td><input id="inputText" value="<%=SE.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
-                                        <td><input value="<%=SE.getExpenses().get(i).getUnitcost()%>" type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
-                                        <td><input value="<%=SE.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
-                                        <td><input value="<%=SE.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" readonly required></td>
+                                        <td><input value="<%=SE.getExpenses().get(i).getItem()%>" type='text' style="border-radius: 0px; margin-bottom:1%; font-family: 'Arial', Helvetica, sans-serif;" id="seitem<%=i%>"  name ="seitem<%=i%>" required></td>
+                                        <td><input value="<%=SE.getExpenses().get(i).getUnitcost()%>" type='number' style="border-radius:0px; margin-bottom:1%; font-family: 'Arial', Helvetica, sans-serif;" id="seunitcost<%=i%>" name ="seunitcost<%=i%>" required></td>
+                                        <td><input value="<%=SE.getExpenses().get(i).getQuantity()%>" type='number' style="border-radius: 0px; margin-bottom:1%; font-family: 'Arial', Helvetica, sans-serif;" id="sequantity<%=i%>" name ="sequantity<%=i%>" required></td>
+                                        <td><input value="<%=SE.getExpenses().get(i).getSubtotal()%>" type='number' style="border-radius: 0px; margin-bottom:1%; font-family: 'Arial', Helvetica, sans-serif;" id="sesubtotal<%=i%>" name ="sesubtotal<%=i%>" readonly required></td>
                                     </tr>
                                     <%
                                         }
@@ -610,8 +610,8 @@
                                         for (int i = 0; i < SE.getResponsible().size(); i++) {
                                     %>
                                     <tr>    
-                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsiblename<%=i%>"><%=SE.getResponsible().get(i).getName()%></textarea></td>
-                                        <td><textarea id="inputText" style="border-radius: 0px;" rows = "1" cols = "50%" name ="responsibleemail<%=i%>"><%=SE.getResponsible().get(i).getEmail()%></textarea></td>
+                                        <td><textarea id="responsiblename<%=i%>" style="border-radius: 0px; font-family: 'Arial', Helvetica, sans-serif;" rows = "1" cols = "50%" name ="responsiblename<%=i%>"><%=SE.getResponsible().get(i).getName()%></textarea></td>
+                                        <td><textarea id="responsibleemail<%=i%>" style="border-radius: 0px; font-family: 'Arial', Helvetica, sans-serif;" rows = "1" cols = "50%" name ="responsibleemail<%=i%>"><%=SE.getResponsible().get(i).getEmail()%></textarea></td>
                                     </tr>
                                     <%
                                         }

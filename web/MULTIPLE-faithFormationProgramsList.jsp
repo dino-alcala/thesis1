@@ -172,6 +172,19 @@
                 background-color: green;
                 border-color: green;
             }
+            
+            #buttonApproved{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+            
+            #buttonApproved:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
 
         </style>
 
@@ -288,6 +301,7 @@
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-faithFormationProgramsList.jsp">Completed</a>
+                            <a href="MULTIPLE-approvedFFList.jsp" type="button" class="btn btn-primary" id="buttonApproved" >Approved</a>
                             <a href="MULTIPLE-pendingFFList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
                             <a href="MULTIPLE-cancelledFFList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
                             <a href="MULTIPLE-rejectedFFList.jsp" type="button" class="btn btn-primary" id="buttonRejected" >Rejected</a>

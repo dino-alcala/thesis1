@@ -256,7 +256,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-
+                                <center><legend>Faith Formation Program</legend></center>
                                 <div class="card">
                                     <div class="card-body">
                                         <h3><%=FF.getProjectName()%></h3>
@@ -295,6 +295,7 @@
                                                 <th>Quantity</th>
                                                 <th>Subtotal</th>
                                                 <th>Amount Expended</th>
+                                                <th>Updated By</th>
                                                 <th>Date</th>
                                             </tr>
                                             <%
@@ -308,6 +309,7 @@
                                                 <td><%=FF.getExpenses().get(i).getQuantity()%></td>
                                                 <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
                                                 <td><%=FF.getExpenses().get(i).getAmountUsed()%></td>
+                                                <td><%if(FF.getExpenses().get(i).equals("Not Updated")){%>Not Updated<%} else {%><%=FF.getExpenses().get(i).getUpdatedBy()%><%}%></td>
                                                 <td><%if (!FF.getExpenses().get(i).getDatetime().equals("2001-01-01 00:00:00.0")) {%> <%=FF.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
                                             </tr>
                                             <%
@@ -321,6 +323,7 @@
                                                 <td></td>
                                                 <td>Total: <%=count%></td>
                                                 <td>Total: <%=total%></td>
+                                                <td></td>
                                                 <td></td>
                                             </tr>
                                         </table>
@@ -454,12 +457,14 @@
                                         if (!UserDAO.hasFFReport(FF.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == FF.getUserID() && FF.getStep() != 0 && FF.getStep() != -1 && FF.getStep() != 10 && !UserDAO.hasUpdatedBudgetFF(FF.getId())) {
                                     %>
 
-                                    <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button></center>
+                                    <button onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=FF.getId()%>" name="cancelProgram" class="btn-danger">Cancel Program</button>
 
                                 <%
                                     }
                                 %>
-
+                                <%if(FF.getStep() != 9 && FF.getStep() != 10 && !UserDAO.hasSentEvaluationFF(FF.getId())){%>
+                                    <button class="btn-warning"  type="submit" style="background-color:darkorange" name="requestedit" value="<%=request.getAttribute("ffID")%>">Request to Edit</button></center>
+                                <%}%>
                             </div>
 
                         </div>

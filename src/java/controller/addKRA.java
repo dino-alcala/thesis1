@@ -106,6 +106,7 @@ public class addKRA extends HttpServlet {
 
             OvplmDAO.AddKRA(KRA);
 
+            request.setAttribute("success", "You have successfully created a KRA!");
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
             dispatcher.forward(request, response);

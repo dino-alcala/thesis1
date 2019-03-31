@@ -100,6 +100,7 @@ public class SE {
     protected String remarktype4;
     protected String remarktype5;
     protected String reasonforcancel;
+    protected String reasonforedit;
     protected int sustainable;
     
     //for checking if edited
@@ -817,6 +818,14 @@ public class SE {
 
     public void setReasonforcancel(String reasonforcancel) {
         this.reasonforcancel = reasonforcancel;
+    }
+
+    public String getReasonforedit() {
+        return reasonforedit;
+    }
+
+    public void setReasonforedit(String reasonforedit) {
+        this.reasonforedit = reasonforedit;
     }
 
     public int getSustainable() {

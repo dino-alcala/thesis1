@@ -110,8 +110,6 @@
 
                 <button class="btn btn-md btn-primary btn-block" type="submit">Login</button>
                 <br>
-                <p>Participant? <a href="MULTIPLE-evaluationLogIn.jsp"><b><i>Evaluate!</i></b></a></p>
-
             </form>
 
             <%

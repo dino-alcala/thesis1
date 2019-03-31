@@ -72,6 +72,7 @@ public class FF {
     protected String remarktype4;
     protected String remarktype5;
     protected String reasonforcancel;
+    protected String reasonforedit;
     
     public int getId() {
         return id;
@@ -552,6 +553,12 @@ public class FF {
     public void setReasonforcancel(String reasonforcancel) {
         this.reasonforcancel = reasonforcancel;
     }
-    
-    
+
+    public String getReasonforedit() {
+        return reasonforedit;
+    }
+
+    public void setReasonforedit(String reasonforedit) {
+        this.reasonforedit = reasonforedit;
+    }
 }

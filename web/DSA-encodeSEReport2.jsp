@@ -445,7 +445,10 @@
                         </fieldset>
 
                         <br><br>
-                        <center><button class="button" type="submit" name="funds" value="<%=SE.getSourceOfFunds()%>">Next</button></center>
+                        <center>
+                            <legend>Page 2 of 4</legend>
+                            <button class="button" type="submit" name="funds" value="<%=SE.getSourceOfFunds()%>">Next</button>
+                        </center>
                     </form>
                 </div>
 

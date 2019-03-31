@@ -95,6 +95,20 @@ ProgramsForApproval
                 border-color: green;
                 margin-top:25px;
             }
+            
+            #buttonFF2{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
+
+            #buttonSE2{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
 
             #buttonFF:hover{
                 color: white;
@@ -107,53 +121,32 @@ ProgramsForApproval
                 background-color: green;
                 border-color: green;
             }
+            
+            #buttonFF2:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+
+            #buttonSE2:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
 
         </style>
 
         <script type="text/javascript">
             <%
-                if (request.getAttribute("successSE1") != null) {
+                if (request.getAttribute("cancelProgram") != null) {
 
             %>
             $("document").ready(function () {
 
-                alert("<%=request.getAttribute("successSE1")%>");
+                alert("<%=request.getAttribute("cancelProgram")%>");
             });
 
-            <%
-                }
-
-                if (request.getAttribute("successSE2") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("successSE2")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("reviseSE1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("reviseSE1")%>");
-            });
-
-            <%
-                }
-                if (request.getAttribute("rejectSE1") != null) {
-
-            %>
-            $("document").ready(function () {
-
-                alert("<%=request.getAttribute("rejectSE1")%>");
-            });
-
-            <%
-                }
-            %>
+            <% } %>
 
         </script>
 
@@ -271,8 +264,10 @@ ProgramsForApproval
                     <!--- table -->
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
-                            <a type="button" class="btn btn-primary" id="buttonSE" href="MULTIPLE-seProgramsForCancellation.jsp">Social Engagement</a>
-                            <a href="MULTIPLE-ffProgramsForCancellation.jsp" type="button" class="btn btn-primary" id="buttonFF" >Faith Formation</a>
+                            <a type="button" class="btn btn-primary" id="buttonSE" href="MULTIPLE-seProgramsForCancellation.jsp">SE Cancellation Requests</a>
+                            <a href="MULTIPLE-ffProgramsForCancellation.jsp" type="button" class="btn btn-primary" id="buttonFF" >FF Cancellation Requests</a>
+                            <a type="button" class="btn btn-primary" id="buttonSE2" href="MULTIPLE-seProgramsForEdit.jsp">SE Edit Requets</a>
+                            <a href="MULTIPLE-ffProgramsForEdit.jsp" type="button" class="btn btn-primary" id="buttonFF2" >FF Edit Requests</a>
                         </div>
 
                         <br>

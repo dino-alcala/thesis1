@@ -244,7 +244,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-
+                                <center><legend>Social Engagament Program</legend></center>
                                 <div class="card">
                                     <div class="card-body">
                                         <h3><%=SE.getName()%></h3>
@@ -386,6 +386,7 @@
                                                 <th>Quantity</th>
                                                 <th>Subtotal</th>
                                                 <th>Amount Used</th>
+                                                <th>Updated By</th>
                                                 <th>Date</th>
                                             </tr>
                                             <%
@@ -399,6 +400,7 @@
                                                 <td><%=SE.getExpenses().get(i).getQuantity()%></td>
                                                 <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
                                                 <td><%=SE.getExpenses().get(i).getAmountUsed()%></td>
+                                                <td><%if(SE.getExpenses().get(i).equals("Not Updated")){%>Not Updated<%} else {%><%=SE.getExpenses().get(i).getUpdatedBy()%><%}%></td>
                                                 <td><%if (!SE.getExpenses().get(i).getDatetime().equals("2001-01-01 00:00:00.0")) {%> <%=SE.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
                                             </tr>
                                             <%
@@ -413,6 +415,7 @@
                                                 <td></td>
                                                 <td>Total: <%=count%></td>
                                                 <td>Total: <%=total%></td>
+                                                <td></td>
                                                 <td></td>
                                             </tr>
                                         </table>
@@ -611,12 +614,14 @@
                                             if (!UserDAO.hasSEReport(SE.getId()) && Integer.parseInt(session.getAttribute("userID").toString()) == SE.getUserID() && SE.getStep() != 0 && SE.getStep() != -1 && SE.getStep() != 10 && !UserDAO.hasUpdatedBudget(SE.getId())) {
                                         %>
 
-                                        <button style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram"  class="btn-danger">Cancel Program</button></center>
+                                        <button style="background-color:red" onclick="return window.confirm('Cancel Program?')" type="submit" value="<%=SE.getId()%>" name="cancelProgram"  class="btn-danger">Cancel Program</button>
 
                                 <%
                                     }
                                 %>
-
+                                <%if(SE.getStep() != 9 && SE.getStep() != 10 && !UserDAO.hasSentEvaluation(SE.getId())){%>
+                                    <button class="btn-warning"  type="submit" name="requestedit" style="background-color:darkorange" value="<%=request.getAttribute("seID")%>">Request to Edit</button></center>
+                                <%}%>
                             </div>
 
                         </div>

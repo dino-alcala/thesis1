@@ -472,6 +472,38 @@
         <servlet-name>viewUnitInactive</servlet-name>
         <servlet-class>controller.viewUnitInactive</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>requestSEEdit</servlet-name>
+        <servlet-class>controller.requestSEEdit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>requestFFEdit</servlet-name>
+        <servlet-class>controller.requestFFEdit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>approveFFEdit</servlet-name>
+        <servlet-class>controller.approveFFEdit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>approveSEEdit</servlet-name>
+        <servlet-class>controller.approveSEEdit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewSE8</servlet-name>
+        <servlet-class>controller.viewSE8</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewFF8</servlet-name>
+        <servlet-class>controller.viewFF8</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewSE9</servlet-name>
+        <servlet-class>controller.viewSE9</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewFF9</servlet-name>
+        <servlet-class>controller.viewFF9</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
@@ -943,6 +975,38 @@
     <servlet-mapping>
         <servlet-name>viewUnitInactive</servlet-name>
         <url-pattern>/viewUnitInactive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>requestSEEdit</servlet-name>
+        <url-pattern>/requestSEEdit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>requestFFEdit</servlet-name>
+        <url-pattern>/requestFFEdit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>approveFFEdit</servlet-name>
+        <url-pattern>/approveFFEdit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>approveSEEdit</servlet-name>
+        <url-pattern>/approveSEEdit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewSE8</servlet-name>
+        <url-pattern>/viewSE8</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewFF8</servlet-name>
+        <url-pattern>/viewFF8</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewSE9</servlet-name>
+        <url-pattern>/viewSE9</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewFF9</servlet-name>
+        <url-pattern>/viewFF9</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

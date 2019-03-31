@@ -264,7 +264,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-
+                                <center><legend>SE Accomplishment Report</legend></center>
                                 <div class="card">
                                     <div class="card-body">
                                         <h3><%=SEreport.getProjectTitle()%></h3>

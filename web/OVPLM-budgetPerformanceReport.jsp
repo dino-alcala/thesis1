@@ -3,6 +3,7 @@
     Created on : 06 18, 18, 8:02:54 PM
     Author     : Karl Madrid
 --%>
+<%@page import="java.util.Collections"%>
 <%@page import="entity.Unit"%>
 <%@page import="entity.FF"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -489,7 +490,7 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
-                                <canvas id="chartBPRu"  width="100" height="90" style="margin-left:115px"></canvas>
+                                <canvas id="chartBPRu"  width="110" height="100" style="margin-left:115px"></canvas>
                             </div>
                         </div>
                         <script>
@@ -513,6 +514,11 @@
                                             label: "Faith Formation",
                                                     backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
                                                     data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                            }
+                                            , {
+                                            label: "Total",
+                                                    backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA4E6F",<%}%>],
+                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) + UserDAO.getIndividualSEBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }]
 
                                     },
@@ -535,7 +541,7 @@
                                             }],
                                                     xAxes: [{
                                                     ticks: {
-                                                    beginAtZero: true,
+                                                    beginAtZero: false,
                                                             fontSize: 16
                                                     }
                                                     }]
@@ -594,7 +600,7 @@
                                             }
 
                                     });
-                                </script> 
+                                </script>
                             </div>
                         </div>
                     </div>

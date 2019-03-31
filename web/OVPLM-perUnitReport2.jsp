@@ -881,7 +881,7 @@
                         <div class="card bg-white">
                             <div class="card-body text-center">
                                 <div id="canvas-holder" style="width:50%" >
-                                    <canvas id="chartUP" style="margin-left:260px"></canvas>
+                                    <canvas id="chartUP" width="110" height="90" style="margin-left:260px"></canvas>
                                 </div>
                                 <script>
                                     Chart.defaults.global.legend.display = true;
@@ -955,9 +955,10 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
-                                <canvas id="chartU"  width="100" height="90" style="margin-left:115px"></canvas>
+                                <canvas id="chartU"  width="100" height="60" style="margin-left:115px"></canvas>
                             </div>
                         </div>
+                        <% System.out.println(request.getAttribute("unit")); %>
                         <script>
                             <%
                                 ArrayList<Department> departments = new ArrayList();
@@ -966,26 +967,27 @@
                             Chart.defaults.global.legend.display = true;
                             var ctx = document.getElementById('chartU').getContext('2d');
                             var chartU = new Chart(ctx, {
-                            type: 'horizontalBar',
+                            type: 'bar',
                                     data: {
                                     labels: [<%for (int i = 0; i < departments.size(); i++) {%>"<%=departments.get(i).getName()%>",<%}%>],
                                             datasets: [
                                             {
                                             label: "Social Engagement",
                                                     backgroundColor: [<%for (int i = 0; i < departments.size(); i++) {%>"#EA7A2D",<%}%>],
-                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countSEImplementedByDepartment(departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countSEImplementedByDepartment(request.getAttribute("unit").toString(), departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }
                                             , {
                                             label: "Faith Formation",
                                                     backgroundColor: [<%for (int i = 0; i < departments.size(); i++) {%>"#2D36EA",<%}%>],
-                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countFFImplementedByDepartment(departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
-                                            }]
+                                                    data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countFFImplementedByDepartment(request.getAttribute("unit").toString(), departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                            }
+                                            ]
+                                            
 
                                     },
                                     options: {
                                     legend: {
                                     display: true,
-                                            position: 'top',
                                             labels: {
                                             fontSize: 16
                                             }
@@ -1001,7 +1003,6 @@
                                             }],
                                                     xAxes: [{
                                                     ticks: {
-                                                    beginAtZero: true,
                                                             fontSize: 16
                                                     }
                                                     }]
@@ -1096,16 +1097,16 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
-                                <canvas id="chartPUPkras"  width="200" height="85" style="margin-left:80px"></canvas>
+                                <canvas id="chartPUPkras"  width="80" height="60" style="margin-left:80px"></canvas>
                             </div>
                         </div>
                         <script>
                             Chart.defaults.global.legend.display = false;
                             var ctx = document.getElementById('chartPUPkras').getContext('2d');
                             var chartPUPkras = new Chart(ctx, {
-                            type: 'horizontalBar',
+                            type: 'bar',
                                     data: {
-                                    labels: [<%for (int i = 0; i < kra.size(); i++) {%>"<%=kra.get(i).getName()%>",<%}%>],
+                                    labels: [<%for (int i = 0; i < kra.size(); i++) {%>"<%=kra.get(i).getName().substring(0, 5) %>",<%}%>],
                                             datasets: [
                                             {
                                             label: "Unit's Programs",
@@ -1115,27 +1116,22 @@
                                             ],
                                     },
                                     options: {
-                                    legend: {
-                                    display: true,
-                                            position: 'top',
-                                            labels: {
-                                            fontSize: 16
-                                            }
-                                    },
+                                    legend: {display: true},
                                             title: {
                                             display: true,
                                             },
                                             scales: {
                                             yAxes: [{
-                                            stacked: true,
-                                                    ticks: {
-                                                    fontSize: 15
-                                                    }
+                                            ticks: {
+                                            beginAtZero: false,
+                                                    fontSize: 16
+                                            }
                                             }],
                                                     xAxes: [{
+                                                    barThickness: 70,
+                                                    barPercentage: 0.1,
                                                     ticks: {
-                                                    beginAtZero: true,
-                                                            fontSize: 20
+                                                    fontSize: 16
                                                     }
                                                     }]
                                             },
@@ -1143,7 +1139,6 @@
                                             titleFontSize: 18,
                                                     bodyFontSize: 18
                                             }
-
                                     }
                             });
                         </script>

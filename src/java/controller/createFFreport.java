@@ -96,6 +96,11 @@ public class createFFreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-updateUsedBudgetFF.jsp");
                 dispatcher.forward(request, response);
+            } else if(request.getParameter("requestedit") != null){
+                request.setAttribute("ffID", request.getParameter("requestedit"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-requestFFEdit.jsp");
+                dispatcher.forward(request, response);
             }
         }
     }

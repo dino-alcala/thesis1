@@ -236,8 +236,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-
-                                <!-- sidebar-container END -->
+                                <center><legend>Social Engagement Program</legend></center>
                                 <div class="panel panel-success ">
 
                                     <div class="card">

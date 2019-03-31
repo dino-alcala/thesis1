@@ -79,7 +79,7 @@
                         if (session.getAttribute("position").toString().equals("OVPLM - Executive Officer")) {
                     %>
                     <a href="MULTIPLE-seProgramsForCancellation.jsp" class="list-group-item list-group-item-action"  id="subMenuCategoryBox">
-                        <span class="menu-collapsed" id="subMenuCategory">For Cancellation</span>
+                        <span class="menu-collapsed" id="subMenuCategory">For Edit/Cancellation</span>
                     </a>
                     <%
                         }

@@ -386,7 +386,10 @@
                             </table>
                         </fieldset>
                         <br><br>
-                        <center><button class="button" type="submit">Next</button></center>
+                        <center>
+                            <legend>Page 3 of 4</legend>
+                            <button class="button" type="submit">Next</button>
+                        </center>
                     </form>
                 </div>
 

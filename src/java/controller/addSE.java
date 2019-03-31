@@ -50,7 +50,11 @@ public class addSE extends HttpServlet {
                     && Integer.parseInt(request.getParameter("measure2")) != Integer.parseInt(request.getParameter("measure3")) && Integer.parseInt(request.getParameter("measure3")) != 0 
                     && Integer.parseInt(request.getParameter("measure3")) != 0){
                 SE.setUnit(session.getAttribute("unit").toString());
-                SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                if(session.getAttribute("position").toString().contains("ADEALM")){
+                    SE.setDepartment("ADEALM");
+                } else {
+                    SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                }
 
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
@@ -100,7 +104,11 @@ public class addSE extends HttpServlet {
             } else if(Integer.parseInt(request.getParameter("measure2")) == 0 && Integer.parseInt(request.getParameter("measure")) != Integer.parseInt(request.getParameter("measure3"))){
                 
                 SE.setUnit(session.getAttribute("unit").toString());
-                SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                if(session.getAttribute("position").toString().contains("ADEALM")){
+                    SE.setDepartment("ADEALM");
+                } else {
+                    SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                }
 
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
@@ -150,7 +158,11 @@ public class addSE extends HttpServlet {
             } else if(Integer.parseInt(request.getParameter("measure3")) == 0 && Integer.parseInt(request.getParameter("measure")) != Integer.parseInt(request.getParameter("measure2"))){
                 
                 SE.setUnit(session.getAttribute("unit").toString());
-                SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                if(session.getAttribute("position").toString().contains("ADEALM")){
+                    SE.setDepartment("ADEALM");
+                } else {
+                    SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                }
 
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();

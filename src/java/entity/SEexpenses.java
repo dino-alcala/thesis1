@@ -21,6 +21,7 @@ public class SEexpenses {
     protected int seproposalID;
     protected double amountUsed;
     protected String datetime;
+    protected String updatedBy;
 
     public int getId() {
         return id;
@@ -85,6 +86,12 @@ public class SEexpenses {
     public void setDatetime(String datetime) {
         this.datetime = datetime;
     }
-    
-    
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
 }

@@ -176,36 +176,6 @@
                 }
             }
         </style>
-
-        <script type='text/javascript'>
-            function addRow() {
-                var count = document.getElementById("countattendees").value;
-                var table = document.getElementById("attendeestable");
-                var rows = document.getElementById("attendeestable").rows.length;
-                var row = table.insertRow(rows);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                cell1.innerHTML = "<textarea id='inputText' style='border-radius:0px' rows = '1' cols = '45%' name ='attendee" + count + "' required></textarea>";
-                cell2.innerHTML = "<textarea id='inputText' style='border-radius:0px' rows = '1' cols = '45%' name ='email" + count + "' required></textarea>";
-                cell3.innerHTML = "<td><select id='inputText' style='border-radius:0px;' name='type"+count+"'><option value='CAP'>CAP</option><option value='APSP'>APSP</option><option value='ASF'>ASF</option><option value='Faculty'>Faculty</option><option value='Admin'>Administrator</option><option value='Directhired'>Direct Hired Contractual</option><option value='Independent'>Independent Contractor</option><option value='External'>External Service Personnel</option><option value='Undergrad'>Undergraduate Student</option><option value='Grad'>Graduate Student</option><option value='International'>International Student</option><option value='Alumni'>Alumni</option><option value='Parent'>Parent</option></select></td>"
-                count++;
-                document.getElementById("countattendees").setAttribute('value', count);
-            }
-
-            function deleteRow() {
-                var count = document.getElementById("countattendees").value;
-                var rows = document.getElementById("attendeestable").rows.length;
-                if (rows - 1 > 0) {
-                    document.getElementById("attendeestable").deleteRow(rows - 1);
-                    count--;
-                    document.getElementById("countattendees").setAttribute('value', count);
-                } else {
-
-                }
-            }
-
-        </script>
     </head>
 
     <body>
@@ -335,30 +305,17 @@
                                     <tr>    
                                         <td><textarea readonly id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="attendee<%=x%>" required><%=attendees.get(x).getName()%></textarea></td>
                                         <td><textarea readonly id="inputText" style='border-radius:0px' rows = "1" cols = "45%" name ="email<%=x%>" required><%=attendees.get(x).getEmail()%></textarea></td>
-                                        <td><select readonly id="inputText" style='border-radius:0px;' name="type<%=x%>">
-                                                <option <%if (attendees.get(x).getType().equals("CAP")) { %> selected <%}%> value="CAP">CAP</option>
-                                                <option <%if (attendees.get(x).getType().equals("APSP")) { %> selected <%}%> value="APSP">APSP</option>
-                                                <option <%if (attendees.get(x).getType().equals("ASF")) { %> selected <%}%> value="ASF">ASF</option>
-                                                <option <%if (attendees.get(x).getType().equals("Faculty")) { %> selected <%}%> value="Faculty">Faculty</option>
-                                                <option <%if (attendees.get(x).getType().equals("Admin")) { %> selected <%}%> value="Admin">Administrator</option>
-                                                <option <%if (attendees.get(x).getType().equals("Directhired")) { %> selected <%}%> value="Directhired">Direct Hired Contractual</option>
-                                                <option <%if (attendees.get(x).getType().equals("Independent")) { %> selected <%}%> value="Independent">Independent Contractor</option>
-                                                <option <%if (attendees.get(x).getType().equals("External")) { %> selected <%}%> value="External">External Service Personnel</option>
-                                                <option <%if (attendees.get(x).getType().equals("Undergrad")) { %> selected <%}%> value="Undergrad">Undergraduate Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("Grad")) { %> selected <%}%> value="Grad">Graduate Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("International")) { %> selected <%}%> value="International">International Student</option>
-                                                <option <%if (attendees.get(x).getType().equals("Alumni")) { %> selected <%}%> value="Alumni">Alumni</option>
-                                                <option <%if (attendees.get(x).getType().equals("Parent")) { %> selected <%}%> value="Parent">Parent</option>
-                                            </select></td>
+                                        <td><textarea readonly name="type<%=x%>" id="inputText" style='border-radius:0px' rows = "1" cols = "45%" required><%=attendees.get(x).getType()%></textarea></td>
                                     </tr>
                                     <% }%>
                                 </table></center>
                             <br>
-                            <center><input type ="button" id="addRowButton" onclick ="addRow()" value="Add Row">
-                                <input style="background-color:red; border: red;" type ="button" id="deleteRowButton" onclick ="deleteRow()" value="Delete Row"/></center>
                         </fieldset>    
                         <br><br><br><br>
-                        <center><button class="button" type = "submit">Submit</button></center>
+                        <center>
+                            <legend>Page 4 of 4</legend>
+                            <button class="button" type = "submit">Submit</button>
+                        </center>
                     </div>
                 </form>
                 </div>

@@ -401,7 +401,8 @@
                                     <th style="width:30%">Goal</th>
                                     <th style="width:30%">Measure</th>
                                     <th style="width:30%">Target</th>
-                                    <th style="width:5%">Accomplishment</th>
+                                    <th style="width:5%">University Accomplishment</th>
+                                    <th style="width:5%">College Accomplishment</th>
                                     <th style="width:5%"></th>
                                 </tr>
                             </thead>
@@ -426,6 +427,9 @@
 
                                 <%if (z != 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
                                 <%if (z == 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                                
+                                <%if (z != 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                                <%if (z == 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
 
                                 <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>                                    
                                 <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttonuntrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
@@ -445,9 +449,16 @@
                             %>
                             <%if (z == 0) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
                             <%if (z != 0) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                            
+                            <%
+                                percent = TargetDAO.calculateTargetCollege(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals(), session.getAttribute("unit").toString());
+                            %>
+                            <%if (z == 0) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%} else if(percent == -1){%><td class="accomplishmentRed">Not Trackable</td><%}%><%}%>
+                            <%if (z != 0) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%} else if(percent == -1){%><td class="accomplishmentRed">Not Trackable</td><%}%><%}%>
 
                             <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
                             <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            
                             </tr>    
                             <% }
                                 }

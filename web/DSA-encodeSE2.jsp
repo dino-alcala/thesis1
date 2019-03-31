@@ -460,7 +460,7 @@
                                         <th>Subtotal</th>
                                     </tr>
                                     <tr>
-                                        <td><input id="inputText" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
+                                        <td><input id="seitem0" type='text' style="border-radius: 0px; margin-bottom:1%"  name ="seitem0" required></td>
                                         <td><input type='number' style='border-radius:0px; margin-bottom:1%' id="seunitcost0" name ="seunitcost0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sequantity0" name ="sequantity0" required></td>
                                         <td><input type='number' style="border-radius: 0px; margin-bottom:1%" id="sesubtotal0" name ="sesubtotal0" readonly value="0" readonly required></td>
@@ -568,7 +568,10 @@
                             <br><br>
                         </fieldset>
                         <br><br>
-                        <center><button type="submit" class="button">Submit</button></center>
+                        <center>
+                            <legend>Page 2 of 2</legend>
+                            <button type="submit" class="button">Submit</button>
+                        </center>
                     </form>
                 </div>
             </div>

@@ -86,6 +86,11 @@ public class createSEreport extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-updateUsedBudget.jsp");
                 dispatcher.forward(request, response);
+            } else if(request.getParameter("requestedit") != null){
+                request.setAttribute("seID", request.getParameter("requestedit"));
+                ServletContext context = getServletContext();
+                RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-requestSEEdit.jsp");
+                dispatcher.forward(request, response);
             }
         }
     }

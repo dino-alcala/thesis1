@@ -61,12 +61,21 @@ public class approveSE extends HttpServlet {
                 dispatcher.forward(request, response);
             }
             if (request.getParameter("approve") != null) {
-
+                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Department Chair")) {
-
-                    UserDAO.updateStep(2, Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.updateDeptUnitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
-                    UserDAO.approveDeptChair(Integer.parseInt(request.getParameter("approve")));
+                    if(SE.getDepartment().equals("ADEALM")){
+                        UserDAO.updateStep(3, Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updateDeptUnitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.approveDeptChair(Integer.parseInt(request.getParameter("approve")));
+                        
+                        UserDAO.updateExternalRemarks("N/A", Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.approveADEALM(Integer.parseInt(request.getParameter("approve")));
+                    } else {
+                        UserDAO.updateStep(2, Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updateDeptUnitRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.approveDeptChair(Integer.parseInt(request.getParameter("approve")));
+                    }
+                    
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Unit Chair")) {
@@ -106,7 +115,6 @@ public class approveSE extends HttpServlet {
                 Notification n = new Notification();
                 n.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + "\n" + sdf.format(dt));
                 
-                SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
                 SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
                 String input1 = new java.sql.Date(javaDate.getTime()).toString();

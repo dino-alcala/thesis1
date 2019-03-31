@@ -175,6 +175,19 @@
                 background-color: green;
                 border-color: green;
             }
+            
+            #buttonApproved:hover{
+                color: white;
+                background-color: green;
+                border-color: green;
+            }
+            
+            #buttonApproved{
+                color: green;
+                background-color: white;
+                border-color: green;
+                margin-top:25px;
+            }
         </style>
 
     </head>
@@ -290,9 +303,10 @@
                     <div class="container-fluid panels">
                         <div class="btn-group btn-group-justified">
                             <a type="button" class="btn btn-primary" id="buttonCompleted" href="MULTIPLE-socialEngagementProgramsList.jsp">Completed</a>
-                            <a href="MULTIPLE-pendingSEList.jsp" type="button" class="btn btn-primary" id="buttonPending" >Pending</a>
-                            <a href="MULTIPLE-cancelledSEList.jsp" type="button" class="btn btn-primary" id="buttonCancel" >Cancelled</a>
-                            <a href="MULTIPLE-rejectedSEList.jsp" type="button" class="btn btn-primary" id="buttonRejected" >Rejected</a>
+                            <a type="button" class="btn btn-primary" id="buttonApproved" href="MULTIPLE-approvedSEList.jsp">Approved</a>
+                            <a type="button" class="btn btn-primary" id="buttonPending" href="MULTIPLE-pendingSEList.jsp" >Pending</a>
+                            <a type="button" class="btn btn-primary" id="buttonCancel" href="MULTIPLE-cancelledSEList.jsp">Cancelled</a>
+                            <a type="button" class="btn btn-primary" id="buttonRejected" href="MULTIPLE-rejectedSEList.jsp">Rejected</a>
                         </div>
 
                         <br>

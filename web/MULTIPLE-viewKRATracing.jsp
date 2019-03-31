@@ -41,6 +41,17 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
+        <script type="text/javascript" class="init"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
+
         <style>
             .table{
                 border-bottom: 2px solid lightgray;
@@ -186,21 +197,23 @@
 
             .accomplishmentGreen{
                 text-align: center;
-                font-size: 25px;
+                font-size: 17px;
                 color: white;
                 background-color: green;
             }
+
             .accomplishmentYellow{
                 text-align: center;
-                font-size: 25px;
+                font-size: 17px;
                 color: white;
                 background-color: #FFBF00;
             }
+
             .accomplishmentRed{
                 text-align: center;
-                font-size: 25px;
+                font-size: 17px;
                 color: white;
-                background-color: red;
+                background-color: #cc0000;
             }
 
             @keyframes colorize {
@@ -358,26 +371,70 @@
                                 <th scope="col">Measure</th>
                                 <th scope="col">Target</th>
                                 <th scope="col">Accomplishment Against Target</th>
-                                <%if(m.getNumtypetarget().equals("Percent")){%><th scope="col">Accomplishment Against Total</th><%}%>
+                                <%if (m.getNumtypetarget().equals("Percent")) {%><th scope="col">Accomplishment Against Total</th><%}%>
+                                <%if(session.getAttribute("position").toString().contains("ADEALM")){%><th>Accomplishment for College</th><%}%>
                             </tr>
                         </thead>
                         <tbody>
-                            <%
-                                DecimalFormat percentage = new DecimalFormat("0.00");
-                                double percent = TargetDAO.calculateTarget(m, TargetDAO.getTotals());
+                            <tr>
+                                <%
+                                    DecimalFormat percentage = new DecimalFormat("0.00");
+                                    double percent = TargetDAO.calculateTarget(m, TargetDAO.getTotals());
 
-                                if (m.getNumtypetarget().equals("Percent")) {
-                                    percent = percent / m.getNumtarget() * 100;
-                                }
-                            %>
-                        <td><%=UserDAO.getGoalnameByID(m.getGoalID())%></td>
-                        <td><%=m.getDescription()%></td>
-                        <td><%if (m.getUntrackable() == 0) {%><%=m.getNumtarget()%><% if (m.getNumtypetarget().equals("Count")) { %>&nbsp; Count/s<%} else {%>%<%}%> of <%=m.getUnittarget()%> have undergone/conducted/contains a <%=m.getTypetarget()%> program/component<% if (m.getEngagingtarget().equals("N/A")) { %><%} else {%>engaging <%=m.getEngagingtarget()%><%}%><%} else {%>Not Trackable<%}%></td>
-                        <% if (percent >= 0 && percent <= 33) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent >= 34 && percent <= 66) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent >= 67 && percent <= 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 101) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">N/A</td><%}%>
-                        <%
-                            percent = TargetDAO.calculateTarget(m, TargetDAO.getTotals());
-                        %>
-                        <%if(m.getNumtypetarget().equals("Percent")){%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                                    if (m.getNumtypetarget().equals("Percent")) {
+                                        percent = percent / m.getNumtarget() * 100;
+                                    }
+                                %>
+                                <td><%=UserDAO.getGoalnameByID(m.getGoalID())%></td>
+                                <td><%=m.getDescription()%></td>
+                                <td><%if (m.getUntrackable() == 0) {%><%=m.getNumtarget()%><% if (m.getNumtypetarget().equals("Count")) { %>&nbsp; Count/s<%} else {%>%<%}%> of <%=m.getUnittarget()%> have undergone/conducted/contains a <%=m.getTypetarget()%> program/component<% if (m.getEngagingtarget().equals("N/A")) { %><%} else {%>engaging <%=m.getEngagingtarget()%><%}%><%} else {%>Not Trackable<%}%></td>
+                                <% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">N/A</td><%}%>
+                                <%
+                                    percent = TargetDAO.calculateTarget(m, TargetDAO.getTotals());
+                                %>
+                                <%if (m.getNumtypetarget().equals("Percent")) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%}%><%}%>
+                                <%if(session.getAttribute("position").toString().contains("ADEALM")){ percent = percent = TargetDAO.calculateTargetCollege(m, TargetDAO.getTotals(), session.getAttribute("unit").toString());;%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><%=percentage.format(percent)%>%<%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><%=percentage.format(percent)%>%<%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><%=percentage.format(percent)%>%<%} else if (percent >= 100) {%><td class="accomplishmentGreen">100%</td><%} else {%><td class="accomplishmentRed">N/A</td><%}%><%}%>
+                            </tr>
+                            <tr>
+                                <%
+                                    int num = 0;
+                                    if(m.getUnittarget().equals("Administrators")){
+                                        num = TargetDAO.getTotals().get(8);
+                                    } else if(m.getUnittarget().equals("Alumni")){
+                                        num = TargetDAO.getTotals().get(13);
+                                    } else if(m.getUnittarget().equals("APSP Employees")){
+                                        num = TargetDAO.getTotals().get(5);
+                                    } else if(m.getUnittarget().equals("ASF Employees")){
+                                        num = TargetDAO.getTotals().get(6);
+                                    } else if(m.getUnittarget().equals("CAP Employees")){
+                                        num = TargetDAO.getTotals().get(4);
+                                    } else if(m.getUnittarget().equals("Departments")){
+                                        num = TargetDAO.getTotals().get(12);
+                                    } else if(m.getUnittarget().equals("Faculty Employees")){
+                                        num = TargetDAO.getTotals().get(7);
+                                    } else if(m.getUnittarget().equals("Faculty Departments")){
+                                        num = TargetDAO.getTotals().get(2);
+                                    } else if(m.getUnittarget().equals("Graduate Students")){
+                                        num = TargetDAO.getTotals().get(9);
+                                    } else if(m.getUnittarget().equals("International Students")){
+                                        num = TargetDAO.getTotals().get(11);
+                                    } else if(m.getUnittarget().equals("No Specified Unit")){
+                                        num = TargetDAO.getTotals().get(0);
+                                    } else if(m.getUnittarget().equals("Staff")){
+                                        num = TargetDAO.getTotals().get(3);
+                                    } else if(m.getUnittarget().equals("Student Organizations")){
+                                        num = TargetDAO.getTotals().get(1);
+                                    } else if(m.getUnittarget().equals("Undergraduate Students")){
+                                        num = TargetDAO.getTotals().get(10);
+                                    }
+                                %>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><%if(num != 0 && m.getNumtypetarget().equals("Percent")){%><%=m.getNumtarget()%>% of <%if(m.getUnittarget().equals("No Specified Unit")){%>units<%}else{%><%=m.getUnittarget()%><%}%> = <%=num*m.getNumtarget()/100%><%} else if(num != 0 && m.getNumtypetarget().equals("Count")){%>Total number of <%if(m.getUnittarget().equals("No Specified Unit")){%>units<%}else{%><%=m.getUnittarget()%><%}%> = <%=num%><%}%></td>
+                                <%if(m.getNumtypetarget().equals("Percent")){%><td><%if(num!=0){%>Total number of <%=m.getUnittarget()%> = <%=num%><%}%></td><%}%>
+                                <%if(session.getAttribute("position").toString().contains("ADEALM")){%><td></td><%}%>
+                            </tr>
                         </tbody>
                     </table>
 
@@ -398,7 +455,7 @@
                                 FF.add(proposal);
                             }
                     %>
-                    <h2>Programs Contributed</h2>
+                    <h2>Programs Contributed (<%=TargetDAO.getPrograms(m).size()%>)</h2>
                     <form action="viewKRATracingFF" method="post">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    
                             <thead class="thead-dark" >
@@ -437,7 +494,7 @@
                                 SE.add(proposal);
                             }
                     %>
-                    <h2>Programs Contributed</h2>
+                    <h2>Programs Contributed (<%=TargetDAO.getPrograms(m).size()%>)</h2>
 
                     <form action="viewKRATracingSE" method="post">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">    

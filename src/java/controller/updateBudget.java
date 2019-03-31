@@ -19,6 +19,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 /**
@@ -41,7 +42,7 @@ public class updateBudget extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
 
             if (request.getParameter("SE") != null) {
                 UserDAO UserDAO = new UserDAO();
@@ -58,6 +59,7 @@ public class updateBudget extends HttpServlet {
                     SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
                     SEexpenses.setAmountUsed(Double.parseDouble(request.getParameter("seamountused" + i)));
                     SEexpenses.setSeproposalID(Integer.parseInt(request.getParameter("seID" + i)));
+                    SEexpenses.setUpdatedBy(UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString())) + " " + UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString())));
                     SEexpenses.setDatetime(sdf.format(dt));
                     expenses.add(SEexpenses);
                 }

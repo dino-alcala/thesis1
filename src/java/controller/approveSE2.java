@@ -96,6 +96,51 @@ public class approveSE2 extends HttpServlet {
                 n.setBody("Program: " + UserDAO.getProgramName(Integer.parseInt(request.getParameter("approve"))) + "\n"  + sdf.format(dt));
                 
                 SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getParameter("approve")));
+                
+                //to check if submitter is part of council
+                String notiftitle = "";
+                boolean checkproponent1 = false;
+                boolean checkproponent2 = false;
+                boolean checkproponent3 = false;
+                boolean checkproponent4 = false;
+                boolean checkproponent5 = false;
+                if(SE.getUnit().equals("Office of the Vice President for Lasallian Mission (OVPLM)")){
+                    UserDAO.voteMichael(Integer.parseInt(request.getParameter("approve")), 1);
+                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updatelmc1Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                    SE.setRemarktype1(request.getParameter("Comment"));
+                    notiftitle = "Proposal being approved by the LMC";
+                    checkproponent1 = true;
+                } else if(SE.getUnit().equals("Dean of Student Affairs (DSA)")){
+                    UserDAO.voteNelca(Integer.parseInt(request.getParameter("approve")), 1);
+                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updatelmc2Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                    SE.setRemarktype2("Comment");
+                    notiftitle = "Proposal being approved by the LMC";
+                    checkproponent2 = true;
+                } else if(SE.getUnit().equals("Laguna Campus Lasallian Mission (LCLM)")){
+                    UserDAO.voteMargarita(Integer.parseInt(request.getParameter("approve")), 1);
+                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updatelmc3Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                    SE.setRemarktype3(request.getParameter("Comment"));
+                    notiftitle = "Proposal being approved by the LMC";
+                    checkproponent3 = true;
+                } else if(SE.getUnit().equals("Lasallian Pastoral Office (LSPO)")){
+                    UserDAO.voteMargarita(Integer.parseInt(request.getParameter("approve")), 1);
+                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updatelmc3Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                    SE.setRemarktype3(request.getParameter("Comment"));
+                    notiftitle = "Proposal being approved by the LMC";
+                    checkproponent4 = true;
+                } else if(SE.getUnit().equals("Center for Social Concern and Action (COSCA)")){
+                    UserDAO.voteFritzie(Integer.parseInt(request.getParameter("approve")), 1);
+                    UserDAO.addVote(Integer.parseInt(request.getParameter("approve")));
+                    UserDAO.updatelmc5Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                    SE.setRemarktype5(request.getParameter("Comment"));
+                    notiftitle = "Proposal being approved by the LMC";
+                    checkproponent5 = true;
+                }
+                
                 SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
                 String input1 = new java.sql.Date(javaDate.getTime()).toString();
@@ -107,10 +152,10 @@ public class approveSE2 extends HttpServlet {
                     long diff = date2.getTime() - date1.getTime();
                     long days = (diff / (1000*60*60*24));
 
-                    if(days <= 14){
+                    if (days <= 14) {
                         n.setTitle("Urgent SE Proposal ready for Approval");
-                    } else if (days >= 15){
-                        n.setTitle("SE Proposal ready for Approval");
+                    } else if (days >= 15) {
+                        n.setTitle("Urgent SE Proposal ready for Approval");
                     }
                 } catch (ParseException ex) {
                     Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,27 +165,52 @@ public class approveSE2 extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("LSPO - Director"));
-                    n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    if(checkproponent4 == true){
+                        n.setTitle("Proposal being approved by the LMC");
+                        n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    } else {
+                        n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    }
                     n.setAttribute(SE.getId());
                     UserDAO.AddNotification(n);
                     
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("LCLM - Executive Director"));
-                    n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    if(checkproponent3 == true){
+                        n.setTitle("Proposal being approved by the LMC");
+                        n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    } else {
+                        n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    }
                     n.setAttribute(SE.getId());
                     UserDAO.AddNotification(n);
                     
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("COSCA - Director"));
-                    n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    if(checkproponent5 == true){
+                        n.setTitle("Proposal being approved by the LMC");
+                        n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    } else {
+                        n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    }
                     n.setAttribute(SE.getId());
                     UserDAO.AddNotification(n);
                     
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("DSA - Dean"));
-                    n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    if(checkproponent2 == true){
+                        n.setTitle("Proposal being approved by the LMC");
+                        n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    } else {
+                        n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    }
                     n.setAttribute(SE.getId());
                     UserDAO.AddNotification(n);
                     
                     n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
-                    n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    if(checkproponent1 == true){
+                        n.setTitle("Proposal being approved by the LMC");
+                        n.setRedirect("/MULTIPLE-viewPendingSEProgramDetails.jsp");
+                    } else {
+                        n.setRedirect("/MULTIPLE-approveSEProposal4.jsp");
+                    }
                     n.setAttribute(SE.getId());
                     UserDAO.AddNotification(n);
                 }

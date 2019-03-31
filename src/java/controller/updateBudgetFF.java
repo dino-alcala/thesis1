@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,7 +38,7 @@ public class updateBudgetFF extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
 
             if(request.getParameter("FF") != null){
                 UserDAO UserDAO = new UserDAO();
@@ -54,6 +55,7 @@ public class updateBudgetFF extends HttpServlet {
                     FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
                     FFexpenses.setAmountUsed(Double.parseDouble(request.getParameter("ffamountused" + i)));
                     FFexpenses.setFfproposalID(Integer.parseInt(request.getParameter("ffID" + i)));
+                    FFexpenses.setUpdatedBy(UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString())) + " " + UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString())));
                     FFexpenses.setDatetime(sdf.format(dt));
                     expenses.add(FFexpenses);
                 }

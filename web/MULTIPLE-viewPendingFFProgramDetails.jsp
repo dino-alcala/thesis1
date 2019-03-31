@@ -250,7 +250,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-
+                                <center><legend>Faith Formation Program</legend></center>
                                 <div class="panel panel-success ">
 
                                     <div class="card">

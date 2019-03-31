@@ -49,7 +49,12 @@ public class addFF extends HttpServlet {
             
             if (Double.parseDouble(request.getParameter("total")) == Double.parseDouble(request.getParameter("pbudget"))) {
                 FF.setUnit(session.getAttribute("unit").toString());
-                FF.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                if(session.getAttribute("position").toString().contains("ADEALM")){
+                    FF.setDepartment("ADEALM");
+                } else {
+                    FF.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
+                }
+                
 
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
                 java.util.Date javaDate = new java.util.Date();
@@ -74,6 +79,7 @@ public class addFF extends HttpServlet {
                     FFexpenses.setUnitcost(Double.parseDouble(request.getParameter("ffunitcost" + i)));
                     FFexpenses.setQuantity(Integer.parseInt(request.getParameter("ffquantity" + i)));
                     FFexpenses.setSubtotal(Double.parseDouble(request.getParameter("ffsubtotal" + i)));
+                    FFexpenses.setUpdatedBy("Not Updated");
                     FFexpenses.setDatetime("2001-01-01 00:00:00.0");
                     ffexpense.add(FFexpenses);
                 }

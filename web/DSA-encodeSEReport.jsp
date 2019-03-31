@@ -440,7 +440,10 @@
                         </fieldset>
 
                         <br><br>
-                        <center><button class="button" type="submit" name="seID" value="<%=SE.getId()%>">Next</button></center>
+                        <center>
+                            <legend>Page 1 of 4</legend>
+                            <button class="button" type="submit" name="seID" value="<%=SE.getId()%>">Next</button>
+                        </center>
                     </form>
                 </div>
             </div>

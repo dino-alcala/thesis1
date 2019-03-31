@@ -262,7 +262,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-
+                                <center><legend>FF Accomplishment Report</legend></center>
                                 <div class="card">
                                     <div class="card-body">
                                         <h3><%=FFreport.getProjectTitle()%></h3>

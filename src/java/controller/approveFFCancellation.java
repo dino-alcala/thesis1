@@ -76,6 +76,8 @@ public class approveFFCancellation extends HttpServlet {
                 n.setRedirect("/MULTIPLE-viewFFProgramDetails.jsp");
                 n.setAttribute(FF.getId());
                 UserDAO.AddNotification(n);
+                
+                request.setAttribute("cancelProgram", "The program has been cancelled! Php" + FF.getTotalAmount() + " returned");
             } else {
 
                 java.util.Date dt = new java.util.Date();
@@ -104,7 +106,7 @@ public class approveFFCancellation extends HttpServlet {
 
             UserDAO.updateStepFF(0, Integer.parseInt(request.getParameter("cancel")));
             ServletContext context = getServletContext();
-            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-faithFormationProgramsList.jsp");
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-ffProgramsForCancellation.jsp");
             dispatcher.forward(request, response);
         }
     }

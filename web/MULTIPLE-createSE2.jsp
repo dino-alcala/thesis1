@@ -124,8 +124,8 @@
             legend, h3, #inputText, #classification, option, select, value, td, th, #seunitcost0, #sequantity0, #sesubtotal0, #total, #countexpenses{
                 font-family: "Arial", Helvetica, sans-serif;
             }
-
-
+            
+            
             @keyframes colorize {
                 0% {
                     -webkit-filter: grayscale(100%);
@@ -146,8 +146,8 @@
                 var row = table.insertRow(rows);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '1' cols = '50%' name ='responsiblename" + count + "' required></textarea></td>";
-                cell2.innerHTML = "<td><textarea style='border-radius: 0px;' rows = '1' cols = '50%' name ='responsibleemail" + count + "' required></textarea></td>";
+                cell1.innerHTML = "<td><textarea id='inputText' style='border-radius: 0px;' rows = '1' cols = '50%' name ='responsiblename" + count + "' required></textarea></td>";
+                cell2.innerHTML = "<td><textarea id='inputText' style='border-radius: 0px;' rows = '1' cols = '50%' name ='responsibleemail" + count + "' required></textarea></td>";
                 count++;
                 document.getElementById("countresponsible").setAttribute('value', count);
             }
@@ -171,11 +171,11 @@
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
-                cell1.innerHTML = "<td><input style='border-radius: 0px;' type ='date' name='date" + count + "' required/></td>";
-                cell2.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='activity" + count + "' required></textarea>";
-                cell3.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='time" + count + "' required></textarea>";
-                cell4.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='timeend" + count + "' required></textarea>";
-                cell5.innerHTML = "<textarea style='border-radius: 0px;' rows = '2' cols = '25%' name ='venue" + count + "' required></textarea>";
+                cell1.innerHTML = "<td><input id='inputText' style='border-radius: 0px;' type ='date' name='date" + count + "' required/></td>";
+                cell2.innerHTML = "<textarea id='inputText' style='border-radius: 0px;' rows = '2' cols = '25%' name ='activity" + count + "' required></textarea>";
+                cell3.innerHTML = "<textarea id='inputText' style='border-radius: 0px;' rows = '2' cols = '25%' name ='time" + count + "' required></textarea>";
+                cell4.innerHTML = "<textarea id='inputText' style='border-radius: 0px;' rows = '2' cols = '25%' name ='timeend" + count + "' required></textarea>";
+                cell5.innerHTML = "<textarea id='inputText' style='border-radius: 0px;' rows = '2' cols = '25%' name ='venue" + count + "' required></textarea>";
                 count++;
                 document.getElementById("countproject").setAttribute('value', count);
             }
@@ -539,7 +539,10 @@
                             <br><br>
                         </fieldset>
                         <br><br>
-                        <center><button style="width:10%" type="submit" class="button">Submit</button></center>
+                        <center>
+                            <legend>Page 2 of 2</legend>
+                            <button style="width:10%" type="submit" class="button">Submit</button>
+                        </center>
                     </form>
                 </div>
             </div>

@@ -78,6 +78,7 @@ public class addSE2 extends HttpServlet {
                     SEexpenses.setUnitcost(Double.parseDouble(request.getParameter("seunitcost" + i)));
                     SEexpenses.setQuantity(Integer.parseInt(request.getParameter("sequantity" + i)));
                     SEexpenses.setSubtotal(Double.parseDouble(request.getParameter("sesubtotal" + i)));
+                    SEexpenses.setUpdatedBy("Not Updated");
                     SEexpenses.setDatetime("2001-01-01 00:00:00.0");
                     seexpense.add(SEexpenses);
                 }
@@ -93,8 +94,12 @@ public class addSE2 extends HttpServlet {
                 SE.setTotalPopulationGraduate(Integer.parseInt(request.getParameter("segraduatetotal")));
                 SE.setExpectedGraduate(Integer.parseInt(request.getParameter("segraduateexpected")));
                 SE.setUnittype(UserDAO.getUnitTypeByName(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))));
-                SE.setStep(1);
-
+                if(session.getAttribute("position").toString().contains("ADEALM")){
+                    SE.setStep(3);
+                } else {
+                    SE.setStep(1);
+                }
+                
                 ArrayList<SEresponsible> seresponsible = new ArrayList();
 
                 for (int i = 0; i < Integer.parseInt(request.getParameter("countresponsible")); i++) {
@@ -265,7 +270,7 @@ public class addSE2 extends HttpServlet {
                     } catch (ParseException ex) {
                         Logger.getLogger(addSE2.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
+                    
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/ADEALM-home.jsp");
                     dispatcher.forward(request, response);
