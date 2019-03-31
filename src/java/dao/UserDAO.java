@@ -12872,6 +12872,54 @@ public class UserDAO {
         }
         return count;
     }
+    
+    public double averagesl11(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT sl11 FROM seevaluation WHERE sl11 = 1 AND seproposalID = ? OR sl11 = 2 AND seproposalID = ? OR sl11 = 3 AND seproposalID = ? OR sl11 = 4 AND seproposalID = ? OR sl11 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("sl11");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
 
     public int countsl12(int seID, int answer) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();

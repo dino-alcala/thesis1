@@ -58,6 +58,7 @@
                 border-bottom: 2px solid green;
                 padding-bottom: 5px;
                 margin-bottom: 25px;
+                font-family: "Arial";
             }
 
             .kras{

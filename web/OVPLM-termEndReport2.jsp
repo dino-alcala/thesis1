@@ -759,16 +759,16 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
-                                <canvas id="chartKra"  width="200" height="80" style="margin-left:80px"></canvas>
+                                <canvas id="chartKra"  width="100" height="60" style="margin-left:80px"></canvas>
                             </div>
                         </div>
                         <script>
                             Chart.defaults.global.legend.display = true;
                             var ctx = document.getElementById('chartKra').getContext('2d');
                             var chartKra = new Chart(ctx, {
-                            type: 'horizontalBar',
+                            type: 'bar',
                                     data: {
-                                    labels: [<%for (int i = 0; i < kra.size(); i++) {%>"<%=kra.get(i).getName()%>",<%}%>],
+                                    labels: [<%for (int i = 0; i < kra.size(); i++) {%>"<%=kra.get(i).getName().substring(0, 5)%>",<%}%>],
                                             datasets: [
                                             {
                                             label: "Total Programs",
@@ -796,9 +796,10 @@
                                                     }
                                             }],
                                                     xAxes: [{
+                                                    barThickness: 70,
+                                                    barPercentage: 0.1,
                                                     ticks: {
-                                                    beginAtZero: true,
-                                                            fontSize: 20
+                                                    fontSize: 16
                                                     }
                                                     }]
                                             },
@@ -850,7 +851,7 @@
                         <div class="card bg-white">
                             <div class="card-body text-center">
                                 <div id="canvas-holder" style="width:50%" >
-                                    <canvas id="chartUP" style="margin-left:260px"></canvas>
+                                    <canvas id="chartUP" width="110" height="90" style="margin-left:260px"></canvas>
                                 </div>
                                 <script>
                                     Chart.defaults.global.legend.display = true;
@@ -897,7 +898,7 @@
                     <div class="card-deck">
                         <div class="card chartscardslong">
                             <div id="canvas-holder" style="width:75%">
-                                <canvas id="chartSE"  width="200" height="150" style="margin-left:115px"></canvas>
+                                <canvas id="chartSE"  width="100" height="60" style="margin-left:80px"></canvas>
                             </div>
                         </div>
                         <script>
@@ -988,7 +989,7 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%">
-                                <canvas id="chartFF"  width="200" height="75" style="margin-left:115px"></canvas>
+                                <canvas id="chartFF"  width="100" height="60" style="margin-left:80px"></canvas>
                             </div>
                         </div>
                         <script>
@@ -1073,7 +1074,7 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
-                                <canvas id="chartU"  width="100" height="90" style="margin-left:115px"></canvas>
+                                <canvas id="chartU"  width="110" height="100" style="margin-left:80px"></canvas>
                             </div>
                         </div>
                         <script>
@@ -1144,7 +1145,7 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
-                                <canvas id="chartU1"  width="100" height="90" style="margin-left:115px"></canvas>
+                                <canvas id="chartU1"  width="110" height="100" style="margin-left:80px"></canvas>
                             </div>
                         </div>
                         <script>

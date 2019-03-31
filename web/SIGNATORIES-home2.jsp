@@ -98,6 +98,7 @@
                 border-bottom: 2px solid green;
                 padding-bottom: 7px;
                 margin-bottom: 25px;
+                font-family: Arial;
             }
 
             .table{

@@ -60,13 +60,13 @@
             }
 
             h2{
-                font-size: 25px;
+                font-size: 22px;
                 text-align: left;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
                 padding-bottom: 5px;
                 margin-bottom: 25px;
-                font-family: 'Roboto', sans-serif;
+                font-family: Arial;
             }
 
             .table{
@@ -84,13 +84,13 @@
             }
 
             .kraheading{
-                font-size: 50px;
+                font-size: 25px;
                 text-align: center;
                 margin-top: 15px;
                 border-bottom: 2px solid green;
                 padding-bottom: 5px;
                 margin-bottom: 25px;
-                font-family: 'Roboto', sans-serif;
+                font-family: Arial;
             }
 
             .button {

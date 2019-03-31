@@ -179,6 +179,7 @@
                                 <h3>1.1. Service-Learning is relevant to the course I am taking</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ11"  width="100" height="50" style="margin-left:20px"></canvas>
+                                    <center><legend>Average Score: <%=UserDAO.averagesl11(SE.getId())%></legend></center>
                                 </div>
                             </div>
                             <div class="card chartscardslong">

@@ -166,9 +166,6 @@
     </head>
 
     <body>
-    <center><h1>FAITH FORMATION - EVALUATION</h1></center>
-
-    <form action = "addFFevaluation" method="post">
         <%
             UserDAO UserDAO = new UserDAO();
             FF FF = new FF();
@@ -177,6 +174,11 @@
             FFreport FFreport = new FFreport();
             FFreport = UserDAO.retrieveFFreportByFFID(Integer.parseInt(request.getAttribute("ffID").toString()));
         %>
+    <center><h1>FAITH FORMATION - EVALUATION</h1></center>
+    <center><h1><%=FF.getProjectName()%></h1></center>
+
+    <form action = "addFFevaluation" method="post">
+        
         <div class="form-style-5">
 
             <fieldset>

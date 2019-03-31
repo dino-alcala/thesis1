@@ -122,6 +122,10 @@
                 padding-bottom: 10px;
                 margin-bottom: 25px;
             }
+            
+            h4{
+                font-family: Arial;
+            }
 
             .table{
                 border-bottom: 2px solid lightgray;

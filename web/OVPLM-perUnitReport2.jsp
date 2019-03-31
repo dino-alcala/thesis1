@@ -912,7 +912,6 @@
                                                             bodyFontSize: 20
                                                     }
                                             }
-
                                     });
                                 </script> 
   
@@ -955,16 +954,15 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
-                                <canvas id="chartU"  width="100" height="60" style="margin-left:115px"></canvas>
+                                <canvas id="chartU" width="100" height="60" style="margin-left:80px"></canvas>
                             </div>
                         </div>
-                        <% System.out.println(request.getAttribute("unit")); %>
                         <script>
                             <%
                                 ArrayList<Department> departments = new ArrayList();
                                 departments = UserDAO.getDepartmentsByUnit(request.getAttribute("unit").toString());
                             %>
-                            Chart.defaults.global.legend.display = true;
+                            Chart.defaults.global.legend.display = false;
                             var ctx = document.getElementById('chartU').getContext('2d');
                             var chartU = new Chart(ctx, {
                             type: 'bar',
@@ -998,12 +996,15 @@
                                             scales: {
                                             yAxes: [{
                                             ticks: {
-                                            fontSize: 16
+                                            beginAtZero: false,
+                                                    fontSize: 16
                                             }
                                             }],
                                                     xAxes: [{
+                                                    barThickness: 70,
+                                                    barPercentage: 0.1,
                                                     ticks: {
-                                                            fontSize: 16
+                                                    fontSize: 16
                                                     }
                                                     }]
                                             },
@@ -1097,7 +1098,7 @@
                     <div class="card-deck">
                         <div class="card chartscards">
                             <div id="canvas-holder" style="width:75%;">
-                                <canvas id="chartPUPkras"  width="80" height="60" style="margin-left:80px"></canvas>
+                                <canvas id="chartPUPkras"  width="100" height="60" style="margin-left:80px"></canvas>
                             </div>
                         </div>
                         <script>
@@ -1116,7 +1117,12 @@
                                             ],
                                     },
                                     options: {
-                                    legend: {display: true},
+                                    legend: {
+                                    display: true,
+                                            labels: {
+                                            fontSize: 16
+                                            }
+                                    },
                                             title: {
                                             display: true,
                                             },

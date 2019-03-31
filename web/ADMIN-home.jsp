@@ -124,6 +124,10 @@
                 font-size:14px;
             }
             
+            h3{
+                font-family: Arial;
+            }
+            
             .navbar{
                 height:8%;
             }

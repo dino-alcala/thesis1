@@ -53,6 +53,10 @@
                 border-bottom: 2px solid lightgray;
                 margin-bottom: 30px;
             }
+            
+            #select{
+                font-family: Arial;
+            }
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -76,6 +80,7 @@
                 color: #222;
                 font-weight: 600;
                 line-height: 1.3;
+                font-size: 25px;
             }
             h2 {
                 margin-top: 1.3em;
@@ -89,6 +94,11 @@
             th {
                 background-color: green;
                 color: white;
+            }
+            p{
+                font-size: 20px;
+                font-family: Arial;
+                    
             }
             table {
                 border-collapse: collapse;
@@ -437,11 +447,11 @@
                             java.sql.Date Datejava = new java.sql.Date(javaDate.getTime());
                         %>
                         <fieldset>
-                            <legend>Date: <input style="border-radius:0%" type = "date" rows = "1" cols = "1%" name ="date" value="<%=Datejava%>"/></legend>
+                            <legend id="select">Date: <input style="border-radius:0%" type = "date" rows = "1" cols = "1%" name ="date" value="<%=Datejava%>"/></legend>
                         </fieldset>
 
                         <fieldset>
-                            <legend>KRA Name: <textarea style="border-radius:0%"  rows = "1" cols = "1%" name ="kraname"></textarea></legend>
+                            <legend id="select">KRA Name: <textarea style="border-radius:0%"  rows = "1" cols = "1%" name ="kraname"></textarea></legend>
                             <br><br>
                         </fieldset>
 
@@ -449,21 +459,21 @@
                             <h4>Goal 1: </h4><textarea required style='border-radius:0px;' rows = "1" cols = "1%" name ="goalname1"></textarea>
                             <center><table style = "width:100%" id="goaltable">
                                     <tr>
-                                        <th style="width:15%">Measure</th>
-                                        <th style="width:40%">Description</th>
-                                        <th style="width:40%">Target</th>
+                                        <th id="select" style="width:15%">Measure</th>
+                                        <th id="select" style="width:40%">Description</th>
+                                        <th id="select" style="width:40%">Target</th>
                                     </tr>
                                     <tr>    
-                                        <td><textarea required placeholder="KRA3-G1-M1" style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1measure1"></textarea></td>
-                                        <td><textarea required placeholder="Description" style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1description1"></textarea></td>
+                                        <td><textarea id="select" required placeholder="KRA3-G1-M1" style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1measure1"></textarea></td>
+                                        <td><textarea id="select" required placeholder="Description" style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1description1"></textarea></td>
                                         <td>
                                             <br><input style="width:15%; border-radius:0%" type="number" value="0" name="goal1numtarget1"/>&nbsp;
-                                            <select style="width:20%; border-radius:0%" name="goal1numtypetarget1">
+                                            <select id="select" style="width:20%; border-radius:0%" name="goal1numtypetarget1">
                                                 <option value="Count">Count/s</option>
                                                 <option value="Percent">Percent</option>
                                             </select>
                                             of
-                                            <select style="width:40%; border-radius:0%" name="goal1unittarget1">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1unittarget1">
                                                 <option value="Administrators">Administrators</option>
                                                 <option value="Alumni">Alumni</option>
                                                 <option value="APSP Employees">APSP</option>
@@ -482,7 +492,7 @@
                                                 <option value="Undergraduate Students">Undergraduate Students</option>
                                             </select><br><br>
                                             have undergone/conducted/contains a 
-                                            <select style="width:40%; border-radius:0%" name="goal1typetarget1">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1typetarget1">
                                                 <option value="Faith Formation">Faith Formation</option>
                                                 <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
                                                 <option value="Service-Learning">Service-Learning</option>
@@ -491,7 +501,7 @@
                                                 <option value="Sustainable SE">Sustainable SE</option>
                                             </select><br><br>
                                             program/component engaging
-                                            <select style="width:40%; border-radius:0%" name="goal1engaging1">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1engaging1">
                                                 <option value="Alumni">Alumni</option>
                                                 <option value="International Communities">International Communities</option>
                                                 <option value="International Students">International Students</option>
@@ -506,12 +516,12 @@
                                         <td><textarea required style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1description2"></textarea></td>
                                         <td>
                                             <br><input style="width:15%; border-radius:0%" type="number" value="0" name="goal1numtarget2"/>&nbsp;
-                                            <select style="width:20%; border-radius:0%" name="goal1numtypetarget2">
+                                            <select id="select" style="width:20%; border-radius:0%" name="goal1numtypetarget2">
                                                 <option value="Count">Count/s</option>
                                                 <option value="Percent">Percent</option>
                                             </select>
                                             of
-                                            <select style="width:40%; border-radius:0%" name="goal1unittarget2">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1unittarget2">
                                                 <option value="Administrators">Administrators</option>
                                                 <option value="Alumni">Alumni</option>
                                                 <option value="APSP Employees">APSP</option>
@@ -530,7 +540,7 @@
                                                 <option value="Undergraduate Students">Undergraduate Students</option>
                                             </select><br><br>
                                             have undergone/conducted/contains a 
-                                            <select style="width:40%; border-radius:0%" name="goal1typetarget2">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1typetarget2">
                                                 <option value="Faith Formation">Faith Formation</option>
                                                 <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
                                                 <option value="Service-Learning">Service-Learning</option>
@@ -539,7 +549,7 @@
                                                 <option value="Sustainable SE">Sustainable SE</option>
                                             </select><br><br>
                                             program/component engaging
-                                            <select style="width:40%; border-radius:0%" name="goal1engaging2">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1engaging2">
                                                 <option value="Alumni">Alumni</option>
                                                 <option value="International Communities">International Communities</option>
                                                 <option value="International Students">International Students</option>
@@ -554,12 +564,12 @@
                                         <td><textarea required style='border-radius:0px;' rows = "2" cols = "50%" name ="goal1description3"></textarea></td>
                                         <td>
                                             <br><input style="width:15%; border-radius:0%" type="number" value="0" name="goal1numtarget3"/>&nbsp;
-                                            <select style="width:20%; border-radius:0%" name="goal1numtypetarget3">
+                                            <select id="select" style="width:20%; border-radius:0%" name="goal1numtypetarget3">
                                                 <option value="Count">Count/s</option>
                                                 <option value="Percent">Percent</option>
                                             </select>
                                             of
-                                            <select style="width:40%; border-radius:0%" name="goal1unittarget3">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1unittarget3">
                                                 <option value="Administrators">Administrators</option>
                                                 <option value="Alumni">Alumni</option>
                                                 <option value="APSP Employees">APSP</option>
@@ -578,7 +588,7 @@
                                                 <option value="Undergraduate Students">Undergraduate Students</option>
                                             </select><br><br>
                                             have undergone/conducted/contains a 
-                                            <select style="width:40%; border-radius:0%" name="goal1typetarget3">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1typetarget3">
                                                 <option value="Faith Formation">Faith Formation</option>
                                                 <option value="Interdisciplinary Fora">Interdisciplinary Fora</option>
                                                 <option value="Service-Learning">Service-Learning</option>
@@ -587,7 +597,7 @@
                                                 <option value="Sustainable SE">Sustainable SE</option>
                                             </select><br><br>
                                             program/component engaging
-                                            <select style="width:40%; border-radius:0%" name="goal1engaging3">
+                                            <select id="select" style="width:40%; border-radius:0%" name="goal1engaging3">
                                                 <option value="Alumni">Alumni</option>
                                                 <option value="International Communities">International Communities</option>
                                                 <option value="International Students">International Students</option>

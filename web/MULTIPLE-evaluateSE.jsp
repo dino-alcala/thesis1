@@ -4,6 +4,8 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="entity.SE"%>
+<%@page import="dao.UserDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -123,8 +125,12 @@
     </head>
 
     <body>
+        <%
+            UserDAO UserDAO = new UserDAO();
+            SE SE = UserDAO.retrieveSEBySEID(Integer.parseInt(request.getAttribute("seID").toString()));
+        %>
     <center><h1>STUDENT / EMPLOYEE EVALUATION OF SOCIAL-ENGAGEMENT EXPERIENCE / ACTIVITY</h1></center>
-
+    <center><h1><%=SE.getName()%></h1></center>
 
     <div class="form-style-5">
         <form action = "addSEevaluation" method="post">
