@@ -64,7 +64,8 @@ public class approveFF extends HttpServlet {
             }
 
             if (request.getParameter("approve") != null) {
-
+                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
+                
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("ADLM")) {
                     UserDAO.updateStepFF(2, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.approveADLM(Integer.parseInt(request.getParameter("approve")));
@@ -87,15 +88,25 @@ public class approveFF extends HttpServlet {
                     UserDAO.updateStepFF(4, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.approveFFDean(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateFFDeanRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    
+                    if(FF.getUnit().equals("Lasallian Pastoral Office (LSPO)")){
+                        UserDAO.updateStepFF(5, Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.approveLSPO(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updatelsporemarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                    }
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                     UserDAO.updateStepFF(4, Integer.parseInt(request.getParameter("approve")));
                     UserDAO.approveDirector(Integer.parseInt(request.getParameter("approve")));
                     UserDAO.updateDirectorRemarks(request.getParameter("remarks1"), Integer.parseInt(request.getParameter("approve")));
+                    
+                    if(FF.getUnit().equals("Lasallian Pastoral Office (LSPO)")){
+                        UserDAO.updateStepFF(5, Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.approveLSPO(Integer.parseInt(request.getParameter("approve")));
+                        UserDAO.updatelsporemarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                    }
                 }
-                
-                FF FF = UserDAO.retrieveFFByFFID(Integer.parseInt(request.getParameter("approve")));
                 
                 java.util.Date dt = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -153,13 +164,23 @@ public class approveFF extends HttpServlet {
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
                     n.setUserID(UserDAO.getUserIDforNotifsJames());
-                    n.setRedirect("/MULTIPLE-approveFFProposal3.jsp");
+                    if(FF.getUnit().equals("Lasallian Pastoral Office (LSPO)")){
+                        n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                        n.setBody("Proposal being approved by the LMC");
+                    } else {
+                        n.setRedirect("/MULTIPLE-approveFFProposal3.jsp");
+                    }
                     n.setAttribute(FF.getId());
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
                     n.setUserID(UserDAO.getUserIDforNotifsJames());
-                    n.setRedirect("/MULTIPLE-approveFFProposal3.jsp");
+                    if(FF.getUnit().equals("Lasallian Pastoral Office (LSPO)")){
+                        n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                        n.setBody("Proposal being approved by the LMC");
+                    } else {
+                        n.setRedirect("/MULTIPLE-approveFFProposal3.jsp");
+                    }
                     n.setAttribute(FF.getId());
                 }
 
@@ -181,11 +202,19 @@ public class approveFF extends HttpServlet {
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Dean")) {
-                    n2.setBody("Your proposal has been approved by the Dean! It will now be taken to Sir James." + "\n"  + sdf.format(dt));
+                    if(FF.getUnit().equals("Lasallian Pastoral Office (LSPO)")){
+                        n2.setBody("Proposal being approved by the LMC." + "\n"  + sdf.format(dt));
+                    } else {
+                        n2.setBody("Your proposal has been approved by the Dean! It will now be taken to Sir James." + "\n"  + sdf.format(dt));
+                    }
                 }
 
                 if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString()))) && session.getAttribute("position").toString().contains("Director")) {
-                    n2.setBody("Your proposal has been approved by the Dean! It will now be taken to the LSPO." + "\n"  + sdf.format(dt));
+                    if(FF.getUnit().equals("Lasallian Pastoral Office (LSPO)")){
+                        n2.setBody("Proposal being approved by the LMC." + "\n"  + sdf.format(dt));
+                    } else {
+                        n2.setBody("Your proposal has been approved by the Dean! It will now be taken to the LSPO." + "\n"  + sdf.format(dt));
+                    }
                 }
 
                 n2.setUserID(UserDAO.getFFOwner(Integer.parseInt(request.getParameter("approve"))));

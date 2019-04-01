@@ -66,7 +66,7 @@
                 OvplmDAO OvplmDAO = new OvplmDAO();
                 TargetDAO TargetDAO = new TargetDAO();
                 ArrayList<KRA> kra = new ArrayList();
-                kra = TargetDAO.retrieveTermEndSortedKRA(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                kra = TargetDAO.retrieveTermEndSortedKRA2(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
                 //kra = UserDAO3.insertPercentage(kra);
                 ArrayList<KRA> kraslist = new ArrayList();
             %>
@@ -752,7 +752,7 @@
                 %>
                 <div class="container-fluid panels">
 
-                    <h2>KRAs Targeted (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                    <h2>KRAs Targeted (# of Programs per KRA) (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
 
 
 

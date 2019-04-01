@@ -996,7 +996,7 @@
                                             scales: {
                                             yAxes: [{
                                             ticks: {
-                                            beginAtZero: false,
+                                            beginAtZero: true,
                                                     fontSize: 16
                                             }
                                             }],
@@ -1093,7 +1093,7 @@
                 <!--- KRAs -->
                 <div class="container-fluid kras">
 
-                    <h2>KRAs Targeted (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                    <h2>KRAs Targeted (# of Programs per KRA) (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
 
                     <div class="card-deck">
                         <div class="card chartscards">
@@ -1129,7 +1129,7 @@
                                             scales: {
                                             yAxes: [{
                                             ticks: {
-                                            beginAtZero: false,
+                                            beginAtZero: true,
                                                     fontSize: 16
                                             }
                                             }],

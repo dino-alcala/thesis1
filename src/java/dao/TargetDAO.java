@@ -13516,6 +13516,81 @@ public class TargetDAO {
 
         return kra2;
     }
+    
+    public ArrayList<KRA> retrieveTermEndSortedKRA2(Date start, Date end) {
+        OvplmDAO OvplmDAO = new OvplmDAO();
+        UserDAO UserDAO = new UserDAO();
+
+        ArrayList<KRA> kra = OvplmDAO.retrieveKRA();
+        ArrayList<KRA> kra2 = new ArrayList();
+        ArrayList<Goal> goals = new ArrayList();
+        ArrayList<Measure> measures = new ArrayList();
+        
+        for(int a = 0 ; a < kra.size() ; a++){// kra = a
+            ArrayList<SE> seprograms = new ArrayList();
+            ArrayList<FF> ffprograms = new ArrayList();
+            int count = 0;
+
+            goals = kra.get(a).getGoals();
+            System.out.println("KRA: " + kra.get(a).getName());
+            for (int b = 0; b < goals.size(); b++) {// goals = b
+                measures = goals.get(b).getMeasures();
+                for (int c = 0; c < measures.size(); c++) { //measures = c
+                    for (int d = 0; d < this.getPrograms(measures.get(c)).size(); d++) {
+                        if (measures.get(c).getTypetarget().equals("Faith Formation")) {
+                            FF proposal = UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d));
+                            if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
+                                    || proposal.getActualDate().equals(end) && proposal.getActualDate().after(start) || proposal.getActualDate().before(end) && proposal.getActualDate().equals(start)) {
+                                ffprograms.add(UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d)));
+                            }
+                        } else {
+                            SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d));
+                            if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
+                                    || proposal.getActualDate().equals(end) && proposal.getActualDate().after(start) || proposal.getActualDate().before(end) && proposal.getActualDate().equals(start)) {
+                                seprograms.add(UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d)));
+                            }
+                        }
+                    }
+                }
+            }
+
+            ArrayList<Integer> seprogramsid = new ArrayList();
+            ArrayList<Integer> ffprogramsid = new ArrayList();
+            ArrayList<Integer> seprogramsid2 = new ArrayList();
+            ArrayList<Integer> ffprogramsid2 = new ArrayList();
+            
+            if(!ffprograms.isEmpty()){
+                for (int x = 0; x < ffprograms.size(); x++) {
+                    ffprogramsid.add(ffprograms.get(x).getId());
+                }
+
+                for (int x = 0; x < ffprogramsid.size(); x++) {
+                    if (!ffprogramsid2.contains(ffprogramsid.get(x))) {
+                        ffprogramsid2.add(ffprogramsid.get(x));
+                    }
+                }
+            }
+            
+            if(!seprograms.isEmpty()){
+                for (int x = 0; x < seprograms.size(); x++) {
+                    seprogramsid.add(seprograms.get(x).getId());
+                }
+
+                for (int x = 0; x < seprogramsid.size(); x++) {
+                    if (!seprogramsid2.contains(seprogramsid.get(x))) {
+                        seprogramsid2.add(seprogramsid.get(x));
+                    }
+                }
+            }
+                
+            KRA newkra = kra.get(a);
+            count = ffprogramsid2.size() + seprogramsid2.size();
+            newkra.setTotal(count);
+            kra2.add(newkra);
+        }
+
+        return kra2;
+    }
 
     public ArrayList<Measure> retrieveMeasuresImplemented(Date start, Date end) {
         OvplmDAO OvplmDAO = new OvplmDAO();
@@ -13674,11 +13749,13 @@ public class TargetDAO {
         ArrayList<KRA> kra2 = new ArrayList();
         ArrayList<Goal> goals = new ArrayList();
         ArrayList<Measure> measures = new ArrayList();
-        ArrayList<SE> seprograms = new ArrayList();
-        ArrayList<FF> ffprograms = new ArrayList();
-        int count = 0;
         
+        System.out.println("START HERE");
         for(int a = 0 ; a < kra.size() ; a++){// kra = a
+            ArrayList<SE> seprograms = new ArrayList();
+            ArrayList<FF> ffprograms = new ArrayList();
+            int count = 0;
+            
             goals = kra.get(a).getGoals();
             System.out.println("KRA: " + kra.get(a).getName());
             for(int b = 0 ; b < goals.size() ; b++){// goals = b
@@ -13686,89 +13763,60 @@ public class TargetDAO {
                 for(int c = 0 ; c < measures.size() ; c++){ //measures = c
                     for(int d = 0 ; d < this.getPrograms(measures.get(c)).size() ; d++){
                         if(measures.get(c).getTypetarget().equals("Faith Formation")){
-                            if(UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d)).getUnit().equals(unit)){
-                                ffprograms.add(UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d)));
+                            FF proposal = UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d));
+                            if(proposal.getUnit().equals(unit)){
+                                if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
+                                    || proposal.getActualDate().equals(end) && proposal.getActualDate().after(start) || proposal.getActualDate().before(end) && proposal.getActualDate().equals(start)) {
+                                    ffprograms.add(UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d)));
+                                }
                             }
                         } else {
-                            if(UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d)).getUnit().equals(unit)){
-                                seprograms.add(UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d)));
+                            SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d));
+                            if(proposal.getUnit().equals(unit)){
+                                if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
+                                    || proposal.getActualDate().equals(end) && proposal.getActualDate().after(start) || proposal.getActualDate().before(end) && proposal.getActualDate().equals(start)) {
+                                    seprograms.add(UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d)));
+                                }
                             }
                         }
                     }
                 }
             }
+    
+            ArrayList<Integer> seprogramsid = new ArrayList();
+            ArrayList<Integer> ffprogramsid = new ArrayList();
+            ArrayList<Integer> seprogramsid2 = new ArrayList();
+            ArrayList<Integer> ffprogramsid2 = new ArrayList();
             
-            ArrayList<SE> seprograms2 = new ArrayList();
-            ArrayList<FF> ffprograms2 = new ArrayList();    
-            
-            for(int x1 = 0 ; x1 < ffprograms.size() ; x1++){
-                if (x1 == 0) {
-                    ffprograms2.add(ffprograms.get(x1));
+            if(!ffprograms.isEmpty()){
+                for (int x = 0; x < ffprograms.size(); x++) {
+                    ffprogramsid.add(ffprograms.get(x).getId());
                 }
+
+                for (int x = 0; x < ffprogramsid.size(); x++) {
+                    if (!ffprogramsid2.contains(ffprogramsid.get(x))) {
+                        ffprogramsid2.add(ffprogramsid.get(x));
+                    }
+                }
+            }
+            
+            if(!seprograms.isEmpty()){
+                for (int x = 0; x < seprograms.size(); x++) {
+                    seprogramsid.add(seprograms.get(x).getId());
+                }
+
+                for (int x = 0; x < seprogramsid.size(); x++) {
+                    if (!seprogramsid2.contains(seprogramsid.get(x))) {
+                        seprogramsid2.add(seprogramsid.get(x));
+                    }
+                }
+            }
                 
-                for(int y1 = 0 ; y1 < ffprograms2.size() ; y1++){
-                    if(x1 != ffprograms.size() - 1) {
-                        if(ffprograms.get(x1).getId() != ffprograms2.get(y1).getId()){
-                            ffprograms2.add(ffprograms.get(y1));
-                        }
-                    } 
-                    
-                    if(x1 == ffprograms.size() -1){
-                        for(int z1 = 0 ; z1 < ffprograms2.size() ; z1++){
-                            boolean check = false;
-                            if(ffprograms.get(x1) == ffprograms2.get(z1)){
-                                check = true;
-                            }
-                            if(check == false){
-                                ffprograms2.add(ffprograms.get(x1));
-                            }
-                            check = false;
-                        }
-                    }
-                }
-            }
-            
-            for(int x1 = 0 ; x1 < seprograms.size() ; x1++){
-                if(x1 == 0){
-                    seprograms2.add(seprograms.get(x1));
-                }
-                
-                for(int y1 = 0 ; y1 < seprograms2.size() ; y1++){
-                    if(x1 != seprograms.size() - 1) {
-                        if(seprograms.get(x1).getId() != seprograms2.get(y1).getId()){
-                            seprograms2.add(seprograms.get(y1));
-                        }
-                    } 
-                    
-                    if(x1 == seprograms.size() -1){
-                        for(int z1 = 0 ; z1 < seprograms2.size() ; z1++){
-                            boolean check = false;
-                            if(seprograms.get(x1) == seprograms2.get(z1)){
-                                check = true;
-                            }
-                            if(check == false){
-                                seprograms2.add(seprograms.get(x1));
-                            }
-                            check = false;
-                        }
-                    }
-                }
-            }
-            
             KRA newkra = kra.get(a);
-            count = ffprograms2.size() + seprograms2.size();
-            System.out.println("KRA Count: " + count);
+            count = ffprogramsid2.size() + seprogramsid2.size();
             newkra.setTotal(count);
             kra2.add(newkra);
-            count = 0;
-            System.out.println("SE programs size: " + seprograms.size());
-            System.out.println("FF programs size: " + ffprograms.size());
-            for(int x = 0 ; x < ffprograms.size() ; x++){
-                ffprograms.remove(x);
-            }
-            for(int x = 0 ; x < seprograms.size() ; x++){
-                seprograms.remove(x);
-            }
+            System.out.println("FOR " + kra.get(a).getName() + "    COUNT = " + count);
         }
 
         return kra2;
@@ -13777,44 +13825,88 @@ public class TargetDAO {
     public ArrayList<KRA> retrieveProgramsUnitMeasure(String unit, Date start, Date end) {
         OvplmDAO OvplmDAO = new OvplmDAO();
         UserDAO UserDAO = new UserDAO();
-
-        ResultSet rs2 = null;
-
-        ArrayList<KRA> kra = new ArrayList();
+        
+        ArrayList<KRA> kra = OvplmDAO.retrieveKRA();
         ArrayList<KRA> kra2 = new ArrayList();
-
-        kra = OvplmDAO.retrieveKRA();
-
-        for (int a = 0; a < kra.size(); a++) {
-            KRA k = kra.get(a);
-            for (int x = 0; x < k.getGoals().size(); x++) {
-                for (int y = 0; y < k.getGoals().get(x).getMeasures().size(); y++) {
-                    for (int z = 0; z < this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).size(); z++) {
-                        if (k.getGoals().get(x).getMeasures().get(y).getTypetarget().equals("Faith Formation")) {
-                            FF proposal = UserDAO.retrieveFFByFFID(this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).get(z));
-                            if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
+        ArrayList<Goal> goals = new ArrayList();
+        ArrayList<Measure> measures = new ArrayList();
+        
+        System.out.println("START HERE");
+        for(int a = 0 ; a < kra.size() ; a++){// kra = a
+            ArrayList<SE> seprograms = new ArrayList();
+            ArrayList<FF> ffprograms = new ArrayList();
+            int count = 0;
+            
+            goals = kra.get(a).getGoals();
+            System.out.println("KRA: " + kra.get(a).getName());
+            for(int b = 0 ; b < goals.size() ; b++){// goals = b
+                measures = goals.get(b).getMeasures();
+                for(int c = 0 ; c < measures.size() ; c++){ //measures = c
+                    for(int d = 0 ; d < this.getPrograms(measures.get(c)).size() ; d++){
+                        if(measures.get(c).getTypetarget().equals("Faith Formation")){
+                            FF proposal = UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d));
+                            if(proposal.getUnit().equals(unit)){
+                                if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
                                     || proposal.getActualDate().equals(end) && proposal.getActualDate().after(start) || proposal.getActualDate().before(end) && proposal.getActualDate().equals(start)) {
-                                if (proposal.getUnit().equals(unit)) {
-                                    k.setProgramName(proposal.getProjectName());
-                                    k.setName(k.getGoals().get(x).getMeasures().get(y).getMeasure());
-                                    kra2.add(k);
+                                    ffprograms.add(UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d)));
                                 }
-
                             }
                         } else {
-                            SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).get(z));
-                            if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
+                            SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d));
+                            if(proposal.getUnit().equals(unit)){
+                                if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
                                     || proposal.getActualDate().equals(end) && proposal.getActualDate().after(start) || proposal.getActualDate().before(end) && proposal.getActualDate().equals(start)) {
-                                if (proposal.getUnit().equals(unit)) {
-                                    k.setProgramName(proposal.getName());
-                                    k.setName(k.getGoals().get(x).getMeasures().get(y).getMeasure());
-                                    kra2.add(k);
+                                    seprograms.add(UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d)));
                                 }
-
                             }
                         }
                     }
                 }
+            }
+    
+            ArrayList<Integer> seprogramsid = new ArrayList();
+            ArrayList<Integer> ffprogramsid = new ArrayList();
+            ArrayList<Integer> seprogramsid2 = new ArrayList();
+            ArrayList<Integer> ffprogramsid2 = new ArrayList();
+            
+            if(!ffprograms.isEmpty()){
+                for (int x = 0; x < ffprograms.size(); x++) {
+                    ffprogramsid.add(ffprograms.get(x).getId());
+                }
+
+                for (int x = 0; x < ffprogramsid.size(); x++) {
+                    if (!ffprogramsid2.contains(ffprogramsid.get(x))) {
+                        ffprogramsid2.add(ffprogramsid.get(x));
+                    }
+                }
+            }
+            
+            if(!seprograms.isEmpty()){
+                for (int x = 0; x < seprograms.size(); x++) {
+                    seprogramsid.add(seprograms.get(x).getId());
+                }
+
+                for (int x = 0; x < seprogramsid.size(); x++) {
+                    if (!seprogramsid2.contains(seprogramsid.get(x))) {
+                        seprogramsid2.add(seprogramsid.get(x));
+                    }
+                }
+            }
+            
+            for(int x = 0 ; x < seprogramsid2.size() ; x++){
+                KRA newkra = new KRA();
+                newkra.setDate(UserDAO.retrieveSEBySEID(seprogramsid2.get(x)).getActualDate());
+                newkra.setName(kra.get(a).getName());
+                newkra.setProgramName(UserDAO.retrieveSEBySEID(seprogramsid2.get(x)).getName());
+                kra2.add(newkra);
+            }
+            
+            for(int x = 0 ; x < ffprogramsid2.size() ; x++){
+                KRA newkra = new KRA();
+                newkra.setDate(UserDAO.retrieveFFByFFID(ffprogramsid2.get(x)).getActualDate());
+                newkra.setName(kra.get(a).getName());
+                newkra.setProgramName(UserDAO.retrieveFFByFFID(ffprogramsid2.get(x)).getProjectName());
+                kra2.add(newkra);
             }
         }
 
@@ -13825,50 +13917,96 @@ public class TargetDAO {
         OvplmDAO OvplmDAO = new OvplmDAO();
         UserDAO UserDAO = new UserDAO();
 
-        ResultSet rs2 = null;
-
         ArrayList<KRA> kra = new ArrayList();
-        ArrayList<KRA> kra2 = new ArrayList();
-
-        kra2 = OvplmDAO.retrieveKRA();
-        for (int x = 0; x < kra2.size(); x++) {
-            if (kra2.get(x).getId() == id) {
+        ArrayList<KRA> kra2 = OvplmDAO.retrieveKRA();
+        ArrayList<KRA> kra3 = new ArrayList();
+        ArrayList<Goal> goals = new ArrayList();
+        ArrayList<Measure> measures = new ArrayList();
+        
+        for(int x = 0 ; x < kra2.size() ; x++){
+            if(kra2.get(x).getId() == id){
                 kra.add(kra2.get(x));
             }
         }
-
-        for (int a = 0; a < kra.size(); a++) {
-            KRA k = kra.get(a);
-            for (int x = 0; x < k.getGoals().size(); x++) {
-                for (int y = 0; y < k.getGoals().get(x).getMeasures().size(); y++) {
-                    for (int z = 0; z < this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).size(); z++) {
-                        if (k.getGoals().get(x).getMeasures().get(y).getTypetarget().equals("Faith Formation")) {
-                            FF proposal = UserDAO.retrieveFFByFFID(this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).get(z));
-                            if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
+        
+        for(int a = 0 ; a < kra.size() ; a++){// kra = a
+            ArrayList<SE> seprograms = new ArrayList();
+            ArrayList<FF> ffprograms = new ArrayList();
+            int count = 0;
+            
+            goals = kra.get(a).getGoals();
+            System.out.println("KRA: " + kra.get(a).getName());
+            for(int b = 0 ; b < goals.size() ; b++){// goals = b
+                measures = goals.get(b).getMeasures();
+                for(int c = 0 ; c < measures.size() ; c++){ //measures = c
+                    for(int d = 0 ; d < this.getPrograms(measures.get(c)).size() ; d++){
+                        if(measures.get(c).getTypetarget().equals("Faith Formation")){
+                            FF proposal = UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d));
+                            if(proposal.getUnit().equals(unit)){
+                                if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
                                     || proposal.getActualDate().equals(end) && proposal.getActualDate().after(start) || proposal.getActualDate().before(end) && proposal.getActualDate().equals(start)) {
-                                if (k.getId() == id && proposal.getUnit().equals(unit)) {
-                                    k.setProgramName(proposal.getProjectName());
-                                    k.setName(k.getGoals().get(x).getMeasures().get(y).getMeasure());
-                                    kra2.add(k);
+                                    ffprograms.add(UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d)));
                                 }
-
                             }
                         } else {
-                            SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(k.getGoals().get(x).getMeasures().get(y)).get(z));
-                            if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
+                            SE proposal = UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d));
+                            if(proposal.getUnit().equals(unit)){
+                                if (proposal.getActualDate().before(end) && proposal.getActualDate().after(start) || proposal.getActualDate().equals(end) && proposal.getActualDate().equals(start)
                                     || proposal.getActualDate().equals(end) && proposal.getActualDate().after(start) || proposal.getActualDate().before(end) && proposal.getActualDate().equals(start)) {
-                                if (k.getId() == id && proposal.getUnit().equals(unit)) {
-                                    k.setProgramName(proposal.getName());
-                                    kra2.add(k);
+                                    seprograms.add(UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d)));
                                 }
-
                             }
                         }
                     }
                 }
             }
+    
+            ArrayList<Integer> seprogramsid = new ArrayList();
+            ArrayList<Integer> ffprogramsid = new ArrayList();
+            ArrayList<Integer> seprogramsid2 = new ArrayList();
+            ArrayList<Integer> ffprogramsid2 = new ArrayList();
+            
+            if(!ffprograms.isEmpty()){
+                for (int x = 0; x < ffprograms.size(); x++) {
+                    ffprogramsid.add(ffprograms.get(x).getId());
+                }
+
+                for (int x = 0; x < ffprogramsid.size(); x++) {
+                    if (!ffprogramsid2.contains(ffprogramsid.get(x))) {
+                        ffprogramsid2.add(ffprogramsid.get(x));
+                    }
+                }
+            }
+            
+            if(!seprograms.isEmpty()){
+                for (int x = 0; x < seprograms.size(); x++) {
+                    seprogramsid.add(seprograms.get(x).getId());
+                }
+
+                for (int x = 0; x < seprogramsid.size(); x++) {
+                    if (!seprogramsid2.contains(seprogramsid.get(x))) {
+                        seprogramsid2.add(seprogramsid.get(x));
+                    }
+                }
+            }
+            
+            for(int x = 0 ; x < seprogramsid2.size() ; x++){
+                KRA newkra = new KRA();
+                newkra.setDate(UserDAO.retrieveSEBySEID(seprogramsid2.get(x)).getActualDate());
+                newkra.setName(kra.get(a).getName());
+                newkra.setProgramName(UserDAO.retrieveSEBySEID(seprogramsid2.get(x)).getName());
+                kra3.add(newkra);
+            }
+            
+            for(int x = 0 ; x < ffprogramsid2.size() ; x++){
+                KRA newkra = new KRA();
+                newkra.setDate(UserDAO.retrieveFFByFFID(ffprogramsid2.get(x)).getActualDate());
+                newkra.setName(kra.get(a).getName());
+                newkra.setProgramName(UserDAO.retrieveFFByFFID(ffprogramsid2.get(x)).getProjectName());
+                kra3.add(newkra);
+            }
         }
 
-        return kra2;
+        return kra3;
     }
 }

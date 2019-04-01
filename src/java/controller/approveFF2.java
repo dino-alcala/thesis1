@@ -77,6 +77,37 @@ public class approveFF2 extends HttpServlet {
                         Notification n = new Notification();
                         n.setBody("Progam: " + UserDAO.getProjectName(Integer.parseInt(request.getParameter("approve"))) + "\n" + sdf.format(dt));
 
+                        //to check if submitter is part of council
+                        boolean checkproponent1 = false;
+                        boolean checkproponent2 = false;
+                        boolean checkproponent3 = false;
+                        boolean checkproponent4 = false;
+                        if(FF.getUnit().equals("Office of the Vice President for Lasallian Mission (OVPLM)")){
+                            UserDAO.voteFFMichael(Integer.parseInt(request.getParameter("approve")), 1);
+                            UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
+                            UserDAO.updateFFlmc1Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                            FF.setRemarktype1("Comment");
+                            checkproponent1 = true;
+                        } else if(FF.getUnit().equals("Center for Social Concern and Action (COSCA)")){
+                            UserDAO.voteFFFritzie(Integer.parseInt(request.getParameter("approve")), 1);
+                            UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
+                            UserDAO.updateFFlmc5Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                            FF.setRemarktype1("Comment");
+                            checkproponent2 = true;
+                        } else if(FF.getUnit().equals("Dean of Student Affairs (DSA)")){
+                            UserDAO.voteFFNelca(Integer.parseInt(request.getParameter("approve")), 1);
+                            UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
+                            UserDAO.updateFFlmc2Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                            FF.setRemarktype1("Comment");
+                            checkproponent3 = true;
+                        } else if(FF.getUnit().equals("Laguna Campus Lasallian Mission (LCLM)")){
+                            UserDAO.voteFFMargarita(Integer.parseInt(request.getParameter("approve")), 1);
+                            UserDAO.addFFVote(Integer.parseInt(request.getParameter("approve")));
+                            UserDAO.updateFFlmc3Remarks("N/A", "Comment", Integer.parseInt(request.getParameter("approve")));
+                            FF.setRemarktype1("Comment");
+                            checkproponent4 = true;
+                        }
+                        
                         SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-mm-dd");
                         java.util.Date javaDate = new java.util.Date();
                         String input1 = new java.sql.Date(javaDate.getTime()).toString();
@@ -100,22 +131,42 @@ public class approveFF2 extends HttpServlet {
 
                         if (session.getAttribute("unit").toString().equals(UserDAO.getUnitByUserID(Integer.parseInt(session.getAttribute("userID").toString())))) {
                             n.setUserID(UserDAO.getUserIDforNotifsPosition("LCLM - Executive Director"));
-                            n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            if(checkproponent4 == true){
+                                n.setTitle("Proposal being approved by the LMC");
+                                n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                            } else {
+                                n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            }
                             n.setAttribute(FF.getId());
                             UserDAO.AddNotification(n);
 
                             n.setUserID(UserDAO.getUserIDforNotifsPosition("COSCA - Director"));
-                            n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            if(checkproponent2 == true){
+                                n.setTitle("Proposal being approved by the LMC");
+                                n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                            } else {
+                                n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            }
                             n.setAttribute(FF.getId());
                             UserDAO.AddNotification(n);
 
                             n.setUserID(UserDAO.getUserIDforNotifsPosition("DSA - Dean"));
-                            n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            if(checkproponent3 == true){
+                                n.setTitle("Proposal being approved by the LMC");
+                                n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                            } else {
+                                n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            }
                             n.setAttribute(FF.getId());
                             UserDAO.AddNotification(n);
 
                             n.setUserID(UserDAO.getUserIDforNotifsPosition("OVPLM - Vice President for Lasallian Mission"));
-                            n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            if(checkproponent1 == true){
+                                n.setTitle("Proposal being approved by the LMC");
+                                n.setRedirect("/MULTIPLE-viewPendingFFProgramDetails.jsp");
+                            } else {
+                                n.setRedirect("/MULTIPLE-approveFFProposal4.jsp");
+                            }
                             n.setAttribute(FF.getId());
                             UserDAO.AddNotification(n);
                         }
