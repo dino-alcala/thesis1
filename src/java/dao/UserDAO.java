@@ -3979,6 +3979,51 @@ public class UserDAO {
         }
         return SE;
     }
+    
+    public ArrayList<SE> retrieveSEProposalByStepUnitDate(int step, String unit, Date start, Date end) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<SE> SE = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM seproposal WHERE step = ? AND unit = ? AND actualImplementation <= ? AND actualImplementation >= ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, step);
+            pstmt.setString(2, unit);
+            pstmt.setDate(3, end);
+            pstmt.setDate(4, start);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                SE s = new SE();
+                s.setActualDate(rs2.getDate("actualImplementation"));
+                s.setName(rs2.getString("programName"));
+                s.setProgramHead(rs2.getString("programHead"));
+                s.setUnit(rs2.getString("unit"));
+                s.setDepartment(rs2.getString("department"));
+                s.setActivityClassification(rs2.getString("activityClassification"));
+                s.setId(rs2.getInt("id"));
+                SE.add(s);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return SE;
+    }
 
     public ArrayList<SE> retrieveSEProposalByDepartment(String department) {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -4566,6 +4611,51 @@ public class UserDAO {
 
             pstmt.setInt(1, step);
             pstmt.setString(2, unit);
+
+            rs2 = pstmt.executeQuery();
+
+            while (rs2.next()) {
+                FF f = new FF();
+                f.setActualDate(rs2.getDate("actualImplementation"));
+                f.setProjectName(rs2.getString("projectName"));
+                f.setProgramHead(rs2.getString("programHead"));
+                f.setUnit(rs2.getString("unit"));
+                f.setDepartment(rs2.getString("department"));
+                f.setActivityClassification(rs2.getString("activityClassification"));
+                f.setId(rs2.getInt("id"));
+                FF.add(f);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return FF;
+    }
+    
+    public ArrayList<FF> retrieveFFProposalByStepUnitDate(int step, String unit, Date start, Date end) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        PreparedStatement pstmt = null;
+
+        ArrayList<FF> FF = new ArrayList();
+        ResultSet rs2 = null;
+        try {
+            String query = "SELECT * FROM ffproposal WHERE step = ? AND unit = ? AND actualImplementation <= ? AND actualImplementation >= ?";
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, step);
+            pstmt.setString(2, unit);
+            pstmt.setDate(3, end);
+            pstmt.setDate(4, start);
 
             rs2 = pstmt.executeQuery();
 
@@ -12898,6 +12988,1782 @@ public class UserDAO {
             while (rs.next()) {
                 total++;
                 count = rs.getInt("sl11");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagesl12(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT sl12 FROM seevaluation WHERE sl12 = 1 AND seproposalID = ? OR sl12 = 2 AND seproposalID = ? OR sl12 = 3 AND seproposalID = ? OR sl12 = 4 AND seproposalID = ? OR sl12 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("sl12");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagesl13(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT sl13 FROM seevaluation WHERE sl13 = 1 AND seproposalID = ? OR sl13 = 2 AND seproposalID = ? OR sl13 = 3 AND seproposalID = ? OR sl13 = 4 AND seproposalID = ? OR sl13 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("sl13");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagesl14(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT sl14 FROM seevaluation WHERE sl14 = 1 AND seproposalID = ? OR sl14 = 2 AND seproposalID = ? OR sl14 = 3 AND seproposalID = ? OR sl14 = 4 AND seproposalID = ? OR sl14 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("sl14");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagesl15(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT sl15 FROM seevaluation WHERE sl15 = 1 AND seproposalID = ? OR sl15 = 2 AND seproposalID = ? OR sl15 = 3 AND seproposalID = ? OR sl15 = 4 AND seproposalID = ? OR sl15 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("sl15");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagess21(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT ss21 FROM seevaluation WHERE ss21 = 1 AND seproposalID = ? OR ss21 = 2 AND seproposalID = ? OR ss21 = 3 AND seproposalID = ? OR ss21 = 4 AND seproposalID = ? OR ss21 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("ss21");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagess22(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT ss22 FROM seevaluation WHERE ss22 = 1 AND seproposalID = ? OR ss22 = 2 AND seproposalID = ? OR ss22 = 3 AND seproposalID = ? OR ss22 = 4 AND seproposalID = ? OR ss22 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("ss22");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagess23(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT ss23 FROM seevaluation WHERE ss23 = 1 AND seproposalID = ? OR ss23 = 2 AND seproposalID = ? OR ss23 = 3 AND seproposalID = ? OR ss23 = 4 AND seproposalID = ? OR ss23 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("ss23");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagess24(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT ss24 FROM seevaluation WHERE ss24 = 1 AND seproposalID = ? OR ss24 = 2 AND seproposalID = ? OR ss24 = 3 AND seproposalID = ? OR ss24 = 4 AND seproposalID = ? OR ss24 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("ss24");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagess25(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT ss25 FROM seevaluation WHERE ss25 = 1 AND seproposalID = ? OR ss25 = 2 AND seproposalID = ? OR ss25 = 3 AND seproposalID = ? OR ss25 = 4 AND seproposalID = ? OR ss25 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("ss25");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepe31(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pe31 FROM seevaluation WHERE pe31 = 1 AND seproposalID = ? OR pe31 = 2 AND seproposalID = ? OR pe31 = 3 AND seproposalID = ? OR pe31 = 4 AND seproposalID = ? OR pe31 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pe31");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepj41(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pj41 FROM seevaluation WHERE pj41 = 1 AND seproposalID = ? OR pj41 = 2 AND seproposalID = ? OR pj41 = 3 AND seproposalID = ? OR pj41 = 4 AND seproposalID = ? OR pj41 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pj41");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagelv51(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT lv51 FROM seevaluation WHERE lv51 = 1 AND seproposalID = ? OR lv51 = 2 AND seproposalID = ? OR lv51 = 3 AND seproposalID = ? OR lv51 = 4 AND seproposalID = ? OR lv51 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("lv51");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagelv52(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT lv52 FROM seevaluation WHERE lv52 = 1 AND seproposalID = ? OR lv52 = 2 AND seproposalID = ? OR lv52 = 3 AND seproposalID = ? OR lv52 = 4 AND seproposalID = ? OR lv52 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("lv52");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagelv53(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT lv53 FROM seevaluation WHERE lv53 = 1 AND seproposalID = ? OR lv53 = 2 AND seproposalID = ? OR lv53 = 3 AND seproposalID = ? OR lv53 = 4 AND seproposalID = ? OR lv53 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("lv53");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagelv54(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT lv54 FROM seevaluation WHERE lv54 = 1 AND seproposalID = ? OR lv54 = 2 AND seproposalID = ? OR lv54 = 3 AND seproposalID = ? OR lv54 = 4 AND seproposalID = ? OR lv54 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("lv54");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagelv55(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT lv55 FROM seevaluation WHERE lv55 = 1 AND seproposalID = ? OR lv55 = 2 AND seproposalID = ? OR lv55 = 3 AND seproposalID = ? OR lv55 = 4 AND seproposalID = ? OR lv55 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("lv55");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm61(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm61 FROM seevaluation WHERE pm61 = 1 AND seproposalID = ? OR pm61 = 2 AND seproposalID = ? OR pm61 = 3 AND seproposalID = ? OR pm61 = 4 AND seproposalID = ? OR pm61 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm61");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm62(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm62 FROM seevaluation WHERE pm62 = 1 AND seproposalID = ? OR pm62 = 2 AND seproposalID = ? OR pm62 = 3 AND seproposalID = ? OR pm62 = 4 AND seproposalID = ? OR pm62 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm62");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm63(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm63 FROM seevaluation WHERE pm63 = 1 AND seproposalID = ? OR pm63 = 2 AND seproposalID = ? OR pm63 = 3 AND seproposalID = ? OR pm63 = 4 AND seproposalID = ? OR pm63 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm63");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm64(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm64 FROM seevaluation WHERE pm64 = 1 AND seproposalID = ? OR pm64 = 2 AND seproposalID = ? OR pm64 = 3 AND seproposalID = ? OR pm64 = 4 AND seproposalID = ? OR pm64 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm64");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm65(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm65 FROM seevaluation WHERE pm65 = 1 AND seproposalID = ? OR pm65 = 2 AND seproposalID = ? OR pm65 = 3 AND seproposalID = ? OR pm65 = 4 AND seproposalID = ? OR pm65 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm65");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm66(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm66 FROM seevaluation WHERE pm66 = 1 AND seproposalID = ? OR pm66 = 2 AND seproposalID = ? OR pm66 = 3 AND seproposalID = ? OR pm66 = 4 AND seproposalID = ? OR pm66 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm66");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm67(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm67 FROM seevaluation WHERE pm67 = 1 AND seproposalID = ? OR pm67 = 2 AND seproposalID = ? OR pm67 = 3 AND seproposalID = ? OR pm67 = 4 AND seproposalID = ? OR pm67 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm67");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm68(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm68 FROM seevaluation WHERE pm68 = 1 AND seproposalID = ? OR pm68 = 2 AND seproposalID = ? OR pm68 = 3 AND seproposalID = ? OR pm68 = 4 AND seproposalID = ? OR pm68 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm68");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm69(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm69 FROM seevaluation WHERE pm69 = 1 AND seproposalID = ? OR pm69 = 2 AND seproposalID = ? OR pm69 = 3 AND seproposalID = ? OR pm69 = 4 AND seproposalID = ? OR pm69 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm69");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm610(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm610 FROM seevaluation WHERE pm610 = 1 AND seproposalID = ? OR pm610 = 2 AND seproposalID = ? OR pm610 = 3 AND seproposalID = ? OR pm610 = 4 AND seproposalID = ? OR pm610 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm610");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm611(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm611 FROM seevaluation WHERE pm611 = 1 AND seproposalID = ? OR pm611 = 2 AND seproposalID = ? OR pm611 = 3 AND seproposalID = ? OR pm611 = 4 AND seproposalID = ? OR pm611 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm611");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm612(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm612 FROM seevaluation WHERE pm612 = 1 AND seproposalID = ? OR pm612 = 2 AND seproposalID = ? OR pm612 = 3 AND seproposalID = ? OR pm612 = 4 AND seproposalID = ? OR pm612 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm612");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averagepm613(int seID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT pm613 FROM seevaluation WHERE pm613 = 1 AND seproposalID = ? OR pm613 = 2 AND seproposalID = ? OR pm613 = 3 AND seproposalID = ? OR pm613 = 4 AND seproposalID = ? OR pm613 = 5 AND seproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, seID);
+            ps.setInt(2, seID);
+            ps.setInt(3, seID);
+            ps.setInt(4, seID);
+            ps.setInt(5, seID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("pm613");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averageq1(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT q1 FROM ffevaluation WHERE q1 = 1 AND ffproposalID = ? OR q1 = 2 AND ffproposalID = ? OR q1 = 3 AND ffproposalID = ? OR q1 = 4 AND ffproposalID = ? OR q1 = 5 AND ffproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            ps.setInt(2, ffID);
+            ps.setInt(3, ffID);
+            ps.setInt(4, ffID);
+            ps.setInt(5, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("q1");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averageq2(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT q2 FROM ffevaluation WHERE q2 = 1 AND ffproposalID = ? OR q2 = 2 AND ffproposalID = ? OR q2 = 3 AND ffproposalID = ? OR q2 = 4 AND ffproposalID = ? OR q2 = 5 AND ffproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            ps.setInt(2, ffID);
+            ps.setInt(3, ffID);
+            ps.setInt(4, ffID);
+            ps.setInt(5, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("q2");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averageq3(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT q3 FROM ffevaluation WHERE q3 = 1 AND ffproposalID = ? OR q3 = 2 AND ffproposalID = ? OR q3 = 3 AND ffproposalID = ? OR q3 = 4 AND ffproposalID = ? OR q3 = 5 AND ffproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            ps.setInt(2, ffID);
+            ps.setInt(3, ffID);
+            ps.setInt(4, ffID);
+            ps.setInt(5, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("q3");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averageq4(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT q4 FROM ffevaluation WHERE q4 = 1 AND ffproposalID = ? OR q4 = 2 AND ffproposalID = ? OR q4 = 3 AND ffproposalID = ? OR q4 = 4 AND ffproposalID = ? OR q4 = 5 AND ffproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            ps.setInt(2, ffID);
+            ps.setInt(3, ffID);
+            ps.setInt(4, ffID);
+            ps.setInt(5, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("q4");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averageq5(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT q5 FROM ffevaluation WHERE q5 = 1 AND ffproposalID = ? OR q5 = 2 AND ffproposalID = ? OR q5 = 3 AND ffproposalID = ? OR q5 = 4 AND ffproposalID = ? OR q5 = 5 AND ffproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            ps.setInt(2, ffID);
+            ps.setInt(3, ffID);
+            ps.setInt(4, ffID);
+            ps.setInt(5, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("q5");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averageq6(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT q6 FROM ffevaluation WHERE q6 = 1 AND ffproposalID = ? OR q6 = 2 AND ffproposalID = ? OR q6 = 3 AND ffproposalID = ? OR q6 = 4 AND ffproposalID = ? OR q6 = 5 AND ffproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            ps.setInt(2, ffID);
+            ps.setInt(3, ffID);
+            ps.setInt(4, ffID);
+            ps.setInt(5, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("q6");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averageq7(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT q7 FROM ffevaluation WHERE q7 = 1 AND ffproposalID = ? OR q7 = 2 AND ffproposalID = ? OR q7 = 3 AND ffproposalID = ? OR q7 = 4 AND ffproposalID = ? OR q7 = 5 AND ffproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            ps.setInt(2, ffID);
+            ps.setInt(3, ffID);
+            ps.setInt(4, ffID);
+            ps.setInt(5, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("q7");
+            }
+            
+            average = count/total;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) {
+                /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                /* ignored */ }
+        }
+        return average;
+    }
+    
+    public double averageq8(int ffID) {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String query = "SELECT q8 FROM ffevaluation WHERE q8 = 1 AND ffproposalID = ? OR q8 = 2 AND ffproposalID = ? OR q8 = 3 AND ffproposalID = ? OR q8 = 4 AND ffproposalID = ? OR q8 = 5 AND ffproposalID = ?;";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        User u = new User();
+
+        double average = 0;
+        int count = 0;
+        int total = 0;
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, ffID);
+            ps.setInt(2, ffID);
+            ps.setInt(3, ffID);
+            ps.setInt(4, ffID);
+            ps.setInt(5, ffID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total++;
+                count = rs.getInt("q8");
             }
             
             average = count/total;

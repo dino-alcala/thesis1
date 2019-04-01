@@ -230,17 +230,6 @@ public class login extends HttpServlet {
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/SIGNATORIES-home2.jsp");
                     dispatcher.forward(request, response);
-                } else if (UserDAO.isUnit(u.getUsername(), u.getPassword())) {
-                    
-                    int id = UserDAO.getIDbyUsername(u.getUsername());
-                    String position = UserDAO.getPosition(u.getUsername());
-                    session.setAttribute("userID", id);
-                    session.setAttribute("unit", UserDAO.getUnitByUserID(id));
-                    session.setAttribute("position", position);
-                    
-                    ServletContext context = getServletContext();
-                    RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
-                    dispatcher.forward(request, response);
                 } else if (UserDAO.isCOSCA(u.getUsername())) {
 
                     int id = UserDAO.getIDbyUsername(u.getUsername());
@@ -302,6 +291,17 @@ public class login extends HttpServlet {
 
                     ServletContext context = getServletContext();
                     RequestDispatcher dispatcher = context.getRequestDispatcher("/OVPLM-home.jsp");
+                    dispatcher.forward(request, response);
+                } else if (UserDAO.isUnit(u.getUsername(), u.getPassword())) {
+                    
+                    int id = UserDAO.getIDbyUsername(u.getUsername());
+                    String position = UserDAO.getPosition(u.getUsername());
+                    session.setAttribute("userID", id);
+                    session.setAttribute("unit", UserDAO.getUnitByUserID(id));
+                    session.setAttribute("position", position);
+                    
+                    ServletContext context = getServletContext();
+                    RequestDispatcher dispatcher = context.getRequestDispatcher("/UR-home.jsp");
                     dispatcher.forward(request, response);
                 }
             } else {

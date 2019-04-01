@@ -180,18 +180,21 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartFFQ1"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averageq1(FF.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>2. The registration process was simple and easy.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartFFQ2"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averageq2(FF.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>3. The venue was suited for the activity.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartFFQ3"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averageq3(FF.getId())%></p></b></center>
                             </div>
 
                             <script>
@@ -203,7 +206,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countq1(FF.getId(), 5)%>, <%=UserDAO.countq1(FF.getId(), 4)%>, <%=UserDAO.countq1(FF.getId(), 3)%>, <%=UserDAO.countq1(FF.getId(), 2)%>, <%=UserDAO.countq1(FF.getId(), 1)%>, <%=UserDAO.countq1(FF.getId(), 6)%>, <%=UserDAO.countq1(FF.getId(), 7)%>]
                                             }
@@ -243,7 +246,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countq2(FF.getId(), 5)%>, <%=UserDAO.countq2(FF.getId(), 4)%>, <%=UserDAO.countq2(FF.getId(), 3)%>, <%=UserDAO.countq2(FF.getId(), 2)%>, <%=UserDAO.countq2(FF.getId(), 1)%>, <%=UserDAO.countq2(FF.getId(), 6)%>, <%=UserDAO.countq2(FF.getId(), 7)%>]
                                             }
@@ -283,7 +286,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countq3(FF.getId(), 5)%>, <%=UserDAO.countq3(FF.getId(), 4)%>, <%=UserDAO.countq3(FF.getId(), 3)%>, <%=UserDAO.countq3(FF.getId(), 2)%>, <%=UserDAO.countq3(FF.getId(), 1)%>, <%=UserDAO.countq3(FF.getId(), 6)%>, <%=UserDAO.countq3(FF.getId(), 7)%>]
                                             }
@@ -323,18 +326,21 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartFFQ4"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averageq4(FF.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>5. The rooms allowed me to rest well and provided what I needed.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartFFQ5"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averageq5(FF.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>6. Transportation was comfortable and safe.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartFFQ6"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averageq6(FF.getId())%></p></b></center>
                             </div>
                             <script>
                                 Chart.defaults.global.legend.display = false;
@@ -345,7 +351,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countq4(FF.getId(), 5)%>, <%=UserDAO.countq4(FF.getId(), 4)%>, <%=UserDAO.countq4(FF.getId(), 3)%>, <%=UserDAO.countq4(FF.getId(), 2)%>, <%=UserDAO.countq4(FF.getId(), 1)%>, <%=UserDAO.countq4(FF.getId(), 6)%>, <%=UserDAO.countq4(FF.getId(), 7)%>]
                                             }
@@ -385,7 +391,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countq5(FF.getId(), 5)%>, <%=UserDAO.countq5(FF.getId(), 4)%>, <%=UserDAO.countq5(FF.getId(), 3)%>, <%=UserDAO.countq5(FF.getId(), 2)%>, <%=UserDAO.countq5(FF.getId(), 1)%>, <%=UserDAO.countq5(FF.getId(), 6)%>, <%=UserDAO.countq5(FF.getId(), 7)%>]
                                             }
@@ -425,7 +431,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countq6(FF.getId(), 5)%>, <%=UserDAO.countq6(FF.getId(), 4)%>, <%=UserDAO.countq6(FF.getId(), 3)%>, <%=UserDAO.countq6(FF.getId(), 2)%>, <%=UserDAO.countq6(FF.getId(), 1)%>, <%=UserDAO.countq6(FF.getId(), 6)%>, <%=UserDAO.countq6(FF.getId(), 7)%>]
                                             }
@@ -465,12 +471,14 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartFFQ7"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averageq7(FF.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>8. Coordination with LSPO regarding this retreat was efficient.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartFFQ8"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averageq8(FF.getId())%></p></b></center>
                             </div>
                             <script>
                                 Chart.defaults.global.legend.display = false;
@@ -481,7 +489,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countq7(FF.getId(), 5)%>, <%=UserDAO.countq7(FF.getId(), 4)%>, <%=UserDAO.countq7(FF.getId(), 3)%>, <%=UserDAO.countq7(FF.getId(), 2)%>, <%=UserDAO.countq7(FF.getId(), 1)%>, <%=UserDAO.countq7(FF.getId(), 6)%>, <%=UserDAO.countq7(FF.getId(), 7)%>]
                                             }
@@ -521,7 +529,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countq8(FF.getId(), 5)%>, <%=UserDAO.countq8(FF.getId(), 4)%>, <%=UserDAO.countq8(FF.getId(), 3)%>, <%=UserDAO.countq8(FF.getId(), 2)%>, <%=UserDAO.countq8(FF.getId(), 1)%>, <%=UserDAO.countq8(FF.getId(), 6)%>, <%=UserDAO.countq8(FF.getId(), 7)%>]
                                             }

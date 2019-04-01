@@ -442,7 +442,7 @@
                 UserDAO UserDAO3 = new UserDAO();
                 TargetDAO TargetDAO = new TargetDAO();
                 ArrayList<KRA> kra = new ArrayList();
-                kra = TargetDAO.retrieveUnitSortedKRA(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                kra = TargetDAO.retrieveUnitSortedKRA2(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
                 //kra = UserDAO3.insertPercentage(kra);
 
                 ArrayList<KRA> kraslist = new ArrayList();

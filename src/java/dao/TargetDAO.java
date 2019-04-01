@@ -6,6 +6,7 @@
 package dao;
 
 import entity.FF;
+import entity.Goal;
 import entity.KRA;
 import entity.Measure;
 import entity.SE;
@@ -13659,6 +13660,114 @@ public class TargetDAO {
 
             if (!kra2.contains(k)) {
                 kra2.add(k);
+            }
+        }
+
+        return kra2;
+    }
+    
+    public ArrayList<KRA> retrieveUnitSortedKRA2(String unit, Date start, Date end) {
+        OvplmDAO OvplmDAO = new OvplmDAO();
+        UserDAO UserDAO = new UserDAO();
+
+        ArrayList<KRA> kra = OvplmDAO.retrieveKRA();
+        ArrayList<KRA> kra2 = new ArrayList();
+        ArrayList<Goal> goals = new ArrayList();
+        ArrayList<Measure> measures = new ArrayList();
+        ArrayList<SE> seprograms = new ArrayList();
+        ArrayList<FF> ffprograms = new ArrayList();
+        int count = 0;
+        
+        for(int a = 0 ; a < kra.size() ; a++){// kra = a
+            goals = kra.get(a).getGoals();
+            System.out.println("KRA: " + kra.get(a).getName());
+            for(int b = 0 ; b < goals.size() ; b++){// goals = b
+                measures = goals.get(b).getMeasures();
+                for(int c = 0 ; c < measures.size() ; c++){ //measures = c
+                    for(int d = 0 ; d < this.getPrograms(measures.get(c)).size() ; d++){
+                        if(measures.get(c).getTypetarget().equals("Faith Formation")){
+                            if(UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d)).getUnit().equals(unit)){
+                                ffprograms.add(UserDAO.retrieveFFByFFID(this.getPrograms(measures.get(c)).get(d)));
+                            }
+                        } else {
+                            if(UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d)).getUnit().equals(unit)){
+                                seprograms.add(UserDAO.retrieveSEBySEID(this.getPrograms(measures.get(c)).get(d)));
+                            }
+                        }
+                    }
+                }
+            }
+            
+            ArrayList<SE> seprograms2 = new ArrayList();
+            ArrayList<FF> ffprograms2 = new ArrayList();    
+            
+            for(int x1 = 0 ; x1 < ffprograms.size() ; x1++){
+                if (x1 == 0) {
+                    ffprograms2.add(ffprograms.get(x1));
+                }
+                
+                for(int y1 = 0 ; y1 < ffprograms2.size() ; y1++){
+                    if(x1 != ffprograms.size() - 1) {
+                        if(ffprograms.get(x1).getId() != ffprograms2.get(y1).getId()){
+                            ffprograms2.add(ffprograms.get(y1));
+                        }
+                    } 
+                    
+                    if(x1 == ffprograms.size() -1){
+                        for(int z1 = 0 ; z1 < ffprograms2.size() ; z1++){
+                            boolean check = false;
+                            if(ffprograms.get(x1) == ffprograms2.get(z1)){
+                                check = true;
+                            }
+                            if(check == false){
+                                ffprograms2.add(ffprograms.get(x1));
+                            }
+                            check = false;
+                        }
+                    }
+                }
+            }
+            
+            for(int x1 = 0 ; x1 < seprograms.size() ; x1++){
+                if(x1 == 0){
+                    seprograms2.add(seprograms.get(x1));
+                }
+                
+                for(int y1 = 0 ; y1 < seprograms2.size() ; y1++){
+                    if(x1 != seprograms.size() - 1) {
+                        if(seprograms.get(x1).getId() != seprograms2.get(y1).getId()){
+                            seprograms2.add(seprograms.get(y1));
+                        }
+                    } 
+                    
+                    if(x1 == seprograms.size() -1){
+                        for(int z1 = 0 ; z1 < seprograms2.size() ; z1++){
+                            boolean check = false;
+                            if(seprograms.get(x1) == seprograms2.get(z1)){
+                                check = true;
+                            }
+                            if(check == false){
+                                seprograms2.add(seprograms.get(x1));
+                            }
+                            check = false;
+                        }
+                    }
+                }
+            }
+            
+            KRA newkra = kra.get(a);
+            count = ffprograms2.size() + seprograms2.size();
+            System.out.println("KRA Count: " + count);
+            newkra.setTotal(count);
+            kra2.add(newkra);
+            count = 0;
+            System.out.println("SE programs size: " + seprograms.size());
+            System.out.println("FF programs size: " + ffprograms.size());
+            for(int x = 0 ; x < ffprograms.size() ; x++){
+                ffprograms.remove(x);
+            }
+            for(int x = 0 ; x < seprograms.size() ; x++){
+                seprograms.remove(x);
             }
         }
 

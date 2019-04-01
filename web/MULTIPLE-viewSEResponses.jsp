@@ -60,6 +60,14 @@
                 padding-bottom: 10px;
                 margin-bottom: 25px;
             }
+            
+            p{
+                font-size: 15px;
+                text-align: center;
+                margin-top: 10px;
+                padding-bottom: 10px;
+                margin-bottom: 25px;
+            }
 
             .panels{
                 margin-top: 20px;
@@ -178,21 +186,23 @@
                             <div class="card chartscardslong">
                                 <h3>1.1. Service-Learning is relevant to the course I am taking</h3>
                                 <div id="canvas-holder" style="width:80%">
-                                    <canvas id="chartSEQ11"  width="100" height="50" style="margin-left:20px"></canvas>
-                                    <center><legend>Average Score: <%=UserDAO.averagesl11(SE.getId())%></legend></center>
+                                    <canvas id="chartSEQ11"  width="100" height="50" style="margin-left:20px"></canvas>                                    
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagesl11(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>1.2. We were provided with course-based knowledge and skills necessary for project implementation.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ12"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagesl12(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>1.3. The learning outcomes of the course have been attained.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ13"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagesl13(SE.getId())%></p></b></center>
                             </div>
 
                             <script>
@@ -204,7 +214,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countsl11(SE.getId(), 5)%>, <%=UserDAO.countsl11(SE.getId(), 4)%>, <%=UserDAO.countsl11(SE.getId(), 3)%>, <%=UserDAO.countsl11(SE.getId(), 2)%>, <%=UserDAO.countsl11(SE.getId(), 1)%>, <%=UserDAO.countsl11(SE.getId(), 6)%>, <%=UserDAO.countsl11(SE.getId(), 7)%>]
                                             }
@@ -244,7 +254,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countsl12(SE.getId(), 5)%>, <%=UserDAO.countsl12(SE.getId(), 4)%>, <%=UserDAO.countsl12(SE.getId(), 3)%>, <%=UserDAO.countsl12(SE.getId(), 2)%>, <%=UserDAO.countsl12(SE.getId(), 1)%>, <%=UserDAO.countsl12(SE.getId(), 6)%>, <%=UserDAO.countsl12(SE.getId(), 7)%>]
                                             }
@@ -284,7 +294,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countsl13(SE.getId(), 5)%>, <%=UserDAO.countsl13(SE.getId(), 4)%>, <%=UserDAO.countsl13(SE.getId(), 3)%>, <%=UserDAO.countsl13(SE.getId(), 2)%>, <%=UserDAO.countsl13(SE.getId(), 1)%>, <%=UserDAO.countsl13(SE.getId(), 6)%>, <%=UserDAO.countsl13(SE.getId(), 7)%>]
                                             }
@@ -324,12 +334,14 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ14"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagesl14(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>1.5. I have gained better understanding of Service-Learning because of course.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ15"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagesl15(SE.getId())%></p></b></center>
                             </div>
                             <script>
                                 Chart.defaults.global.legend.display = false;
@@ -340,7 +352,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countsl14(SE.getId(), 5)%>, <%=UserDAO.countsl14(SE.getId(), 4)%>, <%=UserDAO.countsl14(SE.getId(), 3)%>, <%=UserDAO.countsl14(SE.getId(), 2)%>, <%=UserDAO.countsl14(SE.getId(), 1)%>, <%=UserDAO.countsl14(SE.getId(), 6)%>, <%=UserDAO.countsl14(SE.getId(), 7)%>]
                                             }
@@ -380,7 +392,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countsl15(SE.getId(), 5)%>, <%=UserDAO.countsl15(SE.getId(), 4)%>, <%=UserDAO.countsl15(SE.getId(), 3)%>, <%=UserDAO.countsl15(SE.getId(), 2)%>, <%=UserDAO.countsl15(SE.getId(), 1)%>, <%=UserDAO.countsl15(SE.getId(), 6)%>, <%=UserDAO.countsl15(SE.getId(), 7)%>]
                                             }
@@ -429,18 +441,21 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ21"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagess21(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>2.2. The vehicle drivers were alert and careful. (If DLSU Provided)</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ22"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagess22(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>2.3. The vehicles are in good condition. (If DLSU Provided)</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ23"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagess23(SE.getId())%></p></b></center>
                             </div>
 
                             <script>
@@ -452,7 +467,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countss21(SE.getId(), 5)%>, <%=UserDAO.countss21(SE.getId(), 4)%>, <%=UserDAO.countss21(SE.getId(), 3)%>, <%=UserDAO.countss21(SE.getId(), 2)%>, <%=UserDAO.countss21(SE.getId(), 1)%>, <%=UserDAO.countss21(SE.getId(), 6)%>, <%=UserDAO.countss21(SE.getId(), 7)%>]
                                             }
@@ -492,7 +507,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countss22(SE.getId(), 5)%>, <%=UserDAO.countss22(SE.getId(), 4)%>, <%=UserDAO.countss22(SE.getId(), 3)%>, <%=UserDAO.countss22(SE.getId(), 2)%>, <%=UserDAO.countss22(SE.getId(), 1)%>, <%=UserDAO.countss22(SE.getId(), 6)%>, <%=UserDAO.countss22(SE.getId(), 7)%>]
                                             }
@@ -532,7 +547,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countss23(SE.getId(), 5)%>, <%=UserDAO.countss23(SE.getId(), 4)%>, <%=UserDAO.countss23(SE.getId(), 3)%>, <%=UserDAO.countss23(SE.getId(), 2)%>, <%=UserDAO.countss23(SE.getId(), 1)%>, <%=UserDAO.countss23(SE.getId(), 6)%>, <%=UserDAO.countss23(SE.getId(), 7)%>]
                                             }
@@ -571,12 +586,14 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ24"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagess24(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>2.5. We felt safe and secure in the community during the community service / social engagement activity.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ25"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagess25(SE.getId())%></p></b></center>
                             </div>
                             <script>
                                 Chart.defaults.global.legend.display = false;
@@ -587,7 +604,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countss24(SE.getId(), 5)%>, <%=UserDAO.countss24(SE.getId(), 4)%>, <%=UserDAO.countss24(SE.getId(), 3)%>, <%=UserDAO.countss24(SE.getId(), 2)%>, <%=UserDAO.countss24(SE.getId(), 1)%>, <%=UserDAO.countss24(SE.getId(), 6)%>, <%=UserDAO.countss24(SE.getId(), 7)%>]
                                             }
@@ -627,7 +644,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countss25(SE.getId(), 5)%>, <%=UserDAO.countss25(SE.getId(), 4)%>, <%=UserDAO.countss25(SE.getId(), 3)%>, <%=UserDAO.countss25(SE.getId(), 2)%>, <%=UserDAO.countss25(SE.getId(), 1)%>, <%=UserDAO.countss25(SE.getId(), 6)%>, <%=UserDAO.countss25(SE.getId(), 7)%>]
                                             }
@@ -674,6 +691,7 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ31"  width="80" height="20" style="margin-left:100px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagepe31(SE.getId())%></p></b></center>
                             </div>
                             <script>
                                 Chart.defaults.global.legend.display = false;
@@ -684,7 +702,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countpe31(SE.getId(), 5)%>, <%=UserDAO.countpe31(SE.getId(), 4)%>, <%=UserDAO.countpe31(SE.getId(), 3)%>, <%=UserDAO.countpe31(SE.getId(), 2)%>, <%=UserDAO.countpe31(SE.getId(), 1)%>, <%=UserDAO.countpe31(SE.getId(), 6)%>, <%=UserDAO.countpe31(SE.getId(), 7)%>]
                                             }
@@ -731,6 +749,7 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ41"  width="80" height="20" style="margin-left:100px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagepj41(SE.getId())%></p></b></center>
                             </div>
                             <script>
                                 Chart.defaults.global.legend.display = false;
@@ -741,7 +760,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countpj41(SE.getId(), 5)%>, <%=UserDAO.countpj41(SE.getId(), 4)%>, <%=UserDAO.countpj41(SE.getId(), 3)%>, <%=UserDAO.countpj41(SE.getId(), 2)%>, <%=UserDAO.countpj41(SE.getId(), 1)%>, <%=UserDAO.countpj41(SE.getId(), 6)%>, <%=UserDAO.countpj41(SE.getId(), 7)%>]
                                             }
@@ -788,18 +807,21 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ51"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagelv51(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>5.2. There was an opportunity to analyze and reflect on the symptoms and causes of the community issue / problem being addressed.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ52"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagelv52(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>5.3. The project was a result of an analysis-reflection process on the community / partner situation.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ53"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagelv53(SE.getId())%></p></b></center>
                             </div>
 
                             <script>
@@ -811,7 +833,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countlv51(SE.getId(), 5)%>, <%=UserDAO.countlv51(SE.getId(), 4)%>, <%=UserDAO.countlv51(SE.getId(), 3)%>, <%=UserDAO.countlv51(SE.getId(), 2)%>, <%=UserDAO.countlv51(SE.getId(), 1)%>, <%=UserDAO.countlv51(SE.getId(), 6)%>, <%=UserDAO.countlv51(SE.getId(), 7)%>]
                                             }
@@ -851,7 +873,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countlv52(SE.getId(), 5)%>, <%=UserDAO.countlv52(SE.getId(), 4)%>, <%=UserDAO.countlv52(SE.getId(), 3)%>, <%=UserDAO.countlv52(SE.getId(), 2)%>, <%=UserDAO.countlv52(SE.getId(), 1)%>, <%=UserDAO.countlv52(SE.getId(), 6)%>, <%=UserDAO.countlv52(SE.getId(), 7)%>]
                                             }
@@ -891,7 +913,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countlv53(SE.getId(), 5)%>, <%=UserDAO.countlv53(SE.getId(), 4)%>, <%=UserDAO.countlv53(SE.getId(), 3)%>, <%=UserDAO.countlv53(SE.getId(), 2)%>, <%=UserDAO.countlv53(SE.getId(), 1)%>, <%=UserDAO.countlv53(SE.getId(), 6)%>, <%=UserDAO.countlv53(SE.getId(), 7)%>]
                                             }
@@ -930,12 +952,14 @@
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ54"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagelv54(SE.getId())%></p></b></center>
                             </div>
                             <div class="card chartscardslong">
                                 <h3>5.5. The partner organization/community members were involved in the consultation, planning, implementation and evaluation of the program/ project.</h3>
                                 <div id="canvas-holder" style="width:80%">
                                     <canvas id="chartSEQ55"  width="100" height="50" style="margin-left:20px"></canvas>
                                 </div>
+                                <center><b><p>Average Score: <%=UserDAO.averagelv55(SE.getId())%></p></b></center>
                             </div>
                             <script>
                                 Chart.defaults.global.legend.display = false;
@@ -946,7 +970,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countlv54(SE.getId(), 5)%>, <%=UserDAO.countlv54(SE.getId(), 4)%>, <%=UserDAO.countlv54(SE.getId(), 3)%>, <%=UserDAO.countlv54(SE.getId(), 2)%>, <%=UserDAO.countlv54(SE.getId(), 1)%>, <%=UserDAO.countlv54(SE.getId(), 6)%>, <%=UserDAO.countlv54(SE.getId(), 7)%>]
                                             }
@@ -986,7 +1010,7 @@
                                         labels: ["5", "4", "3", "2", "1", "NEI", "N/A"],
                                         datasets: [
                                             {
-                                                label: "# of Programs",
+                                                label: "Count",
                                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
                                                 data: [<%=UserDAO.countlv55(SE.getId(), 5)%>, <%=UserDAO.countlv55(SE.getId(), 4)%>, <%=UserDAO.countlv55(SE.getId(), 3)%>, <%=UserDAO.countlv55(SE.getId(), 2)%>, <%=UserDAO.countlv55(SE.getId(), 1)%>, <%=UserDAO.countlv55(SE.getId(), 6)%>, <%=UserDAO.countlv55(SE.getId(), 7)%>]
                                             }
