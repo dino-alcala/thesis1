@@ -398,41 +398,56 @@
                             <tr>
                                 <%
                                     int num = 0;
+                                    int index = 0;
                                     if(m.getUnittarget().equals("Administrators")){
                                         num = TargetDAO.getTotals().get(8);
+                                        index = 8;
                                     } else if(m.getUnittarget().equals("Alumni")){
                                         num = TargetDAO.getTotals().get(13);
+                                        index = 13;
                                     } else if(m.getUnittarget().equals("APSP Employees")){
                                         num = TargetDAO.getTotals().get(5);
+                                        index = 5;
                                     } else if(m.getUnittarget().equals("ASF Employees")){
                                         num = TargetDAO.getTotals().get(6);
+                                        index = 6;
                                     } else if(m.getUnittarget().equals("CAP Employees")){
                                         num = TargetDAO.getTotals().get(4);
+                                        index = 4;
                                     } else if(m.getUnittarget().equals("Departments")){
                                         num = TargetDAO.getTotals().get(12);
+                                        index = 12;
                                     } else if(m.getUnittarget().equals("Faculty Employees")){
                                         num = TargetDAO.getTotals().get(7);
+                                        index = 7;
                                     } else if(m.getUnittarget().equals("Faculty Departments")){
                                         num = TargetDAO.getTotals().get(2);
+                                        index = 2;
                                     } else if(m.getUnittarget().equals("Graduate Students")){
                                         num = TargetDAO.getTotals().get(9);
+                                        index = 9;
                                     } else if(m.getUnittarget().equals("International Students")){
                                         num = TargetDAO.getTotals().get(11);
+                                        index = 11;
                                     } else if(m.getUnittarget().equals("No Specified Unit")){
                                         num = TargetDAO.getTotals().get(0);
+                                        index = 0;
                                     } else if(m.getUnittarget().equals("Staff")){
                                         num = TargetDAO.getTotals().get(3);
+                                        index = 3;
                                     } else if(m.getUnittarget().equals("Student Organizations")){
                                         num = TargetDAO.getTotals().get(1);
+                                        index = 1;
                                     } else if(m.getUnittarget().equals("Undergraduate Students")){
                                         num = TargetDAO.getTotals().get(10);
+                                        index = 10;
                                     }
                                 %>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><%if(num != 0 && m.getNumtypetarget().equals("Percent")){%><%=m.getNumtarget()%>% of <%if(m.getUnittarget().equals("No Specified Unit")){%>units<%}else{%><%=m.getUnittarget()%><%}%> = <%=num*m.getNumtarget()/100%><%} else if(num != 0 && m.getNumtypetarget().equals("Count")){%>Total number of <%if(m.getUnittarget().equals("No Specified Unit")){%>units<%}else{%><%=m.getUnittarget()%><%}%> = <%=num%><%}%></td>
-                                <%if(m.getNumtypetarget().equals("Percent")){%><td><%if(num!=0){%>Total number of <%=m.getUnittarget()%> = <%=num%><%}%></td><%}%>
+                                <td><%if(num != 0 && m.getNumtypetarget().equals("Percent")){%><%=m.getNumtarget()%>% of <%if(m.getUnittarget().equals("No Specified Unit")){%>units<%}else{%><%=m.getUnittarget()%><%}%> = <%=TargetDAO.getPrograms(m).size()%>/<%=num*m.getNumtarget()/100%><%} else if(num != 0 && m.getNumtypetarget().equals("Count")){%>Total number of <%if(m.getUnittarget().equals("No Specified Unit")){%>units<%}else{%><%=m.getUnittarget()%><%}%> = <%=num%><%}%></td>
+                                <%if(m.getNumtypetarget().equals("Percent")){%><td><%if(num!=0){%>Total number of <%=m.getUnittarget()%> = <%=TargetDAO.getPrograms(m).size()%>/<%=TargetDAO.getTotals().get(index)%><%}%></td><%}%>
                                 <%if(session.getAttribute("position").toString().contains("ADEALM")){%><td></td><%}%>
                             </tr>
                         </tbody>

@@ -51,7 +51,7 @@ public class addSE extends HttpServlet {
                     && Integer.parseInt(request.getParameter("measure3")) != 0){
                 SE.setUnit(session.getAttribute("unit").toString());
                 if(session.getAttribute("position").toString().contains("ADEALM")){
-                    SE.setDepartment("ADEALM");
+                    SE.setDepartment(UserDAO.getUnitByName(session.getAttribute("unit").toString()).getAbbrev());
                 } else {
                     SE.setDepartment(UserDAO.getDepartmentByUserID(Integer.parseInt(session.getAttribute("userID").toString())));
                 }

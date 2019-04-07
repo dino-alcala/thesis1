@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.FF"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
@@ -301,14 +302,15 @@
                                             <%
                                                 double total = 0;
                                                 double count = 0;
+                                                DecimalFormat df = new DecimalFormat("#,###,###,###.##");
                                                 for (int i = 0; i < FF.getExpenses().size(); i++) {
                                             %>
                                             <tr>
                                                 <td><%=FF.getExpenses().get(i).getItem()%></td>
-                                                <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
+                                                <td>₱<%=df.format(FF.getExpenses().get(i).getUnitcost())%></td>
                                                 <td><%=FF.getExpenses().get(i).getQuantity()%></td>
-                                                <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
-                                                <td><%=FF.getExpenses().get(i).getAmountUsed()%></td>
+                                                <td>₱<%=df.format(FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity())%></td>
+                                                <td>₱<%=df.format(FF.getExpenses().get(i).getAmountUsed())%></td>
                                                 <td><%if(FF.getExpenses().get(i).equals("Not Updated")){%>Not Updated<%} else {%><%=FF.getExpenses().get(i).getUpdatedBy()%><%}%></td>
                                                 <td><%if (!FF.getExpenses().get(i).getDatetime().equals("2001-01-01 00:00:00.0")) {%> <%=FF.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
                                             </tr>
@@ -321,8 +323,8 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>Total: <%=count%></td>
-                                                <td>Total: <%=total%></td>
+                                                <td>Total: ₱<%=df.format(count)%></td>
+                                                <td>Total: ₱<%=df.format(total)%></td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>

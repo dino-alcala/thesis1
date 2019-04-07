@@ -21209,7 +21209,7 @@ public class UserDAO {
             }
             if(this.getUnitByName(unit).getType().equals("Academic")){
                 Department d = new Department();
-                d.setName("ADEALM");
+                d.setName(this.getUnitByName(unit).getAbbrev());
                 Departments.add(d);
             }
 

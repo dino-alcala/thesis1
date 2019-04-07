@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.FF"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
@@ -350,13 +351,14 @@
                                             </tr>
                                             <%
                                                 double count = 0;
+                                                DecimalFormat df = new DecimalFormat("#,###,###,###.##");
                                                 for (int i = 0; i < FF.getExpenses().size(); i++) {
                                             %>
                                             <tr>
                                                 <td><%=FF.getExpenses().get(i).getItem()%></td>
-                                                <td><%=FF.getExpenses().get(i).getUnitcost()%></td>
+                                                <td>₱<%=df.format(FF.getExpenses().get(i).getUnitcost())%></td>
                                                 <td><%=FF.getExpenses().get(i).getQuantity()%></td>
-                                                <td><%=FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity()%></td>
+                                                <td>₱<%=df.format(FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity())%></td>
                                             </tr>
                                             <%
                                                     count += FF.getExpenses().get(i).getUnitcost() * FF.getExpenses().get(i).getQuantity();
@@ -366,7 +368,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>Total: <%=count%></td>
+                                                <td>Total: ₱<%=df.format(count)%></td>
                                             </tr>
                                         </table>
                                     </div>

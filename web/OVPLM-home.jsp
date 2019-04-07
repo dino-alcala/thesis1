@@ -238,21 +238,16 @@
         <script>
             function PrintElem(elem)
             {
-                var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-
-                mywindow.document.write('<html><head><title>' + document.title + '</title>');
-                mywindow.document.write('</head><body >');
-                mywindow.document.write('<h1>' + document.title + '</h1>');
-                mywindow.document.write(document.getElementById(elem).innerHTML);
-
-                mywindow.document.close(); // necessary for IE >= 10
-                mywindow.focus(); // necessary for IE >= 10*/
-
-                mywindow.print();
-                mywindow.close();
-
-                return true;
+                var printContents = document.getElementById(elem).innerHTML;
+                var originalContents = document.body.innerHTML;
+                document.body.innerHTML = printContents;
+                window.print();
+                document.body.innerHTML = originalContents;
             }
+
+            $(document).ready(function () {
+                $("#kratracingprint").hide();
+            });
         </script>
 
     </head>
@@ -367,7 +362,7 @@
                     <h4>Key Result Areas </h4>
                     <form action="calculateTargets">
                         <center><button class="btn btn-primary btn-sm" type="submit" name="edit" value="1">Edit Actual # of Units</button>
-                            <button type="button" onclick="PrintElem('kratracing')" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span>Print Page</button></center>
+                            <button type="button" onclick="PrintElem('kratracingprint')" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span>Print Page</button></center>
                             <%
                                 DecimalFormat percentage = new DecimalFormat("0.00");
                                 TargetDAO TargetDAO = new TargetDAO();
@@ -429,6 +424,68 @@
 
                             <%if (z == 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
                             <%if (z != 0) {%><td><button class="btn btn-primary btn-sm" type="submit" name="buttontrackable" value="<%=kra.getGoals().get(y).getMeasures().get(z).getMeasureID()%>">View</button></td><%}%>
+                            </tr>    
+                            <% }
+                                    }
+                                } %>
+                        </table>
+                        <% } %>
+                    </form>
+                </div>
+
+                <div id="kratracingprint" class="container-fluid panels">
+                    <h4>Key Result Areas </h4>
+                    <form action="calculateTargets">
+                        <%
+                            for (int x = 0; x < kralist.size(); x++) {
+                        %>
+                        <h5><%=kralist.get(x).getName()%></h5>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th style="width:30%">Goal</th>
+                                    <th style="width:30%">Measure</th>
+                                    <th style="width:30%">Target</th>
+                                    <th style="width:5%">Accomplishment</th>
+                                </tr>
+                            </thead>
+                            <%
+                                KRA kra = OvplmDAO.retrieveKRAByID(kralist.get(x).getId());
+                                for (int y = 0; y < kra.getGoals().size(); y++) {
+                            %> 
+                            <tr>
+                                <td><%=kra.getGoals().get(y).getName()%></td>
+
+                                <%
+                                    for (int z = 0; z < kra.getGoals().get(y).getMeasures().size(); z++) {
+                                %>
+                                <%if (kra.getGoals().get(y).getMeasures().get(z).getUntrackable() == 1) {%>
+                                <td><%if (z == 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
+
+                                <td><%if (z != 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
+
+                                    <%if (z == 0) {%>Not Trackable</td><%}%>
+                                <%if (z != 0) {%><td>Not Trackable</td><%}%>
+
+
+                                <%if (z != 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                                <%if (z == 0) {%><td class="accomplishmentRed">Not Trackable</td><%}%>
+                            </tr>
+                            <%} else {%>
+                            <td><%if (z == 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%></td>
+                            <td><%if (z != 0) {%><b><%=kra.getGoals().get(y).getMeasures().get(z).getMeasure()%></b> - <%=kra.getGoals().get(y).getMeasures().get(z).getDescription()%><%}%>
+
+                                <%if (z == 0) {%><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
+                            <%if (z != 0) {%><td><%=kra.getGoals().get(y).getMeasures().get(z).getNumtarget()%><%if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Count")) {%> <%=kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget()%><%} else {%>%<%}%> of <%= kra.getGoals().get(y).getMeasures().get(z).getUnittarget()%> have undergone/conducted/contains a <%=kra.getGoals().get(y).getMeasures().get(z).getTypetarget()%> program/component <%if (!kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget().equals("N/A")) {%> engaging <%=kra.getGoals().get(y).getMeasures().get(z).getEngagingtarget()%><%}%></td><%}%> 
+
+                            <%
+                                double percent = TargetDAO.calculateTarget(kra.getGoals().get(y).getMeasures().get(z), TargetDAO.getTotals());
+                                if (kra.getGoals().get(y).getMeasures().get(z).getNumtypetarget().equals("Percent")) {
+                                    percent = percent / kra.getGoals().get(y).getMeasures().get(z).getNumtarget() * 100;
+                                }
+                            %>
+                            <%if (z == 0) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><center><%=percentage.format(percent)%>%</center><%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><center><%=percentage.format(percent)%>%</center><%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><center><%=percentage.format(percent)%>%</center><%} else if (percent >= 100) {%><td class="accomplishmentGreen"><center>100%</center></td><%}%><%}%>
+                            <%if (z != 0) {%><% if (percent >= 0 && percent < 100 / 3) {%><td class="accomplishmentRed"><center><%=percentage.format(percent)%>%</center><%} else if (percent > (100 / 3) && percent < 100 * 2 / 3) {%><td class="accomplishmentYellow"><center><%=percentage.format(percent)%>%</center><%} else if (percent > 100 * (2 / 3) && percent < 100) {%><td class="accomplishmentGreen"><center><%=percentage.format(percent)%>%</center><%} else if (percent >= 100) {%><td class="accomplishmentGreen"><center>100%</center></td><%}%><%}%>
                             </tr>    
                             <% }
                                     }

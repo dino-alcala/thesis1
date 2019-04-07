@@ -93,7 +93,7 @@ public class createSEAttendanceSheet extends HttpServlet {
                 String from = "ovplmpms@gmail.com";
                 String to = attendees.get(x).getEmail();
                 String subject = "Evaluation Code";
-                String message = "Thank you for participating in our Social Engagement Program! Please follow the instructions below to evaluate your experience." + "\n" + "\n" + "SE Evaluation Code for '" + SE.getName() + "': " + code + "\n" + "\n" + "Please proceed to the OVPLM PMS Website, click the 'Evaluate' button at the bottom of the 'Login' button, and input this code, and evaluate the program." + "\n" + "\n" + "Thank You!";
+                String message = "Thank you for participating in our Social Engagement Program! Please follow the instructions below to evaluate your experience." + "\n" + "\n" + "SE Evaluation Code for '" + SE.getName() + "': " + code + "\n" + "\n" + "Please proceed to the OVPLM PMS Website, click the 'Evaluate' button at the bottom of the 'Login' button, and input this code, and evaluate the program." + "\n" + "\n" + "http://localhost:8080/thesis1/MULTIPLE-evaluationLogIn.jsp" + "\n" + "\n" + "Thank You!";
                 String login = "ovplmpms@gmail.com";
                 String password = "11434643ovplmpms";
 
@@ -109,16 +109,17 @@ public class createSEAttendanceSheet extends HttpServlet {
 
                 MimeMessage msg = new MimeMessage(session2);
 
-                try {
-                    msg.setText(message);
-                    msg.setSubject(subject);
-                    msg.setFrom(new InternetAddress(from));
-                    msg.addRecipient(Message.RecipientType.TO,
-                            new InternetAddress(to));
-                    Transport.send(msg);
-                } catch (MessagingException ex) {
-                    System.out.println("DJSAKJKASJKLSA ERROR");
-                }
+                boolean check = true;
+                    try {
+                        msg.setText(message);
+                        msg.setSubject(subject);
+                        msg.setFrom(new InternetAddress(from));
+                        msg.addRecipient(Message.RecipientType.TO,
+                                new InternetAddress(to));
+                        Transport.send(msg);
+                    } catch (MessagingException ex) {
+                        System.out.println("SEND MESSAGE ERROR");
+                    }
             }
 
             ServletContext context = getServletContext();

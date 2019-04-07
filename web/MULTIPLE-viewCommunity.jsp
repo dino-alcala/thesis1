@@ -178,7 +178,7 @@
                                 Community c = new Community();
                                 c = UserDAO.retrieveCommunityByID(Integer.parseInt(request.getAttribute("communityID").toString()));
                             %>
-                            <h1><%=c.getName()%></h1>
+                            <h4><%=c.getName()%></h4>
 
 
                             <table class="table">

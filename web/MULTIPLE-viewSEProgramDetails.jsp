@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UserDAO"%>
@@ -392,14 +393,17 @@
                                             <%
                                                 double count = 0;
                                                 double total = 0;
+                                                DecimalFormat df = new DecimalFormat("#,###,###,###.##");
+                    
+                                                
                                                 for (int i = 0; i < SE.getExpenses().size(); i++) {
                                             %>
                                             <tr>
                                                 <td><%=SE.getExpenses().get(i).getItem()%></td>
-                                                <td><%=SE.getExpenses().get(i).getUnitcost()%></td>
+                                                <td>₱<%=df.format(SE.getExpenses().get(i).getUnitcost())%></td>
                                                 <td><%=SE.getExpenses().get(i).getQuantity()%></td>
-                                                <td><%=SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity()%></td>
-                                                <td><%=SE.getExpenses().get(i).getAmountUsed()%></td>
+                                                <td>₱<%=df.format(SE.getExpenses().get(i).getUnitcost() * SE.getExpenses().get(i).getQuantity())%></td>
+                                                <td>₱<%=df.format(SE.getExpenses().get(i).getAmountUsed())%></td>
                                                 <td><%if(SE.getExpenses().get(i).equals("Not Updated")){%>Not Updated<%} else {%><%=SE.getExpenses().get(i).getUpdatedBy()%><%}%></td>
                                                 <td><%if (!SE.getExpenses().get(i).getDatetime().equals("2001-01-01 00:00:00.0")) {%> <%=SE.getExpenses().get(i).getDatetime()%><% } else { %> None <% } %></td>
                                             </tr>
@@ -413,8 +417,8 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>Total: <%=count%></td>
-                                                <td>Total: <%=total%></td>
+                                                <td>Total: ₱<%=df.format(count)%></td>
+                                                <td>Total: ₱<%=df.format(total)%></td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>

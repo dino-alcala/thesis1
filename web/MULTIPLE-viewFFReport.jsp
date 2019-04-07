@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.FF"%>
 <%@page import="entity.FFreport"%>
 <%@page import="entity.SEreport"%>
@@ -339,7 +340,10 @@
                                         </table>
                                         <br>
                                         <hr/>
-                                        <p><b>Amount of Grants Received from <%if (UserDAO.isOVPLMSourceFF(Integer.parseInt(request.getAttribute("ffID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund:  </b>&nbsp;&nbsp;₱ <%=FFreport.getAmountReceivedOVPLM()%></p>
+                                        <%
+                                            DecimalFormat df = new DecimalFormat("#,###,###,###.##");
+                                        %>
+                                        <p><b>Amount of Grants Received from <%if (UserDAO.isOVPLMSourceFF(Integer.parseInt(request.getAttribute("ffID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund:  </b>&nbsp;&nbsp;₱ <%=df.format(FFreport.getAmountReceivedOVPLM())%></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -407,8 +411,8 @@
                                             %>
                                             <tr>
                                                 <td><%=FFreport.getFunds().get(i).getLineItem()%></td>
-                                                <td>₱ <%=FFreport.getFunds().get(i).getApprovedAmount()%></td>
-                                                <td>₱ <%=FFreport.getFunds().get(i).getExpendedAmount()%></td>
+                                                <td>₱<%=df.format(FFreport.getFunds().get(i).getApprovedAmount())%></td>
+                                                <td>₱ <%=df.format(FFreport.getFunds().get(i).getExpendedAmount())%></td>
                                                 <td><%=FFreport.getFunds().get(i).getApprovedAmount() - FFreport.getFunds().get(i).getExpendedAmount()%></td>
                                                 <td><%=FFreport.getFunds().get(i).getReasonVariance()%></td>
                                             </tr>

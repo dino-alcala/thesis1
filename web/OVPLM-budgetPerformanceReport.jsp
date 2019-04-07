@@ -248,6 +248,21 @@
 
         </style>
 
+        <script>
+            function PrintElem(elem)
+            {
+                var printContents = document.getElementById(elem).innerHTML;
+                var originalContents = document.body.innerHTML;
+                document.body.innerHTML = printContents;
+                window.print();
+                document.body.innerHTML = originalContents;
+            }
+
+            $(document).ready(function(){
+            $("#printreport").hide();
+            });
+        </script>
+
     </head>
 
     <body>
@@ -359,8 +374,7 @@
                     <div class="container-fluid panels">
                         <p></p>
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
-
-                        <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <button type="button" onclick="PrintElem('printreport')" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>
@@ -709,12 +723,205 @@
                         </table>
                     </form>
                 </div>
+
+                <div id="printreport">
+                    <div class="container-fluid panels">
+                        <h2 class="kraheading"> Overall Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+
+                        <div class="card-deck">
+                            <div class="card bg-primary">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Initial Budget (as of <%=Date.valueOf(request.getAttribute("startDate").toString())%>)</b></p>
+                                    <p class="total">₱ <%=df.format(UserDAO.getInitialBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-primary">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget Remaining (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                    <p class="total">₱ <%=df.format(UserDAO.getRemainingBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div> 
+                        </div>
+                        <br/>        
+                        <div class="card-deck">
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget used for SE programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getSEUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget used for FF programs (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getFFUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div> 
+                        </div>
+                        <br>
+                    </div>
+                    <!--- pie chart-->
+
+                    <!--- Units -->
+                    <div class="container-fluid panels">
+
+                        <h2>Unit's Budget Expenses for Programs Implemented (from <%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+                        <div class="card-deck">
+                            <div class="card chartscards">
+                                <div id="canvas-holder" style="width:75%;">
+                                    <canvas id="chartBPRu2"  width="110" height="100" style="margin-left:115px"></canvas>
+                                </div>
+                            </div>
+                            <script>
+                                <%
+                                    units = UserDAO.retrieveUnits();
+                                %>
+                                Chart.defaults.global.legend.display = false;
+                                var ctx = document.getElementById('chartBPRu2').getContext('2d');
+                                var chartBPRu = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                        data: {
+                                        labels: [<%for (int i = 0; i < units.size(); i++) {%>"<%=units.get(i).getName()%>",<%}%>],
+                                                datasets: [
+                                                {
+                                                label: "Social Engagement",
+                                                        backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA7A2D",<%}%>],
+                                                        data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualSEBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                }
+                                                , {
+                                                label: "Faith Formation",
+                                                        backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
+                                                        data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                }
+                                                , {
+                                                label: "Total",
+                                                        backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA4E6F",<%}%>],
+                                                        data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) + UserDAO.getIndividualSEBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
+                                                }]
+
+                                        },
+                                        options: {
+                                        legend: {
+                                        display: true,
+                                                position: 'top',
+                                                labels: {
+                                                fontSize: 15
+                                                }
+                                        },
+                                                title: {
+                                                display: true,
+                                                },
+                                                scales: {
+                                                yAxes: [{
+                                                ticks: {
+                                                fontSize: 16
+                                                }
+                                                }],
+                                                        xAxes: [{
+                                                        ticks: {
+                                                        beginAtZero: false,
+                                                                fontSize: 16
+                                                        }
+                                                        }]
+                                                },
+                                                tooltips: {
+                                                titleFontSize: 18,
+                                                        bodyFontSize: 18
+                                                }
+                                        }
+                                });
+                            </script>
+                        </div>
+
+                    </div>
+                    <!--- Units -->
+
+                    <!--- budget -->
+                    <div class="container-fluid panels">
+
+                        <h2>Program Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+
+                        <div class="card-deck">
+                            <div class="card bg-white">
+                                <div class="card-body text-center">
+                                    <div id="canvas-holder" style="width:50%" >
+                                        <canvas id="chartBPRb2" style="margin-left:260px"></canvas>
+                                    </div>
+                                    <script>
+                                        Chart.defaults.global.legend.display = true;
+                                        var ctx = document.getElementById('chartBPRb2').getContext('2d');
+                                        ctx.canvas.width = 35;
+                                        ctx.canvas.height = 20;
+                                        var chartBPRb = new Chart(ctx, {
+                                        type: 'pie',
+                                                data: {
+                                                labels: ['Programs Funded by OVPLM', 'Programs Funded by Others'],
+                                                        datasets:
+                                                [{
+                                                data: [<%=UserDAO.countOVPLMPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countOtherPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>],
+                                                        backgroundColor: ['#5A82B2', '#DCDF01']
+                                                }],
+                                                },
+                                                options: {
+                                                legend: {
+                                                display: true,
+                                                        position: 'bottom',
+                                                        labels: {
+                                                        boxWidth: 60,
+                                                                fontSize: 20
+                                                        }
+                                                },
+                                                        tooltips: {
+                                                        titleFontSize: 18,
+                                                                bodyFontSize: 18
+                                                        }
+                                                }
+
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2></h2>
+
+                        <div class="card-deck">
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Programs Budget Requested for <br>Programs Created from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Programs Budget Requested for <br>Programs Implemented from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Programs Budget Utilized for <br>Programs Implemented from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+
+                                    <!--<p class="card-text"><b>Programs Budget Utilized for <br>Programs Created from *</b></p>
+                                    <p class="total2">PHP <%=df.format(UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
+                                </div>
+                            </div> 
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Programs Budget Variance for <br>Programs Implemented from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+
+                                    <!--<p class="card-text"><b>Programs Budget Variance for <br>Programs Created from *</b></p>
+                                    <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
                 <%
                     }
                 %>
-
             </div>
-
         </div>
 
         <script>

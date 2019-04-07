@@ -33,7 +33,7 @@ public class OvplmDAO {
 
         ResultSet rs2 = null;
         try {
-            String query = "INSERT INTO unit(unitName, unitHead, departments, unitType, unitDescription, userID, abbrev) VALUES(?,?,?,?,?,?,?)";
+            String query = "INSERT INTO unit(unitName, unitHead, departments, unitType, unitDescription, userID, abbrev, active) VALUES(?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, u.getName());

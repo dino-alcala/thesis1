@@ -4,6 +4,7 @@
     Author     : Karl Madrid
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.SEresponsible"%>
 <%@page import="entity.SE"%>
 <%@page import="entity.SEreport"%>
@@ -385,7 +386,10 @@
                                         </table>
                                         <br>
                                         <hr/>
-                                        <p><b>Amount of Grants Received from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("seID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund:  </b>&nbsp;&nbsp;₱ <%=SEreport.getAmountReceivedOVPLM()%></p>
+                                        <%
+                                          DecimalFormat df = new DecimalFormat("#,###,###,###.##");  
+                                        %>    
+                                        <p><b>Amount of Grants Received from <%if (UserDAO.isOVPLMSource(Integer.parseInt(request.getAttribute("seID").toString()))) {%> OVPLM <%} else {%> Others <%}%> Fund:  </b>&nbsp;&nbsp;₱ <%=df.format(SEreport.getAmountReceivedOVPLM())%></p>
                                     </div>
                                 </div>
                                 <br/>
@@ -462,8 +466,8 @@
                                             %>
                                             <tr>
                                                 <td><%=SEreport.getFunds().get(i).getLineItem()%></td>
-                                                <td>₱ <%=SEreport.getFunds().get(i).getApprovedAmount()%></td>
-                                                <td>₱ <%=SEreport.getFunds().get(i).getExpendedAmount()%></td>
+                                                <td>₱<%=df.format(SEreport.getFunds().get(i).getApprovedAmount())%></td>
+                                                <td>₱<%=df.format(SEreport.getFunds().get(i).getExpendedAmount())%></td>
                                                 <td><%=SEreport.getFunds().get(i).getApprovedAmount() - SEreport.getFunds().get(i).getExpendedAmount()%></td>
                                                 <td><%=SEreport.getFunds().get(i).getReasonVariance()%></td>
                                             </tr>
