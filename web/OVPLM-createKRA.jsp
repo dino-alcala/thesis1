@@ -440,7 +440,7 @@
                 <hr size="5" noshade>
 
                 <div class="form-style-5">
-                    <form action = "addKRA" method="post">
+                    <form action="addKRA" method="post">
                         <%
                             SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
                             java.util.Date javaDate = new java.util.Date();

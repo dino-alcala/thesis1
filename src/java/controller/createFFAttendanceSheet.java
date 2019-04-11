@@ -93,7 +93,7 @@ public class createFFAttendanceSheet extends HttpServlet {
                 String from = "ovplmpms@gmail.com";
                 String to = attendees.get(x).getEmail();
                 String subject = "Evaluation Code";
-                String message = "Thank you for participating in our Faith Formation Program! Please follow the instructions below to evaluate your experience." + "\n" + "\n" +  "FF Evaluation Code for '" + FF.getProjectName() + "': " + code + "\n" + "\n" + "Please proceed to the OVPLM PMS Website, click the 'Evaluate' button at the bottom of the 'Login' button, and input this code, and evaluate the program." + "\n" + "\n" + "http://localhost:8080/thesis1/MULTIPLE-evaluationLogIn.jsp" + "\n" + "\n" + "Thank You!";
+                String message = "Thank you for participating in our Faith Formation Program! Please follow the instructions below to evaluate your experience." + "\n" + "\n" + "FF Evaluation Code for '" + FF.getProjectName() + "': " + code + "\n" + "\n" + "Please proceed to the OVPLM PMS Website, click the 'Evaluate' button at the bottom of the 'Login' button, and input this code, and evaluate the program." + "\n" + "\n" + "http://localhost:8080/thesis1/MULTIPLE-evaluationLogIn.jsp" + "\n" + "\n" + "Thank You!";
                 String login = "ovplmpms@gmail.com";
                 String password = "11434643ovplmpms";
 
@@ -108,19 +108,23 @@ public class createFFAttendanceSheet extends HttpServlet {
                 Session session2 = Session.getInstance(props, auth);
 
                 MimeMessage msg = new MimeMessage(session2);
-
-                try {
-                    msg.setText(message);
-                    msg.setSubject(subject);
-                    msg.setFrom(new InternetAddress(from));
-                    msg.addRecipient(Message.RecipientType.TO,
-                            new InternetAddress(to));
-                    Transport.send(msg);
-                } catch (MessagingException ex) {
-                    System.out.println("DJSAKJKASJKLSA ERROR");
-                }
+                boolean check = true;
+                do {
+                    try {
+                        check = true;
+                        msg.setText(message);
+                        msg.setSubject(subject);
+                        msg.setFrom(new InternetAddress(from));
+                        msg.addRecipient(Message.RecipientType.TO,
+                                new InternetAddress(to));
+                        Transport.send(msg);
+                    } catch (MessagingException ex) {
+                        System.out.println("DJSAKJKASJKLSA ERROR");
+                        check = false;
+                    }
+                } while (check == false);
             }
-            
+
             ServletContext context = getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/MULTIPLE-faithFormationProgramsList.jsp");
             dispatcher.forward(request, response);

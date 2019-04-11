@@ -1013,6 +1013,7 @@ public class UserDAO {
             pstmt.setInt(5, u.getDepartment());
             pstmt.setString(6, u.getPassword());
             pstmt.setInt(7, u.getId());
+            
 
             int rs = pstmt.executeUpdate();
         } catch (SQLException ex) {

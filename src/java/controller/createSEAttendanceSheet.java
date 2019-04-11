@@ -110,7 +110,9 @@ public class createSEAttendanceSheet extends HttpServlet {
                 MimeMessage msg = new MimeMessage(session2);
 
                 boolean check = true;
+                do{
                     try {
+                        check = true;
                         msg.setText(message);
                         msg.setSubject(subject);
                         msg.setFrom(new InternetAddress(from));
@@ -119,7 +121,9 @@ public class createSEAttendanceSheet extends HttpServlet {
                         Transport.send(msg);
                     } catch (MessagingException ex) {
                         System.out.println("SEND MESSAGE ERROR");
+                        check = false;
                     }
+                } while(check == false);
             }
 
             ServletContext context = getServletContext();
