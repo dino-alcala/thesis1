@@ -398,8 +398,7 @@
                 }
             %>
                     }
-                    
-                else if (response == "All"){
+                    else if (response == "All"){
 
             <%
                 f = UserDAO2.retrieveALLFFImplementedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
@@ -517,23 +516,23 @@
             #myInput, #myInput2, #myInput3{
                 margin-bottom: 20px;
             }
-            
+
             .card-text{
                 margin-bottom: 5px;
             }
-            
+
             .progressnum{
                 font-size: 12px;
             }
-            
+
             .krascards:hover {
                 background-color: lightgreen;
             }
-            
+
             tr:hover {
                 background-color: lightgreen;
             }
-            
+
             h2{
                 font-size: 20px;
                 text-align: left;
@@ -543,11 +542,11 @@
                 margin-bottom: 25px;
                 font-family: 'Roboto', sans-serif;
             }
-            
+
             .table{
                 margin-bottom: 20px;
             }
-            
+
             .totalsdiv{
                 margin-top: 20px;
                 background-color: white;
@@ -558,7 +557,7 @@
                 border-radius: 8px;
                 align-content: center;
             }
-            
+
             .panels{
                 margin-top: 20px;
                 background-color: white;
@@ -568,36 +567,36 @@
                 border-width: 1px;
                 border-radius: 8px;
             }
-            
+
             h3{
                 font-size: 20px;
                 text-align: center;
                 margin-top: 20px;
             }
-            
+
             .totaltitle{
                 text-align: center;
                 font-size: 20px;
             }
-            
+
             .card-text{
                 color: white;
                 font-size: 15px;
                 font-family: 'Montserrat', sans-serif;
             }
-            
+
             .total{
                 color: white;
                 font-size: 40px;
                 font-family: 'Montserrat', sans-serif;
             }
-            
+
             .total2{
                 color: white;
                 font-size: 30px;
                 font-family: 'Montserrat', sans-serif;
             }
-            
+
             .kras{
                 margin-top: 20px;
                 background-color: white;
@@ -608,12 +607,12 @@
                 border-radius: 8px;
                 margin-bottom: 20px;
             }
-            
+
             .daterange{
                 text-align: right;
                 margin-top: 30px;
             }
-            
+
             .button {
                 background-color: dodgerblue;
                 border: none;
@@ -626,12 +625,12 @@
                 cursor: pointer;
                 padding: 14px 40px;
             }
-            
+
             .pbutton{
                 margin-top: 40px;
                 text-align: center;
             }
-            
+
             .quickhead3{
                 border-bottom: 2px solid black;
                 padding-bottom: 10px; 
@@ -645,28 +644,28 @@
                 padding-bottom: 15px;
                 background-color: #cc0099;
             }
-            
+
             #buttonFF {
                 margin: 5px 5px 5px 10px;
                 padding-left: 60px;
                 padding-bottom: 15px;
                 background-color: #00e699;
             }
-            
+
             #buttonBR {
                 margin: 5px 5px 5px 10px;
                 padding-left: 60px;
                 padding-bottom: 15px;
                 background-color: #55F024;
             }
-            
+
             #buttonBU {
                 margin: 5px 5px 5px 10px;
                 padding-left: 60px;
                 padding-bottom: 15px;
                 background-color: #F0A624;
             }
-            
+
             .budget{
                 font-size: 70px; 
                 text-align: center; 
@@ -676,6 +675,21 @@
                 margin-bottom: 20px;
             }
         </style>
+
+        <script>
+            function PrintElem(elem)
+            {
+            var printContents = document.getElementById(elem).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            }
+
+            $(document).ready(function(){
+            $("#printreport").hide();
+            });
+        </script>
 
     </head>
 
@@ -723,7 +737,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -868,15 +882,15 @@
                             </select>
                             <% }%>
                         </div>
-                        
-                        <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+
+                        <button type="button" onclick="PrintElem('printreport')" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>
 
                 <!--- Totals -->
                 <div class="container-fluid totalsdiv">
-                    <h2 class="totaltitle">Programs Implemented by <%=request.getAttribute("unit")%><br>(student orgs included)</h2> 
+                    <h2 class="totaltitle">Programs Implemented by <%=request.getAttribute("unit")%><br>(student orgs included)</h2>
                     <div class="card-deck">
                         <div class="card bg-white">
                             <div class="card-body text-center">
@@ -914,7 +928,7 @@
                                             }
                                     });
                                 </script> 
-  
+
                             </div>
                         </div>
                     </div>
@@ -926,30 +940,24 @@
                                 <p class="total"><%=UserDAO.countCommunitiesVisited(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></p>
                             </div>
                         </div>
-                            <%
-                                DecimalFormat formatter = new DecimalFormat("0.0");
-                                %>
-                            <div class="card bg-warning">
+                        <%
+                            DecimalFormat formatter = new DecimalFormat("0.0");
+                        %>
+                        <div class="card bg-warning">
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Overall Programs Rating</b></p>
                                 <p class="total"><%=formatter.format(UserDAO.getCollegeRating(request.getAttribute("unit").toString()))%>/5</p>
                             </div>
                         </div>
-                        <div class="card bg-primary">
-                            <div class="card-body text-center">
-                                <p class="card-text"><b>KRAs Targeted</b></p>
-                                <p class="total"><%=kra.size()%></p>
-                            </div>
-                        </div> 
                     </div>
                     <p></p>
                 </div>
-    
+
                 <!--- Programs Completed -->
                 <div class="container-fluid panels">
 
                     <h2>Programs Implemented (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
-                     
+
                     <!--- etong chart yung departments ng unit dapat -->
                     <div class="card-deck">
                         <div class="card chartscards">
@@ -980,7 +988,7 @@
                                                     data: [<%for (int i = 0; i < departments.size(); i++) {%> <%=UserDAO.countFFImplementedByDepartment(request.getAttribute("unit").toString(), departments.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }
                                             ]
-                                            
+
 
                                     },
                                     options: {
@@ -1002,10 +1010,10 @@
                                             }],
                                                     xAxes: [{
                                                     barThickness: 70,
-                                                    barPercentage: 0.1,
-                                                    ticks: {
-                                                    fontSize: 16
-                                                    }
+                                                            barPercentage: 0.1,
+                                                            ticks: {
+                                                            fontSize: 16
+                                                            }
                                                     }]
                                             },
                                             tooltips: {
@@ -1016,7 +1024,7 @@
                             });
                         </script>
                     </div>
-                                            
+
                     <h3>Social Engagement</h3>
 
                     <p></p>
@@ -1107,7 +1115,7 @@
                             var chartPUPkras = new Chart(ctx, {
                             type: 'bar',
                                     data: {
-                                    labels: [<%for (int i = 0; i < kra.size(); i++) {%>"<%=kra.get(i).getName().substring(0, 5) %>",<%}%>],
+                                    labels: [<%for (int i = 0; i < kra.size(); i++) {%>"<%=kra.get(i).getName().substring(0, 5)%>",<%}%>],
                                             datasets: [
                                             {
                                             label: "Unit's Programs",
@@ -1135,10 +1143,10 @@
                                             }],
                                                     xAxes: [{
                                                     barThickness: 70,
-                                                    barPercentage: 0.1,
-                                                    ticks: {
-                                                    fontSize: 16
-                                                    }
+                                                            barPercentage: 0.1,
+                                                            ticks: {
+                                                            fontSize: 16
+                                                            }
                                                     }]
                                             },
                                             tooltips: {
@@ -1244,7 +1252,7 @@
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget Utilized for <br>Programs Implemented by Unit from *</b></p>
                                 <p class="total2">₱ <%=df.format(UserDAO.getImplementedUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
-                                
+
                                 <!--<p class="card-text"><b>Budget Utilized for <br>Programs Requested by Unit from *</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getRequestedUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
                             </div>
@@ -1253,7 +1261,7 @@
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget Variance <br>Programs Implemented by Unit from *</b></p>
                                 <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
-                                
+
                                 <!--<p class="card-text"><b>Budget Variance <br>Programs Requested by Unit from *</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getRequestedUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
                             </div>
@@ -1336,7 +1344,127 @@
                     </form>
                 </div>
 
+                <div id="printreport">
+                    <legend>Report Range: <%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%></legend>
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">Programs Implemented by <%=request.getAttribute("unit")%><br>(student orgs included)</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Social Engagement</th>
+                                <th>Faith Formation</th>
+                            </tr>
+                            <tr>
+                                <td><%=UserDAO.countSEImplementedByUnitStudentOrg(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                <td><%=UserDAO.countFFImplementedByUnitStudentOrg(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                        </table>
+                    </div>
 
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">Programs Implemented per Department <%=request.getAttribute("unit")%></h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Department</th>
+                                <th>Social Engagement Programs</th>
+                                <th>Faith Formation Programs</th>
+                            </tr>
+                            <%
+                                for (int x = 0; x < departments.size(); x++) {
+                            %>
+                            <tr>
+                                <td><%=departments.get(x).getName()%></td>
+                                <td><%=UserDAO.countSEImplementedByDepartment(request.getAttribute("unit").toString(), departments.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                <td><%=UserDAO.countFFImplementedByDepartment(request.getAttribute("unit").toString(), departments.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">KRAs Targeted</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>KRA</th>
+                                <th>Number of Programs</th>
+                            </tr>
+                            <%
+                                for (int x = 0; x < kra.size(); x++) {
+                            %>
+                            <tr>
+                                <td><%=kra.get(x).getName().substring(0, 5)%></td>
+                                <td><%=kra.get(x).getTotal()%></td>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">Communities Visited</h2>
+                        <%
+                            c = UserDAO.retrieveProgramsUnitCommunityByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                        %>
+                        <table id="example4" class="table table-striped table-bordered" style="width:100%">    
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Community</th>
+                                    <th># of Programs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    for (int i = 0; i < c.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=c.get(i).getName()%></td>
+                                    <td><%=c.get(i).getNumberOfPrograms()%></td>
+
+                                </tr>
+
+                                <%
+                                    }
+                                %>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <h2>Unit's Budget</h2>
+
+                        <div class="card-deck">
+                            <div class="card bg-success">
+                                <div class="card-body text-center">                                
+                                    <p class="card-text"><b>Budget Requested for <br>Programs Requested by Unit from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetRequestedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget Requested for <br>Programs Implemented by Unit from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget Utilized for <br>Programs Implemented by Unit from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getImplementedUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+
+                                    <!--<p class="card-text"><b>Budget Utilized for <br>Programs Requested by Unit from *</b></p>
+                                    <p class="total2">PHP <%=df.format(UserDAO.getRequestedUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
+                                </div>
+                            </div> 
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget Variance <br>Programs Implemented by Unit from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+
+                                    <!--<p class="card-text"><b>Budget Variance <br>Programs Requested by Unit from *</b></p>
+                                    <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByUnitDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getRequestedUtilizedBudgetUnitByDate(request.getAttribute("unit").toString(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>-->
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

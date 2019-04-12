@@ -45,10 +45,10 @@
 
         <script>
             $(document).ready(function () {
-                $('#example').DataTable();
+            $('#example').DataTable();
             });
             $(document).ready(function () {
-                $('#example2').DataTable();
+            $('#example2').DataTable();
             });
         </script> 
 
@@ -172,6 +172,21 @@
 
         </style>
 
+        <script>
+            function PrintElem(elem)
+            {
+            var printContents = document.getElementById(elem).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            }
+
+            $(document).ready(function(){
+            $("#printreport").hide();
+            });
+        </script>
+
     </head>
 
     <body>
@@ -218,7 +233,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -295,14 +310,17 @@
                                 %>
                                 <option value="<%=c.get(i).getId()%>" <%if (request.getAttribute("dated") != null) {
                                         if (Integer.parseInt(request.getAttribute("communityID").toString()) == c.get(i).getId()) {%> selected="selected"<%}
-                                    }%> ><%=c.get(i).getName()%></option>
+                                            }%> ><%=c.get(i).getName()%></option>
                                 <%
                                     }
                                 %>
                             </select>
                         </div>
-                        
-                        <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <%
+                            if (request.getAttribute("dated") != null) {
+                        %>
+                            <button type="button" onclick="PrintElem('printreport')" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <%}%>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
 
@@ -348,42 +366,41 @@
                             var ctx = document.getElementById('chartSE').getContext('2d');
                             ctx.canvas.width = 35;
                             ctx.canvas.height = 20;
-
                             var chartSE = new Chart(ctx, {
-                                type: 'horizontalBar',
-                                data: {
+                            type: 'horizontalBar',
+                                    data: {
                                     labels: ["Socially Engaged Research", "Service Learning", "Interdisciplinary Fora", "Direct Service to the Poor and Marginalized", "Issue Awareness and Advocacy", "Public Engagement", "Others"],
-                                    datasets: [
-                                        {
+                                            datasets: [
+                                            {
                                             label: "# of Programs",
-                                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
-                                            data: [<%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Socially Engaged Research", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Service-Learning", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Interdisciplinary Fora", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Direct Service to the Poor and Marginalized", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Issue Awareness and Advocacy", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Public Engagement", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>]
-                                        }
-                                    ]
-                                },
-                                options: {
+                                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#EA4F2D", "#2DEA86"],
+                                                    data: [<%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Socially Engaged Research", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Service-Learning", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Interdisciplinary Fora", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Direct Service to the Poor and Marginalized", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Issue Awareness and Advocacy", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Public Engagement", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>]
+                                            }
+                                            ]
+                                    },
+                                    options: {
                                     legend: {display: false},
-                                    title: {
-                                        display: true,
-                                    },
-                                    scales: {
-                                        yAxes: [{
-                                                ticks: {
-                                                    beginAtZero: true,
+                                            title: {
+                                            display: true,
+                                            },
+                                            scales: {
+                                            yAxes: [{
+                                            ticks: {
+                                            beginAtZero: true,
                                                     fontSize: 16
-                                                }
+                                            }
                                             }],
-                                        xAxes: [{
-                                                ticks: {
+                                                    xAxes: [{
+                                                    ticks: {
                                                     fontSize: 16
-                                                }
-                                            }]
-                                    },
-                                    tooltips: {
-                                        titleFontSize: 18,
-                                        bodyFontSize: 18
+                                                    }
+                                                    }]
+                                            },
+                                            tooltips: {
+                                            titleFontSize: 18,
+                                                    bodyFontSize: 18
+                                            }
                                     }
-                                }
                             });
                         </script>
                     </div>
@@ -441,49 +458,132 @@
                             Chart.defaults.global.legend.display = false;
                             var ctx = document.getElementById('chartBPRu').getContext('2d');
                             var chartBPRu = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    <%
-                                        ArrayList<Unit> units = UserDAO.retrieveUnitsAcademic();
-                                    %>
-                                    
-                                    labels: [<%for (int i = 0; i < units.size(); i++) {%>"<%=units.get(i).getAbbrev()%>",<%}%>],
-                                    datasets: [
-                                        {
-                                            label: "Social Engagement",
-                                            backgroundColor: ["#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D"],
-                                            data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
-                                        }]
+                            type: 'bar',
+                                    data: {
+                            <%
+                                ArrayList<Unit> units = UserDAO.retrieveUnitsAcademic();
+                            %>
 
-                                },
-                                options: {
-                                    legend: {
-                                        display: false},
-                                    title: {
-                                        display: true,
-                                    },
-                                    scales: {
-                                        yAxes: [{
-                                                ticks: {
-                                                    fontSize: 16
-                                                }
-                                            }],
-                                        xAxes: [{
-                                                ticks: {
-                                                    beginAtZero: true,
-                                                    fontSize: 16
-                                                }
+                                    labels: [<%for (int i = 0; i < units.size(); i++) {%>"<%=units.get(i).getAbbrev()%>",<%}%>],
+                                            datasets: [
+                                            {
+                                            label: "Social Engagement",
+                                                    backgroundColor: ["#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D", "#EA7A2D"],
+                                                    data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
                                             }]
+
                                     },
-                                    tooltips: {
-                                        titleFontSize: 18,
-                                        bodyFontSize: 18
+                                    options: {
+                                    legend: {
+                                    display: false},
+                                            title: {
+                                            display: true,
+                                            },
+                                            scales: {
+                                            yAxes: [{
+                                            ticks: {
+                                            fontSize: 16
+                                            }
+                                            }],
+                                                    xAxes: [{
+                                                    ticks: {
+                                                    beginAtZero: true,
+                                                            fontSize: 16
+                                                    }
+                                                    }]
+                                            },
+                                            tooltips: {
+                                            titleFontSize: 18,
+                                                    bodyFontSize: 18
+                                            }
                                     }
-                                }
                             });
                         </script>
                     </div>
 
+                </div>
+
+                <div id="printreport">
+                    <legend>Community: <%=UserDAO.getCommunitynameByID(Integer.parseInt(request.getAttribute("communityID").toString()))%></legend>
+                    <legend>Report Range: <%=Date.valueOf(request.getAttribute("startDate").toString())%> - <%=Date.valueOf(request.getAttribute("endDate").toString())%> (yyyy-mm-dd)</legend>
+                    <br>
+                    
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">Programs Implemented</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>SE Type</th>
+                                <th># of Programs Implemented</th>
+                            </tr>
+                            <tr>
+                                <td>Socially Engaged Research</td>
+                                <td><%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Socially Engaged Research", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Service Learning</td>
+                                <td><%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Service-Learning", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Interdisciplinary Fora</td>
+                                <td><%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Interdisciplinary Fora", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Direct Service to the Poor and Marginalized</td>
+                                <td><%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Direct Service to the Poor and Marginalized", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Issue Awareness and Advocacy</td>
+                                <td><%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Issue Awareness and Advocacy", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Public Engagement</td>
+                                <td><%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Public Engagement", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Others</td>
+                                <td><%=UserDAO.countProgramsActivityClassificationImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), "Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid totalsdiv">
+
+                        <h2 class="totaltitle"><%=UserDAO.getCommunitynameByID(Integer.parseInt(request.getAttribute("communityID").toString()))%></h2>
+
+                        <div class="card-deck">
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Programs Implemented</b></p>
+                                    <p class="total"><%=UserDAO.countProgramsCompletedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Units Affiliated</b></p>
+                                    <p class="total"><%=UserDAO.countProgramsUnitAffliatedCompletedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="container-fluid totalsdiv">
+                        <h2 class="totaltitle">Programs</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Unit</th>
+                                <th># of SE Programs Implemented</th>
+                            </tr>
+                            <%
+                                units = UserDAO.retrieveUnits();
+                                for (int x = 0; x < units.size(); x++) {
+                            %>
+                            <tr>
+                                <td><%=units.get(x).getName()%></td>
+                                <td><%=UserDAO.countProgramsUnitImplementedByCommunityID(Integer.parseInt(request.getAttribute("communityID").toString()), units.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
                 </div>
                 <%
                     }
@@ -497,41 +597,41 @@
         <script>
             // sandbox disable popups
             if (window.self !== window.top && window.name != "view1") {
-                ;
-                window.alert = function () {/*disable alert*/
-                };
-                window.confirm = function () {/*disable confirm*/
-                };
-                window.prompt = function () {/*disable prompt*/
-                };
-                window.open = function () {/*disable open*/
-                };
+            ;
+            window.alert = function () {/*disable alert*/
+            };
+            window.confirm = function () {/*disable confirm*/
+            };
+            window.prompt = function () {/*disable prompt*/
+            };
+            window.open = function () {/*disable open*/
+            };
             }
 
             // prevent href=# click jump
             document.addEventListener("DOMContentLoaded", function () {
-                var links = document.getElementsByTagName("A");
-                for (var i = 0; i < links.length; i++) {
-                    if (links[i].href.indexOf('#') != -1) {
-                        links[i].addEventListener("click", function (e) {
-                            console.debug("prevent href=# click");
-                            if (this.hash) {
-                                if (this.hash == "#") {
-                                    e.preventDefault();
-                                    return false;
-                                } else {
-                                    /*
-                                     var el = document.getElementById(this.hash.replace(/#/, ""));
-                                     if (el) {
-                                     el.scrollIntoView(true);
-                                     }
-                                     */
-                                }
-                            }
-                            return false;
-                        })
-                    }
-                }
+            var links = document.getElementsByTagName("A");
+            for (var i = 0; i < links.length; i++) {
+            if (links[i].href.indexOf('#') != - 1) {
+            links[i].addEventListener("click", function (e) {
+            console.debug("prevent href=# click");
+            if (this.hash) {
+            if (this.hash == "#") {
+            e.preventDefault();
+            return false;
+            } else {
+            /*
+             var el = document.getElementById(this.hash.replace(/#/, ""));
+             if (el) {
+             el.scrollIntoView(true);
+             }
+             */
+            }
+            }
+            return false;
+            })
+            }
+            }
             }, false);
         </script>
         <script>
@@ -541,23 +641,23 @@
             $('#collapse-icon').addClass('fa-angle-double-left');
             // Collapse click
             $('[data-toggle=sidebar-colapse]').click(function () {
-                SidebarCollapse();
+            SidebarCollapse();
             });
             function SidebarCollapse() {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-                if (SeparatorTitle.hasClass('d-flex')) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+            } else {
+            SeparatorTitle.addClass('d-flex');
+            }
 
-                // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
         </script>
     </body>

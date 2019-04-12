@@ -76,7 +76,7 @@
                 for (int i = 0; i < kra.size(); i++) {
             %>
                     if (response == "<%=kra.get(i).getId()%>"){
-                    <% ArrayList<Measure> measure = TargetDAO.retrieveMeasuresImplementedOfSelectedKRA(kra.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+            <% ArrayList<Measure> measure = TargetDAO.retrieveMeasuresImplementedOfSelectedKRA(kra.get(i).getId(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
             %>
             <%
                 for (int j = 0; j < measure.size(); j++) {
@@ -96,9 +96,8 @@
             <% kraslist = OvplmDAO.retrieveKRA();
             %>
             <%
-                    
                 ArrayList<Measure> measure = TargetDAO.retrieveMeasuresImplemented(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
-                for (int z = 0 ; z < measure.size() ; z++){
+                for (int z = 0; z < measure.size(); z++) {
             %>
                     var counter = 1;
                     table3.row.add([
@@ -106,8 +105,8 @@
                             '<%=measure.get(z).getMeasureID()%>'
                     ]).draw(false);
             <%
-                    }
-                
+                }
+
             %>
                     }
                     console.log(response);
@@ -115,8 +114,6 @@
             });
             }).trigger('change');
             });
-            
-            
             $(document).ready(function () {
             var table = $('#example2').DataTable();
             $("#seprogram").on('change', function(){
@@ -126,8 +123,7 @@
                     data:{kra:kra},
                     url:'termEndReport',
                     success: function(response){
-            <%
-                UserDAO UserDAO2 = new UserDAO();
+            <%                UserDAO UserDAO2 = new UserDAO();
             %>
             <%
                 ArrayList<SE> s = new ArrayList();
@@ -293,8 +289,6 @@
             });
             }).trigger('change');
             });
-            
-            
             $(document).ready(function () {
             $('#example3').DataTable();
             var table2 = $('#example3').DataTable();
@@ -442,8 +436,6 @@
             });
             }).trigger('change');
             });
-            
-            
             $(document).ready(function () {
             $('#example4').DataTable();
             });
@@ -630,6 +622,21 @@
             }
         </style>
 
+        <script>
+            function PrintElem(elem)
+            {
+            var printContents = document.getElementById(elem).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            }
+
+            $(document).ready(function(){
+            $("#printreport").hide();
+            });
+        </script>
+
     </head>
 
     <body>
@@ -676,7 +683,7 @@
                             <i class="fa fa-user-circle"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <% UserDAO UserDAO = new UserDAO(); %>
+                            <% UserDAO UserDAO = new UserDAO();%>
                             <div class="col-sm-12">
                                 <legend style="font-size:14px;"><b>User ID:</b> <%=Integer.parseInt(session.getAttribute("userID").toString())%></legend>
                                 <legend style="font-size:14px;"><b>Name:</b> <br><%=UserDAO.getFirstName(Integer.parseInt(session.getAttribute("userID").toString()))%> <%=UserDAO.getLastName(Integer.parseInt(session.getAttribute("userID").toString()))%></legend>
@@ -741,7 +748,7 @@
                         <p></p>
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
 
-                        <button type="button" onclick="window.print()" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <button type="button" onclick="PrintElem('printreport')" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>
@@ -797,10 +804,10 @@
                                             }],
                                                     xAxes: [{
                                                     barThickness: 70,
-                                                    barPercentage: 0.1,
-                                                    ticks: {
-                                                    fontSize: 16
-                                                    }
+                                                            barPercentage: 0.1,
+                                                            ticks: {
+                                                            fontSize: 16
+                                                            }
                                                     }]
                                             },
                                             tooltips: {
@@ -834,8 +841,8 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th style="width:20%"><center>KRA-Goal-Measure</center></th>
-                                <th style="width:20%"><center># of Programs</center></th>
-                            </tr>
+                        <th style="width:20%"><center># of Programs</center></th>
+                        </tr>
                         </thead>
                         <tbody>
                         </tbody>
@@ -1284,7 +1291,7 @@
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget Utilized for <br>Programs Implemented from *</b></p>
                                 <p class="total2">₱ <%=df.format(UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
-                                
+
                                 <!--<p class="card-text"><b>Budget Utilized for <br>Programs Created from *</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p> -->
                             </div>
@@ -1293,7 +1300,7 @@
                             <div class="card-body text-center">
                                 <p class="card-text"><b>Budget Variance for <br>Programs Implemented from *</b></p>
                                 <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
-                                
+
                                 <!--<p class="card-text"><b>Budget Variance for <br>Programs Created from *</b></p>
                                 <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p> -->
                             </div>
@@ -1390,74 +1397,330 @@
                     </form>
                 </div>
 
+                <div id="printreport">
+                    <legend>Report Range: <%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%></legend>
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">KRAs Targeted (# of Programs per KRA)</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>KRA</th>
+                                <th>Number of Programs</th>
+                            </tr>
+                            <%
+                                for (int x = 0; x < kra.size(); x++) {
+                            %>
+                            <tr>
+                                <td><%=kra.get(x).getName().substring(0, 5)%></td>
+                                <td><%=kra.get(x).getTotal()%></td>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">Programs Implemented</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Social Engagement</th>
+                                <th>Faith Formation</th>
+                            </tr>
+                            <tr>
+                                <td><%=UserDAO.countSEImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                <td><%=UserDAO.countFFImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">SE Programs Implemented by Classification</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>SE Type</th>
+                                <th># of Programs Implemented</th>
+                            </tr>
+                            <tr>
+                                <td>Socially Engaged Research</td>
+                                <td><%=UserDAO.countSEImplementedByClassificationDate("Socially Engaged Research", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Service Learning</td>
+                                <td><%=UserDAO.countSEImplementedByClassificationDate("Service-Learning", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Interdisciplinary Fora</td>
+                                <td><%=UserDAO.countSEImplementedByClassificationDate("Interdisciplinary Fora", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Direct Service to the Poor and Marginalized</td>
+                                <td><%=UserDAO.countSEImplementedByClassificationDate("Direct Service to the Poor and Marginalized", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Issue Awareness and Advocacy</td>
+                                <td><%=UserDAO.countSEImplementedByClassificationDate("Issue Awareness and Advocacy", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Public Engagement</td>
+                                <td><%=UserDAO.countSEImplementedByClassificationDate("Public Engagement", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Others</td>
+                                <td><%=UserDAO.countSEImplementedByClassificationDate("Others", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">FF Programs Implemented by Classification</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>FF Type</th>
+                                <th># of Programs Implemented</th>
+                            </tr>
+                            <tr>
+                                <td>Retreat</td>
+                                <td><%=UserDAO.countFFImplementedByClassificationDate("Retreat", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Recollection</td>
+                                <td><%=UserDAO.countFFImplementedByClassificationDate("Recollection", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Prayer Service</td>
+                                <td><%=UserDAO.countFFImplementedByClassificationDate("Prayer Service", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Spiritual Talk</td>
+                                <td><%=UserDAO.countFFImplementedByClassificationDate("Spiritual Talk", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Talk on the Life of the Founder</td>
+                                <td><%=UserDAO.countFFImplementedByClassificationDate("Talk on the life of the Founder", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <tr>
+                                <td>Br. Gabriel Drolin Experience</td>
+                                <td><%=UserDAO.countFFImplementedByClassificationDate("Br. Gabriel Drolin Experience", Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">Number of Programs Implemented</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Unit</th>
+                                <th>SE Programs</th>
+                                <th>FF Programs</th>
+                            </tr>
+                            <%
+                                ArrayList<Unit> units = UserDAO.retrieveUnits();
+                                for (int x = 0; x < units.size(); x++) {
+                            %>
+                            <tr>
+                                <td><%=units.get(x).getName()%></td>
+                                <td><%=UserDAO.countSEImplementedByUnit(units.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                <td><%=UserDAO.countFFImplementedByUnit(units.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <h2 class="totaltitle">Number of Programs Implemented for Student Orgs</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Student Organization</th>
+                                <th>SE Programs</th>
+                                <th>FF Programs</th>
+                            </tr>
+                            <%
+                                ArrayList<StudentOrg> studentorgs = UserDAO.retrieveStudentOrgs();
+                                for (int x = 0; x < studentorgs.size(); x++) {
+                            %>
+                            <tr>
+                                <td><%=studentorgs.get(x).getName()%></td>
+                                <td><%=UserDAO.countSEImplementedByStudentOrg(studentorgs.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                <td><%=UserDAO.countFFImplementedByStudentOrg(studentorgs.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
+
+                    <div class="container-fluid panels">
+                        <%
+                            ArrayList<Community> c = new ArrayList();
+                            c = UserDAO.retrieveProgramsCommunityByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()));
+                        %>
+
+                        <h2>Communities Engaged from (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+
+                        <table id="example4" class="table table-striped table-bordered" style="width:100%">    
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Community</th>
+                                    <th>Number of Programs Implemented</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    for (int i = 0; i < c.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><%=c.get(i).getName()%></td>
+                                    <td><%=c.get(i).getNumberOfPrograms()%></td>
+
+                                </tr>
+
+                                <%
+                                    }
+                                %>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--- budget -->
+                    <div class="container-fluid panels">
+
+                        <%
+                            DecimalFormat df = new DecimalFormat("#,###,###,###.##");
+                        %>
+
+                        <h2>Budget *(<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
+
+                        <div class="card-deck">
+                            <div class="card bg-info">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Overall Initial Budget (as of <%=Date.valueOf(request.getAttribute("startDate").toString())%>)</b></p>
+                                    <p class="total">₱ <%=df.format(UserDAO.getInitialBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-info">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Overall Budget Remaining (as of <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                    <p class="total">₱ <%=df.format(UserDAO.getRemainingBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div> 
+                        </div>
+
+                        <p></p>
+
+
+                        <div class="card-deck">
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget Requested for <br>Programs Created from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget Requested for <br>Programs Implemented from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget Utilized for <br>Programs Implemented from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+
+                                    <!--<p class="card-text"><b>Budget Utilized for <br>Programs Created from *</b></p>
+                                    <p class="total2">PHP <%=df.format(UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p> -->
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget Variance for <br>Programs Implemented from *</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getBudgetImplementedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getImplementedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+
+                                    <!--<p class="card-text"><b>Budget Variance for <br>Programs Created from *</b></p>
+                                    <p class="total2">PHP <%=df.format(UserDAO.getBudgetRequestedByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) - UserDAO.getRequestedUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <br/>        
+                        <div class="card-deck">
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget used for SE programs <br>(from <%=request.getAttribute("startDate")%> to <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getSEUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div>
+                            <div class="card bg-success">
+                                <div class="card-body text-center">
+                                    <p class="card-text"><b>Budget used for FF programs <br>(from <%=request.getAttribute("startDate")%> to <%=Date.valueOf(request.getAttribute("endDate").toString())%>)</b></p>
+                                    <p class="total2">₱ <%=df.format(UserDAO.getFFUtilizedBudgetByDate(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></p>
+                                </div>
+                            </div> 
+                        </div>   
+                    </div>
+                </div>
+
             </div>
 
-        </div>
-
-        <script>
-            // sandbox disable popups
-            if (window.self !== window.top && window.name != "view1") {
-            ;
-            window.alert = function () {/*disable alert*/
-            };
-            window.confirm = function () {/*disable confirm*/
-            };
-            window.prompt = function () {/*disable prompt*/
-            };
-            window.open = function () {/*disable open*/
-            };
-            }
-            // prevent href=# click jump
-            document.addEventListener("DOMContentLoaded", function () {
-            var links = document.getElementsByTagName("A");
-            for (var i = 0; i < links.length; i++) {
-            if (links[i].href.indexOf('#') != - 1) {
-            links[i].addEventListener("click", function (e) {
-            console.debug("prevent href=# click");
-            if (this.hash) {
-            if (this.hash == "#") {
-            e.preventDefault();
-            return false;
-            }
-            else {
-            /*
-             var el = document.getElementById(this.hash.replace(/#/, ""));
-             if (el) {
-             el.scrollIntoView(true);
-             }
-             */
-            }
-            }
-            return false;
-            })
-            }
-            }
-            }, false);
-        </script>
-        <script>
-            // Hide submenus
-            $('#body-row .collapse').collapse('hide');
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-            SidebarCollapse();
-            });
-            function SidebarCollapse() {
-            $('.menu-collapsed').toggleClass('d-none');
-            $('.sidebar-submenu').toggleClass('d-none');
-            $('.submenu-icon').toggleClass('d-none');
-            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-            // Treating d-flex/d-none on separators with title
-            var SeparatorTitle = $('.sidebar-separator-title');
-            if (SeparatorTitle.hasClass('d-flex')) {
-            SeparatorTitle.removeClass('d-flex');
-            } else {
-            SeparatorTitle.addClass('d-flex');
-            }
-            // Collapse/Expand icon
-            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
-        </script>
+            <script>
+                // sandbox disable popups
+                if (window.self !== window.top && window.name != "view1") {
+                ;
+                window.alert = function () {/*disable alert*/
+                };
+                window.confirm = function () {/*disable confirm*/
+                };
+                window.prompt = function () {/*disable prompt*/
+                };
+                window.open = function () {/*disable open*/
+                };
+                }
+                // prevent href=# click jump
+                document.addEventListener("DOMContentLoaded", function () {
+                var links = document.getElementsByTagName("A");
+                for (var i = 0; i < links.length; i++) {
+                if (links[i].href.indexOf('#') != - 1) {
+                links[i].addEventListener("click", function (e) {
+                console.debug("prevent href=# click");
+                if (this.hash) {
+                if (this.hash == "#") {
+                e.preventDefault();
+                return false;
+                }
+                else {
+                /*
+                 var el = document.getElementById(this.hash.replace(/#/, ""));
+                 if (el) {
+                 el.scrollIntoView(true);
+                 }
+                 */
+                }
+                }
+                return false;
+                })
+                }
+                }
+                }, false);
+            </script>
+            <script>
+                // Hide submenus
+                $('#body-row .collapse').collapse('hide');
+                // Collapse/Expand icon
+                $('#collapse-icon').addClass('fa-angle-double-left');
+                // Collapse click
+                $('[data-toggle=sidebar-colapse]').click(function () {
+                SidebarCollapse();
+                });
+                function SidebarCollapse() {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+                if (SeparatorTitle.hasClass('d-flex')) {
+                SeparatorTitle.removeClass('d-flex');
+                } else {
+                SeparatorTitle.addClass('d-flex');
+                }
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+                }
+            </script>
     </body>
 </html>

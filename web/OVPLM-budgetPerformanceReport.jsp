@@ -251,11 +251,11 @@
         <script>
             function PrintElem(elem)
             {
-                var printContents = document.getElementById(elem).innerHTML;
-                var originalContents = document.body.innerHTML;
-                document.body.innerHTML = printContents;
-                window.print();
-                document.body.innerHTML = originalContents;
+            var printContents = document.getElementById(elem).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
             }
 
             $(document).ready(function(){
@@ -374,7 +374,11 @@
                     <div class="container-fluid panels">
                         <p></p>
                         <p>Enter Report Range: From: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("startDate").toString())%>" <%}%> name="startDate" required> To: <input type="date" <%if (request.getAttribute("dated") != null) {%> value="<%=Date.valueOf(request.getAttribute("endDate").toString())%>" <%}%> name="endDate" required></p>
-                        <button type="button" onclick="PrintElem('printreport')" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <%
+                            if (request.getAttribute("dated") != null) {
+                        %>
+                            <button type="button" onclick="PrintElem('printreport')" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>Print Report</button>
+                        <%}%>
                         <button class="btn btn-success" type="submit">Submit</button>
                     </div>
                 </form>
@@ -725,9 +729,9 @@
                 </div>
 
                 <div id="printreport">
+                    <legend>Report Range: <%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%> (yyyy-mm-dd)</legend>
                     <div class="container-fluid panels">
-                        <h2 class="kraheading"> Overall Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
-
+                        <h2 class="totaltitle">Overall Budget Expenses</h2>
                         <div class="card-deck">
                             <div class="card bg-primary">
                                 <div class="card-body text-center">
@@ -761,128 +765,45 @@
                     </div>
                     <!--- pie chart-->
 
-                    <!--- Units -->
                     <div class="container-fluid panels">
-
-                        <h2>Unit's Budget Expenses for Programs Implemented (from <%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
-                        <div class="card-deck">
-                            <div class="card chartscards">
-                                <div id="canvas-holder" style="width:75%;">
-                                    <canvas id="chartBPRu2"  width="110" height="100" style="margin-left:115px"></canvas>
-                                </div>
-                            </div>
-                            <script>
+                        <h2 class="totaltitle">Unit's Budget Expenses for Programs Implemented</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <thead  class="thead-dark">
+                                <tr>
+                                    <th>Unit</th>
+                                    <th>Social Engagement</th>
+                                    <th>Faith Formation</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <%
                                     units = UserDAO.retrieveUnits();
+                                    for (int x = 0; x < units.size(); x++) {
                                 %>
-                                Chart.defaults.global.legend.display = false;
-                                var ctx = document.getElementById('chartBPRu2').getContext('2d');
-                                var chartBPRu = new Chart(ctx, {
-                                type: 'horizontalBar',
-                                        data: {
-                                        labels: [<%for (int i = 0; i < units.size(); i++) {%>"<%=units.get(i).getName()%>",<%}%>],
-                                                datasets: [
-                                                {
-                                                label: "Social Engagement",
-                                                        backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA7A2D",<%}%>],
-                                                        data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualSEBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
-                                                }
-                                                , {
-                                                label: "Faith Formation",
-                                                        backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#2D36EA",<%}%>],
-                                                        data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
-                                                }
-                                                , {
-                                                label: "Total",
-                                                        backgroundColor: [<%for (int i = 0; i < units.size(); i++) {%>"#EA4E6F",<%}%>],
-                                                        data: [<%for (int i = 0; i < units.size(); i++) {%> <%=UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) + UserDAO.getIndividualSEBudgetImplementedByUnitDate(units.get(i).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%}%>]
-                                                }]
-
-                                        },
-                                        options: {
-                                        legend: {
-                                        display: true,
-                                                position: 'top',
-                                                labels: {
-                                                fontSize: 15
-                                                }
-                                        },
-                                                title: {
-                                                display: true,
-                                                },
-                                                scales: {
-                                                yAxes: [{
-                                                ticks: {
-                                                fontSize: 16
-                                                }
-                                                }],
-                                                        xAxes: [{
-                                                        ticks: {
-                                                        beginAtZero: false,
-                                                                fontSize: 16
-                                                        }
-                                                        }]
-                                                },
-                                                tooltips: {
-                                                titleFontSize: 18,
-                                                        bodyFontSize: 18
-                                                }
-                                        }
-                                });
-                            </script>
-                        </div>
-
+                                <tr>
+                                    <td><%=units.get(x).getName()%></td>
+                                    <td>₱<%=df.format(UserDAO.getIndividualSEBudgetImplementedByUnitDate(units.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></td>
+                                    <td>₱<%=df.format(UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></td>
+                                    <td>₱<%=df.format(UserDAO.getIndividualFFBudgetImplementedByUnitDate(units.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())) + UserDAO.getIndividualSEBudgetImplementedByUnitDate(units.get(x).getName(), Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString())))%></td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
                     </div>
-                    <!--- Units -->
 
-                    <!--- budget -->
                     <div class="container-fluid panels">
-
-                        <h2>Program Budget Expenses (<%=request.getAttribute("startDate")%> - <%=request.getAttribute("endDate")%>)</h2>
-
-                        <div class="card-deck">
-                            <div class="card bg-white">
-                                <div class="card-body text-center">
-                                    <div id="canvas-holder" style="width:50%" >
-                                        <canvas id="chartBPRb2" style="margin-left:260px"></canvas>
-                                    </div>
-                                    <script>
-                                        Chart.defaults.global.legend.display = true;
-                                        var ctx = document.getElementById('chartBPRb2').getContext('2d');
-                                        ctx.canvas.width = 35;
-                                        ctx.canvas.height = 20;
-                                        var chartBPRb = new Chart(ctx, {
-                                        type: 'pie',
-                                                data: {
-                                                labels: ['Programs Funded by OVPLM', 'Programs Funded by Others'],
-                                                        datasets:
-                                                [{
-                                                data: [<%=UserDAO.countOVPLMPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>, <%=UserDAO.countOtherPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%>],
-                                                        backgroundColor: ['#5A82B2', '#DCDF01']
-                                                }],
-                                                },
-                                                options: {
-                                                legend: {
-                                                display: true,
-                                                        position: 'bottom',
-                                                        labels: {
-                                                        boxWidth: 60,
-                                                                fontSize: 20
-                                                        }
-                                                },
-                                                        tooltips: {
-                                                        titleFontSize: 18,
-                                                                bodyFontSize: 18
-                                                        }
-                                                }
-
-                                        });
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h2></h2>
+                        <h2 class="totaltitle">Program's Budget Expenses</h2>
+                        <table class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Programs Funded by OVPLM</th>
+                                <th>Programs Funded by Others</th>
+                            </tr>
+                            <tr>
+                                <td><%=UserDAO.countOVPLMPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                                <td><%=UserDAO.countOtherPrograms(Date.valueOf(request.getAttribute("startDate").toString()), Date.valueOf(request.getAttribute("endDate").toString()))%></td>
+                            </tr>
+                        </table>
 
                         <div class="card-deck">
                             <div class="card bg-success">
@@ -918,77 +839,78 @@
                         </div>
                     </div>
                 </div>
-                <%
-                    }
-                %>
             </div>
+            <%
+                }
+            %>
         </div>
+    </div>
 
-        <script>
-            // sandbox disable popups
-            if (window.self !== window.top && window.name != "view1") {
-            ;
-            window.alert = function () {/*disable alert*/
-            };
-            window.confirm = function () {/*disable confirm*/
-            };
-            window.prompt = function () {/*disable prompt*/
-            };
-            window.open = function () {/*disable open*/
-            };
-            }
+    <script>
+        // sandbox disable popups
+        if (window.self !== window.top && window.name != "view1") {
+        ;
+        window.alert = function () {/*disable alert*/
+        };
+        window.confirm = function () {/*disable confirm*/
+        };
+        window.prompt = function () {/*disable prompt*/
+        };
+        window.open = function () {/*disable open*/
+        };
+        }
 
-            // prevent href=# click jump
-            document.addEventListener("DOMContentLoaded", function () {
-            var links = document.getElementsByTagName("A");
-            for (var i = 0; i < links.length; i++) {
-            if (links[i].href.indexOf('#') != - 1) {
-            links[i].addEventListener("click", function (e) {
-            console.debug("prevent href=# click");
-            if (this.hash) {
-            if (this.hash == "#") {
-            e.preventDefault();
-            return false;
-            } else {
-            /*
-             var el = document.getElementById(this.hash.replace(/#/, ""));
-             if (el) {
-             el.scrollIntoView(true);
-             }
-             */
-            }
-            }
-            return false;
-            })
-            }
-            }
-            }, false);
-        </script>
-        <script>
-            // Hide submenus
-            $('#body-row .collapse').collapse('hide');
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-            // Collapse click
-            $('[data-toggle=sidebar-colapse]').click(function () {
-            SidebarCollapse();
-            });
-            function SidebarCollapse() {
-            $('.menu-collapsed').toggleClass('d-none');
-            $('.sidebar-submenu').toggleClass('d-none');
-            $('.submenu-icon').toggleClass('d-none');
-            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-            // Treating d-flex/d-none on separators with title
-            var SeparatorTitle = $('.sidebar-separator-title');
-            if (SeparatorTitle.hasClass('d-flex')) {
-            SeparatorTitle.removeClass('d-flex');
-            } else {
-            SeparatorTitle.addClass('d-flex');
-            }
+        // prevent href=# click jump
+        document.addEventListener("DOMContentLoaded", function () {
+        var links = document.getElementsByTagName("A");
+        for (var i = 0; i < links.length; i++) {
+        if (links[i].href.indexOf('#') != - 1) {
+        links[i].addEventListener("click", function (e) {
+        console.debug("prevent href=# click");
+        if (this.hash) {
+        if (this.hash == "#") {
+        e.preventDefault();
+        return false;
+        } else {
+        /*
+         var el = document.getElementById(this.hash.replace(/#/, ""));
+         if (el) {
+         el.scrollIntoView(true);
+         }
+         */
+        }
+        }
+        return false;
+        })
+        }
+        }
+        }, false);
+    </script>
+    <script>
+        // Hide submenus
+        $('#body-row .collapse').collapse('hide');
+        // Collapse/Expand icon
+        $('#collapse-icon').addClass('fa-angle-double-left');
+        // Collapse click
+        $('[data-toggle=sidebar-colapse]').click(function () {
+        SidebarCollapse();
+        });
+        function SidebarCollapse() {
+        $('.menu-collapsed').toggleClass('d-none');
+        $('.sidebar-submenu').toggleClass('d-none');
+        $('.submenu-icon').toggleClass('d-none');
+        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+        // Treating d-flex/d-none on separators with title
+        var SeparatorTitle = $('.sidebar-separator-title');
+        if (SeparatorTitle.hasClass('d-flex')) {
+        SeparatorTitle.removeClass('d-flex');
+        } else {
+        SeparatorTitle.addClass('d-flex');
+        }
 
-            // Collapse/Expand icon
-            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-            }
-        </script>
-    </body>
+        // Collapse/Expand icon
+        $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+        }
+    </script>
+</body>
 </html>
